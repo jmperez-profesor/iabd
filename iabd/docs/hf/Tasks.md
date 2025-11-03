@@ -9,7 +9,6 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.
 - Probar ejemplos prácticos con pipelines de Hugging Face.
 
-
 Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.
 
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
