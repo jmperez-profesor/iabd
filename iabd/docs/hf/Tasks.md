@@ -10,6 +10,11 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - Probar ejemplos prácticos con pipelines de Hugging Face.
 
 
+Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.
+
+![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
+*Tasks (tareas) en Hugging Face*
+
 ## ¿Qué es un task?
 
 Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
