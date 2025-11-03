@@ -1,6 +1,5 @@
-site_name: Seguridad en sistemas del curso de especialista en ciberseguridad
-site_url: https://jogonar-rgb.github.io/Ciberseguridad_25_26/
-
+site_name: Inteligencia Artificial y Big Data
+site_url: https://jmperez-profesor.github.io/iabd/
 
 theme:
   name: material
