@@ -51,14 +51,15 @@ markdown_extensions:
 
 nav:
   - Introducción: index.md 
-  - Warm up:
-    - warm/index.md
-    - Entornos Linux: warm/Apuntes_Linux.md
-    - Ejercicios propuestos Linux: warm/Ejercicios_Linux.md
-    - Entornos Windows: warm/Apuntes_Windows.md
-    - Ejercicios propuestos Windows: warm/Ejercicios_Windows.md
-    - Webgrafía: warm/webgrafia.md
-  - Seguridad ofensiva:
+  - Hugging Face:
+    - hf/index.md
+    - Tasks: hf/Tasks.md
+    - Referencias: hf/Referencias.md
+    - Activiades: hf/Actividades.md
+    #- Entornos Windows: hf/Apuntes_Windows.md
+    #- Ejercicios propuestos Windows: hf/Ejercicios_Windows.md
+    
+  #- Seguridad ofensiva:
     - Seguridad_ofensiva/index.md
     - Introducción: Seguridad_ofensiva/Intro.md
     - Introducción a Nmap: Seguridad_ofensiva/nmap101.md

@@ -1,6 +1,6 @@
 ---
-title: Ejercicios básicos manejo Linux
-description: Apuntes, prácticas, ejercicio del curso de especialización de ciberseguridad. Ejercicio de comandos Linux.
+title: Actividades
+description: Actividades del curso de especialización en IA y Big Data. Actividades sobre las Tasks de HF.
 ---
 
 1. En el primer ejercicio propuesto, vamos a hacer uso de la plataforma [Tryhackme](https://tryhackme.com/). TryHackMe es una plataforma web en la que podremos aprender hacking desde 0, a base de resolver retos con una filosofía de CTF y gamificación.

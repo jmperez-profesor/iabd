@@ -1,6 +1,6 @@
 ---
 title: Fuentes utilizadas en los apuntes
-description: Apuntes, prácticas, ejercicio del curso de especialización de ciberseguridad. 
+description: Apuntes, teoría, prácticas, ejercicio del curso de especialización de Inteligencia Artificial y Big Data. IES Severo Ochoa Elche. 
 ---
 
 [Árbol de directorios en Linux](https://computernewage.com/2015/06/14/el-arbol-de-directorios-de-linux-al-detalle-que-contiene-cada-carpeta) 
