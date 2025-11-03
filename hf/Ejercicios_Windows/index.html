@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización de ciberseguridad. Arkime, blue team, seguridad devensiva, análisis de red, escáner de red, bastionado de redes y sistemas.">
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización de ciberseguridad. Ejercicio de comandos Windows.">
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Seguridad_defensiva/arkime/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Ejercicios_Windows/">
       
       
       
@@ -20,7 +20,7 @@
     
     
       
-        <title>Analizando tráfico de red con Arkime - Inteligencia Artificial y Big Data</title>
+        <title>Ejercicios básicos manejo Windows - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#mitre-attck" class="md-skip">
-          Saltar a contenido
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Analizando tráfico de red con Arkime
+              Ejercicios básicos manejo Windows
             
           </span>
         </div>
@@ -228,7 +223,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../hf/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -361,7 +356,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../hf/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -396,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hf/Tasks.md" class="md-nav__link">
+      <a href="../Tasks.md" class="md-nav__link">
         
   
   
@@ -419,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hf/Referencias/" class="md-nav__link">
+      <a href="../Referencias/" class="md-nav__link">
         
   
   
@@ -442,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hf/Actividades.md" class="md-nav__link">
+      <a href="../Actividades.md" class="md-nav__link">
         
   
   
@@ -780,67 +775,36 @@
 
 
 
-  <h1>Analizando tráfico de red con Arkime</h1>
+  <h1>Ejercicios básicos manejo Windows</h1>
 
-<h2 id="mitre-attck">MITRE ATT&amp;CK</h2>
-<p>¿Has escuchado de MITRE ATT&amp;CK? ATT&amp;CK por sus siglas en inglés, significa: "tácticas, técnicas del adversario y conocimiento común". En una fuente de información colaborativa entre los profesionales de seguridad. </p>
-<p>Permite identificar mejor la huella de TTP (técnicas, tácticas y procedimientos) más amplia (y más profunda) que un adversario dado deja atrás en el curso de una campaña de penetración. Es una fuente a tener en cuenta para entender cómo operan los atacantes. </p>
-<p>Los defensores utilizan este framework y las herramientas asociadas en función de la fuente de datos que posean. Muchas de estas herramientas pueden tener capacidades que se superpongan pero representan la mejor opción para formar un conjunto amplio que nos permita defendernos de forma efectiva.</p>
-<p>Dependiendo del tipo de dato que tengamos, las herramientas se categorizan de forma diferente:</p>
-<p><img alt="" src="../img/mitre.png" /></p>
-<p>Si por ejemplo tuviéramos una fuente de datos relacionados con la red, podríamos mapear estos datos con MITRE ATT&amp;CK:</p>
-<p><img alt="" src="../img/mitre2.png" /></p>
-<p>Y así sucesivamente.</p>
-<h2 id="glosario-de-terminos">Glosario de terminos</h2>
-<h3 id="arkime">Arkime</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://arkime.com/">Arkime</a></p>
-<p>Augment your current security infrastructure to store and index network traffic in standard PCAP format.
-Arkime is not meant to replace Intrusion Detection Systems (IDS) but instead provides more visibility. </p>
-</div>
-<h3 id="command-and-control-c2">Command and control (C2)</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://www.tarlogic.com/es/glosario-ciberseguridad/c2-command-and-control/">Tarlogic</a></p>
-<p>La mayoría de las amenazas necesitan conectarse a un entorno fuera de la organización, donde poder comunicarse con los operadores de estas amenazas (Threat Actors) para recibir instrucciones, exfiltrar información, etc. Estas comunicaciones de manera general no son contra los entornos finales de estos actores, sino que son hacia servidores que controlan, centralizan la información y realizan las acciones necesarias. Estos servidores se conocen como servidores Command and Control, C&amp;C o C2.</p>
-</div>
-<h3 id="ioc">IOC</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://attacksimulator.es/blog/8-tipos-de-indicadores-de-compromiso-ioc-y-como-reconocerlos/">attacksimulator</a></p>
-<p>Los indicadores de compromiso o IoCs son pistas y pruebas de una brecha de datos, que generalmente se ven durante un ataque de ciberseguridad. Estos indicadores pueden revelar que se ha producido un ataque, qué herramientas se han utilizado para el mismo y quién está detrás. Suelen ser recolectados a través del software, incluyendo los sistemas antivirus y antimalware. Para entenderlo mejor, intenta pensar que los indicadores de compromiso son como las migas de pan que deja un atacante tras un ciberataque.</p>
-</div>
-<h3 id="emotet">Emotet</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://es.malwarebytes.com/emotet/">malwarebytes</a></p>
-<p>El troyano bancario Emotet fue identificado por primera vez por investigadores de seguridad en 2014. Emotet fue diseñado originalmente como un malware bancario que intentaba colarse en su ordenador y robar información confidencial y privada. En versiones posteriores del software se añadieron los servicios de envío de spam y malware, incluidos otros troyanos bancarios.</p>
-</div>
-<h3 id="lokibot">Lokibot</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://www.welivesecurity.com/la-es/2021/09/30/lokibot-principales-caracteristicas-malware-roba-credenciales/">WeLiveSecurity</a></p>
-<p>Lokibot, también conocido como Loki PWS o Loki-bot, es un malware perteneciente a la familia de troyanos que está activo desde 2015 y es utilizado desde entonces en campañas a nivel global. Fue diseñado con el objetivo de robar credenciales de navegadores, clientes FTP/ SSH, sistemas de mensajería, y hasta incluso de billeteras de criptomonedas.</p>
-</div>
-<h3 id="spear-phising">Spear phising</h3>
-<div class="admonition quote">
-<p class="admonition-title">Cita de <a href="https://latam.kaspersky.com/resource-center/definitions/spear-phishing">Kasperksy</a></p>
-<p>El spear phishing es una estafa de correo electrónico o comunicaciones dirigida a personas, organizaciones o empresas específicas. Aunque su objetivo a menudo es robar datos para fines maliciosos, los cibercriminales también pueden tratar de instalar malware en la computadora de la víctima.</p>
-</div>
-<h2 id="demostracion-practica-de-arkime">Demostración práctica de Arkime</h2>
-<ul>
+<ol>
 <li>
-<p>Analizando tráfico spear phising (Dridex)</p>
+<p>El ejercicio propuesto para esta parte es muy sencillo:</p>
+<ol>
+<li>
+<p>Debéis instalar un Windows Server 2022 ( o 2019 en su defecto) y un cliente Windows 11 (Windows 10 en su defecto) en sendas máquinas virtuales en VirtualBox</p>
 </li>
 <li>
-<p>Identificando tráfico C2C (Emotet)</p>
+<p>Debéis crearos un usuario con vuestro nombre en el cliente</p>
 </li>
 <li>
-<p>Identificando tráfico C2C (Lokibot)</p>
+<p>Debéis promocionar el Windows Server a controlador de dominio. El nombre de dominio será "cibers8a"</p>
 </li>
 <li>
-<p>Identificación de malware usando comunicaciones seguras con TLS y utilización de hashes JA3 para detectar nodos del command&amp;control</p>
+<p>Debéis añadir al usuario del cliente en el dominio</p>
 </li>
-</ul>
-<h2 id="referencias">Referencias</h2>
-<p><a href="https://www.incibe-cert.es/blog/matriz-mitre-tacticas-y-tecnicas-entornos-industriales">La matriz de MITRE: tácticas y técnicas en entornos industriales</a></p>
-<p><a href="https://www.eclecticiq.com/take-action-with-cti/how-to-use-mitre-attck-to-map-and-track-adversary-ttps">How to Use MITRE ATT&amp;CK to Map and Track Adversary TTPs</a></p>
+<li>
+<p>Deberéis configurar una GPO que impida a los usuarios acceder al panel de control</p>
+</li>
+<li>
+<p>Tras forzar la aplicación de la GPO, debéis comprobar en el cliente que vuestro usuario, efectivamente, no tiene permitido el acceso al panel de control</p>
+</li>
+</ol>
+</li>
+<li>
+<p>El segundo ejercicio propuesto se trata de realizar la <a href="https://tryhackme.com/r/room/winadbasics">siguiente sala</a> de TryHackMe y adjuntar una captura donde se va que se ha completado el 100% de la misma.</p>
+</li>
+</ol>
 
 
 
