@@ -6,13 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+        <meta name="description" content="Actividades del curso de especialización en IA y Big Data. Actividades sobre Tasks I de HF.">
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Apuntes_Linux/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Actividades/">
       
       
+        <link rel="prev" href="../Referencias/">
+      
+      
+        <link rel="next" href="../../Seguridad_ofensiva/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Conceptos básicos entornos Linux - Inteligencia Artificial y Big Data</title>
+        <title>Actividades - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#objetivos" class="md-skip">
+        <a href="#ejercicios" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conceptos básicos entornos Linux
+              Actividades
             
           </span>
         </div>
@@ -224,10 +228,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../" class="md-tabs__link">
           
   
@@ -303,6 +309,8 @@
       
   
   
+    
+  
   
   
     
@@ -348,16 +356,17 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -374,13 +383,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Hugging Face
@@ -396,7 +405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Tasks.md" class="md-nav__link">
+      <a href="../Tasks/" class="md-nav__link">
         
   
   
@@ -439,10 +448,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Actividades.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Activiades
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -453,6 +482,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -780,32 +836,34 @@
 
 
 
-  <h1>Conceptos básicos entornos Linux</h1>
+  <h1>Activiades</h1>
 
-<h2 id="objetivos">Objetivos</h2>
-<ul>
-<li>Diferenciar qué es un "task" en Machine Learning según Hugging Face.</li>
-<li>Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.</li>
-<li>Probar ejemplos prácticos con pipelines de Hugging Face.</li>
-</ul>
-<h2 id="que-es-un-task">¿Qué es un task?</h2>
-<p>Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
-<h2 id="estimacion-de-profundidad">Estimación de profundidad</h2>
-<p>Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
-Ejemplo de aplicación: robótica, conducción autónoma, realidad aumentada.</p>
-<h2 id="clasificacion-de-imagenes">Clasificación de imágenes</h2>
-<p>Asigna una etiqueta a una imagen completa (p. ej., perro o gato).
-Usos frecuentes: reconocimiento de objetos, inventario visual, diagnóstico médico.</p>
-<h2 id="segmentacion-de-imagenes">Segmentación de imágenes</h2>
-<p>Etiqueta cada píxel de la imagen (por objeto o por clase).
-Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#Utiliza el pipeline:</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-<span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</code></pre></div>
+<h2 id="ejercicios">Ejercicios</h2>
+<ol>
+<li><strong>Estimación de profundidad</strong></li>
+<li>
+<p>Utiliza el pipeline:
+     <div class="highlight"><pre><span></span><code>from transformers import pipeline
+depth = pipeline(&quot;depth-estimation&quot;, model=&quot;Intel/zoedepth-nyu-kitti&quot;)
+result = depth(&quot;ruta_o_url_imagen&quot;)
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Clasificación de imágenes</strong></p>
+</li>
+<li>
+<p>Usa el pipeline:
+     <div class="highlight"><pre><span></span><code>from transformers import pipeline
+classifier = pipeline(&quot;image-classification&quot;)
+res = classifier(&quot;ruta_o_url_imagen&quot;)
+print(res)
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Avanzado (Optativo): Integrar clasificación y segmentación</strong></p>
+</li>
+<li>Ejecuta ambos pipelines y visualiza el resultado conjunto.</li>
+</ol>
 
 
 
@@ -841,6 +899,44 @@ Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Referencias/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Referencias">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Referencias
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Seguridad_ofensiva/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Apuntes y ejercicios prácticos del curso de especialización de ciberseguridad en IES Severo Ochoa (Elche)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Apuntes y ejercicios prácticos del curso de especialización de ciberseguridad en IES Severo Ochoa (Elche)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

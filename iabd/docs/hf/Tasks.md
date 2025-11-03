@@ -31,11 +31,13 @@ Etiqueta cada píxel de la imagen (por objeto o por clase).
 Usado en medicina, conducción autónoma, análisis de paisaje y más.
 
 
-```python
-#Utiliza el pipeline:
+```python {{hl_lines="5 7" linenums="1"} 
+# Utiliza el pipeline:
 
 from transformers import pipeline
+
 depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
+
 result = depth("ruta_o_url_imagen")
 
 ```

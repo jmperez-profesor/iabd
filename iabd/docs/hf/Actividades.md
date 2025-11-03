@@ -7,7 +7,7 @@ description: Actividades del curso de especialización en IA y Big Data. Activid
 
 1. **Estimación de profundidad**
    - Utiliza el pipeline:
-     ```
+     ```python
      from transformers import pipeline
      depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
      result = depth("ruta_o_url_imagen")
@@ -15,7 +15,7 @@ description: Actividades del curso de especialización en IA y Big Data. Activid
 
 2. **Clasificación de imágenes**
    - Usa el pipeline:
-     ```
+     ```python
      from transformers import pipeline
      classifier = pipeline("image-classification")
      res = classifier("ruta_o_url_imagen")
