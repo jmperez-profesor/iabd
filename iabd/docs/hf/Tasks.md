@@ -31,7 +31,7 @@ Etiqueta cada píxel de la imagen (por objeto o por clase).
 Usado en medicina, conducción autónoma, análisis de paisaje y más.
 
 
-```python {{hl_lines="5 7" linenums="1"} 
+```python {hl_lines="5 7" linenums="1"} 
 # Utiliza el pipeline:
 
 from transformers import pipeline
