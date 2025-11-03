@@ -476,7 +476,7 @@
 <p>AD simplifica la vida de los administradores y usuarios finales al tiempo que mejora la seguridad de las organizaciones a través de la función políticas de grupo de AD. </p>
 <p>Los usuarios pueden autenticarse una vez y luego acceder sin problemas a cualquier recurso en el dominio para el que están autorizados (inicio de sesión único). </p>
 <p>Además, los archivos se almacenan en un repositorio central donde se pueden compartir con otros usuarios para facilitar la colaboración y los equipos de TI pueden  respaldarlos adecuadamente para garantizar la continuidad del negocio.</p>
-<p><img alt="" src="../img/microsoft-active-directory.webp" style="height:400px;width:800px" /></p>
+<p><img alt="" src="./img/microsoft-active-directory.webp" style="height:400px;width:800px" /></p>
 <h3 id="antes-de-nada-que-es-un-dominio">Antes de nada, ¿qué es un dominio?</h3>
 <p>Un dominio representa una agrupación lógica de un conjunto ordenadores, usuarios y servicios conectados en una red los cuales comparten una base de datos de Active Directory. La base de base de datos es probablemente el elemento más importante en un AD (Active Directory) y es gestionada por los servidores centrales del dominio, también conocidos como Domain Controllers. </p>
 <p>Un dominio básicamente es una etiqueta que típicamente representa un nombre DNS, el cual en algunas organizaciones es el mismo que su sitio web, pero no tiene porque ser así en todos los casos y es posible que la organización prefiera utilizar otro nombre de dominio que será al que se unirán las estaciones de trabajo.</p>
@@ -484,7 +484,7 @@
 <p>Los servicios de dominio de Active Directory (AD DS) son un componente central de Active Directory y proporcionan el mecanismo principal para autenticar a los usuarios y determinar a qué recursos de red pueden acceder. Los servidores que ejecutan AD DS se denominan controladores de dominio (DC). Éstos son sistemas basados en Windows Server que pueden acceder y manipular la base de datos del AD. Cada dominio tiene como mínimo un controlador, por lo que si por ejemplo, un departamento o unidad de negocio crece más de lo esperado, es posible instalar más controladores de dominio dedicados a procesar las solicitudes de las estaciones de trabajo en ese departamento. También es posible crear subdominios para que los usuarios puedan acceder a los recursos en otros subdominios que hagan parte del mismo Forest.</p>
 <p>Las organizaciones normalmente tienen varios DC y cada uno tiene una copia del directorio para todo el dominio. Los cambios realizados en el directorio en un controlador de dominio, como la actualización de la contraseña o la eliminación de una cuenta de usuario, se replican en los otros controladores de dominio para que todos estén actualizados. </p>
 <p>AD DS también proporciona características adicionales como inicio de sesión único (SSO) mediante Kerberos, certificados de seguridad, LDAP (protocolo ligero de acceso a directorios) y administración de derechos de acceso.</p>
-<p><img alt="" src="../img/ADDS.webp" /></p>
+<p><img alt="" src="./img/ADDS.webp" /></p>
 <h3 id="la-estructura-jerarquica-de-los-servicios-de-dominio-de-active-directory">La estructura jerárquica de los servicios de dominio de Active Directory</h3>
 <p>Los dominios en AD son muy flexibles y permiten crear una infraestructura completa y bien organizada. Partiendo de un dominio raíz, es posible crear subdominios que representen la disposición física y/o lógica de las estaciones de trabajo. Esto significa que se puede crear un subdominio para el departamento de ventas, IT, marketing, etc. También se podría crear subdominios para las oficinas que se encuentran distribuidas en diferentes ubicaciones geográficas. Evidentemente, se trata de decisiones de diseño a la hora de configurar la red.</p>
 <p>AD DS organiza los datos en una estructura jerárquica que consta de dominios, árboles y bosques, como se detalla a continuación.</p>
@@ -508,10 +508,10 @@
 <p><ins><strong>Contenedores:</strong></ins> un contenedor es similar a una unidad organizativa; sin embargo, a diferencia de una unidad organizativa, no es posible vincular un objeto de directiva de grupo (GPO) a un contenedor genérico de Active Directory.</p>
 </li>
 </ul>
-<p><img align="left" alt="" src="../img/ADestructura5.webp" style="height:275px;width:500px" /></p>
-<p><img align="right" alt="" src="../img/ADestructura6.png" style="height:275px;width:450px" /></p>
-<p><img align="left" alt="" src="../img/ADestructura2.jpg" style="height:250px;width:450px" /></p>
-<p><img alignt="right" alt="" src="../img/ADestructura3.jpg" style="height:250px;width:450px" /></p>
+<p><img align="left" alt="" src="./img/ADestructura5.webp" style="height:275px;width:500px" /></p>
+<p><img align="right" alt="" src="./img/ADestructura6.png" style="height:275px;width:450px" /></p>
+<p><img align="left" alt="" src="./img/ADestructura2.jpg" style="height:250px;width:450px" /></p>
+<p><img alignt="right" alt="" src="./img/ADestructura3.jpg" style="height:250px;width:450px" /></p>
 <h3 id="otros-servicios-de-active-directory">Otros servicios de Active Directory</h3>
 <p>Además de los servicios de dominio de Active Directory, hay varios otros servicios críticos que proporciona AD. Algunos de esos servicios se enumeran a continuación:</p>
 <p><strong>Servicios de directorio ligeros:</strong> AD LDS es un servicio de directorio del Protocolo ligero de acceso a directorios (LDAP). Proporciona solo un subconjunto de las funciones de AD DS, lo que lo hace más versátil en términos de dónde se puede ejecutar. Por ejemplo, se puede ejecutar como un servicio de directorio independiente sin necesidad de integrarse con una implementación completa de Active Directory.
@@ -632,7 +632,7 @@ AD RMS se utiliza para proteger la propiedad intelectual y datos sensibles en ar
 </li>
 <li>
 <p>Restringir el acceso al panel de control y Configuración</p>
-<p><img alt="" src="../img/GPO1.jpg" /> </p>
+<p><img alt="" src="./img/GPO1.jpg" /> </p>
 </li>
 <li>
 <p>Bloquear acceso al símbolo del sistema</p>
@@ -642,13 +642,13 @@ AD RMS se utiliza para proteger la propiedad intelectual y datos sensibles en ar
 </li>
 <li>
 <p>Desactivar las actualizaciones automáticas de controladores.</p>
-<p><img alt="" src="../img/GPO2.jpg" /> </p>
+<p><img alt="" src="./img/GPO2.jpg" /> </p>
 </li>
 </ul>
 <h3 id="como-se-procesan-los-objetos-de-directiva-de-grupo">¿Cómo se procesan los objetos de directiva de grupo?</h3>
 <p>El orden en el que se procesan los GPO afecta la configuración que se aplica al equipo y al usuario. </p>
 <p>El orden en que se procesan los GPO se conoce como LSDOU, que significa local, sitio(una especie de subred en nuestro dominio), dominio, unidad organizativa. La política de la computadora local es la primera en ser procesada, seguida del nivel del sitio a las políticas de AD de dominio, y finalmente en las unidades de la organización. Si hay políticas en conflicto en LSDOU, las últimas políticas aplicadas ganan.</p>
-<p><img alt="" src="../img/LSDOU.png" style="height:300px;width:400px" /></p>
+<p><img alt="" src="./img/LSDOU.png" style="height:300px;width:400px" /></p>
 <h3 id="beneficios-de-las-gpos">Beneficios de las GPOs</h3>
 <p>Los beneficios de la política de grupo no se limitan únicamente a la seguridad, hay una serie de otras ventajas que vale la pena mencionar.</p>
 <ul>
