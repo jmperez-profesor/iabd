@@ -511,30 +511,31 @@
 
 <h2 id="ejercicios">Ejercicios</h2>
 <ol>
-<li><strong>Estimación de profundidad</strong></li>
-<li>
-<p>Utiliza el pipeline:
-     <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<li><strong>Estimación de profundidad</strong><br />
+Utiliza el pipeline:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
 <span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
+
 <span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
+</code></pre></div>
+<ol>
 <li>
-<p><strong>Clasificación de imágenes</strong></p>
-</li>
-<li>
-<p>Usa el pipeline:
-     <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<p><strong>Clasificación de imágenes</strong>
+Usa el pipeline:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </code></pre></div></p>
 </li>
 <li>
-<p><strong>Avanzado (Optativo): Integrar clasificación y segmentación</strong></p>
+<p><strong>Avanzado (Optativo): Integrar clasificación y segmentación</strong> </p>
 </li>
-<li>Ejecuta ambos pipelines y visualiza el resultado conjunto.</li>
 </ol>
+<p>Ejecuta ambos pipelines y visualiza el resultado conjunto.</p>
 
 
 
