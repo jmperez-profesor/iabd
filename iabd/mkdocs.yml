@@ -59,9 +59,9 @@ nav:
   - Hugging Face:
     - hf/index.md
     - Gradio: hf/Ejemplo_gradio.md
-    - Tasks: hf/Tasks.md
-    - Referencias: hf/Referencias.md
-    - Actividades: hf/Actividades.md
+    #- Tasks: hf/Tasks.md
+    #- Referencias: hf/Referencias.md
+    #- Actividades: hf/Actividades.md
     #- Entornos Windows: hf/Apuntes_Windows.md
     #- Ejercicios propuestos Windows: hf/Ejercicios_Windows.md
     
