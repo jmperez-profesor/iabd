@@ -58,6 +58,7 @@ nav:
   - Introducción: index.md 
   - Hugging Face:
     - hf/index.md
+    - Gradio: hf/Ejemplo_gradio.md
     - Tasks: hf/Tasks.md
     - Referencias: hf/Referencias.md
     - Actividades: hf/Actividades.md
