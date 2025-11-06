@@ -18,7 +18,7 @@ Etiquetado de la imagen de entrada:
 import gradio as gr​
 ​
 def image_classifier(inp):​
-  return {'cat': 0.3}, {'dog': 0.7}​
+  return {'cat': 0.3, 'dog': 0.7}​
 
 demo = gr.Interface(fn=image_classifier, inputs='image', outputs='label')​
 
@@ -33,7 +33,7 @@ from transformers import pipeline​
 def image_classifier(inp):​
    pipe = pipeline("image-classification", model="omarques/autotrain-dogs-and-cats-1527055142")​
    pipe("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/parrots.png")​
-   return {'cat': 0.3}, {'dog': 0.7}​
+   return {'cat': 0.3, 'dog': 0.7}​
 ​
 demo = gr.Interface(fn=image_classifier, inputs='image', outputs='label')​
 
@@ -44,7 +44,7 @@ demo = gr.Interface(fn=image_classifier, inputs='image', outputs='label')​
 ```bash
 pip install transformers torch​
 ```
-Volvemos a probar y comprobamos funciona correctamente.
+Volvemos a probar y comprobamos que funciona correctamente.
 
 Dentro del componente [Image](https://www.gradio.app/docs/gradio/image), por defecto Gradio pasa un objeto tipo `numpy.ndarray` (la imagen como matriz) a las funciones de Gradio, por lo que debemos especificar el tipo con `gr.Image(type="filepath")` en la creación de la interfaz de Gradio​.
 ​
@@ -53,7 +53,7 @@ Dentro del componente [Image](https://www.gradio.app/docs/gradio/image), por def
 demo = gr.Interface(fn=image_classifier, inputs=gr.Image(type="filepath"), outputs='label')​
 ```
 ##  Código actualizado
-```python {hl_lines="13" linenums="1"} 
+```python {hl_lines="13" linenums="1"}
 import gradio as gr​
 from transformers import pipeline​
 
@@ -63,7 +63,7 @@ def image_classifier(inp):​
    pipe = pipeline("image-classification", model="omarques/autotrain-dogs-and-cats-1527055142")​
    #[{'label': 'cat', 'score': 0.6151219010353088}, {'label': 'dog', 'score': 0.38487812876701355}]​
    print(pipe(inp)) 
-   return {'cat': 0.3}, {'dog': 0.7}​
+   return {'cat': 0.3, 'dog': 0.7}​
 
 demo = gr.Interface(fn=image_classifier, inputs=gr.Image(type="filepath"), outputs='label')​
 
