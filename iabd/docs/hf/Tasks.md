@@ -23,15 +23,19 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.
 
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
 
-## Estimación de profundidad
 
-Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
-Ejemplo de aplicación: robótica, conducción autónoma, realidad aumentada.
+### 1. Estimación de Profundidad (Depth Estimation)
+- **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
+- **Aplicaciones**: Robótica, realidad aumentada, vehículos autónomos, etc.
+- **Modelos populares**: DPT, MiDaS
 
 ## Clasificación de imágenes
 
-Asigna una etiqueta a una imagen completa (p. ej., perro o gato).
-Usos frecuentes: reconocimiento de objetos, inventario visual, diagnóstico médico.
+
+### 2. Clasificación de Imágenes (Image Classification)
+- **Definición**: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).
+- **Aplicaciones**: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.
+- **Modelos populares**: ResNet, Vision Transformer (ViT), EfficientNet
 
 ## Segmentación de imágenes
 
@@ -49,3 +53,12 @@ depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
 result = depth("ruta_o_url_imagen")
 
 ```
+### 3. Segmentación de Imágenes (Image Segmentation)
+- **Definición**: Clasifica cada píxel de la imagen
+- **Tipos**: Semántica (por clase) vs Instancia (por objeto individual)
+- **Aplicaciones**: Medicina, conducción autónoma, edición de imágenes
+- **Modelos populares**: SegFormer, Mask2Former
+
+
+
+
