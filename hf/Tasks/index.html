@@ -476,9 +476,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#estimacion-de-profundidad" class="md-nav__link">
+  <a href="#1-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      Estimación de profundidad
+      1. Estimación de Profundidad (Depth Estimation)
     </span>
   </a>
   
@@ -491,6 +491,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Clasificación de imágenes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-clasificacion-de-imagenes-image-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Clasificación de Imágenes (Image Classification)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -499,6 +514,21 @@
       Segmentación de imágenes
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Segmentación de imágenes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Segmentación de Imágenes (Image Segmentation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -599,12 +629,19 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 <em>Tasks (tareas) en Hugging Face</em></p>
 <h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
 <p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h2 id="estimacion-de-profundidad">Estimación de profundidad</h2>
-<p>Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
-Ejemplo de aplicación: robótica, conducción autónoma, realidad aumentada.</p>
+<h3 id="1-estimacion-de-profundidad-depth-estimation">1. Estimación de Profundidad (Depth Estimation)</h3>
+<ul>
+<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
+<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
+<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
+</ul>
 <h2 id="clasificacion-de-imagenes">Clasificación de imágenes</h2>
-<p>Asigna una etiqueta a una imagen completa (p. ej., perro o gato).
-Usos frecuentes: reconocimiento de objetos, inventario visual, diagnóstico médico.</p>
+<h3 id="2-clasificacion-de-imagenes-image-classification">2. Clasificación de Imágenes (Image Classification)</h3>
+<ul>
+<li><strong>Definición</strong>: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).</li>
+<li><strong>Aplicaciones</strong>: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.</li>
+<li><strong>Modelos populares</strong>: ResNet, Vision Transformer (ViT), EfficientNet</li>
+</ul>
 <h2 id="segmentacion-de-imagenes">Segmentación de imágenes</h2>
 <p>Etiqueta cada píxel de la imagen (por objeto o por clase).
 Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
@@ -622,6 +659,13 @@ Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
 </span>
 <span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
+<h3 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de Imágenes (Image Segmentation)</h3>
+<ul>
+<li><strong>Definición</strong>: Clasifica cada píxel de la imagen</li>
+<li><strong>Tipos</strong>: Semántica (por clase) vs Instancia (por objeto individual)</li>
+<li><strong>Aplicaciones</strong>: Medicina, conducción autónoma, edición de imágenes</li>
+<li><strong>Modelos populares</strong>: SegFormer, Mask2Former</li>
+</ul>
 
 
 
