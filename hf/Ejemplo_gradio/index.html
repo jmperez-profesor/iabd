@@ -16,6 +16,8 @@
         <link rel="prev" href="../">
       
       
+        <link rel="next" href="../Tasks/">
+      
       
       <link rel="icon" href="../../images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
@@ -318,6 +320,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -492,6 +500,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Actividades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -532,7 +609,7 @@
 <span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span><span class="err">​</span>
 </span><span class="err">​</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
-  <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
+  <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
 
 <span class="hll"><span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
 </span>
@@ -555,7 +632,7 @@
 <span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
 </span><span class="hll">   <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;</span><span class="p">)</span><span class="err">​</span>
 </span>   <span class="n">pipe</span><span class="p">(</span><span class="s2">&quot;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/parrots.png&quot;</span><span class="p">)</span><span class="err">​</span>
-   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
+   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
 <span class="err">​</span>
 <span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
 
@@ -564,7 +641,7 @@
 <h2 id="instalamos-las-librerias-transformers-y-torch">Instalamos las librerías transformers y torch​</h2>
 <p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch​
 </code></pre></div>
-Volvemos a probar y comprobamos funciona correctamente.</p>
+Volvemos a probar y comprobamos que funciona correctamente.</p>
 <p>Dentro del componente <a href="https://www.gradio.app/docs/gradio/image">Image</a>, por defecto Gradio pasa un objeto tipo <code>numpy.ndarray</code> (la imagen como matriz) a las funciones de Gradio, por lo que debemos especificar el tipo con <code>gr.Image(type="filepath")</code> en la creación de la interfaz de Gradio​.
 ​</p>
 <h2 id="especificar-el-tipo-en-image">Especificar el tipo en Image</h2>
@@ -593,7 +670,7 @@ Volvemos a probar y comprobamos funciona correctamente.</p>
    <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;</span><span class="p">)</span><span class="err">​</span>
    <span class="c1">#[{&#39;label&#39;: &#39;cat&#39;, &#39;score&#39;: 0.6151219010353088}, {&#39;label&#39;: &#39;dog&#39;, &#39;score&#39;: 0.38487812876701355}]​</span>
    <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span> 
-   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
+   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
 
 <span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;filepath&quot;</span><span class="p">),</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
 <span class="hll">
@@ -702,6 +779,22 @@ Volvemos a probar y comprobamos funciona correctamente.</p>
             </div>
           </a>
         
+        
+          
+          <a href="../Tasks/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Tasks">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Tasks
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
