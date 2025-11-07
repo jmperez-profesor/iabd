@@ -476,28 +476,19 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+  <a href="#1clasificacion-de-imagenes-image-classification" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Estimación de Profundidad (Depth Estimation)
+      1.Clasificación de Imágenes (Image Classification)
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#clasificacion-de-imagenes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Clasificación de imágenes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Clasificación de imágenes">
+    <nav class="md-nav" aria-label="1.Clasificación de Imágenes (Image Classification)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#2-clasificacion-de-imagenes-image-classification" class="md-nav__link">
+  <a href="#quick-draw-de-google" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Clasificación de Imágenes (Image Classification)
+      "Quick, Draw!" de Google
     </span>
   </a>
   
@@ -508,15 +499,29 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#segmentacion-de-imagenes" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desarrollo-de-nuestro-propio-pictionary-con-gradio" class="md-nav__link">
     <span class="md-ellipsis">
-      Segmentación de imágenes
+      Desarrollo de nuestro propio Pictionary con Gradio
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Segmentación de imágenes">
+    <nav class="md-nav" aria-label="Desarrollo de nuestro propio Pictionary con Gradio">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Estimación de Profundidad (Depth Estimation)
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
@@ -524,11 +529,6 @@
       3. Segmentación de Imágenes (Image Segmentation)
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -629,22 +629,45 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 <em>Tasks (tareas) en Hugging Face</em></p>
 <h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
 <p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h3 id="1-estimacion-de-profundidad-depth-estimation">1. Estimación de Profundidad (Depth Estimation)</h3>
-<ul>
-<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
-<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
-<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
-</ul>
-<h2 id="clasificacion-de-imagenes">Clasificación de imágenes</h2>
-<h3 id="2-clasificacion-de-imagenes-image-classification">2. Clasificación de Imágenes (Image Classification)</h3>
+<h2 id="1clasificacion-de-imagenes-image-classification">1.Clasificación de Imágenes (Image Classification)</h2>
 <ul>
 <li><strong>Definición</strong>: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).</li>
 <li><strong>Aplicaciones</strong>: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.</li>
 <li><strong>Modelos populares</strong>: ResNet, Vision Transformer (ViT), EfficientNet</li>
 </ul>
-<h2 id="segmentacion-de-imagenes">Segmentación de imágenes</h2>
-<p>Etiqueta cada píxel de la imagen (por objeto o por clase).
-Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
+<h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
+<p><img alt="" src="../img/quickdraw1.png" /></p>
+<p>Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y</p>
+<p><strong>Características clave</strong>
+- <strong>Juego con IA</strong>: El juego es un experimento de aprendizaje automático. El jugador dibuja y la red neuronal intenta adivinar el dibujo en tiempo real.
+- <strong>Aprendizaje continuo</strong>: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.
+- <strong>Mecánica simple</strong>: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se te pide dibujar un objeto diferente en 20 segundos. Al final, puedes ver tus dibujos y los resultados.
+- <strong>Accesibilidad</strong>: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). </p>
+<p>Puedes acceder al juego en el sitio web oficial: https://quickdraw.withgoogle.com/. </p>
+<p><strong>Importancia de los datos - BigData</strong></p>
+<p>Los datos recopilados en el juego "Quick, Draw!" son fundamentales en el ámbito del Big Data y el aprendizaje automático porque conforman el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar los modelos de inteligencia artificial de Google. 
+Su importancia radica en varios puntos clave:
+- <strong>Entrenamiento de IA</strong>: Los millones de dibujos (actualmente más de 50 millones en 345 categorías) sirven como un vasto corpus de datos para entrenar redes neuronales, enseñándoles a reconocer e interpretar garabatos de formas muy diversas. La IA aprende a identificar patrones visuales, sin importar el estilo individual del dibujante.
+- <strong>Diversidad y variabilidad</strong>: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.
+- <strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN.
+- <strong>Investigación abierta</strong>: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.
+- <strong>Ejemplo de gamificación para la recolección de datos</strong>: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data</p>
+<p><a href="https://quickdraw.withgoogle.com/data">Datos de entrenamiento</a></p>
+<p>En esta página podemos ver, en el momento en el que se redactaban estos apuntes, 126.372 dibujos de pelotas de baloncesto hechas por personales reales...en Internet. Incluso, podemos ver los trazos que han realizado estas personas hasta que el modelo ha sido capaz de adivinar el dibujo. 
+Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy importantes para cualquier modelo de aprendizaje. </p>
+<p>https://quickdraw.withgoogle.com/data/basketball</p>
+<h1 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h1>
+<p>Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: <a href="https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142">​omarques/autotrain-dogs-and-cats-1527055142</a></p>
+<p>Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componente de salida:
+<img alt="" src="../img/dogs_vs_cats1.png" /></p>
+<p>Etiquetado de la imagen de entrada:
+<img alt="" src="../img/dogs_vs_cats2.png" /></p>
+<h3 id="2-estimacion-de-profundidad-depth-estimation">2. Estimación de Profundidad (Depth Estimation)</h3>
+<ul>
+<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
+<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
+<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
+</ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
