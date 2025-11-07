@@ -65,10 +65,14 @@ Su importancia radica en varios puntos clave:
 
 [Datos de entrenamiento](https://quickdraw.withgoogle.com/data)
 
+![](./img/quickdraw2.webp)
+
 En esta página podemos ver, en el momento en el que se redactaban estos apuntes, 126.372 dibujos de pelotas de baloncesto hechas por personales reales...en Internet. Incluso, podemos ver los trazos que han realizado estas personas hasta que el modelo ha sido capaz de adivinar el dibujo. 
 Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy importantes para cualquier modelo de aprendizaje. 
 
-https://quickdraw.withgoogle.com/data/basketball
+[Datos de entrenamiento para la pelota de baloncesto](https://quickdraw.withgoogle.com/data/basketball)
+
+![](./img/data_basketball_quickdraw.png)
 
 # Desarrollo de nuestro propio Pictionary con Gradio
 
@@ -79,9 +83,6 @@ Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componen
 
 Etiquetado de la imagen de entrada:
 ![](./img/dogs_vs_cats2.png)
-
-
-
 
 ### 2. Estimación de Profundidad (Depth Estimation)
 - **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
