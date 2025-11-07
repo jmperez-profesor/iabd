@@ -6,17 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
       
       
-      
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Tasks/">
-      
-      
-        <link rel="prev" href="../Ejemplo_gradio/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Gestion_incidentes/casos/">
       
       
-        <link rel="next" href="../Referencias/">
       
       
       <link rel="icon" href="../../images/favicon.png">
@@ -24,7 +18,7 @@
     
     
       
-        <title>Conceptos básicos entornos Linux - Inteligencia Artificial y Big Data</title>
+        <title>Casos prácticos de gestión de incidentes - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -78,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#objetivos" class="md-skip">
+        <a href="#casos-practicos-de-gestion-de-incidentes" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Conceptos básicos entornos Linux
+              Casos prácticos de gestión de incidentes
             
           </span>
         </div>
@@ -227,13 +221,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../hf/" class="md-tabs__link">
           
   
   
@@ -307,8 +299,6 @@
       
   
   
-    
-  
   
   
     
@@ -320,31 +310,24 @@
       
         
       
-        
-      
-        
-      
-        
-      
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../hf/" class="md-nav__link ">
               
   
   
@@ -357,13 +340,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Hugging Face
@@ -379,209 +362,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ejemplo_gradio/" class="md-nav__link">
+      <a href="../../hf/Ejemplo_gradio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Gradio
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Tasks
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Tasks
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objetivos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Objetivos
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#que-es-un-task" class="md-nav__link">
-    <span class="md-ellipsis">
-      ¿Qué es un task?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uso-de-hugging-face-para-tareas-de-vision-por-computadora" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uso de Hugging Face para tareas de visión por computadora
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Uso de Hugging Face para tareas de visión por computadora">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Estimación de Profundidad (Depth Estimation)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#clasificacion-de-imagenes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Clasificación de imágenes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Clasificación de imágenes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#2-clasificacion-de-imagenes-image-classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Clasificación de Imágenes (Image Classification)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#segmentacion-de-imagenes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Segmentación de imágenes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Segmentación de imágenes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Segmentación de Imágenes (Image Segmentation)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Referencias/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Referencias
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Actividades/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Actividades
     
   </span>
   
@@ -615,66 +401,135 @@
 
 
 
-<h2 id="objetivos">Objetivos</h2>
+<h1 id="casos-practicos-de-gestion-de-incidentes">Casos prácticos de gestión de incidentes</h1>
+<h2 id="1-ejercicio-de-simulacion-de-ransomware"><strong>1. Ejercicio de simulación de ransomware</strong></h2>
+<h2 id="objetivo">Objetivo</h2>
+<p>Simular un ataque de ransomware y evaluar la capacidad de respuesta del equipo SOC en todos los roles (L1, L2, L3 y SOC Manager).</p>
+<h2 id="escenario">Escenario</h2>
+<p>Durante una monitorización rutinaria, el SOC observa actividad inusual en la red de la empresa. Varios archivos parecen estar encriptados y se descubre una nota de rescate exigiendo el pago en Bitcoin. El ejercicio comienza con este descubrimiento y procede a través del ciclo de vida de respuesta a incidentes.</p>
+<h2 id="alerta-de-red-siem">Alerta de red (SIEM)</h2>
 <ul>
-<li>Diferenciar qué es un "task" en Machine Learning según Hugging Face.</li>
-<li>Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.</li>
-<li>Probar ejemplos prácticos con pipelines de Hugging Face.</li>
+<li>ID de Alerta: 3029  </li>
+<li>Gravedad Alta  </li>
+<li>IP de origen: 192.168.1.24  </li>
+<li>IP de destino: 45.77.89.120  </li>
+<li>Descripción: Detectada gran transferencia de datos salientes.</li>
 </ul>
-<p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
-<h1 id="que-es-un-task">¿Qué es un task?</h1>
-<p>Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
-<em>Tasks (tareas) en Hugging Face</em></p>
-<h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
-<p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h3 id="1-estimacion-de-profundidad-depth-estimation">1. Estimación de Profundidad (Depth Estimation)</h3>
+<h2 id="log-del-endpoint-edr">Log del Endpoint (EDR)</h2>
+<table>
+<thead>
+<tr>
+<th>Hora</th>
+<th>Evento</th>
+<th>Usuario</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10:02:34 AM</td>
+<td>Archivo sospechoso descargado</td>
+<td>user_123</td>
+<td>Archivo: <code>invoice_0321.exe</code></td>
+</tr>
+<tr>
+<td>10:04:56 AM</td>
+<td>Ficheros encriptados detectados</td>
+<td>user_123</td>
+<td>Ficheros encriptados: <code>*.docx</code>, <code>*.xls</code></td>
+</tr>
+<tr>
+<td>10:06:12 AM</td>
+<td>Nota de rescate creada</td>
+<td>user_123</td>
+<td>Nota: «Pague 5 BTC para recuperar sus datos».</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fase-1-deteccion-inicial-y-triaje">Fase 1: Detección inicial y triaje</h2>
+<h3 id="inyeccion-1-actividad-sospechosa-descubierta">Inyección 1: Actividad sospechosa descubierta</h3>
+<ol>
+<li>Una alerta SIEM informa de tráfico saliente inusual hacia una IP no reconocida.</li>
+<li>Los registros EDR revelan una descarga de archivos sospechosa seguida de un rápido cifrado de archivos.</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l1">Preguntas para el analista L1:</h4>
+<ol>
+<li>¿Qué medidas iniciales debe tomar al recibir la alerta SIEM?  </li>
+<li>¿Cómo valida si esta actividad es maliciosa?  </li>
+<li>¿Cuándo debería escalar esta situación a L2?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-de-l2">Preguntas para el analista de L2:</h4>
+<ol>
+<li>¿Cómo confirma si el ransomware está activo?  </li>
+<li>¿Qué registros o herramientas adicionales examinaría para comprender el alcance?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l3">Preguntas para el analista L3:</h4>
+<ol>
+<li>¿Qué técnicas forenses avanzadas puedes aplicar para analizar el ransomware?  </li>
+<li>¿Cómo identificaría el vector de ataque y evitaría que se produjeran más ataques?</li>
+</ol>
+<h4 id="preguntas-para-el-responsable-del-soc">Preguntas para el Responsable del SOC:</h4>
+<ol>
+<li>¿Cómo priorizar los siguientes pasos garantizando una interrupción operativa mínima?  </li>
+<li>¿Qué estrategias de comunicación aplicaría para las partes interesadas internas y externas?</li>
+</ol>
+<h2 id="fase-2-contencion">Fase 2: Contención</h2>
+<h3 id="inyeccion-2-propagacion-de-la-infeccion">Inyección 2: Propagación de la infección</h3>
 <ul>
-<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
-<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
-<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
+<li>TI informa de que tres servidores del departamento de Finanzas son inaccesibles.  </li>
+<li>El análisis del tráfico de red muestra conexiones continuas a la IP externa (45.77.89.120).</li>
 </ul>
-<h2 id="clasificacion-de-imagenes">Clasificación de imágenes</h2>
-<h3 id="2-clasificacion-de-imagenes-image-classification">2. Clasificación de Imágenes (Image Classification)</h3>
+<h4 id="preguntas-para-el-analista-l1_1">Preguntas para el analista L1:</h4>
+<ol>
+<li>¿Qué medidas debe tomar para aislar los sistemas afectados?  </li>
+<li>¿Cómo documenta el incidente para su posterior análisis?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l2">Preguntas para el analista L2:</h4>
+<ol>
+<li>¿Cómo utiliza los datos de tráfico de red para contener la amenaza?  </li>
+<li>¿Qué técnicas de mitigación deben aplicarse para evitar el movimiento lateral?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l3_1">Preguntas para el analista L3:</h4>
+<ol>
+<li>¿Cómo se analiza el malware para crear indicadores de peligro procesables?  </li>
+<li>¿Qué herramientas avanzadas pueden utilizarse para evaluar el alcance completo de los activos afectados?</li>
+</ol>
+<h4 id="preguntas-para-soc-manager">Preguntas para SOC Manager:</h4>
+<ol>
+<li>¿Cómo se asegura de que las acciones de contención se ajustan a las prioridades de la empresa?  </li>
+<li>¿Qué recursos se necesitan para la recuperación inmediata?</li>
+</ol>
+<h2 id="fase-3-analisis-de-la-causa-raiz">Fase 3: Análisis de la causa raíz</h2>
+<h3 id="inyeccion-3-vector-de-ataque-descubierto">Inyección 3: Vector de ataque descubierto</h3>
 <ul>
-<li><strong>Definición</strong>: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).</li>
-<li><strong>Aplicaciones</strong>: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.</li>
-<li><strong>Modelos populares</strong>: ResNet, Vision Transformer (ViT), EfficientNet</li>
+<li>Los registros del gateway de correo electrónico revelan que el ransomware se originó a partir de un correo electrónico de phishing enviado a <code>user_123</code>, con un adjunto malicioso llamado <code>invoice_0321.exe</code>.</li>
 </ul>
-<h2 id="segmentacion-de-imagenes">Segmentación de imágenes</h2>
-<p>Etiqueta cada píxel de la imagen (por objeto o por clase).
-Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Utiliza el pipeline:</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-
-<span class="hll"><span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
-</span>
-<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-<h3 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de Imágenes (Image Segmentation)</h3>
-<ul>
-<li><strong>Definición</strong>: Clasifica cada píxel de la imagen</li>
-<li><strong>Tipos</strong>: Semántica (por clase) vs Instancia (por objeto individual)</li>
-<li><strong>Aplicaciones</strong>: Medicina, conducción autónoma, edición de imágenes</li>
-<li><strong>Modelos populares</strong>: SegFormer, Mask2Former</li>
-</ul>
+<h4 id="preguntas-para-el-analista-l1_2">Preguntas para el analista L1:</h4>
+<ol>
+<li>¿Cómo rastreas el correo electrónico de phishing hasta su origen?  </li>
+<li>¿Qué indicadores buscaría en los correos electrónicos de otros usuarios?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l2_1">Preguntas para el analista L2:</h4>
+<ol>
+<li>¿Cómo correlacionas el correo electrónico de phishing con la actividad del endpoint?  </li>
+<li>¿Qué recomendaciones haría para reforzar la seguridad del correo electrónico?</li>
+</ol>
+<h4 id="preguntas-para-el-analista-l3_2">Preguntas para el analista L3:</h4>
+<ol>
+<li>¿Cómo utiliza la inteligencia sobre amenazas para evaluar el riesgo de ataques similares?  </li>
+<li>¿Qué medidas adicionales pueden tomarse para reforzar los puntos finales?</li>
+</ol>
+<h4 id="preguntas-para-el-responsable-del-soc_1">Preguntas para el responsable del SOC:</h4>
+<ol>
+<li>¿Cómo presentas los resultados a los directivos?  </li>
+<li>¿Cómo asigna recursos para mejoras a largo plazo?</li>
+</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -701,44 +556,6 @@ Usado en medicina, conducción autónoma, análisis de paisaje y más.</p>
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
-        
-          
-          <a href="../Ejemplo_gradio/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Gradio">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              <div class="md-ellipsis">
-                Gradio
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../Referencias/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Referencias">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              <div class="md-ellipsis">
-                Referencias
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
