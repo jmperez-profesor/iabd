@@ -1,5 +1,5 @@
 ---
-title: Tasks de Hugging face relacionadas con la Visión Articial
+title: Tasks de Hugging face relacionadas con la Visión por computador
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
@@ -46,7 +46,6 @@ Hugging Face ofrece múltiples modelos preentrenados para clasificación de imá
 | `microsoft/resnet-50` | ResNet-50 | ImageNet | [🔗 Ver modelo](https://huggingface.co/microsoft/resnet-50) |
 | `facebook/deit-base-patch16-224` | DeiT | ImageNet | [🔗 Ver modelo](https://huggingface.co/facebook/deit-base-patch16-224) |
 
-
 ### "Quick, Draw!" de Google
 
 ![](./img/quickdraw1.png)
@@ -91,7 +90,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 
 ![](./img/data_basketball_quickdraw.png)
 
-# Desarrollo de nuestro propio Pictionary con Gradio
+### Desarrollo de nuestro propio Pictionary con Gradio
 
 Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: [​omarques/autotrain-dogs-and-cats-1527055142](https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142)
 
@@ -130,8 +129,6 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 - **Precisión media promedio (AP):** Área bajo la curva de precisión versus recall para cada clase.
 - **mAP (mean Average Precision):** Promedio de AP en todas las clases.
 - **APα:** Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es >0,5).
-
-
 
 ### 3. Estimación de Profundidad (Depth Estimation)
 - **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
