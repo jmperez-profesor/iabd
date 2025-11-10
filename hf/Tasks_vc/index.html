@@ -583,9 +583,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modelos-disponibles-en-hugging-face_1" class="md-nav__link">
+  <a href="#algunos-modelos-disponibles-en-hugging-face" class="md-nav__link">
     <span class="md-ellipsis">
-      Modelos disponibles en Hugging Face
+      Algunos modelos disponibles en Hugging Face
     </span>
   </a>
   
@@ -611,16 +611,40 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#3-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+  <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Estimación de Profundidad (Depth Estimation)
+      3. Segmentación de imágenes (Image segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Segmentación de imágenes (Image segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-uso-del-modelo-con-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Uso del modelo con pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Estimación de Profundidad (Depth Estimation)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
+  <a href="#3-segmentacion-de-imagenes-image-segmentation_1" class="md-nav__link">
     <span class="md-ellipsis">
       3. Segmentación de Imágenes (Image Segmentation)
     </span>
@@ -782,7 +806,7 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 </table>
 <h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
 <p><img alt="" src="../img/quickdraw1.png" /></p>
-<p>Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y</p>
+<p>Este juego fue creado con aprendizaje automático, donde cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. </p>
 <p><strong>Características clave</strong></p>
 <ul>
 <li>
@@ -793,9 +817,6 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 </li>
 <li>
 <p><strong>Mecánica simple</strong>: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.</p>
-</li>
-<li>
-<p><strong>Accesibilidad</strong>: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). </p>
 </li>
 </ul>
 <p>Podemos acceder al juego en el sitio web oficial: <a href="https://quickdraw.withgoogle.com/">Web oficial</a>. </p>
@@ -832,13 +853,20 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <p>Etiquetado de la imagen de entrada:
 <img alt="" src="../img/dogs_vs_cats2.png" /></p>
 <h3 id="2-deteccion-de-objetos">2. Detección de objetos</h3>
-<ul>
-<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
-<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
-<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
-</ul>
+<p><img alt="Tasks - Object detection in Hugging Face" src="../img/object-detecction-hf.png" /></p>
 <p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. </p>
-<h2 id="modelos-disponibles-en-hugging-face_1">Modelos disponibles en Hugging Face</h2>
+<p>Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending 
+Ver figura siguiente:</p>
+<p><img alt="" src="../img/tasks_hf_object_detection.png" /></p>
+<p>Ejemplo del facebook/detr-resnet-50 para la detección de objetos:</p>
+<p><img alt="" src="../img/tasks_hf_object_detection_example.png" /></p>
+<p>Podemos probar el modelo directamente en Hugging Face utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;). </p>
+<p><img alt="" src="../img/Good_Smile_Company_offices_ladies.jpg" /></p>
+<p>Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:</p>
+<p>Objetos detectados en la imagen y sus probabilidades correspondientes:
+<img alt="" src="../img/object_detection_good_Smile_Company_offices_ladies.png" /></p>
+<p>Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.</p>
+<h2 id="algunos-modelos-disponibles-en-hugging-face">Algunos modelos disponibles en Hugging Face</h2>
 <p>Hugging Face ofrece modelos preentrenados que permiten realizar detección de objetos sin necesidad de entrenamiento adicional.</p>
 <table>
 <thead>
@@ -877,7 +905,49 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <li><strong>mAP (mean Average Precision):</strong> Promedio de AP en todas las clases.</li>
 <li><strong>APα:</strong> Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es &gt;0,5).</li>
 </ul>
-<h3 id="3-estimacion-de-profundidad-depth-estimation">3. Estimación de Profundidad (Depth Estimation)</h3>
+<h3 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de imágenes (Image segmentation)</h3>
+<p>Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
+<p>Algunos de sus usos son: </p>
+<ul>
+<li><strong>Imágenes médicas</strong>: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas </li>
+<li><strong>Detección y reconocimiento de objetos</strong>: al igual que la detección de objetos que hemos visto anteriormente, también podemos utilizar la segmentación de imágenes para identificar y localizar objetos en una imagen </li>
+<li><strong>Procesamiento de documentos</strong>: se utiliza para segmentar regiones de texto en documentos escaneados </li>
+<li><strong>Biometría</strong>: se utiliza para identificar y localizar rostros en imágenes o fotogramas de vídeo </li>
+</ul>
+<p>Hugging Face contiene varios modelos de segmentación de imágenes que podemos utilizar. Uno de ellos es el modelo "SegFormer model fine-tuned on ADE20k" (https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512). 
+La siguente imagen muestra el modelo SegFormer ajustado en el modelo ADE20k en el sitio web de Hugging Face:</p>
+<p><img alt="" src="../img/tasks_image_segmentation_ade20k_hf.png" /></p>
+<p>Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "Hosted inference API" alojada en la página de Hugging Face:</p>
+<p>Imagen del Taj Mahal (Fuente: https://mng.bz/5vzD)
+<img alt="" src="../img/Taj_Mahal_Agra%2C_India_edit3.jpg" /></p>
+<p>Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
+<img alt="" src="../img/tasks_image_segmentation_taj_mahal_result.png" /></p>
+<p>Como podomos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. </p>
+<h4 id="31-uso-del-modelo-con-pipeline">3.1. Uso del modelo con pipeline</h4>
+<p>Como siempre, queremos poder usar el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+
+<span class="n">segmentation</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-segmentation&quot;</span><span class="p">,</span>  
+               <span class="n">model</span><span class="o">=</span><span class="s2">&quot;nvidia/segformer-b0-finetuned-ade-512-512&quot;</span><span class="p">)</span> 
+
+<span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
+</code></pre></div>
+Estos son los primeros y últimos cinco objetos que puede detectar (el modelo puede detectar un total de 150 objetos): 
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;wall&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;buildi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;sky&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">fl</span><span class="err">oor&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">tree</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="err">...</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">145</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;shower&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">146</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;radia</span><span class="kc">t</span><span class="err">or&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">147</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;glass&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">148</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;clock&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">149</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">fla</span><span class="err">g&#39;</span><span class="p">}</span><span class="w"> </span>
+</code></pre></div>
+Para este ejemplo, usaremos una imagen de <a href="https://unsplash.com/photos/EC_GhFRGTAY"></a> para descubrir los distintos segmentos de la imagen. </p>
+<p>En la siguiente figura vemos a un hombre y a un avión que vuela por encima. Fuente: <a href="https://unsplash.com/photos/EC_GhFRGTAY"></a></p>
+<h3 id="4-estimacion-de-profundidad-depth-estimation">4. Estimación de Profundidad (Depth Estimation)</h3>
 <ul>
 <li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
 <li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
@@ -897,7 +967,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 </span>
 <span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-<h3 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de Imágenes (Image Segmentation)</h3>
+<h3 id="3-segmentacion-de-imagenes-image-segmentation_1">3. Segmentación de Imágenes (Image Segmentation)</h3>
 <ul>
 <li><strong>Definición</strong>: Clasifica cada píxel de la imagen</li>
 <li><strong>Tipos</strong>: Semántica (por clase) vs Instancia (por objeto individual)</li>
