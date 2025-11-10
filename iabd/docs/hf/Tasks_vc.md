@@ -50,7 +50,7 @@ Hugging Face ofrece múltiples modelos preentrenados para clasificación de imá
 
 ![](./img/quickdraw1.png)
 
-Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y
+Este juego fue creado con aprendizaje automático, donde cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. 
 
 **Características clave**
 
@@ -59,8 +59,6 @@ Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una re
 - **Aprendizaje continuo**: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.
 
 - **Mecánica simple**: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.
-
-- **Accesibilidad**: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). 
 
 Podemos acceder al juego en el sitio web oficial: [Web oficial](https://quickdraw.withgoogle.com/). 
 
@@ -102,13 +100,31 @@ Etiquetado de la imagen de entrada:
 
 ### 2. Detección de objetos 
 
-- **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
-- **Aplicaciones**: Robótica, realidad aumentada, vehículos autónomos, etc.
-- **Modelos populares**: DPT, MiDaS
+![Tasks - Object detection in Hugging Face](./img/object-detecction-hf.png)
 
 La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. 
 
-## Modelos disponibles en Hugging Face
+Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en https://huggingface.co/models?pipeline_tag=object-detection&sort=trending 
+Ver figura siguiente:
+
+![](./img/tasks_hf_object_detection.png)
+
+Ejemplo del facebook/detr-resnet-50 para la detección de objetos:
+
+![](./img/tasks_hf_object_detection_example.png)
+
+Podemos probar el modelo directamente en Hugging Face utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;). 
+
+![](./img/Good_Smile_Company_offices_ladies.jpg)
+
+Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
+
+Objetos detectados en la imagen y sus probabilidades correspondientes:
+![](./img/object_detection_good_Smile_Company_offices_ladies.png)
+
+Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.
+
+## Algunos modelos disponibles en Hugging Face
 
 Hugging Face ofrece modelos preentrenados que permiten realizar detección de objetos sin necesidad de entrenamiento adicional.
 
@@ -130,7 +146,64 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 - **mAP (mean Average Precision):** Promedio de AP en todas las clases.
 - **APα:** Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es >0,5).
 
-### 3. Estimación de Profundidad (Depth Estimation)
+
+### 3. Segmentación de imágenes (Image segmentation)
+
+Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
+
+Algunos de sus usos son: 
+
+- **Imágenes médicas**: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas 
+- **Detección y reconocimiento de objetos**: al igual que la detección de objetos que hemos visto anteriormente, también podemos utilizar la segmentación de imágenes para identificar y localizar objetos en una imagen 
+- **Procesamiento de documentos**: se utiliza para segmentar regiones de texto en documentos escaneados 
+- **Biometría**: se utiliza para identificar y localizar rostros en imágenes o fotogramas de vídeo 
+
+Hugging Face contiene varios modelos de segmentación de imágenes que podemos utilizar. Uno de ellos es el modelo "SegFormer model fine-tuned on ADE20k" (https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512). 
+La siguente imagen muestra el modelo SegFormer ajustado en el modelo ADE20k en el sitio web de Hugging Face:
+
+![](./img/tasks_image_segmentation_ade20k_hf.png)
+
+Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "Hosted inference API" alojada en la página de Hugging Face:
+
+Imagen del Taj Mahal (Fuente: https://mng.bz/5vzD)
+![](./img/Taj_Mahal_Agra,_India_edit3.jpg)
+
+Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
+![](./img/tasks_image_segmentation_taj_mahal_result.png)
+
+Como podomos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
+
+#### 3.1. Uso del modelo con pipeline
+
+Como siempre, queremos poder usar el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
+```python
+from transformers import pipeline 
+  
+segmentation = pipeline("image-segmentation",  
+               model="nvidia/segformer-b0-finetuned-ade-512-512") 
+  
+segmentation.model.config.id2label
+```
+Estos son los primeros y últimos cinco objetos que puede detectar (el modelo puede detectar un total de 150 objetos): 
+```json
+{0: 'wall', 
+ 1: 'building', 
+ 2: 'sky', 
+ 3: 'floor', 
+ 4: 'tree', 
+ ... 
+ 145: 'shower', 
+ 146: 'radiator', 
+ 147: 'glass', 
+ 148: 'clock', 
+ 149: 'flag'} 
+```
+Para este ejemplo, usaremos una imagen de [](https://unsplash.com/photos/EC_GhFRGTAY) para descubrir los distintos segmentos de la imagen. 
+
+En la siguiente figura vemos a un hombre y a un avión que vuela por encima. Fuente: [](https://unsplash.com/photos/EC_GhFRGTAY)
+
+
+### 4. Estimación de Profundidad (Depth Estimation)
 - **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
 - **Aplicaciones**: Robótica, realidad aumentada, vehículos autónomos, etc.
 - **Modelos populares**: DPT, MiDaS
