@@ -476,14 +476,32 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1clasificacion-de-imagenes-image-classification" class="md-nav__link">
+  <a href="#1-clasificacion-de-imagenes-image-classification" class="md-nav__link">
     <span class="md-ellipsis">
-      1.Clasificación de Imágenes (Image Classification)
+      1. Clasificación de Imágenes (Image Classification)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.Clasificación de Imágenes (Image Classification)">
+    <nav class="md-nav" aria-label="1. Clasificación de Imágenes (Image Classification)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de aplicaciones:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-disponibles-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#quick-draw-de-google" class="md-nav__link">
@@ -629,12 +647,48 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 <em>Tasks (tareas) en Hugging Face</em></p>
 <h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
 <p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h2 id="1clasificacion-de-imagenes-image-classification">1.Clasificación de Imágenes (Image Classification)</h2>
+<h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
+<p>La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. </p>
+<p><img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
+<h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones:</h3>
 <ul>
-<li><strong>Definición</strong>: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).</li>
-<li><strong>Aplicaciones</strong>: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.</li>
-<li><strong>Modelos populares</strong>: ResNet, Vision Transformer (ViT), EfficientNet</li>
+<li>Diagnóstico médico (clasificar radiografías)</li>
+<li>Reconocimiento de objetos</li>
+<li>Clasificación de productos en e-commerce</li>
+<li>Moderación de contenido visual</li>
 </ul>
+<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
+<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Arquitectura</th>
+<th>Dataset de entrenamiento</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>google/vit-base-patch16-224</code></td>
+<td>Vision Transformer (ViT)</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>microsoft/resnet-50</code></td>
+<td>ResNet-50</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>facebook/deit-base-patch16-224</code></td>
+<td>DeiT</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a></td>
+</tr>
+</tbody>
+</table>
 <h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
 <p><img alt="" src="../img/quickdraw1.png" /></p>
 <p>Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y</p>
