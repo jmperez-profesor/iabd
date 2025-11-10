@@ -1,5 +1,5 @@
 ---
-title: Conceptos básicos entornos Linux
+title: Tasks de Hugging face
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
@@ -22,7 +22,6 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.
 # Uso de Hugging Face para tareas de visión por computadora
 
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
-
 
 ## 1. Clasificación de Imágenes (Image Classification)
 
@@ -60,11 +59,11 @@ Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una re
 
 - **Aprendizaje continuo**: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.
 
-- **Mecánica simple**: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se te pide dibujar un objeto diferente en 20 segundos. Al final, puedes ver tus dibujos y los resultados.
+- **Mecánica simple**: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.
 
 - **Accesibilidad**: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). 
 
-Puedes acceder al juego en el sitio web oficial: https://quickdraw.withgoogle.com/. 
+Podemos acceder al juego en el sitio web oficial: [Web oficial](https://quickdraw.withgoogle.com/). 
 
 **Importancia de los datos - BigData**
 
