@@ -24,11 +24,29 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
 
 
-## 1.Clasificación de Imágenes (Image Classification)
+## 1. Clasificación de Imágenes (Image Classification)
 
-- **Definición**: Asigna una etiqueta a una imagen completa (p. ej., perro o gato).
-- **Aplicaciones**: Reconocimiento médico, control de calidad, organización de fotos, inventario visual, etc.
-- **Modelos populares**: ResNet, Vision Transformer (ViT), EfficientNet
+La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. 
+
+![Tasks (tareas) en Hugging Face](./img/image-classification-input_hf.png)
+
+### Ejemplos de aplicaciones:
+
+- Diagnóstico médico (clasificar radiografías)
+- Reconocimiento de objetos
+- Clasificación de productos en e-commerce
+- Moderación de contenido visual
+
+### Modelos disponibles en Hugging Face
+
+Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:
+
+| Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
+|--------|--------------|---------------------------|--------|
+| `google/vit-base-patch16-224` | Vision Transformer (ViT) | ImageNet | [🔗 Ver modelo](https://huggingface.co/google/vit-base-patch16-224) |
+| `microsoft/resnet-50` | ResNet-50 | ImageNet | [🔗 Ver modelo](https://huggingface.co/microsoft/resnet-50) |
+| `facebook/deit-base-patch16-224` | DeiT | ImageNet | [🔗 Ver modelo](https://huggingface.co/facebook/deit-base-patch16-224) |
+
 
 ### "Quick, Draw!" de Google
 
