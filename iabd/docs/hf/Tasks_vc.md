@@ -198,10 +198,64 @@ Estos son los primeros y últimos cinco objetos que puede detectar (el modelo pu
  148: 'clock', 
  149: 'flag'} 
 ```
-Para este ejemplo, usaremos una imagen de [](https://unsplash.com/photos/EC_GhFRGTAY) para descubrir los distintos segmentos de la imagen. 
+Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que vuela por encima, para así descubrir los distintos segmentos de la imagen: 
 
-En la siguiente figura vemos a un hombre y a un avión que vuela por encima. Fuente: [](https://unsplash.com/photos/EC_GhFRGTAY)
+Figura ![](./img/photo-1487553333251-6c8e26d3dc2c.avif) 
 
+Fuente: (https://unsplash.com/photos/EC_GhFRGTAY)
+
+Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
+```python {hl_lines="5 7" linenums="1"} 
+from PIL import Image
+import requests
+
+url = 'https://bit.ly/46iDeJQ'
+
+results = segmentation(url)
+
+results
+```
+La salida de la variable *results* es una lista de diccionarios que contiene detalles de cada uno de los segmentos detectados en la imagen: 
+```json
+[{'score': None,
+  'label': 'wall',
+  'mask': <PIL.Image.Image image mode=L size=1587x2381>},
+ {'score': None,
+  'label': 'building',
+  'mask': <PIL.Image.Image image mode=L size=1587x2381>},
+ {'score': None,
+  'label': 'sky',
+  'mask': <PIL.Image.Image image mode=L size=1587x2381>},
+ {'score': None,
+  'label': 'person',
+  'mask': <PIL.Image.Image image mode=L size=1587x2381>},
+ {'score': None,
+  'label': 'airplane',
+  'mask': <PIL.Image.Image image mode=L size=1587x2381>}]
+```
+En particular, el elemento *mask* contiene la máscara del segmento detectado. Para ver cada una de las máscaras detectadas, recorremos la variable *results*: 
+
+```python {hl_lines="2 3" linenums="1"} 
+for result in results:
+    print(result['label'])
+    display(result['mask'])
+``` 
+
+La figura siguiente muestra las máscaras detectadas para persona y avión:
+
+
+
+
+La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: 
+
+
+
+
+
+
+
+
+---------------------------------------------------
 
 ### 4. Estimación de Profundidad (Depth Estimation)
 - **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
@@ -218,11 +272,6 @@ depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
 result = depth("ruta_o_url_imagen")
 
 ```
-### 3. Segmentación de Imágenes (Image Segmentation)
-- **Definición**: Clasifica cada píxel de la imagen
-- **Tipos**: Semántica (por clase) vs Instancia (por objeto individual)
-- **Aplicaciones**: Medicina, conducción autónoma, edición de imágenes
-- **Modelos populares**: SegFormer, Mask2Former
 
 
 
