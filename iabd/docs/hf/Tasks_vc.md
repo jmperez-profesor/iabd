@@ -98,22 +98,23 @@ Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componen
 Etiquetado de la imagen de entrada:
 ![](./img/dogs_vs_cats2.png)
 
-### 2. Detección de objetos 
+## 2. Detección de objetos 
 
 ![Tasks - Object detection in Hugging Face](./img/object-detecction-hf.png)
 
 La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. 
 
-Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en https://huggingface.co/models?pipeline_tag=object-detection&sort=trending 
-Ver figura siguiente:
+Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [] (https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
+
+En la figura siguiente podemos visualizar un listado de la categoría *Object Detection*:
 
 ![](./img/tasks_hf_object_detection.png)
 
-Ejemplo del facebook/detr-resnet-50 para la detección de objetos:
+Ejemplo del **facebook/detr-resnet-50** para la detección de objetos:
 
 ![](./img/tasks_hf_object_detection_example.png)
 
-Podemos probar el modelo directamente en Hugging Face utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;). 
+Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres [](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;). 
 
 ![](./img/Good_Smile_Company_offices_ladies.jpg)
 
@@ -124,7 +125,7 @@ Objetos detectados en la imagen y sus probabilidades correspondientes:
 
 Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.
 
-## Algunos modelos disponibles en Hugging Face
+### Algunos modelos disponibles en Hugging Face
 
 Hugging Face ofrece modelos preentrenados que permiten realizar detección de objetos sin necesidad de entrenamiento adicional.
 
@@ -133,21 +134,21 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 | `facebook/detr-resnet-50` | DETR (DEtection TRansformer) | COCO | 🔗 Ver modelo |
 | `hustvl/yolos-small` | YOLOS (Vision Transformer) | COCO | 🔗 Ver modelo |
 
-## Principales Aplicaciones
+### Principales Aplicaciones
 
 - **Conducción autónoma:** Los coches sin conductor usan la detección de objetos para reconocer peatones, bicicletas, semáforos y señales de tráfico, ayudando a la toma de decisiones en tiempo real.
 - **Seguimiento en deportes:** En partidos de fútbol o tenis se rastrea el balón o los jugadores para mejorar el arbitraje y el análisis estadístico.
 - **Búsqueda de imágenes:** Los teléfonos inteligentes permiten buscar lugares u objetos directamente en internet mediante la detección de entidades en fotos.
 - **Conteo de objetos:** La detección ayuda a contar existencias en almacenes, tiendas, o personas en eventos.
 
-## Métricas de Evaluación
+### Métricas de Evaluación
 
 - **Precisión media promedio (AP):** Área bajo la curva de precisión versus recall para cada clase.
 - **mAP (mean Average Precision):** Promedio de AP en todas las clases.
 - **APα:** Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es >0,5).
 
 
-### 3. Segmentación de imágenes (Image segmentation)
+## 3. Segmentación de imágenes (Image segmentation)
 
 Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
 
@@ -173,7 +174,7 @@ Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
 
 Como podomos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
 
-#### 3.1. Uso del modelo con pipeline
+### 3.1. Uso del modelo con pipeline
 
 Como siempre, queremos poder usar el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
 ```python
@@ -205,7 +206,7 @@ Figura ![](./img/photo-1487553333251-6c8e26d3dc2c.avif)
 Fuente: (https://unsplash.com/photos/EC_GhFRGTAY)
 
 Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
-```python {hl_lines="5 7" linenums="1"} 
+```python {hl_lines="3 5 7" linenums="1"} 
 from PIL import Image
 import requests
 
