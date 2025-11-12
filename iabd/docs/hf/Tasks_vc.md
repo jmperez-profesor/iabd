@@ -299,7 +299,7 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 
 ---
 
-## Actividad 1. **Usar un Space de Hugging Face**  
+## 📝 Actividad 1. **Usar un Space de Hugging Face**  
 
 Basándote en lo aprendido a partir de los casos de uso de [Hola Spaces](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces) y [Hola Spaces 2.0](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces-20) trabajadas en una sesión anterior, mediante *Gradio* en *Hugging Face* crea un nuevo espacio público en tu cuenta que permita probar la aplicación del *pictionary* desarrollada de forma local en un Space de Hugging Face. 
 
