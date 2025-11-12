@@ -58,7 +58,7 @@ Su importancia radica en varios puntos clave:
 
 - **Diversidad y variabilidad**: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.
 
-- **Datos en tiempo real y secuenciales**: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN.
+- **Datos en tiempo real y secuenciales**: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN (Sketch-RNN (Recurrent Neural Network para Bocetos) es un modelo generativo de aprendizaje automático desarrollado por David Ha y Douglas Eck en Google Brain, que es capaz de crear, completar y manipular bocetos vectoriales de objetos comunes)
 
 - **Investigación abierta**: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.
 
@@ -80,6 +80,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: [](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
 
 Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [](https://huggingface.co/spaces/nateraw/quickdraw/tree/main)
+
 Lo primero que debemos es, descargar los ficheros siguientes:
 
 - ```class_names.txt```
@@ -87,7 +88,7 @@ Lo primero que debemos es, descargar los ficheros siguientes:
 - ```app.py```
 
 **Analizamos el código elaborado por el usuario**:
-```python linenums="1"} 
+```python{linenums="1"} 
 # Importa el módulo para manejar rutas y archivos de forma sencilla.
 from pathlib import Path  
 # Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
