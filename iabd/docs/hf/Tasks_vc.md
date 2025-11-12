@@ -432,7 +432,7 @@ El resultado impreso se vería así:
 ```
 El resultado es una lista de diccionarios para cada objeto detectado. Para dibujar la etiqueta y el cuadro delimitador de cada objeto, utilizaremos el siguiente fragmento de código: 
 
-```python
+```python {linenums="1"}
 import random
 from PIL import Image, ImageDraw
 import requests
@@ -480,8 +480,50 @@ Define:
 - Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados
 
 Código final en Gradio:
-```python
-# AQUÍ IRÁ LA SOLUCIÓN
+```python {linenums="1"}
+import gradio as gr
+from PIL import Image, ImageDraw
+from transformers import pipeline
+import random 
+
+def predict(image):    
+
+    detection = pipeline("object-detection", model="facebook/detr-resnet-50")
+
+    results = detection(image)       
+
+    draw = ImageDraw.Draw(image) 
+    
+    for object in results: 
+        box = [i for i in object['box'].values()] 
+        print( 
+            f"Detected {object['label']} with confidence "   
+            f"{(object['score'] * 100):.2f}% at {box}"   
+        ) 
+        
+        r = random.randint(0, 255) 
+        g = random.randint(0, 255) 
+        b = random.randint(0, 255) 
+        color = (r, g, b) 
+        
+        #Dibuja un cuadro delimitador alrededor del objeto.
+        draw.rectangle(box,  
+                    outline=color,  
+                    width=2)  
+        #Muestra la etiqueta del objeto
+        draw.text((box[0], box[1]-10),  
+                object['label'],  
+                fill='white')  
+
+    return image
+
+
+demo = gr.Interface(
+    predict, 
+    inputs=gr.Image(type="pil"), 
+    outputs="image")
+
+demo.launch()
 ```
 ## 📝 **Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
