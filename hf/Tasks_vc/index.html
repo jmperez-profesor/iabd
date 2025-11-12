@@ -1400,6 +1400,9 @@ Una vez que hayamos creado el objeto tipo pipeline (detección en este caso), po
 Debemos tener en cuenta que el objeto de tipo pipeline (detección) también puede incluir una URL de una imagen, no solo un objeto de imagen tipo PIL. Es decir, también podemos llamar al objeto pipeline de la siguiente manera: </p>
 <p><div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="s1">&#39;http://bit.ly/46xv3sL&#39;</span><span class="p">)</span>
 </code></pre></div>
+Debemos instalar la librería <code>timm</code> (PyTorch Image Models) para Python. Es una extensa colección de modelos de visión por computadora de última generación (SOTA, por sus siglas en inglés). Está diseñada para ser utilizada con el framework PyTorch y es muy apreciada en la comunidad de aprendizaje profundo por su flexibilidad y la gran cantidad de modelos preentrenados que ofrece.
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>timm
+</code></pre></div>
 El resultado impreso se vería así:
 <div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9179903864860535</span><span class="p">,</span>
 <span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
