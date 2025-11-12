@@ -655,7 +655,7 @@ La figura siguiente muestra las máscaras invertidas para *person* (persona) y *
 
 ![](./img/imagenes_mascaras_invertidas.jpg)
 
-## 📝 **Actividad 3: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
+## 📝 **Actividad 3: Gradio para segmentación de imágenes** 
 
 Crea un prototipo mediante Gradio haciendo uso de la clase Interface que te permita probar el modelo de segmentación basándote en el siguiente prototipo: 
 ![](./img/act2_prototipo_gradio.png)
