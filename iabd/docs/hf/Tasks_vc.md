@@ -459,7 +459,7 @@ for object in results:
 
 display(image)
 ```
-La imagen sería idéntica a la que se muestra anteriormente en la Figura x. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo ```model.config.id2label```: 
+La imagen sería idéntica a la que se muestra anteriormente. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo ```model.config.id2label```: 
 ```python
 detection.model.config.id2label
 ```
