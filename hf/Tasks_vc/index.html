@@ -670,9 +670,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#actividades_1" class="md-nav__link">
+  <a href="#actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11" class="md-nav__link">
     <span class="md-ellipsis">
-      Actividades
+      Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11
     </span>
   </a>
   
@@ -757,24 +757,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#32-enlazando-con-gradio" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.2. Enlazando con Gradio
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#actividades_2" class="md-nav__link">
+  <a href="#actividad-3-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11" class="md-nav__link">
     <span class="md-ellipsis">
-      Actividades
+      Actividad 3: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11
     </span>
   </a>
   
@@ -1371,10 +1362,7 @@ Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Sp
 
 <span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
 </code></pre></div></p>
-<h2 id="actividades_1">Actividades</h2>
-<ol>
-<li><strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong> </li>
-</ol>
+<h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">Actividad 2: <strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
 <h2 id="contexto">Contexto</h2>
 <p>Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como <code>facebook/detr-resnet-50</code> <a href="https://huggingface.co/facebook/detr-resnet-50"></a> en Hugging Face (<a href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos">ver ejemplo y recursos de clase</a>).<br />
 En este ejercicio, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su <a href="https://docs.ultralytics.com/es/integrations/gradio/">documentación oficial de integración con Gradio</a>.</p>
@@ -1584,35 +1572,28 @@ La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>air
 </span></code></pre></div></td></tr></table></div>
 La figura siguiente muestra las máscaras invertidas para <em>person</em> (persona) y <em>airplane</em> (avión)aplicadas en la imagen original. </p>
 <p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
-<h3 id="32-enlazando-con-gradio">3.2. Enlazando con Gradio</h3>
-<p>En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. </p>
-<h2 id="actividades_2">Actividades</h2>
-<ol>
-<li><strong>Usar un Space de Hugging Face</strong><br />
-Utiliza el pipeline:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-
-<span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</code></pre></div>
-<ol>
-<li><strong>Clasificación de imágenes</strong>
-Crear un aplicación con Gradio 
-En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. </li>
-</ol>
-<p>Usa el pipeline:
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</code></pre></div></p>
-<ol>
-<li><strong>Avanzado (Optativo): Integrar clasificación y segmentación</strong> </li>
-</ol>
-<p>Ejecuta ambos pipelines y visualiza el resultado conjunto.</p>
+<h2 id="actividad-3-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">Actividad 3: <strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
+<p>Crea un prototipo mediante Gradio haciendo uso de la clase Interface que te permita probar el modelo de segmentación basándote en el siguiente prototipo: 
+<img alt="" src="../img/act2_prototipo_gradio.png" /></p>
+<p>Pasamos una foto y en el campo Label especificamos el objeto a buscar, por ejemplo, person: 
+<img alt="" src="../img/act2_imagen_con_etiqueta.png" /></p>
+<p>Resultados: 
+Detección de <em>person</em>
+<img alt="" src="../img/act2_resultado_con_gradio_person.png" /></p>
+<p>Detección de <em>airplane</em>
+<img alt="" src="../img/act2_resultado_con_gradio_airplane.png" />
+Pasos:  </p>
+<ul>
+<li>Definir la interfaz de Gradio con los componentes de entrada y de salida similares al prototipo de la imagen </li>
+<li>Crea una función “segmentation” que reciba los parámetros de entrada correspondientes. Dentro de dicha función </li>
+<li>Cuando el modelo devuelva el resultado, iterará a través del resultado y buscará la etiqueta especificada por el usuario (en el parámetro label). </li>
+<li>A continuación, la función invierte la máscara correspondiente, la aplica a la imagen y la devuelve automáticamente. <blockquote>
+<p>NOTA: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber   </p>
+</blockquote>
+</li>
+</ul>
+<p>Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. </p>
+<p>Entrega el fichero py y las imágenes que hayas utilizado. </p>
 
 
 
