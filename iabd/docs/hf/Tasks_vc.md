@@ -352,9 +352,7 @@ segmentation = pipeline("image-segmentation",
 segmentation.model.config.id2label
 ```
 
-## Actividades
-
-2. **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
+## Actividad 2: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
 ## Contexto
 
@@ -534,44 +532,28 @@ La figura siguiente muestra las máscaras invertidas para *person* (persona) y *
 
 ![](./img/imagenes_mascaras_invertidas.jpg)
 
-### 3.2. Enlazando con Gradio
-En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
+## Actividad 3: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
+Crea un prototipo mediante Gradio haciendo uso de la clase Interface que te permita probar el modelo de segmentación basándote en el siguiente prototipo: 
+![](./img/act2_prototipo_gradio.png)
 
-## Actividades
+Pasamos una foto y en el campo Label especificamos el objeto a buscar, por ejemplo, person: 
+![](./img/act2_imagen_con_etiqueta.png)
 
-1. **Usar un Space de Hugging Face**  
-Utiliza el pipeline:
+Resultados: 
+Detección de *person*
+![](./img/act2_resultado_con_gradio_person.png)
 
-```python
-from transformers import pipeline
+Detección de *airplane*
+![](./img/act2_resultado_con_gradio_airplane.png)
+Pasos:  
 
-depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
+- Definir la interfaz de Gradio con los componentes de entrada y de salida similares al prototipo de la imagen 
+- Crea una función “segmentation” que reciba los parámetros de entrada correspondientes. Dentro de dicha función 
+- Cuando el modelo devuelva el resultado, iterará a través del resultado y buscará la etiqueta especificada por el usuario (en el parámetro label). 
+- A continuación, la función invierte la máscara correspondiente, la aplica a la imagen y la devuelve automáticamente. 
+> NOTA: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber   
 
-result = depth("ruta_o_url_imagen")
-```
+Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. 
 
-2. **Clasificación de imágenes**
-Crear un aplicación con Gradio 
-En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
-
-
-
-
-
-
-Usa el pipeline:
-```python
-
-from transformers import pipeline
-classifier = pipeline("image-classification")
-res = classifier("ruta_o_url_imagen")
-
-print(res)
-```
-
-3. **Avanzado (Optativo): Integrar clasificación y segmentación** 
-
-Ejecuta ambos pipelines y visualiza el resultado conjunto.
-
-
+Entrega el fichero py y las imágenes que hayas utilizado. 
