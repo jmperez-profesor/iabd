@@ -13,8 +13,7 @@ Hugging Face es el portal para todas las tareas de aprendizaje automático. Aqu�
 
 # ¿Qué es un task?
 
-Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.
+Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar
 
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
 *Tasks (tareas) en Hugging Face*
@@ -25,20 +24,20 @@ Hugging Face también proporciona una amplia colección de modelos preentrenados
 
 ## 1. Clasificación de Imágenes (Image Classification)
 
-La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. 
+La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.
 
 ![Tasks (tareas) en Hugging Face](./img/image-classification-input_hf.png)
 
 ### Ejemplos de aplicaciones
 
-- Diagnóstico médico (clasificar radiografías)
+- Diagnóstico médico: clasificación de radiografías para detectar enfermedades.
 - Reconocimiento de objetos
 - Clasificación de productos en e-commerce
 - Moderación de contenido visual
 
 ### Modelos disponibles en Hugging Face
 
-Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:
+Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:
 
 | Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
 |--------|--------------|---------------------------|--------|
@@ -50,7 +49,7 @@ Hugging Face ofrece múltiples modelos preentrenados para clasificación de imá
 
 ![](./img/quickdraw1.png)
 
-Este juego fue creado con aprendizaje automático, donde cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. 
+Quick, Draw! es un juego basado en aprendizaje automático en el que una red neuronal intenta adivinar el objeto que el usuario está dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. 
 
 **Características clave**
 
@@ -64,7 +63,7 @@ Podemos acceder al juego en el sitio web oficial: [Web oficial](https://quickdra
 
 **Importancia de los datos - BigData**
 
-Los datos recopilados en el juego "Quick, Draw!" son fundamentales en el ámbito del Big Data y el aprendizaje automático porque conforman el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar los modelos de inteligencia artificial de Google. 
+Los datos recopilados en Quick, Draw! son fundamentales para el Big Data y el aprendizaje automático, ya que constituyen el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar modelos de IA. 
 Su importancia radica en varios puntos clave:
 
 - **Entrenamiento de IA**: Los millones de dibujos (actualmente más de 50 millones en 345 categorías) sirven como un vasto corpus de datos para entrenar redes neuronales, enseñándoles a reconocer e interpretar garabatos de formas muy diversas. La IA aprende a identificar patrones visuales, sin importar el estilo individual del dibujante.
@@ -90,7 +89,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 
 ### Desarrollo de nuestro propio Pictionary con Gradio
 
-Vamos a desarrollar nuestra propia aplicación *Pictionary" con Gradio el cual ha sido extraído del siguiente vídeo: [](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
+Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: [](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
 
 Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [](https://huggingface.co/spaces/nateraw/quickdraw/tree/main)
 Lo primero que debemos es, descargar los ficheros siguientes:
@@ -399,7 +398,7 @@ En este ejercicio, irás un paso más allá probando la herramienta Ultralytics 
 
 ## 3. Segmentación de imágenes (Image segmentation)
 
-Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
+La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
 
 Algunos de sus usos son: 
 
