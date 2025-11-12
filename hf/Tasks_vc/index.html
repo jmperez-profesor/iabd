@@ -649,15 +649,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Estimación de Profundidad (Depth Estimation)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#actividades" class="md-nav__link">
     <span class="md-ellipsis">
       Actividades
@@ -864,7 +855,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <h2 id="2-deteccion-de-objetos">2. Detección de objetos</h2>
 <p><img alt="Tasks - Object detection in Hugging Face" src="../img/object-detecction-hf.png" /></p>
 <p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. </p>
-<p>Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [] (https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending) </p>
+<p>Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en <a href="https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending"></a> </p>
 <p>En la figura siguiente podemos visualizar un listado de la categoría <em>Object Detection</em>:</p>
 <p><img alt="" src="../img/tasks_hf_object_detection.png" /></p>
 <p>Ejemplo del <strong>facebook/detr-resnet-50</strong> para la detección de objetos:</p>
@@ -891,7 +882,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <td><code>facebook/detr-resnet-50</code></td>
 <td>DETR (DEtection TRansformer)</td>
 <td>COCO</td>
-<td>🔗 Ver modelo</td>
+<td>🔗 <a href="https://huggingface.co/facebook/detr-resnet-50">Ver modelo</a></td>
 </tr>
 <tr>
 <td><code>hustvl/yolos-small</code></td>
@@ -1051,27 +1042,6 @@ La figura siguiente muestra las máscaras invertidas para <em>person</em> (perso
 <p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
 <h3 id="32-enlazando-con-gradio">3.2. Enlazando con Gradio</h3>
 <p>En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. </p>
-<hr />
-<h2 id="4-estimacion-de-profundidad-depth-estimation">4. Estimación de Profundidad (Depth Estimation)</h2>
-<ul>
-<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
-<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
-<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Utiliza el pipeline:</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-
-<span class="hll"><span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
-</span>
-<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
 <h2 id="actividades">Actividades</h2>
 <ol>
 <li><strong>Usar un Space de Hugging Face</strong><br />
