@@ -434,8 +434,9 @@ El resultado es una lista de diccionarios para cada objeto detectado. Para dibuj
 
 ```python
 import random
-
-draw = ImageDraw.Draw(image)
+from PIL import Image, ImageDraw
+import requests
+import torch
 
 for object in results:
     box = [i for i in object['box'].values()]
@@ -459,7 +460,7 @@ for object in results:
 
 display(image)
 ```
-La imagen sería idéntica a la que se muestra anteriormente. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo ```model.config.id2label```: 
+La imagen sería idéntica a la que se muestra anteriormente pero con los cuadrados correspondientes. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo ```model.config.id2label```: 
 ```python
 detection.model.config.id2label
 ```
