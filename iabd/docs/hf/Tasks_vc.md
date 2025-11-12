@@ -26,6 +26,7 @@ La clasificación de imágenes es una tarea de visión por computador que consis
 - Moderación de contenido visual
 ### Modelos disponibles en Hugging Face
 Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:
+
 | Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
 |--------|--------------|---------------------------|--------|
 | `google/vit-base-patch16-224` | Vision Transformer (ViT) | ImageNet | [🔗 Ver modelo](https://huggingface.co/google/vit-base-patch16-224) |
