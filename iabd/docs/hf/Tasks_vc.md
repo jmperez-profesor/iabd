@@ -14,9 +14,13 @@ Hugging Face es el portal para todas las tareas de aprendizaje automático. Aqu�
 Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar.
 **Tasks (tareas) en Hugging Face**
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
+
 # Uso de Hugging Face para tareas de Visión por Computadora
+
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
+
 ## 1. Clasificación de Imágenes (Image Classification)
+
 La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.
 ![Tasks (tareas) en Hugging Face](./img/image-classification-input_hf.png)
 ### Ejemplos de aplicaciones
@@ -24,7 +28,9 @@ La clasificación de imágenes es una tarea de visión por computador que consis
 - Reconocimiento de objetos
 - Clasificación de productos en e-commerce
 - Moderación de contenido visual
+
 ### Modelos disponibles en Hugging Face
+
 Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:
 
 | Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
@@ -229,7 +235,6 @@ Aplicaciones comunes:
 - Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​
 - Visualización de la confianza del modelo en cada posible resultado.
 En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en *Deep learning*.
----
 
 
 ## Actividades
@@ -246,7 +251,7 @@ Entrega la url del espacio y algunas capturas de pantalla usando la aplicación.
 
 La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como **conducción autónoma**, **seguimiento de objetos en deportes**, **búsqueda de imágenes** y **conteo de objetos en diferentes escenarios**. 
 
-Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [](https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
+Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [https://huggingface.co/models?pipeline_tag=object-detection&sort=trending](https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
 
 En la figura siguiente podemos visualizar un listado de la categoría *Object Detection*:
 
