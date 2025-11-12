@@ -657,6 +657,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1017,7 +1026,7 @@ En particular, el elemento <em>mask</em> contiene la máscara del segmento detec
 </code></pre></div></td></tr></table></div>
 La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>airplane</em> (avión) aplicadas sobre la imagen original:
 <img alt="" src="../img/mascaras_en_imagen_original.jpg" /></p>
-<p>Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función invert() de la clase ImageOps en el paquete PIL. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: </p>
+<p>Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función <code>invert()</code> de la clase <code>ImageOps</code> en el paquete <code>PIL</code>. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: </p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1063,6 +1072,33 @@ La figura siguiente muestra las máscaras invertidas para <em>person</em> (perso
 </span>
 <span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
+<h2 id="actividades">Actividades</h2>
+<ol>
+<li><strong>Usar un Space de Hugging Face</strong><br />
+Utiliza el pipeline:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ol>
+<li><strong>Clasificación de imágenes</strong>
+Crear un aplicación con Gradio 
+En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. Para instalar el paquete gradio, use el siguiente comando: </li>
+</ol>
+<p>Usa el pipeline:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div></p>
+<ol>
+<li><strong>Avanzado (Optativo): Integrar clasificación y segmentación</strong> </li>
+</ol>
+<p>Ejecuta ambos pipelines y visualiza el resultado conjunto.</p>
 
 
 
