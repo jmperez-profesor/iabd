@@ -3,7 +3,7 @@ title: Actividades
 description: Actividades del curso de especialización en IA y Big Data. Actividades sobre Tasks I de HF.
 ---
 
-## Ejercicios
+## Actividades
 
 1. **Estimación de profundidad**  
 Utiliza el pipeline:

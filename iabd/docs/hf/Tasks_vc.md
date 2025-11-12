@@ -265,7 +265,7 @@ for result in results:
 La figura siguiente muestra las máscaras de *person* (persona) y *airplane* (avión) aplicadas sobre la imagen original:
 ![](./img/mascaras_en_imagen_original.jpg)
 
-Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función invert() de la clase ImageOps en el paquete PIL. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
+Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función ```invert()``` de la clase ```ImageOps``` en el paquete ```PIL```. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
 
 ```python {hl_lines="8 10" linenums="1"} 
 from PIL import ImageOps 
@@ -285,7 +285,7 @@ La figura siguiente muestra las máscaras invertidas para *person* (persona) y *
 
 ### 3.2. Enlazando con Gradio
 En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
- 
+
 
 
 ---------------------------------------------------
@@ -306,6 +306,35 @@ result = depth("ruta_o_url_imagen")
 
 ```
 
+## Actividades
 
+1. **Usar un Space de Hugging Face**  
+Utiliza el pipeline:
+
+```python
+from transformers import pipeline
+
+depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
+
+result = depth("ruta_o_url_imagen")
+```
+
+2. **Clasificación de imágenes**
+Crear un aplicación con Gradio 
+En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. Para instalar el paquete gradio, use el siguiente comando: 
+
+Usa el pipeline:
+```python
+
+from transformers import pipeline
+classifier = pipeline("image-classification")
+res = classifier("ruta_o_url_imagen")
+
+print(res)
+```
+
+3. **Avanzado (Optativo): Integrar clasificación y segmentación** 
+
+Ejecuta ambos pipelines y visualiza el resultado conjunto.
 
 
