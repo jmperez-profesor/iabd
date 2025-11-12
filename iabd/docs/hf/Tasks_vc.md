@@ -89,17 +89,15 @@ Lo primero que debemos es, descargar los ficheros siguientes:
 
 **Analizamos el código elaborado por el usuario**:
 
-```python {linenums="1"}
-# Importa el módulo para manejar rutas y archivos de forma sencilla.
+```python{linenums="1"}
 from pathlib import Path  
-# Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
 import torch             
 
 import gradio as gr       
-# Importa el submódulo para redes neuronales de PyTorch.
 from torch import nn      
 
-# Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.
+# Lee las etiquetas/clases del archivo de texto, una por línea. 
+# Cada línea es una categoría que el modelo puede predecir.
 LABELS = Path('class_names.txt').read_text().splitlines()
 
 # Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
@@ -108,7 +106,8 @@ model = nn.Sequential(
     nn.Conv2d(1, 32, 3, padding='same'),  
     # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
     nn.ReLU(),                            
-    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    # Max Pooling: reduce la resolución espacial de las características
+    #  (comprime la imagen a la vez que mantiene zonas más “activas”)
     nn.MaxPool2d(2),                      
     nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
     nn.ReLU(),
@@ -116,7 +115,8 @@ model = nn.Sequential(
     nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    # Aplana los datos resultantes para prepararlos para las capas densas 
+    # (total elementos = 128 canales * 3 * 3)
     nn.Flatten(),                         
     # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
     nn.Linear(1152, 256),                 
@@ -124,15 +124,19 @@ model = nn.Sequential(
     # Capa de salida: 1 neurona por clase del archivo de etiquetas
     nn.Linear(256, len(LABELS)),          
 )
-# Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)
+# Carga los pesos entrenados previamente desde 
+# el archivo binario (estado del modelo)
 state_dict = torch.load('pytorch_model.bin', map_location='cpu')
 model.load_state_dict(state_dict, strict=False)
-# Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos
+# Coloca el modelo en modo "solo inferencia" 
+# (no entrenamiento): no calcula gradientes ni actualiza pesos
 model.eval() 
 
-# Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad
+# Función de predicción principal: toma una imagen (array) 
+# y devuelve las top-5 categorías con su probabilidad
 def predict(im):
-    # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] y añade dimensiones de batch y canal
+    # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] 
+    # y añade dimensiones de batch y canal
     x = torch.tensor(im, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.
 
     # Desactiva el cálculo de gradientes (más rápido, no entrena)
@@ -156,7 +160,6 @@ def predict(im):
 #   - live=True: muestra predicciones en tiempo real mientras dibujas.
 interface = gr.Interface(predict, inputs='sketchpad', outputs='label', live=True)
 
-# Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.
 interface.launch(debug=True)
 ```
 ---
@@ -211,7 +214,8 @@ model = nn.Sequential(
     nn.Conv2d(1, 32, 3, padding='same'),  
     # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
     nn.ReLU(),                            
-    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    # Max Pooling: reduce la resolución espacial de las características 
+    # (comprime la imagen a la vez que mantiene zonas más “activas”)
     nn.MaxPool2d(2),                      
     nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
     nn.ReLU(),
@@ -219,9 +223,11 @@ model = nn.Sequential(
     nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    # Aplana los datos resultantes para prepararlos para las capas
+    # densas (total elementos = 128 canales * 3 * 3)
     nn.Flatten(),                         
-    # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    # Capa totalmente conectada: de 1152 (productos anteriores) 
+    # a 256 neuronas
     nn.Linear(1152, 256),                 
     nn.ReLU(),
     # Capa de salida: 1 neurona por clase del archivo de etiquetas
@@ -232,13 +238,15 @@ state_dict = torch.load('pytorch_model.bin', map_location='cpu')
 model.load_state_dict(state_dict, strict=False)
 model.eval()  # Ponemos el modelo en modo inferencia (no entrenamiento)
 
-# Función principal de predicción, procesará el dibujo de Gradio y calculará su clase
+# Función principal de predicción, procesará el dibujo 
+# de Gradio y calculará su clase
 def predict(img):   
     # Si no hay dibujo o la clave 'composite' no existe o está vacía, avisamos:
     if img is None or "composite" not in img or img["composite"] is None:
         return {"Por favor, dibuja algo": 1.0}
     # Extraemos la imagen resultado del canvas, canal RGBA
-    arr = img["composite"]        # Array con forma (ej. [800, 800, 4]), tipo uint8
+    # Array con forma (ej. [800, 800, 4]), tipo uint8
+    arr = img["composite"]        
     # Convertimos de RGBA a escala de grises (Quick Draw es gris)
     arr_gray = arr[..., :3].mean(axis=2)
     # Convertimos a uint8 por si PIL lo necesita
@@ -270,7 +278,6 @@ demo = gr.Interface(
     outputs='label', 
     live=True)
 
-# Lanzamos la app Gradio (share=True permite compartir la URL con otros)
 demo.launch(share=True)
 ```
 > NOTA
