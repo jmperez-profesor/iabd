@@ -1049,7 +1049,7 @@ Su importancia radica en varios puntos clave:</p>
 <p><strong>Diversidad y variabilidad</strong>: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.</p>
 </li>
 <li>
-<p><strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN.</p>
+<p><strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN (Sketch-RNN (Recurrent Neural Network para Bocetos) es un modelo generativo de aprendizaje automático desarrollado por David Ha y Douglas Eck en Google Brain, que es capaz de crear, completar y manipular bocetos vectoriales de objetos comunes)</p>
 </li>
 <li>
 <p><strong>Investigación abierta</strong>: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.</p>
@@ -1066,15 +1066,15 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <p><img alt="" src="../img/data_basketball_quickdraw.png" /></p>
 <h3 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h3>
 <p>Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: <a href="https://www.youtube.com/watch?v=LS9Y2wDVI0k"></a></p>
-<p>Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: <a href="https://huggingface.co/spaces/nateraw/quickdraw/tree/main"></a>
-Lo primero que debemos es, descargar los ficheros siguientes:</p>
+<p>Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: <a href="https://huggingface.co/spaces/nateraw/quickdraw/tree/main"></a></p>
+<p>Lo primero que debemos es, descargar los ficheros siguientes:</p>
 <ul>
 <li><code>class_names.txt</code></li>
 <li><code>pytorch_model.bin</code></li>
 <li><code>app.py</code></li>
 </ul>
 <p><strong>Analizamos el código elaborado por el usuario</strong>:
-```python linenums="1"} </p>
+```python{linenums="1"} </p>
 <h1 id="importa-el-modulo-para-manejar-rutas-y-archivos-de-forma-sencilla">Importa el módulo para manejar rutas y archivos de forma sencilla.</h1>
 <p>from pathlib import Path  </p>
 <h1 id="importa-la-libreria-pytorch-utilizada-para-deep-learning-y-manipulacion-de-tensores">Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.</h1>
