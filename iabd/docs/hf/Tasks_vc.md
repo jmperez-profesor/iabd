@@ -12,7 +12,7 @@ Hugging Face es el portal para todas las tareas de aprendizaje automático. Aqu�
 
 # ¿Qué es un task?
 Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar.
-**Tasks (tareas) en Hugging Face**
+[**Tasks (tareas) en Hugging Face**](https://huggingface.co/tasks)
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
 
 # Uso de Hugging Face para tareas de Visión por Computadora
