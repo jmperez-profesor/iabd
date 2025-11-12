@@ -506,9 +506,7 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 - Un archivo `.py` con el código empleado y comentarios.
 - Las imágenes o capturas de pantalla de las pruebas realizadas.
 - Rellena y agrega la tabla comparativa.
-
 ---
-
 ## 3. Segmentación de imágenes (Image segmentation)
 
 La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
@@ -527,16 +525,14 @@ La siguente imagen muestra el modelo SegFormer ajustado en el modelo ADE20k en e
 
 Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "Hosted inference API" alojada en la página de Hugging Face:
 
-Imagen del Taj Mahal (Fuente: https://mng.bz/5vzD)
+Imagen del Taj Mahal (Fuente: [https://mng.bz/5vzD]https://mng.bz/5vzD)
 ![](./img/Taj_Mahal_Agra,_India_edit3.jpg)
 
 Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
 ![](./img/tasks_image_segmentation_taj_mahal_result.png)
 
 Como podomos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
-
 ### 3.1. Uso del modelo con pipeline
-
 Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
 ```python
 from transformers import pipeline 
@@ -606,8 +602,6 @@ for result in results:
 La figura siguiente muestra las máscaras detectadas para *person* (persona) y *airplane* (avión):
 ![](./img/parte_blanca_hombre_avion.jpg)
 
-Máscaras para los segmentos *person* y *airplane*
-
 La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: 
 
 ```python {hl_lines="8 10" linenums="1"} 
@@ -626,7 +620,7 @@ for result in results:
 La figura siguiente muestra las máscaras de *person* (persona) y *airplane* (avión) aplicadas sobre la imagen original:
 ![](./img/mascaras_en_imagen_original.jpg)
 
-Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función ```invert()``` de la clase ```ImageOps``` en el paquete ```PIL```. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
+Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, podemos invertir la máscara usando la función ```invert()``` de la clase ```ImageOps``` en el paquete ```PIL```. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
 
 ```python {hl_lines="8 10" linenums="1"} 
 from PIL import ImageOps 
