@@ -438,6 +438,8 @@ from PIL import Image, ImageDraw
 import requests
 import torch
 
+draw = ImageDraw.Draw(image)
+
 for object in results:
     box = [i for i in object['box'].values()]
     print(
