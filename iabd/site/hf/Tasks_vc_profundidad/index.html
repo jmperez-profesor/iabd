@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Tasks_texts/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc_profundidad/">
       
       
       
@@ -20,7 +20,7 @@
     
     
       
-        <title>Tasks de Hugging face - Inteligencia Artificial y Big Data</title>
+        <title>Tasks de Hugging face relacionadas con la Visión por computador - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#objetivos" class="md-skip">
+        <a href="#por-hacer" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tasks de Hugging face
+              Tasks de Hugging face relacionadas con la Visión por computador
             
           </span>
         </div>
@@ -533,114 +533,9 @@
 
 
 
-<h2 id="objetivos">Objetivos</h2>
-<ul>
-<li>Diferenciar qué es un "task" en Machine Learning según Hugging Face.</li>
-<li>Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.</li>
-<li>Probar ejemplos prácticos con pipelines de Hugging Face.</li>
-</ul>
-<p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
-<h1 id="que-es-un-task">¿Qué es un task?</h1>
-<p>Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
-<em>Tasks (tareas) en Hugging Face</em></p>
-<h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
-<p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
-<p>La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. </p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
-<h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones:</h3>
-<ul>
-<li>Diagnóstico médico (clasificar radiografías)</li>
-<li>Reconocimiento de objetos</li>
-<li>Clasificación de productos en e-commerce</li>
-<li>Moderación de contenido visual</li>
-</ul>
-<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
-<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:</p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Arquitectura</th>
-<th>Dataset de entrenamiento</th>
-<th>Enlace</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>google/vit-base-patch16-224</code></td>
-<td>Vision Transformer (ViT)</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>microsoft/resnet-50</code></td>
-<td>ResNet-50</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>facebook/deit-base-patch16-224</code></td>
-<td>DeiT</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
-<p><img alt="" src="../img/quickdraw1.png" /></p>
-<p>Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y</p>
-<p><strong>Características clave</strong></p>
-<ul>
-<li>
-<p><strong>Juego con IA</strong>: El juego es un experimento de aprendizaje automático. El jugador dibuja y la red neuronal intenta adivinar el dibujo en tiempo real.</p>
-</li>
-<li>
-<p><strong>Aprendizaje continuo</strong>: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.</p>
-</li>
-<li>
-<p><strong>Mecánica simple</strong>: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.</p>
-</li>
-<li>
-<p><strong>Accesibilidad</strong>: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). </p>
-</li>
-</ul>
-<p>Podemos acceder al juego en el sitio web oficial: <a href="https://quickdraw.withgoogle.com/">Web oficial</a>. </p>
-<p><strong>Importancia de los datos - BigData</strong></p>
-<p>Los datos recopilados en el juego "Quick, Draw!" son fundamentales en el ámbito del Big Data y el aprendizaje automático porque conforman el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar los modelos de inteligencia artificial de Google. 
-Su importancia radica en varios puntos clave:</p>
-<ul>
-<li>
-<p><strong>Entrenamiento de IA</strong>: Los millones de dibujos (actualmente más de 50 millones en 345 categorías) sirven como un vasto corpus de datos para entrenar redes neuronales, enseñándoles a reconocer e interpretar garabatos de formas muy diversas. La IA aprende a identificar patrones visuales, sin importar el estilo individual del dibujante.</p>
-</li>
-<li>
-<p><strong>Diversidad y variabilidad</strong>: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.</p>
-</li>
-<li>
-<p><strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN.</p>
-</li>
-<li>
-<p><strong>Investigación abierta</strong>: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.</p>
-</li>
-<li>
-<p><strong>Ejemplo de gamificación para la recolección de datos</strong>: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data</p>
-</li>
-</ul>
-<p><a href="https://quickdraw.withgoogle.com/data">Datos de entrenamiento</a></p>
-<p><img alt="" src="../img/quickdraw2.webp" /></p>
-<p>En esta página podemos ver, en el momento en el que se redactaban estos apuntes, 126.372 dibujos de pelotas de baloncesto hechas por personales reales...en Internet. Incluso, podemos ver los trazos que han realizado estas personas hasta que el modelo ha sido capaz de adivinar el dibujo. 
-Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy importantes para cualquier modelo de aprendizaje. </p>
-<p><a href="https://quickdraw.withgoogle.com/data/basketball">Datos de entrenamiento para la pelota de baloncesto</a></p>
-<p><img alt="" src="../img/data_basketball_quickdraw.png" /></p>
-<h1 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h1>
-<p>Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: <a href="https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142">​omarques/autotrain-dogs-and-cats-1527055142</a></p>
-<p>Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componente de salida:
-<img alt="" src="../img/dogs_vs_cats1.png" /></p>
-<p>Etiquetado de la imagen de entrada:
-<img alt="" src="../img/dogs_vs_cats2.png" /></p>
-<h3 id="2-estimacion-de-profundidad-depth-estimation">2. Estimación de Profundidad (Depth Estimation)</h3>
+<h1 id="por-hacer">POR HACER</h1>
+<hr />
+<h2 id="4-estimacion-de-profundidad-depth-estimation">4. Estimación de Profundidad (Depth Estimation)</h2>
 <ul>
 <li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
 <li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>

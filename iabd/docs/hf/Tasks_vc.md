@@ -90,14 +90,184 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 
 ### Desarrollo de nuestro propio Pictionary con Gradio
 
-Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: [​omarques/autotrain-dogs-and-cats-1527055142](https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142)
+Vamos a desarrollar nuestra propia aplicación *Pictionary" con Gradio el cual ha sido extraído del siguiente vídeo: [](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
 
-Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componente de salida:
-![](./img/dogs_vs_cats1.png)
+Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [](https://huggingface.co/spaces/nateraw/quickdraw/tree/main)
+Lo primero que debemos es, descargar los ficheros siguientes:
+- class_names.txt
+- pytorch_model.bin
+- app.py
 
-Etiquetado de la imagen de entrada:
-![](./img/dogs_vs_cats2.png)
+Analizamos el código elaborado por el usuario:
+```python {hl_lines="4 6 8" linenums="1"} 
+from pathlib import Path  # Importa el módulo para manejar rutas y archivos de forma sencilla.
 
+import torch              # Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
+import gradio as gr       # Importa Gradio, una librería para crear interfaces web de prueba.
+from torch import nn      # Importa el submódulo para redes neuronales de PyTorch.
+
+# Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.
+LABELS = Path('class_names.txt').read_text().splitlines()
+
+# Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
+model = nn.Sequential(
+    nn.Conv2d(1, 32, 3, padding='same'),  # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
+    nn.ReLU(),                            # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
+    nn.MaxPool2d(2),                      # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Flatten(),                         # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    nn.Linear(1152, 256),                 # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    nn.ReLU(),
+    nn.Linear(256, len(LABELS)),          # Capa de salida: 1 neurona por clase del archivo de etiquetas
+)
+# Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)
+state_dict = torch.load('pytorch_model.bin', map_location='cpu')
+model.load_state_dict(state_dict, strict=False)
+model.eval() # Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos
+
+# Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad
+def predict(im):
+    # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] y añade dimensiones de batch y canal
+    x = torch.tensor(im, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.
+
+    with torch.no_grad():            # Desactiva el cálculo de gradientes (más rápido, no entrena)
+        out = model(x)               # Hacemos pasar la imagen por el modelo (forward pass)
+
+    probabilities = torch.nn.functional.softmax(out[0], dim=0)  # Calcula las probabilidades (softmax)
+
+    values, indices = torch.topk(probabilities, 5)              # Obtiene las 5 clases más probables
+
+    # Devuelve un diccionario {clase: probabilidad} para las 5 mejores
+    return {LABELS[i]: v.item() for i, v in zip(indices, values)}
+
+# Crea la interfaz web con Gradio:
+#   - predict: función a ejecutar al recibir la entrada.
+#   - inputs: 'sketchpad', una zona para que el usuario dibuje a mano alzada.
+#   - outputs: 'label', salida tipo clasificación de etiquetas.
+#   - live=True: muestra predicciones en tiempo real mientras dibujas.
+interface = gr.Interface(predict, inputs='sketchpad', outputs='label', live=True)
+
+# Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.
+interface.launch(debug=True)
+```
+NOTA
+### ¿Qué es una red neuronal convolucional (CNN)?
+
+Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolutional Neural Network*) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.
+
+### Características principales
+
+- **Inspiración biológica:**  
+  Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).
+
+- **Arquitectura en capas:**  
+  Una CNN está compuesta por diferentes capas conectadas:
+    - **Capas convolucionales:** Aplican filtros o “kernels” para extraer patrones y características locales (bordes, texturas, esquinas).
+    - **Capas de activación (ReLU):** Introducen no linealidad, permitiendo que la red aprenda funciones más complejas.
+    - **Capas de agrupamiento (pooling):** Reducen la resolución espacial y la cantidad de computación, logrando robustez ante desplazamientos.
+    - **Capas totalmente conectadas:** Integran toda la información para tomar decisiones y realizar la predicción final.
+
+- **Aprendizaje jerárquico:**  
+  Las CNNs aprenden jerarquías de características:  
+  Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.
+
+- **Campos receptivos y parámetros compartidos:**  
+  Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.
+
+### Aplicaciones típicas
+
+- **Reconocimiento y clasificación de imágenes:** Detección de objetos, diagnóstico médico, moderación de contenido, etc.
+- **Visión por computador:** Conducción autónoma, videovigilancia, análisis de tráfico.
+- **Procesamiento de vídeo:** Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.
+
+### Ejemplo didáctico sencillo
+
+Cuando pasas una imagen por una CNN:
+- Las primeras capas detectan bordes y formas sencillas.
+- Las siguientes detectan partes más grandes (ruedas, patas, ojos).
+- Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
+---
+Solución final:
+
+```python {hl_lines="4 6 8" linenums="1"} 
+from pathlib import Path
+from PIL import Image
+from torch import nn
+
+import torch
+import gradio as gr
+import numpy as np
+
+# Leemos las etiquetas de clases (categorías) desde un fichero de texto
+LABELS = Path('class_names.txt').read_text().splitlines()
+
+# Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente)
+model = nn.Sequential(
+    nn.Conv2d(1, 32, 3, padding='same'),  # Capa convolucional: 1 canal de entrada (gris), 32 filtros, kernel 3x3
+    nn.ReLU(),                            # Función de activación ReLU
+    nn.MaxPool2d(2),                      # Pooling para reducir tamaño espacial
+    nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa convolucional: 64 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa convolucional: 128 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Flatten(),                         # Aplana la salida para conectarla a las capas densas
+    nn.Linear(1152, 256),                 # Capa densa/intermedia
+    nn.ReLU(),
+    nn.Linear(256, len(LABELS)),          # Capa de salida, un nodo por categoría
+)
+# Cargamos los pesos previamente entrenados del modelo
+state_dict = torch.load('pytorch_model.bin', map_location='cpu')
+model.load_state_dict(state_dict, strict=False)
+model.eval()  # Ponemos el modelo en modo inferencia (no entrenamiento)
+
+# Función principal de predicción, procesará el dibujo de Gradio y calculará su clase
+def predict(img):   
+    # Si no hay dibujo o la clave 'composite' no existe o está vacía, avisamos:
+    if img is None or "composite" not in img or img["composite"] is None:
+        return {"Por favor, dibuja algo": 1.0}
+    # Extraemos la imagen resultado del canvas, canal RGBA
+    arr = img["composite"]        # Array con forma (ej. [800, 800, 4]), tipo uint8
+    # Convertimos de RGBA a escala de grises (Quick Draw es gris)
+    arr_gray = arr[..., :3].mean(axis=2)
+    # Convertimos a uint8 por si PIL lo necesita
+    arr_gray_uint8 = arr_gray.astype("uint8")
+    # Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo)
+    arr_img = Image.fromarray(arr_gray_uint8)
+    arr_resized = np.array(arr_img.resize((28, 28), resample=Image.BILINEAR))
+    # Escalamos a rango [0,1]
+    arr_normalized = arr_resized / 255.0
+    # Añadimos dimensiones de batch y canal: (1, 1, 28, 28)
+    x = torch.tensor(arr_normalized, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
+    # Ejecutamos inferencia sin calcular gradientes (más eficiente)
+    with torch.no_grad():
+        out = model(x)
+    # Calculamos probabilidades con softmax
+    probabilities = torch.nn.functional.softmax(out[0], dim=0)
+    # Obtenemos las 5 clases más probables (top-5)
+    values, indices = torch.topk(probabilities, 5)
+    # Devolvemos un diccionario: categoría : probabilidad (~confianza)
+    return {LABELS[i]: v.item() for i, v in zip(indices, values)}
+
+# Creamos la interfaz Gradio:
+# - El input es un sketchpad (zona para dibujar)
+# - El output son etiquetas: las categorías predecidas
+# - live=True: actualiza la predicción en tiempo real al dibujar
+demo = gr.Interface(
+    predict,     
+    inputs='sketchpad',
+    outputs='label', 
+    live=True)
+
+# Lanzamos la app Gradio (share=True permite compartir la URL con otros)
+demo.launch(share=True)
+```
 ## 2. Detección de objetos 
 
 ![Tasks - Object detection in Hugging Face](./img/object-detecction-hf.png)
@@ -147,6 +317,17 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 - **mAP (mean Average Precision):** Promedio de AP en todas las clases.
 - **APα:** Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es >0,5).
 
+### Ejemplo de uso con Gradio
+
+Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: [​omarques/autotrain-dogs-and-cats-1527055142](https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142)
+```python
+from transformers import pipeline 
+  
+segmentation = pipeline("image-segmentation",  
+               model="nvidia/segformer-b0-finetuned-ade-512-512") 
+  
+segmentation.model.config.id2label
+```
 
 ## 3. Segmentación de imágenes (Image segmentation)
 
