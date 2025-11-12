@@ -374,6 +374,10 @@ Debemos tener en cuenta que el objeto de tipo pipeline (detección) también pue
 ```python
 results = detection('http://bit.ly/46xv3sL')
 ```
+```python
+# Si no funcionara, prueba a descargar el fichero y ejecutarlo de forma local:
+results = detection('Good_Smile_Company_offices_ladies.jpg')
+```
 Debemos instalar la librería ```timm``` (PyTorch Image Models) para Python. Es una extensa colección de modelos de visión por computadora de última generación (SOTA, por sus siglas en inglés). Está diseñada para ser utilizada con el framework PyTorch y es muy apreciada en la comunidad de aprendizaje profundo por su flexibilidad y la gran cantidad de modelos preentrenados que ofrece.
 ```bash
 pip install timm
