@@ -11,9 +11,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.
 
 # ¿Qué es un task?
-Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar
+Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar.
+**Tasks (tareas) en Hugging Face**
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
-*Tasks (tareas) en Hugging Face*
 # Uso de Hugging Face para tareas de Visión por Computadora
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
 ## 1. Clasificación de Imágenes (Image Classification)
