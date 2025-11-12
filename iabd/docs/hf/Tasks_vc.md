@@ -94,58 +94,73 @@ Vamos a desarrollar nuestra propia aplicación *Pictionary" con Gradio el cual h
 
 Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [](https://huggingface.co/spaces/nateraw/quickdraw/tree/main)
 Lo primero que debemos es, descargar los ficheros siguientes:
-- class_names.txt
-- pytorch_model.bin
-- app.py
 
-Analizamos el código elaborado por el usuario:
+- ```class_names.txt```
+- ```pytorch_model.bin```
+- ```app.py```
+
+**Analizamos el código elaborado por el usuario**:
 ```python {hl_lines="4 6 8" linenums="1"} 
-from pathlib import Path  # Importa el módulo para manejar rutas y archivos de forma sencilla.
+# Importa el módulo para manejar rutas y archivos de forma sencilla.
+from pathlib import Path  
+# Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
+import torch             
 
-import torch              # Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
-import gradio as gr       # Importa Gradio, una librería para crear interfaces web de prueba.
-from torch import nn      # Importa el submódulo para redes neuronales de PyTorch.
+import gradio as gr       
+# Importa el submódulo para redes neuronales de PyTorch.
+from torch import nn      
 
 # Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.
 LABELS = Path('class_names.txt').read_text().splitlines()
 
 # Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
 model = nn.Sequential(
-    nn.Conv2d(1, 32, 3, padding='same'),  # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
-    nn.ReLU(),                            # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
-    nn.MaxPool2d(2),                      # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
+    nn.Conv2d(1, 32, 3, padding='same'),  
+    # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
+    nn.ReLU(),                            
+    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    nn.MaxPool2d(2),                      
     nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
     nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    nn.Flatten(),                         # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
-    nn.Linear(1152, 256),                 # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    nn.Flatten(),                         
+    # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    nn.Linear(1152, 256),                 
     nn.ReLU(),
-    nn.Linear(256, len(LABELS)),          # Capa de salida: 1 neurona por clase del archivo de etiquetas
+    # Capa de salida: 1 neurona por clase del archivo de etiquetas
+    nn.Linear(256, len(LABELS)),          
 )
 # Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)
 state_dict = torch.load('pytorch_model.bin', map_location='cpu')
 model.load_state_dict(state_dict, strict=False)
-model.eval() # Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos
+# Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos
+model.eval() 
 
 # Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad
 def predict(im):
     # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] y añade dimensiones de batch y canal
     x = torch.tensor(im, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.
 
-    with torch.no_grad():            # Desactiva el cálculo de gradientes (más rápido, no entrena)
-        out = model(x)               # Hacemos pasar la imagen por el modelo (forward pass)
+    # Desactiva el cálculo de gradientes (más rápido, no entrena)
+    with torch.no_grad():            
+        # Hacemos pasar la imagen por el modelo (forward pass)
+        out = model(x)               
 
-    probabilities = torch.nn.functional.softmax(out[0], dim=0)  # Calcula las probabilidades (softmax)
+    # Calcula las probabilidades (softmax)
+    probabilities = torch.nn.functional.softmax(out[0], dim=0)  
 
-    values, indices = torch.topk(probabilities, 5)              # Obtiene las 5 clases más probables
+    # Obtiene las 5 clases más probables
+    values, indices = torch.topk(probabilities, 5)              
 
     # Devuelve un diccionario {clase: probabilidad} para las 5 mejores
     return {LABELS[i]: v.item() for i, v in zip(indices, values)}
 
-# Crea la interfaz web con Gradio:
+# Creamos la interfaz web con Gradio:
 #   - predict: función a ejecutar al recibir la entrada.
 #   - inputs: 'sketchpad', una zona para que el usuario dibuje a mano alzada.
 #   - outputs: 'label', salida tipo clasificación de etiquetas.
@@ -217,7 +232,8 @@ model = nn.Sequential(
     nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa convolucional: 128 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    nn.Flatten(),                         # Aplana la salida para conectarla a las capas densas
+    # Aplana la salida para conectarla a las capas densas
+    nn.Flatten(),                         
     nn.Linear(1152, 256),                 # Capa densa/intermedia
     nn.ReLU(),
     nn.Linear(256, len(LABELS)),          # Capa de salida, un nodo por categoría
