@@ -83,12 +83,11 @@ Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [https
 
 Lo primero que debemos es, descargar los ficheros siguientes:
 
-- ```class_names.txt```
-- ```pytorch_model.bin```
-- ```app.py```
+- class_names.txt
+- pytorch_model.bin
+- app.py
 
 **Analizamos el código elaborado por el usuario**:
-
 
 ---
 > NOTA
@@ -124,7 +123,7 @@ Cuando pasas una imagen por una CNN:
 ---
 Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
 
-```python {linenums="1"} 
+```python{linenums="1"} 
 from pathlib import Path
 from PIL import Image
 from torch import nn
@@ -164,7 +163,8 @@ model = nn.Sequential(
 # Cargamos los pesos previamente entrenados del modelo
 state_dict = torch.load('pytorch_model.bin', map_location='cpu')
 model.load_state_dict(state_dict, strict=False)
-model.eval()  # Ponemos el modelo en modo inferencia (no entrenamiento)
+# Ponemos el modelo en modo inferencia (no entrenamiento)
+model.eval()  
 
 # Función principal de predicción, procesará el dibujo 
 # de Gradio y calculará su clase
