@@ -299,7 +299,7 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 
 ---
 
-## 📝 Actividad 1. **Usar un Space de Hugging Face**  
+## 📝 **Actividad 1. Usar un Space de Hugging Face**  
 
 Basándote en lo aprendido a partir de los casos de uso de [Hola Spaces](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces) y [Hola Spaces 2.0](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces-20) trabajadas en una sesión anterior, mediante *Gradio* en *Hugging Face* crea un nuevo espacio público en tu cuenta que permita probar la aplicación del *pictionary* desarrollada de forma local en un Space de Hugging Face. 
 
@@ -472,7 +472,7 @@ Código final en Gradio:
 ```python
 # AQUÍ IRÁ LA SOLUCIÓN
 ```
-## Actividad 2: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
+## 📝 **Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
 ## Contexto
 
@@ -646,7 +646,7 @@ La figura siguiente muestra las máscaras invertidas para *person* (persona) y *
 
 ![](./img/imagenes_mascaras_invertidas.jpg)
 
-## Actividad 3: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
+## 📝 **Actividad 3: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
 Crea un prototipo mediante Gradio haciendo uso de la clase Interface que te permita probar el modelo de segmentación basándote en el siguiente prototipo: 
 ![](./img/act2_prototipo_gradio.png)
