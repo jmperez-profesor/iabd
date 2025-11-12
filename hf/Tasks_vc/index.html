@@ -610,6 +610,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46-47-48-49-50-51-52-53-54-55-56-57-58-59-60-61-62-63-64-65-66-67-68-69-70-71-72-73from-pathlib-import-path-from-pil-import-image-from-torch-import-nn-import-torch-import-gradio-as-gr-import-numpy-as-np-leemos-las-etiquetas-de-clases-categorias-desde-un-fichero-de-texto-labels-pathclass_namestxtread_textsplitlines-definimos-nuestra-red-neuronal-convolucional-la-arquitectura-fue-entrenada-previamente-model-nnsequential-nnconv2d1-32-3-paddingsame-capa-convolucional-1-canal-de-entrada-gris-32-filtros-kernel-3x3-nnrelu-funcion-de-activacion-relu-nnmaxpool2d2-pooling-para-reducir-tamano-espacial-nnconv2d32-64-3-paddingsame-segunda-capa-convolucional-64-filtros-nnrelu-nnmaxpool2d2-nnconv2d64-128-3-paddingsame-tercera-capa-convolucional-128-filtros-nnrelu-nnmaxpool2d2-aplana-la-salida-para-conectarla-a-las-capas-densas-nnflatten-nnlinear1152-256-capa-densaintermedia-nnrelu-nnlinear256-lenlabels-capa-de-salida-un-nodo-por-categoria-cargamos-los-pesos-previamente-entrenados-del-modelo-state_dict-torchloadpytorch_modelbin-map_locationcpu-modelload_state_dictstate_dict-strictfalse-modeleval-ponemos-el-modelo-en-modo-inferencia-no-entrenamiento-funcion-principal-de-prediccion-procesara-el-dibujo-de-gradio-y-calculara-su-clase-def-predictimg-si-no-hay-dibujo-o-la-clave-composite-no-existe-o-esta-vacia-avisamos-if-img-is-none-or-composite-not-in-img-or-imgcomposite-is-none-return-por-favor-dibuja-algo-10-extraemos-la-imagen-resultado-del-canvas-canal-rgba-arr-imgcomposite-array-con-forma-ej-800-800-4-tipo-uint8-convertimos-de-rgba-a-escala-de-grises-quick-draw-es-gris-arr_gray-arr-3meanaxis2-convertimos-a-uint8-por-si-pil-lo-necesita-arr_gray_uint8-arr_grayastypeuint8-redimensionamos-a-28x28-pixeles-tamano-de-entrada-del-modelo-arr_img-imagefromarrayarr_gray_uint8-arr_resized-nparrayarr_imgresize28-28-resampleimagebilinear-escalamos-a-rango-01-arr_normalized-arr_resized-2550-anadimos-dimensiones-de-batch-y-canal-1-1-28-28-x-torchtensorarr_normalized-dtypetorchfloat32unsqueeze0unsqueeze0-ejecutamos-inferencia-sin-calcular-gradientes-mas-eficiente-with-torchno_grad-out-modelx-calculamos-probabilidades-con-softmax-probabilities-torchnnfunctionalsoftmaxout0-dim0-obtenemos-las-5-clases-mas-probables-top-5-values-indices-torchtopkprobabilities-5-devolvemos-un-diccionario-categoria-probabilidad-confianza-return-labelsi-vitem-for-i-v-in-zipindices-values-creamos-la-interfaz-gradio-el-input-es-un-sketchpad-zona-para-dibujar-el-output-son-etiquetas-las-categorias-predecidas-livetrue-actualiza-la-prediccion-en-tiempo-real-al-dibujar-demo-grinterface-predict-inputssketchpad-outputslabel-livetrue-lanzamos-la-app-gradio-sharetrue-permite-compartir-la-url-con-otros-demolaunchsharetrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73from pathlib import Path from PIL import Image from torch import nn import torch import gradio as gr import numpy as np # Leemos las etiquetas de clases (categorías) desde un fichero de texto LABELS = Path(&#39;class_names.txt&#39;).read_text().splitlines() # Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente) model = nn.Sequential( nn.Conv2d(1, 32, 3, padding=&#39;same&#39;), # Capa convolucional: 1 canal de entrada (gris), 32 filtros, kernel 3x3 nn.ReLU(), # Función de activación ReLU nn.MaxPool2d(2), # Pooling para reducir tamaño espacial nn.Conv2d(32, 64, 3, padding=&#39;same&#39;), # Segunda capa convolucional: 64 filtros nn.ReLU(), nn.MaxPool2d(2), nn.Conv2d(64, 128, 3, padding=&#39;same&#39;),# Tercera capa convolucional: 128 filtros nn.ReLU(), nn.MaxPool2d(2), # Aplana la salida para conectarla a las capas densas nn.Flatten(), nn.Linear(1152, 256), # Capa densa/intermedia nn.ReLU(), nn.Linear(256, len(LABELS)), # Capa de salida, un nodo por categoría ) # Cargamos los pesos previamente entrenados del modelo state_dict = torch.load(&#39;pytorch_model.bin&#39;, map_location=&#39;cpu&#39;) model.load_state_dict(state_dict, strict=False) model.eval() # Ponemos el modelo en modo inferencia (no entrenamiento) # Función principal de predicción, procesará el dibujo de Gradio y calculará su clase def predict(img): # Si no hay dibujo o la clave &#39;composite&#39; no existe o está vacía, avisamos: if img is None or &quot;composite&quot; not in img or img[&quot;composite&quot;] is None: return {&quot;Por favor, dibuja algo&quot;: 1.0} # Extraemos la imagen resultado del canvas, canal RGBA arr = img[&quot;composite&quot;] # Array con forma (ej. [800, 800, 4]), tipo uint8 # Convertimos de RGBA a escala de grises (Quick Draw es gris) arr_gray = arr[..., :3].mean(axis=2) # Convertimos a uint8 por si PIL lo necesita arr_gray_uint8 = arr_gray.astype(&quot;uint8&quot;) # Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo) arr_img = Image.fromarray(arr_gray_uint8) arr_resized = np.array(arr_img.resize((28, 28), resample=Image.BILINEAR)) # Escalamos a rango [0,1] arr_normalized = arr_resized / 255.0 # Añadimos dimensiones de batch y canal: (1, 1, 28, 28) x = torch.tensor(arr_normalized, dtype=torch.float32).unsqueeze(0).unsqueeze(0) # Ejecutamos inferencia sin calcular gradientes (más eficiente) with torch.no_grad(): out = model(x) # Calculamos probabilidades con softmax probabilities = torch.nn.functional.softmax(out[0], dim=0) # Obtenemos las 5 clases más probables (top-5) values, indices = torch.topk(probabilities, 5) # Devolvemos un diccionario: categoría : probabilidad (~confianza) return {LABELS[i]: v.item() for i, v in zip(indices, values)} # Creamos la interfaz Gradio: # - El input es un sketchpad (zona para dibujar) # - El output son etiquetas: las categorías predecidas # - live=True: actualiza la predicción en tiempo real al dibujar demo = gr.Interface( predict, inputs=&#39;sketchpad&#39;, outputs=&#39;label&#39;, live=True) # Lanzamos la app Gradio (share=True permite compartir la URL con otros) demo.launch(share=True)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#actividades" class="md-nav__link">
     <span class="md-ellipsis">
       Actividades
@@ -1104,15 +1113,17 @@ Lo primero que debemos es, descargar los ficheros siguientes:</p>
 
 <span class="c1"># Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.</span>
 <span class="n">interface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-NOTA</p>
+</code></pre></div></td></tr></table></div></p>
+<hr />
+<blockquote>
+<p>NOTA</p>
+</blockquote>
 <h3 id="que-es-una-red-neuronal-convolucional-cnn">¿Qué es una red neuronal convolucional (CNN)?</h3>
 <p>Una <strong>red neuronal convolucional</strong> (CNN, por sus siglas en inglés, <em>Convolutional Neural Network</em>) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.</p>
 <h3 id="caracteristicas-principales">Características principales</h3>
 <ul>
 <li>
-<p><strong>Inspiración biológica:</strong><br />
-  Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).</p>
+<p><strong>Inspiración biológica:</strong>: Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).</p>
 </li>
 <li>
 <p><strong>Arquitectura en capas:</strong><br />
@@ -1126,12 +1137,10 @@ NOTA</p>
 </li>
 <li>
 <p><strong>Aprendizaje jerárquico:</strong><br />
-  Las CNNs aprenden jerarquías de características:<br />
-  Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.</p>
+  Las CNNs aprenden jerarquías de características: Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.</p>
 </li>
 <li>
-<p><strong>Campos receptivos y parámetros compartidos:</strong><br />
-  Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.</p>
+<p><strong>Campos receptivos y parámetros compartidos:</strong> Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.</p>
 </li>
 </ul>
 <h3 id="aplicaciones-tipicas">Aplicaciones típicas</h3>
@@ -1141,13 +1150,15 @@ NOTA</p>
 <li><strong>Procesamiento de vídeo:</strong> Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.</li>
 </ul>
 <h3 id="ejemplo-didactico-sencillo">Ejemplo didáctico sencillo</h3>
-<p>Cuando pasas una imagen por una CNN:
-- Las primeras capas detectan bordes y formas sencillas.
-- Las siguientes detectan partes más grandes (ruedas, patas, ojos).
-- Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.</p>
+<p>Cuando pasas una imagen por una CNN:</p>
+<ul>
+<li>Las primeras capas detectan bordes y formas sencillas.</li>
+<li>Las siguientes detectan partes más grandes (ruedas, patas, ojos).</li>
+<li>Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.</li>
+</ul>
 <hr />
-<p>Solución final:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<p>Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras, para que el código original funcione. A continuación podemos visualizar la solución final:</p>
+<h2 id="1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46-47-48-49-50-51-52-53-54-55-56-57-58-59-60-61-62-63-64-65-66-67-68-69-70-71-72-73from-pathlib-import-path-from-pil-import-image-from-torch-import-nn-import-torch-import-gradio-as-gr-import-numpy-as-np-leemos-las-etiquetas-de-clases-categorias-desde-un-fichero-de-texto-labels-pathclass_namestxtread_textsplitlines-definimos-nuestra-red-neuronal-convolucional-la-arquitectura-fue-entrenada-previamente-model-nnsequential-nnconv2d1-32-3-paddingsame-capa-convolucional-1-canal-de-entrada-gris-32-filtros-kernel-3x3-nnrelu-funcion-de-activacion-relu-nnmaxpool2d2-pooling-para-reducir-tamano-espacial-nnconv2d32-64-3-paddingsame-segunda-capa-convolucional-64-filtros-nnrelu-nnmaxpool2d2-nnconv2d64-128-3-paddingsame-tercera-capa-convolucional-128-filtros-nnrelu-nnmaxpool2d2-aplana-la-salida-para-conectarla-a-las-capas-densas-nnflatten-nnlinear1152-256-capa-densaintermedia-nnrelu-nnlinear256-lenlabels-capa-de-salida-un-nodo-por-categoria-cargamos-los-pesos-previamente-entrenados-del-modelo-state_dict-torchloadpytorch_modelbin-map_locationcpu-modelload_state_dictstate_dict-strictfalse-modeleval-ponemos-el-modelo-en-modo-inferencia-no-entrenamiento-funcion-principal-de-prediccion-procesara-el-dibujo-de-gradio-y-calculara-su-clase-def-predictimg-si-no-hay-dibujo-o-la-clave-composite-no-existe-o-esta-vacia-avisamos-if-img-is-none-or-composite-not-in-img-or-imgcomposite-is-none-return-por-favor-dibuja-algo-10-extraemos-la-imagen-resultado-del-canvas-canal-rgba-arr-imgcomposite-array-con-forma-ej-800-800-4-tipo-uint8-convertimos-de-rgba-a-escala-de-grises-quick-draw-es-gris-arr_gray-arr-3meanaxis2-convertimos-a-uint8-por-si-pil-lo-necesita-arr_gray_uint8-arr_grayastypeuint8-redimensionamos-a-28x28-pixeles-tamano-de-entrada-del-modelo-arr_img-imagefromarrayarr_gray_uint8-arr_resized-nparrayarr_imgresize28-28-resampleimagebilinear-escalamos-a-rango-01-arr_normalized-arr_resized-2550-anadimos-dimensiones-de-batch-y-canal-1-1-28-28-x-torchtensorarr_normalized-dtypetorchfloat32unsqueeze0unsqueeze0-ejecutamos-inferencia-sin-calcular-gradientes-mas-eficiente-with-torchno_grad-out-modelx-calculamos-probabilidades-con-softmax-probabilities-torchnnfunctionalsoftmaxout0-dim0-obtenemos-las-5-clases-mas-probables-top-5-values-indices-torchtopkprobabilities-5-devolvemos-un-diccionario-categoria-probabilidad-confianza-return-labelsi-vitem-for-i-v-in-zipindices-values-creamos-la-interfaz-gradio-el-input-es-un-sketchpad-zona-para-dibujar-el-output-son-etiquetas-las-categorias-predecidas-livetrue-actualiza-la-prediccion-en-tiempo-real-al-dibujar-demo-grinterface-predict-inputssketchpad-outputslabel-livetrue-lanzamos-la-app-gradio-sharetrue-permite-compartir-la-url-con-otros-demolaunchsharetrue"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1222,12 +1233,12 @@ NOTA</p>
 <span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
-<span class="hll">
-</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
-</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="hll">
-</span><span class="c1"># Leemos las etiquetas de clases (categorías) desde un fichero de texto</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Leemos las etiquetas de clases (categorías) desde un fichero de texto</span>
 <span class="n">LABELS</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;class_names.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 
 <span class="c1"># Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente)</span>
@@ -1292,7 +1303,16 @@ NOTA</p>
 
 <span class="c1"># Lanzamos la app Gradio (share=True permite compartir la URL con otros)</span>
 <span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></h2>
+<p>La función softmax de torch (PyTorch) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​</p>
+<p>En PyTorch, podemos usar esta función tanto como capa de activación en la salida de nuestro modelo, como directamente llamando torch.nn.functional.softmax() sobre un tensor de logits. Es común utilizar softmax en la inferencia para obtener probabilidades interpretables, mientras que durante el entrenamiento suele usarse CrossEntropyLoss, que incorpora la softmax de forma interna y más eficiente.​</p>
+<p>Aplicaciones comunes:</p>
+<ul>
+<li>Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​</li>
+<li>Visualización de la confianza del modelo en cada posible resultado.
+En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en <em>Deep learning</em>.</li>
+</ul>
+<hr />
 <h2 id="actividades">Actividades</h2>
 <ol>
 <li><strong>Usar un Space de Hugging Face</strong><br />
