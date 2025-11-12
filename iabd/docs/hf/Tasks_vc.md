@@ -136,14 +136,17 @@ Cuando pasas una imagen por una CNN:
 - Las primeras capas detectan bordes y formas sencillas.
 - Las siguientes detectan partes más grandes (ruedas, patas, ojos).
 - Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
----
+
 Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
 
-```python {linenums="1"} 
+```python {linenums="1"}
 from pathlib import Path
 from PIL import Image
 from torch import nn
+```
 
+
+```python
 import torch
 import gradio as gr
 import numpy as np
@@ -224,6 +227,8 @@ demo = gr.Interface(
 
 demo.launch(share=True)
 ```
+
+
 > NOTA
 ---
 La función *softmax* de *torch* (*PyTorch*) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​
