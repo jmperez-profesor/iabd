@@ -568,39 +568,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#que-es-una-red-neuronal-convolucional-cnn" class="md-nav__link">
-    <span class="md-ellipsis">
-      ¿Qué es una red neuronal convolucional (CNN)?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#caracteristicas-principales" class="md-nav__link">
-    <span class="md-ellipsis">
-      Características principales
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aplicaciones-tipicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aplicaciones típicas
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-didactico-sencillo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ejemplo didáctico sencillo
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -608,15 +577,133 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46-47-48-49-50-51-52-53-54-55-56-57-58-59-60-61-62-63-64-65-66-67-68-69-70-71-72-73from-pathlib-import-path-from-pil-import-image-from-torch-import-nn-import-torch-import-gradio-as-gr-import-numpy-as-np-leemos-las-etiquetas-de-clases-categorias-desde-un-fichero-de-texto-labels-pathclass_namestxtread_textsplitlines-definimos-nuestra-red-neuronal-convolucional-la-arquitectura-fue-entrenada-previamente-model-nnsequential-nnconv2d1-32-3-paddingsame-capa-convolucional-1-canal-de-entrada-gris-32-filtros-kernel-3x3-nnrelu-funcion-de-activacion-relu-nnmaxpool2d2-pooling-para-reducir-tamano-espacial-nnconv2d32-64-3-paddingsame-segunda-capa-convolucional-64-filtros-nnrelu-nnmaxpool2d2-nnconv2d64-128-3-paddingsame-tercera-capa-convolucional-128-filtros-nnrelu-nnmaxpool2d2-aplana-la-salida-para-conectarla-a-las-capas-densas-nnflatten-nnlinear1152-256-capa-densaintermedia-nnrelu-nnlinear256-lenlabels-capa-de-salida-un-nodo-por-categoria-cargamos-los-pesos-previamente-entrenados-del-modelo-state_dict-torchloadpytorch_modelbin-map_locationcpu-modelload_state_dictstate_dict-strictfalse-modeleval-ponemos-el-modelo-en-modo-inferencia-no-entrenamiento-funcion-principal-de-prediccion-procesara-el-dibujo-de-gradio-y-calculara-su-clase-def-predictimg-si-no-hay-dibujo-o-la-clave-composite-no-existe-o-esta-vacia-avisamos-if-img-is-none-or-composite-not-in-img-or-imgcomposite-is-none-return-por-favor-dibuja-algo-10-extraemos-la-imagen-resultado-del-canvas-canal-rgba-arr-imgcomposite-array-con-forma-ej-800-800-4-tipo-uint8-convertimos-de-rgba-a-escala-de-grises-quick-draw-es-gris-arr_gray-arr-3meanaxis2-convertimos-a-uint8-por-si-pil-lo-necesita-arr_gray_uint8-arr_grayastypeuint8-redimensionamos-a-28x28-pixeles-tamano-de-entrada-del-modelo-arr_img-imagefromarrayarr_gray_uint8-arr_resized-nparrayarr_imgresize28-28-resampleimagebilinear-escalamos-a-rango-01-arr_normalized-arr_resized-2550-anadimos-dimensiones-de-batch-y-canal-1-1-28-28-x-torchtensorarr_normalized-dtypetorchfloat32unsqueeze0unsqueeze0-ejecutamos-inferencia-sin-calcular-gradientes-mas-eficiente-with-torchno_grad-out-modelx-calculamos-probabilidades-con-softmax-probabilities-torchnnfunctionalsoftmaxout0-dim0-obtenemos-las-5-clases-mas-probables-top-5-values-indices-torchtopkprobabilities-5-devolvemos-un-diccionario-categoria-probabilidad-confianza-return-labelsi-vitem-for-i-v-in-zipindices-values-creamos-la-interfaz-gradio-el-input-es-un-sketchpad-zona-para-dibujar-el-output-son-etiquetas-las-categorias-predecidas-livetrue-actualiza-la-prediccion-en-tiempo-real-al-dibujar-demo-grinterface-predict-inputssketchpad-outputslabel-livetrue-lanzamos-la-app-gradio-sharetrue-permite-compartir-la-url-con-otros-demolaunchsharetrue" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#importa-el-modulo-para-manejar-rutas-y-archivos-de-forma-sencilla" class="md-nav__link">
     <span class="md-ellipsis">
-      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73from pathlib import Path from PIL import Image from torch import nn import torch import gradio as gr import numpy as np # Leemos las etiquetas de clases (categorías) desde un fichero de texto LABELS = Path(&#39;class_names.txt&#39;).read_text().splitlines() # Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente) model = nn.Sequential( nn.Conv2d(1, 32, 3, padding=&#39;same&#39;), # Capa convolucional: 1 canal de entrada (gris), 32 filtros, kernel 3x3 nn.ReLU(), # Función de activación ReLU nn.MaxPool2d(2), # Pooling para reducir tamaño espacial nn.Conv2d(32, 64, 3, padding=&#39;same&#39;), # Segunda capa convolucional: 64 filtros nn.ReLU(), nn.MaxPool2d(2), nn.Conv2d(64, 128, 3, padding=&#39;same&#39;),# Tercera capa convolucional: 128 filtros nn.ReLU(), nn.MaxPool2d(2), # Aplana la salida para conectarla a las capas densas nn.Flatten(), nn.Linear(1152, 256), # Capa densa/intermedia nn.ReLU(), nn.Linear(256, len(LABELS)), # Capa de salida, un nodo por categoría ) # Cargamos los pesos previamente entrenados del modelo state_dict = torch.load(&#39;pytorch_model.bin&#39;, map_location=&#39;cpu&#39;) model.load_state_dict(state_dict, strict=False) model.eval() # Ponemos el modelo en modo inferencia (no entrenamiento) # Función principal de predicción, procesará el dibujo de Gradio y calculará su clase def predict(img): # Si no hay dibujo o la clave &#39;composite&#39; no existe o está vacía, avisamos: if img is None or &quot;composite&quot; not in img or img[&quot;composite&quot;] is None: return {&quot;Por favor, dibuja algo&quot;: 1.0} # Extraemos la imagen resultado del canvas, canal RGBA arr = img[&quot;composite&quot;] # Array con forma (ej. [800, 800, 4]), tipo uint8 # Convertimos de RGBA a escala de grises (Quick Draw es gris) arr_gray = arr[..., :3].mean(axis=2) # Convertimos a uint8 por si PIL lo necesita arr_gray_uint8 = arr_gray.astype(&quot;uint8&quot;) # Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo) arr_img = Image.fromarray(arr_gray_uint8) arr_resized = np.array(arr_img.resize((28, 28), resample=Image.BILINEAR)) # Escalamos a rango [0,1] arr_normalized = arr_resized / 255.0 # Añadimos dimensiones de batch y canal: (1, 1, 28, 28) x = torch.tensor(arr_normalized, dtype=torch.float32).unsqueeze(0).unsqueeze(0) # Ejecutamos inferencia sin calcular gradientes (más eficiente) with torch.no_grad(): out = model(x) # Calculamos probabilidades con softmax probabilities = torch.nn.functional.softmax(out[0], dim=0) # Obtenemos las 5 clases más probables (top-5) values, indices = torch.topk(probabilities, 5) # Devolvemos un diccionario: categoría : probabilidad (~confianza) return {LABELS[i]: v.item() for i, v in zip(indices, values)} # Creamos la interfaz Gradio: # - El input es un sketchpad (zona para dibujar) # - El output son etiquetas: las categorías predecidas # - live=True: actualiza la predicción en tiempo real al dibujar demo = gr.Interface( predict, inputs=&#39;sketchpad&#39;, outputs=&#39;label&#39;, live=True) # Lanzamos la app Gradio (share=True permite compartir la URL con otros) demo.launch(share=True)
+      Importa el módulo para manejar rutas y archivos de forma sencilla.
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#importa-la-libreria-pytorch-utilizada-para-deep-learning-y-manipulacion-de-tensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importa-el-submodulo-para-redes-neuronales-de-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importa el submódulo para redes neuronales de PyTorch.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lee-las-etiquetasclases-del-archivo-de-texto-una-por-linea-cada-linea-es-una-categoria-que-el-modelo-puede-predecir" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definimos-la-arquitectura-de-la-red-neuronal-convolucional-cnn-ya-entrenada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carga-los-pesos-entrenados-previamente-desde-el-archivo-binario-estado-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coloca-el-modelo-en-modo-solo-inferencia-no-entrenamiento-no-calcula-gradientes-ni-actualiza-pesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcion-de-prediccion-principal-toma-una-imagen-array-y-devuelve-las-top-5-categorias-con-su-probabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creamos-la-interfaz-web-con-gradio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creamos la interfaz web con Gradio:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-predict-funcion-a-ejecutar-al-recibir-la-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      - predict: función a ejecutar al recibir la entrada.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-inputs-sketchpad-una-zona-para-que-el-usuario-dibuje-a-mano-alzada" class="md-nav__link">
+    <span class="md-ellipsis">
+      - inputs: 'sketchpad', una zona para que el usuario dibuje a mano alzada.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-outputs-label-salida-tipo-clasificacion-de-etiquetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      - outputs: 'label', salida tipo clasificación de etiquetas.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-livetrue-muestra-predicciones-en-tiempo-real-mientras-dibujas" class="md-nav__link">
+    <span class="md-ellipsis">
+      - live=True: muestra predicciones en tiempo real mientras dibujas.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lanza-la-aplicacion-en-local-con-debug-activo-abre-una-pestana-del-navegador-con-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#actividades" class="md-nav__link">
@@ -978,333 +1065,187 @@ Lo primero que debemos es, descargar los ficheros siguientes:</p>
 <li><code>app.py</code></li>
 </ul>
 <p><strong>Analizamos el código elaborado por el usuario</strong>:
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Importa el módulo para manejar rutas y archivos de forma sencilla.</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>  
-<span class="c1"># Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.</span>
-<span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>             
-</span>
-<span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>       
-</span><span class="c1"># Importa el submódulo para redes neuronales de PyTorch.</span>
-<span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>      
-</span>
-<span class="c1"># Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.</span>
-<span class="n">LABELS</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;class_names.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+```python linenums="1"} </p>
+<h1 id="importa-el-modulo-para-manejar-rutas-y-archivos-de-forma-sencilla">Importa el módulo para manejar rutas y archivos de forma sencilla.</h1>
+<p>from pathlib import Path  </p>
+<h1 id="importa-la-libreria-pytorch-utilizada-para-deep-learning-y-manipulacion-de-tensores">Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.</h1>
+<p>import torch             </p>
+<p>import gradio as gr       </p>
+<h1 id="importa-el-submodulo-para-redes-neuronales-de-pytorch">Importa el submódulo para redes neuronales de PyTorch.</h1>
+<p>from torch import nn      </p>
+<h1 id="lee-las-etiquetasclases-del-archivo-de-texto-una-por-linea-cada-linea-es-una-categoria-que-el-modelo-puede-predecir">Lee las etiquetas/clases del archivo de texto, una por línea. Cada línea es una categoría que el modelo puede predecir.</h1>
+<p>LABELS = Path('class_names.txt').read_text().splitlines()</p>
+<h1 id="definimos-la-arquitectura-de-la-red-neuronal-convolucional-cnn-ya-entrenada">Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:</h1>
+<p>model = nn.Sequential(
+    # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
+    nn.Conv2d(1, 32, 3, padding='same'),<br />
+    # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
+    nn.ReLU(),                          <br />
+    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    nn.MaxPool2d(2),                    <br />
+    nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    nn.Flatten(),                       <br />
+    # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    nn.Linear(1152, 256),               <br />
+    nn.ReLU(),
+    # Capa de salida: 1 neurona por clase del archivo de etiquetas
+    nn.Linear(256, len(LABELS)),        <br />
+)</p>
+<h1 id="carga-los-pesos-entrenados-previamente-desde-el-archivo-binario-estado-del-modelo">Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)</h1>
+<p>state_dict = torch.load('pytorch_model.bin', map_location='cpu')
+model.load_state_dict(state_dict, strict=False)</p>
+<h1 id="coloca-el-modelo-en-modo-solo-inferencia-no-entrenamiento-no-calcula-gradientes-ni-actualiza-pesos">Coloca el modelo en modo "solo inferencia" (no entrenamiento): no calcula gradientes ni actualiza pesos</h1>
+<p>model.eval() </p>
+<h1 id="funcion-de-prediccion-principal-toma-una-imagen-array-y-devuelve-las-top-5-categorias-con-su-probabilidad">Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad</h1>
+<p>def predict(im):
+    # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] y añade dimensiones de batch y canal
+    x = torch.tensor(im, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.</p>
+<div class="highlight"><pre><span></span><code># Desactiva el cálculo de gradientes (más rápido, no entrena)
+with torch.no_grad():            
+    # Hacemos pasar la imagen por el modelo (forward pass)
+    out = model(x)
 
-<span class="c1"># Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-    <span class="c1"># Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>  
-    <span class="c1"># Función de activación no lineal ReLU (acelera y facilita el aprendizaje)</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                            
-    <span class="c1"># Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>                      
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span> <span class="c1"># Segunda capa: 32→64 filtros</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span><span class="c1"># Tercera capa: 64→128 filtros</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="c1"># Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>                         
-    <span class="c1"># Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1152</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>                 
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="c1"># Capa de salida: 1 neurona por clase del archivo de etiquetas</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">LABELS</span><span class="p">)),</span>          
-<span class="p">)</span>
-<span class="c1"># Carga los pesos entrenados previamente desde el archivo binario (estado del modelo)</span>
-<span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;pytorch_model.bin&#39;</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># Coloca el modelo en modo &quot;solo inferencia&quot; (no entrenamiento): no calcula gradientes ni actualiza pesos</span>
-<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> 
+# Calcula las probabilidades (softmax)
+probabilities = torch.nn.functional.softmax(out[0], dim=0)
 
-<span class="c1"># Función de predicción principal: toma una imagen (array) y devuelve las top-5 categorías con su probabilidad</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
-    <span class="c1"># Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] y añade dimensiones de batch y canal</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+# Obtiene las 5 clases más probables
+values, indices = torch.topk(probabilities, 5)
 
-    <span class="c1"># Desactiva el cálculo de gradientes (más rápido, no entrena)</span>
-    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>            
-        <span class="c1"># Hacemos pasar la imagen por el modelo (forward pass)</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>               
+# Devuelve un diccionario {clase: probabilidad} para las 5 mejores
+return {LABELS[i]: v.item() for i, v in zip(indices, values)}
+</code></pre></div>
+<h1 id="creamos-la-interfaz-web-con-gradio">Creamos la interfaz web con Gradio:</h1>
+<h1 id="-predict-funcion-a-ejecutar-al-recibir-la-entrada">- predict: función a ejecutar al recibir la entrada.</h1>
+<h1 id="-inputs-sketchpad-una-zona-para-que-el-usuario-dibuje-a-mano-alzada">- inputs: 'sketchpad', una zona para que el usuario dibuje a mano alzada.</h1>
+<h1 id="-outputs-label-salida-tipo-clasificacion-de-etiquetas">- outputs: 'label', salida tipo clasificación de etiquetas.</h1>
+<h1 id="-livetrue-muestra-predicciones-en-tiempo-real-mientras-dibujas">- live=True: muestra predicciones en tiempo real mientras dibujas.</h1>
+<p>interface = gr.Interface(predict, inputs='sketchpad', outputs='label', live=True)</p>
+<h1 id="lanza-la-aplicacion-en-local-con-debug-activo-abre-una-pestana-del-navegador-con-la-interfaz">Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.</h1>
+<p>interface.launch(debug=True)
+<div class="highlight"><pre><span></span><code>---
+&gt; NOTA
+### ¿Qué es una red neuronal convolucional (CNN)?
+Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolutional Neural Network*) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.
 
-    <span class="c1"># Calcula las probabilidades (softmax)</span>
-    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+### Características principales
+- **Inspiración biológica:**: Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).
 
-    <span class="c1"># Obtiene las 5 clases más probables</span>
-    <span class="n">values</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>              
+- **Arquitectura en capas:**  
+  Una CNN está compuesta por diferentes capas conectadas:
+    - **Capas convolucionales:** Aplican filtros o “kernels” para extraer patrones y características locales (bordes, texturas, esquinas).
+    - **Capas de activación (ReLU):** Introducen no linealidad, permitiendo que la red aprenda funciones más complejas.
+    - **Capas de agrupamiento (pooling):** Reducen la resolución espacial y la cantidad de computación, logrando robustez ante desplazamientos.
+    - **Capas totalmente conectadas:** Integran toda la información para tomar decisiones y realizar la predicción final.
 
-    <span class="c1"># Devuelve un diccionario {clase: probabilidad} para las 5 mejores</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">LABELS</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">values</span><span class="p">)}</span>
+- **Aprendizaje jerárquico:**  
+  Las CNNs aprenden jerarquías de características: Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.
 
-<span class="c1"># Creamos la interfaz web con Gradio:</span>
-<span class="c1">#   - predict: función a ejecutar al recibir la entrada.</span>
-<span class="c1">#   - inputs: &#39;sketchpad&#39;, una zona para que el usuario dibuje a mano alzada.</span>
-<span class="c1">#   - outputs: &#39;label&#39;, salida tipo clasificación de etiquetas.</span>
-<span class="c1">#   - live=True: muestra predicciones en tiempo real mientras dibujas.</span>
-<span class="n">interface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;sketchpad&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">live</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+- **Campos receptivos y parámetros compartidos:** Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.
+### Aplicaciones típicas
+- **Reconocimiento y clasificación de imágenes:** Detección de objetos, diagnóstico médico, moderación de contenido, etc.
+- **Visión por computador:** Conducción autónoma, videovigilancia, análisis de tráfico.
+- **Procesamiento de vídeo:** Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.
 
-<span class="c1"># Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.</span>
-<span class="n">interface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
-<hr />
+### Ejemplo didáctico sencillo
+
+Cuando pasas una imagen por una CNN:
+
+- Las primeras capas detectan bordes y formas sencillas.
+- Las siguientes detectan partes más grandes (ruedas, patas, ojos).
+- Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
+---
+Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
+```python {linenums=&quot;1&quot;} 
+from pathlib import Path
+from PIL import Image
+from torch import nn
+
+import torch
+import gradio as gr
+import numpy as np
+
+# Leemos las etiquetas de clases (categorías) desde un fichero de texto
+LABELS = Path(&#39;class_names.txt&#39;).read_text().splitlines()
+
+# Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
+model = nn.Sequential(
+    # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
+    nn.Conv2d(1, 32, 3, padding=&#39;same&#39;),  
+    # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
+    nn.ReLU(),                            
+    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    nn.MaxPool2d(2),                      
+    nn.Conv2d(32, 64, 3, padding=&#39;same&#39;), # Segunda capa: 32→64 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(64, 128, 3, padding=&#39;same&#39;),# Tercera capa: 64→128 filtros
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
+    nn.Flatten(),                         
+    # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    nn.Linear(1152, 256),                 
+    nn.ReLU(),
+    # Capa de salida: 1 neurona por clase del archivo de etiquetas
+    nn.Linear(256, len(LABELS)),          
+)
+# Cargamos los pesos previamente entrenados del modelo
+state_dict = torch.load(&#39;pytorch_model.bin&#39;, map_location=&#39;cpu&#39;)
+model.load_state_dict(state_dict, strict=False)
+model.eval()  # Ponemos el modelo en modo inferencia (no entrenamiento)
+
+# Función principal de predicción, procesará el dibujo de Gradio y calculará su clase
+def predict(img):   
+    # Si no hay dibujo o la clave &#39;composite&#39; no existe o está vacía, avisamos:
+    if img is None or &quot;composite&quot; not in img or img[&quot;composite&quot;] is None:
+        return {&quot;Por favor, dibuja algo&quot;: 1.0}
+    # Extraemos la imagen resultado del canvas, canal RGBA
+    arr = img[&quot;composite&quot;]        # Array con forma (ej. [800, 800, 4]), tipo uint8
+    # Convertimos de RGBA a escala de grises (Quick Draw es gris)
+    arr_gray = arr[..., :3].mean(axis=2)
+    # Convertimos a uint8 por si PIL lo necesita
+    arr_gray_uint8 = arr_gray.astype(&quot;uint8&quot;)
+    # Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo)
+    arr_img = Image.fromarray(arr_gray_uint8)
+    arr_resized = np.array(arr_img.resize((28, 28), resample=Image.BILINEAR))
+    # Escalamos a rango [0,1]
+    arr_normalized = arr_resized / 255.0
+    # Añadimos dimensiones de batch y canal: (1, 1, 28, 28)
+    x = torch.tensor(arr_normalized, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
+    # Ejecutamos inferencia sin calcular gradientes (más eficiente)
+    with torch.no_grad():
+        out = model(x)
+    # Calculamos probabilidades con softmax
+    probabilities = torch.nn.functional.softmax(out[0], dim=0)
+    # Obtenemos las 5 clases más probables (top-5)
+    values, indices = torch.topk(probabilities, 5)
+    # Devolvemos un diccionario: categoría : probabilidad (~confianza)
+    return {LABELS[i]: v.item() for i, v in zip(indices, values)}
+
+# Creamos la interfaz Gradio:
+# - El input es un sketchpad (zona para dibujar)
+# - El output son etiquetas: las categorías predecidas
+# - live=True: actualiza la predicción en tiempo real al dibujar
+demo = gr.Interface(
+    predict,     
+    inputs=&#39;sketchpad&#39;,
+    outputs=&#39;label&#39;, 
+    live=True)
+
+# Lanzamos la app Gradio (share=True permite compartir la URL con otros)
+demo.launch(share=True)
+</code></pre></div></p>
 <blockquote>
 <p>NOTA</p>
 </blockquote>
-<h3 id="que-es-una-red-neuronal-convolucional-cnn">¿Qué es una red neuronal convolucional (CNN)?</h3>
-<p>Una <strong>red neuronal convolucional</strong> (CNN, por sus siglas en inglés, <em>Convolutional Neural Network</em>) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.</p>
-<h3 id="caracteristicas-principales">Características principales</h3>
-<ul>
-<li>
-<p><strong>Inspiración biológica:</strong>: Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).</p>
-</li>
-<li>
-<p><strong>Arquitectura en capas:</strong><br />
-  Una CNN está compuesta por diferentes capas conectadas:</p>
-<ul>
-<li><strong>Capas convolucionales:</strong> Aplican filtros o “kernels” para extraer patrones y características locales (bordes, texturas, esquinas).</li>
-<li><strong>Capas de activación (ReLU):</strong> Introducen no linealidad, permitiendo que la red aprenda funciones más complejas.</li>
-<li><strong>Capas de agrupamiento (pooling):</strong> Reducen la resolución espacial y la cantidad de computación, logrando robustez ante desplazamientos.</li>
-<li><strong>Capas totalmente conectadas:</strong> Integran toda la información para tomar decisiones y realizar la predicción final.</li>
-</ul>
-</li>
-<li>
-<p><strong>Aprendizaje jerárquico:</strong><br />
-  Las CNNs aprenden jerarquías de características: Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.</p>
-</li>
-<li>
-<p><strong>Campos receptivos y parámetros compartidos:</strong> Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.</p>
-</li>
-</ul>
-<h3 id="aplicaciones-tipicas">Aplicaciones típicas</h3>
-<ul>
-<li><strong>Reconocimiento y clasificación de imágenes:</strong> Detección de objetos, diagnóstico médico, moderación de contenido, etc.</li>
-<li><strong>Visión por computador:</strong> Conducción autónoma, videovigilancia, análisis de tráfico.</li>
-<li><strong>Procesamiento de vídeo:</strong> Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.</li>
-</ul>
-<h3 id="ejemplo-didactico-sencillo">Ejemplo didáctico sencillo</h3>
-<p>Cuando pasas una imagen por una CNN:</p>
-<ul>
-<li>Las primeras capas detectan bordes y formas sencillas.</li>
-<li>Las siguientes detectan partes más grandes (ruedas, patas, ojos).</li>
-<li>Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.</li>
-</ul>
 <hr />
-<p>Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras, para que el código original funcione. A continuación podemos visualizar la solución final:</p>
-<h2 id="1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46-47-48-49-50-51-52-53-54-55-56-57-58-59-60-61-62-63-64-65-66-67-68-69-70-71-72-73from-pathlib-import-path-from-pil-import-image-from-torch-import-nn-import-torch-import-gradio-as-gr-import-numpy-as-np-leemos-las-etiquetas-de-clases-categorias-desde-un-fichero-de-texto-labels-pathclass_namestxtread_textsplitlines-definimos-nuestra-red-neuronal-convolucional-la-arquitectura-fue-entrenada-previamente-model-nnsequential-nnconv2d1-32-3-paddingsame-capa-convolucional-1-canal-de-entrada-gris-32-filtros-kernel-3x3-nnrelu-funcion-de-activacion-relu-nnmaxpool2d2-pooling-para-reducir-tamano-espacial-nnconv2d32-64-3-paddingsame-segunda-capa-convolucional-64-filtros-nnrelu-nnmaxpool2d2-nnconv2d64-128-3-paddingsame-tercera-capa-convolucional-128-filtros-nnrelu-nnmaxpool2d2-aplana-la-salida-para-conectarla-a-las-capas-densas-nnflatten-nnlinear1152-256-capa-densaintermedia-nnrelu-nnlinear256-lenlabels-capa-de-salida-un-nodo-por-categoria-cargamos-los-pesos-previamente-entrenados-del-modelo-state_dict-torchloadpytorch_modelbin-map_locationcpu-modelload_state_dictstate_dict-strictfalse-modeleval-ponemos-el-modelo-en-modo-inferencia-no-entrenamiento-funcion-principal-de-prediccion-procesara-el-dibujo-de-gradio-y-calculara-su-clase-def-predictimg-si-no-hay-dibujo-o-la-clave-composite-no-existe-o-esta-vacia-avisamos-if-img-is-none-or-composite-not-in-img-or-imgcomposite-is-none-return-por-favor-dibuja-algo-10-extraemos-la-imagen-resultado-del-canvas-canal-rgba-arr-imgcomposite-array-con-forma-ej-800-800-4-tipo-uint8-convertimos-de-rgba-a-escala-de-grises-quick-draw-es-gris-arr_gray-arr-3meanaxis2-convertimos-a-uint8-por-si-pil-lo-necesita-arr_gray_uint8-arr_grayastypeuint8-redimensionamos-a-28x28-pixeles-tamano-de-entrada-del-modelo-arr_img-imagefromarrayarr_gray_uint8-arr_resized-nparrayarr_imgresize28-28-resampleimagebilinear-escalamos-a-rango-01-arr_normalized-arr_resized-2550-anadimos-dimensiones-de-batch-y-canal-1-1-28-28-x-torchtensorarr_normalized-dtypetorchfloat32unsqueeze0unsqueeze0-ejecutamos-inferencia-sin-calcular-gradientes-mas-eficiente-with-torchno_grad-out-modelx-calculamos-probabilidades-con-softmax-probabilities-torchnnfunctionalsoftmaxout0-dim0-obtenemos-las-5-clases-mas-probables-top-5-values-indices-torchtopkprobabilities-5-devolvemos-un-diccionario-categoria-probabilidad-confianza-return-labelsi-vitem-for-i-v-in-zipindices-values-creamos-la-interfaz-gradio-el-input-es-un-sketchpad-zona-para-dibujar-el-output-son-etiquetas-las-categorias-predecidas-livetrue-actualiza-la-prediccion-en-tiempo-real-al-dibujar-demo-grinterface-predict-inputssketchpad-outputslabel-livetrue-lanzamos-la-app-gradio-sharetrue-permite-compartir-la-url-con-otros-demolaunchsharetrue"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># Leemos las etiquetas de clases (categorías) desde un fichero de texto</span>
-<span class="n">LABELS</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;class_names.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-
-<span class="c1"># Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>  <span class="c1"># Capa convolucional: 1 canal de entrada (gris), 32 filtros, kernel 3x3</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                            <span class="c1"># Función de activación ReLU</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>                      <span class="c1"># Pooling para reducir tamaño espacial</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span> <span class="c1"># Segunda capa convolucional: 64 filtros</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span><span class="c1"># Tercera capa convolucional: 128 filtros</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="c1"># Aplana la salida para conectarla a las capas densas</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>                         
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1152</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>                 <span class="c1"># Capa densa/intermedia</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">LABELS</span><span class="p">)),</span>          <span class="c1"># Capa de salida, un nodo por categoría</span>
-<span class="p">)</span>
-<span class="c1"># Cargamos los pesos previamente entrenados del modelo</span>
-<span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;pytorch_model.bin&#39;</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># Ponemos el modelo en modo inferencia (no entrenamiento)</span>
-
-<span class="c1"># Función principal de predicción, procesará el dibujo de Gradio y calculará su clase</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>   
-    <span class="c1"># Si no hay dibujo o la clave &#39;composite&#39; no existe o está vacía, avisamos:</span>
-    <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;composite&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">img</span> <span class="ow">or</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;composite&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Por favor, dibuja algo&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
-    <span class="c1"># Extraemos la imagen resultado del canvas, canal RGBA</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;composite&quot;</span><span class="p">]</span>        <span class="c1"># Array con forma (ej. [800, 800, 4]), tipo uint8</span>
-    <span class="c1"># Convertimos de RGBA a escala de grises (Quick Draw es gris)</span>
-    <span class="n">arr_gray</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="c1"># Convertimos a uint8 por si PIL lo necesita</span>
-    <span class="n">arr_gray_uint8</span> <span class="o">=</span> <span class="n">arr_gray</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
-    <span class="c1"># Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo)</span>
-    <span class="n">arr_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr_gray_uint8</span><span class="p">)</span>
-    <span class="n">arr_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr_img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">))</span>
-    <span class="c1"># Escalamos a rango [0,1]</span>
-    <span class="n">arr_normalized</span> <span class="o">=</span> <span class="n">arr_resized</span> <span class="o">/</span> <span class="mf">255.0</span>
-    <span class="c1"># Añadimos dimensiones de batch y canal: (1, 1, 28, 28)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">arr_normalized</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="c1"># Ejecutamos inferencia sin calcular gradientes (más eficiente)</span>
-    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="c1"># Calculamos probabilidades con softmax</span>
-    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="c1"># Obtenemos las 5 clases más probables (top-5)</span>
-    <span class="n">values</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="c1"># Devolvemos un diccionario: categoría : probabilidad (~confianza)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">LABELS</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">values</span><span class="p">)}</span>
-
-<span class="c1"># Creamos la interfaz Gradio:</span>
-<span class="c1"># - El input es un sketchpad (zona para dibujar)</span>
-<span class="c1"># - El output son etiquetas: las categorías predecidas</span>
-<span class="c1"># - live=True: actualiza la predicción en tiempo real al dibujar</span>
-<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
-    <span class="n">predict</span><span class="p">,</span>     
-    <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;sketchpad&#39;</span><span class="p">,</span>
-    <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> 
-    <span class="n">live</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Lanzamos la app Gradio (share=True permite compartir la URL con otros)</span>
-<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></h2>
-<p>La función softmax de torch (PyTorch) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​</p>
+<p>La función <em>softmax</em> de <em>torch</em> (<em>PyTorch</em>) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​</p>
 <p>En PyTorch, podemos usar esta función tanto como capa de activación en la salida de nuestro modelo, como directamente llamando torch.nn.functional.softmax() sobre un tensor de logits. Es común utilizar softmax en la inferencia para obtener probabilidades interpretables, mientras que durante el entrenamiento suele usarse CrossEntropyLoss, que incorpora la softmax de forma interna y más eficiente.​</p>
 <p>Aplicaciones comunes:</p>
 <ul>
@@ -1314,23 +1255,21 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 </ul>
 <hr />
 <h2 id="actividades">Actividades</h2>
-<ol>
-<li><strong>Usar un Space de Hugging Face</strong><br />
-Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 de la sesión mediante <em>Gradio</em> en <em>Hugging Face</em>, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. </li>
-</ol>
+<p>1.<strong>Usar un Space de Hugging Face</strong>  </p>
+<p>Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 trabajadas en un sesión anterior, mediante <em>Gradio</em> en <em>Hugging Face</em>, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. </p>
 <p>Entrega la url del espacio y algunas capturas de pantalla usando la aplicación. </p>
 <h2 id="2-deteccion-de-objetos">2. Detección de objetos</h2>
 <p><img alt="Tasks - Object detection in Hugging Face" src="../img/object-detecction-hf.png" /></p>
-<p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. </p>
+<p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como <strong>conducción autónoma</strong>, <strong>seguimiento de objetos en deportes</strong>, <strong>búsqueda de imágenes</strong> y <strong>conteo de objetos en diferentes escenarios</strong>. </p>
 <p>Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en <a href="https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending"></a> </p>
 <p>En la figura siguiente podemos visualizar un listado de la categoría <em>Object Detection</em>:</p>
 <p><img alt="" src="../img/tasks_hf_object_detection.png" /></p>
 <p>Ejemplo del <strong>facebook/detr-resnet-50</strong> para la detección de objetos:</p>
 <p><img alt="" src="../img/tasks_hf_object_detection_example.png" /></p>
-<p>Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres <a href="https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;"></a>. </p>
+<p>Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: <a href="https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg"></a> 
+Fuente: https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg </p>
 <p><img alt="" src="../img/Good_Smile_Company_offices_ladies.jpg" /></p>
-<p>Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:</p>
-<p>Objetos detectados en la imagen y sus probabilidades correspondientes:
+<p>Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
 <img alt="" src="../img/object_detection_good_Smile_Company_offices_ladies.png" /></p>
 <p>Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.</p>
 <h3 id="algunos-modelos-disponibles-en-hugging-face">Algunos modelos disponibles en Hugging Face</h3>
@@ -1355,7 +1294,7 @@ Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Sp
 <td><code>hustvl/yolos-small</code></td>
 <td>YOLOS (Vision Transformer)</td>
 <td>COCO</td>
-<td>🔗 Ver modelo</td>
+<td>🔗 <a href="https://huggingface.co/hustvl/yolos-small">Ver modelo</a></td>
 </tr>
 </tbody>
 </table>
@@ -1373,13 +1312,98 @@ Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Sp
 <li><strong>APα:</strong> Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es &gt;0,5).</li>
 </ul>
 <h3 id="ejemplo-de-uso-con-gradio">Ejemplo de uso con Gradio</h3>
-<p>Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: <a href="https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142">​omarques/autotrain-dogs-and-cats-1527055142</a>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+<p>Vamos a crear una aplicación web con Gradio que use un objeto <em>pipeline</em> deñ modelo <code>facebook/detr-resnet-50</code>.</p>
+<p>Así es como se carga: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
-<span class="n">segmentation</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-segmentation&quot;</span><span class="p">,</span>  
-               <span class="n">model</span><span class="o">=</span><span class="s2">&quot;nvidia/segformer-b0-finetuned-ade-512-512&quot;</span><span class="p">)</span> 
+<span class="n">detection</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;object-detection&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/detr-resnet-50&quot;</span><span class="p">)</span>
+</code></pre></div>
+Una vez que hayamos creado el objeto tipo pipeline (detección en este caso), podemos pasar directamente la imagen (en formato PIL) al pipeline y obtener el resultado: </p>
+<p><div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">results</span>
+</code></pre></div>
+Debemos tener en cuenta que el objeto de tipo pipeline (detección) también puede incluir una URL de una imagen, no solo un objeto de imagen tipo PIL. Es decir, también podemos llamar al objeto pipeline de la siguiente manera: </p>
+<p><div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="s1">&#39;http://bit.ly/46xv3sL&#39;</span><span class="p">)</span>
+</code></pre></div>
+El resultado impreso se vería así:
+<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9179903864860535</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">564</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">165</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9960624575614929</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">317</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">212</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9425505995750427</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;chair&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">661</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">429</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9753392338752747</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">673</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">705</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.962176501750946</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">703</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">722</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9881888628005981</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">497</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">202</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9871691465377808</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;keyboard&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">344</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">276</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">445</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">346</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9371852874755859</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">309</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">194</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">374</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">237</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9975801706314087</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">395</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">446</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9986708164215088</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">237</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">308</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">264</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9173707365989685</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">720</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">737</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9895991086959839</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;po</span><span class="kc">tte</span><span class="err">d</span><span class="w"> </span><span class="err">pla</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">211</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">330</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9996592998504639</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">369</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">535</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">427</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9821581840515137</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">491</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">530</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">223</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9970135688781738</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">516</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">177</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">628</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">318</span><span class="p">}}]</span>
+</code></pre></div>
+El resultado es una lista de diccionarios para cada objeto detectado. Para dibujar la etiqueta y el cuadro delimitador de cada objeto, utilizaremos el siguiente fragmento de código: </p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> with confidence &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% at </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">box</span><span class="p">,</span>
+                   <span class="n">outline</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                   <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span>
+              <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+              <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</code></pre></div>
+La imagen sería idéntica a la que se muestra anteriormente en la Figura x. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo <code>model.config.id2label</code>: 
+<div class="highlight"><pre><span></span><code><span class="n">detection</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
+</code></pre></div>
+Pasar el código a Gradio:
+<div class="highlight"><pre><span></span><code>
 </code></pre></div></p>
 <h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">Actividad 2: <strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
 <h2 id="contexto">Contexto</h2>

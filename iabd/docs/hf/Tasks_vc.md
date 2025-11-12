@@ -454,12 +454,22 @@ La imagen sería idéntica a la que se muestra anteriormente en la Figura x. Con
 ```python
 detection.model.config.id2label
 ```
-Pasar el código a Gradio:
+
+### Actividad guiada
+
+Desarrollar con Gradio un template similar es este: 
+![](./img/object_detection_template_gradio.png)
+Resultado final:
+![](./img/object_detection_ladies_gradio.png)
+
+Define:
+- Una función llamada *predict*
+- Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados
+
+Código final en Gradio:
 ```python
-
+#AQUÍ IRÁ LA SOLUCIÓN
 ```
-
-
 ## Actividad 2: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
 ## Contexto
