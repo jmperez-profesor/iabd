@@ -317,14 +317,14 @@ En la figura siguiente podemos visualizar un listado de la categoría *Object De
 
 ![](./img/tasks_hf_object_detection.png)
 
-Ejemplo del **facebook/detr-resnet-50** para la detección de objetos:
+Ejemplo de uso del modelo [**facebook/detr-resnet-50**](https://huggingface.co/facebook/detr-resnet-50) para la detección de objetos:
 
 ![](./img/tasks_hf_object_detection_example.png)
 
-Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: [](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
-Fuente: https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg 
-
+Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
 ![](./img/Good_Smile_Company_offices_ladies.jpg)
+
+Fuente: [https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
 
 Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
 ![](./img/object_detection_good_Smile_Company_offices_ladies.png)
