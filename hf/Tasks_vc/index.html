@@ -975,14 +975,14 @@
 </ul>
 <p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
 <h1 id="que-es-un-task">¿Qué es un task?</h1>
-<p>Un <em>task</em> en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar</p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
+<p>Un <em>task</em> en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar
+<img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
 <em>Tasks (tareas) en Hugging Face</em></p>
 <h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de Visión por Computadora</h1>
 <p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
 <h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
-<p>La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.</p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
+<p>La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.
+<img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
 <h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones</h3>
 <ul>
 <li>Diagnóstico médico: clasificación de radiografías para detectar enfermedades.</li>
@@ -991,37 +991,12 @@
 <li>Moderación de contenido visual</li>
 </ul>
 <h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
-<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:</p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Arquitectura</th>
-<th>Dataset de entrenamiento</th>
-<th>Enlace</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>google/vit-base-patch16-224</code></td>
-<td>Vision Transformer (ViT)</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>microsoft/resnet-50</code></td>
-<td>ResNet-50</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>facebook/deit-base-patch16-224</code></td>
-<td>DeiT</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-</tbody>
-</table>
+<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:
+| Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
+|--------|--------------|---------------------------|--------|
+| <code>google/vit-base-patch16-224</code> | Vision Transformer (ViT) | ImageNet | <a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a> |
+| <code>microsoft/resnet-50</code> | ResNet-50 | ImageNet | <a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a> |
+| <code>facebook/deit-base-patch16-224</code> | DeiT | ImageNet | <a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a> |</p>
 <h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
 <p><img alt="" src="../img/quickdraw1.png" /></p>
 <p>Quick, Draw! es un juego basado en aprendizaje automático en el que una red neuronal intenta adivinar el objeto que el usuario está dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. </p>
