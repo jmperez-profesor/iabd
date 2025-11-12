@@ -139,7 +139,7 @@ Cuando pasas una imagen por una CNN:
 ---
 Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
 
-```python{linenums="1"} 
+```python {linenums="1"} 
 from pathlib import Path
 from PIL import Image
 from torch import nn
