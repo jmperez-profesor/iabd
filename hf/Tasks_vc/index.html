@@ -610,6 +610,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2-deteccion-de-objetos" class="md-nav__link">
     <span class="md-ellipsis">
       2. Detección de objetos
@@ -661,6 +670,75 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#actividades_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objetivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lectura-e-investigacion-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Lectura e investigación inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implementacion-y-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Implementación y pruebas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-comparativa-objetiva-con-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comparativa objetiva con Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
     <span class="md-ellipsis">
       3. Segmentación de imágenes (Image segmentation)
@@ -694,7 +772,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#actividades" class="md-nav__link">
+  <a href="#actividades_2" class="md-nav__link">
     <span class="md-ellipsis">
       Actividades
     </span>
@@ -1225,6 +1303,12 @@ NOTA</p>
 <span class="c1"># Lanzamos la app Gradio (share=True permite compartir la URL con otros)</span>
 <span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="actividades">Actividades</h2>
+<ol>
+<li><strong>Usar un Space de Hugging Face</strong><br />
+Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 de la sesión mediante <em>Gradio</em> en <em>Hugging Face</em>, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. </li>
+</ol>
+<p>Entrega la url del espacio y algunas capturas de pantalla usando la aplicación. </p>
 <h2 id="2-deteccion-de-objetos">2. Detección de objetos</h2>
 <p><img alt="Tasks - Object detection in Hugging Face" src="../img/object-detecction-hf.png" /></p>
 <p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. </p>
@@ -1287,6 +1371,84 @@ NOTA</p>
 
 <span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
 </code></pre></div></p>
+<h2 id="actividades_1">Actividades</h2>
+<ol>
+<li><strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong> </li>
+</ol>
+<h2 id="contexto">Contexto</h2>
+<p>Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como <code>facebook/detr-resnet-50</code> <a href="https://huggingface.co/facebook/detr-resnet-50"></a> en Hugging Face (<a href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos">ver ejemplo y recursos de clase</a>).<br />
+En este ejercicio, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su <a href="https://docs.ultralytics.com/es/integrations/gradio/">documentación oficial de integración con Gradio</a>.</p>
+<h2 id="objetivos_1">Objetivos</h2>
+<ul>
+<li>Investigar y comprender el funcionamiento de la familia YOLO (en especial YOLO11).</li>
+<li>Probar distintos códigos y ejemplos reales usando YOLO11 y Gradio.</li>
+<li>Comparar los resultados con los de <code>facebook/detr-resnet-50</code> en velocidad, facilidad de uso y precisión.</li>
+<li>Reflexionar sobre ventajas e inconvenientes de cada enfoque en distintos escenarios reales.</li>
+</ul>
+<h3 id="1-lectura-e-investigacion-inicial">1. Lectura e investigación inicial</h3>
+<ul>
+<li>Lee la documentación de <a href="https://docs.ultralytics.com/es/#what-are-the-licensing-options-available-for-ultralytics-yolo">Ultralytics YOLO11</a> y familiarízate con su API y flujo de trabajo.</li>
+<li>Consulta y ejecuta el ejemplo de integración con Gradio: <a href="https://docs.ultralytics.com/es/integrations/gradio/">docs oficiales</a>.</li>
+</ul>
+<h3 id="2-implementacion-y-pruebas">2. Implementación y pruebas</h3>
+<ul>
+<li>Ejecuta la demo básica de YOLO11+Gradio incluida en la documentación.</li>
+<li>Ejecuta la demo ampliada de YOLO11+Gradio incluida en la documentación.</li>
+<li>Realiza anotaciones sobre el input, formato de resultados y velocidad tras varias ejecuciones con imágenes reales o ejemplos propios.</li>
+</ul>
+<h3 id="3-comparativa-objetiva-con-hugging-face">3. Comparativa objetiva con Hugging Face</h3>
+<ul>
+<li>Utiliza el modelo <code>facebook/detr-resnet-50</code> desde Hugging Face (ya visto en clase) para detectar objetos en al menos dos imágenes iguales a las usadas en YOLO11.</li>
+<li>Rellena la tabla comparativa:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Imagen</th>
+<th>Modelo</th>
+<th>Objetos detectados</th>
+<th>Tiempo de inferencia</th>
+<th>Falsos positivos/negativos</th>
+<th>Facilidad de integración</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(insertar nombre)</td>
+<td>YOLO11</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(insertar nombre)</td>
+<td>detr-resnet-50 (HF)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Comenta los resultados en términos de:<ul>
+<li>Exactitud y número/calidad de predicciones.</li>
+<li>Consumo de recursos y tiempo de ejecución (compara si es posible en CPU y GPU).</li>
+<li>Facilidad de uso/grado de documentación o número de líneas de código para uso en Gradio.</li>
+</ul>
+</li>
+</ul>
+<h2 id="entrega">Entrega</h2>
+<ul>
+<li>Un archivo <code>.py</code> con el código empleado y comentarios.</li>
+<li>Las imágenes o capturas de pantalla de las pruebas realizadas.</li>
+<li>Rellena y agrega la tabla comparativa.</li>
+</ul>
+<hr />
 <h2 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de imágenes (Image segmentation)</h2>
 <p>Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
 <p>Algunos de sus usos son: </p>
@@ -1424,7 +1586,7 @@ La figura siguiente muestra las máscaras invertidas para <em>person</em> (perso
 <p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
 <h3 id="32-enlazando-con-gradio">3.2. Enlazando con Gradio</h3>
 <p>En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. </p>
-<h2 id="actividades">Actividades</h2>
+<h2 id="actividades_2">Actividades</h2>
 <ol>
 <li><strong>Usar un Space de Hugging Face</strong><br />
 Utiliza el pipeline:</li>
