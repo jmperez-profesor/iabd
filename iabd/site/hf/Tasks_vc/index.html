@@ -1341,7 +1341,7 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 <p><img alt="" src="../img/tasks_hf_object_detection.png" /></p>
 <p>Ejemplo de uso del modelo <a href="https://huggingface.co/facebook/detr-resnet-50"><strong>facebook/detr-resnet-50</strong></a> para la detección de objetos:</p>
 <p><img alt="" src="../img/tasks_hf_object_detection_example.png" /></p>
-<p>Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
+<p>Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres:
 <img alt="" src="../img/Good_Smile_Company_offices_ladies.jpg" /></p>
 <p>Fuente: <a href="https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg">https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg</a> </p>
 <p>Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
@@ -1387,7 +1387,7 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 <li><strong>APα:</strong> Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es &gt;0,5).</li>
 </ul>
 <h3 id="ejemplo-de-uso-con-gradio">Ejemplo de uso con Gradio</h3>
-<p>Vamos a crear una aplicación web con Gradio que use un objeto <em>pipeline</em> deñ modelo <code>facebook/detr-resnet-50</code>.</p>
+<p>Vamos a crear una aplicación web con Gradio que use un objeto <em>pipeline</em> del modelo <code>facebook/detr-resnet-50</code>.</p>
 <p>Así es como se carga: 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
