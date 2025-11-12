@@ -89,6 +89,16 @@ Lo primero que debemos es, descargar los ficheros siguientes:
 
 **Analizamos el código elaborado por el usuario**:
 
+```python {linenums="1"} 
+from pathlib import Path  
+import torch             
+
+import gradio as gr       
+from torch import nn   
+
+```
+
+
 ---
 > NOTA
 ### ¿Qué es una red neuronal convolucional (CNN)?
