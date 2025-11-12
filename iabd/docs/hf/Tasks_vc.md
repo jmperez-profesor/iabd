@@ -4,7 +4,6 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ---
 
 ## Objetivos
-
 - Diferenciar qué es un "task" en Machine Learning según Hugging Face.
 - Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.
 - Probar ejemplos prácticos con pipelines de Hugging Face.
@@ -12,33 +11,21 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.
 
 # ¿Qué es un task?
-
 Un *task* en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar
-
 ![Tasks (tareas) en Hugging Face](./img/01hf-tasks.png)
 *Tasks (tareas) en Hugging Face*
-
 # Uso de Hugging Face para tareas de Visión por Computadora
-
 Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. 
-
 ## 1. Clasificación de Imágenes (Image Classification)
-
 La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.
-
 ![Tasks (tareas) en Hugging Face](./img/image-classification-input_hf.png)
-
 ### Ejemplos de aplicaciones
-
 - Diagnóstico médico: clasificación de radiografías para detectar enfermedades.
 - Reconocimiento de objetos
 - Clasificación de productos en e-commerce
 - Moderación de contenido visual
-
 ### Modelos disponibles en Hugging Face
-
 Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:
-
 | Modelo | Arquitectura | Dataset de entrenamiento | Enlace |
 |--------|--------------|---------------------------|--------|
 | `google/vit-base-patch16-224` | Vision Transformer (ViT) | ImageNet | [🔗 Ver modelo](https://huggingface.co/google/vit-base-patch16-224) |
