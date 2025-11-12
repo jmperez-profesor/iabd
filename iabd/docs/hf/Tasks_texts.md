@@ -116,11 +116,6 @@ depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
 result = depth("ruta_o_url_imagen")
 
 ```
-### 3. Segmentación de Imágenes (Image Segmentation)
-- **Definición**: Clasifica cada píxel de la imagen
-- **Tipos**: Semántica (por clase) vs Instancia (por objeto individual)
-- **Aplicaciones**: Medicina, conducción autónoma, edición de imágenes
-- **Modelos populares**: SegFormer, Mask2Former
 
 
 

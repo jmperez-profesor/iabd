@@ -104,7 +104,7 @@ Etiquetado de la imagen de entrada:
 
 La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. 
 
-Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [] (https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
+Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [](https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
 
 En la figura siguiente podemos visualizar un listado de la categoría *Object Detection*:
 
@@ -131,7 +131,7 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 
 | Modelo | Arquitectura | Dataset | Enlace |
 |--------|--------------|---------|--------|
-| `facebook/detr-resnet-50` | DETR (DEtection TRansformer) | COCO | 🔗 Ver modelo |
+| `facebook/detr-resnet-50` | DETR (DEtection TRansformer) | COCO | 🔗 [Ver modelo](https://huggingface.co/facebook/detr-resnet-50) |
 | `hustvl/yolos-small` | YOLOS (Vision Transformer) | COCO | 🔗 Ver modelo |
 
 ### Principales Aplicaciones
@@ -287,25 +287,6 @@ La figura siguiente muestra las máscaras invertidas para *person* (persona) y *
 En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
 
 
-
----------------------------------------------------
-
-## 4. Estimación de Profundidad (Depth Estimation)
-- **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
-- **Aplicaciones**: Robótica, realidad aumentada, vehículos autónomos, etc.
-- **Modelos populares**: DPT, MiDaS
-
-```python {hl_lines="5 7" linenums="1"} 
-# Utiliza el pipeline:
-
-from transformers import pipeline
-
-depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")
-
-result = depth("ruta_o_url_imagen")
-
-```
-
 ## Actividades
 
 1. **Usar un Space de Hugging Face**  
@@ -321,7 +302,12 @@ result = depth("ruta_o_url_imagen")
 
 2. **Clasificación de imágenes**
 Crear un aplicación con Gradio 
-En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. Para instalar el paquete gradio, use el siguiente comando: 
+En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que el usuario pruebe el modelo de segmentación. Aquí, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
+
+
+
+
+
 
 Usa el pipeline:
 ```python
