@@ -88,7 +88,8 @@ Lo primero que debemos es, descargar los ficheros siguientes:
 - ```app.py```
 
 **Analizamos el código elaborado por el usuario**:
-```python{linenums="1"} 
+
+```python {linenums="1"}
 # Importa el módulo para manejar rutas y archivos de forma sencilla.
 from pathlib import Path  
 # Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
@@ -191,6 +192,7 @@ Cuando pasas una imagen por una CNN:
 - Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
 ---
 Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
+
 ```python {linenums="1"} 
 from pathlib import Path
 from PIL import Image
@@ -289,7 +291,7 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 
 1.**Usar un Space de Hugging Face**  
 
-Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 trabajadas en un sesión anterior, mediante *Gradio* en *Hugging Face*, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. 
+Basándote en lo aprendido a partir de los casos de uso de [Hola Spaces](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces) y [Hola Spaces 2.0](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces-20) trabajadas en una sesión anterior, mediante *Gradio* en *Hugging Face* crea un nuevo espacio público en tu cuenta que permita probar la aplicación del *pictionary* desarrollada de forma local en un Space de Hugging Face. 
 
 Entrega la url del espacio y algunas capturas de pantalla usando la aplicación. 
 
