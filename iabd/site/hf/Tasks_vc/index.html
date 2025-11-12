@@ -760,6 +760,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#actividad-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividad guiada
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1401,9 +1410,17 @@ El resultado es una lista de diccionarios para cada objeto detectado. Para dibuj
 </code></pre></div>
 La imagen sería idéntica a la que se muestra anteriormente en la Figura x. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo <code>model.config.id2label</code>: 
 <div class="highlight"><pre><span></span><code><span class="n">detection</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
-</code></pre></div>
-Pasar el código a Gradio:
-<div class="highlight"><pre><span></span><code>
+</code></pre></div></p>
+<h3 id="actividad-guiada">Actividad guiada</h3>
+<p>Desarrollar con Gradio un template similar es este: 
+<img alt="" src="../img/object_detection_template_gradio.png" />
+Resultado final:
+<img alt="" src="../img/object_detection_ladies_gradio.png" /></p>
+<p>Define:
+- Una función llamada <em>predict</em>
+- Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados</p>
+<p>Código final en Gradio:
+<div class="highlight"><pre><span></span><code><span class="c1">#AQUÍ IRÁ LA SOLUCIÓN</span>
 </code></pre></div></p>
 <h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">Actividad 2: <strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
 <h2 id="contexto">Contexto</h2>
