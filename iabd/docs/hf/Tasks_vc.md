@@ -249,16 +249,48 @@ Máscaras para los segmentos *person* y *airplane*
 
 La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: 
 
+```python {hl_lines="8 10" linenums="1"} 
+image = Image.open(requests.get(url, stream=True).raw) 
+  
+for result in results: 
+    base_image = image.copy() 
+    mask_image = result['mask'] 
+     
+    # Aplica la máscara sobre la imagen original
+    base_image.paste(mask_image, mask=mask_image) 
+    #Imprime la etiqueta del segmento
+    print(result['label']) 
+    display(base_image) 
+``` 
+La figura siguiente muestra las máscaras de *person* (persona) y *airplane* (avión) aplicadas sobre la imagen original:
+![](./img/mascaras_en_imagen_original.jpg)
 
+Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función invert() de la clase ImageOps en el paquete PIL. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
 
+```python {hl_lines="8 10" linenums="1"} 
+from PIL import ImageOps 
+  
+for result in results: 
+    base_image = image.copy() 
+    mask_image = result['mask'] 
+     
+    mask_image = ImageOps.invert(mask_image)  #Invierte la máscara 
+    base_image.paste(mask_image, mask=mask_image)  #Aplica la máscara sobre la imagen original 
+    print(result['label'])  #Imprime la etiqueta del segmento
+    display(base_image) 
+```
+La figura siguiente muestra las máscaras invertidas para *person* (persona) y *airplane* (avión)aplicadas en la imagen original. 
 
+![](./img/imagenes_mascaras_invertidas.jpg)
 
-
+### 3.2. Enlazando con Gradio
+En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. 
+ 
 
 
 ---------------------------------------------------
 
-### 4. Estimación de Profundidad (Depth Estimation)
+## 4. Estimación de Profundidad (Depth Estimation)
 - **Definición**: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.
 - **Aplicaciones**: Robótica, realidad aumentada, vehículos autónomos, etc.
 - **Modelos populares**: DPT, MiDaS
