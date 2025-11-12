@@ -1429,7 +1429,34 @@ El resultado impreso se vería así:
 <span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">516</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">177</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">628</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">318</span><span class="p">}}]</span>
 </code></pre></div>
 El resultado es una lista de diccionarios para cada objeto detectado. Para dibujar la etiqueta y el cuadro delimitador de cada objeto, utilizaremos el siguiente fragmento de código: </p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -1457,7 +1484,7 @@ El resultado es una lista de diccionarios para cada objeto detectado. Para dibuj
               <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 La imagen sería idéntica a la que se muestra anteriormente pero con los cuadrados correspondientes. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo <code>model.config.id2label</code>: 
 <div class="highlight"><pre><span></span><code><span class="n">detection</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
 </code></pre></div></p>
@@ -1472,8 +1499,92 @@ Resultado final:
 <li>Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados</li>
 </ul>
 <p>Código final en Gradio:
-<div class="highlight"><pre><span></span><code><span class="c1"># AQUÍ IRÁ LA SOLUCIÓN</span>
-</code></pre></div></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>    
+
+    <span class="n">detection</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;object-detection&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/detr-resnet-50&quot;</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>       
+
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> 
+
+    <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+        <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span> 
+        <span class="nb">print</span><span class="p">(</span> 
+            <span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> with confidence &quot;</span>   
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% at </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span>   
+        <span class="p">)</span> 
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">g</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> 
+
+        <span class="c1">#Dibuja un cuadro delimitador alrededor del objeto.</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">box</span><span class="p">,</span>  
+                    <span class="n">outline</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>  
+                    <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  
+        <span class="c1">#Muestra la etiqueta del objeto</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span>  
+                <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>  
+                <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>  
+
+    <span class="k">return</span> <span class="n">image</span>
+
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">predict</span><span class="p">,</span> 
+    <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;pil&quot;</span><span class="p">),</span> 
+    <span class="n">outputs</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div></p>
 <h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">📝 <strong>Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
 <h2 id="contexto">Contexto</h2>
 <p>Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como <code>facebook/detr-resnet-50</code> <a href="https://huggingface.co/facebook/detr-resnet-50"></a> en Hugging Face (<a href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos">ver ejemplo y recursos de clase</a>).<br />
