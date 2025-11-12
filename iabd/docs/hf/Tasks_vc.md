@@ -162,6 +162,7 @@ interface = gr.Interface(predict, inputs='sketchpad', outputs='label', live=True
 
 interface.launch(debug=True)
 ```
+
 ---
 > NOTA
 ### ¿Qué es una red neuronal convolucional (CNN)?
