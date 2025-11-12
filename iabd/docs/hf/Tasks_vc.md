@@ -77,9 +77,9 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 
 ### Desarrollo de nuestro propio Pictionary con Gradio
 
-Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: [](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
+Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: [https://www.youtube.com/watch?v=LS9Y2wDVI0k](https://www.youtube.com/watch?v=LS9Y2wDVI0k)
 
-Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [](https://huggingface.co/spaces/nateraw/quickdraw/tree/main)
+Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [https://huggingface.co/spaces/nateraw/quickdraw](https://huggingface.co/spaces/nateraw/quickdraw)
 
 Lo primero que debemos es, descargar los ficheros siguientes:
 
