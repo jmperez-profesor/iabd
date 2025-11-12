@@ -99,7 +99,7 @@ Lo primero que debemos es, descargar los ficheros siguientes:
 - ```app.py```
 
 **Analizamos el código elaborado por el usuario**:
-```python {hl_lines="4 6 8" linenums="1"} 
+```python linenums="1"} 
 # Importa el módulo para manejar rutas y archivos de forma sencilla.
 from pathlib import Path  
 # Importa la librería PyTorch, utilizada para deep learning y manipulación de tensores.
@@ -201,8 +201,7 @@ Cuando pasas una imagen por una CNN:
 - Las siguientes detectan partes más grandes (ruedas, patas, ojos).
 - Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
 ---
-Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras, para que el código original funcione. A continuación podemos visualizar la solución final:
-
+Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:
 ```python {linenums="1"} 
 from pathlib import Path
 from PIL import Image
@@ -215,22 +214,27 @@ import numpy as np
 # Leemos las etiquetas de clases (categorías) desde un fichero de texto
 LABELS = Path('class_names.txt').read_text().splitlines()
 
-# Definimos nuestra red neuronal convolucional (la arquitectura fue entrenada previamente)
+# Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:
 model = nn.Sequential(
-    nn.Conv2d(1, 32, 3, padding='same'),  # Capa convolucional: 1 canal de entrada (gris), 32 filtros, kernel 3x3
-    nn.ReLU(),                            # Función de activación ReLU
-    nn.MaxPool2d(2),                      # Pooling para reducir tamaño espacial
-    nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa convolucional: 64 filtros
+    # Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3
+    nn.Conv2d(1, 32, 3, padding='same'),  
+    # Función de activación no lineal ReLU (acelera y facilita el aprendizaje)
+    nn.ReLU(),                            
+    # Max Pooling: reduce la resolución espacial de las características (comprime la imagen a la vez que mantiene zonas más “activas”)
+    nn.MaxPool2d(2),                      
+    nn.Conv2d(32, 64, 3, padding='same'), # Segunda capa: 32→64 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa convolucional: 128 filtros
+    nn.Conv2d(64, 128, 3, padding='same'),# Tercera capa: 64→128 filtros
     nn.ReLU(),
     nn.MaxPool2d(2),
-    # Aplana la salida para conectarla a las capas densas
+    # Aplana los datos resultantes para prepararlos para las capas densas (total elementos = 128 canales * 3 * 3)
     nn.Flatten(),                         
-    nn.Linear(1152, 256),                 # Capa densa/intermedia
+    # Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas
+    nn.Linear(1152, 256),                 
     nn.ReLU(),
-    nn.Linear(256, len(LABELS)),          # Capa de salida, un nodo por categoría
+    # Capa de salida: 1 neurona por clase del archivo de etiquetas
+    nn.Linear(256, len(LABELS)),          
 )
 # Cargamos los pesos previamente entrenados del modelo
 state_dict = torch.load('pytorch_model.bin', map_location='cpu')
@@ -278,8 +282,9 @@ demo = gr.Interface(
 # Lanzamos la app Gradio (share=True permite compartir la URL con otros)
 demo.launch(share=True)
 ```
+> NOTA
 ---
-La función softmax de torch (PyTorch) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​
+La función *softmax* de *torch* (*PyTorch*) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​
 
 En PyTorch, podemos usar esta función tanto como capa de activación en la salida de nuestro modelo, como directamente llamando torch.nn.functional.softmax() sobre un tensor de logits. Es común utilizar softmax en la inferencia para obtener probabilidades interpretables, mientras que durante el entrenamiento suele usarse CrossEntropyLoss, que incorpora la softmax de forma interna y más eficiente.​
 
@@ -293,8 +298,9 @@ En resumen, softmax convierte los resultados numéricos en probabilidades útile
 
 ## Actividades
 
-1. **Usar un Space de Hugging Face**  
-Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 de la sesión mediante *Gradio* en *Hugging Face*, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. 
+1.**Usar un Space de Hugging Face**  
+
+Basándote en lo aprendido a partir de los casos de uso de Hola Spaces y Hola Spaces 2.0 trabajadas en un sesión anterior, mediante *Gradio* en *Hugging Face*, crea un nuevo espacio público en tu cuenta que permita probar la aplicación del pictionary desarrollada de forma local en un Space de Hugging Face. 
 
 Entrega la url del espacio y algunas capturas de pantalla usando la aplicación. 
 
@@ -302,7 +308,7 @@ Entrega la url del espacio y algunas capturas de pantalla usando la aplicación.
 
 ![Tasks - Object detection in Hugging Face](./img/object-detecction-hf.png)
 
-La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como conducción autónoma, seguimiento de objetos en deportes, búsqueda de imágenes y conteo de objetos en diferentes escenarios. 
+La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como **conducción autónoma**, **seguimiento de objetos en deportes**, **búsqueda de imágenes** y **conteo de objetos en diferentes escenarios**. 
 
 Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en [](https://huggingface.co/models?pipeline_tag=object-detection&sort=trending) 
 
@@ -314,13 +320,12 @@ Ejemplo del **facebook/detr-resnet-50** para la detección de objetos:
 
 ![](./img/tasks_hf_object_detection_example.png)
 
-Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres [](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg;). 
+Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: [](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
+Fuente: https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg 
 
 ![](./img/Good_Smile_Company_offices_ladies.jpg)
 
 Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
-
-Objetos detectados en la imagen y sus probabilidades correspondientes:
 ![](./img/object_detection_good_Smile_Company_offices_ladies.png)
 
 Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.
@@ -332,7 +337,7 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 | Modelo | Arquitectura | Dataset | Enlace |
 |--------|--------------|---------|--------|
 | `facebook/detr-resnet-50` | DETR (DEtection TRansformer) | COCO | 🔗 [Ver modelo](https://huggingface.co/facebook/detr-resnet-50) |
-| `hustvl/yolos-small` | YOLOS (Vision Transformer) | COCO | 🔗 Ver modelo |
+| `hustvl/yolos-small` | YOLOS (Vision Transformer) | COCO | 🔗 [Ver modelo](https://huggingface.co/hustvl/yolos-small) |
 
 ### Principales Aplicaciones
 
@@ -349,15 +354,111 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 
 ### Ejemplo de uso con Gradio
 
-Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: [​omarques/autotrain-dogs-and-cats-1527055142](https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142)
+Vamos a crear una aplicación web con Gradio que use un objeto *pipeline* deñ modelo ```facebook/detr-resnet-50```.
+
+Así es como se carga: 
 ```python
-from transformers import pipeline 
-  
-segmentation = pipeline("image-segmentation",  
-               model="nvidia/segformer-b0-finetuned-ade-512-512") 
-  
-segmentation.model.config.id2label
+from transformers import pipeline
+
+detection = pipeline("object-detection", model="facebook/detr-resnet-50")
 ```
+Una vez que hayamos creado el objeto tipo pipeline (detección en este caso), podemos pasar directamente la imagen (en formato PIL) al pipeline y obtener el resultado: 
+
+```python
+results = detection(image)
+results
+```
+Debemos tener en cuenta que el objeto de tipo pipeline (detección) también puede incluir una URL de una imagen, no solo un objeto de imagen tipo PIL. Es decir, también podemos llamar al objeto pipeline de la siguiente manera: 
+
+```python
+results = detection('http://bit.ly/46xv3sL')
+```
+El resultado impreso se vería así:
+```json
+[{'score': 0.9179903864860535,
+  'label': 'person',
+  'box': {'xmin': 549, 'ymin': 145, 'xmax': 564, 'ymax': 165}},
+ {'score': 0.9960624575614929,
+  'label': 'tv',
+  'box': {'xmin': 317, 'ymin': 212, 'xmax': 416, 'ymax': 299}},
+ {'score': 0.9425505995750427,
+  'label': 'chair',
+  'box': {'xmin': 508, 'ymin': 306, 'xmax': 661, 'ymax': 429}},
+ {'score': 0.9753392338752747,
+  'label': 'person',
+  'box': {'xmin': 673, 'ymin': 135, 'xmax': 705, 'ymax': 174}},
+ {'score': 0.962176501750946,
+  'label': 'person',
+  'box': {'xmin': 703, 'ymin': 115, 'xmax': 722, 'ymax': 140}},
+ {'score': 0.9881888628005981,
+  'label': 'person',
+  'box': {'xmin': 454, 'ymin': 142, 'xmax': 497, 'ymax': 202}},
+ {'score': 0.9871691465377808,
+  'label': 'keyboard',
+  'box': {'xmin': 344, 'ymin': 276, 'xmax': 445, 'ymax': 346}},
+ {'score': 0.9371852874755859,
+  'label': 'tv',
+  'box': {'xmin': 309, 'ymin': 194, 'xmax': 374, 'ymax': 237}},
+ {'score': 0.9975801706314087,
+  'label': 'person',
+  'box': {'xmin': 395, 'ymin': 152, 'xmax': 446, 'ymax': 216}},
+ {'score': 0.9986708164215088,
+  'label': 'person',
+  'box': {'xmin': 237, 'ymin': 174, 'xmax': 308, 'ymax': 264}},
+ {'score': 0.9173707365989685,
+  'label': 'person',
+  'box': {'xmin': 720, 'ymin': 112, 'xmax': 737, 'ymax': 131}},
+ {'score': 0.9895991086959839,
+  'label': 'potted plant',
+  'box': {'xmin': 124, 'ymin': 211, 'xmax': 230, 'ymax': 330}},
+ {'score': 0.9996592998504639,
+  'label': 'person',
+  'box': {'xmin': 369, 'ymin': 226, 'xmax': 535, 'ymax': 427}},
+ {'score': 0.9821581840515137,
+  'label': 'tv',
+  'box': {'xmin': 491, 'ymin': 181, 'xmax': 530, 'ymax': 223}},
+ {'score': 0.9970135688781738,
+  'label': 'person',
+  'box': {'xmin': 516, 'ymin': 177, 'xmax': 628, 'ymax': 318}}]
+```
+El resultado es una lista de diccionarios para cada objeto detectado. Para dibujar la etiqueta y el cuadro delimitador de cada objeto, utilizaremos el siguiente fragmento de código: 
+
+```python
+import random
+
+draw = ImageDraw.Draw(image)
+
+for object in results:
+    box = [i for i in object['box'].values()]
+    print(
+        f"Detected {object['label']} with confidence "
+        f"{(object['score'] * 100):.2f}% at {box}"
+    )
+
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    color = (r, g, b)
+
+    draw.rectangle(box,
+                   outline=color,
+                   width=2)
+
+    draw.text((box[0], box[1]-10),
+              object['label'],
+              fill='white')
+
+display(image)
+```
+La imagen sería idéntica a la que se muestra anteriormente en la Figura x. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo ```model.config.id2label```: 
+```python
+detection.model.config.id2label
+```
+Pasar el código a Gradio:
+```python
+
+```
+
 
 ## Actividad 2: **Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11** 
 
