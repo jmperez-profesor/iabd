@@ -321,7 +321,7 @@ Ejemplo de uso del modelo [**facebook/detr-resnet-50**](https://huggingface.co/f
 
 ![](./img/tasks_hf_object_detection_example.png)
 
-Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres: (https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
+Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres:
 ![](./img/Good_Smile_Company_offices_ladies.jpg)
 
 Fuente: [https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg](https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg) 
@@ -355,7 +355,7 @@ Hugging Face ofrece modelos preentrenados que permiten realizar detección de ob
 
 ### Ejemplo de uso con Gradio
 
-Vamos a crear una aplicación web con Gradio que use un objeto *pipeline* deñ modelo ```facebook/detr-resnet-50```.
+Vamos a crear una aplicación web con Gradio que use un objeto *pipeline* del modelo ```facebook/detr-resnet-50```.
 
 Así es como se carga: 
 ```python
