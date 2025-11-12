@@ -1420,12 +1420,12 @@ Resultado final:
 - Una función llamada <em>predict</em>
 - Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados</p>
 <p>Código final en Gradio:
-<div class="highlight"><pre><span></span><code><span class="c1">#AQUÍ IRÁ LA SOLUCIÓN</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># AQUÍ IRÁ LA SOLUCIÓN</span>
 </code></pre></div></p>
 <h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">Actividad 2: <strong>Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
 <h2 id="contexto">Contexto</h2>
 <p>Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como <code>facebook/detr-resnet-50</code> <a href="https://huggingface.co/facebook/detr-resnet-50"></a> en Hugging Face (<a href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos">ver ejemplo y recursos de clase</a>).<br />
-En este ejercicio, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su <a href="https://docs.ultralytics.com/es/integrations/gradio/">documentación oficial de integración con Gradio</a>.</p>
+En esta actividad, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su <a href="https://docs.ultralytics.com/es/integrations/gradio/">documentación oficial de integración con Gradio</a>.</p>
 <h2 id="objetivos_1">Objetivos</h2>
 <ul>
 <li>Investigar y comprender el funcionamiento de la familia YOLO (en especial YOLO11).</li>
@@ -1447,43 +1447,16 @@ En este ejercicio, irás un paso más allá probando la herramienta Ultralytics 
 <h3 id="3-comparativa-objetiva-con-hugging-face">3. Comparativa objetiva con Hugging Face</h3>
 <ul>
 <li>Utiliza el modelo <code>facebook/detr-resnet-50</code> desde Hugging Face (ya visto en clase) para detectar objetos en al menos dos imágenes iguales a las usadas en YOLO11.</li>
-<li>Rellena la tabla comparativa:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Imagen</th>
-<th>Modelo</th>
-<th>Objetos detectados</th>
-<th>Tiempo de inferencia</th>
-<th>Falsos positivos/negativos</th>
-<th>Facilidad de integración</th>
-<th>Observaciones</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>(insertar nombre)</td>
-<td>YOLO11</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>(insertar nombre)</td>
-<td>detr-resnet-50 (HF)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<li>
+<p>Rellena la tabla comparativa:
+| Imagen            | Modelo                 | Objetos detectados | Tiempo de inferencia | Falsos positivos/negativos | Facilidad de integración | Observaciones             |
+|-------------------|------------------------|--------------------|----------------------|----------------------------|-------------------------|---------------------------|
+| (insertar nombre) | YOLO11                 |                    |                      |                            |                         |                           |
+| (insertar nombre) | detr-resnet-50 (HF)    |                    |                      |                            |                         |                           |</p>
+</li>
+<li>
+<p>Comenta los resultados en términos de:</p>
 <ul>
-<li>Comenta los resultados en términos de:<ul>
 <li>Exactitud y número/calidad de predicciones.</li>
 <li>Consumo de recursos y tiempo de ejecución (compara si es posible en CPU y GPU).</li>
 <li>Facilidad de uso/grado de documentación o número de líneas de código para uso en Gradio.</li>
