@@ -143,10 +143,7 @@ Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no f
 from pathlib import Path
 from PIL import Image
 from torch import nn
-```
 
-
-```python
 import torch
 import gradio as gr
 import numpy as np
@@ -229,7 +226,6 @@ demo.launch(share=True)
 ```
 
 
-> NOTA
 ---
 La función *softmax* de *torch* (*PyTorch*) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​
 
@@ -240,7 +236,7 @@ Aplicaciones comunes:
 - Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​
 - Visualización de la confianza del modelo en cada posible resultado.
 En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en *Deep learning*.
-
+-------
 
 ## Actividades
 
