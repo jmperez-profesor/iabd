@@ -29,7 +29,7 @@ La clasificación de imágenes es una tarea de visión artificial que implica ca
 
 ![Tasks (tareas) en Hugging Face](./img/image-classification-input_hf.png)
 
-### Ejemplos de aplicaciones:
+### Ejemplos de aplicaciones
 
 - Diagnóstico médico (clasificar radiografías)
 - Reconocimiento de objetos
@@ -176,7 +176,7 @@ Como podomos ver en el resultado, el modelo puede detectar diferentes objetos (c
 
 ### 3.1. Uso del modelo con pipeline
 
-Como siempre, queremos poder usar el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
+Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
 ```python
 from transformers import pipeline 
   
@@ -199,14 +199,14 @@ Estos son los primeros y últimos cinco objetos que puede detectar (el modelo pu
  148: 'clock', 
  149: 'flag'} 
 ```
-Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que vuela por encima, para así descubrir los distintos segmentos de la imagen: 
+Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que vuela por encima, para así descubrir los distintos segmentos de dicha imagen: 
 
-Figura ![](./img/photo-1487553333251-6c8e26d3dc2c.avif) 
+![](./img/photo-1487553333251-6c8e26d3dc2c.avif) 
 
-Fuente: (https://unsplash.com/photos/EC_GhFRGTAY)
+Fuente: [https://unsplash.com/photos/EC_GhFRGTAY](https://unsplash.com/photos/EC_GhFRGTAY)
 
 Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
-```python {hl_lines="3 5 7" linenums="1"} 
+```python {hl_lines="4 6 8" linenums="1"} 
 from PIL import Image
 import requests
 
@@ -242,10 +242,10 @@ for result in results:
     display(result['mask'])
 ``` 
 
-La figura siguiente muestra las máscaras detectadas para persona y avión:
+La figura siguiente muestra las máscaras detectadas para *person* (persona) y *airplane* (avión):
+![](./img/parte_blanca_hombre_avion.jpg)
 
-
-
+Máscaras para los segmentos *person* y *airplane*
 
 La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: 
 
