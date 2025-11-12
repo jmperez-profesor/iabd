@@ -169,15 +169,13 @@ interface = gr.Interface(predict, inputs='sketchpad', outputs='label', live=True
 # Lanza la aplicación en local con debug activo. Abre una pestaña del navegador con la interfaz.
 interface.launch(debug=True)
 ```
-NOTA
+---
+> NOTA
 ### ¿Qué es una red neuronal convolucional (CNN)?
-
 Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolutional Neural Network*) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.
 
 ### Características principales
-
-- **Inspiración biológica:**  
-  Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).
+- **Inspiración biológica:**: Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).
 
 - **Arquitectura en capas:**  
   Una CNN está compuesta por diferentes capas conectadas:
@@ -187,14 +185,10 @@ Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolution
     - **Capas totalmente conectadas:** Integran toda la información para tomar decisiones y realizar la predicción final.
 
 - **Aprendizaje jerárquico:**  
-  Las CNNs aprenden jerarquías de características:  
-  Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.
+  Las CNNs aprenden jerarquías de características: Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.
 
-- **Campos receptivos y parámetros compartidos:**  
-  Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.
-
+- **Campos receptivos y parámetros compartidos:** Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.
 ### Aplicaciones típicas
-
 - **Reconocimiento y clasificación de imágenes:** Detección de objetos, diagnóstico médico, moderación de contenido, etc.
 - **Visión por computador:** Conducción autónoma, videovigilancia, análisis de tráfico.
 - **Procesamiento de vídeo:** Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.
@@ -202,13 +196,14 @@ Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolution
 ### Ejemplo didáctico sencillo
 
 Cuando pasas una imagen por una CNN:
+
 - Las primeras capas detectan bordes y formas sencillas.
 - Las siguientes detectan partes más grandes (ruedas, patas, ojos).
 - Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.
 ---
-Solución final:
+Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras, para que el código original funcione. A continuación podemos visualizar la solución final:
 
-```python {hl_lines="4 6 8" linenums="1"} 
+```python {linenums="1"} 
 from pathlib import Path
 from PIL import Image
 from torch import nn
@@ -283,6 +278,19 @@ demo = gr.Interface(
 # Lanzamos la app Gradio (share=True permite compartir la URL con otros)
 demo.launch(share=True)
 ```
+---
+La función softmax de torch (PyTorch) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​
+
+En PyTorch, podemos usar esta función tanto como capa de activación en la salida de nuestro modelo, como directamente llamando torch.nn.functional.softmax() sobre un tensor de logits. Es común utilizar softmax en la inferencia para obtener probabilidades interpretables, mientras que durante el entrenamiento suele usarse CrossEntropyLoss, que incorpora la softmax de forma interna y más eficiente.​
+
+Aplicaciones comunes:
+
+- Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​
+- Visualización de la confianza del modelo en cada posible resultado.
+En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en *Deep learning*.
+---
+
+
 ## Actividades
 
 1. **Usar un Space de Hugging Face**  

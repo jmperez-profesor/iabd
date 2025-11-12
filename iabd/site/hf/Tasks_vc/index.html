@@ -870,24 +870,23 @@
 </ul>
 <p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
 <h1 id="que-es-un-task">¿Qué es un task?</h1>
-<p>Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
+<p>Un <em>task</em> en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar</p>
 <p><img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
 <em>Tasks (tareas) en Hugging Face</em></p>
 <h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de Visión por Computadora</h1>
 <p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
 <h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
-<p>La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. </p>
+<p>La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.</p>
 <p><img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
 <h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones</h3>
 <ul>
-<li>Diagnóstico médico (clasificar radiografías)</li>
+<li>Diagnóstico médico: clasificación de radiografías para detectar enfermedades.</li>
 <li>Reconocimiento de objetos</li>
 <li>Clasificación de productos en e-commerce</li>
 <li>Moderación de contenido visual</li>
 </ul>
 <h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
-<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:</p>
+<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:</p>
 <table>
 <thead>
 <tr>
@@ -920,7 +919,7 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 </table>
 <h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
 <p><img alt="" src="../img/quickdraw1.png" /></p>
-<p>Este juego fue creado con aprendizaje automático, donde cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. </p>
+<p>Quick, Draw! es un juego basado en aprendizaje automático en el que una red neuronal intenta adivinar el objeto que el usuario está dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. </p>
 <p><strong>Características clave</strong></p>
 <ul>
 <li>
@@ -935,7 +934,7 @@ Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
 </ul>
 <p>Podemos acceder al juego en el sitio web oficial: <a href="https://quickdraw.withgoogle.com/">Web oficial</a>. </p>
 <p><strong>Importancia de los datos - BigData</strong></p>
-<p>Los datos recopilados en el juego "Quick, Draw!" son fundamentales en el ámbito del Big Data y el aprendizaje automático porque conforman el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar los modelos de inteligencia artificial de Google. 
+<p>Los datos recopilados en Quick, Draw! son fundamentales para el Big Data y el aprendizaje automático, ya que constituyen el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar modelos de IA. 
 Su importancia radica en varios puntos clave:</p>
 <ul>
 <li>
@@ -961,7 +960,7 @@ Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy
 <p><a href="https://quickdraw.withgoogle.com/data/basketball">Datos de entrenamiento para la pelota de baloncesto</a></p>
 <p><img alt="" src="../img/data_basketball_quickdraw.png" /></p>
 <h3 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h3>
-<p>Vamos a desarrollar nuestra propia aplicación *Pictionary" con Gradio el cual ha sido extraído del siguiente vídeo: <a href="https://www.youtube.com/watch?v=LS9Y2wDVI0k"></a></p>
+<p>Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: <a href="https://www.youtube.com/watch?v=LS9Y2wDVI0k"></a></p>
 <p>Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: <a href="https://huggingface.co/spaces/nateraw/quickdraw/tree/main"></a>
 Lo primero que debemos es, descargar los ficheros siguientes:</p>
 <ul>
@@ -1438,7 +1437,7 @@ En este ejercicio, irás un paso más allá probando la herramienta Ultralytics 
 </ul>
 <hr />
 <h2 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de imágenes (Image segmentation)</h2>
-<p>Otra técnica de visión por computadora comúnmente utilizada es la segmentación de imágenes. La segmentación de imágenes es una técnica que consiste en separar una imagen en varios segmentos o regiones. Cada segmento corresponde a un objeto de interés particular. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
+<p>La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
 <p>Algunos de sus usos son: </p>
 <ul>
 <li><strong>Imágenes médicas</strong>: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas </li>
