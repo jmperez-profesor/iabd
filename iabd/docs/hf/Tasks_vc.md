@@ -64,11 +64,11 @@ Su importancia radica en varios puntos clave:
 
 - **Diversidad y variabilidad**: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.
 
-- **Datos en tiempo real y secuenciales**: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo *Sketch-RNN* (Sketch-RNN (Recurrent Neural Network para Bocetos) es un modelo generativo de aprendizaje automático desarrollado por David Ha y Douglas Eck en Google Brain, que es capaz de crear, completar y manipular bocetos vectoriales de objetos comunes)
+- **Datos en tiempo real y secuenciales**: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo *Sketch-RNN* (Recurrent Neural Network para Bocetos es un modelo generativo de aprendizaje automático desarrollado por David Ha y Douglas Eck en Google Brain, que es capaz de crear, completar y manipular bocetos vectoriales de objetos comunes)
 
 - **Investigación abierta**: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.
 
-- **Ejemplo de gamificación para la recolección de datos**: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data
+- **Ejemplo de gamificación para la recolección de datos**: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data.
 
 [Datos de entrenamiento](https://quickdraw.withgoogle.com/data)
 
@@ -87,11 +87,7 @@ Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, bas
 
 Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: [https://huggingface.co/spaces/nateraw/quickdraw](https://huggingface.co/spaces/nateraw/quickdraw)
 
-Lo primero que debemos es, descargar los ficheros siguientes:
-
-- class_names.txt
-- pytorch_model.bin
-- app.py
+Lo primero que debemos es, descargar los ficheros siguientes: ```class_names.txt```, ```pytorch_model.bin``` y ```app.py```
 
 **Analizamos el código elaborado por el usuario**:
 
