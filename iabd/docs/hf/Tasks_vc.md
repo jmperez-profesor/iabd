@@ -99,8 +99,6 @@ from torch import nn
 ```
 
 
----
-> NOTA
 ### ¿Qué es una red neuronal convolucional (CNN)?
 Una **red neuronal convolucional** (CNN, por sus siglas en inglés, *Convolutional Neural Network*) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.
 
