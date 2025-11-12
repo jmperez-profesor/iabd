@@ -236,11 +236,10 @@ Aplicaciones comunes:
 - Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​
 - Visualización de la confianza del modelo en cada posible resultado.
 En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en *Deep learning*.
--------
 
-## Actividades
+---
 
-1.**Usar un Space de Hugging Face**  
+## Actividad 1. **Usar un Space de Hugging Face**  
 
 Basándote en lo aprendido a partir de los casos de uso de [Hola Spaces](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces) y [Hola Spaces 2.0](https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces-20) trabajadas en una sesión anterior, mediante *Gradio* en *Hugging Face* crea un nuevo espacio público en tu cuenta que permita probar la aplicación del *pictionary* desarrollada de forma local en un Space de Hugging Face. 
 
@@ -405,6 +404,7 @@ Resultado final:
 ![](./img/object_detection_ladies_gradio.png)
 
 Define:
+
 - Una función llamada *predict*
 - Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados
 
@@ -418,18 +418,22 @@ Código final en Gradio:
 
 Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como `facebook/detr-resnet-50` [](https://huggingface.co/facebook/detr-resnet-50) en Hugging Face ([ver ejemplo y recursos de clase](https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos)).  
 En esta actividad, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su [documentación oficial de integración con Gradio](https://docs.ultralytics.com/es/integrations/gradio/).
+
 ## Objetivos
 - Investigar y comprender el funcionamiento de la familia YOLO (en especial YOLO11).
 - Probar distintos códigos y ejemplos reales usando YOLO11 y Gradio.
 - Comparar los resultados con los de `facebook/detr-resnet-50` en velocidad, facilidad de uso y precisión.
 - Reflexionar sobre ventajas e inconvenientes de cada enfoque en distintos escenarios reales.
+
 ### 1. Lectura e investigación inicial
 - Lee la documentación de [Ultralytics YOLO11](https://docs.ultralytics.com/es/#what-are-the-licensing-options-available-for-ultralytics-yolo) y familiarízate con su API y flujo de trabajo.
 - Consulta y ejecuta el ejemplo de integración con Gradio: [docs oficiales](https://docs.ultralytics.com/es/integrations/gradio/).
+
 ### 2. Implementación y pruebas
 - Ejecuta la demo básica de YOLO11+Gradio incluida en la documentación.
 - Ejecuta la demo ampliada de YOLO11+Gradio incluida en la documentación.
 - Realiza anotaciones sobre el input, formato de resultados y velocidad tras varias ejecuciones con imágenes reales o ejemplos propios.
+
 ### 3. Comparativa objetiva con Hugging Face
 - Utiliza el modelo `facebook/detr-resnet-50` desde Hugging Face (ya visto en clase) para detectar objetos en al menos dos imágenes iguales a las usadas en YOLO11.
 - Rellena la tabla comparativa:
