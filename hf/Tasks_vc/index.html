@@ -635,9 +635,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+  <a href="#32-enlazando-con-gradio" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Estimación de Profundidad (Depth Estimation)
+      3.2. Enlazando con Gradio
     </span>
   </a>
   
@@ -645,6 +645,15 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-estimacion-de-profundidad-depth-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Estimación de Profundidad (Depth Estimation)
+    </span>
+  </a>
   
 </li>
         
@@ -984,8 +993,57 @@ En particular, el elemento <em>mask</em> contiene la máscara del segmento detec
 <img alt="" src="../img/parte_blanca_hombre_avion.jpg" /></p>
 <p>Máscaras para los segmentos <em>person</em> y <em>airplane</em></p>
 <p>La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: </p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span> 
+
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+    <span class="n">base_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span> 
+
+    <span class="c1"># Aplica la máscara sobre la imagen original</span>
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span> 
+</span>    <span class="c1">#Imprime la etiqueta del segmento</span>
+<span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span> 
+</span>    <span class="n">display</span><span class="p">(</span><span class="n">base_image</span><span class="p">)</span> 
+</code></pre></div></td></tr></table></div>
+La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>airplane</em> (avión) aplicadas sobre la imagen original:
+<img alt="" src="../img/mascaras_en_imagen_original.jpg" /></p>
+<p>Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacer esto, puede invertir la máscara usando la función invert() de la clase ImageOps en el paquete PIL. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: </p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageOps</span> 
+
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+    <span class="n">base_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span> 
+
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">ImageOps</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Invierte la máscara </span>
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Aplica la máscara sobre la imagen original </span>
+</span>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>  <span class="c1">#Imprime la etiqueta del segmento</span>
+<span class="hll">    <span class="n">display</span><span class="p">(</span><span class="n">base_image</span><span class="p">)</span> 
+</span></code></pre></div></td></tr></table></div>
+La figura siguiente muestra las máscaras invertidas para <em>person</em> (persona) y <em>airplane</em> (avión)aplicadas en la imagen original. </p>
+<p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
+<h3 id="32-enlazando-con-gradio">3.2. Enlazando con Gradio</h3>
+<p>En lugar de especificar manualmente la dirección URL de la imagen que queremos usar en el modelo, sería más conveniente crear una interfaz de usuario para que probemos el modelo de segmentación. Tal y como ya hemos utilizado anteiriormente, vamos a hacer uso del paquete Gradio para crear una interfaz de usuario y luego vincularla a la función que realiza la segmentación. </p>
 <hr />
-<h3 id="4-estimacion-de-profundidad-depth-estimation">4. Estimación de Profundidad (Depth Estimation)</h3>
+<h2 id="4-estimacion-de-profundidad-depth-estimation">4. Estimación de Profundidad (Depth Estimation)</h2>
 <ul>
 <li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
 <li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
