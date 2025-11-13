@@ -544,7 +544,6 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 
 ### 2. Implementación y pruebas
 - Ejecuta la demo básica de YOLO11+Gradio incluida en la documentación.
-- Ejecuta la demo ampliada de YOLO11+Gradio incluida en la documentación.
 - Realiza anotaciones sobre el input, formato de resultados y velocidad tras varias ejecuciones con imágenes reales o ejemplos propios.
 
 ### 3. Comparativa objetiva con Hugging Face
