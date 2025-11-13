@@ -549,6 +549,7 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 ### 3. Comparativa objetiva con Hugging Face
 - Utiliza el modelo `facebook/detr-resnet-50` desde Hugging Face (ya visto en clase) para detectar objetos en al menos dos imágenes iguales a las usadas en YOLO11.
 - Rellena la tabla comparativa:
+
 | Imagen            | Modelo                 | Objetos detectados | Tiempo de inferencia | Falsos positivos/negativos | Facilidad de integración | Observaciones             |
 |-------------------|------------------------|--------------------|----------------------|----------------------------|-------------------------|---------------------------|
 | (insertar nombre) | YOLO11                 |                    |                      |                            |                         |                           |
