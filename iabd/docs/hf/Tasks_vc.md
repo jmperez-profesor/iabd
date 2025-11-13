@@ -570,6 +570,8 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 
 La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. 
 
+![](./img/image_segmentation_explication.png)
+
 Algunos de sus usos son: 
 
 - **Imágenes médicas**: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas 
@@ -577,12 +579,12 @@ Algunos de sus usos son:
 - **Procesamiento de documentos**: se utiliza para segmentar regiones de texto en documentos escaneados 
 - **Biometría**: se utiliza para identificar y localizar rostros en imágenes o fotogramas de vídeo 
 
-Hugging Face contiene varios modelos de segmentación de imágenes que podemos utilizar. Uno de ellos es el modelo "SegFormer model fine-tuned on ADE20k" (https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512). 
-La siguente imagen muestra el modelo SegFormer ajustado en el modelo ADE20k en el sitio web de Hugging Face:
+Hugging Face incluye varios modelos de segmentación de imágenes que podemos usar. Uno de ellos es el modelo SegFormer ["SegFormer model fine-tuned on ADE20k"](https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512), optimizado con ADE20k.
 
+La siguiente imagen muestra el modelo SegFormer *fine-tuned* (optimizado) por el modelo ADE20k en la web de Hugging Face:
 ![](./img/tasks_image_segmentation_ade20k_hf.png)
 
-Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "Hosted inference API" alojada en la página de Hugging Face:
+Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "**Hosted inference API**" alojada en la página de Hugging Face:
 
 Imagen del **Taj Mahal** 
 ![](./img/Taj_Mahal_Agra,_India_edit3.jpg)
@@ -591,7 +593,7 @@ Fuente: [https://mng.bz/5vzD](https://mng.bz/5vzD)
 Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
 ![](./img/tasks_image_segmentation_taj_mahal_result.png)
 
-Como podemos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
+Como podemos ver en el resultado, el modelo puede detectar diferentes objetos en la imagen (edificios, cielos, árboles, etcétera) y resaltar los diversos segmentos en dicha imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
 
 ### Uso del modelo con pipeline
 Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
