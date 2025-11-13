@@ -1661,6 +1661,7 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 <hr />
 <h2 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de imágenes (Image segmentation)</h2>
 <p>La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
+<p><img alt="" src="../img/image_segmentation_explication.png" /></p>
 <p>Algunos de sus usos son: </p>
 <ul>
 <li><strong>Imágenes médicas</strong>: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas </li>
@@ -1668,16 +1669,16 @@ En esta actividad, irás un paso más allá probando la herramienta Ultralytics 
 <li><strong>Procesamiento de documentos</strong>: se utiliza para segmentar regiones de texto en documentos escaneados </li>
 <li><strong>Biometría</strong>: se utiliza para identificar y localizar rostros en imágenes o fotogramas de vídeo </li>
 </ul>
-<p>Hugging Face contiene varios modelos de segmentación de imágenes que podemos utilizar. Uno de ellos es el modelo "SegFormer model fine-tuned on ADE20k" (https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512). 
-La siguente imagen muestra el modelo SegFormer ajustado en el modelo ADE20k en el sitio web de Hugging Face:</p>
-<p><img alt="" src="../img/tasks_image_segmentation_ade20k_hf.png" /></p>
-<p>Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "Hosted inference API" alojada en la página de Hugging Face:</p>
+<p>Hugging Face incluye varios modelos de segmentación de imágenes que podemos usar. Uno de ellos es el modelo SegFormer <a href="https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512">"SegFormer model fine-tuned on ADE20k"</a>, optimizado con ADE20k.</p>
+<p>La siguiente imagen muestra el modelo SegFormer <em>fine-tuned</em> (optimizado) por el modelo ADE20k en la web de Hugging Face:
+<img alt="" src="../img/tasks_image_segmentation_ade20k_hf.png" /></p>
+<p>Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "<strong>Hosted inference API</strong>" alojada en la página de Hugging Face:</p>
 <p>Imagen del <strong>Taj Mahal</strong> 
 <img alt="" src="../img/Taj_Mahal_Agra%2C_India_edit3.jpg" />
 Fuente: <a href="https://mng.bz/5vzD">https://mng.bz/5vzD</a></p>
 <p>Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
 <img alt="" src="../img/tasks_image_segmentation_taj_mahal_result.png" /></p>
-<p>Como podemos ver en el resultado, el modelo puede detectar diferentes objetos (como edificios, cielos, árboles, etc.) en la imagen y resaltar los diversos segmentos en la imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. </p>
+<p>Como podemos ver en el resultado, el modelo puede detectar diferentes objetos en la imagen (edificios, cielos, árboles, etcétera) y resaltar los diversos segmentos en dicha imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. </p>
 <h3 id="uso-del-modelo-con-pipeline">Uso del modelo con pipeline</h3>
 <p>Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
