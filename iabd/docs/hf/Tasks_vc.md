@@ -594,10 +594,9 @@ Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
 ![](./img/tasks_image_segmentation_taj_mahal_result.png)
 
 Como podemos ver en el resultado, el modelo puede detectar diferentes objetos en la imagen (edificios, cielos, árboles, etcétera) y resaltar los diversos segmentos en dicha imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. 
-
 ### Uso del modelo con pipeline
-Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
-```python
+Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería ```transformers```: 
+```python {linenums="1"}
 from transformers import pipeline 
   
 segmentation = pipeline("image-segmentation",  
