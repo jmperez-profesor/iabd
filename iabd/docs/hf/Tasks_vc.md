@@ -602,7 +602,7 @@ from transformers import pipeline
 segmentation = pipeline("image-segmentation",  
                model="nvidia/segformer-b0-finetuned-ade-512-512") 
   
-segmentation.model.config.id2label
+print(segmentation.model.config.id2label)
 ```
 Estos son los primeros y últimos cinco objetos que puede detectar (el modelo puede detectar un total de 150 objetos): 
 ```json
@@ -625,15 +625,17 @@ Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que
 Fuente: [https://unsplash.com/photos/EC_GhFRGTAY](https://unsplash.com/photos/EC_GhFRGTAY)
 
 Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
-```python {hl_lines="4 6 8" linenums="1"} 
+```python {hl_lines="5 6 7" linenums="1"} 
+from transformers import pipeline 
 from PIL import Image
 import requests
 
+segmentation = pipeline("image-segmentation",  
+               model="nvidia/segformer-b0-finetuned-ade-512-512") 
+  
 url = 'https://bit.ly/46iDeJQ'
-
 results = segmentation(url)
-
-results
+print(results)
 ```
 La salida de la variable *results* es una lista de diccionarios que contiene detalles de cada uno de los segmentos detectados en la imagen: 
 ```json

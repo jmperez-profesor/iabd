@@ -1680,14 +1680,19 @@ Fuente: <a href="https://mng.bz/5vzD">https://mng.bz/5vzD</a></p>
 <img alt="" src="../img/tasks_image_segmentation_taj_mahal_result.png" /></p>
 <p>Como podemos ver en el resultado, el modelo puede detectar diferentes objetos en la imagen (edificios, cielos, árboles, etcétera) y resaltar los diversos segmentos en dicha imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. </p>
 <h3 id="uso-del-modelo-con-pipeline">Uso del modelo con pipeline</h3>
-<p>Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería transformer: 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+<p>Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería <code>transformers</code>: 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
 
 <span class="n">segmentation</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-segmentation&quot;</span><span class="p">,</span>  
                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;nvidia/segformer-b0-finetuned-ade-512-512&quot;</span><span class="p">)</span> 
 
 <span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 Estos son los primeros y últimos cinco objetos que puede detectar (el modelo puede detectar un total de 150 objetos): 
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;wall&#39;</span><span class="p">,</span><span class="w"> </span>
 <span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;buildi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">,</span><span class="w"> </span>
