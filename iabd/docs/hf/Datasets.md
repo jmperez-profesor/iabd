@@ -14,10 +14,11 @@ El paquete **`datasets`** de Hugging Face es una potente herramienta para **acce
 
 Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente mediante el uso de **mapeo de memoria** y el formato [**Apache Arrow**](https://arrow.apache.org/), lo que permite trabajar con datos que superan la RAM disponible.
 
-> [!NOTE]
-> Apache Arrow 
+> Arrow Apache Arrow define un formato de memoria columnar independiente del lenguaje para datos planos y anidados, organizado para operaciones analíticas eficientes en hardware moderno como CPU y GPU. El formato de memoria Arrow también admite lecturas sin copia para un acceso a datos ultrarrápido sin sobrecarga de serialización.
 >
-> Puede tener varias líneas.
+>El proyecto del formato Apache Arrow comenzó en febrero de 2016, centrándose en cargas de trabajo de análisis columnar en memoria. A diferencia de formatos de archivo como Parquet o CSV, que especifican cómo se organizan los datos en el disco, Arrow se centra en cómo se organizan los datos en la memoria.
+>
+>Los creadores buscan consolidar Arrow como un formato estándar en memoria para el análisis de cargas de trabajo. Estos fundamentos atraen a numerosos colaboradores de proyectos como Pandas, Spark, Cassandra, Apache Calcite, Dremio e Ibis.
 ---
 
 ## 🔑 Características Clave
