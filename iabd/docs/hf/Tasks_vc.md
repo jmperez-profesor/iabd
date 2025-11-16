@@ -660,9 +660,16 @@ En particular, el elemento *mask* contiene la máscara del segmento detectado. P
 ```python {hl_lines="2 3" linenums="1"} 
 for result in results:
     print(result['label'])
-    display(result['mask'])
+    result['mask'].show()
 ``` 
-
+Por pantalla visualizamos las etiquetas encontradas:
+```bash
+wall
+building
+sky
+person
+airplane
+```
 La figura siguiente muestra las máscaras detectadas para *person* (persona) y *airplane* (avión):
 ![](./img/parte_blanca_hombre_avion.jpg)
 
@@ -679,7 +686,7 @@ for result in results:
     base_image.paste(mask_image, mask=mask_image) 
     #Imprime la etiqueta del segmento
     print(result['label']) 
-    display(base_image) 
+    result['mask'].show()
 ``` 
 La figura siguiente muestra las máscaras de *person* (persona) y *airplane* (avión) aplicadas sobre la imagen original:
 ![](./img/mascaras_en_imagen_original.jpg)
