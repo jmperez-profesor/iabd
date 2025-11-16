@@ -12,8 +12,12 @@ El paquete **`datasets`** de Hugging Face es una potente herramienta para **acce
 - Visión por computadora
 - Procesamiento de audio
 
-Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente mediante el uso de **mapeo de memoria** y el formato **Apache Arrow**, lo que permite trabajar con datos que superan la RAM disponible.
+Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente mediante el uso de **mapeo de memoria** y el formato [**Apache Arrow**](https://arrow.apache.org/), lo que permite trabajar con datos que superan la RAM disponible.
 
+> [!NOTE]
+> Apache Arrow 
+>
+> Puede tener varias líneas.
 ---
 
 ## 🔑 Características Clave

@@ -673,10 +673,12 @@
 
 <h1 id="hugging-face-datasets-guia-reto-gamificado">📘 Hugging Face Datasets: Guía + Reto Gamificado</h1>
 <h2 id="1-introduccion">1️⃣ Introducción</h2>
-<p>El paquete <strong><code>datasets</code></strong> de Hugging Face es una potente herramienta para <strong>acceder, compartir y procesar conjuntos de datos (datasets)</strong> de IA para una amplia gama de tareas, que incluyen:
-- Procesamiento del Lenguaje Natural (PLN)
-- Visión por computadora
-- Procesamiento de audio</p>
+<p>El paquete <strong><code>datasets</code></strong> de Hugging Face es una potente herramienta para <strong>acceder, compartir y procesar conjuntos de datos (datasets)</strong> de IA para una amplia gama de tareas, que incluyen:</p>
+<ul>
+<li>Procesamiento del Lenguaje Natural (PLN)</li>
+<li>Visión por computadora</li>
+<li>Procesamiento de audio</li>
+</ul>
 <p>Está diseñado para manejar <strong>grandes volúmenes de datos</strong> de manera eficiente mediante el uso de <strong>mapeo de memoria</strong> y el formato <strong>Apache Arrow</strong>, lo que permite trabajar con datos que superan la RAM disponible.</p>
 <hr />
 <h2 id="caracteristicas-clave">🔑 Características Clave</h2>
@@ -695,10 +697,16 @@ pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o
 </code></pre></div>
 <hr />
 <h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
 <span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Salida esperada:
 <div class="highlight"><pre><span></span><code>DatasetDict({
     train: Dataset({ features: [&#39;title&#39;, &#39;paragraphs&#39;], num_rows: 442 })
@@ -716,7 +724,7 @@ pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o
 <li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
 <li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
 </ol>
-<p><img alt="Tablero del reto" src="27c98be5c8.png" /></p>
+<p><img alt="Tablero del reto" src="../img/reto_datasets.png" /></p>
 <hr />
 <h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
