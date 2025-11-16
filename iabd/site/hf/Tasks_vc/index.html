@@ -16,7 +16,7 @@
         <link rel="prev" href="../Ejemplo_gradio/">
       
       
-        <link rel="next" href="../Referencias/">
+        <link rel="next" href="../Datasets/">
       
       
       <link rel="icon" href="../../images/favicon.png">
@@ -316,6 +316,8 @@
       
         
           
+        
+      
         
       
         
@@ -795,6 +797,29 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1748,13 +1773,20 @@ La salida de la variable <em>results</em> es una lista de diccionarios que conti
 <span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">}]</span>
 </code></pre></div>
 En particular, el elemento <em>mask</em> contiene la máscara del segmento detectado. Para ver cada una de las máscaras detectadas, recorremos la variable <em>results</em>: </p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
 <span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
-</span><span class="hll">    <span class="n">display</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">])</span>
+</span><span class="hll">    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
-<p>La figura siguiente muestra las máscaras detectadas para <em>person</em> (persona) y <em>airplane</em> (avión):
+Por pantalla visualizamos las etiquetas encontradas:
+<div class="highlight"><pre><span></span><code>wall
+building
+sky
+person
+airplane
+</code></pre></div>
+La figura siguiente muestra las máscaras detectadas para <em>person</em> (persona) y <em>airplane</em> (avión):
 <img alt="" src="../img/parte_blanca_hombre_avion.jpg" /></p>
 <p>La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: </p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1777,7 +1809,7 @@ En particular, el elemento <em>mask</em> contiene la máscara del segmento detec
 <span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span> 
 </span>    <span class="c1">#Imprime la etiqueta del segmento</span>
 <span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span> 
-</span>    <span class="n">display</span><span class="p">(</span><span class="n">base_image</span><span class="p">)</span> 
+</span>    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>airplane</em> (avión) aplicadas sobre la imagen original:
 <img alt="" src="../img/mascaras_en_imagen_original.jpg" /></p>
@@ -1883,13 +1915,13 @@ Pasos:  </p>
         
         
           
-          <a href="../Referencias/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Referencias">
+          <a href="../Datasets/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Datasets">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Referencias
+                Datasets
               </div>
             </div>
             <div class="md-footer__button md-icon">

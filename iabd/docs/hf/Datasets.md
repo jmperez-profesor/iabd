@@ -7,6 +7,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 1️⃣ Introducción
 El paquete **`datasets`** de Hugging Face es una potente herramienta para **acceder, compartir y procesar conjuntos de datos (datasets)** de IA para una amplia gama de tareas, que incluyen:
+
 - Procesamiento del Lenguaje Natural (PLN)
 - Visión por computadora
 - Procesamiento de audio
@@ -34,9 +35,11 @@ pip install datasets[vision]
 ---
 
 ## 🧩 Ejemplo: Cargar un dataset local
-```python
+```python {linenums="1"}
 from datasets import load_dataset
+
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
+
 print(squad_dataset)
 ```
 
@@ -61,7 +64,7 @@ Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones 
 4. **Filtra y persiste:** Guardar en Parquet.
 5. **Publica en Hugging Face:** Añadir documentación.
 
-![Tablero del reto](27c98be5c8.png)
+![Tablero del reto](./img/reto_datasets.png)
 
 ---
 
