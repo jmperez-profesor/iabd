@@ -6,13 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Explotación manual y automática de EternalBlue, Windows. Apuntes, teoría, prácticas, ejercicio del curso de especialización de ciberseguridad. IES severo ochoa Elche. Hacking ético. incidentes de seguridad, puesta en producción segura.">
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Seguridad_ofensiva/EternalBlue/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Datasets/Datasets/">
       
       
+        <link rel="prev" href="../../hf/Referencias/">
+      
+      
+        <link rel="next" href="../Actividad1/">
       
       
       <link rel="icon" href="../../images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Explotación de vulnerabilidad EternalBlue (MS17-010) - Inteligencia Artificial y Big Data</title>
+        <title>Datasets de Hugging Face - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#explotacion-de-eternalblue-sin-metasploit" class="md-skip">
+        <a href="#hugging-face-datasets-guia-reto-gamificado" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -107,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Explotación de vulnerabilidad EternalBlue (MS17-010)
+              Datasets de Hugging Face
             
           </span>
         </div>
@@ -245,11 +249,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../Datasets/Datasets/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -518,8 +524,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -531,19 +539,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -556,7 +565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Datasets
@@ -567,10 +576,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Datasets/Datasets/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Datasets de Hugging Face
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -581,6 +612,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Características Clave
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Instalación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-cargar-un-dataset-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 Ejemplo: Cargar un dataset local
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#niveles-del-reto" class="md-nav__link">
+    <span class="md-ellipsis">
+      🕹️ Niveles del reto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plantilla-del-ejercicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      📂 Plantilla del ejercicio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Recursos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -640,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Datasets/Actividad1/" class="md-nav__link">
+      <a href="../Actividad1/" class="md-nav__link">
         
   
   
@@ -687,68 +825,98 @@
 
 
 
-  <h1>Explotación de vulnerabilidad EternalBlue (MS17-010)</h1>
+<h1 id="hugging-face-datasets-guia-reto-gamificado">📘 Hugging Face Datasets: Guía + Reto Gamificado</h1>
+<h2 id="1-introduccion">1️⃣ Introducción</h2>
+<p>El paquete <strong><code>datasets</code></strong> de Hugging Face es una potente herramienta para <strong>acceder, compartir y procesar conjuntos de datos (datasets)</strong> de IA para una amplia gama de tareas, que incluyen:</p>
+<ul>
+<li>Procesamiento del Lenguaje Natural (PLN)</li>
+<li>Visión por computadora</li>
+<li>Procesamiento de audio</li>
+</ul>
+<p>Está diseñado para manejar <strong>grandes volúmenes de datos</strong> de manera eficiente mediante el uso de <strong>mapeo de memoria</strong> y el formato <a href="https://arrow.apache.org/"><strong>Apache Arrow</strong></a>, lo que permite trabajar con datos que superan la RAM disponible.</p>
+<blockquote>
+<p>Arrow Apache Arrow define un formato de memoria columnar independiente del lenguaje para datos planos y anidados, organizado para operaciones analíticas eficientes en hardware moderno como CPU y GPU. El formato de memoria Arrow también admite lecturas sin copia para un acceso a datos ultrarrápido sin sobrecarga de serialización.</p>
+<p>El proyecto del formato Apache Arrow comenzó en febrero de 2016, centrándose en cargas de trabajo de análisis columnar en memoria. A diferencia de formatos de archivo como Parquet o CSV, que especifican cómo se organizan los datos en el disco, Arrow se centra en cómo se organizan los datos en la memoria.</p>
+<p>Los creadores buscan consolidar Arrow como un formato estándar en memoria para el análisis de cargas de trabajo. Estos fundamentos atraen a numerosos colaboradores de proyectos como Pandas, Spark, Cassandra, Apache Calcite, Dremio e Ibis.</p>
+</blockquote>
+<hr />
+<h2 id="caracteristicas-clave">🔑 Características Clave</h2>
+<ul>
+<li><strong>Vasto Repositorio (Hub):</strong> Gran cantidad de datasets públicos y privados.</li>
+<li><strong>Fácil Acceso:</strong> Carga en una sola línea de código.</li>
+<li><strong>Procesamiento Eficiente:</strong> Métodos como <code>map()</code> paralelizados.</li>
+<li><strong>Escalabilidad:</strong> Objetos <code>Dataset</code> y <code>IterableDataset</code>.</li>
+<li><strong>Gestión de Datos:</strong> Crear y subir datasets propios al Hub.</li>
+</ul>
+<hr />
+<h2 id="instalacion">⚙️ Instalación</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>datasets
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>audio<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>vision<span class="o">]</span>
+</code></pre></div>
+<hr />
+<h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-<h2 id="explotacion-de-eternalblue-sin-metasploit">Explotación de EternalBlue sin Metasploit</h2>
-<p>Para este ejercicio vamos a hacer uso de una máquina de TryHackMe, especialmente diseñada para ser vulnerable a EternalBlue: <a href="https://tryhackme.com/room/blue">Sala de THM</a></p>
-<p>En este caso no vamos a completar la sala tal cual está escrita en THM, sino que el proceso lo realizaremos <em>manualmente</em>, sin utilizar la herramienta Metasploit. No obstante, nos aprovecharemos de esta máquina.</p>
-<p>Os detallo los apartados que debéis documentar a la hora de entregar el informe del proceso completo en Aules (explicación + capturas de pantalla)</p>
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Salida esperada:
+<div class="highlight"><pre><span></span><code>DatasetDict({
+    train: Dataset({ features: [&#39;title&#39;, &#39;paragraphs&#39;], num_rows: 442 })
+})
+</code></pre></div></p>
+<hr />
+<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
+<h3 id="objetivo">🎯 Objetivo</h3>
+<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
+<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
 <ol>
-<li>El primer paso será, como ya vimos en clases anteriores, realizar un escaneo de puertos con Nmap. Recordad los conceptos ya vistos.</li>
+<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
+<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
+<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
+<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
+<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Pista</p>
-<p>Una vez hayáis descubierto los puertos abiertos, haced un nuevo escaneo pero esta vez indicad directamente el puerto de SMB (¿cuál es?) utilizando el switch u opción de nmap adecuada.</p>
-<p>De la misma forma, puesto que vamos en busca y captura de EternalBlue, una vulnerabilidad, utilizad la opción de los scripts de Nmap e indicándole la categoría <em>vuln</em>.</p>
-</div>
-<ol>
-<li>
-<p>A la hora de explotar la vulnerabilidad, podéis clonaros <a href="https://github.com/3ndG4me/AutoBlue-MS17-010">este repositorio de Github</a>, que contiene los scripts y archivos que necesitaremos.
-   Leed atentamente las instrucciones que vienen explicadas en el repositorio, especialmente las del apartado <em>Usage</em></p>
+<p><img alt="Tablero del reto" src="./img/reto_datasets.png" /></p>
+<hr />
+<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="c1"># Nivel 1: Descargar y explorar</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PlanTL-GOB-ES/squad-es&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="c1"># Nivel 2: Dividir en train/test</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">split_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">test_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+
+<span class="c1"># Nivel 3: Añadir columna con cantidad de párrafos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_num_paragraphs</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])}</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">add_num_paragraphs</span><span class="p">)</span>
+
+<span class="c1"># Nivel 4: Filtrar y persistir</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">filtered_train</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
+<span class="n">filtered_train</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;filtered_train.parquet&quot;</span><span class="p">)</span>
+
+<span class="c1"># Nivel 5: Publicar en Hugging Face</span>
+<span class="c1"># filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)</span>
+</code></pre></div>
+<hr />
+<h2 id="recursos">🔗 Recursos</h2>
 <ul>
-<li>
-<p>Utilizando el script eternal_checker.py, comprobad si la máquina objeto del ataque está parca.</p>
-</li>
-<li>
-<p>Seguid los pasos y compilad el shellcode adecuado.</p>
-</li>
+<li><a href="https://huggingface.co/datasets">Hugging Face Datasets</a></li>
+<li><a href="https://huggingface.co/docs/datasets">Documentación oficial</a></li>
 </ul>
-<div class="admonition info">
-<p class="admonition-title">Concepto</p>
-<p>Un shellcode es un código escrito normalmente en ensamblador y compilado para un desterminado procesador que se inyecta en la memoria de un proceso para ejecutar lo que se le indique. En nuestro caso, una shell inversa.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Atención</p>
-<ul>
-<li>
-<p>Elegiremos la opción de generar la shell inversa (reverse shell) con <strong><em>msfvenom</em></strong>. Msfvenom es una instancia en línea de comandos que se usa para generar y codificar (para evitar detecciones de antimalware) payloads o shellcodes.</p>
-</li>
-<li>
-<p>Compilaremos para la arquitectura de 32 bits (x86) y para la de 64 (x64), puesto que en principio no sabemos qué versión de sistema operativo estamos atacando.</p>
-</li>
-<li>
-<p>Os preguntará a qué puerto debe conectarse la reverse shell para cada una de las dos arquitecturas. <strong>Poned puertos diferentes.</strong></p>
-</li>
-<li>
-<p>Le diremos que queremos generar una shell normal (cmd) y no una shell de meterpreter (terminal en Metasploit)</p>
-</li>
-<li>
-<p>Por último, le diremos que queremos generar un payload <em>stageless</em>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>El shellcode generado tendrá el nombre <code>sc_all.bin</code> y se habrá generado dentro de la carpeta de los shellcodes.</p>
-</li>
-<li>
-<p>Finalmente utilizaremos el script en python que nos permitirá explotar la vulnerabilidad. Los scripts están nombrados como <code>e..._exploitX.py</code>, donde la X es el número de versión del sistema operativo. Del escaneo de Nmap o de la salida del script de chequeo del estado de parcheo, habréis obtenido la versión adecuada.</p>
-</li>
-</ol>
-<h2 id="explotacion-de-eternalblue-con-metasploit">Explotación de EternalBlue con Metasploit</h2>
-<p>En este caso, vamos a explotar EternalBlue haciendo uso de Metasploit.</p>
-<p>Debéis seguir el proceso que ya se ha comentado en la sección correspondiente; iniciar <code>msfconsole</code>, buscar un exploit para EternalBlue, configurar las opciones correspondientes y lanzar el exploit.</p>
-<p>Este proceso debe quedar reflejado con detalle, incluyendo capturas de pantalla, en un informe que se entregará en Aules.</p>
 
 
 
@@ -784,6 +952,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../hf/Referencias/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Referencias">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Referencias
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Actividad1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Actividad 1 - Datasets de Hugging Face">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Actividad 1 - Datasets de Hugging Face
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

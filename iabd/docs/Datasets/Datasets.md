@@ -17,6 +17,7 @@ Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente
 > Arrow Apache Arrow define un formato de memoria columnar independiente del lenguaje para datos planos y anidados, organizado para operaciones analíticas eficientes en hardware moderno como CPU y GPU. El formato de memoria Arrow también admite lecturas sin copia para un acceso a datos ultrarrápido sin sobrecarga de serialización.
 >
 >El proyecto del formato Apache Arrow comenzó en febrero de 2016, centrándose en cargas de trabajo de análisis columnar en memoria. A diferencia de formatos de archivo como Parquet o CSV, que especifican cómo se organizan los datos en el disco, Arrow se centra en cómo se organizan los datos en la memoria.
+![](./images/arrow_vs_partquet_format.png)
 >
 >Los creadores buscan consolidar Arrow como un formato estándar en memoria para el análisis de cargas de trabajo. Estos fundamentos atraen a numerosos colaboradores de proyectos como Pandas, Spark, Cassandra, Apache Calcite, Dremio e Ibis.
 ---
