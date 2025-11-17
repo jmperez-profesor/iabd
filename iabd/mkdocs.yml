@@ -62,9 +62,10 @@ nav:
     - Tasks: 
       - Visión por computador: hf/Tasks_vc.md
     #  - Textos: hf/Tasks_texts.md
-    - Datasets: hf/Datasets.md
     - Referencias: hf/Referencias.md
-    #- Actividades: hf/Actividades.md
+  - Datasets: 
+    - Datasets/Datasets.md    
+      - Actividades: Datasets/Actividad1.md
     #- Entornos Windows: hf/Apuntes_Windows.md
     #- Ejercicios propuestos Windows: hf/Ejercicios_Windows.md
     
