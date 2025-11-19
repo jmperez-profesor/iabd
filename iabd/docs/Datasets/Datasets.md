@@ -276,7 +276,7 @@ print(squad_remote_dataset)
 
 Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
 
-``` python title="squad-es-split.py" {linenums="1" hl_lines="1"}
+```python title="squad-es-split.py" {linenums="1" hl_lines="1"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data", split="train")
@@ -286,7 +286,7 @@ print(squad_split_dataset)
 
 De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:
 
-``` python
+``` python {linenums="1"}
 DatasetDict({
     train: Dataset({
         features: ['title', 'paragraphs'],
