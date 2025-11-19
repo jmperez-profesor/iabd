@@ -1693,7 +1693,14 @@ jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.json
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>audio<span class="o">]</span>
 </code></pre></div>
 <p>Una vez instalado, vamos a <a href="https://huggingface.co/docs/datasets/audio_load">cargar un <em>dataset</em> que contiene audios</a>, como es <a href="https://huggingface.co/datasets/PolyAI/minds14">PolyAI/minds14</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">minds</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PolyAI/minds14&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;es-ES&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">minds</span><span class="p">)</span>
@@ -1701,7 +1708,7 @@ jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.json
 <span class="c1">#     features: [&#39;path&#39;, &#39;audio&#39;, &#39;transcription&#39;, &#39;english_transcription&#39;, &#39;intent_class&#39;, &#39;lang_id&#39;],</span>
 <span class="c1">#     num_rows: 486</span>
 <span class="c1"># })</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>El <em>dataset</em> contiene 486 archivos de audio, cada uno de los cuales va acompañado de una transcripción, una traducción al inglés y una etiqueta que indica la intención de la consulta de la persona. La columna de audio contiene los datos de audio sin procesar. Veamos uno de los ejemplos:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/home/jupy</span><span class="kc">ter</span><span class="mi">-</span><span class="err">iabd/.cache/huggi</span><span class="kc">n</span><span class="err">g</span><span class="kc">fa</span><span class="err">ce/da</span><span class="kc">tasets</span><span class="err">/dow</span><span class="kc">nl</span><span class="err">oads/ex</span><span class="kc">tra</span><span class="err">c</span><span class="kc">te</span><span class="err">d/a</span><span class="mi">809</span><span class="kc">f</span><span class="mi">65</span><span class="err">b</span><span class="mf">01e</span><span class="kc">f</span><span class="mi">0</span><span class="err">d</span><span class="mi">5806</span><span class="err">ac</span><span class="mi">705</span><span class="err">a</span><span class="mi">72</span><span class="err">b</span><span class="mi">9</span><span class="err">ca</span><span class="mi">382622</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">03</span><span class="err">d</span><span class="mi">9</span><span class="err">a</span><span class="mi">17</span><span class="err">ad</span><span class="kc">f</span><span class="mf">1ee73</span><span class="err">de</span><span class="mi">4591650</span><span class="err">b/es</span><span class="mf">-E</span><span class="err">S~APP_ERROR/</span><span class="mi">60266571</span><span class="err">dc</span><span class="mi">3604</span><span class="kc">f</span><span class="mi">481</span><span class="err">bcb</span><span class="mi">50</span><span class="err">a.wav&#39;</span><span class="p">,</span>
 <span class="hll"><span class="w"> </span><span class="err">&#39;audio&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;pa</span><span class="kc">t</span><span class="err">h&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;/home/jupy</span><span class="kc">ter</span><span class="mi">-</span><span class="err">iabd/.cache/huggi</span><span class="kc">n</span><span class="err">g</span><span class="kc">fa</span><span class="err">ce/da</span><span class="kc">tasets</span><span class="err">/dow</span><span class="kc">nl</span><span class="err">oads/ex</span><span class="kc">tra</span><span class="err">c</span><span class="kc">te</span><span class="err">d/a</span><span class="mi">809</span><span class="kc">f</span><span class="mi">65</span><span class="err">b</span><span class="mf">01e</span><span class="kc">f</span><span class="mi">0</span><span class="err">d</span><span class="mi">5806</span><span class="err">ac</span><span class="mi">705</span><span class="err">a</span><span class="mi">72</span><span class="err">b</span><span class="mi">9</span><span class="err">ca</span><span class="mi">382622</span><span class="err">a</span><span class="mi">5</span><span class="err">c</span><span class="mi">03</span><span class="err">d</span><span class="mi">9</span><span class="err">a</span><span class="mi">17</span><span class="err">ad</span><span class="kc">f</span><span class="mf">1ee73</span><span class="err">de</span><span class="mi">4591650</span><span class="err">b/es</span><span class="mf">-E</span><span class="err">S~APP_ERROR/</span><span class="mi">60266571</span><span class="err">dc</span><span class="mi">3604</span><span class="kc">f</span><span class="mi">481</span><span class="err">bcb</span><span class="mi">50</span><span class="err">a.wav&#39;</span><span class="p">,</span>
@@ -1720,17 +1727,23 @@ jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.json
 <li><code>array</code>: los datos del audio decodificados, representados por un array de <em>NumPy</em></li>
 <li><code>sampling_rate</code>: la frecuencia de muestreo (8,000 Hz).</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">ejemplo</span> <span class="o">=</span> <span class="n">minds</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">ejemplo</span> <span class="o">=</span> <span class="n">minds</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">id2label</span> <span class="o">=</span> <span class="n">minds</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">&quot;intent_class&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">int2str</span>
 <span class="n">label</span> <span class="o">=</span> <span class="n">id2label</span><span class="p">(</span><span class="n">ejemplo</span><span class="p">[</span><span class="s2">&quot;intent_class&quot;</span><span class="p">])</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Y si queremos escuchar el audio, usando <em>Gradio</em> podemos crear un componente:</p>
-<div class="highlight"><pre><span></span><code> <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code> <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">():</span>
         <span class="n">gr</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">audio</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 <span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Y reproducir el audio seleccionado:</p>
 <figure style="align: center;">
     <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-gradio.png" alt="Reproduciendo un audio desde Gradio" width="800px">
@@ -1738,7 +1751,15 @@ jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.json
 </figure>
 
 <p>Finalmente, si queremos mostrar un gráfico con el espectograma del audio, y haciendo uso de la librería <a href="https://librosa.org/doc/latest/index.html"><em>Librosa</em></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">librosa.display</span>
 
@@ -1747,7 +1768,7 @@ jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.json
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">librosa</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">waveshow</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sampling_rate</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>Obteniendo:</p>
 <figure style="align: center;">
     <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-grafico.png" alt="Representación gráfica de un audio" width="800px">
@@ -1773,10 +1794,12 @@ second_audio_file.mp3,en el segundo audio cuento un chiste
 third_audio_file.mp3,y en este audio agradezco al público sus abucheos
 </code></pre></div>
 <p>Y a continuación, indicamos como primer parámetro <code>autofolder</code> y con <code>data_dir</code> indicamos la carpeta que contiene los audios:</p>
-<p>```python{linenums="1"} 
-from datasets import load_dataset</p>
-<p>dataset = load_dataset("audiofolder", data_dir="/path/to/folder")
-```</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;audiofolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/folder&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="recursos">🔗 Recursos</h2>
 <ul>
 <li><a href="https://huggingface.co/datasets">Hugging Face Datasets</a></li>

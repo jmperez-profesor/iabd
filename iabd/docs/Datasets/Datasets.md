@@ -824,9 +824,42 @@ label = id2label(ejemplo["intent_class"])
 Y si queremos escuchar el audio, usando *Gradio* podemos crear un componente:
 
 ``` python {linenums="1"}
- with gr.Blocks() as demo:
-    with gr.Column():
-        gr.Audio(audio["path"], label=label)
+import gradio as gr
+from datasets import load_dataset
+
+# Cargar el dataset
+minds = load_dataset("PolyAI/minds14", name="es-ES", split="train")
+
+# Obtener un audio aleatorio del dataset
+audio = minds.shuffle()[0]
+
+#obtenemos el audio decodificado (que devuelve un objeto AudioDecoder)
+audio_decode = audio["audio"]
+
+# Etiqueta de intención
+id2label = minds.features["intent_class"].int2str
+print(id2label)
+#Usando la función anterior, toma el identificador de intenciones del ejemplo 
+# y lo convierte en su nombre textual 
+# para saber qué clase de intento representa ese dato.
+intent_id = audio["intent_class"]
+label = id2label(intent_id)
+
+#print(label.names[])
+
+def load_audio():
+    return (audio_decode["sampling_rate"], audio_decode["array"])
+
+# Crear la interfaz de Gradio
+with gr.Blocks() as demo:
+    gr.Markdown("# Reproductor de Audio - Dataset PolyAI/minds14")
+    
+    audio_component = gr.Audio(
+        value=load_audio(),
+        label=label,
+        interactive=False
+    )
+
 demo.launch(share=True)
 ```
 
