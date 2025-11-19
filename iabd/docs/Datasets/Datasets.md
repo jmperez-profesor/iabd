@@ -856,6 +856,8 @@ label = id2label(ejemplo["intent_class"])
 
 Y si queremos escuchar el audio, usando *Gradio* podemos crear un componente:
 
+**audio_app.py**
+
 ``` python {linenums="1"}
 import gradio as gr
 from datasets import load_dataset
