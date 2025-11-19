@@ -1,5 +1,5 @@
 ---
-title: Cargando datasets en HuggingFace
+title: Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
 description: Apuntes y actividades sobre la carga, filtrado y uso, así como la creación de datasets en Hugging Face.
 tags:
     - HuggingFace
