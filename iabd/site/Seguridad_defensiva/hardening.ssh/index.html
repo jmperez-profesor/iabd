@@ -728,19 +728,18 @@ En segunda instancia haremos la configuración con un cliente Windows.</p>
 <h2 id="instalacion-y-configuracion-de-openssh">Instalación y configuración de OpenSSH</h2>
 <h3 id="instalacion">Instalación</h3>
 <p>Para instalar nuestro servidor SSH, en caso de que no estuviera instalado, no tenemos más que:</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install openssh-server</span>
-</code></pre></div>
+<pre><code class="language-console">sudo apt install openssh-server
+</code></pre>
 <p>Para comprobar el estado del servicio:</p>
-<div class="highlight"><pre><span></span><code><span class="go">systemctl status ssh</span>
-</code></pre></div>
+<pre><code class="language-console">systemctl status ssh
+</code></pre>
 <p>Linux ya viene con un cliente SSH preinstalado, por lo que no sería necesaria mayor configuración en el cliente. Ya deberíais poder conectaros de forma remota al servidor con el siguiente comando:</p>
 <ul>
 <li>
 <p>Si queréis conectaros por el nombre de la máquina en lugar de por la IP, podéis añadir el nombre a <code>/etc/hosts</code></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Cuidado porque si la máquina coge la IP por DHCP, puede que ésta vaya cambiando, por lo que esta forma puede convertirse en más tediosa.</p>
-</div>
+<p>!!!tip</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Cuidado porque si la máquina coge la IP por DHCP, puede que ésta vaya cambiando, por lo que esta forma puede convertirse en más tediosa.
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
 <p>Probad que podéis conectaros desde el cliente usando obviamente la IP de su interfaz</p>
@@ -816,23 +815,23 @@ y/o contraseña. Una vez que los intentos alcanzan la mitad de este valor, las c
 <p><code>PermitEmptyPasswords yes/no</code></p>
 <h3 id="directrices-para-permitir-el-uso-de-x11">Directrices para permitir el uso de X11</h3>
 <p>La directriz <em>X11Forwarding</em> establece si se permitirá la ejecución remota de aplicaciones gráficas que utilicen el <a href="https://es.wikipedia.org/wiki/Sistema_de_ventanas_X">servidor X11</a>. Es necesario que el valor esté establecido a yes para poder ejecutar aplicaciones gráficas.</p>
-<div class="highlight"><pre><span></span><code>X11Forwarding yes/no
+<pre><code class="language-linuxconf">X11Forwarding yes/no
 X11DisplayOffset 10 
 X11UseLocalhost yes/no
-</code></pre></div>
+</code></pre>
 <h3 id="directriz-allowusers">Directriz AllowUsers</h3>
 <p>Con esta directriz establecemos que usuarios del sistema pueden ingresar vía SSH. Solo los usuarios listados en esta directriz podrán acceder.</p>
 <p><code>AllowUsers raul profesor administrador otroprofesor</code></p>
 <p>Los usuarios r<em>aul, profesor, administrador y otroprofesor</em> podrán acceder desde cualquier ordenador, no se valida el host desde el que se conectan. </p>
 <p>Si se quiere más seguridad, es posible indicar también el host o hosts (desde los cuales el usuario se puede conectar) mediante el símbolo @. Veamos los siguientes ejemplos:</p>
-<p><div class="highlight"><pre><span></span><code>AllowUsers raul@192.168.10.2 (Sólo desde la IP indicada)
+<pre><code class="language-linuxconf">AllowUsers raul@192.168.10.2 (Sólo desde la IP indicada)
 AllowUsers raul@172.1.1.* (Toda la red indicada)
 AllowUsers raul@*.raul.es(Todo el dominio indicado)
 AllowUsers raul@clienteciber.raul.es (Solo el equipo del dominio indicado)
-</code></pre></div>
-Combinación de varias:</p>
-<div class="highlight"><pre><span></span><code>AllowUsers raul@192.168.10.2 profesor@172.1.1.* administrador@*.raul.es otroprofesor
-</code></pre></div>
+</code></pre>
+<p>Combinación de varias:</p>
+<pre><code class="language-linuxconf">AllowUsers raul@192.168.10.2 profesor@172.1.1.* administrador@*.raul.es otroprofesor
+</code></pre>
 <h3 id="directriz-usedns">Directriz UseDNS</h3>
 <p>Cuando un cliente SSH realiza una conexión hacia un servidor SSH, el servidor intentará resolver la dirección IP del cliente. Si el servidor DNS predeterminado del sistema carece de una zona de resolución inversa que resuelva un nombre para la dirección IP del cliente, la conexión se demorará algunos segundos más de lo normal.</p>
 <p>Podemos deshabilitar esta directriz para agilizar las conexiones SSH en redes donde se carece de servidores DNS que tengan zonas de reenvío para resolver los nombres o zonas de resolución inversa para resolver las direcciones IP de los segmentos de red local.</p>
@@ -840,18 +839,18 @@ Combinación de varias:</p>
 <p><code>UseDNS yes/noUseDNS yes/no</code></p>
 <h3 id="directriz-hostkey">Directriz HostKey</h3>
 <p>Estudiemos las siguientes líneas:</p>
-<div class="highlight"><pre><span></span><code># HostKey for protocol version 1
+<pre><code class="language-linuxconf"># HostKey for protocol version 1
 # HostKey /etc/ssh/ssh_host_key
 # HostKeys for protocol version 2
 # HostKey /etc/ssh/ssh_host_rsa_key
 # HostKey /etc/ssh/ssh_host_dsa_key #HostKey /etc/ssh/ssh_host_ecdsa_ke
-</code></pre></div>
+</code></pre>
 <p>La directriz HostKey nos indica la ubicación de las llaves públicas para el servidor sshd, tanto para el protocolo SSHv1 y SSHv2 de SSH. Como en nuestro ejemplo solo usaremos el protocolo SSHv2, eliminaremos (o comentaremos) las líneas correspondientes al protocolo SSHv1.</p>
 <p>Si quisiéramos usar el algoritmos RSA para nuestras claves, deberíamos dejar algo así:</p>
-<div class="highlight"><pre><span></span><code># HostKeys for protocol version 2
+<pre><code class="language-linuxconf"># HostKeys for protocol version 2
 
 HostKey /etc/ssh/ssh_host_rsa_key
-</code></pre></div>
+</code></pre>
 <h3 id="directriz-printmotd">Directriz PrintMotd</h3>
 <p>Esta directriz establece si se presentará o no el <strong>mensaje del día (MOTD).</strong></p>
 <p>El <strong>motd</strong> de <strong>Linux</strong> es un archivo que contiene un mensaje del día que se muestra a todos los usuarios que se conectan a la máquina por terminal. Normalmente se usa para informar a los usuarios sobre el estado del servidor o simplemente para dar la bienvenida a la máquina. La ruta al archivo es <code>/etc/mtod</code></p>
@@ -868,9 +867,9 @@ HostKey /etc/ssh/ssh_host_rsa_key
 LogLevel con el valor <strong><em>INFO</em></strong> es el valor predeterminado. </p>
 <p>Otros parámetros están especificados en la <a href="https://man.freebsd.org/cgi/man.cgi?sshd_config(5)">página del manual de sshd_config (man sshd_config)</a>, los parámetros <strong><em>DEBUG2</em></strong> y <strong><em>DEBUG3</em></strong> cada uno de ellos especifican el nivel más alto de registro. Guardar registros con el nivel DEBUG viola la privacidad de los usuarios y por lo tanto no es recomendable.</p>
 <p>En nuestro ejemplo el registro de eventos quedaría configurado de la siguiente manera:</p>
-<div class="highlight"><pre><span></span><code>SyslogFacility AUTH
+<pre><code class="language-linuxconf">SyslogFacility AUTH
 LogLevel INFO
-</code></pre></div>
+</code></pre>
 <h3 id="directriz-rsaauthentication">Directriz RSAAuthentication</h3>
 <p>Con esta directriz deshabilitamos la autenticación con RSA.</p>
 <p><code>RSAAuthentication yes/no</code></p>
@@ -912,10 +911,10 @@ LogLevel INFO
 <h3 id="directriz-ignorerhosts-y-rhostsrsaauthentication">Directriz IgnoreRhosts y RhostsRSAAuthentication</h3>
 <p>Con estas directrices denegamos el uso de relaciones de confianza establecidas en los ficheros
 <code>~/.rhosts</code> y <code>~/.shosts</code> de los usuarios:</p>
-<div class="highlight"><pre><span></span><code>IgnoreRhosts yes/no
+<pre><code class="language-linuxconf">IgnoreRhosts yes/no
 
 RhostsRSAAuthentication yes/no
-</code></pre></div>
+</code></pre>
 <h3 id="directriz-hostbasedauthentication">Directriz HostbasedAuthentication</h3>
 <p>Deshabilitar o habilitar autenticación basada en host.</p>
 <p><code>HostbasedAuthentication yes/no</code></p>
@@ -935,56 +934,72 @@ RhostsRSAAuthentication yes/no
 La única forma de desactivar este motd por defecto es impidiendo que se ejecuten los archivos de configuración asociados:</p>
 <p>Podemos crearnos un asciiart para crearnos un motd personalizado, además de un mensaje advirtiendo del acceso restringido a la máquina. Este motd personalizado debemos crearlo en el directorio /etc y dentro de este directorio, en un archivo llamado <strong>motd</strong>.</p>
 <p>Podéis crearos un ascciart <a href="http://www.patorjk.com/software/taag/#p=display&amp;f=Graffiti&amp;t=Type%20Something%20">aquí</a></p>
-<div class="admonition task">
-<p class="admonition-title">Tarea</p>
-<p><strong>Comprueba</strong> adjuntando una captura de pantalla, que aparece correctamente el motd al hacer login mediante ssh.</p>
-</div>
-<div class="admonition task">
-<p class="admonition-title">Tarea</p>
-<p>Parámetros de seguridad que debéis configurar dentro de sshd_config <strong>mediante las directivas</strong> que hemos visto antes(las que no estén, deberéis añadirlos vosotros)</p>
-<ul>
-<li>Utilizar sólo la versión 2 del protocolo</li>
-<li>
-<p>Utilizar el puerto 8022 en lugar del 22</p>
-<ul>
-<li>Para conectaros deberéis utilizar la opción “-p 8022” para indicar el puerto: <code>ssh nombre_usuario@nombremaquina -p 8022</code></li>
-</ul>
-</li>
-<li>
-<p>No se permite al usuario root hacer login mediante SSH</p>
-</li>
-<li>
-<p>El tiempo que el usuario tendrá para introducir su login antes de que se cierre laconexión con el servidor es de 20 segundos</p>
-<ul>
-<li><strong>Comprueba</strong>, adjuntando una captura de pantalla, que tras ejecutar el comando <code>ssh nombre_usuario@nombremaquina -p 8022</code>, si esperáis más de 20 segundos, cuando intentáis introducir el password, el servidor os desconecta.</li>
-</ul>
-</li>
-<li>
-<p>No se permite el login con passwords vacíos</p>
-</li>
-<li>Puesto que vamos a configurar el login por claves únicamente<ul>
-<li>En principio, sí se debe permitir la autenticación con password</li>
-<li>No se debe permitir la autenticación mediante Kerberos, ni mediante GSSAPI.</li>
-</ul>
-</li>
-<li>Ignorar rhosts</li>
-<li>Deshabilitar TCPKeepAlive</li>
-<li>Sólo se permite hacer login al usuario “raul” desde la IP de vuestros clientes.<ul>
-<li>Añadid un nuevo usuario1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup> que sea vuestro primer apellido a la máquina que hace de servidor y comprobad, adjuntando una captura de pantalla, que no podéis hacer login con ese nuevo usuario.</li>
-</ul>
-</li>
-<li>Debe estar activada la autenticación PAM</li>
-<li>El SyslogFacility debe ser AUTH y el nivel de LOG debe ser INFO</li>
-<li>Debemos saber cuál fue la IP que utilizó el usuario para conectarse o hacer login por SSH la última vez.</li>
-<li>
-<p>Debe aparecer un banner antes de autenticarnos con el texto <strong><em>ATENCIÓN: Debe estar autorizado para acceder a este servidor</em></strong></p>
-<ul>
-<li><strong>Comprueba</strong>, adjuntando una captura de pantalla, que, efectivamente, aparece el banner antes de introducir ningún password</li>
-</ul>
-</li>
-</ul>
-<p>Además, pega una o varias capturas de pantalla donde se vea claramente la configuración de todos los parámetros indicados.</p>
-</div>
+<p>!!!task "Tarea"
+    <strong>Comprueba</strong> adjuntando una captura de pantalla, que aparece correctamente el motd al hacer login mediante ssh.</p>
+<p>!!!task "Tarea"
+    Parámetros de seguridad que debéis configurar dentro de sshd_config <strong>mediante las directivas</strong> que hemos visto antes(las que no estén, deberéis añadirlos vosotros)</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code>  + Utilizar sólo la versión 2 del protocolo
+  + Utilizar el puerto 8022 en lugar del 22
+
+      + Para conectaros deberéis utilizar la opción “-p 8022” para indicar el puerto: `ssh nombre_usuario@nombremaquina -p 8022`
+
+  + No se permite al usuario root hacer login mediante SSH
+  + El tiempo que el usuario tendrá para introducir su login antes de que se cierre laconexión con el servidor es de 20 segundos
+
+      + **Comprueba**, adjuntando una captura de pantalla, que tras ejecutar el comando `ssh nombre_usuario@nombremaquina -p 8022`, si esperáis más de 20 segundos, cuando intentáis introducir el password, el servidor os desconecta.
+  + No se permite el login con passwords vacíos
+  + Puesto que vamos a configurar el login por claves únicamente
+    + En principio, sí se debe permitir la autenticación con password
+    + No se debe permitir la autenticación mediante Kerberos, ni mediante GSSAPI.
+  + Ignorar rhosts
+  + Deshabilitar TCPKeepAlive
+  + Sólo se permite hacer login al usuario “raul” desde la IP de vuestros clientes.
+      + Añadid un nuevo usuario1[^1] que sea vuestro primer apellido a la máquina que hace de servidor y comprobad, adjuntando una captura de pantalla, que no podéis hacer login con ese nuevo usuario.
+  + Debe estar activada la autenticación PAM
+  + El SyslogFacility debe ser AUTH y el nivel de LOG debe ser INFO
+  + Debemos saber cuál fue la IP que utilizó el usuario para conectarse o hacer login por SSH la última vez.
+  + Debe aparecer un banner antes de autenticarnos con el texto ***ATENCIÓN: Debe estar autorizado para acceder a este servidor***
+
+      + **Comprueba**, adjuntando una captura de pantalla, que, efectivamente, aparece el banner antes de introducir ningún password
+
+Además, pega una o varias capturas de pantalla donde se vea claramente la configuración de todos los parámetros indicados.
+
+useradd -m apellido
+passwd apellido
+usermod -a -G sudo apellido
+chsh -s /bin/bash apellido
+```
+</code></pre></div></td></tr></table></div>
 <h3 id="generacion-de-claves-configuracion-y-comprobacion">Generación de claves, configuración y comprobación</h3>
 <p>La configuración del login mediante claves nos dará la ventaja de no necesitar utilizar password para autenticarnos en el servidor cuando hagamos uso de SSH.</p>
 <p>Para crear un par de claves pública/privada en el cliente, ejecutaremos el comando:</p>
@@ -1014,19 +1029,14 @@ La única forma de desactivar este motd por defecto es impidiendo que se ejecute
 </li>
 </ul>
 <p>Si tuvieráis algún problema de permisos, podéis poner los permisos adecuados a los directorios con los siguientes comandos:</p>
-<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.ssh
-chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/authorized_keys
-</code></pre></div>
-<div class="admonition task">
-<p class="admonition-title">Tareas</p>
-<ul>
-<li>Comprobad, adjuntando una captura de pantalla, que a la hora de iniciar ahora la sesión SSH contra el servidor os pide un password. Se trata del password de la clave privada.</li>
-<li>
-<p>Comprobad, adjuntando una captura de pantalla, que en las sucesivas sesiones SSH (abrís otra pestaña, salís y volvéis a entrar en la sesión, cerráis y abrís el terminal…), no os vuelve a pedir ninguna contraseña y hace login automáticamente.</p>
-<p>✔ Sólo hay que introducir el password una vez, una vez hecho esto la clave queda descifrada en la RAM para poder hacer uso de ella.</p>
-</li>
-</ul>
-</div>
+<pre><code class="language-bash">chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+<p>!!!task "Tareas"
+     + Comprobad, adjuntando una captura de pantalla, que a la hora de iniciar ahora la sesión SSH contra el servidor os pide un password. Se trata del password de la clave privada.
+     + Comprobad, adjuntando una captura de pantalla, que en las sucesivas sesiones SSH (abrís otra pestaña, salís y volvéis a entrar en la sesión, cerráis y abrís el terminal…), no os vuelve a pedir ninguna contraseña y hace login automáticamente.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ✔ Sólo hay que introducir el password una vez, una vez hecho esto la clave queda descifrada en la RAM para poder hacer uso de ella.
+</code></pre></div></td></tr></table></div>
 <p>Cuando repitamos toda esta operación con Windows, podemos utilizar o WSL2 o bien un cliente nativo de Windows, pudiendo elegir entre toda la miríada de ellos.</p>
 <p>En cualquier, para el más típico de ellos, <em>PuTTY</em>, podemos seguir el siguiente tutorial para la configuración de las claves, no siendo excluyente la utilización de cualquier otro.</p>
 <h2 id="proteccion-con-sshguard">Protección con sshguard</h2>
@@ -1035,13 +1045,18 @@ chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~
 <p>Es muy famoso el uso de <em>fail2ban</em> para protegernos frente a esto. Sin embargo en esta práctica utilizaremos <a href="https://wiki.archlinux.org/title/Sshguard_(Espa%C3%B1ol)">sshguard</a> ya que admite fácilmente la integración con <em>systemd</em>, además de con múltiples firewalls diferentes. Además, está escrito en C, por lo que es mucho más ligero.</p>
 <p>Con <em>sshguard</em>, cuando se realizan un número (establecido en la configuración) de intentos de autenticación fallidos en el sistema, se bloquea la dirección IP desde donde se está llevando a cabo el ataque.</p>
 <p>Procedamos pues a instalar y configurar <em>sshguard</em>.</p>
-<div class="admonition danger">
-<p class="admonition-title">¡Atención!</p>
-<p>Podríamos protegernos contra ataques de fuerza bruta con claves erróneas pero es un escenario que rara vez se producirá. Lo que realmente queremos es protegernos de los ataques de diccionario con diferentes contraseñas.</p>
-<p>Puesto que anteriormente hemos configurado el servicio para que la autenticación se produzca usando claves, vamos a desactivar este tipo de autenticación temporalmente hasta que hayamos configurado y comprobado el funcionamiento de <em>sshguard</em>.</p>
-<p>Basta con añadir esta directiva al archivo de configuración de ssh: <code>PubkeyAuthentication no</code></p>
-<p><strong><em>Recuerda reactivar la autenticación con claves al acabar con la parte de sshguard</em></strong></p>
-</div>
+<p>!!!danger "¡Atención!"
+    Podríamos protegernos contra ataques de fuerza bruta con claves erróneas pero es un escenario que rara vez se producirá. Lo que realmente queremos es protegernos de los ataques de diccionario con diferentes contraseñas.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Puesto que anteriormente hemos configurado el servicio para que la autenticación se produzca usando claves, vamos a desactivar este tipo de autenticación temporalmente hasta que hayamos configurado y comprobado el funcionamiento de *sshguard*.
+
+Basta con añadir esta directiva al archivo de configuración de ssh: `PubkeyAuthentication no`
+
+***Recuerda reactivar la autenticación con claves al acabar con la parte de sshguard***
+</code></pre></div></td></tr></table></div>
 <h3 id="instalacion-de-sshguard">Instalación de <em>sshguard</em></h3>
 <p>En primer lugar actualizamos los repositorios:</p>
 <p><code>sudo apt update</code></p>
@@ -1051,27 +1066,28 @@ chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~
 <p><code>systemctl status sshguard</code></p>
 <h3 id="configuracion-de-sshguard">Configuración de <em>sshguard</em></h3>
 <p>Lo primero que debemos hacer es instalar algún firewall que bloquee las IPs que <em>sshguard</em> le indique cuando sea necesario. Procedamos con el clásico y archiconocido <strong><em>iptables</em></strong> si no lo tuvieráis instalado todavía:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>sshguard
-</code></pre></div>
+<pre><code class="language-bash">sudo apt install sshguard
+</code></pre>
 <p>Y le decimos al firewall que todo el tráfico que le entre con el puerto destino TCP 22 (SSH), lo redirija a la cadena sshguard que creamos en el primer paso y que es donde se introducirán las reglas de bloqueo pertinente:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-N<span class="w"> </span>sshguard
-sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-m<span class="w"> </span>multiport<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--destination-ports<span class="w"> </span><span class="m">8022</span><span class="w"> </span>-j<span class="w"> </span>sshguard
-sudo<span class="w"> </span>iptables-save<span class="w"> </span>&gt;<span class="w"> </span>/home/raul/iptables.rules
-</code></pre></div>
+<pre><code class="language-bash">sudo iptables -N sshguard
+sudo iptables -A INPUT -m multiport -p tcp --destination-ports 8022 -j sshguard
+sudo iptables-save &gt; /home/raul/iptables.rules
+</code></pre>
 <p>El archivo de configuración de este servicio se llama <em>sshguard.conf</em> y lo encontraréis en el siguiente directorio: <code>/etc/sshguard</code></p>
 <p><em>Sshguard</em> se basa en revisar los logs en busca de registros de intentos de login fallidos. Si detecta más de <em>X</em> intentos fallidos en <em>Y</em> tiempo (ambas cosas configurables), introduce una regla en el firewall para bloquear a la IP origen de esos ataques.</p>
-<p><u>Existe un error conocido de <em>sshguard</em></u> como es que también busca en sus propios logs intentos fallidos de login, haciendo que cada vez que registra un intento erróneo, lo vuelve a detectar y a registrar en un bucle que continúa hasta que se bloquea la IP.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">1</a></sup></p>
+<p><u>Existe un error conocido de <em>sshguard</em></u> como es que también busca en sus propios logs intentos fallidos de login, haciendo que cada vez que registra un intento erróneo, lo vuelve a detectar y a registrar en un bucle que continúa hasta que se bloquea la IP.[^2]</p>
+<p>[^2]: <a href="https://bugs.launchpad.net/ubuntu/+source/sshguard/+bug/1881459">Parece estar solucionado</a></p>
 <p>¿En qué se traduce esto? Pues que con un único intento fallido de login SSH, que puede ser no intencionado (me he equivocado al poner el password), se bloqueará la IP origen.</p>
 <ul>
 <li>
 <p>Para solucionarlo, en el archivo de configuración debemos cambiar el valor del parámetro LOGREADER` para que quede así:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LOGREADER</span><span class="o">=</span><span class="s2">&quot;LANG=C.UTF8 /bin/journalctl -afb -p info -n1 -o cat -t sshd</span>
-</code></pre></div>
+<p><code>bash
+LOGREADER="LANG=C.UTF8 /bin/journalctl -afb -p info -n1 -o cat -t sshd</code></p>
 </li>
 <li>
 <p>Además, aunque sshguard permite utilizar múltiples firewalls como ya hemos dicho, vamos a utilizar <strong>iptables</strong>. Para ello hay que cambiar el valor del parámetro BACKEND para que quede así:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nv">BACKEND</span><span class="o">=</span><span class="s2">&quot;/usr/libexec/sshguard/sshg-fw-iptables&quot;</span>
-</code></pre></div>
+<p><code>bash
+BACKEND="/usr/libexec/sshguard/sshg-fw-iptables"</code>
 En definitiva, el fichero sshguard.conf debe quedar así</p>
 </li>
 </ul>
@@ -1091,27 +1107,39 @@ En definitiva, el fichero sshguard.conf debe quedar así</p>
 <p>Cabe decir que si la IP insiste, cada nueva vez que se vuelva a bloquear, lo hará durante el doble de tiempo que la anterior ocasión (primero 10s, luego 20s, luego 40s…)</p>
 </li>
 </ol>
-<div class="admonition task">
-<p class="admonition-title">Comprobación</p>
-<p>Conéctate por SSH al servidor desde tu terminal Linux: <code>ssh usuraio@servidor</code></p>
-<p>O desde Putty en Windows.</p>
-<p>Ejecuta el siguiente comando para ver los logs de <em>sshguard</em> en tiempo real: <code>journalctl -u sshguard -f</code></p>
-<p>Ahora, desde el cliente, intenta conectarte por SSH al servidor pero introduciendo un nombre de usuario incorrecto o una contraseña incorrecta.</p>
-<ul>
-<li>En los logs aparecerán estos intentos de conexión como ataques y se informará del bloqueo de esa IP. Adjunta captura de pantalla.</li>
-<li>Además, comprueba desde el cliente que, efectivamente, se te ha bloqueado el acceso y no te deja hacer un SSH al servidor. Adjunta captura de pantalla.</li>
-</ul>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Notas importantes</p>
-<p>Si en un principio ssguard no bloquea las IP, es posible que haya que informar al firewall con los siguientes comandos:
-<div class="highlight"><pre><span></span><code>iptables<span class="w"> </span>-N<span class="w"> </span>sshguard
-iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-m<span class="w"> </span>multiport<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--destination-ports<span class="w"> </span><span class="m">8022</span><span class="w"> </span>-j<span class="w"> </span>sshguard
-</code></pre></div></p>
-<p>Si sshguard, por lo que sea, os bloquea la IP permanentemente y no la desbloquea al cabo del tiempo que os indica, la podéis desbloquear a mano con el siguiente comando:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-F<span class="w"> </span>sshguard
-</code></pre></div>
-</div>
+<p>!!!task "Comprobación"
+    Conéctate por SSH al servidor desde tu terminal Linux: <code>ssh usuraio@servidor</code></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>O desde Putty en Windows.
+
+Ejecuta el siguiente comando para ver los logs de *sshguard* en tiempo real: `journalctl -u sshguard -f`
+
+Ahora, desde el cliente, intenta conectarte por SSH al servidor pero introduciendo un nombre de usuario incorrecto o una contraseña incorrecta.
+
+ + En los logs aparecerán estos intentos de conexión como ataques y se informará del bloqueo de esa IP. Adjunta captura de pantalla.
+ + Además, comprueba desde el cliente que, efectivamente, se te ha bloqueado el acceso y no te deja hacer un SSH al servidor. Adjunta captura de pantalla.
+</code></pre></div></td></tr></table></div>
+<p>!!!tip "Notas importantes"
+    Si en un principio ssguard no bloquea las IP, es posible que haya que informar al firewall con los siguientes comandos:
+    <code>bash
+    iptables -N sshguard
+    iptables -A INPUT -m multiport -p tcp --destination-ports 8022 -j sshguard</code></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Si sshguard, por lo que sea, os bloquea la IP permanentemente y no la desbloquea al cabo del tiempo que os indica, la podéis desbloquear a mano con el siguiente comando:
+
+```bash
+sudo iptables -F sshguard
+```
+</code></pre></div></td></tr></table></div>
 <h3 id="que-es-la-autenticacion-multifactor">¿Qué es la autenticación multifactor?</h3>
 <p>La autentificación multifactor (MFA) es un método en el que se proporciona acceso a un sistema o servicio solo después de que puedas demostrar que efectivamente eres tú quien dices ser. Lo harás presentando dos o más evidencias (o factores).</p>
 <p>Estos pueden ser una contraseña que tenga un código de verificación secundario, un certificado digital instalado en el equipo, una pregunta personal, etc. Está claro que cuantas más capas de protección pongas mejor vas a poder proteger tus cuentas.</p>
@@ -1127,29 +1155,28 @@ iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> 
 <h2 id="instalacion-y-configuracion-de-mfa-para-openssh">Instalación y configuración de MFA para OpenSSH</h2>
 <p>Ahora que ya hemos configurado SSH para no necesitar introducir el password cada vez que hagamos login, vamos a implementar el 2FA o segundo factor de autenticación para mayor seguridad. </p>
 <p>Esto es lo que se conoce como hacer <em>hardening</em> o fortificación de servidores.</p>
-<div class="admonition warning">
-<p class="admonition-title">Atención</p>
-<p>Vamos a conectarnos por SSH al servidor y vamos a realizar toda la configuración de esta práctica estando conectados por SSH.</p>
-<p>Si necesitáis hacer pruebas de nuevas conexiones, podéis abrir otra pestaña del terminal sin desconectaros.</p>
-</div>
+<p>!!!warning "Atención"
+    Vamos a conectarnos por SSH al servidor y vamos a realizar toda la configuración de esta práctica estando conectados por SSH.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Si necesitáis hacer pruebas de nuevas conexiones, podéis abrir otra pestaña del terminal sin desconectaros.
+</code></pre></div></td></tr></table></div>
 <p>Los pasos que se deben seguir son los siguientes:</p>
 <ol>
 <li>Hacer un update del sistema
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</code></pre></div></li>
+    <code>bash
+    sudo apt update</code></li>
 <li>Instalar el módulo de autenticación de Google para Ubuntu
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libpam-google-authenticator
-</code></pre></div></li>
+    <code>bash
+    sudo apt install libpam-google-authenticator</code></li>
 <li>
 <p>Una vez instalado, se ejecuta
-    <div class="highlight"><pre><span></span><code>google-authenticator
-</code></pre></div></p>
+    <code>bash
+    google-authenticator</code></p>
 <p>y os irá haciendo una serie de preguntas que debéis responder. La primera os pregunta si el código debe de cambiar aleatoriamente en el tiempo, a lo cual debéis responder sí. Os generará el código QR que debéis escanear con el móvil y los códigos de recuperación.</p>
-<p><img alt="" src="../img/ssh_qr.png" style="height:570px;width:800px" /></p>
+<p><img alt="" src="../img/ssh_qr.png" />{: style="height:570px;width:800px"}</p>
 </li>
 <li>
 <p>En la app Google-authenticator debéis darle al icono <strong><em>+</em></strong> y luego escanear el código QR que os ha aparecido antes
-    <img alt="" src="../img/ssh_authenticator.png" style="height:370px;width:200px" /></p>
+    <img alt="" src="../img/ssh_authenticator.png" />{: style="height:370px;width:200px"}</p>
 </li>
 <li>La siguiente os pregunta si queréis que actualice automáticamente el achivo google_authenticator, cosa necesaria para que funcione el 2FA, ergo debéis responder sí nuevamente
     <img alt="" src="../img/ssh_authenticator2.png" /></li>
@@ -1162,10 +1189,8 @@ iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> 
     <img alt="" src="../img/ssh_authenticator2.png" /></li>
 </ol>
 <h3 id="configurar-openssh">Configurar OpenSSH</h3>
-<div class="admonition warning">
-<p class="admonition-title">Nota importante</p>
-<p>Puesto que vamos a realizar cambios para SSH estando conectados por SSH, es muy importante no cerrar nunca la conexión SSH inicial para no correr el riesgo de perder el acceso al servidor.</p>
-</div>
+<p>!!!warning "Nota importante"
+    Puesto que vamos a realizar cambios para SSH estando conectados por SSH, es muy importante no cerrar nunca la conexión SSH inicial para no correr el riesgo de perder el acceso al servidor.</p>
 <p>Para hacer pruebas, estableceremos una nueva conexión SSH y cuando comprobemos que todo funciona, podrán cerrarse todas las sesiones.</p>
 <p>Ahora debemos configurar el servicio de autenticación de Linux para que sea consciente de que puede utilizar la autenticación de Google. Editamos <code>/etc/pam.d/sshd</code></p>
 <p>Y añadiremos al final del archivo la línea</p>
@@ -1190,11 +1215,10 @@ iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> 
 <img alt="" src="../img/ssh_authenticator12.png" /></p>
 <p>En el <strong>recuadro rojo</strong> podéis ver que se produce la <strong>autenticación mediante claves</strong>, resultando en una autenticación parcial.</p>
 <p>Quedaría la segunda parte, que se corresponde con la parte configurada como interactiva con el teclado (keyboard-interactive), que no es mas que introducir el <strong>código temporal de Google-authenticator</strong>, como os dice en el fragmento <strong>recuadrado en verde</strong>.</p>
-<div class="admonition task">
-<p class="admonition-title">Tarea</p>
-<p>Comprueba que te funciona este doble factor de autenticación.</p>
-<p>Adjunta unas capturas de pantallas, utilizando la opción “-v” e indica, recuadrándolo, dónde se puede ver que ha utilizado ambos factores de autenticación.</p>
-</div>
+<p>!!!task "Tarea"
+    Comprueba que te funciona este doble factor de autenticación.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta unas capturas de pantallas, utilizando la opción “-v” e indica, recuadrándolo, dónde se puede ver que ha utilizado ambos factores de autenticación.
+</code></pre></div></td></tr></table></div>
 <h3 id="anadiendo-un-tercer-factor-de-autenticacion">Añadiendo un tercer factor de autenticación</h3>
 <p>En la fase 3 hemos listado varios tipos de autenticación permitidas, en el archivo de configuración sshd_config:
 + Claves públicas (publickey)
@@ -1206,28 +1230,12 @@ iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> 
 <p>Y reiniciar el servicio.</p>
 <p>Después de esto, al intentar hacer el ssh, nos pedirá el password además del código de verificación.</p>
 <p><img alt="" src="../img/ssh_authenticator14.png" /></p>
-<div class="admonition task">
-<p class="admonition-title">Tarea</p>
-<p>Comprueba  que te funciona  correctamente el login con  los tres factores de autenticación.</p>
-<p>Adjunta una captura con la opción “-v” donde indiques, con un recuadro, dónde se están utilizando cada uno de los tres factores.</p>
-</div>
+<p>!!!task "Tarea"
+    Comprueba  que te funciona  correctamente el login con  los tres factores de autenticación.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta una captura con la opción “-v” donde indiques, con un recuadro, dónde se están utilizando cada uno de los tres factores.
+</code></pre></div></td></tr></table></div>
 <h2 id="referencias">Referencias</h2>
 <p><a href="https://wiki.archlinux.org/title/Sshguard#">SSHGUARD</a></p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:2">
-<p><a href="https://bugs.launchpad.net/ubuntu/+source/sshguard/+bug/1881459">Parece estar solucionado</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:1">
-<p><div class="highlight"><pre><span></span><code>useradd<span class="w"> </span>-m<span class="w"> </span>apellido
-passwd<span class="w"> </span>apellido
-usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>sudo<span class="w"> </span>apellido
-chsh<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>apellido
-</code></pre></div>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
 
 
 

@@ -772,27 +772,29 @@
 <p>Si un archivo tiene información confidencial que podamos leer, podremos usarlo para conseguir el acceso a la cuenta de root.</p>
 <p>Por otra parte, si nos topamos con un archivo de sistema sobre el que tenemos permisos de escritura, podremos modificar el comportamiento del sistema operativo y obtener acceso root de este modo.</p>
 <p>Algunos comandos útiles:</p>
-<p>Encontrar todos los archivos sobre los que tenemos permiso de escritura en <code>/etc</code>:
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/etc<span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-writable<span class="w"> </span>-type<span class="w"> </span>f
-</code></pre></div>
-Encontrar todos los archivos sobre los que tenemos permiso de lectura en <code>/etc</code>:
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/etc<span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-readable<span class="w"> </span>-type<span class="w"> </span>f
-</code></pre></div>
-Encontrar todos los directorios sobre los que tenemos permiso de escritura:
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/<span class="w"> </span>-executable<span class="w"> </span>-writable<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null
-</code></pre></div></p>
-<div class="admonition question">
-<p class="admonition-title">Task 3, 4 y 5 de THM</p>
-<p>El archivo <code>/etc/shadow</code> contiene los hashes de las contraseñas de usuario, y por de forma predeterminada no es legible por ningún usuario excepto root.</p>
-<p>Si podemos leer el contenido del archivo /etc/shadow, podríamos descifrar el hash de la contraseña del usuario root.</p>
-<p>Si pudiéramos modificar el archivo /etc/shadow, podemos reemplazar el hash de la contraseña del usuario raíz con uno que conocemos.</p>
-</div>
+<p>Encontrar todos los archivos sobre los que tenemos permiso de escritura en <code>/etc</code>:</p>
+<pre><code class="language-sh">$ find /etc -maxdepth 1 -writable -type f
+</code></pre>
+<p>Encontrar todos los archivos sobre los que tenemos permiso de lectura en <code>/etc</code>:</p>
+<pre><code class="language-sh">$ find /etc -maxdepth 1 -readable -type f
+</code></pre>
+<p>Encontrar todos los directorios sobre los que tenemos permiso de escritura:</p>
+<pre><code class="language-sh">$ find / -executable -writable -type d 2&gt; /dev/null
+</code></pre>
+<p>!!!Question "Task 3, 4 y 5 de THM"
+    El archivo <code>/etc/shadow</code> contiene los hashes de las contraseñas de usuario, y por de forma predeterminada no es legible por ningún usuario excepto root.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Si podemos leer el contenido del archivo /etc/shadow, podríamos descifrar el hash de la contraseña del usuario root.
+
+Si pudiéramos modificar el archivo /etc/shadow, podemos reemplazar el hash de la contraseña del usuario raíz con uno que conocemos.
+</code></pre></div></td></tr></table></div>
 <h3 id="secuencias-de-escape">Secuencias de escape</h3>
 <p>En la mayoría de ocasiones tenemos restricciones para ejecutar únicamente ciertos programas a través de sudo. No obstante, puede darse el caso de que pueda "escapar" del programa y generar una shell. </p>
 <p>Cuando un programa se ejecuta con privilegios de root, también lo hace la shell que genera, por lo que puedo intentar conseguir una shell a través de la ejecución de ese programa.</p>
 <p>Se puede consultar una lista de programas con sus secuencias de escape correspondientes en <a href="https://gtfobins.github.io/">GTFObins</a></p>
 <p>GTFOBins es un proyecto y una base de datos en línea que recopila técnicas de escalación de privilegios y explotación de aplicaciones en sistemas Unix/Linux mediante el uso de binarios legítimos que están preinstalados en muchas distribuciones. </p>
-<p>El nombre proviene de la expresión <em>GTFO</em> ("Get The F<em>*</em> Out") y <em>bins</em> (abreviatura de binarios).</p>
+<p>El nombre proviene de la expresión <em>GTFO</em> ("Get The F*<em><em> Out") y </em>bins</em> (abreviatura de binarios).</p>
 <h4 id="que-incluye-gtfobins">¿Qué incluye GTFOBins?</h4>
 <ol>
 <li>
@@ -810,17 +812,17 @@ Encontrar todos los directorios sobre los que tenemos permiso de escritura:
 <p>Procedimiento:</p>
 <ol>
 <li>
-<p>Listar los programas que un usuario tiene permitido ejecutar como <ins>sudo</ins>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>-l
-<span class="go">...</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/sbin/iftop</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/bin/find</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/bin/nano</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/bin/vim</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/bin/man</span>
-<span class="gp gp-VirtualEnv">(root)</span> <span class="go">NOPASSWD: /usr/bin/awk</span>
-<span class="go">...</span>
-</code></pre></div>
+<p>Listar los programas que un usuario tiene permitido ejecutar como ^^sudo^^:</p>
+<p><code>shell-session
+$ sudo -l
+...
+(root) NOPASSWD: /usr/sbin/iftop
+(root) NOPASSWD: /usr/bin/find
+(root) NOPASSWD: /usr/bin/nano
+(root) NOPASSWD: /usr/bin/vim
+(root) NOPASSWD: /usr/bin/man
+(root) NOPASSWD: /usr/bin/awk
+...</code></p>
 </li>
 <li>
 <p>Para cada programa de la lista, comprobar si existe una secuencia de escape en GTFObins</p>
@@ -829,46 +831,36 @@ Encontrar todos los directorios sobre los que tenemos permiso de escritura:
 <p>Si existe una secuencia de escape, ejecutar el programa con <strong>sudo</strong> e intentar utilizar dicha secuencia para desplegar una shell de root.</p>
 </li>
 </ol>
-<div class="admonition question">
-<p class="admonition-title">Task 6 de THM</p>
-<p>Obtén un terminal de root haciendo uso al menos de 3 secuencias de escape diferentes</p>
-</div>
+<p>!!!Question "Task 6 de THM"
+    Obtén un terminal de root haciendo uso al menos de 3 secuencias de escape diferentes</p>
 <h3 id="tareas-del-cron-y-permisos-de-archivos">Tareas del <a href="https://es.wikipedia.org/wiki/Cron_(Unix)">cron</a> y permisos de archivos</h3>
 <p>Las tareas programadas en el cron son programas o scripts cuyos usuarios pueden programar para que se ejecuten en momentos concretos o a intervalos.</p>
 <p>Las tareas del cron se ejecutan con el nivel de seguridad del usuario propietario de las mismas. Por defecto, las tareas del cron usan el terminal <code>/bin/bash</code> con determinadas limitaciones.</p>
 <p>La configuración de estas tareas se realiza en <em>crontab</em>. Los crontab de los usuarios suelen esar localizados en <code>/var/spool/cron/</code> o <code>/var/spool/cron/crontabs</code></p>
 <p>El crontab del sistema está ubicado en <code>/etc/crontab</code>.</p>
-<div class="admonition question">
-<p class="admonition-title">Task 8 de THM</p>
-<p>Consigue una shell de root aprovechándote de la mala configuración del crontab.</p>
-<div class="admonition info">
-<p class="admonition-title">Shell inversa</p>
-<p><a href="https://behacker.pro/que-es-shell-directa-y-shell-inversa-para-que-sirven/">Ayuda para entender los conceptos shell directa y shell inversa</a></p>
-</div>
-</div>
+<p>!!!Question "Task 8 de THM"
+    Consigue una shell de root aprovechándote de la mala configuración del crontab.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>!!!info &quot;Shell inversa&quot;
+    [Ayuda para entender los conceptos shell directa y shell inversa](https://behacker.pro/que-es-shell-directa-y-shell-inversa-para-que-sirven/)
+</code></pre></div></td></tr></table></div>
 <h3 id="archivos-de-historial">Archivos de historial</h3>
 <p>Los archivos de historial registran los comandos utilizados por los usuarios mientras están usando ciertos programas.</p>
 <p>Si un usuario escribe una contraseña como parte de un comando, esta contraseña puede almacenarse en un archivo de historial. Como atacante, siempre es una buena idea intentar cambiar al usuario root con un contraseña que ha sido revelada mediante este método..</p>
-<div class="admonition question">
-<p class="admonition-title">Task 16 de THM</p>
-<p>Consigue una shell de root aprovechándote del historial de comandos.</p>
-</div>
+<p>!!!Question "Task 16 de THM"
+    Consigue una shell de root aprovechándote del historial de comandos.</p>
 <h3 id="archivos-de-configuracion">Archivos de configuración</h3>
 <p>Muchos servicios y programas utilizan archivos de texto (config) para almacenar la configuración.</p>
 <p>Si un servicio necesita autenticarse en algo, puede almacenar las credenciales en un archivo de configuración a pesar de ser una muy mala práctica.</p>
 <p>Si se puede acceder a estos archivos de configuración y los usuarios privilegiados reutilizan las contraseñas que almacenan, es posible que podamos usarlos para iniciar sesión como ese usuario en otros servicios o sistemas.</p>
-<div class="admonition question">
-<p class="admonition-title">Task 17 de THM</p>
-<p>Consigue una shell de root aprovechándote de la información encontrada en algún archivo de configuración.</p>
-</div>
+<p>!!!Question "Task 17 de THM"
+    Consigue una shell de root aprovechándote de la información encontrada en algún archivo de configuración.</p>
 <h3 id="claves-ssh">Claves SSH</h3>
 <p>Se pueden utilizar claves SSH en lugar de contraseñas para autenticar a los usuarios mediante SSH.</p>
 <p>Las claves SSH vienen en pares: una clave privada y una clave pública. La clave privada siempre debe mantenerse en secreto.</p>
 <p>Si un usuario ha almacenado su clave privada de forma insegura, cualquiera que pueda leer la clave puede iniciar sesión en su cuenta usándola. </p>
-<div class="admonition question">
-<p class="admonition-title">Task 18 de THM</p>
-<p>Consigue una shell de root aprovechándote de las claves SSH del sistema.</p>
-</div>
+<p>!!!Question "Task 18 de THM"
+    Consigue una shell de root aprovechándote de las claves SSH del sistema.</p>
 <h2 id="escalada-de-privilegios-en-windows">Escalada de privilegios en Windows</h2>
 <p>En una escalada de privilegios en Windows nuestro objetivo será obtener una shell corriendo como Administrador o como el usuario SYSTEM.</p>
 <p>De igual forma que ocurría en Linux, una escalada de privilegios puede ser sencilla o necesitar un detalladísimo reconocimiento del sistema previamente comprometido. </p>
@@ -918,9 +910,7 @@ objetos):</p>
 </ul>
 <p>Si nuestro usuario tiene permiso para cambiar la configuración de un servicio que se ejecuta con privilegios de SYSTEM, podemos cambiar el ejecutable que utiliza el servicio por uno de nuestra propia cosecha.</p>
 <p>Potencial callejón sin salida: si se puede cambiar la configuración de un servicio pero no puede reiniciar el servicio, ¡no será posible escalar privilegios! </p>
-<div class="admonition question">
-<p class="admonition-title">Task 3 de THM</p>
-</div>
+<p>!!!Question "Task 3 de THM"</p>
 <h3 id="rutas-de-servicios-sin-entrecomillado">Rutas de servicios sin entrecomillado</h3>
 <p>Los ejecutables en Windows se pueden ejecutar sin usar su extensión (por ejemplo, "whoami.exe" se puede ejecutar con solo escribir "whoami").
 Algunos ejecutables aceptan argumentos separados por espacios, p.Ej.: someprog.exe arg1 arg2 arg3 ...</p>
@@ -930,40 +920,30 @@ Algunos ejecutables aceptan argumentos separados por espacios, p.Ej.: someprog.e
 <p>Para nosotros, esto obviamente ejecuta SomeProgram.exe. Para Windows, C:\Program podría ser el ejecutable, con dos argumentos: "Files\Algun" y "directorio\SomeProgram.exe"</p>
 <p>Windows resuelve esta ambigüedad comprobando cada una de las posibilidades por turno.</p>
 <p>Si podemos escribir en una ubicación que Windows compruebe antes del ejecutable real, podremos engañar al servicio para que lo ejecute.</p>
-<div class="admonition question">
-<p class="admonition-title">Task 4 de THM</p>
-<p>Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
-</div>
+<p>!!!Question "Task 4 de THM"
+    Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
 <h3 id="ejecutables-de-servicios-inseguros">Ejecutables de servicios inseguros</h3>
 <p>Si el ejecutable del servicio original es modificable por nuestro usuario, podemos simplemente reemplazarlo con el ejecutable de nuestra shell inversa.</p>
 <p>¡Recordad crear una copia de seguridad del ejecutable original si se trata de en un sistema real! </p>
-<div class="admonition question">
-<p class="admonition-title">Task 6 de THM</p>
-<p>Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
-</div>
+<p>!!!Question "Task 6 de THM"
+    Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
 <h3 id="credenciales-almacenadas">Credenciales almacenadas</h3>
 <p>Windows tiene el comando "<em>runas</em>" o "<em>Ejecutar como</em>" que permite a los usuarios ejecutar comandos con los privilegios de otros usuarios. Por lo general, esto requiere el conocimiento de la contraseña de esos usuarios.</p>
 <p>Sin embargo, Windows también permite a los usuarios guardar sus credenciales en el sistema y estas credenciales guardadas se pueden utilizar para que se omita este requisito. </p>
-<div class="admonition question">
-<p class="admonition-title">Task 10 de THM</p>
-<p>Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
-</div>
+<p>!!!Question "Task 10 de THM"
+    Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
 <h3 id="security-account-manager-sam">Security Account Manager (SAM)</h3>
 <p>Windows almacena hashes de contraseña en el Security Account Manager (SAM).</p>
 <p>Los hashes están cifrados con una clave que se puede encontrar en un archivo llamado SYSTEM.</p>
 <p>Si se tiene la capacidad de leer los archivos SAM y SYSTEM, se pueden extraer los hashes. Los archivos SAM y SYSTEM se encuentran en el directorio <code>C:\Windows\System32\config</code>.</p>
 <p>Estos archivos se bloquean mientras se ejecuta Windows. Sin embargo, podrían existir copias de seguridad de los archivos en los directorios <code>C:\Windows\Repair</code> o <code>C:\Windows\System32\config\RegBack</code>.</p>
-<div class="admonition question">
-<p class="admonition-title">Task 11 de THM</p>
-<p>Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
-</div>
+<p>!!!Question "Task 11 de THM"
+    Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
 <h3 id="tareas-programadas">Tareas programadas</h3>
 <p>Windows se puede configurar para ejecutar tareas en momentos concretos, periódicamente (por ejemplo, cada 5 minutos) o cuando se activa por algún evento (por ejemplo, un inicio de sesión de usuario).</p>
 <p>Las tareas generalmente se ejecutan con los privilegios del usuario que las creó, sin embargo los administradores pueden configurar tareas para que se ejecuten con los privilegios de otros usuarios, incluido SYSTEM.</p>
-<div class="admonition question">
-<p class="admonition-title">Task 13 de THM</p>
-<p>Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
-</div>
+<p>!!!Question "Task 13 de THM"
+    Obtén una shell de Administrador haciendo uso de esta escalada de privilegios.</p>
 
 
 

@@ -713,12 +713,14 @@
 <h1 id="reglas-sigma-y-su-relacion-con-incident-responseincident-management">Reglas Sigma y su relación con Incident Response/Incident Management</h1>
 <p>Las <strong>reglas Sigma</strong> son un estándar abierto para la definición de reglas de detección de amenazas en formato YAML/JSON, independiente de la plataforma de SIEM (Security Information and Event Management) o herramienta de análisis de logs. Estas reglas permiten describir patrones de comportamiento sospechosos o maliciosos en los registros de eventos, facilitando la detección de posibles incidentes de seguridad.</p>
 <p><a href="https://github.com/SigmaHQ/sigma">Según su propia definición</a>:</p>
-<div class="admonition quote">
-<p class="admonition-title">Cita</p>
-<p>Sigma es un formato de firma genérico y abierto que permite describir de forma sencilla eventos de logs relevantes. El formato de reglas es muy flexible, fácil de escribir y aplicable a cualquier tipo de archivo de registro.</p>
-<p>El objetivo principal de este proyecto es proporcionar una forma estructurada en la que los investigadores o analistas puedan describir los métodos de detección que han desarrollado y hacerlos compartibles con otros.</p>
-<p>Sigma es para los archivos de registro lo que Snort es para el tráfico de red y YARA para los archivos.</p>
-</div>
+<p>!!!quote "Cita"
+    Sigma es un formato de firma genérico y abierto que permite describir de forma sencilla eventos de logs relevantes. El formato de reglas es muy flexible, fácil de escribir y aplicable a cualquier tipo de archivo de registro.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>El objetivo principal de este proyecto es proporcionar una forma estructurada en la que los investigadores o analistas puedan describir los métodos de detección que han desarrollado y hacerlos compartibles con otros.
+
+Sigma es para los archivos de registro lo que Snort es para el tráfico de red y YARA para los archivos.
+</code></pre></div></td></tr></table></div>
 <h2 id="caracteristicas-principales-de-sigma">Características principales de Sigma</h2>
 <ol>
 <li><strong>Independencia de plataforma</strong>: Las reglas pueden ser convertidas a formatos nativos de diferentes SIEMs (como Splunk, Elasticsearch, QRadar, etc.) mediante herramientas como <strong>Sigma Converter</strong>.</li>
@@ -758,27 +760,27 @@
 </ul>
 <hr />
 <h2 id="ejemplo-de-una-regla-sigma-yaml">Ejemplo de una regla Sigma (YAML)</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suspicious PowerShell Execution</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Detects suspicious PowerShell command lines often used in attacks</span>
-<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental</span>
-<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Florian Roth</span>
-<span class="nt">logsource</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows</span>
-<span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">powershell</span>
-<span class="nt">detection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">CommandLine|contains</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;Invoke-Expression&#39;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;IEX&#39;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;DownloadString&#39;</span>
-<span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span>
-<span class="nt">falsepositives</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Legitimate PowerShell scripts using these commands</span>
-<span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="nt">tags</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.execution</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.t1059.001</span><span class="w">  </span><span class="c1"># MITRE ATT&amp;CK: Command-Line Interface - PowerShell</span>
-</code></pre></div>
+<pre><code class="language-yaml">title: Suspicious PowerShell Execution
+description: Detects suspicious PowerShell command lines often used in attacks
+status: experimental
+author: Florian Roth
+logsource:
+    product: windows
+    service: powershell
+detection:
+    selection:
+        CommandLine|contains:
+            - 'Invoke-Expression'
+            - 'IEX'
+            - 'DownloadString'
+    condition: selection
+falsepositives:
+    - Legitimate PowerShell scripts using these commands
+level: high
+tags:
+    - attack.execution
+    - attack.t1059.001  # MITRE ATT&amp;CK: Command-Line Interface - PowerShell
+</code></pre>
 <p>Beneficios para Incident Management</p>
 <ul>
 <li>
@@ -807,30 +809,30 @@
 <p>Siguiendo con la forma de uso de YAML para reglas Sigma, la sintaxis define varios campos obligatorios y opcionales que van en cada regla. Esto se puede resaltar utilizando la imagen:</p>
 <p><img alt="" src="../img/sigma1.png" /></p>
 <p>Utilicemos <a href="https://github.com/SigmaHQ/sigma/blob/master/rules/windows/wmi_event/sysmon_wmi_event_subscription.yml">un ejemplo de regla</a> de Suscripción a Eventos <a href="https://pandorafms.com/blog/es/que-es-wmi/">WMI</a> para definir los diferentes elementos de la sintaxis. </p>
-<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="c1">#Title of your rule</span>
-<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="c1">#Universally Unique Identifier (UUID) Generate one from https://www.uuidgenerator.net</span>
-<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="c1">#stage of your rule testing </span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="c1">#Details about the detection intensions of the rule.</span>
-<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="c1">#Who wrote the rule.</span>
-<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="c1">#When was the rule written.</span>
-<span class="nt">modified</span><span class="p">:</span><span class="w"> </span><span class="c1">#When was it updated</span>
-<span class="nt">logsource</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="c1">#Classification of the log data for detection</span>
-<span class="w">  </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="c1">#Source of the log data</span>
-<span class="nt">detection</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">FieldName1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Value</span><span class="w"> </span><span class="c1">#Search identifiers for the detection</span>
-<span class="w">    </span><span class="nt">FieldName2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Value</span>
-<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span><span class="w"> </span><span class="c1">#Action to be taken.</span>
-<span class="nt">fields</span><span class="p">:</span><span class="w"> </span><span class="c1">#List of associated fields that are important for the detection</span>
+<pre><code class="language-yaml">title: #Title of your rule
+id: #Universally Unique Identifier (UUID) Generate one from https://www.uuidgenerator.net
+status: #stage of your rule testing 
+description: #Details about the detection intensions of the rule.
+author: #Who wrote the rule.
+date: #When was the rule written.
+modified: #When was it updated
+logsource:
+  category: #Classification of the log data for detection
+  product: #Source of the log data
+detection:
+  selection:
+    FieldName1: Value #Search identifiers for the detection
+    FieldName2: Value
+  condition: selection #Action to be taken.
+fields: #List of associated fields that are important for the detection
 
-<span class="nt">falsepositives</span><span class="p">:</span><span class="w"> </span><span class="c1">#Any possible false positives that could trigger the rule.</span>
+falsepositives: #Any possible false positives that could trigger the rule.
 
-<span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span><span class="w"> </span><span class="c1">#Severity level of the detection rule.</span>
-<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="c1">#Associated TTPs from MITRE ATT&amp;CK</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.credential_access</span><span class="w"> </span><span class="c1">#MITRE Tactic</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.t1110</span><span class="w"> </span><span class="c1">#MITRE Technique</span>
-</code></pre></div>
+level: medium #Severity level of the detection rule.
+tags: #Associated TTPs from MITRE ATT&amp;CK
+  - attack.credential_access #MITRE Tactic
+  - attack.t1110 #MITRE Technique
+</code></pre>
 <ol>
 <li>
 <p><strong>Title:</strong> Nombra la regla en función de lo que se supone que debe detectar. Debe ser corto y claro.</p>
@@ -858,11 +860,11 @@
 </li>
 <li>
 <p><strong>Description:</strong> Proporciona más contexto sobre la regla y su propósito previsto. Se ha de ser lo más verborreico posible sobre la actividad maliciosa que se pretende detectar.</p>
-<div class="highlight"><span class="filename">WMI_Event_Suscription.yml</span><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WMI Event Subscription</span>
-<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0f06a3a5-6a09-413f-8743-e6cf35561297</span>
-<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Detects creation of WMI event subscription persistence method.</span>
-</code></pre></div>
+<p><code>yaml title="WMI_Event_Suscription.yml"
+title: WMI Event Subscription
+id: 0f06a3a5-6a09-413f-8743-e6cf35561297
+status: test
+description: Detects creation of WMI event subscription persistence method.</code></p>
 </li>
 <li>
 <p><strong>Logsource:</strong> Describe los datos de logs que se utilizarán para la detección. Consta de otros atributos opcionales:</p>
@@ -875,35 +877,35 @@
 <p>Ejemplo de uso:</p>
 <p>Supón que tienes una definición común de logs de Sysmon que quieres usar en muchas reglas:</p>
 <p>🔸 Archivo de definición (<code>logsource-definitions.yml</code> o similar):</p>
-<div class="highlight"><pre><span></span><code><span class="nt">sysmon_process_creation</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows</span>
-<span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sysmon</span>
-<span class="w">  </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process_creation</span>
-</code></pre></div>
+<p><code>yaml
+sysmon_process_creation:
+  product: windows
+  service: sysmon
+  category: process_creation</code></p>
 <p>🔸 Regla Sigma que usa esa definición:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suspicious Command Line</span>
-<span class="nt">logsource</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">definition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sysmon_process_creation</span>
-<span class="nt">detection</span><span class="p">:</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">WMI_Event_Suscription.yml</span><pre><span></span><code><span class="nt">logsource</span><span class="p">:</span>
-<span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows</span><span class="w">    </span>
-<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wmi_event</span><span class="w"> </span>
-</code></pre></div>
+<p><code>yaml
+title: Suspicious Command Line
+logsource:
+  definition: sysmon_process_creation
+detection:</code></p>
+<p><code>yaml title="WMI_Event_Suscription.yml"
+logsource:
+product: windows    
+category: wmi_event</code></p>
 </li>
 </ul>
 </li>
 <li>
 <p><strong>Detection:</strong> Un campo obligatorio en la regla de detección describe los parámetros de la actividad maliciosa para la que necesitamos una alerta. Los parámetros se dividen en dos partes principales: los identificadores de búsqueda - los campos y valores que la detección debe buscar - y la expresión de la condición - que establece la acción a tomar en la detección, como la selección o el filtrado. Lo veremos más adelante.</p>
 <p>Esta regla tiene un modificador de detección que busca registros con uno de los Windows Event IDs 19, 20 o 21. La condición informa al motor de detección para que busque y seleccione los registros identificados.</p>
-<div class="highlight"><span class="filename">WMI_Event_Suscription.yml</span><pre><span></span><code><span class="w">    </span><span class="nt">detection</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">EventID</span><span class="p">:</span><span class="w">  </span><span class="c1"># This shows the search identifier value</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span><span class="w">    </span><span class="c1"># This shows the search&#39;s list value</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
-<span class="w">      </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span>
-</code></pre></div>
+<p><code>yaml title="WMI_Event_Suscription.yml"
+    detection:
+      selection:
+          EventID:  # This shows the search identifier value
+          - 19    # This shows the search's list value
+          - 20
+          - 21
+      condition: selection</code></p>
 </li>
 <li>
 <p><strong>FalsePositives:</strong> Una lista de falsos positivos conocidos que pueden ocurrir, basados en los datos de los logs</p>
@@ -911,40 +913,43 @@
 <li><strong>Level:</strong> Severidad de la actividad detectada: Informational --&gt; Low --&gt; Medium --&gt; High --&gt; Critical</li>
 <li>
 <p><strong>Tags:</strong> Añaden información que puede usarse para categorizar la regla. Pueden incluir valores de CVE y TTP del framework MITRE ATT&amp;CK. Los desarrolladores de Sigma tiene una <a href="https://github.com/SigmaHQ/sigma-specification/blob/main/appendix/sigma-tags-appendix.md">lista</a> de tags predefinidos.</p>
-<div class="highlight"><span class="filename">WMI_Event_Suscription.yml</span><pre><span></span><code><span class="nt">falsepositives</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exclude legitimate (vetted) use of WMI event subscription in your network</span>
-
-<span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
-
-<span class="nt">tags</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.persistence</span><span class="w"> </span><span class="c1"># Points to the MITRE tactic.</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.t1546.003</span><span class="w">   </span><span class="c1"># Points to the MITRE technique.    </span>
-</code></pre></div>
+<p>```yaml title="WMI_Event_Suscription.yml"
+falsepositives:
+    - Exclude legitimate (vetted) use of WMI event subscription in your network</p>
+<p>level: medium</p>
+<p>tags:
+- attack.persistence # Points to the MITRE tactic.
+- attack.t1546.003   # Points to the MITRE technique.  <br />
+```</p>
 </li>
 </ol>
 <h2 id="identificadores-de-busqueda-y-expresiones-condicionales">Identificadores de búsqueda y expresiones condicionales</h2>
 <p>Como ya se ha mencionado, la sección de detection de la regla describe lo que se pretende buscar dentro de los datos de registro y cómo se van a evaluar la selección y los filtros. La definición de los identificadores de búsqueda puede comprender dos estructuras de datos -listas y mapas- que dictan el orden en que se procesará la detección.</p>
 <p>Cuando los identificadores se proporcionan mediante listas, se presentarán mediante cadenas enlazadas con una operación lógica <em>«OR»</em>. Principalmente, se enumerarán utilizando guiones (-). </p>
 <p>Por ejemplo, a continuación, podemos ver un extracto de la regla Netcat Powershell Version donde la detección se escribe para que coincida en el campo <code>HostApplication</code> que contiene <em>“powercat”</em> o <em>“powercat.ps1”</em> como valor.</p>
-<div class="highlight"><span class="filename">Posh_PC_Powercat.yml</span><pre><span></span><code><span class="nt">detection</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">HostApplication|contains</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;powercat&#39;</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;powercat.ps1&#39;</span>
-<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span><span class="w">     </span>
-</code></pre></div>
-<p>Por otro lado, los mapas comprenden pares clave/valor en los que la clave coincide con un campo de los datos del registro, mientras que el valor presentado es una cadena o un valor numérico que debe buscarse en el registro. Los mapas siguen una operación lógica <em>«AND»</em>.</p>
-<p>Como ejemplo, podemos ver la regla de registro Clear Linux donde el término de <code>selection</code> forma el mapa, y la regla intenta buscar en <code>Image|endswith</code> cualquiera de los valores listados, y <code>CommandLine</code> contiene cualquiera de los valores listados. Este ejemplo muestra cómo los mapas y las listas pueden usarse juntos cuando se desarrollan detecciones. Debe tenerse en cuenta que <code>endswith</code> y <code>contains</code> son modificadores de valor, y que se utilizan dos listas para los valores de búsqueda, donde uno de cada grupo tiene que coincidir para que la regla inicie una alerta.</p>
-<div class="highlight"><span class="filename">Process_Creation_Lnx_Clear_Logs.yml</span><pre><span></span><code><span class="nt">detection</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">Image|endswith</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/rm&#39;</span><span class="w"> </span><span class="c1"># covers /rmdir as well</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/shred&#39;</span>
-<span class="w">    </span><span class="nt">CommandLine|contains</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/var/log&#39;</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/var/spool/mail&#39;</span>
-<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span>
-</code></pre></div>
+<p>```yaml title="Posh_PC_Powercat.yml"
+detection:
+  selection:
+    HostApplication|contains:
+         - 'powercat'
+         - 'powercat.ps1'
+  condition: selection     </p>
+<pre><code>
+Por otro lado, los mapas comprenden pares clave/valor en los que la clave coincide con un campo de los datos del registro, mientras que el valor presentado es una cadena o un valor numérico que debe buscarse en el registro. Los mapas siguen una operación lógica *«AND»*.
+
+Como ejemplo, podemos ver la regla de registro Clear Linux donde el término de `selection` forma el mapa, y la regla intenta buscar en `Image|endswith` cualquiera de los valores listados, y `CommandLine` contiene cualquiera de los valores listados. Este ejemplo muestra cómo los mapas y las listas pueden usarse juntos cuando se desarrollan detecciones. Debe tenerse en cuenta que `endswith` y `contains` son modificadores de valor, y que se utilizan dos listas para los valores de búsqueda, donde uno de cada grupo tiene que coincidir para que la regla inicie una alerta.
+
+```yaml title=&quot;Process_Creation_Lnx_Clear_Logs.yml&quot;
+detection:
+  selection:
+    Image|endswith:
+         - '/rm' # covers /rmdir as well
+         - '/shred'
+    CommandLine|contains:
+         - '/var/log'
+         - '/var/spool/mail'
+  condition: selection
+</code></pre>
 <p>Ya que hemos mencionado el modificador de valor, vale la pena señalar que se añaden después del nombre del campo con un carácter de tubería <code>|</code>, y hay dos tipos de modificadores de valor:</p>
 <ul>
 <li>
@@ -969,121 +974,148 @@
 </li>
 </ul>
 <p>Un ejemplo de estos valores condicionales puede verse en el siguiente extracto de la regla Copia remota de archivos, donde la detección busca cualquier de estas herramientas: <code>scp</code>, <code>rsync</code> o <code>sftp</code> y con cualquier de estos filtros <code>@</code>o <code>:</code>.</p>
-<p><div class="highlight"><span class="filename">Remote_File_Copy.yml</span><pre><span></span><code><span class="nt">detection</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">tools</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;scp&#39;</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;rsync&#39;</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;sftp&#39;</span>
-<span class="w">  </span><span class="nt">filter</span><span class="p">:</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@&#39;</span>
-<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;:&#39;</span>
-<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tools and filter</span>
-</code></pre></div>
-Esto podría detectar comandos que usen SCP, RSYNC o SFTP y que contengan caracteres típicos en rutas o direcciones remotas, como user@host: que es común en SCP o RSYNC.</p>
-<p>Ejemplo de línea de comando detectada:</p>
-<div class="highlight"><pre><span></span><code><span class="go">scp user@remotehost:/path/to/file /local/dir</span>
-</code></pre></div>
+<p>```yaml title="Remote_File_Copy.yml"
+detection:
+  tools:
+         - 'scp'
+         - 'rsync'
+         - 'sftp'
+  filter:
+         - '@'
+         - ':'
+  condition: tools and filter</p>
+<pre><code>Esto podría detectar comandos que usen SCP, RSYNC o SFTP y que contengan caracteres típicos en rutas o direcciones remotas, como user@host: que es común en SCP o RSYNC.
+
+Ejemplo de línea de comando detectada:
+
+```console
+scp user@remotehost:/path/to/file /local/dir
+</code></pre>
 <p>Otro ejemplo para mostrar una combinación de las expresiones condicionales se puede ver en el siguiente extracto de la regla Run Once Persistence Registry Event, donde la detección trata de buscar valores en el mapa que empiecen y terminen con varios valores del registro, a la vez que filtra las entradas de Google Chrome y Microsoft Edge que levantarían alertas de falsos positivos.</p>
-<p><div class="highlight"><span class="filename">Registry_Event_RunOnce_Persistence.yml</span><pre><span></span><code><span class="nt">detection</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">TargetObject|startswith</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;HKLM\SOFTWARE\Microsoft\Active</span><span class="nv"> </span><span class="s">Setup\Installed</span><span class="nv"> </span><span class="s">Components&#39;</span>
-<span class="w">    </span><span class="nt">TargetObject|endswith</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\StubPath&#39;</span>
-<span class="w">  </span><span class="nt">filter_chrome</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">Details|startswith</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&quot;C:\Program</span><span class="nv"> </span><span class="s">Files\Google\Chrome\Application\&#39;</span>
-<span class="w">    </span><span class="nt">Details|endswith</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\Installer\chrmstp.exe&quot;</span><span class="nv"> </span><span class="s">--configure-user-settings</span><span class="nv"> </span><span class="s">--verbose-logging</span><span class="nv"> </span><span class="s">--system-level&#39;</span>
-<span class="w">  </span><span class="nt">filter_edge</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">Details|startswith</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;&quot;C:\Program</span><span class="nv"> </span><span class="s">Files</span><span class="nv"> </span><span class="s">(x86)\Microsoft\Edge\Application\&#39;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;&quot;C:\Program</span><span class="nv"> </span><span class="s">Files\Microsoft\Edge\Application\&#39;</span>
-<span class="w">    </span><span class="nt">Details|endswith</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;\Installer\setup.exe&quot;</span><span class="nv"> </span><span class="s">--configure-user-settings</span><span class="nv"> </span><span class="s">--verbose-logging</span><span class="nv"> </span><span class="s">--system-level</span><span class="nv"> </span><span class="s">--msedge</span><span class="w"> </span>
-<span class="w">    </span><span class="s">--channel=stable&#39;</span>
-<span class="w">  </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection and not 1 of filter_*</span>
-</code></pre></div>
-Esta regla busca detectar modificaciones en claves específicas del registro de Windows que puedan indicar cambios en la configuración de programas instalados, pero excluye intencionadamente los eventos legítimos generados por instaladores oficiales de Chrome o Edge (porque esos también modifican esas claves pero no son maliciosos).</p>
-<div class="admonition task">
-<p class="admonition-title">Responde a las preguntas</p>
-<ol>
-<li>¿Qué nivel de estado puede llevar a falsos resultados o ser <em>ruidoso</em> pero también puede identificar eventos interesantes?</li>
-<li>Las reglas de detección poseen dos elementos principales: ____ y las expresiones condicionales.</li>
-<li>¿Qué dos estructuras de datos se usan para los identificadores de búsqueda?</li>
-</ol>
-</div>
-<h2 id="escritura-de-reglas-y-conversion">Escritura de reglas y conversión</h2>
-<p>Después de repasar la sintaxis básica de las reglas Sigma, es crucial entender cómo escribirlas basándose en una investigación de amenazas. Como analista SOC, se debe pasar por el proceso de reflexión de desarrollar la detección y escribir las reglas apropiadas para nuestro entorno. </p>
-<h3 id="escenario">Escenario</h3>
-<p>Los administradores confían en las herramientas remotas para asegurarse de que los dispositivos están configurados, parcheados y mantenidos. Sin embargo, el SOC Manager acaba de recibir y compartir información sobre cómo AnyDesk, una herramienta remota legítima, puede descargarse e instalarse silenciosamente en la máquina de un usuario utilizando la el archivo descirot en la imagen de abajo. (Fuente: <a href="https://twitter.com/TheDFIRReport/status/1423361127472377860?s=20&amp;t=mHiJFnlfWH3cO3XdXEQo_Q">TheDFIRReport</a>).</p>
-<p><img alt="" src="../img/sigma23.png" /></p>
-<p>Como analista SOC, se nos ha encargado que analice la información y escribamos una regla Sigma para detectar la instalación de AnyDesk en dispositivos Windows.</p>
-<h4 id="paso-1-analisis-de-intel">Paso 1: Análisis de Intel</h4>
-<p>La intel compartida nos muestra mucha información y comandos para descargar e instalar AnyDesk. Un adversario podría empaquetar esto en un ejecutable malicioso enviado a un usuario desprevenido a través de un correo electrónico de phishing. Podemos empezar a seleccionar valores que serían importantes para detectar cualquier caso de instalación.</p>
-<ul>
-<li>URL de origen: Marca la fuente de descarga del software, especificada por la variable $url.</li>
-<li>Archivo de destino: El adversario buscaría identificar un directorio de destino para la descarga. Esto está marcado por la variable $file.</li>
-<li>Comando de instalación: De la inteligencia, podemos ver que varias instancias de CMD.exe están siendo usadas para instalar y establecer una contraseña de usuario por el script. A partir de esto, podemos elegir los atributos de instalación como <code>--install</code>, <code>--start-with-win</code> y <code>--silent</code>.</li>
-</ul>
-<p>Otros datos esenciales de la inteligencia serían:</p>
-<ul>
-<li>Persistencia del adversario: El adversario trataría de mantener el acceso a la máquina de la víctima. En este caso, crearía una cuenta de usuario <code>oldadministrator</code> y le daría privilegios elevados para ejecutar otras tareas.</li>
-<li>Edición del registro: También podemos identificar la edición del registro, donde el usuario añadido se añade a una lista de usuarios <code>SpecialAccounts</code>.</li>
-</ul>
-<p>Con esta información, podemos evaluar la creación de una regla que ayude a detectar cuándo se ha producido una instalación.</p>
-<h4 id="paso-2-identificacion-de-regla">Paso 2: Identificación de regla</h4>
-<p>Podemos empezar a construir nuestra regla rellenando las secciones Title y Description, dada la información de que estamos buscando una instalación de la herramienta remota AnyDesk. Establezcamos también el estado como <code>experimental</code>, ya que esta regla se probará internamente.</p>
-<div class="highlight"><span class="filename">Process_Creation_AnyDesk_Installation.yml</span><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnyDesk Installation</span>
-<span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experimental</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnyDesk Remote Desktop installation can be used by attacker to gain remote access.</span>
-</code></pre></div>
+<p>```yaml title="Registry_Event_RunOnce_Persistence.yml"
+detection:
+  selection:
+    TargetObject|startswith: 'HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components'
+    TargetObject|endswith: '\StubPath'
+  filter_chrome:
+    Details|startswith: '"C:\Program Files\Google\Chrome\Application\'
+    Details|endswith: '\Installer\chrmstp.exe" --configure-user-settings --verbose-logging --system-level'
+  filter_edge:
+    Details|startswith:
+    - '"C:\Program Files (x86)\Microsoft\Edge\Application\'
+    - '"C:\Program Files\Microsoft\Edge\Application\'
+    Details|endswith: '\Installer\setup.exe" --configure-user-settings --verbose-logging --system-level --msedge 
+    --channel=stable'
+  condition: selection and not 1 of filter_*</p>
+<pre><code>Esta regla busca detectar modificaciones en claves específicas del registro de Windows que puedan indicar cambios en la configuración de programas instalados, pero excluye intencionadamente los eventos legítimos generados por instaladores oficiales de Chrome o Edge (porque esos también modifican esas claves pero no son maliciosos).
+
+!!!task &quot;Responde a las preguntas&quot;
+
+    1. ¿Qué nivel de estado puede llevar a falsos resultados o ser *ruidoso* pero también puede identificar eventos interesantes?
+    2. Las reglas de detección poseen dos elementos principales: ____ y las expresiones condicionales.
+    3. ¿Qué dos estructuras de datos se usan para los identificadores de búsqueda?
+
+## Escritura de reglas y conversión
+
+Después de repasar la sintaxis básica de las reglas Sigma, es crucial entender cómo escribirlas basándose en una investigación de amenazas. Como analista SOC, se debe pasar por el proceso de reflexión de desarrollar la detección y escribir las reglas apropiadas para nuestro entorno. 
+
+### Escenario
+
+Los administradores confían en las herramientas remotas para asegurarse de que los dispositivos están configurados, parcheados y mantenidos. Sin embargo, el SOC Manager acaba de recibir y compartir información sobre cómo AnyDesk, una herramienta remota legítima, puede descargarse e instalarse silenciosamente en la máquina de un usuario utilizando la el archivo descirot en la imagen de abajo. (Fuente: [TheDFIRReport](https://twitter.com/TheDFIRReport/status/1423361127472377860?s=20&amp;t=mHiJFnlfWH3cO3XdXEQo_Q)).
+
+![](./img/sigma23.png)
+
+Como analista SOC, se nos ha encargado que analice la información y escribamos una regla Sigma para detectar la instalación de AnyDesk en dispositivos Windows.
+
+
+#### Paso 1: Análisis de Intel
+
+La intel compartida nos muestra mucha información y comandos para descargar e instalar AnyDesk. Un adversario podría empaquetar esto en un ejecutable malicioso enviado a un usuario desprevenido a través de un correo electrónico de phishing. Podemos empezar a seleccionar valores que serían importantes para detectar cualquier caso de instalación.
+
++ URL de origen: Marca la fuente de descarga del software, especificada por la variable $url.
++ Archivo de destino: El adversario buscaría identificar un directorio de destino para la descarga. Esto está marcado por la variable $file.
++ Comando de instalación: De la inteligencia, podemos ver que varias instancias de CMD.exe están siendo usadas para instalar y establecer una contraseña de usuario por el script. A partir de esto, podemos elegir los atributos de instalación como `--install`, `--start-with-win` y `--silent`.
+
+Otros datos esenciales de la inteligencia serían:
+
++ Persistencia del adversario: El adversario trataría de mantener el acceso a la máquina de la víctima. En este caso, crearía una cuenta de usuario `oldadministrator` y le daría privilegios elevados para ejecutar otras tareas.
++ Edición del registro: También podemos identificar la edición del registro, donde el usuario añadido se añade a una lista de usuarios `SpecialAccounts`.
+
+Con esta información, podemos evaluar la creación de una regla que ayude a detectar cuándo se ha producido una instalación.
+
+#### Paso 2: Identificación de regla
+
+Podemos empezar a construir nuestra regla rellenando las secciones Title y Description, dada la información de que estamos buscando una instalación de la herramienta remota AnyDesk. Establezcamos también el estado como `experimental`, ya que esta regla se probará internamente.
+
+```yaml title=&quot; Process_Creation_AnyDesk_Installation.yml&quot;
+title: AnyDesk Installation
+status: experimental
+description: AnyDesk Remote Desktop installation can be used by attacker to gain remote access.
+</code></pre>
 <h4 id="paso-3-fuente-de-logs">Paso 3: Fuente de logs</h4>
 <p>Según nuestra información, los dispositivos Windows serían nuestro objetivo víctima. Windows Eventlog y Sysmon proporcionan eventos como la creación de procesos y la creación de archivos. Nuestro caso se centra en la creación de un proceso de instalación, por lo que nuestra categoría logsource es <code>process_creation</code>.</p>
-<div class="highlight"><span class="filename">Process_Creation_AnyDesk_Installation.yml</span><pre><span></span><code><span class="nt">logsource</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">process_creation</span>
-<span class="w">    </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows</span>
-</code></pre></div>
-<h4 id="paso-4-detection-description">Paso 4: Detection Description</h4>
-<p>La sección <em>detection</em> de nuestra regla es la parte esencial. La información derivada de la inteligencia definirá lo que necesitamos detectar en nuestro entorno. Para la instalación de AnyDesk, anotamos los comandos de instalación que usaría el adversario que contiene las cadenas: <code>install</code>, y <code>start-with-win</code>. Por lo tanto, podemos escribir nuestros identificadores de búsqueda como se indica a continuación con los modificadores <code>contains</code> y <code>all</code> para indicar que la regla coincidirá con todos esos valores.</p>
-<p>Además, podemos incluir la búsqueda del directorio actual desde el que se ejecutarán los comandos, <code>C:\ProgramData\AnyDesk.exe</code></p>
-<p>Para nuestra expresión de condición, esto evalúa la selección de nuestra detección.</p>
-<div class="highlight"><span class="filename">Process_Creation_AnyDesk_Installation.yml</span><pre><span></span><code><span class="nt">detection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">selection</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">CommandLine|contains|all</span><span class="p">:</span><span class="w"> </span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;--install&#39;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;--start-with-win&#39;</span>
-<span class="w">        </span><span class="nt">CurrentDirectory|contains</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;C:\ProgramData\AnyDesk.exe&#39;</span>
-<span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">selection</span>
-</code></pre></div>
+<p>```yaml title="Process_Creation_AnyDesk_Installation.yml"
+logsource:
+    category: process_creation
+    product: windows</p>
+<pre><code>
+#### Paso 4: Detection Description
+
+La sección *detection* de nuestra regla es la parte esencial. La información derivada de la inteligencia definirá lo que necesitamos detectar en nuestro entorno. Para la instalación de AnyDesk, anotamos los comandos de instalación que usaría el adversario que contiene las cadenas: `install`, y `start-with-win`. Por lo tanto, podemos escribir nuestros identificadores de búsqueda como se indica a continuación con los modificadores `contains` y `all` para indicar que la regla coincidirá con todos esos valores.
+
+Además, podemos incluir la búsqueda del directorio actual desde el que se ejecutarán los comandos, `C:\ProgramData\AnyDesk.exe`
+
+Para nuestra expresión de condición, esto evalúa la selección de nuestra detección.
+
+```yaml title=&quot;Process_Creation_AnyDesk_Installation.yml&quot;
+detection:
+    selection:
+        CommandLine|contains|all: 
+            - '--install'
+            - '--start-with-win'
+        CurrentDirectory|contains:
+            - 'C:\ProgramData\AnyDesk.exe'
+    condition: selection
+</code></pre>
 <h4 id="paso-5-metadatos-de-la-regla">Paso 5: Metadatos de la regla</h4>
 <p>Después de añadir los pedazos de información necesarios y vitales a nuestra regla, podemos añadir otra información útil a bajo nivel, etiquetas, referencias y falsos positivos. Podemos hacer referencia a la táctica MITRE ATT&amp;CK Command and Control y su correspondiente técnica <a href="https://attack.mitre.org/techniques/T1219/">T1219</a> para las etiquetas.</p>
 <p>Con esto, tenemos nuestra regla, que ahora podemos convertir a la consulta SIEM de nuestra elección y probar la detección.</p>
-<div class="highlight"><span class="filename">Process_Creation_AnyDesk_Installation.yml</span><pre><span></span><code><span class="nt">falsepositives</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Legitimate deployment of AnyDesk</span>
-<span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="nt">references</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://twitter.com/TheDFIRReport/status/1423361119926816776?s=20</span>
-<span class="nt">tags</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.command_and_control</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attack.t1219</span>
-</code></pre></div>
-<h3 id="conversion-de-regla">Conversión de regla</h3>
-<p>Las reglas Sigma necesitan ser convertidas al SIEM apropiado que esté siendo utilizado para almacenar todos los logs. Usando la regla que hemos escrito anteriormente, ahora vamos a aprender a utilizar las herramientas sigmac y uncoder.io para convertirlas en consultas ElasticSearch y Splunk.</p>
-<h4 id="sigmac">Sigmac</h4>
-<p><a href="https://github.com/SigmaHQ/sigma/tree/8bb3379b6807610d61d29db1d76f5af4840b8208/tools">Sigmac</a> es una herramienta escrita en Python que convierte las reglas Sigma comparando los valores de los campos de origen del registro de detección con los campos apropiados del backend SIEM. Como parte del repositorio de Sigma (se recomienda clonar el repositorio para obtener la herramienta y todas las reglas disponibles publicadas por el equipo de Sigma), esta herramienta permite una conversión rápida y sencilla de las reglas Sigma desde la línea de comandos. A continuación se muestra un fragmento de cómo utilizar la herramienta a través de su comando de ayuda, y mostraremos la sintaxis básica de uso de la herramienta convirtiendo la regla AnyDesk que hemos escrito a la consulta Splunk.</p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Sigmac quedó obsoleto a finales de 2022, y sus creadores se han centrado en <code>sigma-cli</code> que también es capaz de realizar conversión de reglas entre otras cosas.</p>
-</div>
-<p><img alt="" src="../img/sigma3.png" /></p>
-<p>Las principales opciones que se pueden utilizar son:</p>
-<ul>
-<li>-t: Establece el backend SIEM objetivo para el que desea obtener consultas (Elasticsearch, Splunk, QRadar, ElastAlert).</li>
-<li>-c: Establece el archivo de configuración utilizado para la conversión. El archivo gestiona las asignaciones de campos entre la regla y el entorno SIEM de destino, garantizando que los campos necesarios sean correctos para realizar investigaciones en su entorno.</li>
-<li>--opción backend: Permite pasar un archivo de configuración de backend o modificaciones individuales que dictan las opciones de alerta para el entorno SIEM de destino. Por ejemplo, en ElasticSearch, podemos especificar propiedades de campo específicas para que sean nuestro keyword_field primario en el que buscar, como los campos que terminan en <code>.keyword</code> o <code>.security</code> a continuación:</li>
-</ul>
-<p><div class="highlight"><span class="filename">Sigmac ElasticSearch Conversion</span><pre><span></span><code>python3.9<span class="w"> </span>sigmac<span class="w"> </span>-t<span class="w"> </span>es-qs<span class="w"> </span>-c<span class="w"> </span>tools/config/winlogbeat.yml<span class="w"> </span>--backend-option<span class="w"> </span><span class="nv">keyword_field</span><span class="o">=</span><span class="s2">&quot;.keyword&quot;</span><span class="w"> </span>--backend-option<span class="w"> </span><span class="nv">analyzed_sub_field_name</span><span class="o">=</span><span class="s2">&quot;.security&quot;</span><span class="w"> </span>../rules/windows/sysmon/sysmon_accessing_winapi_in_powershell_credentials_dumping.yml
-</code></pre></div>
-Puede encontrar más información en la documentación de Sigmac. Podemos convertir nuestra regla de instalación de AnyDesk en una alerta de Splunk como se muestra a continuación:</p>
-<p><div class="highlight"><span class="filename">Sigmac Splunk Conversion</span><pre><span></span><code>python3.9<span class="w"> </span>sigmac<span class="w"> </span>-t<span class="w"> </span>splunk<span class="w"> </span>-c<span class="w"> </span>splunk-windows<span class="w"> </span>Process_Creation_AnyDesk_Installation.yml
-</code></pre></div>
+<p>```yaml title="Process_Creation_AnyDesk_Installation.yml"
+falsepositives:
+    - Legitimate deployment of AnyDesk
+level: high
+references:
+    - https://twitter.com/TheDFIRReport/status/1423361119926816776?s=20
+tags:
+    - attack.command_and_control
+    - attack.t1219</p>
+<pre><code>
+### Conversión de regla
+
+Las reglas Sigma necesitan ser convertidas al SIEM apropiado que esté siendo utilizado para almacenar todos los logs. Usando la regla que hemos escrito anteriormente, ahora vamos a aprender a utilizar las herramientas sigmac y uncoder.io para convertirlas en consultas ElasticSearch y Splunk.
+
+#### Sigmac
+
+[Sigmac](https://github.com/SigmaHQ/sigma/tree/8bb3379b6807610d61d29db1d76f5af4840b8208/tools) es una herramienta escrita en Python que convierte las reglas Sigma comparando los valores de los campos de origen del registro de detección con los campos apropiados del backend SIEM. Como parte del repositorio de Sigma (se recomienda clonar el repositorio para obtener la herramienta y todas las reglas disponibles publicadas por el equipo de Sigma), esta herramienta permite una conversión rápida y sencilla de las reglas Sigma desde la línea de comandos. A continuación se muestra un fragmento de cómo utilizar la herramienta a través de su comando de ayuda, y mostraremos la sintaxis básica de uso de la herramienta convirtiendo la regla AnyDesk que hemos escrito a la consulta Splunk.
+
+!!!note &quot;Nota&quot;
+     Sigmac quedó obsoleto a finales de 2022, y sus creadores se han centrado en `sigma-cli` que también es capaz de realizar conversión de reglas entre otras cosas.
+
+![](./img/sigma3.png)
+
+Las principales opciones que se pueden utilizar son:
+
++ -t: Establece el backend SIEM objetivo para el que desea obtener consultas (Elasticsearch, Splunk, QRadar, ElastAlert).
++ -c: Establece el archivo de configuración utilizado para la conversión. El archivo gestiona las asignaciones de campos entre la regla y el entorno SIEM de destino, garantizando que los campos necesarios sean correctos para realizar investigaciones en su entorno.
++ --opción backend: Permite pasar un archivo de configuración de backend o modificaciones individuales que dictan las opciones de alerta para el entorno SIEM de destino. Por ejemplo, en ElasticSearch, podemos especificar propiedades de campo específicas para que sean nuestro keyword_field primario en el que buscar, como los campos que terminan en `.keyword` o `.security` a continuación:
+
+```bash title=&quot;Sigmac ElasticSearch Conversion&quot;
+python3.9 sigmac -t es-qs -c tools/config/winlogbeat.yml --backend-option keyword_field=&quot;.keyword&quot; --backend-option analyzed_sub_field_name=&quot;.security&quot; ../rules/windows/sysmon/sysmon_accessing_winapi_in_powershell_credentials_dumping.yml
+
+</code></pre>
+<p>Puede encontrar más información en la documentación de Sigmac. Podemos convertir nuestra regla de instalación de AnyDesk en una alerta de Splunk como se muestra a continuación:</p>
+<p><code>bash title="Sigmac Splunk Conversion"
+python3.9 sigmac -t splunk -c splunk-windows Process_Creation_AnyDesk_Installation.yml</code>
 Existe una biblioteca de Python que hace las veces de reemplazo de Sigmac, <a href="https://github.com/SigmaHQ/pySigma">pySigma</a></p>
 <h4 id="uncoderio">Uncoder.io</h4>
 <p><a href="http://uncoder.io">Uncoder.io</a> es un conversor Sigma en línea para numerosas plataformas SIEM y EDR. Es fácil de usar, ya que le permite copiar su regla Sigma en la plataforma y seleccionar su aplicación backend preferida para la traducción. Tenga en cuenta que, con las últimas actualizaciones, es necesario crear una cuenta gratuita en el sitio web uncoder.io.</p>
