@@ -3,13 +3,15 @@ title: Datasets de Hugging Face
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# 📘 Hugging Face Datasets: Guía + Reto Gamificado
+# 📘 Hugging Face Datasets: Apuntes + Reto Gamificado
 
 ## 1️⃣ Introducción
+![](./images/Designer.png)
+
 El paquete **`datasets`** de Hugging Face es una potente herramienta para **acceder, compartir y procesar conjuntos de datos (datasets)** de IA para una amplia gama de tareas, que incluyen:
 
 - Procesamiento del Lenguaje Natural (PLN)
-- Visión por computadora
+- Visión por computador
 - Procesamiento de audio
 
 Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente mediante el uso de **mapeo de memoria** y el formato [**Apache Arrow**](https://arrow.apache.org/), lo que permite trabajar con datos que superan la RAM disponible.
@@ -97,7 +99,7 @@ Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones 
 
 1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando *Python*:
     1. Descarga los datos de *SquadES* considerando que los datos remotos son los de entrenamiento y validación.
-    2. Con lo datos de entrenamiento, divídelos en entrenamiento y pruebas.
+    2. Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.
     3. Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.
     4. Filtra los datos de entrenamiento para que el *dataset* solo contenga aquellos registros que tienen más de 10 párrafos.
     5. Elimina la columna con la cantidad de párrafos.
