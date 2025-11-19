@@ -95,11 +95,11 @@ DatasetDict({
 ### 🎯 Objetivo
 Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
 
-1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y sólo empleando *Python*:
+1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando *Python*:
     1. Descarga los datos de *SquadES* considerando que los datos remotos son los de entrenamiento y validación.
     2. Con lo datos de entrenamiento, divídelos en entrenamiento y pruebas.
     3. Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.
-    4. Filtra los datos de entrenamiento para que el *dataset* sólo contenga aquellos registros que tienen más de 10 párrafos.
+    4. Filtra los datos de entrenamiento para que el *dataset* solo contenga aquellos registros que tienen más de 10 párrafos.
     5. Elimina la columna con la cantidad de párrafos.
     6. Persiste todo el dataset en formato Parquet.
     7. Finalmente, publícalo en *Hugging Face*, editando la tarjeta y poniendo un documento de ejemplo en la documentación.
