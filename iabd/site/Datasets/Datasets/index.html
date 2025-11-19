@@ -773,6 +773,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dividiendo-el-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dividiendo el dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cargando-en-pandas" class="md-nav__link">
     <span class="md-ellipsis">
       Cargando en Pandas
@@ -1203,28 +1212,8 @@ DatasetDict<span class="o">({</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset_trainval</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="carga-remota">Carga remota</h3>
-<p>Si el <em>dataset</em> está almacenado en una URL remota, podemos cargarlos directamente:</p>
-<p>``` python title="squad-es-remoto.py" {linenums="1" hl_lines="1"}
-from datasets import load_dataset</p>
-<p>url = "https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/"</p>
-<p>ficheros_datos = {
-    "train": url + "train-v2.0-es.json",
-    "val": url + "dev-v2.0-es.json",
-}
-squad_remote_dataset = load_dataset("json", data_files=ficheros_datos, field="data")</p>
-<p>print(squad_remote_dataset)
-<div class="highlight"><pre><span></span><code>### Dividiendo el dataset
-
-Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
-
-```python title=&quot;squad-es-split.py&quot; {linenums=&quot;1&quot; hl_lines=&quot;1&quot;}
-from datasets import load_dataset
-
-squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;, split=&quot;train&quot;)
-squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
-print(squad_split_dataset)
-</code></pre></div></p>
-<p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
+<p>Si el <em>dataset</em> está almacenado en una URL remota, podemos cargarlos directamente:
+<strong>squad-es-remoto.py</strong>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1234,17 +1223,40 @@ print(squad_split_dataset)
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">DatasetDict</span><span class="p">({</span>
-    <span class="n">train</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">({</span>
-        <span class="n">features</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphs&#39;</span><span class="p">],</span>
-        <span class="n">num_rows</span><span class="p">:</span> <span class="mi">397</span>
-    <span class="p">})</span>
-    <span class="n">test</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">({</span>
-        <span class="n">features</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphs&#39;</span><span class="p">],</span>
-        <span class="n">num_rows</span><span class="p">:</span> <span class="mi">45</span>
-    <span class="p">})</span>
-<span class="p">})</span>
-</code></pre></div></td></tr></table></div>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/&quot;</span>
+
+<span class="n">ficheros_datos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;dev-v2.0-es.json&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">squad_remote_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">ficheros_datos</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_remote_dataset</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="dividiendo-el-dataset">Dividiendo el dataset</h3>
+<p>Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split"><code>Dataset.train_test_split()</code></a> indicando el tamaño, por ejemplo, de los datos de test:</p>
+<p>```python title="squad-es-split.py" {linenums="1" hl_lines="1"}
+from datasets import load_dataset</p>
+<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data", split="train")
+squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
+print(squad_split_dataset)
+<div class="highlight"><pre><span></span><code>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:
+
+``` python {linenums=&quot;1&quot;}
+DatasetDict({
+    train: Dataset({
+        features: [&#39;title&#39;, &#39;paragraphs&#39;],
+        num_rows: 397
+    })
+    test: Dataset({
+        features: [&#39;title&#39;, &#39;paragraphs&#39;],
+        num_rows: 45
+    })
+})
+</code></pre></div></p>
 <h3 id="cargando-en-pandas">Cargando en Pandas</h3>
 <p>Si estamos trabajando con <em>Pandas</em> y queremos cargar un archivo que está en un <em>dataset</em> de <em>Hugging Face</em>, podemos utilizar la librería de <code>huggingface_hub</code> para crear, eliminar, actualizar y recuperar información de los repositorios.</p>
 <p>Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:</p>
