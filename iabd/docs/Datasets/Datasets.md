@@ -77,7 +77,7 @@ pip install datasets[vision]
 
 ## 🧩 Ejemplo: Cargar un dataset local
 
-```python {linenums="1"}
+```python 
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
