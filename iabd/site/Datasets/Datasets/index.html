@@ -815,6 +815,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#por-que-se-usa-seed-semilla-fija-de-333-en-el-metodo-suffle" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por qué se usa seed (semilla) fija de 333 en el método suffle()?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#seleccionando-filas" class="md-nav__link">
     <span class="md-ellipsis">
       Seleccionando filas
@@ -1355,6 +1364,13 @@ DatasetDict<span class="o">({</span>
 <span class="n">squad_split_dataset</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_split_dataset</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div></p>
+<blockquote>
+<p><code>test_size (numpy.random.Generator, opcional)</code> — Tamaño de la división de prueba. 
+  Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
+     incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
+  Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
+  Si train_size también es None, se establecerá en 0.25.</p>
+</blockquote>
 <p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1379,6 +1395,7 @@ DatasetDict<span class="o">({</span>
 <h3 id="cargando-en-pandas">Cargando en Pandas</h3>
 <p>Si estamos trabajando con <em>Pandas</em> y queremos cargar un archivo que está en un <em>dataset</em> de <em>Hugging Face</em>, podemos utilizar la librería de <code>huggingface_hub</code> para crear, eliminar, actualizar y recuperar información de los repositorios.</p>
 <p>Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:</p>
+<p><strong>cargando_en_pandas.py</strong>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1418,7 +1435,7 @@ DatasetDict<span class="o">({</span>
 <span class="c1">#  2   Cp       3214 non-null   float64</span>
 <span class="c1"># dtypes: float64(2), object(1)</span>
 <span class="c1"># memory usage: 75.5+ KB</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></p>
 <h3 id="cargando-en-streaming">Cargando en streaming</h3>
 <p>Si el <em>dataset</em> ocupa varios gigas, con modelos como BERT o GPT, puede que no quepan en memoria RAM. Para ello, la librería <em>datasets</em> gestiona los datos como ficheros mapeados en memoria realizando un <a href="https://huggingface.co/docs/datasets/stream"><em>streaming</em></a> de los datos.</p>
 <figure style="align: center;">
@@ -1432,6 +1449,7 @@ DatasetDict<span class="o">({</span>
 <p>El <em>dataset</em> de <em>BigCode</em> está configurado para pedir las credenciales de los usuarios que los utilizan. Esto se conoce como un <a href="https://huggingface.co/docs/hub/datasets-gated">Gated dataset</a>. Es por ello que tenemos que hacer login en <em>Hugging Face</em> antes de poder descargarlo.</p>
 </div>
 <p>En nuestro caso, nos vamos a centrar en archivos <code>DockerFile</code> para que el dataset sea asumible (alrededor de 1Gb). Así pues, cargamos los datos:</p>
+<p><strong>cargando_en_streaming.py</strong>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1447,7 +1465,7 @@ DatasetDict<span class="o">({</span>
 <span class="c1">#     features: [&#39;blob_id&#39;, &#39;directory_id&#39;, &#39;path&#39;, &#39;content_id&#39;, &#39;detected_licenses&#39;, &#39;license_type&#39;, &#39;repo_name&#39;, &#39;snapshot_id&#39;, &#39;revision_id&#39;, &#39;branch_name&#39;, &#39;visit_date&#39;, &#39;revision_date&#39;, &#39;committer_date&#39;, &#39;github_id&#39;, &#39;star_events_count&#39;, &#39;fork_events_count&#39;, &#39;gha_license_id&#39;, &#39;gha_event_created_at&#39;, &#39;gha_created_at&#39;, &#39;gha_language&#39;, &#39;src_encoding&#39;, &#39;language&#39;, &#39;is_vendor&#39;, &#39;is_generated&#39;, &#39;length_bytes&#39;, &#39;extension&#39;],</span>
 <span class="c1">#     num_rows: 4155925</span>
 <span class="c1"># })</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></p>
 <p>Y el contenido de un documento:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">   </span><span class="nt">&quot;blob_id&quot;</span><span class="p">:</span><span class="s2">&quot;a29dd2b33082d2b98541c66ba3620ae054991503&quot;</span><span class="p">,</span>
@@ -1545,6 +1563,20 @@ DatasetDict<span class="o">({</span>
 <span class="hll"><span class="n">squad_train_shuffled</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">squad_train_shuffled</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="c1"># Carnaval</span>
 </code></pre></div></td></tr></table></div>
+<h4 id="por-que-se-usa-seed-semilla-fija-de-333-en-el-metodo-suffle">¿Por qué se usa seed (semilla) fija de 333 en el método suffle()?</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">squad_train_shuffled</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
+</code></pre></div>
+Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.
+✅ ¿Qué significa esto?
+- Cuando barajas datos, el orden resultante depende de un generador aleatorio.
+- Si no se fija una semilla, cada ejecución produce un orden distinto.
+- Al establecer seed=333:
+    - El generador aleatorio se inicializa siempre igual.
+    - El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.</p>
+<p>✅ ¿Por qué es importante en Machine Learning?
+- Consistencia: Si compartes código con otros, obtendrán el mismo resultado.
+- Depuración: Puedes repetir pruebas sin que el orden cambie.
+- Comparación justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.</p>
 <h3 id="seleccionando-filas">Seleccionando filas</h3>
 <p>Para recuperar filas, usaremos el método <code>Dataset.select()</code> pasándole un iterador con las posiciones a seleccionar:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
