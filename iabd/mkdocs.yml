@@ -65,9 +65,10 @@ nav:
     - Referencias: hf/Referencias.md
   - Datasets: 
     - Datasets/Datasets.md
+    - Datasets Aitor/datasets_aitor.md
     - Actividades: 
       - Datasets/Actividad1.md
-      - Datasets/Actividad1_solution.md
+      #- Datasets/Actividad1_solution.md
     #- Entornos Windows: hf/Apuntes_Windows.md
     #- Ejercicios propuestos Windows: hf/Ejercicios_Windows.md
     

@@ -1,0 +1,108 @@
+---
+title: Datasets de Hugging Face
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
+# 📘 Hugging Face Datasets: Guía + Reto Gamificado
+
+## 1️⃣ Introducción
+El paquete **`datasets`** de Hugging Face es una potente herramienta para **acceder, compartir y procesar conjuntos de datos (datasets)** de IA para una amplia gama de tareas, que incluyen:
+
+- Procesamiento del Lenguaje Natural (PLN)
+- Visión por computadora
+- Procesamiento de audio
+
+Está diseñado para manejar **grandes volúmenes de datos** de manera eficiente mediante el uso de **mapeo de memoria** y el formato [**Apache Arrow**](https://arrow.apache.org/), lo que permite trabajar con datos que superan la RAM disponible.
+
+> Arrow Apache Arrow define un formato de memoria columnar independiente del lenguaje para datos planos y anidados, organizado para operaciones analíticas eficientes en hardware moderno como CPU y GPU. El formato de memoria Arrow también admite lecturas sin copia para un acceso a datos ultrarrápido sin sobrecarga de serialización.
+>
+>El proyecto del formato Apache Arrow comenzó en febrero de 2016, centrándose en cargas de trabajo de análisis columnar en memoria. A diferencia de formatos de archivo como Parquet o CSV, que especifican cómo se organizan los datos en el disco, Arrow se centra en cómo se organizan los datos en la memoria.
+>
+>Los creadores buscan consolidar Arrow como un formato estándar en memoria para el análisis de cargas de trabajo. Estos fundamentos atraen a numerosos colaboradores de proyectos como Pandas, Spark, Cassandra, Apache Calcite, Dremio e Ibis.
+---
+
+## 🔑 Características Clave
+- **Vasto Repositorio (Hub):** Gran cantidad de datasets públicos y privados.
+- **Fácil Acceso:** Carga en una sola línea de código.
+- **Procesamiento Eficiente:** Métodos como `map()` paralelizados.
+- **Escalabilidad:** Objetos `Dataset` y `IterableDataset`.
+- **Gestión de Datos:** Crear y subir datasets propios al Hub.
+
+---
+
+## ⚙️ Instalación
+```bash
+pip install datasets
+pip install datasets[audio]
+pip install datasets[vision]
+```
+
+---
+
+## 🧩 Ejemplo: Cargar un dataset local
+```python {linenums="1"}
+from datasets import load_dataset
+
+squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
+
+print(squad_dataset)
+```
+
+Salida esperada:
+```
+DatasetDict({
+    train: Dataset({ features: ['title', 'paragraphs'], num_rows: 442 })
+})
+```
+
+---
+
+## 2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
+
+### 🎯 Objetivo
+Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
+
+### 🕹️ Niveles del reto
+1. **Descarga y explora:** Cargar `SquadES`.
+2. **Divide en train/test:** Crear split adicional.
+3. **Añade columna:** `num_paragraphs`.
+4. **Filtra y persiste:** Guardar en Parquet.
+5. **Publica en Hugging Face:** Añadir documentación.
+
+![Tablero del reto](./img/reto_datasets.png)
+
+---
+
+## 📂 Plantilla del ejercicio
+```python
+from datasets import load_dataset
+
+# Nivel 1: Descargar y explorar
+dataset = load_dataset("PlanTL-GOB-ES/squad-es")
+print(dataset)
+
+# Nivel 2: Dividir en train/test
+train_dataset = dataset["train"]
+split_dataset = train_dataset.train_test_split(test_size=0.2)
+train_split = split_dataset["train"]
+test_split = split_dataset["test"]
+
+# Nivel 3: Añadir columna con cantidad de párrafos
+def add_num_paragraphs(example):
+    return {"num_paragraphs": len(example["paragraphs"])}
+train_split = train_split.map(add_num_paragraphs)
+
+# Nivel 4: Filtrar y persistir
+filtered_train = train_split.filter(lambda x: x["num_paragraphs"] > 10)
+filtered_train = filtered_train.remove_columns(["num_paragraphs"])
+filtered_train.to_parquet("filtered_train.parquet")
+
+# Nivel 5: Publicar en Hugging Face
+# filtered_train.push_to_hub("usuario/nombre-dataset")
+```
+
+---
+
+## 🔗 Recursos
+- [Hugging Face Datasets](https://huggingface.co/datasets)
+- [Documentación oficial](https://huggingface.co/docs/datasets)
