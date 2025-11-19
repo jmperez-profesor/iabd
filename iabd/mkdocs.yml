@@ -45,6 +45,7 @@ markdown_extensions:
   - admonition
   - pymdownx.extra
   - pymdownx.highlight
+  - pymdownx.linenums
   - pymdownx.superfences
   - pymdownx.tabbed
   - pymdownx.caret   

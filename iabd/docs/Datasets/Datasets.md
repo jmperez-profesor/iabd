@@ -52,6 +52,7 @@ Permite aplicar transformaciones como:
 
 Usa Apache Arrow y mapeo de memoria, lo que permite trabajar con datasets que superan la RAM disponible.
 Soporta dos tipos:
+
 - Dataset (acceso aleatorio rápido)
 - IterableDataset (para streaming de datos grandes)
 
