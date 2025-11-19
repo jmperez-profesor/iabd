@@ -841,8 +841,113 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#trabajando-con-batches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabajando con batches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de Pandas
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creando-un-dataset-desde-cero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando un dataset desde cero
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistiendo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistiendo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publicando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicando
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets-multimedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets multimedia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets multimedia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-un-dataset-desde-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando un dataset desde Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiofolder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audiofolder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Recursos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades
+    </span>
+  </a>
   
 </li>
       
@@ -1111,7 +1216,8 @@ pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o
 </code></pre></div>
 <p>Para este apartado nos vamos a centrar en los datos de SQuAD (<em>Stanford Question Answering Dataset</em>), compuesto de un conjunto de artículos de <em>Wikipedia</em>, con respuestas a diferentes preguntas sobre los artículos. En nuestro caso, nos vamos a centrar en una versión en castellano que podemos ver en <a href="https://huggingface.co/datasets/squad_es">https://huggingface.co/datasets/squad_es</a> o descargarlo de desde <a href="https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0">https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0</a>.</p>
 <p>Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente <em>script</em>, podemos realizar una carga local de los datos:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">squad-es-local.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p><strong>squad-es-local.py</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1120,7 +1226,7 @@ pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o
 <span class="hll"><span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></p>
 <p>Tras ejecutarlo, nos muestra que al cargar el <em>dataset</em> ha creado un <em>split</em> para <em>train</em>, con la cantidad de filas y las columnas contenidas dentro de un <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetDict"><code>DatasetDict</code></a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1499,27 +1605,48 @@ DatasetDict<span class="o">({</span>
 <h3 id="trabajando-con-map">Trabajando con map</h3>
 <p>Y la joya de la corona es la función <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map"><code>Dataset.map()</code></a> para aplicar una transformación a medida.
 Por ejemplo, si queremos modificar todos los títulos y pasarlos a minúscula haremos:</p>
-<p>``` python title="squad-map.py" {linenums="1"}
-from datasets import load_dataset</p>
-<p>ficheros_datos = {"train": "train-v2.0-es.json", "test": "dev-v2.0-es.json"}
-squad_dataset = load_dataset("json", data_files=ficheros_datos, field="data")
-squad_dataset = squad_dataset["train"]</p>
-<p>def titulo_minus(registro):
-    return {"title":registro["title"].lower()}</p>
-<p>squad_minus = squad_dataset.map(titulo_minus)</p>
-<h1 id="mostramos-5-elementos">Mostramos 5 elementos</h1>
-<p>print(squad_minus.shuffle(seed=987)["title"][:5])</p>
-<h1 id="marshall-ascensor-kanye-bbc-television-florida">['marshall', 'ascensor', 'kanye', 'bbc televisión', 'florida']</h1>
-<div class="highlight"><pre><span></span><code>Mediante la función `map` también podemos crear nuevas columnas a partir de los valores de otras. Por ejemplo, añadimos una nueva característica con la cantidad de párrafos y quitamos toda la información existente previamente de los párrafos:
+<p><strong>squad-map.py</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-``` python {linenums=&quot;1&quot;}
-# Añadimos nueva columna
-squad_col_num_parrafos = squad_dataset.map(lambda x: {&quot;num_paragraphs&quot;:len(x[&quot;paragraphs&quot;])})
-# Borramos la antigua
-squad_col_num_parrafos = squad_col_num_parrafos.remove_columns(&quot;paragraphs&quot;)
-print(squad_col_num_parrafos.shuffle(seed=987)[:5])
-# {&#39;title&#39;: [&#39;Marshall&#39;, &#39;Ascensor&#39;, &#39;Kanye&#39;, &#39;BBC Televisión&#39;, &#39;Florida&#39;], &#39;num_paragraphs&#39;: [51, 52, 79, 31, 35]}
-</code></pre></div>
+<span class="n">ficheros_datos</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;dev-v2.0-es.json&quot;</span><span class="p">}</span>
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">ficheros_datos</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">titulo_minus</span><span class="p">(</span><span class="n">registro</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="n">registro</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()}</span>
+
+<span class="n">squad_minus</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">titulo_minus</span><span class="p">)</span>
+
+<span class="c1"># Mostramos 5 elementos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_minus</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">987</span><span class="p">)[</span><span class="s2">&quot;title&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># [&#39;marshall&#39;, &#39;ascensor&#39;, &#39;kanye&#39;, &#39;bbc televisión&#39;, &#39;florida&#39;]</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Mediante la función <code>map</code> también podemos crear nuevas columnas a partir de los valores de otras. Por ejemplo, añadimos una nueva característica con la cantidad de párrafos y quitamos toda la información existente previamente de los párrafos:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Añadimos nueva columna</span>
+<span class="n">squad_col_num_parrafos</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])})</span>
+<span class="c1"># Borramos la antigua</span>
+<span class="n">squad_col_num_parrafos</span> <span class="o">=</span> <span class="n">squad_col_num_parrafos</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">(</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_col_num_parrafos</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">987</span><span class="p">)[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># {&#39;title&#39;: [&#39;Marshall&#39;, &#39;Ascensor&#39;, &#39;Kanye&#39;, &#39;BBC Televisión&#39;, &#39;Florida&#39;], &#39;num_paragraphs&#39;: [51, 52, 79, 31, 35]}</span>
+</code></pre></div></td></tr></table></div>
 <p>¿Y si queremos ordenar los párrafos por la cantidad de párrafos? Para ello, podemos utilizar <code>Dataset.sort()</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1539,66 +1666,119 @@ print(squad_col_num_parrafos.shuffle(seed=987)[:5])
 <p>El método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map"><code>Dataset.map()</code></a> admite el argumento <code>batched</code> que, si se establece en <code>True</code>, hace que envíe un lote de datos a la función <code>map</code> a la vez (el tamaño del lote es configurable mediante el parámetro <code>batch_size</code>, pero por defecto es de 1000). Al indicar <code>batched=True</code>, la función <code>map</code> recibe un diccionario con los campos del conjunto de datos, pero cada valor es ahora una lista de valores, y no un único valor, y del mismo modo, devuelve un diccionario con los campos que queremos actualizar o añadir a nuestro conjunto de datos, y una lista de valores.</p>
 <p>Por ello, debemos modificar la función que realiza el <code>map</code> para que trabaje con un diccionario de listas.</p>
 <p>Para el siguiente ejemplo, vamos a coger el <em>dataset</em> de <em>SQuAD_es</em> desde <em>Hugging Face</em> que contiene más datos, y vamos a comparar el tiempo de ejecución, recodificando la función para trabajar con un diccionario que contiene una lista por cada campo:</p>
-<p>``` python title="squad-map-batch.py" {linenums="1" hl_lines="8 11 16-17 20"}
-from datasets import load_dataset
-import time</p>
-<h1 id="cargamos-el-dataset-desde-hf">Cargamos el dataset desde HF</h1>
-<p>squad_dataset = load_dataset("squad_es", "v2.0.0", split="train")  # (1)!</p>
-<p>def titulo_minus(registro):
-    return {"title":registro["title"].lower()}</p>
-<p>inicio = time.time()
-squad_minus = squad_dataset.map(titulo_minus) # (2)!</p>
-<h1 id="map-100-1185811858-00000000-3792607-exampless">Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 37926.07 examples/s]</h1>
-<p>fin = time.time()
-print(fin - inicio) # 3.008699893951416</p>
-<p>def titulo_minus_batch(batch):
-    return {"title":[titulo.lower() for titulo in batch["title"]]}</p>
-<p>inicio = time.time()
-squad_minus = squad_dataset.map(titulo_minus_batch, batched=True) # (3)!</p>
-<h1 id="map-100-1185811858-00000000-53521067-exampless">Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 535210.67 examples/s]</h1>
-<p>fin = time.time()
-print(fin - inicio) # 0.19133710861206055
-<div class="highlight"><pre><span></span><code>1. Cargamos los datos desde el dataset de *Hugging Face*
-2. El mapper normal realiza casi 40.000 registros por segundo
-3. Al hacerlo con batches realiza más de 500.000 por segundo
+<p><strong>squad-map-batch.py</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-### Uso de Pandas
+<span class="c1"># Cargamos el dataset desde HF</span>
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;squad_es&quot;</span><span class="p">,</span> <span class="s2">&quot;v2.0.0&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>  <span class="c1"># (1)!</span>
 
-Para facilitar la conversión entre diferentes formados, podemos usar el método [`Dataset.set_format()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.set_format) para modificar el formato de salida (por ejemplo, a `pandas`, `numpy`, `torch`, `tensorflow`, `jax`, ...), sin modificar el formato original del dataset (el cual es *Apache Arrow* - `arrow`).
+<span class="k">def</span><span class="w"> </span><span class="nf">titulo_minus</span><span class="p">(</span><span class="n">registro</span><span class="p">):</span>
+<span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="n">registro</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()}</span>
+</span>
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="hll"><span class="n">squad_minus</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">titulo_minus</span><span class="p">)</span> <span class="c1"># (2)!</span>
+</span><span class="c1"># Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 37926.07 examples/s]   </span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fin</span> <span class="o">-</span> <span class="n">inicio</span><span class="p">)</span> <span class="c1"># 3.008699893951416</span>
 
-Así, si por ejemplo queremos pasar los datos a *Pandas* para trabajar con ellos, transformarlos o visualizarlos, podemos hacer:
+<span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">titulo_minus_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:[</span><span class="n">titulo</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">titulo</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]]}</span>
+</span>
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="hll"><span class="n">squad_minus</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">titulo_minus_batch</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># (3)!</span>
+</span><span class="c1"># Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 535210.67 examples/s]</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fin</span> <span class="o">-</span> <span class="n">inicio</span><span class="p">)</span> <span class="c1"># 0.19133710861206055</span>
+</code></pre></div></td></tr></table></div></p>
+<ol>
+<li>Cargamos los datos desde el dataset de <em>Hugging Face</em></li>
+<li>El mapper normal realiza casi 40.000 registros por segundo</li>
+<li>Al hacerlo con batches realiza más de 500.000 por segundo</li>
+</ol>
+<h3 id="uso-de-pandas">Uso de Pandas</h3>
+<p>Para facilitar la conversión entre diferentes formados, podemos usar el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.set_format"><code>Dataset.set_format()</code></a> para modificar el formato de salida (por ejemplo, a <code>pandas</code>, <code>numpy</code>, <code>torch</code>, <code>tensorflow</code>, <code>jax</code>, ...), sin modificar el formato original del dataset (el cual es <em>Apache Arrow</em> - <code>arrow</code>).</p>
+<p>Así, si por ejemplo queremos pasar los datos a <em>Pandas</em> para trabajar con ellos, transformarlos o visualizarlos, podemos hacer:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">squad_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="p">[:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># (130313, 5)</span>
 
-``` python {linenums=&quot;1&quot;}
-print(squad_dataset[0])
-squad_dataset.set_format(&quot;pandas&quot;)
-df = squad_dataset[:]
-print(df.shape) # (130313, 5)
+<span class="c1"># Otra forma</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="c1"># &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="c1"># RangeIndex: 130313 entries, 0 to 130312</span>
+<span class="c1"># Data columns (total 5 columns):</span>
+<span class="c1">#  #   Column    Non-Null Count   Dtype </span>
+<span class="c1"># ---  ------    --------------   ----- </span>
+<span class="c1">#  0   id        130313 non-null  object</span>
+<span class="c1">#  1   title     130313 non-null  object</span>
+<span class="c1">#  2   context   130313 non-null  object</span>
+<span class="c1">#  3   question  130313 non-null  object</span>
+<span class="c1">#  4   answers   130313 non-null  object</span>
+<span class="c1"># dtypes: object(5)</span>
+<span class="c1"># memory usage: 5.0+ MB</span>
 
-# Otra forma
-df2 = squad_dataset.to_pandas()
-print(df2.info())
-# &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-# RangeIndex: 130313 entries, 0 to 130312
-# Data columns (total 5 columns):
-#  #   Column    Non-Null Count   Dtype 
-# ---  ------    --------------   ----- 
-#  0   id        130313 non-null  object
-#  1   title     130313 non-null  object
-#  2   context   130313 non-null  object
-#  3   question  130313 non-null  object
-#  4   answers   130313 non-null  object
-# dtypes: object(5)
-# memory usage: 5.0+ MB
-
-# Y realizar consultas sobre los datos, por ejemplo, la 5 preguntas con más respuestas
-print(df2.groupby(&quot;title&quot;)[&quot;answers&quot;].count().nlargest(5))
-# title
-# Reina                         883
-# Nueva York                    817
-# American Idol (en inglés).    790
-# Beyoncé Knowles               753
-# Universidad                   738
-</code></pre></div></p>
+<span class="c1"># Y realizar consultas sobre los datos, por ejemplo, la 5 preguntas con más respuestas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="s2">&quot;answers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="c1"># title</span>
+<span class="c1"># Reina                         883</span>
+<span class="c1"># Nueva York                    817</span>
+<span class="c1"># American Idol (en inglés).    790</span>
+<span class="c1"># Beyoncé Knowles               753</span>
+<span class="c1"># Universidad                   738</span>
+</code></pre></div></td></tr></table></div>
 <p>Y para volver a tener un objeto <code>Dataset</code>, podemos utilizar el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.from_pandas"><code>Dataset.from_pandas()</code></a> o resetear el <em>dataset</em> que teníamos mediante <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.reset_format"><code>Dataset.reset_format()</code></a>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_transformed</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -1608,33 +1788,62 @@ print(df2.groupby(&quot;title&quot;)[&quot;answers&quot;].count().nlargest(5))
 <p>Si en vez de cargar un <em>dataset</em>, tenemos que crear uno, el primer paso será obtener los datos.</p>
 <p>Ya sea mediante peticiones a URL externas con la librería <code>request</code>, accediendo a bases de datos relacionales, por ejemplo, mediante <em>SQLAlchemy</em> o a <em>MongoDB</em> mediante <code>PyMongo</code>, lo más normal es crear una estructura de datos mediante una lista o un diccionario y luego crear el <em>dataset</em> a partir del mismo.</p>
 <p>Así pues, si en vez de cargar un <em>dataset</em> queremos crear uno desde cero, podemos hacer uso de <code>Dataset.from_dict()</code> o <code>Dataset.from_list()</code> dependiendo de donde tengamos los datos. Por ejemplo, vamos a conectarnos a <em>MongoDB</em> y creamos una lista con todos los datos. A partir de la lista, generamos un <em>Dataset</em>:</p>
-<p>``` python title="dataset-mongodb.py" {linenums="1"}
-from datasets import Dataset
-from pymongo import MongoClient</p>
-<p>cliente = MongoClient('mongodb+srv://iabd:iabdiabd@cluster0.dfaz5er.mongodb.net')</p>
-<h1 id="vamos-a-trabajar-con-la-coleccion-grades-de-sample_training">Vamos a trabajar con la colección grades de sample_training</h1>
-<p>iabd_db = cliente.sample_training
-grades_coll = iabd_db.grades</p>
-<h1 id="creamos-un-dataset-vacio-mediante-una-lista">Creamos un dataset vacío mediante una lista</h1>
-<p>documentos = []</p>
-<h1 id="recuperamos-todas-las-calificaciones">Recuperamos todas las calificaciones</h1>
-<p>cursor = grades_coll.find({})
-for document in cursor:
-  del document["_id"]  # Quitamos el ObjectId
-  documentos.append(document)</p>
-<p>mongo_dataset = Dataset.from_list(documentos)
-print(mongo_dataset)</p>
-<h1 id="dataset">Dataset({</h1>
-<h1 id="features-student_id-scores-class_id">features: ['student_id', 'scores', 'class_id'],</h1>
-<h1 id="num_rows-100000">num_rows: 100000</h1>
-<h1 id="_1">})</h1>
-<div class="highlight"><pre><span></span><code>O si queremos almacenar los datos de forma temporal, por ejemplo, podemos hacer uso de *Pandas*:
+<p><strong>dataset-mongodb.py</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymongo</span><span class="w"> </span><span class="kn">import</span> <span class="n">MongoClient</span>
 
-``` python {linenums=&quot;1&quot;}
-df = pd.DataFrame.from_records(documentos)
-df.to_json(&quot;grades-docs.jsonl&quot;, orient=&quot;records&quot;, lines=True)
-jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.jsonl&quot;, split=&quot;train&quot;)
-</code></pre></div>
+<span class="n">cliente</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s1">&#39;mongodb+srv://iabd:iabdiabd@cluster0.dfaz5er.mongodb.net&#39;</span><span class="p">)</span>
+
+<span class="c1"># Vamos a trabajar con la colección grades de sample_training</span>
+<span class="n">iabd_db</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">sample_training</span>
+<span class="n">grades_coll</span> <span class="o">=</span> <span class="n">iabd_db</span><span class="o">.</span><span class="n">grades</span>
+
+<span class="c1"># Creamos un dataset vacío mediante una lista</span>
+<span class="n">documentos</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Recuperamos todas las calificaciones</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">grades_coll</span><span class="o">.</span><span class="n">find</span><span class="p">({})</span>
+<span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+  <span class="k">del</span> <span class="n">document</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]</span>  <span class="c1"># Quitamos el ObjectId</span>
+  <span class="n">documentos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+<span class="n">mongo_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">documentos</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mongo_dataset</span><span class="p">)</span>
+<span class="c1"># Dataset({</span>
+<span class="c1">#     features: [&#39;student_id&#39;, &#39;scores&#39;, &#39;class_id&#39;],</span>
+<span class="c1">#     num_rows: 100000</span>
+<span class="c1"># })</span>
+</code></pre></div></td></tr></table></div></p>
+<p>O si queremos almacenar los datos de forma temporal, por ejemplo, podemos hacer uso de <em>Pandas</em>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">documentos</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;grades-docs.jsonl&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">jsonl_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;grades-docs.jsonl&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="persistiendo">Persistiendo</h2>
 <p>Cuando cargamos un <em>dataset</em> se cachean los datos para evitar tener que descargar los datos de forma remota y crear las tablas de <em>PyArrow</em>. Podemos averiguar donde se almacenan los datos mediante la propiedad <code>cache_files</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1878,11 +2087,12 @@ folder/train/second_audio_file.mp3
 folder/train/third_audio_file.mp3
 </code></pre></div>
 <p>Y un archivo de metadatos con:</p>
-<div class="highlight"><span class="filename">metadata.csv</span><pre><span></span><code>file_name,transcription
+<p><strong>metadata.csv</strong>
+<div class="highlight"><pre><span></span><code>file_name,transcription
 first_audio_file.mp3,este es el texto del primer audio
 second_audio_file.mp3,en el segundo audio cuento un chiste
 third_audio_file.mp3,y en este audio agradezco al público sus abucheos
-</code></pre></div>
+</code></pre></div></p>
 <p>Y a continuación, indicamos como primer parámetro <code>autofolder</code> y con <code>data_dir</code> indicamos la carpeta que contiene los audios:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>

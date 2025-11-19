@@ -287,6 +287,12 @@ squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
 print(squad_split_dataset)
 ```
 
+> ```test_size (numpy.random.Generator, opcional)``` — Tamaño de la división de prueba. 
+  Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
+     incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
+  Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
+  Si train_size también es None, se establecerá en 0.25.
+
 De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:
 
 ``` python {linenums="1"}
@@ -308,6 +314,7 @@ Si estamos trabajando con *Pandas* y queremos cargar un archivo que está en un 
 
 Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:
 
+**cargando_en_pandas.py**
 ``` python {linenums="1" hl_lines="8"}
 from huggingface_hub import hf_hub_download
 import pandas as pd
@@ -347,6 +354,7 @@ Para este apartado, vamos a utilizar parte de un dataset con código encontrado 
 
 En nuestro caso, nos vamos a centrar en archivos `DockerFile` para que el dataset sea asumible (alrededor de 1Gb). Así pues, cargamos los datos:
 
+**cargando_en_streaming.py**
 ``` python {linenums="1"}
 from datasets import load_dataset
 
@@ -453,6 +461,25 @@ print(squad_train[0]["title"]) # Beyoncé Knowles
 squad_train_shuffled = squad_train.shuffle(seed=333)
 print(squad_train_shuffled[0]["title"]) # Carnaval
 ```
+
+#### ¿Por qué se usa seed (semilla) fija de 333 en el método suffle()?
+```python
+squad_train_shuffled = squad_train.shuffle(seed=333)
+```
+Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.
+✅ ¿Qué significa esto?
+- Cuando barajas datos, el orden resultante depende de un generador aleatorio.
+- Si no se fija una semilla, cada ejecución produce un orden distinto.
+- Al establecer seed=333:
+    - El generador aleatorio se inicializa siempre igual.
+    - El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.
+
+✅ ¿Por qué es importante en Machine Learning?
+- Consistencia: Si compartes código con otros, obtendrán el mismo resultado.
+- Depuración: Puedes repetir pruebas sin que el orden cambie.
+- Comparación justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.
+
+
 
 ### Seleccionando filas
 
