@@ -758,7 +758,7 @@ for split, dataset in squad_dataset.items():
 
 Pues una vez hemos creado nuestro Dataset y lo hemos persistido en disco, el único paso que nos queda es publicar en *Hugging Face*. Para ello, en vez de subir los archivos a mano como hicimos en la sesión inicial desde el interfaz web o hacer uso de Git y copiar los archivos, desde *Python* es mucho más cómodo.
 
-Previamente debemos realizar *login* para autenticarnos, tal como vimos en la sección de [Login de la sesión anterior](hf.md#login) y usar nuestro token de acceso (en este caso, necesitamos que nuestro token sea de escritura):
+Previamente debemos realizar *login* para autenticarnos, tal como vimos en la sección de [Login de la sesión anterior](https://aitor-medrano.github.io/iabd/hf/hf.html#login) y usar nuestro token de acceso (en este caso, necesitamos que nuestro token sea de escritura):
 
 ``` python
 hf auth login
