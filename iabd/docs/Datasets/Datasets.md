@@ -305,7 +305,7 @@ Si estamos trabajando con *Pandas* y queremos cargar un archivo que está en un 
 
 Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:
 
-``` python hl_lines="8"
+``` python {linenums="1" hl_lines="8"}
 from huggingface_hub import hf_hub_download
 import pandas as pd
 
@@ -344,7 +344,7 @@ Para este apartado, vamos a utilizar parte de un dataset con código encontrado 
 
 En nuestro caso, nos vamos a centrar en archivos `DockerFile` para que el dataset sea asumible (alrededor de 1Gb). Así pues, cargamos los datos:
 
-``` python
+``` python {linenums="1"}
 from datasets import load_dataset
 
 bigcode_dataset = load_dataset("bigcode/the-stack-v2", "Dockerfile", split="train")
@@ -393,7 +393,7 @@ Y el contenido de un documento:
 
 Si ahora cargamos el *dataset* mediante *streaming*, pasándole el parámetros `streaming=True`, en vez de recuperar un Dataset, obtendremos un `IterableDataset`:
 
-``` python
+``` python {linenums="1"}
 from datasets import load_dataset
 
 streaming_dataset = load_dataset("bigcode/the-stack-v2", "Dockerfile", split="train", streaming=True)
@@ -413,7 +413,7 @@ print(next(iter(streaming_dataset)))
 
 Los elementos de un *dataset* en *streaming*  se pueden procesar al vuelo mediante la función `map` o `filter`. Por ejemplo, para pasar a mayúsculas el campo `license_type` haríamos:
 
-``` python
+``` python {linenums="1"}
 def mayusLicencias(registro):
     registro["license_type"] = registro["license_type"].upper()
     return registro
@@ -429,7 +429,7 @@ print(next(iter(streaming_dataset)))
 
 Otras opciones son utilizar las operaciones [`take()`](https://huggingface.co/docs/datasets/main/en/package_reference/main_classes#datasets.IterableDataset.take), [`shuffle()`](https://huggingface.co/docs/datasets/v4.4.1/en/package_reference/main_classes#datasets.IterableDataset.shuffle) o [`skip()`](https://huggingface.co/docs/datasets/v4.4.1/en/package_reference/main_classes#datasets.IterableDataset.shuffle) dentro del `IterableDataset` para trabajar con muestras pequeñas de los datos cargados:
 
-``` python
+``` python {linenums="1"}
 muestra = streaming_dataset.take(100)
 muestra_aleatoria = streaming_dataset.shuffle(seed=42, buffer_size=1000).take(500)
 rango = streaming_dataset.skip(1000).take(100)
@@ -443,7 +443,7 @@ De forma similar a *Pandas* o *Spark*, podemos manipular el contenido de los obj
 
 El primer paso debería ser barajar los datos para *desordenarlos* y coger una muestra. Para ello, emplearemos [`Dataset.shuffle()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.shuffle):
 
-``` python hl_lines="4"
+``` python {linenums="1" hl_lines="4"}
 squad_train = squad_dataset_trainval["train"]
 print(squad_train[0]["title"]) # Beyoncé Knowles
 
@@ -455,14 +455,14 @@ print(squad_train_shuffled[0]["title"]) # Carnaval
 
 Para recuperar filas, usaremos el método `Dataset.select()` pasándole un iterador con las posiciones a seleccionar:
 
-``` python
+``` python {linenums="1"}
 tres_filas = squad_train_shuffled.select([5,10,15])
 seis_filas = squad_train_shuffled.select(range(6))
 ```
 
 Si queremos seleccionar las filas por algún criterio específico, debemos emplear `Dataset.filter()` y funciones *lambda*:
 
-``` python
+``` python {linenums="1"}
 empieza_por_b_filas = squad_train_shuffled.filter(lambda x: x["title"].startswith("B"))
 for i in range(empieza_por_b_filas.num_rows):
     print(empieza_por_b_filas[i]["title"])
@@ -474,7 +474,7 @@ for i in range(empieza_por_b_filas.num_rows):
 
 Al trabajar con columnas, podemos añadir una nueva mediante `Dataset.add_column()`, cambiarles el nombre con `DatasetDict.rename_column()` o eliminar una columna con `DatasetDict.remove_column()`:
 
-``` python hl_lines="2 7-8 14"
+``` python {linenums="1" hl_lines="2 7-8 14"}
 nueva_columna = ["nueva"] * squad_train_shuffled.num_rows
 squad_train_shuffled = squad_train_shuffled.add_column(name="inicial",column=nueva_columna)
 # Dataset({
@@ -500,7 +500,7 @@ squad_train_shuffled = squad_train_shuffled.remove_columns(["modificada"])
 Y la joya de la corona es la función [`Dataset.map()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map) para aplicar una transformación a medida.
 Por ejemplo, si queremos modificar todos los títulos y pasarlos a minúscula haremos:
 
-``` python title="squad-map.py"
+``` python title="squad-map.py" {linenums="1"}
 from datasets import load_dataset
 
 ficheros_datos = {"train": "train-v2.0-es.json", "test": "dev-v2.0-es.json"}
@@ -519,7 +519,7 @@ print(squad_minus.shuffle(seed=987)["title"][:5])
 
 Mediante la función `map` también podemos crear nuevas columnas a partir de los valores de otras. Por ejemplo, añadimos una nueva característica con la cantidad de párrafos y quitamos toda la información existente previamente de los párrafos:
 
-``` python
+``` python {linenums="1"}
 # Añadimos nueva columna
 squad_col_num_parrafos = squad_dataset.map(lambda x: {"num_paragraphs":len(x["paragraphs"])})
 # Borramos la antigua
@@ -530,7 +530,7 @@ print(squad_col_num_parrafos.shuffle(seed=987)[:5])
 
 ¿Y si queremos ordenar los párrafos por la cantidad de párrafos? Para ello, podemos utilizar `Dataset.sort()`:
 
-``` python
+``` python {linenums="1"}
 squad_num_parrafos_ordenados = squad_col_num_parrafos.sort("num_paragraphs")
 
 print(squad_num_parrafos_ordenados[:3]) # tres primeros
@@ -548,7 +548,7 @@ Por ello, debemos modificar la función que realiza el `map` para que trabaje co
 
 Para el siguiente ejemplo, vamos a coger el *dataset* de *SQuAD_es* desde *Hugging Face* que contiene más datos, y vamos a comparar el tiempo de ejecución, recodificando la función para trabajar con un diccionario que contiene una lista por cada campo:
 
-``` python title="squad-map-batch.py" hl_lines="8 11 16-17 20"
+``` python title="squad-map-batch.py" {linenums="1" hl_lines="8 11 16-17 20"}
 from datasets import load_dataset
 import time
 
@@ -584,7 +584,7 @@ Para facilitar la conversión entre diferentes formados, podemos usar el método
 
 Así, si por ejemplo queremos pasar los datos a *Pandas* para trabajar con ellos, transformarlos o visualizarlos, podemos hacer:
 
-``` python
+``` python {linenums="1"}
 print(squad_dataset[0])
 squad_dataset.set_format("pandas")
 df = squad_dataset[:]
@@ -618,7 +618,7 @@ print(df2.groupby("title")["answers"].count().nlargest(5))
 
 Y para volver a tener un objeto `Dataset`, podemos utilizar el método [`Dataset.from_pandas()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.from_pandas) o resetear el *dataset* que teníamos mediante [`Dataset.reset_format()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.reset_format):
 
-``` python
+``` python {linenums="1"}
 squad_transformed = Dataset.from_pandas(df)
 squad_original = squad_dataset.reset_format()
 ```
@@ -631,7 +631,7 @@ Ya sea mediante peticiones a URL externas con la librería `request`, accediendo
 
 Así pues, si en vez de cargar un *dataset* queremos crear uno desde cero, podemos hacer uso de `Dataset.from_dict()` o `Dataset.from_list()` dependiendo de donde tengamos los datos. Por ejemplo, vamos a conectarnos a *MongoDB* y creamos una lista con todos los datos. A partir de la lista, generamos un *Dataset*:
 
-``` python title="dataset-mongodb.py"
+``` python title="dataset-mongodb.py" {linenums="1"}
 from datasets import Dataset
 from pymongo import MongoClient
 
@@ -660,7 +660,7 @@ print(mongo_dataset)
 
 O si queremos almacenar los datos de forma temporal, por ejemplo, podemos hacer uso de *Pandas*:
 
-``` python
+``` python {linenums="1"}
 df = pd.DataFrame.from_records(documentos)
 df.to_json("grades-docs.jsonl", orient="records", lines=True)
 jsonl_dataset = load_dataset("json", data_files="grades-docs.jsonl", split="train")
@@ -670,7 +670,7 @@ jsonl_dataset = load_dataset("json", data_files="grades-docs.jsonl", split="trai
 
 Cuando cargamos un *dataset* se cachean los datos para evitar tener que descargar los datos de forma remota y crear las tablas de *PyArrow*. Podemos averiguar donde se almacenan los datos mediante la propiedad `cache_files`:
 
-``` python
+``` python {linenums="1"}
 ficheros_datos = {"train": "train-v2.0-es.json", "test": "dev-v2.0-es.json"}
 squad_dataset = load_dataset("json", data_files=ficheros_datos, field="data")
 print(squad_dataset.cache_files)
