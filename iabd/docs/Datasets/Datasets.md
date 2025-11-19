@@ -76,7 +76,8 @@ pip install datasets[vision]
 ---
 
 ## 🧩 Ejemplo: Cargar un dataset local
-```python linenums="1"
+
+```python {linenums="1"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
@@ -151,7 +152,7 @@ pip install datasets
 
 Podemos cargar archivos con diferentes formatos indicando el formato y los datos:
 
-``` python linenums="1"
+``` python {linenums="1"}
 # CSV & TSV
 load_dataset("csv", data_files="mis_datos.csv")
 # Texto
