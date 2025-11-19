@@ -218,7 +218,7 @@ print(squad_dataset["train"][0]["paragraphs"][0])
 
 Cuando cargamos un *dataset*, realmente queremos cargar los datos de entrenamiento y los de validación. Para ello, le pasaremos un diccionario con los diferentes archivos para `train` y para `val`:
 
-``` python
+``` python {linenums="1"}
 ficheros_datos = {"train": "train-v2.0-es.json", "val": "dev-v2.0-es.json"}
 squad_dataset_train = load_dataset("json", data_files=ficheros_datos, field="data")
 ```
@@ -240,7 +240,7 @@ DatasetDict({
 
 Si queremos cargar únicamente una de las partes, le pasaremos el parámetro `split` con el valor deseado:
 
-``` python
+``` python {linenums="1" hl_lines="1"}
 ficheros_datos = {"train": "train-v2.0-es.json", "val": "dev-v2.0-es.json"}
 squad_dataset_train = load_dataset("json", data_files=ficheros_datos, field="data", split="train")
 print(squad_dataset_train)
@@ -248,7 +248,7 @@ print(squad_dataset_train)
 
 Si el *dataset* está en un archivo comprimido en *gzip*, *zip* o *tar*, la librería descomprimirá los datos automáticamente:
 
-``` python {hl_lines="1"}
+``` python {linenums="1" hl_lines="1"}
 ficheros_datos = {"train": "train-v2.0-es.json.zip", "val": "dev-v2.0-es.json.zip"}
 squad_dataset_trainval = load_dataset("json", data_files=ficheros_datos, field="data")
 print(squad_dataset_trainval)
@@ -276,7 +276,7 @@ print(squad_remote_dataset)
 
 Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
 
-``` python title="squad-es-split.py" hl_lines="4"
+``` python title="squad-es-split.py" {linenums="1" hl_lines="1"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data", split="train")
