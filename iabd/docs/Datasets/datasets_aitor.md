@@ -608,7 +608,7 @@ hf auth login
     ```
 
     <figure style="align: center;">
-        <img src="images/03hf-hub-login-notebook.png" alt="Login desde un notebook" width="500">
+        <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-hub-login-notebook.png" alt="Login desde un notebook" width="500">
         <figcaption>Login desde un notebook</figcaption>
     </figure>
 
@@ -700,7 +700,7 @@ demo.launch(share=True)
 Y reproducir el audio seleccionado:
 
 <figure style="align: center;">
-    <img src="images/03hf-audio-gradio.png" alt="Reproduciendo un audio desde Gradio" width="800px">
+    <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-gradio.png" alt="Reproduciendo un audio desde Gradio" width="800px">
     <figcaption>Reproduciendo un audio desde Gradio</figcaption>
 </figure>
 
@@ -721,7 +721,7 @@ librosa.display.waveshow(array, sr=sampling_rate)
 Obteniendo:
 
 <figure style="align: center;">
-    <img src="images/03hf-audio-grafico.png" alt="Representación gráfica de un audio" width="800px">
+    <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-grafico.png" alt="Representación gráfica de un audio" width="800px">
     <figcaption>Representación gráfica de un audio</figcaption>
 </figure>
 
