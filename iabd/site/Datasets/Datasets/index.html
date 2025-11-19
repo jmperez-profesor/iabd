@@ -1213,7 +1213,7 @@ DatasetDict<span class="o">({</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="carga-remota">Carga remota</h3>
 <p>Si el <em>dataset</em> está almacenado en una URL remota, podemos cargarlos directamente:
-<strong>squad-es-remoto.py</strong>
+<strong>squad-es-remoto.py</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1235,7 +1235,7 @@ DatasetDict<span class="o">({</span>
 <span class="n">squad_remote_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">ficheros_datos</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_remote_dataset</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h3 id="dividiendo-el-dataset">Dividiendo el dataset</h3>
 <p>Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split"><code>Dataset.train_test_split()</code></a> indicando el tamaño, por ejemplo, de los datos de test:</p>
 <p>```python title="squad-es-split.py" {linenums="1" hl_lines="1"}

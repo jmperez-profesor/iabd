@@ -257,8 +257,8 @@ print(squad_dataset_trainval)
 ### Carga remota
 
 Si el *dataset* está almacenado en una URL remota, podemos cargarlos directamente:
-**squad-es-remoto.py**
 
+**squad-es-remoto.py**
 ```python {linenums="1"}
 from datasets import load_dataset
 
@@ -277,7 +277,8 @@ print(squad_remote_dataset)
 
 Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
 
-```python title="squad-es-split.py" {linenums="1" hl_lines="1"}
+**squad-es-split.py**
+```python {linenums="1" hl_lines="1"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data", split="train")
