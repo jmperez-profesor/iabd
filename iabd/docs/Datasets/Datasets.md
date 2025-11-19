@@ -815,6 +815,7 @@ pip install datasets[audio]
 
 Una vez instalado, vamos a [cargar un *dataset* que contiene audios](https://huggingface.co/docs/datasets/audio_load), como es [PolyAI/minds14](https://huggingface.co/datasets/PolyAI/minds14):
 
+**audio_minds.py**
 ``` python {linenums="1"}
 from datasets import load_dataset
 
