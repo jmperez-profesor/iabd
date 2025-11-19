@@ -102,8 +102,6 @@ Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones 
 4. **Filtra y persiste:** Guardar en Parquet.
 5. **Publica en Hugging Face:** Añadir documentación.
 
-![Tablero del reto](./images/reto_datasets.png)
-
 ---
 
 ## 📂 Plantilla del ejercicio
