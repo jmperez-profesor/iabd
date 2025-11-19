@@ -712,48 +712,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face" class="md-nav__link">
-    <span class="md-ellipsis">
-      2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Objetivo
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#niveles-del-reto" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕹️ Niveles del reto
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plantilla-del-ejercicio" class="md-nav__link">
-    <span class="md-ellipsis">
-      📂 Plantilla del ejercicio
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#recursos" class="md-nav__link">
     <span class="md-ellipsis">
       🔗 Recursos
@@ -937,77 +895,77 @@
 </ul>
 <h2 id="3-escalabilidad-y-eficiencia">✅ 3. Escalabilidad y eficiencia</h2>
 <p>Usa Apache Arrow y mapeo de memoria, lo que permite trabajar con datasets que superan la RAM disponible.
-Soporta dos tipos:
-- Dataset (acceso aleatorio rápido)
-- IterableDataset (para streaming de datos grandes)</p>
+Soporta dos tipos:</p>
+<ul>
+<li>Dataset (acceso aleatorio rápido)</li>
+<li>IterableDataset (para streaming de datos grandes)</li>
+</ul>
 <h2 id="4-compartir-y-colaborar">✅ 4. Compartir y colaborar</h2>
 <p>Podemos crear y subir nuestros propios datasets al Hugging Face Hub, con documentación y ejemplos. Esto fomenta la reproducibilidad y el trabajo en equipo.</p>
 <h2 id="5-integracion-directa-con-modelos">✅ 5. Integración directa con modelos</h2>
 <p>Los datasets se integran fácilmente con transformers y otros frameworks para entrenamiento y evaluación.</p>
 <hr />
 <h2 id="instalacion">⚙️ Instalación</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>datasets
-pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>audio<span class="o">]</span>
-pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>vision<span class="o">]</span>
-</code></pre></div>
+<pre><code class="language-bash">pip install datasets
+pip install datasets[audio]
+pip install datasets[vision]
+</code></pre>
 <hr />
 <h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<p>```python {linenums="1"}
+from datasets import load_dataset</p>
+<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
+<p>print(squad_dataset)</p>
+<pre><code>
+Salida esperada:
+</code></pre>
+<p>DatasetDict({
+    train: Dataset({ features: ['title', 'paragraphs'], num_rows: 442 })
+})</p>
+<pre><code>
+---
 
-<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+## 2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
 
-<span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<p>Salida esperada:
-<div class="highlight"><pre><span></span><code>DatasetDict({
-    train: Dataset({ features: [&#39;title&#39;, &#39;paragraphs&#39;], num_rows: 442 })
-})
-</code></pre></div></p>
-<hr />
-<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
-<h3 id="objetivo">🎯 Objetivo</h3>
-<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
-<ol>
-<li>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando <em>Python</em>:<ol>
-<li>Descarga los datos de <em>SquadES</em> considerando que los datos remotos son los de entrenamiento y validación.</li>
-<li>Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.</li>
-<li>Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.</li>
-<li>Filtra los datos de entrenamiento para que el <em>dataset</em> solo contenga aquellos registros que tienen más de 10 párrafos.</li>
-<li>Elimina la columna con la cantidad de párrafos.</li>
-<li>Persiste todo el dataset en formato Parquet.</li>
-<li>Finalmente, publícalo en <em>Hugging Face</em>, editando la tarjeta y poniendo un documento de ejemplo en la documentación.</li>
-</ol>
-</li>
-</ol>
-<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
-<ol>
-<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
-<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
-<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
-<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
-<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
-</ol>
-<hr />
-<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+### 🎯 Objetivo
+Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
 
-<span class="c1"># Nivel 1: Descargar y explorar</span>
+1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando *Python*:
+    1. Descarga los datos de *SquadES* considerando que los datos remotos son los de entrenamiento y validación.
+    2. Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.
+    3. Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.
+    4. Filtra los datos de entrenamiento para que el *dataset* solo contenga aquellos registros que tienen más de 10 párrafos.
+    5. Elimina la columna con la cantidad de párrafos.
+    6. Persiste todo el dataset en formato Parquet.
+    7. Finalmente, publícalo en *Hugging Face*, editando la tarjeta y poniendo un documento de ejemplo en la documentación.
+
+### 🕹️ Niveles del reto
+1. **Descarga y explora:** Cargar `SquadES`.
+2. **Divide en train/test:** Crear split adicional.
+3. **Añade columna:** `num_paragraphs`.
+4. **Filtra y persiste:** Guardar en Parquet.
+5. **Publica en Hugging Face:** Añadir documentación.
+
+---
+
+## 📂 Plantilla del ejercicio
+```python
+from datasets import load_dataset
+
+# Nivel 1: Descargar y explorar
 
 
-<span class="c1"># Nivel 2: Dividir en train/test</span>
+# Nivel 2: Dividir en train/test
 
 
-<span class="c1"># Nivel 3: Añadir columna con cantidad de párrafos</span>
+# Nivel 3: Añadir columna con cantidad de párrafos
 
 
-<span class="c1"># Nivel 4: Filtrar y persistir</span>
+# Nivel 4: Filtrar y persistir
 
-<span class="c1"># Nivel 5: Publicar en Hugging Face</span>
-</code></pre></div>
+# Nivel 5: Publicar en Hugging Face
+
+</code></pre>
 <hr />
 <h2 id="recursos">🔗 Recursos</h2>
 <ul>

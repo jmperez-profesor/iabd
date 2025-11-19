@@ -749,22 +749,22 @@ Características principales de TFTP:</p>
 <p>En resumen, TFTP es un protocolo útil para transferencias rápidas y simples en entornos seguros y confiables, donde la seguridad avanzada y el control de archivos no son necesarios.</p>
 <h2 id="tecnicas-de-enumeracion-ftp">Técnicas de enumeración FTP</h2>
 <h3 id="obteniendo-la-version">Obteniendo la versión</h3>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sV<span class="w"> </span>-p21,2121<span class="w"> </span><span class="m">192</span>.168.100.129
-</code></pre></div>
+<pre><code class="language-bash">nmap -sV -p21,2121 192.168.100.129
+</code></pre>
 <p>Haciendo uso del script <em>banner</em> de nmap:</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sV<span class="w"> </span>-p21,2121<span class="w"> </span>-sC<span class="w"> </span>banner<span class="w"> </span><span class="m">192</span>.168.100.129
-</code></pre></div>
+<pre><code class="language-bash">nmap -sV -p21,2121 -sC banner 192.168.100.129
+</code></pre>
 <p>O incluso, intentando conectarnos directamente via Telnet;</p>
-<div class="highlight"><pre><span></span><code>telnet<span class="w"> </span><span class="m">192</span>.168.100.129<span class="w"> </span><span class="m">21</span>
-</code></pre></div>
+<pre><code class="language-bash">telnet 192.168.100.129 21
+</code></pre>
 <p>Podemos lanzar los scripts relacionados con FTP que posee nmap:</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sV<span class="w"> </span>-p21,2121<span class="w"> </span>-sC<span class="w"> </span><span class="s2">&quot;ftp*&quot;</span><span class="w"> </span><span class="m">192</span>.168.100.129
-</code></pre></div>
+<pre><code class="language-bash">nmap -sV -p21,2121 -sC &quot;ftp*&quot; 192.168.100.129
+</code></pre>
 <p>Si se permite el login anónimo podríamos acceder al servidor y descargar contenido:</p>
-<div class="highlight"><pre><span></span><code>ftp<span class="w"> </span><span class="m">192</span>.168.100.129
+<pre><code class="language-bash">ftp 192.168.100.129
 
-get<span class="w"> </span>&lt;archivo&gt;
-</code></pre></div>
+get &lt;archivo&gt;
+</code></pre>
 <h2 id="smb">SMB</h2>
 <p>SMB (Server Message Block) es un protocolo de red utilizado principalmente para compartir archivos, impresoras y recursos en una red local (LAN). Fue desarrollado originalmente por IBM y posteriormente extendido y popularizado por Microsoft. Este protocolo permite que dispositivos de una red, como computadoras y servidores, accedan y administren archivos de forma compartida, además de facilitar otras funciones de comunicación entre equipos.
 Principales características de SMB</p>
@@ -799,9 +799,9 @@ Principales características de SMB</p>
 <li><strong>enum4linux</strong>: que no es más que una metaherramienta que combina información obtenida de smbclient, rpclient, net y nmblookup.</li>
 </ul>
 <p>Si queremos comenzar a enumerar con una herramienta ya conocida, como es <strong>nmap</strong>, lanzando los scripts <em>default</em>, podemos hacer:</p>
-<p><div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sC<span class="w"> </span>-p<span class="w"> </span><span class="m">139</span>,445<span class="w"> </span>-sV<span class="w"> </span><span class="m">192</span>.168.100.129
-</code></pre></div>
-Y obtendremos información como la versión de samba y veremos como la ngeociación de Samba versión 2 (SMBv2) ha resultado fallida, por lo que extraemos que quizás se esté utilizando el inseguro SMBv1.</p>
+<pre><code class="language-bash">nmap -sC -p 139,445 -sV 192.168.100.129
+</code></pre>
+<p>Y obtendremos información como la versión de samba y veremos como la ngeociación de Samba versión 2 (SMBv2) ha resultado fallida, por lo que extraemos que quizás se esté utilizando el inseguro SMBv1.</p>
 <p>Otros scripts que se pueden utilizar con nmap para SMB son:
 + smb-protocols: descubrir que versiones maneja la víctima (&lt;SMBv3 sería vulnerable)
 + smb-os-discovery
@@ -809,33 +809,39 @@ Y obtendremos información como la versión de samba y veremos como la ngeociaci
 + smb-enum-users
 + smb-vuln-*: para probar vulnerabilidades concretas de SMB</p>
 <p>Con <strong>smbmap</strong> obtendremos una lista de shares:</p>
-<p><div class="highlight"><pre><span></span><code>smbmap<span class="w"> </span>-H<span class="w"> </span><span class="m">192</span>.168.100.129<span class="w"> </span>-R
-</code></pre></div>
-Según la ayuda de smbmap, textualmente:</p>
-<div class="admonition quote">
-<p class="admonition-title">Quote</p>
-<p>Main arguments:</p>
-<div class="highlight"><pre><span></span><code>-H HOST               IP of host
---host-file FILE      File containing a list of hosts
--u USERNAME           Username, if omitted null session assumed
--p PASSWORD           Password or NTLM hash
--s SHARE              Specify a share (default C$), ex &#39;C$&#39;
--d DOMAIN             Domain name (default WORKGROUP)
--P PORT               SMB port (default 445)
--v                    Return the OS version of the remote host
---admin               Just report if the user is an admin
-</code></pre></div>
-</div>
+<pre><code class="language-bash">smbmap -H 192.168.100.129 -R
+</code></pre>
+<p>Según la ayuda de smbmap, textualmente:</p>
+<p>!!!quote
+    Main arguments:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    -H HOST               IP of host
+    --host-file FILE      File containing a list of hosts
+    -u USERNAME           Username, if omitted null session assumed
+    -p PASSWORD           Password or NTLM hash
+    -s SHARE              Specify a share (default C$), ex &#39;C$&#39;
+    -d DOMAIN             Domain name (default WORKGROUP)
+    -P PORT               SMB port (default 445)
+    -v                    Return the OS version of the remote host
+    --admin               Just report if the user is an admin
+</code></pre></div></td></tr></table></div>
 <p>Y si quisiéramos conectarnos directamente al servidor, podríamos usar <strong>smbclient</strong>. Para listar los <em>shares</em> usando una sesión nula (sin credenciales):</p>
-<p><div class="highlight"><pre><span></span><code>smbclient<span class="w"> </span>-N<span class="w"> </span>-L<span class="w"> </span>//192.168.100.129
-</code></pre></div>
-Y si quisiéramos acceder al servidor y movernos por los directorios:</p>
-<div class="highlight"><pre><span></span><code>smbclient<span class="w"> </span>//192.168.100.129/tmp
-</code></pre></div>
+<pre><code class="language-bash">smbclient -N -L //192.168.100.129
+</code></pre>
+<p>Y si quisiéramos acceder al servidor y movernos por los directorios:</p>
+<pre><code class="language-bash">smbclient //192.168.100.129/tmp
+</code></pre>
 <p>También con la herramiento <strong>rpclient</strong> podemos ejecutar diversas peticiones para obtener información sobre SMB tras conectarnos al servidor:</p>
-<p><div class="highlight"><pre><span></span><code>rpcclient<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="m">192</span>.168.100.129
-</code></pre></div>
-Algunas de las peticiones que podemos hacer;</p>
+<pre><code class="language-bash">rpcclient -U &quot;&quot; 192.168.100.129
+</code></pre>
+<p>Algunas de las peticiones que podemos hacer;</p>
 <table>
 <thead>
 <tr>
@@ -875,8 +881,8 @@ Algunas de las peticiones que podemos hacer;</p>
 </tbody>
 </table>
 <p>Y, como ya comnentábamos, podríamos obtener una salida combinada con <strong>enum4linux</strong>:</p>
-<div class="highlight"><pre><span></span><code>enum4linux<span class="w"> </span><span class="m">192</span>.168.100.129<span class="w"> </span>-A
-</code></pre></div>
+<pre><code class="language-bash">enum4linux 192.168.100.129 -A
+</code></pre>
 <h2 id="nfs">NFS</h2>
 <p>NFS (Network File System) es un protocolo de red que permite compartir archivos entre computadoras en una red de manera que los usuarios puedan acceder a ellos como si estuvieran en su sistema local. Fue desarrollado originalmente por Sun Microsystems en la década de 1980 y se ha convertido en un estándar ampliamente utilizado, especialmente en sistemas Unix y Linux, aunque también es compatible con otros sistemas operativos.
 Principales características de NFS:</p>
@@ -917,16 +923,16 @@ Principales características de NFS:</p>
 <p>Estos datos se utilizan para determinar los derechos de acceso al archivo especificado. Esto es lo que controla los permisos de usuario, es decir, la lectura y escritura de archivos.</p>
 <h3 id="ejemplo-de-enumeracion-de-nfs">Ejemplo de enumeración de NFS</h3>
 <p>El primer paso es como siempre, realizar un escaneo general de la máquina:</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p-<span class="w"> </span>-sT<span class="w"> </span>-T5<span class="w"> </span><span class="m">10</span>.10.192.87<span class="w">   </span>
-</code></pre></div>
-<p>Cuando descubrimos que existe un servicio NFS, podemos listar las comparticiones visibles con:
-<div class="highlight"><pre><span></span><code>showmount<span class="w"> </span>-e<span class="w"> </span><span class="m">10</span>.10.192.87
-</code></pre></div></p>
+<pre><code class="language-bash">nmap -p- -sT -T5 10.10.192.87   
+</code></pre>
+<p>Cuando descubrimos que existe un servicio NFS, podemos listar las comparticiones visibles con:</p>
+<pre><code class="language-bash">showmount -e 10.10.192.87
+</code></pre>
 <p>Nos creamos un directorio ad-hoc y montamos el share que hemos visto anteriormente:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/tmp/mount
+<pre><code class="language-bash">mkdir /tmp/mount
 
-sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>nfs<span class="w"> </span><span class="m">10</span>.10.192.87:home<span class="w"> </span>/tmp/mount/<span class="w"> </span>-nolock
-</code></pre></div>
+sudo mount -t nfs 10.10.192.87:home /tmp/mount/ -nolock
+</code></pre>
 <h2 id="smtp">SMTP</h2>
 <p>SMTP (Simple Mail Transfer Protocol) es un protocolo de comunicación usado para enviar correos electrónicos a través de redes de internet. Es fundamental en la transmisión de mensajes de correo entre servidores de correo electrónico y desempeña un papel clave en el sistema de correo electrónico.</p>
 <h3 id="funcionamiento-basico-de-smtp">Funcionamiento básico de SMTP</h3>
@@ -944,17 +950,17 @@ sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </sp
 <p>SMTP es uno de los protocolos de red más antiguos y sigue siendo el estándar para enviar correos electrónicos hoy en día.</p>
 <h3 id="enumeracion-smtp">Enumeración SMTP</h3>
 <p>Iniciamos, como casi siempre, la enumeración con un escaneo con nmap</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p-<span class="w"> </span>-sT<span class="w"> </span>-T5<span class="w"> </span><span class="m">10</span>.10.192.87<span class="w">   </span>
-</code></pre></div>
+<pre><code class="language-bash">nmap -p- -sT -T5 10.10.192.87   
+</code></pre>
 <p>Si descubrimos un servidor SMTP (puerto 25 por defecto), podemos por ejemplo enumerar usuarios con algú nombre o lista que hayamos recolectado previamente:</p>
-<div class="highlight"><pre><span></span><code>smtp-user-enum<span class="w"> </span>-M<span class="w"> </span>VRFY<span class="w"> </span>-u<span class="w"> </span>admin<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.10.192.87
+<pre><code class="language-bash">smtp-user-enum -M VRFY -u admin -t 10.10.192.87
 
-smtp-user-enum<span class="w"> </span>-M<span class="w"> </span>VRFY<span class="w"> </span>-U<span class="w"> </span>lista_usuarios.txt<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.10.192.87
-</code></pre></div>
+smtp-user-enum -M VRFY -U lista_usuarios.txt -t 10.10.192.87
+</code></pre>
 <p>Podemos intentar ver qué <a href="https://mailtrap.io/es/blog/smtp-commands-and-responses/">comandos</a> se nos permiten para interactuar con el servidor de correo o descubrir si es un <a href="https://es.wikipedia.org/wiki/Open_relay">open-relay</a>:</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p25<span class="w"> </span>--script<span class="w"> </span>smtp-commands<span class="w"> </span><span class="m">10</span>.10.192.87
-nmap<span class="w"> </span>-p25<span class="w"> </span>--script<span class="w"> </span>smtp-open-relay<span class="w"> </span><span class="m">10</span>.10.192.87<span class="w"> </span>-v
-</code></pre></div>
+<pre><code class="language-bash">nmap -p25 --script smtp-commands 10.10.192.87
+nmap -p25 --script smtp-open-relay 10.10.192.87 -v
+</code></pre>
 
 
 

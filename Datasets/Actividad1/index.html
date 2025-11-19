@@ -824,31 +824,31 @@
 <p><img alt="Tablero del reto" src="./img/reto_datasets.png" /></p>
 <hr />
 <h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<pre><code class="language-python">from datasets import load_dataset
 
-<span class="c1"># Nivel 1: Descargar y explorar</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PlanTL-GOB-ES/squad-es&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+# Nivel 1: Descargar y explorar
+dataset = load_dataset(&quot;PlanTL-GOB-ES/squad-es&quot;)
+print(dataset)
 
-<span class="c1"># Nivel 2: Dividir en train/test</span>
-<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
-<span class="n">split_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">train_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
-<span class="n">test_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+# Nivel 2: Dividir en train/test
+train_dataset = dataset[&quot;train&quot;]
+split_dataset = train_dataset.train_test_split(test_size=0.2)
+train_split = split_dataset[&quot;train&quot;]
+test_split = split_dataset[&quot;test&quot;]
 
-<span class="c1"># Nivel 3: Añadir columna con cantidad de párrafos</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">add_num_paragraphs</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])}</span>
-<span class="n">train_split</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">add_num_paragraphs</span><span class="p">)</span>
+# Nivel 3: Añadir columna con cantidad de párrafos
+def add_num_paragraphs(example):
+    return {&quot;num_paragraphs&quot;: len(example[&quot;paragraphs&quot;])}
+train_split = train_split.map(add_num_paragraphs)
 
-<span class="c1"># Nivel 4: Filtrar y persistir</span>
-<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">filtered_train</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
-<span class="n">filtered_train</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;filtered_train.parquet&quot;</span><span class="p">)</span>
+# Nivel 4: Filtrar y persistir
+filtered_train = train_split.filter(lambda x: x[&quot;num_paragraphs&quot;] &gt; 10)
+filtered_train = filtered_train.remove_columns([&quot;num_paragraphs&quot;])
+filtered_train.to_parquet(&quot;filtered_train.parquet&quot;)
 
-<span class="c1"># Nivel 5: Publicar en Hugging Face</span>
-<span class="c1"># filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)</span>
-</code></pre></div>
+# Nivel 5: Publicar en Hugging Face
+# filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)
+</code></pre>
 <hr />
 <h2 id="recursos">🔗 Recursos</h2>
 <ul>

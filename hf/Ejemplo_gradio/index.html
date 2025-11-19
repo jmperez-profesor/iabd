@@ -458,15 +458,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anadimos-el-modelo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Añadimos el modelo
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#instalamos-las-librerias-transformers-y-torch" class="md-nav__link">
     <span class="md-ellipsis">
       Instalamos las librerías transformers y torch​
@@ -485,27 +476,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#codigo-actualizado" class="md-nav__link">
-    <span class="md-ellipsis">
-      Código actualizado
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#de-lista-a-diccionario-para-el-output-label" class="md-nav__link">
     <span class="md-ellipsis">
       De lista a diccionario para el output label
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#codigo-final" class="md-nav__link">
-    <span class="md-ellipsis">
-      Código final
     </span>
   </a>
   
@@ -833,130 +806,83 @@
 <p>Etiquetado de la imagen de entrada:
 <img alt="" src="../img/dogs_vs_cats2.png" /></p>
 <h2 id="codigo-de-ejemplo">Código de ejemplo</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span><span class="err">​</span>
-</span><span class="err">​</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
-  <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
+<p>```python {hl_lines="1 6" linenums="1"} 
+import gradio as gr​
+​
+def image_classifier(inp):​
+  return {'cat': 0.3, 'dog': 0.7}​</p>
+<p>demo = gr.Interface(fn=image_classifier, inputs='image', outputs='label')​</p>
+<p>demo.launch()​</p>
+<pre><code>##  Añadimos el modelo
 
-<span class="hll"><span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
-</span>
-<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="anadimos-el-modelo">Añadimos el modelo</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span><span class="err">​</span>
-<span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="err">​</span>
-</span><span class="err">​</span>
-<span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
-</span><span class="hll">   <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;</span><span class="p">)</span><span class="err">​</span>
-</span>   <span class="n">pipe</span><span class="p">(</span><span class="s2">&quot;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/parrots.png&quot;</span><span class="p">)</span><span class="err">​</span>
-   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
-<span class="err">​</span>
-<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
+```python {hl_lines=&quot;2 4 5&quot; linenums=&quot;1&quot;} 
+import gradio as gr​
+from transformers import pipeline​
+​
+def image_classifier(inp):​
+   pipe = pipeline(&quot;image-classification&quot;, model=&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;)​
+   pipe(&quot;https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/parrots.png&quot;)​
+   return {'cat': 0.3, 'dog': 0.7}​
+​
+demo = gr.Interface(fn=image_classifier, inputs='image', outputs='label')​
 
-<span class="err">​</span><span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div>
+​demo.launch()​
+</code></pre>
 <h2 id="instalamos-las-librerias-transformers-y-torch">Instalamos las librerías transformers y torch​</h2>
-<p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch​
-</code></pre></div>
-Volvemos a probar y comprobamos que funciona correctamente.</p>
+<pre><code class="language-bash">pip install transformers torch​
+</code></pre>
+<p>Volvemos a probar y comprobamos que funciona correctamente.</p>
 <p>Dentro del componente <a href="https://www.gradio.app/docs/gradio/image">Image</a>, por defecto Gradio pasa un objeto tipo <code>numpy.ndarray</code> (la imagen como matriz) a las funciones de Gradio, por lo que debemos especificar el tipo con <code>gr.Image(type="filepath")</code> en la creación de la interfaz de Gradio​.
 ​</p>
 <h2 id="especificar-el-tipo-en-image">Especificar el tipo en Image</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;filepath&quot;</span><span class="p">),</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="codigo-actualizado">Código actualizado</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span><span class="err">​</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="err">​</span>
+<p>```python {linenums="1"} 
+demo = gr.Interface(fn=image_classifier, inputs=gr.Image(type="filepath"), outputs='label')​</p>
+<pre><code>##  Código actualizado
+```python {hl_lines=&quot;13&quot; linenums=&quot;1&quot;}
+import gradio as gr​
+from transformers import pipeline​
 
-<span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
-   <span class="c1">#/tmp/gradio/b7be1455904a47b7fb3d953514163c828cc46e093fe7ba8bdeb950039a8e870e/1.png​</span>
-   <span class="nb">print</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span> 
-   <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;</span><span class="p">)</span><span class="err">​</span>
-   <span class="c1">#[{&#39;label&#39;: &#39;cat&#39;, &#39;score&#39;: 0.6151219010353088}, {&#39;label&#39;: &#39;dog&#39;, &#39;score&#39;: 0.38487812876701355}]​</span>
-   <span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span> 
-   <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span><span class="err">​</span>
+def image_classifier(inp):​
+   #/tmp/gradio/b7be1455904a47b7fb3d953514163c828cc46e093fe7ba8bdeb950039a8e870e/1.png​
+   print(inp) 
+   pipe = pipeline(&quot;image-classification&quot;, model=&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;)​
+   #[{'label': 'cat', 'score': 0.6151219010353088}, {'label': 'dog', 'score': 0.38487812876701355}]​
+   print(pipe(inp)) 
+   return {'cat': 0.3, 'dog': 0.7}​
 
-<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;filepath&quot;</span><span class="p">),</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
-<span class="hll">
-</span><span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div>
+demo = gr.Interface(fn=image_classifier, inputs=gr.Image(type=&quot;filepath&quot;), outputs='label')​
+
+demo.launch()​
+</code></pre>
 <h2 id="de-lista-a-diccionario-para-el-output-label">De lista a diccionario para el output label</h2>
 <p>Para convertir la lista <code>[{'label': 'cat', 'score': 0.6151219010353088}, {'label': 'dog', 'score': 0.38487812876701355}]​</code> al formato requerido por el componente de salida <a href="https://www.gradio.app/docs/gradio/label">Label</a> <code>(dict[str, float])</code> de Gradio, debemos crear un diccionario donde las claves son los valores de <code>label</code> y los valores son los correspondientes a <code>score</code>​</p>
 <p>Ejemplo sencillo:​
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="err">​</span>
-  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mf">0.6151219010353088</span><span class="p">},</span><span class="err">​</span>
-  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mf">0.38487812876701355</span><span class="p">}</span><span class="err">​</span>
-<span class="p">]</span><span class="err">​</span>
-<span class="hll"><span class="n">resultado</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">}</span><span class="err">​​</span>
-</span><span class="c1"># Resultado: {&#39;cat&#39;: 0.8, &#39;dog&#39;: 0.2}​</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div></p>
-<h2 id="codigo-final">Código final</h2>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span><span class="err">​</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="err">​</span>
-<span class="err">​</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">image_classifier</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span><span class="err">​</span>
-   <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;</span><span class="p">)</span><span class="err">​</span>
-   <span class="c1">#[{&#39;label&#39;: &#39;cat&#39;, &#39;score&#39;: 0.6151219010353088}, {&#39;label&#39;: &#39;dog&#39;, &#39;score&#39;: 0.38487812876701355}]​</span>
-<span class="hll">   <span class="n">etiquetas</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
-</span>   <span class="c1">#[{&#39;cat&#39;: 0.6151219010353088}, {&#39;dog&#39;: 0.38487812876701355}]​</span>
-   <span class="n">resultado</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">etiquetas</span><span class="p">}</span> 
-   <span class="k">return</span> <span class="n">resultado</span><span class="err">​</span>
+```python {hl_lines="5" linenums="1"} 
+lista = [​
+  {'label': 'cat', 'score': 0.6151219010353088},​
+  {'label': 'dog', 'score': 0.38487812876701355}​
+]​
+resultado = {d['label']: d['score'] for d in lista}​​</p>
+<h1 id="resultado-cat-08-dog-02">Resultado: {'cat': 0.8, 'dog': 0.2}​</h1>
+<p>print(resultado)​</p>
+<pre><code>##  Código final
+```python {hl_lines=&quot;7&quot; linenums=&quot;1&quot;} 
+import gradio as gr​
+from transformers import pipeline​
+​
+def image_classifier(inp):​
+   pipe = pipeline(&quot;image-classification&quot;, model=&quot;omarques/autotrain-dogs-and-cats-1527055142&quot;)​
+   #[{'label': 'cat', 'score': 0.6151219010353088}, {'label': 'dog', 'score': 0.38487812876701355}]​
+   etiquetas = pipe(inp)
+   #[{'cat': 0.6151219010353088}, {'dog': 0.38487812876701355}]​
+   resultado = {d['label']: d['score'] for d in etiquetas} 
+   return resultado​
 
-<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">image_classifier</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;filepath&quot;</span><span class="p">),</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="err">​</span>
+demo = gr.Interface(fn=image_classifier, inputs=gr.Image(type=&quot;filepath&quot;), outputs='label')​
 
-<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span><span class="err">​</span>
-</code></pre></div></td></tr></table></div>
-​</p>
+demo.launch()​
+</code></pre>
+<p>​</p>
 <p>​</p>
 
 

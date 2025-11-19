@@ -773,15 +773,22 @@
 <li>
 <p><strong>Kerberos</strong>: </p>
 <p>▪ Permite identificar servicios y cuentas relacionadas con SPNs (Service Principal Names). </p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Los SPNs (Service Principal Names) son identificadores únicos que se utilizan en entornos de Active Directory para asociar servicios a cuentas específicas. Son esenciales para que el protocolo Kerberos funcione correctamente, ya que permiten que un cliente encuentre y autentique servicios en una red de manera segura.</p>
-<p>Por ejemplo:</p>
-<p><div class="highlight"><pre><span></span><code><span class="go">HTTP/server01.example.com</span>
-<span class="go">MSSQLSvc/sqlserver01.example.com:1433</span>
-</code></pre></div>
-Cuando un cliente necesita acceder a un servicio, utiliza el SPN para solicitar un ticket de servicio (Service Ticket) al KDC (Key Distribution Center). Esto permite la autenticación mutua entre el cliente y el servicio.</p>
-</div>
+<p>!!!note "Nota"       <br />
+    Los SPNs (Service Principal Names) son identificadores únicos que se utilizan en entornos de Active Directory para asociar servicios a cuentas específicas. Son esenciales para que el protocolo Kerberos funcione correctamente, ya que permiten que un cliente encuentre y autentique servicios en una red de manera segura.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>Por ejemplo:
+
+```console
+HTTP/server01.example.com
+MSSQLSvc/sqlserver01.example.com:1433
+```
+Cuando un cliente necesita acceder a un servicio, utiliza el SPN para solicitar un ticket de servicio (Service Ticket) al KDC (Key Distribution Center). Esto permite la autenticación mutua entre el cliente y el servicio.
+</code></pre></div></td></tr></table></div>
 </li>
 </ul>
 </li>
@@ -808,13 +815,18 @@ Cuando un cliente necesita acceder a un servicio, utiliza el SPN para solicitar 
 <p><strong>CrackMapExec</strong>: </p>
 <p>▪ Herramienta de enumeración y explotación para redes Windows. </p>
 <p>▪ Ejemplo: <code>cme smb &lt;ip&gt; -u usuario -p contraseña --shares para listar recursos compartidos.</code></p>
-<div class="admonition nota">
-<p class="admonition-title">Nota</p>
-<p>Ya no se encuentra activamente mantenida en su repositorio original. El proyecto fue archivado en diciembre de 2023 debido a conflictos relacionados con un "fork hostil". </p>
-<p>Sin embargo, su desarrollo continúa bajo un nuevo nombre: <strong>NetExec</strong>, que busca mantener y ampliar las capacidades de CME con actualizaciones regulares y una mayor participación de la comunidad.</p>
-<p>NetExec, liderado por contribuidores como NeffIsBack y Marshall-Hallenbeck, se posiciona como un sucesor gratuito y de código abierto. Este proyecto hereda las funcionalidades principales de CME, corrige problemas previos y está diseñado para satisfacer las necesidades actuales de los pentesters con un enfoque más colaborativo</p>
-<p><img alt="" src="../img/nxc.png" /></p>
-</div>
+<p>!!!nota "Nota"
+    Ya no se encuentra activamente mantenida en su repositorio original. El proyecto fue archivado en diciembre de 2023 debido a conflictos relacionados con un "fork hostil". </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Sin embargo, su desarrollo continúa bajo un nuevo nombre: **NetExec**, que busca mantener y ampliar las capacidades de CME con actualizaciones regulares y una mayor participación de la comunidad.
+
+NetExec, liderado por contribuidores como NeffIsBack y Marshall-Hallenbeck, se posiciona como un sucesor gratuito y de código abierto. Este proyecto hereda las funcionalidades principales de CME, corrige problemas previos y está diseñado para satisfacer las necesidades actuales de los pentesters con un enfoque más colaborativo
+
+![](./img/nxc.png)
+</code></pre></div></td></tr></table></div>
 </li>
 </ul>
 </li>
