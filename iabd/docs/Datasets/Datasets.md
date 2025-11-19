@@ -735,7 +735,7 @@ hf auth login
 
     Si trabajamos con un cuaderno de Jupyter o Colab, podemos utilizar la librería de *huggingface_hub* y al ejecutarlo, nos aparecerá una ventana donde introducir el token de acceso:
 
-    ``` python
+    ``` python 
     from huggingface_hub import login
     login()
     ```
@@ -782,7 +782,7 @@ pip install datasets[audio]
 
 Una vez instalado, vamos a [cargar un *dataset* que contiene audios](https://huggingface.co/docs/datasets/audio_load), como es [PolyAI/minds14](https://huggingface.co/datasets/PolyAI/minds14):
 
-``` python
+``` python {linenums="1"}
 from datasets import load_dataset
 
 minds = load_dataset("PolyAI/minds14", name="es-ES", split="train")
@@ -814,7 +814,7 @@ Si nos centramos en el campo `audio`, vemos como contiene diferentes valores, lo
 * `array`: los datos del audio decodificados, representados por un array de *NumPy*
 * `sampling_rate`: la frecuencia de muestreo (8,000 Hz).
 
-``` python
+``` python {linenums="1"}
 ejemplo = minds.shuffle()[0]
 
 id2label = minds.features["intent_class"].int2str
@@ -823,7 +823,7 @@ label = id2label(ejemplo["intent_class"])
 
 Y si queremos escuchar el audio, usando *Gradio* podemos crear un componente:
 
-``` python
+``` python {linenums="1"}
  with gr.Blocks() as demo:
     with gr.Column():
         gr.Audio(audio["path"], label=label)
@@ -839,7 +839,7 @@ Y reproducir el audio seleccionado:
 
 Finalmente, si queremos mostrar un gráfico con el espectograma del audio, y haciendo uso de la librería [*Librosa*](https://librosa.org/doc/latest/index.html):
 
-``` python
+``` python {linenums="1"}
 import librosa
 import matplotlib.pyplot as plt
 import librosa.display
@@ -890,7 +890,7 @@ third_audio_file.mp3,y en este audio agradezco al público sus abucheos
 
 Y a continuación, indicamos como primer parámetro `autofolder` y con `data_dir` indicamos la carpeta que contiene los audios:
 
-```python{linenums="1"} 
+```python {linenums="1"} 
 from datasets import load_dataset
 
 dataset = load_dataset("audiofolder", data_dir="/path/to/folder")
