@@ -55,10 +55,7 @@ markdown_extensions:
   - footnotes
 
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true  # Opcional: crea enlaces de anclaje para las líneas
-      line_spans: true       # Opcional: envuelve las líneas con <span> para mejor estilo
-      pygments_lang_class: true
+  - pymdownx.highlight:            
       linenums: true
 
 nav:
