@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Tasks_texts/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Datasets/">
       
       
       
@@ -20,7 +20,7 @@
     
     
       
-        <title>Tasks de Hugging face - Inteligencia Artificial y Big Data</title>
+        <title>Datasets de Hugging Face - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#objetivos" class="md-skip">
+        <a href="#hugging-face-datasets-guia-reto-gamificado" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tasks de Hugging face
+              Datasets de Hugging Face
             
           </span>
         </div>
@@ -712,133 +712,98 @@
 
 
 
-<h2 id="objetivos">Objetivos</h2>
+<h1 id="hugging-face-datasets-guia-reto-gamificado">📘 Hugging Face Datasets: Guía + Reto Gamificado</h1>
+<h2 id="1-introduccion">1️⃣ Introducción</h2>
+<p>El paquete <strong><code>datasets</code></strong> de Hugging Face es una potente herramienta para <strong>acceder, compartir y procesar conjuntos de datos (datasets)</strong> de IA para una amplia gama de tareas, que incluyen:</p>
 <ul>
-<li>Diferenciar qué es un "task" en Machine Learning según Hugging Face.</li>
-<li>Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.</li>
-<li>Probar ejemplos prácticos con pipelines de Hugging Face.</li>
+<li>Procesamiento del Lenguaje Natural (PLN)</li>
+<li>Visión por computadora</li>
+<li>Procesamiento de audio</li>
 </ul>
-<p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
-<h1 id="que-es-un-task">¿Qué es un task?</h1>
-<p>Un "task" en Hugging Face describe el tipo de problema que un modelo puede resolver.
-Permite buscar, probar y reutilizar modelos según la tarea (task) deseada.</p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" />
-<em>Tasks (tareas) en Hugging Face</em></p>
-<h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de visión por computadora</h1>
-<p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
-<h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
-<p>La clasificación de imágenes es una tarea de visión artificial que implica categorizar o etiquetar una imagen en una o varias clases o categorías predefinidas. El objetivo de la clasificación de imágenes es reconocer y asignar la etiqueta más adecuada a una imagen determinada en función de su contenido. </p>
-<p><img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
-<h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones:</h3>
+<p>Está diseñado para manejar <strong>grandes volúmenes de datos</strong> de manera eficiente mediante el uso de <strong>mapeo de memoria</strong> y el formato <a href="https://arrow.apache.org/"><strong>Apache Arrow</strong></a>, lo que permite trabajar con datos que superan la RAM disponible.</p>
+<blockquote>
+<p>Arrow Apache Arrow define un formato de memoria columnar independiente del lenguaje para datos planos y anidados, organizado para operaciones analíticas eficientes en hardware moderno como CPU y GPU. El formato de memoria Arrow también admite lecturas sin copia para un acceso a datos ultrarrápido sin sobrecarga de serialización.</p>
+<p>El proyecto del formato Apache Arrow comenzó en febrero de 2016, centrándose en cargas de trabajo de análisis columnar en memoria. A diferencia de formatos de archivo como Parquet o CSV, que especifican cómo se organizan los datos en el disco, Arrow se centra en cómo se organizan los datos en la memoria.</p>
+<p>Los creadores buscan consolidar Arrow como un formato estándar en memoria para el análisis de cargas de trabajo. Estos fundamentos atraen a numerosos colaboradores de proyectos como Pandas, Spark, Cassandra, Apache Calcite, Dremio e Ibis.</p>
+</blockquote>
+<hr />
+<h2 id="caracteristicas-clave">🔑 Características Clave</h2>
 <ul>
-<li>Diagnóstico médico (clasificar radiografías)</li>
-<li>Reconocimiento de objetos</li>
-<li>Clasificación de productos en e-commerce</li>
-<li>Moderación de contenido visual</li>
+<li><strong>Vasto Repositorio (Hub):</strong> Gran cantidad de datasets públicos y privados.</li>
+<li><strong>Fácil Acceso:</strong> Carga en una sola línea de código.</li>
+<li><strong>Procesamiento Eficiente:</strong> Métodos como <code>map()</code> paralelizados.</li>
+<li><strong>Escalabilidad:</strong> Objetos <code>Dataset</code> y <code>IterableDataset</code>.</li>
+<li><strong>Gestión de Datos:</strong> Crear y subir datasets propios al Hub.</li>
 </ul>
-<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
-<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Algunos destacados:</p>
-<table>
-<thead>
-<tr>
-<th>Modelo</th>
-<th>Arquitectura</th>
-<th>Dataset de entrenamiento</th>
-<th>Enlace</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>google/vit-base-patch16-224</code></td>
-<td>Vision Transformer (ViT)</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>microsoft/resnet-50</code></td>
-<td>ResNet-50</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a></td>
-</tr>
-<tr>
-<td><code>facebook/deit-base-patch16-224</code></td>
-<td>DeiT</td>
-<td>ImageNet</td>
-<td><a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
-<p><img alt="" src="../img/quickdraw1.png" /></p>
-<p>Este juego se ha creado con aprendizaje automático. Cuando dibujas algo, una red neuronal intenta adivinar qué estás dibujando. Evidentemente, no siempre funciona; pero cuanto más juegues, más aprenderá. Ya reconoce cientos de conceptos y esperamos poder añadir más en el futuro. Nuestro objetivo es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. Mira el siguiente vídeo para saber cómo funciona y</p>
-<p><strong>Características clave</strong></p>
-<ul>
-<li>
-<p><strong>Juego con IA</strong>: El juego es un experimento de aprendizaje automático. El jugador dibuja y la red neuronal intenta adivinar el dibujo en tiempo real.</p>
-</li>
-<li>
-<p><strong>Aprendizaje continuo</strong>: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.</p>
-</li>
-<li>
-<p><strong>Mecánica simple</strong>: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.</p>
-</li>
-<li>
-<p><strong>Accesibilidad</strong>: El juego es gratuito y se puede jugar directamente en el navegador web desde cualquier dispositivo (smartphone, tablet, ordenador, etc.). </p>
-</li>
-</ul>
-<p>Podemos acceder al juego en el sitio web oficial: <a href="https://quickdraw.withgoogle.com/">Web oficial</a>. </p>
-<p><strong>Importancia de los datos - BigData</strong></p>
-<p>Los datos recopilados en el juego "Quick, Draw!" son fundamentales en el ámbito del Big Data y el aprendizaje automático porque conforman el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar los modelos de inteligencia artificial de Google. 
-Su importancia radica en varios puntos clave:</p>
-<ul>
-<li>
-<p><strong>Entrenamiento de IA</strong>: Los millones de dibujos (actualmente más de 50 millones en 345 categorías) sirven como un vasto corpus de datos para entrenar redes neuronales, enseñándoles a reconocer e interpretar garabatos de formas muy diversas. La IA aprende a identificar patrones visuales, sin importar el estilo individual del dibujante.</p>
-</li>
-<li>
-<p><strong>Diversidad y variabilidad</strong>: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.</p>
-</li>
-<li>
-<p><strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo Sketch-RNN.</p>
-</li>
-<li>
-<p><strong>Investigación abierta</strong>: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.</p>
-</li>
-<li>
-<p><strong>Ejemplo de gamificación para la recolección de datos</strong>: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data</p>
-</li>
-</ul>
-<p><a href="https://quickdraw.withgoogle.com/data">Datos de entrenamiento</a></p>
-<p><img alt="" src="../img/quickdraw2.webp" /></p>
-<p>En esta página podemos ver, en el momento en el que se redactaban estos apuntes, 126.372 dibujos de pelotas de baloncesto hechas por personales reales...en Internet. Incluso, podemos ver los trazos que han realizado estas personas hasta que el modelo ha sido capaz de adivinar el dibujo. 
-Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy importantes para cualquier modelo de aprendizaje. </p>
-<p><a href="https://quickdraw.withgoogle.com/data/basketball">Datos de entrenamiento para la pelota de baloncesto</a></p>
-<p><img alt="" src="../img/data_basketball_quickdraw.png" /></p>
-<h1 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h1>
-<p>Vamos a crear una aplicación web con Gradio que use el modelo creado en una sesión anterior: <a href="https://huggingface.co/omarques/autotrain-dogs-and-cats-1527055142">​omarques/autotrain-dogs-and-cats-1527055142</a></p>
-<p>Ejemplo de aplicación Gradio con una imagen de entrada y un Label como componente de salida:
-<img alt="" src="../img/dogs_vs_cats1.png" /></p>
-<p>Etiquetado de la imagen de entrada:
-<img alt="" src="../img/dogs_vs_cats2.png" /></p>
-<h3 id="2-estimacion-de-profundidad-depth-estimation">2. Estimación de Profundidad (Depth Estimation)</h3>
-<ul>
-<li><strong>Definición</strong>: Predice la distancia de cada píxel respecto a la cámara usando solo una imagen.</li>
-<li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
-<li><strong>Modelos populares</strong>: DPT, MiDaS</li>
-</ul>
+<hr />
+<h2 id="instalacion">⚙️ Instalación</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>datasets
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>audio<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>vision<span class="o">]</span>
+</code></pre></div>
+<hr />
+<h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Utiliza el pipeline:</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
-<span class="hll"><span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
-</span>
-<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Salida esperada:
+<div class="highlight"><pre><span></span><code>DatasetDict({
+    train: Dataset({ features: [&#39;title&#39;, &#39;paragraphs&#39;], num_rows: 442 })
+})
+</code></pre></div></p>
+<hr />
+<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
+<h3 id="objetivo">🎯 Objetivo</h3>
+<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
+<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
+<ol>
+<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
+<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
+<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
+<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
+<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
+</ol>
+<p><img alt="Tablero del reto" src="../img/reto_datasets.png" /></p>
+<hr />
+<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="c1"># Nivel 1: Descargar y explorar</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PlanTL-GOB-ES/squad-es&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="c1"># Nivel 2: Dividir en train/test</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">split_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">test_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+
+<span class="c1"># Nivel 3: Añadir columna con cantidad de párrafos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_num_paragraphs</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])}</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">add_num_paragraphs</span><span class="p">)</span>
+
+<span class="c1"># Nivel 4: Filtrar y persistir</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">filtered_train</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
+<span class="n">filtered_train</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;filtered_train.parquet&quot;</span><span class="p">)</span>
+
+<span class="c1"># Nivel 5: Publicar en Hugging Face</span>
+<span class="c1"># filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)</span>
+</code></pre></div>
+<hr />
+<h2 id="recursos">🔗 Recursos</h2>
+<ul>
+<li><a href="https://huggingface.co/datasets">Hugging Face Datasets</a></li>
+<li><a href="https://huggingface.co/docs/datasets">Documentación oficial</a></li>
+</ul>
 
 
 

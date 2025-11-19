@@ -13,8 +13,6 @@
         <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Datasets/Actividad1_solution/">
       
       
-        <link rel="prev" href="../Actividad1/">
-      
       
       
       <link rel="icon" href="../../images/favicon.png">
@@ -247,12 +245,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../Datasets/" class="md-tabs__link">
           
   
@@ -522,10 +518,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -533,24 +527,25 @@
       
         
       
+        
+      
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -563,7 +558,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Datasets
@@ -597,17 +592,36 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets Aitor/datasets_aitor.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
     
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
   
+  
     
     
       
         
       
-        
-      
     
     
     
@@ -615,14 +629,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
             
   
   
@@ -635,8 +651,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Actividades
           </label>
@@ -660,39 +676,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Actividad 1 Solución - Datasets de Hugging Face
-    
-  </span>
-  
-
-      </a>
-      
     </li>
   
 
@@ -730,7 +713,7 @@
 
 
 <h1 id="1-descargar-los-datos-de-squades-desde-fuente-remota">1. Descargar los datos de SquadES desde fuente remota</h1>
-<p>El primer paso es cargar los archivos de entrenamiento y validación desde URLs remotas. Utilizaremos la función load_dataset() de la librería 🤗 Datasets, indicando que queremos cargar archivos JSON alojados en GitHub. Los datos remotos se corresponden con train-v2.0-es.json (entrenamiento) y dev-v2.0-es.json (validación).</p>
+<p>El primer paso es cargar los archivos de entrenamiento y validación desde URLs remotas. Utilizaremos la función <code>load_dataset()</code> de la librería Hugging Face Datasets, indicando que queremos cargar archivos JSON alojados en GitHub. Los datos remotos se corresponden con <code>train-v2.0-es.json</code> (entrenamiento) y <code>dev-v2.0-es.json</code> (validación).</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -751,7 +734,7 @@
 </code></pre></div></td></tr></table></div>
 Esto produce un objeto DatasetDict con splits train y val, donde cada elemento tiene las claves title y paragraphs.​</p>
 <h1 id="2-dividir-los-datos-de-entrenamiento-en-entrenamiento-y-prueba">2. Dividir los datos de entrenamiento en entrenamiento y prueba</h1>
-<p>Para realizar una partición del split de entrenamiento en dos partes (por ejemplo, 90% entrenamiento y 10% prueba), usamos el método train_test_split():</p>
+<p>Para realizar una partición del <code>split</code> de entrenamiento en dos partes (por ejemplo, 90% entrenamiento y 10% prueba), usamos el método <code>train_test_split()</code>:</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -764,18 +747,18 @@ Esto produce un objeto DatasetDict con splits train y val, donde cada elemento t
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_test</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-Ahora disponemos de squad_train (entrenamiento 90%) y squad_test (prueba 10%).​</p>
+Ahora disponemos de <code>squad_train</code> (entrenamiento 90%) y <code>squad_test</code> (prueba 10%).​</p>
 <h1 id="3-anadir-una-columna-con-el-numero-de-parrafos">3. Añadir una columna con el número de párrafos</h1>
-<p>Podemos emplear el método map para agregar una columna llamada, por ejemplo, num_paragraphs, contando los elementos en la clave paragraphs de cada ejemplo.</p>
+<p>Podemos emplear el método <code>map()</code> para agregar una columna llamada, por ejemplo, <code>num_paragraphs</code>, contando los elementos en la clave <code>paragraphs</code> de cada ejemplo.</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>  <span class="c1"># Debe incluir &#39;num_paragraphs&#39;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-De este modo, cada registro en el split de entrenamiento tiene la columna con el número de párrafos.​</p>
+De este modo, cada registro en el <code>split</code> de entrenamiento tiene la columna con el número de párrafos.​</p>
 <h1 id="4-filtrar-los-ejemplos-con-mas-de-10-parrafos">4. Filtrar los ejemplos con más de 10 párrafos</h1>
-<p>Usaremos el método filter, pasando una función lambda que conserve solo aquellos ejemplos cuya columna num_paragraphs sea mayor que 10:</p>
+<p>Usaremos el método <code>filter()</code>, pasando una función lambda que conserve solo aquellos ejemplos cuya columna <code>num_paragraphs</code> sea mayor que 10:</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_large</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_train_large</span><span class="p">)</span>
@@ -787,7 +770,7 @@ Así, el dataset de entrenamiento contiene únicamente los registros relevantes 
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_final</span> <span class="o">=</span> <span class="n">squad_train_large</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">(</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_train_final</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-Esto deja únicamente las columnas originales: title y paragraphs.​</p>
+Esto deja únicamente las columnas originales: <code>title</code> y <code>paragraphs</code>.​</p>
 <h1 id="6-persistir-el-dataset-en-formato-parquet">6. Persistir el dataset en formato Parquet</h1>
 <p>El método to_parquet() permite guardar el dataset resultante en disco en formato Parquet, que es eficiente y compatible para grandes volúmenes de datos.</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_final</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;squad_train_filtered.parquet&quot;</span><span class="p">)</span>
@@ -799,7 +782,7 @@ Esto crea el archivo Parquet con los ejemplos filtrados.​</p>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
 <span class="n">login</span><span class="p">()</span>  <span class="c1"># Te pedirá el token</span>
 </code></pre></div></td></tr></table></div>
-A continuación, puedes usar el método push_to_hub del dataset. Opcionalmente, crea primero un DatasetDict si quieres incluir también el split de validación o test:</p>
+A continuación, puedes usar el método <code>push_to_hub</code> del dataset. Opcionalmente, crea primero un <code>DatasetDict</code> si quieres incluir también el <code>split</code> de validación o test:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -813,13 +796,12 @@ A continuación, puedes usar el método push_to_hub del dataset. Opcionalmente, 
 <span class="p">})</span>
 </code></pre></div></td></tr></table></div>
 <p>Sube el dataset (reemplaza <tu_usuario>/squad_es_filtrado por tu nombre de usuario/repositorio en Hugging Face)
-final_dataset.push_to_hub("<tu_usuario>/squad_es_filtrado")</p>
+<code>final_dataset.push_to_hub("&lt;tu_usuario&gt;/squad_es_filtrado")</code></p>
 <h1 id="opcionalmente-anade-un-ejemplo-en-la-documentacion-editando-la-dataset-card-en-la-propia-web-de-hugging-face-tal-como-recomienda-la-sesionattached_file1">Opcionalmente, añade un ejemplo en la documentación editando la "Dataset Card" en la propia web de Hugging Face, tal como recomienda la sesión[attached_file:1].</h1>
 <blockquote>
 <p>Notas finales
 - Durante el proceso, imprime ejemplos y utiliza pequeños prints para comprobar cada paso.
-- La edición de la tarjeta del dataset ("Dataset Card") se realiza desde la web de Hugging Face: ahí puedes añadir un ejemplo, uso previsto y detalles del proceso seguido, favoreciendo la comprensión de terceros usuarios.
-- Todos estos pasos están alineados con la metodología y ejemplos detallados en la sesión teórica enlazada.​</p>
+- La edición de la tarjeta del dataset ("Dataset Card") se realiza desde la web de Hugging Face: ahí puedes añadir un ejemplo, uso previsto y detalles del proceso seguido, favoreciendo la comprensión de terceros usuarios.</p>
 </blockquote>
 <hr />
 <h2 id="recursos">🔗 Recursos</h2>
@@ -862,28 +844,6 @@ final_dataset.push_to_hub("<tu_usuario>/squad_es_filtrado")</p>
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
-        
-          
-          <a href="../Actividad1/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Actividad 1 - Datasets de Hugging Face">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              <div class="md-ellipsis">
-                Actividad 1 - Datasets de Hugging Face
-              </div>
-            </div>
-          </a>
-        
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
