@@ -712,48 +712,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face" class="md-nav__link">
-    <span class="md-ellipsis">
-      2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Objetivo
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#niveles-del-reto" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕹️ Niveles del reto
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plantilla-del-ejercicio" class="md-nav__link">
-    <span class="md-ellipsis">
-      📂 Plantilla del ejercicio
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#cargando-datos" class="md-nav__link">
     <span class="md-ellipsis">
       Cargando datos
@@ -954,44 +912,45 @@ pip install datasets[vision]
 </code></pre>
 <hr />
 <h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
-<pre><code class="language-python">from datasets import load_dataset
-
-squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;)
-
-print(squad_dataset)
+<p>```python linenums="1"
+from datasets import load_dataset</p>
+<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
+<p>print(squad_dataset)</p>
+<pre><code>
+Salida esperada:
 </code></pre>
-<p>Salida esperada:</p>
-<pre><code>DatasetDict({
+<p>DatasetDict({
     train: Dataset({ features: ['title', 'paragraphs'], num_rows: 442 })
-})
-</code></pre>
-<hr />
-<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
-<h3 id="objetivo">🎯 Objetivo</h3>
-<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
-<ol>
-<li>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando <em>Python</em>:<ol>
-<li>Descarga los datos de <em>SquadES</em> considerando que los datos remotos son los de entrenamiento y validación.</li>
-<li>Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.</li>
-<li>Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.</li>
-<li>Filtra los datos de entrenamiento para que el <em>dataset</em> solo contenga aquellos registros que tienen más de 10 párrafos.</li>
-<li>Elimina la columna con la cantidad de párrafos.</li>
-<li>Persiste todo el dataset en formato Parquet.</li>
-<li>Finalmente, publícalo en <em>Hugging Face</em>, editando la tarjeta y poniendo un documento de ejemplo en la documentación.</li>
-</ol>
-</li>
-</ol>
-<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
-<ol>
-<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
-<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
-<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
-<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
-<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
-</ol>
-<hr />
-<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
-<pre><code class="language-python">from datasets import load_dataset
+})</p>
+<pre><code>
+---
+
+## 2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
+
+### 🎯 Objetivo
+Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
+
+1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando *Python*:
+    1. Descarga los datos de *SquadES* considerando que los datos remotos son los de entrenamiento y validación.
+    2. Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.
+    3. Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.
+    4. Filtra los datos de entrenamiento para que el *dataset* solo contenga aquellos registros que tienen más de 10 párrafos.
+    5. Elimina la columna con la cantidad de párrafos.
+    6. Persiste todo el dataset en formato Parquet.
+    7. Finalmente, publícalo en *Hugging Face*, editando la tarjeta y poniendo un documento de ejemplo en la documentación.
+
+### 🕹️ Niveles del reto
+1. **Descarga y explora:** Cargar `SquadES`.
+2. **Divide en train/test:** Crear split adicional.
+3. **Añade columna:** `num_paragraphs`.
+4. **Filtra y persiste:** Guardar en Parquet.
+5. **Publica en Hugging Face:** Añadir documentación.
+
+---
+
+## 📂 Plantilla del ejercicio
+```python
+from datasets import load_dataset
 
 # Nivel 1: Descargar y explorar
 
@@ -1015,67 +974,61 @@ print(squad_dataset)
 <pre><code class="language-bash">pip install datasets
 </code></pre>
 <p>Podemos cargar archivos con diferentes formatos indicando el formato y los datos:</p>
-<p>``` python {linenums="1"}</p>
-<h1 id="csv-tsv">CSV &amp; TSV</h1>
-<p>load_dataset("csv", data_files="mis_datos.csv")</p>
-<h1 id="texto">Texto</h1>
-<p>load_dataset("text", data_files="mis_datos.txt")</p>
-<h1 id="json-jsonl">JSON &amp; JSONL</h1>
-<p>load_dataset("json", data_files="mis_datos.jsonl")</p>
-<pre><code>
-Para este apartado nos vamos a centrar en los datos de SQuAD (*Stanford Question Answering Dataset*), compuesto de un conjunto de artículos de *Wikipedia*, con respuestas a diferentes preguntas sobre los artículos. En nuestro caso, nos vamos a centrar en una versión en castellano que podemos ver en &lt;https://huggingface.co/datasets/squad_es&gt; o descargarlo de desde &lt;https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0&gt;.
-
-Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente *script*, podemos realizar una carga local de los datos:
-
-``` python linenums=&quot;1&quot; title=&quot;squad-es-local.py&quot; hl_lines=&quot;3&quot;
-from datasets import load_dataset
-
-squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;)
-
-print(squad_dataset)
+<pre><code class="language-python"># CSV &amp; TSV
+load_dataset(&quot;csv&quot;, data_files=&quot;mis_datos.csv&quot;)
+# Texto
+load_dataset(&quot;text&quot;, data_files=&quot;mis_datos.txt&quot;)
+# JSON &amp; JSONL
+load_dataset(&quot;json&quot;, data_files=&quot;mis_datos.jsonl&quot;)
 </code></pre>
-<p>Tras ejecutarlo, nos muestra que al cargar el <em>dataset</em> ha creado un <em>split</em> para <em>train</em>, con la cantidad de filas y las columnas contenidas dentro de un <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetDict"><code>DatasetDict</code></a>:</p>
-<p>``` bash linenums="1"
+<p>Para este apartado nos vamos a centrar en los datos de SQuAD (<em>Stanford Question Answering Dataset</em>), compuesto de un conjunto de artículos de <em>Wikipedia</em>, con respuestas a diferentes preguntas sobre los artículos. En nuestro caso, nos vamos a centrar en una versión en castellano que podemos ver en <a href="https://huggingface.co/datasets/squad_es">https://huggingface.co/datasets/squad_es</a> o descargarlo de desde <a href="https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0">https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0</a>.</p>
+<p>Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente <em>script</em>, podemos realizar una carga local de los datos:</p>
+<p>``` python linenums="1" title="squad-es-local.py" hl_lines="3"
+from datasets import load_dataset</p>
+<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
+<p>print(squad_dataset)</p>
+<pre><code>
+Tras ejecutarlo, nos muestra que al cargar el *dataset* ha creado un *split* para *train*, con la cantidad de filas y las columnas contenidas dentro de un [`DatasetDict`](https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetDict):
+
+``` bash linenums=&quot;1&quot;
 Generating train split: 442 examples [00:00, 1211.02 examples/s]
 DatasetDict({
     train: Dataset({
         features: ['title', 'paragraphs'],
         num_rows: 442
     })
-})</p>
-<pre><code>
-Si queremos obtener más información, podemos mostrar las características:
-
-``` python linenums=&quot;1&quot; hl_lines=&quot;1&quot;
-print(squad_dataset[&quot;train&quot;].features)
-# {'title': Value(dtype='string', id=None),
-#  'paragraphs': [
-#     {'context': Value(dtype='string', id=None),
-#      'qas': [
-#         {'answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],
-#          'id': Value(dtype='string', id=None),
-#          'is_impossible': Value(dtype='bool', id=None),
-#          'plausible_answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],
-#          'question': Value(dtype='string', id=None)}]
-#     }
-#  ]
-# }
+})
 </code></pre>
-<p>Y al tratarse de un diccionario, podemos navegar mediante los corchetes para, por ejemplo, recuperar parte de los datos:</p>
-<p>``` python linenums="1" hl_lines="1 3"
-print(squad_dataset["train"][0]["title"])</p>
-<h1 id="beyonce-knowles">Beyoncé Knowles</h1>
-<p>print(squad_dataset["train"][0]["paragraphs"][0])</p>
-<h1 id="context-beyonce-giselle-knowles-carter-nacida-el-4-de-septiembre-de-1981">{'context': 'Beyoncé Giselle Knowles-Carter (nacida el 4 de septiembre de 1981)..',</h1>
-<p># 'qas': [
+<p>Si queremos obtener más información, podemos mostrar las características:</p>
+<p>``` python linenums="1" hl_lines="1"
+print(squad_dataset["train"].features)</p>
+<h1 id="title-valuedtypestring-idnone">{'title': Value(dtype='string', id=None),</h1>
+<h1 id="paragraphs">'paragraphs': [</h1>
+<h1 id="context-valuedtypestring-idnone">{'context': Value(dtype='string', id=None),</h1>
+<h1 id="qas">'qas': [</h1>
+<h1 id="answers-answer_start-valuedtypeint64-idnone-text-valuedtypestring-idnone">{'answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],</h1>
+<h1 id="id-valuedtypestring-idnone">'id': Value(dtype='string', id=None),</h1>
+<h1 id="is_impossible-valuedtypebool-idnone">'is_impossible': Value(dtype='bool', id=None),</h1>
+<h1 id="plausible_answers-answer_start-valuedtypeint64-idnone-text-valuedtypestring-idnone">'plausible_answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],</h1>
+<h1 id="question-valuedtypestring-idnone">'question': Value(dtype='string', id=None)}]</h1>
+<h1 id="_1">}</h1>
+<h1 id="_2">]</h1>
+<h1 id="_3">}</h1>
+<pre><code>
+Y al tratarse de un diccionario, podemos navegar mediante los corchetes para, por ejemplo, recuperar parte de los datos:
+
+``` python linenums=&quot;1&quot; hl_lines=&quot;1 3&quot;
+print(squad_dataset[&quot;train&quot;][0][&quot;title&quot;])
+# Beyoncé Knowles
+print(squad_dataset[&quot;train&quot;][0][&quot;paragraphs&quot;][0])
+# {'context': 'Beyoncé Giselle Knowles-Carter (nacida el 4 de septiembre de 1981)..',
+ # 'qas': [
     # {'answers': [{'answer_start': 246, 'text': 'a finales de 1990'}],
     #  'id': '56be85543aeaaa14008c9063', 'is_impossible': False, 'plausible_answers': None, 'question': '¿Cuándo Beyonce comenzó a ser popular?'},
-    # {'answers': ...</p>
-<pre><code>
-Cuando cargamos un *dataset*, realmente queremos cargar los datos de entrenamiento y los de validación. Para ello, le pasaremos un diccionario con los diferentes archivos para `train` y para `val`:
-
-``` python
-ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json&quot;, &quot;val&quot;: &quot;dev-v2.0-es.json&quot;}
+    # {'answers': ...
+</code></pre>
+<p>Cuando cargamos un <em>dataset</em>, realmente queremos cargar los datos de entrenamiento y los de validación. Para ello, le pasaremos un diccionario con los diferentes archivos para <code>train</code> y para <code>val</code>:</p>
+<pre><code class="language-python">ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json&quot;, &quot;val&quot;: &quot;dev-v2.0-es.json&quot;}
 squad_dataset_train = load_dataset(&quot;json&quot;, data_files=ficheros_datos, field=&quot;data&quot;)
 </code></pre>
 <p>Obteniendo:</p>
@@ -1413,7 +1366,7 @@ print(mongo_dataset)</p>
 <h1 id="dataset">Dataset({</h1>
 <h1 id="features-student_id-scores-class_id">features: ['student_id', 'scores', 'class_id'],</h1>
 <h1 id="num_rows-100000">num_rows: 100000</h1>
-<h1 id="_1">})</h1>
+<h1 id="_4">})</h1>
 <pre><code>
 O si queremos almacenar los datos de forma temporal, por ejemplo, podemos hacer uso de *Pandas*:
 
