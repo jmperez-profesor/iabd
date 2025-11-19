@@ -917,7 +917,7 @@ sudo systemctl status suricata.service</code>
     A partir de la documentación proporcionada o de otra que podáis encontrar por Internet, escribid una regla de Suricata para que cuando se produzca una conexión desde cualquier IP origen a cualquier IP destino y puerto 8000, el tráfico sea bloqueado por <code>iptables</code>. 
     Ponedle SID 9000001 por ejemplo, para que no haya conflicto con otra regla ya existente.
     Para comprobarla, en la máquina donde está Suricata:</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -942,7 +942,7 @@ nc IP_Maq_Virtual 8000
     <code>console
     kill -USR2 $(pidof suricata)</code>
     Si no os funciona, de acuerdo con la <a href="https://suricata.readthedocs.io/en/suricata-6.0.0/rule-management/rule-reload.html">documentación</a>, probad:</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>```console
 suricatasc -c ruleset-reload-nonblocking

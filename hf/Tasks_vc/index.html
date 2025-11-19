@@ -1200,7 +1200,7 @@ model.load_state_dict(state_dict, strict=False)</p>
     # Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] 
     # y añade dimensiones de batch y canal
     x = torch.tensor(im, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1498,7 +1498,7 @@ import torch</p>
         f"Detected {object['label']} with confidence "
         f"{(object['score'] * 100):.2f}% at {box}"
     )</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1544,7 +1544,7 @@ from PIL import Image, ImageDraw
 from transformers import pipeline
 import random </p>
 <p>def predict(image):    </p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1749,7 +1749,7 @@ image = Image.open(requests.get(url, stream=True).raw) </p>
 <p>for result in results: 
     base_image = image.copy() 
     mask_image = result['mask'] </p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>

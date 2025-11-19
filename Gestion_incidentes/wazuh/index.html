@@ -868,7 +868,7 @@ $ sudo apt-get install --no-install-recommends php8.1</code></p>
 </li>
 </ol>
 <p>!!!danger "¡Atención, importante!"</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> En la comunicación entre los agentes y el servidor intervienen distintos puertos. &lt;u&gt;**La forma fácil de evitaros todo problema**&lt;/u&gt; es añadir una regla de seguridad a todas las máquinas donde se permite cualquier conexión entrante (TCP/UDP, cualquier puerto) desde la red 172.31.0.0/16.
 
@@ -1015,7 +1015,7 @@ $ sudo apt install auditd</code></p>
 <p><code>console
 $ sudo apachectl -S</code></p>
 <p>???note "Salida"</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1132,7 +1132,7 @@ $ sudo systemctl restart wazuh-agent
         </mitre>
     </rule>
     </group></p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1355,7 +1355,7 @@ $ nc -nlvp 4444</code></p>
 <p>Los grupos de seguridad son, de forma aproximada, una especie de Firewall que filtra las conexiones desde y hacia nuestras instancias.</p>
 <p>!!!warning "¡Atención!"
     Los clientes Linux y Windows que contendrán sendos agentes, alojan su contenido mediante servidores web en el puerto (80), HTTP. Sin embargo, el servidor de Wazuh o Wazuh manager, utiliza sólo HTTPS con certificado autofirmado para su interfaz web. </p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Tened esto en cuenta a la hora de crear la instancia y marcad la casilla correspondiente.
 
@@ -1411,7 +1411,7 @@ Si os despistáis, más adelante se explica cómo modificar grupos de seguridad.
 <p><img alt="" src="../img/aws27.png" /></p>
 <p>!!!warning "¡Atención!"
     El laboratorio se apaga automáticamente a las 4 horas, tiempo más que suficiente para llevar a cabo la práctica. En caso contrario, podréis reiniciarlo puesto que sólo se apagan las instancias pero no se pierde el trabajo.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Si trabajáis en varias tandas o acabáis antes de las 4 horas, apagadlo vosotros para evitar gastos innecearios en vuestro crédito de 100$. Para ello, en la página de lanzamiento del laboratorio, esta vez le daremos a ***End lab***
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Si trabajáis en varias tandas o acabáis antes de las 4 horas, apagadlo vosotros para evitar gastos innecearios en vuestro crédito de 100$. Para ello, en la página de lanzamiento del laboratorio, esta vez le daremos a ***End lab***
 </code></pre></div></td></tr></table></div>
 <h2 id="despliegue-automatizado-del-escenario">Despliegue automatizado del escenario</h2>
 <p>Para desplegar este escenario de forma automatizada en AWS se puede hacer uso del siguiente repositorio: </p>

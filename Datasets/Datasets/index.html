@@ -1468,7 +1468,7 @@ squad_disk = load_from_disk(&quot;squad_train_test&quot;)
 <pre><code class="language-python">hf auth login
 </code></pre>
 <p>!!! tip "Login desde un cuaderno Jupyter / Colab"</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1504,7 +1504,7 @@ val_dataset.push_to_hub(&quot;aitor-medrano/midatasetpushed&quot;, split=&quot;v
 </code></pre>
 <p>!!! tip "Creando el dataset card"
     Para crear el <em>dataset card</em>, podemos emplear la aplicación <a href="https://huggingface.co/spaces/huggingface/datasets-tagging">https://huggingface.co/spaces/huggingface/datasets-tagging</a> que facilita rellenar los campos e incluye recomendaciones de otros datasets.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>También se recomienda leer la [*Dataset Card Creation Guide*](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>También se recomienda leer la [*Dataset Card Creation Guide*](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md)
 </code></pre></div></td></tr></table></div>
 <h2 id="datasets-multimedia">Datasets multimedia</h2>
 <p>Si nuestro <em>dataset</em> va a contener elementos multimedia con imágenes o audios, podemos subir los archivos en crudo, lo cual es lo más practico en la mayoría de los casos. Si los <em>dataset</em> de imágenes o audios son muy grandes, se recomienda el formato <a href="https://github.com/webdataset/webdataset">WebDataset</a>, aunque lo más normal, es almacenar el dataset en formato <em>Parquet</em>.</p>

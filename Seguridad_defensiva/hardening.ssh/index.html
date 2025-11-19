@@ -738,7 +738,7 @@ En segunda instancia haremos la configuración con un cliente Windows.</p>
 <li>
 <p>Si queréis conectaros por el nombre de la máquina en lugar de por la IP, podéis añadir el nombre a <code>/etc/hosts</code></p>
 <p>!!!tip</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Cuidado porque si la máquina coge la IP por DHCP, puede que ésta vaya cambiando, por lo que esta forma puede convertirse en más tediosa.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Cuidado porque si la máquina coge la IP por DHCP, puede que ésta vaya cambiando, por lo que esta forma puede convertirse en más tediosa.
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
@@ -938,7 +938,7 @@ La única forma de desactivar este motd por defecto es impidiendo que se ejecute
     <strong>Comprueba</strong> adjuntando una captura de pantalla, que aparece correctamente el motd al hacer login mediante ssh.</p>
 <p>!!!task "Tarea"
     Parámetros de seguridad que debéis configurar dentro de sshd_config <strong>mediante las directivas</strong> que hemos visto antes(las que no estén, deberéis añadirlos vosotros)</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1035,7 +1035,7 @@ chmod 600 ~/.ssh/authorized_keys
 <p>!!!task "Tareas"
      + Comprobad, adjuntando una captura de pantalla, que a la hora de iniciar ahora la sesión SSH contra el servidor os pide un password. Se trata del password de la clave privada.
      + Comprobad, adjuntando una captura de pantalla, que en las sucesivas sesiones SSH (abrís otra pestaña, salís y volvéis a entrar en la sesión, cerráis y abrís el terminal…), no os vuelve a pedir ninguna contraseña y hace login automáticamente.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ✔ Sólo hay que introducir el password una vez, una vez hecho esto la clave queda descifrada en la RAM para poder hacer uso de ella.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ✔ Sólo hay que introducir el password una vez, una vez hecho esto la clave queda descifrada en la RAM para poder hacer uso de ella.
 </code></pre></div></td></tr></table></div>
 <p>Cuando repitamos toda esta operación con Windows, podemos utilizar o WSL2 o bien un cliente nativo de Windows, pudiendo elegir entre toda la miríada de ellos.</p>
 <p>En cualquier, para el más típico de ellos, <em>PuTTY</em>, podemos seguir el siguiente tutorial para la configuración de las claves, no siendo excluyente la utilización de cualquier otro.</p>
@@ -1047,7 +1047,7 @@ chmod 600 ~/.ssh/authorized_keys
 <p>Procedamos pues a instalar y configurar <em>sshguard</em>.</p>
 <p>!!!danger "¡Atención!"
     Podríamos protegernos contra ataques de fuerza bruta con claves erróneas pero es un escenario que rara vez se producirá. Lo que realmente queremos es protegernos de los ataques de diccionario con diferentes contraseñas.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1109,7 +1109,7 @@ En definitiva, el fichero sshguard.conf debe quedar así</p>
 </ol>
 <p>!!!task "Comprobación"
     Conéctate por SSH al servidor desde tu terminal Linux: <code>ssh usuraio@servidor</code></p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1130,7 +1130,7 @@ Ahora, desde el cliente, intenta conectarte por SSH al servidor pero introducien
     <code>bash
     iptables -N sshguard
     iptables -A INPUT -m multiport -p tcp --destination-ports 8022 -j sshguard</code></p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1157,7 +1157,7 @@ sudo iptables -F sshguard
 <p>Esto es lo que se conoce como hacer <em>hardening</em> o fortificación de servidores.</p>
 <p>!!!warning "Atención"
     Vamos a conectarnos por SSH al servidor y vamos a realizar toda la configuración de esta práctica estando conectados por SSH.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Si necesitáis hacer pruebas de nuevas conexiones, podéis abrir otra pestaña del terminal sin desconectaros.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Si necesitáis hacer pruebas de nuevas conexiones, podéis abrir otra pestaña del terminal sin desconectaros.
 </code></pre></div></td></tr></table></div>
 <p>Los pasos que se deben seguir son los siguientes:</p>
 <ol>
@@ -1217,7 +1217,7 @@ sudo iptables -F sshguard
 <p>Quedaría la segunda parte, que se corresponde con la parte configurada como interactiva con el teclado (keyboard-interactive), que no es mas que introducir el <strong>código temporal de Google-authenticator</strong>, como os dice en el fragmento <strong>recuadrado en verde</strong>.</p>
 <p>!!!task "Tarea"
     Comprueba que te funciona este doble factor de autenticación.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta unas capturas de pantallas, utilizando la opción “-v” e indica, recuadrándolo, dónde se puede ver que ha utilizado ambos factores de autenticación.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta unas capturas de pantallas, utilizando la opción “-v” e indica, recuadrándolo, dónde se puede ver que ha utilizado ambos factores de autenticación.
 </code></pre></div></td></tr></table></div>
 <h3 id="anadiendo-un-tercer-factor-de-autenticacion">Añadiendo un tercer factor de autenticación</h3>
 <p>En la fase 3 hemos listado varios tipos de autenticación permitidas, en el archivo de configuración sshd_config:
@@ -1232,7 +1232,7 @@ sudo iptables -F sshguard
 <p><img alt="" src="../img/ssh_authenticator14.png" /></p>
 <p>!!!task "Tarea"
     Comprueba  que te funciona  correctamente el login con  los tres factores de autenticación.</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta una captura con la opción “-v” donde indiques, con un recuadro, dónde se están utilizando cada uno de los tres factores.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Adjunta una captura con la opción “-v” donde indiques, con un recuadro, dónde se están utilizando cada uno de los tres factores.
 </code></pre></div></td></tr></table></div>
 <h2 id="referencias">Referencias</h2>
 <p><a href="https://wiki.archlinux.org/title/Sshguard#">SSHGUARD</a></p>
