@@ -200,7 +200,7 @@ print(dataset)
 Si el *dataset* ocupa varios gigas, con modelos como BERT o GPT, puede que no quepan en memoria RAM. Para ello, la librería *datasets* gestiona los datos como ficheros mapeados en memoria realizando un [*streaming*](https://huggingface.co/docs/datasets/stream) de los datos.
 
 <figure style="align: center;">
-    <img src="images/03hf-streaming.gif" alt="Streaming de un dataset" width="800px">
+    <img src="./images/03hf-streaming.gif" alt="Streaming de un dataset" width="800px">
     <figcaption>Streaming de un dataset - https://huggingface.co/docs/datasets/stream</figcaption>
 </figure>
 
