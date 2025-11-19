@@ -165,7 +165,7 @@ Para este apartado nos vamos a centrar en los datos de SQuAD (*Stanford Question
 
 Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente *script*, podemos realizar una carga local de los datos:
 
-``` python linenums="1" title="squad-es-local.py" hl_lines="3"
+``` python {linenums="1" title="squad-es-local.py" hl_lines="3"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
@@ -187,7 +187,7 @@ DatasetDict({
 
 Si queremos obtener más información, podemos mostrar las características:
 
-``` python linenums="1" hl_lines="1"
+``` python {linenums="1" hl_lines="1"}
 print(squad_dataset["train"].features)
 # {'title': Value(dtype='string', id=None),
 #  'paragraphs': [
@@ -205,7 +205,7 @@ print(squad_dataset["train"].features)
 
 Y al tratarse de un diccionario, podemos navegar mediante los corchetes para, por ejemplo, recuperar parte de los datos:
 
-``` python linenums="1" hl_lines="1 3"
+``` python {linenums="1" hl_lines="1 3"}
 print(squad_dataset["train"][0]["title"])
 # Beyoncé Knowles
 print(squad_dataset["train"][0]["paragraphs"][0])
@@ -248,7 +248,7 @@ print(squad_dataset_train)
 
 Si el *dataset* está en un archivo comprimido en *gzip*, *zip* o *tar*, la librería descomprimirá los datos automáticamente:
 
-``` python hl_lines="1"
+``` python {hl_lines="1"}
 ficheros_datos = {"train": "train-v2.0-es.json.zip", "val": "dev-v2.0-es.json.zip"}
 squad_dataset_trainval = load_dataset("json", data_files=ficheros_datos, field="data")
 print(squad_dataset_trainval)
