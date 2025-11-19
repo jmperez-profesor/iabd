@@ -1217,7 +1217,7 @@ squad_remote_dataset = load_dataset("json", data_files=ficheros_datos, field="da
 
 Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
 
-``` python title=&quot;squad-es-split.py&quot; {linenums=&quot;1&quot; hl_lines=&quot;1&quot;}
+```python title=&quot;squad-es-split.py&quot; {linenums=&quot;1&quot; hl_lines=&quot;1&quot;}
 from datasets import load_dataset
 
 squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;, split=&quot;train&quot;)
@@ -1225,7 +1225,16 @@ squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
 print(squad_split_dataset)
 </code></pre></div></p>
 <p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
-<div class="highlight"><pre><span></span><code><span class="n">DatasetDict</span><span class="p">({</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">DatasetDict</span><span class="p">({</span>
     <span class="n">train</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">({</span>
         <span class="n">features</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraphs&#39;</span><span class="p">],</span>
         <span class="n">num_rows</span><span class="p">:</span> <span class="mi">397</span>
@@ -1235,7 +1244,7 @@ print(squad_split_dataset)
         <span class="n">num_rows</span><span class="p">:</span> <span class="mi">45</span>
     <span class="p">})</span>
 <span class="p">})</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="cargando-en-pandas">Cargando en Pandas</h3>
 <p>Si estamos trabajando con <em>Pandas</em> y queremos cargar un archivo que está en un <em>dataset</em> de <em>Hugging Face</em>, podemos utilizar la librería de <code>huggingface_hub</code> para crear, eliminar, actualizar y recuperar información de los repositorios.</p>
 <p>Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:</p>

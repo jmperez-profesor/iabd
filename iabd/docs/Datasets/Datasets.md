@@ -257,8 +257,8 @@ print(squad_dataset_trainval)
 ### Carga remota
 
 Si el *dataset* está almacenado en una URL remota, podemos cargarlos directamente:
-
-``` python title="squad-es-remoto.py" {linenums="1" hl_lines="1"}
+**squad-es-remoto.py**
+``` python {linenums="1" hl_lines="1"}
 from datasets import load_dataset
 
 url = "https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/"
