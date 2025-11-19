@@ -1364,13 +1364,11 @@ DatasetDict<span class="o">({</span>
 <span class="n">squad_split_dataset</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_split_dataset</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div></p>
-<blockquote>
-<p><code>test_size (numpy.random.Generator, opcional)</code> — Tamaño de la división de prueba. 
+<p><code>test_size (numpy.random.Generator, opcional)</code> - Tamaño de la división de prueba. 
   Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
      incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
   Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
   Si train_size también es None, se establecerá en 0.25.</p>
-</blockquote>
 <p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
