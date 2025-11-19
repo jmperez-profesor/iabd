@@ -287,7 +287,7 @@ squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
 print(squad_split_dataset)
 ```
 
-> ```test_size (numpy.random.Generator, opcional)``` — Tamaño de la división de prueba. 
+```test_size (numpy.random.Generator, opcional)``` - Tamaño de la división de prueba. 
   Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
      incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
   Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
