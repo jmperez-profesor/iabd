@@ -1,5 +1,5 @@
 ---
-title: Datasets de Hugging Face
+title: Datasets en Hugging Face
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
@@ -76,7 +76,7 @@ pip install datasets[vision]
 ---
 
 ## 🧩 Ejemplo: Cargar un dataset local
-```python {linenums="1"}
+```python linenums="1"
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
@@ -174,7 +174,7 @@ print(squad_dataset)
 
 Tras ejecutarlo, nos muestra que al cargar el *dataset* ha creado un *split* para *train*, con la cantidad de filas y las columnas contenidas dentro de un [`DatasetDict`](https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetDict):
 
-``` bash
+``` bash linenums="1"
 Generating train split: 442 examples [00:00, 1211.02 examples/s]
 DatasetDict({
     train: Dataset({
@@ -186,7 +186,7 @@ DatasetDict({
 
 Si queremos obtener más información, podemos mostrar las características:
 
-``` python hl_lines="1"
+``` python linenums="1" hl_lines="1"
 print(squad_dataset["train"].features)
 # {'title': Value(dtype='string', id=None),
 #  'paragraphs': [
@@ -204,7 +204,7 @@ print(squad_dataset["train"].features)
 
 Y al tratarse de un diccionario, podemos navegar mediante los corchetes para, por ejemplo, recuperar parte de los datos:
 
-``` python hl_lines="1 3"
+``` python linenums="1" hl_lines="1 3"
 print(squad_dataset["train"][0]["title"])
 # Beyoncé Knowles
 print(squad_dataset["train"][0]["paragraphs"][0])
