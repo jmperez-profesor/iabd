@@ -712,6 +712,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#niveles-del-reto" class="md-nav__link">
+    <span class="md-ellipsis">
+      🕹️ Niveles del reto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plantilla-del-ejercicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      📂 Plantilla del ejercicio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cargando-datos" class="md-nav__link">
     <span class="md-ellipsis">
       Cargando datos
@@ -912,45 +954,44 @@ pip install datasets[vision]
 </code></pre>
 <hr />
 <h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
-<p>```python {linenums="1"}
-from datasets import load_dataset</p>
-<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
-<p>print(squad_dataset)</p>
-<pre><code>
-Salida esperada:
+<pre><code class="language-python">from datasets import load_dataset
+
+squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;)
+
+print(squad_dataset)
 </code></pre>
-<p>DatasetDict({
+<p>Salida esperada:</p>
+<pre><code>DatasetDict({
     train: Dataset({ features: ['title', 'paragraphs'], num_rows: 442 })
-})</p>
-<pre><code>
----
-
-## 2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
-
-### 🎯 Objetivo
-Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
-
-1. (RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando *Python*:
-    1. Descarga los datos de *SquadES* considerando que los datos remotos son los de entrenamiento y validación.
-    2. Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.
-    3. Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.
-    4. Filtra los datos de entrenamiento para que el *dataset* solo contenga aquellos registros que tienen más de 10 párrafos.
-    5. Elimina la columna con la cantidad de párrafos.
-    6. Persiste todo el dataset en formato Parquet.
-    7. Finalmente, publícalo en *Hugging Face*, editando la tarjeta y poniendo un documento de ejemplo en la documentación.
-
-### 🕹️ Niveles del reto
-1. **Descarga y explora:** Cargar `SquadES`.
-2. **Divide en train/test:** Crear split adicional.
-3. **Añade columna:** `num_paragraphs`.
-4. **Filtra y persiste:** Guardar en Parquet.
-5. **Publica en Hugging Face:** Añadir documentación.
-
----
-
-## 📂 Plantilla del ejercicio
-```python
-from datasets import load_dataset
+})
+</code></pre>
+<hr />
+<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
+<h3 id="objetivo">🎯 Objetivo</h3>
+<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
+<ol>
+<li>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y solo empleando <em>Python</em>:<ol>
+<li>Descarga los datos de <em>SquadES</em> considerando que los datos remotos son los de entrenamiento y validación.</li>
+<li>Con los datos de entrenamiento, divídelos en entrenamiento y pruebas.</li>
+<li>Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.</li>
+<li>Filtra los datos de entrenamiento para que el <em>dataset</em> solo contenga aquellos registros que tienen más de 10 párrafos.</li>
+<li>Elimina la columna con la cantidad de párrafos.</li>
+<li>Persiste todo el dataset en formato Parquet.</li>
+<li>Finalmente, publícalo en <em>Hugging Face</em>, editando la tarjeta y poniendo un documento de ejemplo en la documentación.</li>
+</ol>
+</li>
+</ol>
+<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
+<ol>
+<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
+<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
+<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
+<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
+<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
+</ol>
+<hr />
+<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
+<pre><code class="language-python">from datasets import load_dataset
 
 # Nivel 1: Descargar y explorar
 
