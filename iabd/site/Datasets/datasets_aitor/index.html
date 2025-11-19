@@ -1,0 +1,1801 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes y actividades sobre la carga, filtrado y uso, así como la creación de datasets en Hugging Face.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Datasets/datasets_aitor/">
+      
+      
+        <link rel="prev" href="../Datasets/">
+      
+      
+        <link rel="next" href="../Actividad1/">
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cargando datasets en HuggingFace (apuntes de Aitor Medrano) - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cargando-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cargando-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cargando datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cargando datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carga-remota" class="md-nav__link">
+    <span class="md-ellipsis">
+      Carga remota
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cargando-en-pandas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cargando en Pandas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cargando-en-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cargando en streaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limpiando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limpiando
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limpiando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seleccionando-filas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seleccionando filas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trabajando-con-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabajando con columnas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trabajando-con-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabajando con map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mostramos-5-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostramos 5 elementos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marshall-ascensor-kanye-bbc-television-florida" class="md-nav__link">
+    <span class="md-ellipsis">
+      ['marshall', 'ascensor', 'kanye', 'bbc televisión', 'florida']
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[&#39;marshall&#39;, &#39;ascensor&#39;, &#39;kanye&#39;, &#39;bbc televisión&#39;, &#39;florida&#39;]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trabajando-con-batches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabajando con batches
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cargamos-el-dataset-desde-hf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cargamos el dataset desde HF
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map-100-1185811858-00000000-3792607-exampless" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 37926.07 examples/s]
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map-100-1185811858-00000000-53521067-exampless" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 535210.67 examples/s]
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 535210.67 examples/s]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creando-un-dataset-desde-cero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando un dataset desde cero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vamos-a-trabajar-con-la-coleccion-grades-de-sample_training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vamos a trabajar con la colección grades de sample_training
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creamos-un-dataset-vacio-mediante-una-lista" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creamos un dataset vacío mediante una lista
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recuperamos-todas-las-calificaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recuperamos todas las calificaciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset({
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features-student_id-scores-class_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      features: ['student_id', 'scores', 'class_id'],
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#num_rows-100000" class="md-nav__link">
+    <span class="md-ellipsis">
+      num_rows: 100000
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      })
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="})">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistiendo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistiendo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publicando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicando
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets-multimedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets multimedia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets multimedia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-un-dataset-desde-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando un dataset desde Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiofolder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audiofolder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p>Ya hemos visto que podemos utilizar diferentes <em>datasets</em> existentes en la plataforma para re-entrenar nuestros modelos.</p>
+<p>En esta sesión vamos a estudiar cómo crear un <em>dataset</em> a partir de nuestros datos, limpiar un <em>dataset</em>, a reducirlo para que quepa en RAM y como tras crear nuestro <em>dataset</em>, subirlo al <em>Hub</em>.</p>
+<h2 id="cargando-datos">Cargando datos</h2>
+<p>Para cargar datos, haremos uso de la función <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/loading_methods#datasets.load_dataset"><code>load_dataset()</code></a> de la librería <a href="https://huggingface.co/docs/datasets/index"><em>Datasets</em></a>. Si fuera necesaria instalarla, mediante <code>pip</code> haríamos:</p>
+<pre><code class="language-bash">pip install datasets
+</code></pre>
+<p>Podemos cargar archivos con diferentes formatos indicando el formato y los datos:</p>
+<pre><code class="language-python"># CSV &amp; TSV
+load_dataset(&quot;csv&quot;, data_files=&quot;mis_datos.csv&quot;)
+# Texto
+load_dataset(&quot;text&quot;, data_files=&quot;mis_datos.txt&quot;)
+# JSON &amp; JSONL
+load_dataset(&quot;json&quot;, data_files=&quot;mis_datos.jsonl&quot;)
+</code></pre>
+<p>Para este apartado nos vamos a centrar en los datos de SQuAD (<em>Stanford Question Answering Dataset</em>), compuesto de un conjunto de artículos de <em>Wikipedia</em>, con respuestas a diferentes preguntas sobre los artículos. En nuestro caso, nos vamos a centrar en una versión en castellano que podemos ver en <a href="https://huggingface.co/datasets/squad_es">https://huggingface.co/datasets/squad_es</a> o descargarlo de desde <a href="https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0">https://github.com/ccasimiro88/TranslateAlignRetrieve/tree/master/SQuAD-es-v2.0</a>.</p>
+<p>Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente <em>script</em>, podemos realizar una carga local de los datos:</p>
+<p>``` python title="squad-es-local.py" hl_lines="3"
+from datasets import load_dataset</p>
+<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
+<p>print(squad_dataset)</p>
+<pre><code>
+Tras ejecutarlo, nos muestra que al cargar el *dataset* ha creado un *split* para *train*, con la cantidad de filas y las columnas contenidas dentro de un [`DatasetDict`](https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetDict):
+
+``` bash
+Generating train split: 442 examples [00:00, 1211.02 examples/s]
+DatasetDict({
+    train: Dataset({
+        features: ['title', 'paragraphs'],
+        num_rows: 442
+    })
+})
+</code></pre>
+<p>Si queremos obtener más información, podemos mostrar las características:</p>
+<pre><code class="language-python">print(squad_dataset[&quot;train&quot;].features)
+# {'title': Value(dtype='string', id=None),
+#  'paragraphs': [
+#     {'context': Value(dtype='string', id=None),
+#      'qas': [
+#         {'answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],
+#          'id': Value(dtype='string', id=None),
+#          'is_impossible': Value(dtype='bool', id=None),
+#          'plausible_answers': [{'answer_start': Value(dtype='int64', id=None), 'text': Value(dtype='string', id=None)}],
+#          'question': Value(dtype='string', id=None)}]
+#     }
+#  ]
+# }
+</code></pre>
+<p>Y al tratarse de un diccionario, podemos navegar mediante los corchetes para, por ejemplo, recuperar parte de los datos:</p>
+<pre><code class="language-python">print(squad_dataset[&quot;train&quot;][0][&quot;title&quot;])
+# Beyoncé Knowles
+print(squad_dataset[&quot;train&quot;][0][&quot;paragraphs&quot;][0])
+# {'context': 'Beyoncé Giselle Knowles-Carter (nacida el 4 de septiembre de 1981)..',
+ # 'qas': [
+    # {'answers': [{'answer_start': 246, 'text': 'a finales de 1990'}],
+    #  'id': '56be85543aeaaa14008c9063', 'is_impossible': False, 'plausible_answers': None, 'question': '¿Cuándo Beyonce comenzó a ser popular?'},
+    # {'answers': ...
+</code></pre>
+<p>Cuando cargamos un <em>dataset</em>, realmente queremos cargar los datos de entrenamiento y los de validación. Para ello, le pasaremos un diccionario con los diferentes archivos para <code>train</code> y para <code>val</code>:</p>
+<pre><code class="language-python">ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json&quot;, &quot;val&quot;: &quot;dev-v2.0-es.json&quot;}
+squad_dataset_train = load_dataset(&quot;json&quot;, data_files=ficheros_datos, field=&quot;data&quot;)
+</code></pre>
+<p>Obteniendo:</p>
+<pre><code class="language-python">DatasetDict({
+    train: Dataset({
+        features: ['title', 'paragraphs'],
+        num_rows: 442
+    })
+    val: Dataset({
+        features: ['title', 'paragraphs'],
+        num_rows: 35
+    })
+})
+</code></pre>
+<p>Si queremos cargar únicamente una de las partes, le pasaremos el parámetro <code>split</code> con el valor deseado:</p>
+<pre><code class="language-python">ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json&quot;, &quot;val&quot;: &quot;dev-v2.0-es.json&quot;}
+squad_dataset_train = load_dataset(&quot;json&quot;, data_files=ficheros_datos, field=&quot;data&quot;, split=&quot;train&quot;)
+print(squad_dataset_train)
+</code></pre>
+<p>Si el <em>dataset</em> está en un archivo comprimido en <em>gzip</em>, <em>zip</em> o <em>tar</em>, la librería descomprimirá los datos automáticamente:</p>
+<pre><code class="language-python">ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json.zip&quot;, &quot;val&quot;: &quot;dev-v2.0-es.json.zip&quot;}
+squad_dataset_trainval = load_dataset(&quot;json&quot;, data_files=ficheros_datos, field=&quot;data&quot;)
+print(squad_dataset_trainval)
+</code></pre>
+<h3 id="carga-remota">Carga remota</h3>
+<p>Si el <em>dataset</em> está almacenado en una URL remota, podemos cargarlos directamente:</p>
+<p>``` python title="squad-es-remoto.py"
+from datasets import load_dataset</p>
+<p>url = "https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/"</p>
+<p>ficheros_datos = {
+    "train": url + "train-v2.0-es.json",
+    "val": url + "dev-v2.0-es.json",
+}
+squad_remote_dataset = load_dataset("json", data_files=ficheros_datos, field="data")</p>
+<p>print(squad_remote_dataset)</p>
+<pre><code>
+### Dividiendo el dataset
+
+Si en vez de cargar por separado los datos de entrenamiento y los de test, tenemos un único conjunto de datos, podemos dividirlo mediante el método [`Dataset.train_test_split()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.train_test_split) indicando el tamaño, por ejemplo, de los datos de test:
+
+``` python title=&quot;squad-es-split.py&quot; hl_lines=&quot;4&quot;
+from datasets import load_dataset
+
+squad_dataset = load_dataset(&quot;json&quot;, data_files=&quot;train-v2.0-es.json&quot;, field=&quot;data&quot;, split=&quot;train&quot;)
+squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
+print(squad_split_dataset)
+</code></pre>
+<p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
+<pre><code class="language-python">DatasetDict({
+    train: Dataset({
+        features: ['title', 'paragraphs'],
+        num_rows: 397
+    })
+    test: Dataset({
+        features: ['title', 'paragraphs'],
+        num_rows: 45
+    })
+})
+</code></pre>
+<h3 id="cargando-en-pandas">Cargando en Pandas</h3>
+<p>Si estamos trabajando con <em>Pandas</em> y queremos cargar un archivo que está en un <em>dataset</em> de <em>Hugging Face</em>, podemos utilizar la librería de <code>huggingface_hub</code> para crear, eliminar, actualizar y recuperar información de los repositorios.</p>
+<p>Por ejemplo, para cargar un dataset CSV con Pandas podríamos hacer:</p>
+<pre><code class="language-python">from huggingface_hub import hf_hub_download
+import pandas as pd
+
+REPO_ID = &quot;aitor-medrano/iabd&quot;
+FICHERO = &quot;cp_train.csv&quot;
+
+dataset = pd.read_csv(
+    hf_hub_download(repo_id=REPO_ID, filename=FICHERO, repo_type=&quot;dataset&quot;)
+)
+print(dataset)
+# &lt;class 'pandas.core.frame.DataFrame'&gt;
+# RangeIndex: 3214 entries, 0 to 3213
+# Data columns (total 3 columns):
+#  #   Column   Non-Null Count  Dtype  
+# ---  ------   --------------  -----  
+#  0   formula  3214 non-null   object 
+#  1   T        3214 non-null   float64
+#  2   Cp       3214 non-null   float64
+# dtypes: float64(2), object(1)
+# memory usage: 75.5+ KB
+</code></pre>
+<h3 id="cargando-en-streaming">Cargando en streaming</h3>
+<p>Si el <em>dataset</em> ocupa varios gigas, con modelos como BERT o GPT, puede que no quepan en memoria RAM. Para ello, la librería <em>datasets</em> gestiona los datos como ficheros mapeados en memoria realizando un <a href="https://huggingface.co/docs/datasets/stream"><em>streaming</em></a> de los datos.</p>
+<figure style="align: center;">
+    <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-streaming.gif" alt="Streaming de un dataset" width="800px">
+    <figcaption>Streaming de un dataset - https://huggingface.co/docs/datasets/stream</figcaption>
+</figure>
+
+<p>Para este apartado, vamos a utilizar parte de un dataset con código encontrado en <em>GitHub</em> de los diferentes lenguajes de programación, conocido como <a href="https://huggingface.co/datasets/bigcode/the-stack-v2">BigCode</a>.</p>
+<p>!!! info "Gated dataset"
+    El <em>dataset</em> de <em>BigCode</em> está configurado para pedir las credenciales de los usuarios que los utilizan. Esto se conoce como un <a href="https://huggingface.co/docs/hub/datasets-gated">Gated dataset</a>. Es por ello que tenemos que hacer login en <em>Hugging Face</em> antes de poder descargarlo.</p>
+<p>En nuestro caso, nos vamos a centrar en archivos <code>DockerFile</code> para que el dataset sea asumible (alrededor de 1Gb). Así pues, cargamos los datos:</p>
+<pre><code class="language-python">from datasets import load_dataset
+
+bigcode_dataset = load_dataset(&quot;bigcode/the-stack-v2&quot;, &quot;Dockerfile&quot;, split=&quot;train&quot;)
+print(bigcode_dataset)
+# Dataset({
+#     features: ['blob_id', 'directory_id', 'path', 'content_id', 'detected_licenses', 'license_type', 'repo_name', 'snapshot_id', 'revision_id', 'branch_name', 'visit_date', 'revision_date', 'committer_date', 'github_id', 'star_events_count', 'fork_events_count', 'gha_license_id', 'gha_event_created_at', 'gha_created_at', 'gha_language', 'src_encoding', 'language', 'is_vendor', 'is_generated', 'length_bytes', 'extension'],
+#     num_rows: 4155925
+# })
+</code></pre>
+<p>Y el contenido de un documento:</p>
+<pre><code class="language-json">{
+   &quot;blob_id&quot;:&quot;a29dd2b33082d2b98541c66ba3620ae054991503&quot;,
+   &quot;directory_id&quot;:&quot;71568d223947f51cb007a8564e5f808e0987779e&quot;,
+   &quot;path&quot;:&quot;/src/Dapr/GameServer.Host/Dockerfile&quot;,
+   &quot;content_id&quot;:&quot;072b3138be512a71cf4e8bbbdb657497e808d2f6&quot;,
+   &quot;detected_licenses&quot;:[
+      &quot;MIT&quot;,
+      &quot;LicenseRef-scancode-unknown-license-reference&quot;
+   ],
+   &quot;license_type&quot;:&quot;permissive&quot;,
+   &quot;repo_name&quot;:&quot;devblack/OpenMU&quot;,
+   &quot;snapshot_id&quot;:&quot;8cdc521178da47c9c7d2daa502dc71688835fd0a&quot;,
+   &quot;revision_id&quot;:&quot;1064b0dca1a491bc28f325e42ca6b97d406d6558&quot;,
+   &quot;branch_name&quot;:&quot;refs/heads/master&quot;,
+   &quot;visit_date&quot;:Timestamp(&quot;2023-04-07 10:56:30.043316&quot;),
+   &quot;revision_date&quot;:Timestamp(&quot;2023-03-17 20:32:25&quot;),
+   &quot;committer_date&quot;:Timestamp(&quot;2023-03-17 20:32:25&quot;),
+   &quot;github_id&quot;:None,
+   &quot;star_events_count&quot;:0,
+   &quot;fork_events_count&quot;:0,
+   &quot;gha_license_id&quot;:None,
+   &quot;gha_event_created_at&quot;:None,
+   &quot;gha_created_at&quot;:None,
+   &quot;gha_language&quot;:None,
+   &quot;src_encoding&quot;:&quot;UTF-8&quot;,
+   &quot;language&quot;:&quot;Dockerfile&quot;,
+   &quot;is_vendor&quot;:false,
+   &quot;is_generated&quot;:false,
+   &quot;length_bytes&quot;:709,
+   &quot;extension&quot;:&quot;&quot;
+}
+</code></pre>
+<p>Si ahora cargamos el <em>dataset</em> mediante <em>streaming</em>, pasándole el parámetros <code>streaming=True</code>, en vez de recuperar un Dataset, obtendremos un <code>IterableDataset</code>:</p>
+<pre><code class="language-python">from datasets import load_dataset
+
+streaming_dataset = load_dataset(&quot;bigcode/the-stack-v2&quot;, &quot;Dockerfile&quot;, split=&quot;train&quot;, streaming=True)
+print(streaming_dataset)
+# Resolving data files: 100%|█████████████████████████████████████████████████| 976/976 [00:00&lt;00:00, 1064.36it/s]
+# IterableDataset({
+#     features: ['blob_id', 'directory_id', 'path', 'content_id', 'detected_licenses', 'license_type', 'repo_name', 'snapshot_id', 'revision_id', 'branch_name', 'visit_date', 'revision_date', 'committer_date', 'github_id', 'star_events_count', 'fork_events_count', 'gha_license_id', 'gha_event_created_at', 'gha_created_at', 'gha_language', 'src_encoding', 'language', 'is_vendor', 'is_generated', 'length_bytes', 'extension'],
+#     n_shards: 1
+# })
+</code></pre>
+<p>Como sugiere el nombre, para acceder a los elementos del <code>IterableDataset</code> necesitamos iterar sobre él:</p>
+<pre><code class="language-python">print(next(iter(streaming_dataset)))
+</code></pre>
+<p>Los elementos de un <em>dataset</em> en <em>streaming</em>  se pueden procesar al vuelo mediante la función <code>map</code> o <code>filter</code>. Por ejemplo, para pasar a mayúsculas el campo <code>license_type</code> haríamos:</p>
+<pre><code class="language-python">def mayusLicencias(registro):
+    registro[&quot;license_type&quot;] = registro[&quot;license_type&quot;].upper()
+    return registro
+
+mapped_dataset = streaming_dataset.map(mayusLicencias)
+
+print(next(iter(streaming_dataset)))
+# ... 'detected_licenses': ['MIT', ...], 'license_type': 'PERMISSIVE', 'repo_name': 'devblack/OpenMU' ...
+</code></pre>
+<p>!!! danger "Al vuelo"
+    Debemos tener en cuenta que la transformación se realizará al recorrer el <em>dataset</em>, no al invocar a los métodos <code>map</code> o <code>filter</code>.</p>
+<p>Otras opciones son utilizar las operaciones <a href="https://huggingface.co/docs/datasets/main/en/package_reference/main_classes#datasets.IterableDataset.take"><code>take()</code></a>, <a href="https://huggingface.co/docs/datasets/v4.4.1/en/package_reference/main_classes#datasets.IterableDataset.shuffle"><code>shuffle()</code></a> o <a href="https://huggingface.co/docs/datasets/v4.4.1/en/package_reference/main_classes#datasets.IterableDataset.shuffle"><code>skip()</code></a> dentro del <code>IterableDataset</code> para trabajar con muestras pequeñas de los datos cargados:</p>
+<pre><code class="language-python">muestra = streaming_dataset.take(100)
+muestra_aleatoria = streaming_dataset.shuffle(seed=42, buffer_size=1000).take(500)
+rango = streaming_dataset.skip(1000).take(100)
+</code></pre>
+<p>Más información en <a href="https://huggingface.co/docs/datasets/stream">https://huggingface.co/docs/datasets/stream</a> y <a href="https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable">https://huggingface.co/docs/datasets/about_mapstyle_vs_iterable</a>.</p>
+<h2 id="limpiando">Limpiando</h2>
+<p>De forma similar a <em>Pandas</em> o <em>Spark</em>, podemos manipular el contenido de los objetos <code>Dataset</code>.</p>
+<p>El primer paso debería ser barajar los datos para <em>desordenarlos</em> y coger una muestra. Para ello, emplearemos <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.shuffle"><code>Dataset.shuffle()</code></a>:</p>
+<pre><code class="language-python">squad_train = squad_dataset_trainval[&quot;train&quot;]
+print(squad_train[0][&quot;title&quot;]) # Beyoncé Knowles
+
+squad_train_shuffled = squad_train.shuffle(seed=333)
+print(squad_train_shuffled[0][&quot;title&quot;]) # Carnaval
+</code></pre>
+<h3 id="seleccionando-filas">Seleccionando filas</h3>
+<p>Para recuperar filas, usaremos el método <code>Dataset.select()</code> pasándole un iterador con las posiciones a seleccionar:</p>
+<pre><code class="language-python">tres_filas = squad_train_shuffled.select([5,10,15])
+seis_filas = squad_train_shuffled.select(range(6))
+</code></pre>
+<p>Si queremos seleccionar las filas por algún criterio específico, debemos emplear <code>Dataset.filter()</code> y funciones <em>lambda</em>:</p>
+<pre><code class="language-python">empieza_por_b_filas = squad_train_shuffled.filter(lambda x: x[&quot;title&quot;].startswith(&quot;B&quot;))
+for i in range(empieza_por_b_filas.num_rows):
+    print(empieza_por_b_filas[i][&quot;title&quot;])
+# Beidou _ Navigation _ Satellite _ System (en inglés)
+# Biodiversidad
+# Boston ...
+</code></pre>
+<h3 id="trabajando-con-columnas">Trabajando con columnas</h3>
+<p>Al trabajar con columnas, podemos añadir una nueva mediante <code>Dataset.add_column()</code>, cambiarles el nombre con <code>DatasetDict.rename_column()</code> o eliminar una columna con <code>DatasetDict.remove_column()</code>:</p>
+<pre><code class="language-python">nueva_columna = [&quot;nueva&quot;] * squad_train_shuffled.num_rows
+squad_train_shuffled = squad_train_shuffled.add_column(name=&quot;inicial&quot;,column=nueva_columna)
+# Dataset({
+#     features: ['title', 'paragraphs', 'inicial'],
+#     num_rows: 442
+# })
+squad_train_shuffled = squad_train_shuffled.rename_column(
+    original_column_name=&quot;inicial&quot;, new_column_name=&quot;modificada&quot;
+)
+# Dataset({
+#     features: ['title', 'paragraphs', 'modificada'],
+#     num_rows: 442
+# })
+squad_train_shuffled = squad_train_shuffled.remove_columns([&quot;modificada&quot;])
+# Dataset({
+#     features: ['title', 'paragraphs'],
+#     num_rows: 442
+# })
+</code></pre>
+<h3 id="trabajando-con-map">Trabajando con map</h3>
+<p>Y la joya de la corona es la función <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map"><code>Dataset.map()</code></a> para aplicar una transformación a medida.
+Por ejemplo, si queremos modificar todos los títulos y pasarlos a minúscula haremos:</p>
+<p>``` python title="squad-map.py"
+from datasets import load_dataset</p>
+<p>ficheros_datos = {"train": "train-v2.0-es.json", "test": "dev-v2.0-es.json"}
+squad_dataset = load_dataset("json", data_files=ficheros_datos, field="data")
+squad_dataset = squad_dataset["train"]</p>
+<p>def titulo_minus(registro):
+    return {"title":registro["title"].lower()}</p>
+<p>squad_minus = squad_dataset.map(titulo_minus)</p>
+<h1 id="mostramos-5-elementos">Mostramos 5 elementos</h1>
+<p>print(squad_minus.shuffle(seed=987)["title"][:5])</p>
+<h1 id="marshall-ascensor-kanye-bbc-television-florida">['marshall', 'ascensor', 'kanye', 'bbc televisión', 'florida']</h1>
+<pre><code>
+Mediante la función `map` también podemos crear nuevas columnas a partir de los valores de otras. Por ejemplo, añadimos una nueva característica con la cantidad de párrafos y quitamos toda la información existente previamente de los párrafos:
+
+``` python
+# Añadimos nueva columna
+squad_col_num_parrafos = squad_dataset.map(lambda x: {&quot;num_paragraphs&quot;:len(x[&quot;paragraphs&quot;])})
+# Borramos la antigua
+squad_col_num_parrafos = squad_col_num_parrafos.remove_columns(&quot;paragraphs&quot;)
+print(squad_col_num_parrafos.shuffle(seed=987)[:5])
+# {'title': ['Marshall', 'Ascensor', 'Kanye', 'BBC Televisión', 'Florida'], 'num_paragraphs': [51, 52, 79, 31, 35]}
+</code></pre>
+<p>¿Y si queremos ordenar los párrafos por la cantidad de párrafos? Para ello, podemos utilizar <code>Dataset.sort()</code>:</p>
+<pre><code class="language-python">squad_num_parrafos_ordenados = squad_col_num_parrafos.sort(&quot;num_paragraphs&quot;)
+
+print(squad_num_parrafos_ordenados[:3]) # tres primeros
+# {'title': ['Tono _ (música)', 'Uva', 'Letra _ case'], 'num_paragraphs': [10, 10, 12]}
+
+print(squad_num_parrafos_ordenados[-3:]) # tres últimos
+# {'title': ['American Idol (en inglés).', 'Nueva York', 'Budismo'], 'num_paragraphs': [127, 148, 149]}
+</code></pre>
+<h3 id="trabajando-con-batches">Trabajando con <em>batches</em></h3>
+<p>El método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map"><code>Dataset.map()</code></a> admite el argumento <code>batched</code> que, si se establece en <code>True</code>, hace que envíe un lote de datos a la función <code>map</code> a la vez (el tamaño del lote es configurable mediante el parámetro <code>batch_size</code>, pero por defecto es de 1000). Al indicar <code>batched=True</code>, la función <code>map</code> recibe un diccionario con los campos del conjunto de datos, pero cada valor es ahora una lista de valores, y no un único valor, y del mismo modo, devuelve un diccionario con los campos que queremos actualizar o añadir a nuestro conjunto de datos, y una lista de valores.</p>
+<p>Por ello, debemos modificar la función que realiza el <code>map</code> para que trabaje con un diccionario de listas.</p>
+<p>Para el siguiente ejemplo, vamos a coger el <em>dataset</em> de <em>SQuAD_es</em> desde <em>Hugging Face</em> que contiene más datos, y vamos a comparar el tiempo de ejecución, recodificando la función para trabajar con un diccionario que contiene una lista por cada campo:</p>
+<p>``` python title="squad-map-batch.py" hl_lines="8 11 16-17 20"
+from datasets import load_dataset
+import time</p>
+<h1 id="cargamos-el-dataset-desde-hf">Cargamos el dataset desde HF</h1>
+<p>squad_dataset = load_dataset("squad_es", "v2.0.0", split="train")  # (1)!</p>
+<p>def titulo_minus(registro):
+    return {"title":registro["title"].lower()}</p>
+<p>inicio = time.time()
+squad_minus = squad_dataset.map(titulo_minus) # (2)!</p>
+<h1 id="map-100-1185811858-00000000-3792607-exampless">Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 37926.07 examples/s]</h1>
+<p>fin = time.time()
+print(fin - inicio) # 3.008699893951416</p>
+<p>def titulo_minus_batch(batch):
+    return {"title":[titulo.lower() for titulo in batch["title"]]}</p>
+<p>inicio = time.time()
+squad_minus = squad_dataset.map(titulo_minus_batch, batched=True) # (3)!</p>
+<h1 id="map-100-1185811858-00000000-53521067-exampless">Map: 100%|██████| 11858/11858 [00:00&lt;00:00, 535210.67 examples/s]</h1>
+<p>fin = time.time()
+print(fin - inicio) # 0.19133710861206055</p>
+<pre><code>
+1. Cargamos los datos desde el dataset de *Hugging Face*
+2. El mapper normal realiza casi 40.000 registros por segundo
+3. Al hacerlo con batches realiza más de 500.000 por segundo
+
+### Uso de Pandas
+
+Para facilitar la conversión entre diferentes formados, podemos usar el método [`Dataset.set_format()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.set_format) para modificar el formato de salida (por ejemplo, a `pandas`, `numpy`, `torch`, `tensorflow`, `jax`, ...), sin modificar el formato original del dataset (el cual es *Apache Arrow* - `arrow`).
+
+Así, si por ejemplo queremos pasar los datos a *Pandas* para trabajar con ellos, transformarlos o visualizarlos, podemos hacer:
+
+``` python
+print(squad_dataset[0])
+squad_dataset.set_format(&quot;pandas&quot;)
+df = squad_dataset[:]
+print(df.shape) # (130313, 5)
+
+# Otra forma
+df2 = squad_dataset.to_pandas()
+print(df2.info())
+# &lt;class 'pandas.core.frame.DataFrame'&gt;
+# RangeIndex: 130313 entries, 0 to 130312
+# Data columns (total 5 columns):
+#  #   Column    Non-Null Count   Dtype 
+# ---  ------    --------------   ----- 
+#  0   id        130313 non-null  object
+#  1   title     130313 non-null  object
+#  2   context   130313 non-null  object
+#  3   question  130313 non-null  object
+#  4   answers   130313 non-null  object
+# dtypes: object(5)
+# memory usage: 5.0+ MB
+
+# Y realizar consultas sobre los datos, por ejemplo, la 5 preguntas con más respuestas
+print(df2.groupby(&quot;title&quot;)[&quot;answers&quot;].count().nlargest(5))
+# title
+# Reina                         883
+# Nueva York                    817
+# American Idol (en inglés).    790
+# Beyoncé Knowles               753
+# Universidad                   738
+</code></pre>
+<p>Y para volver a tener un objeto <code>Dataset</code>, podemos utilizar el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.from_pandas"><code>Dataset.from_pandas()</code></a> o resetear el <em>dataset</em> que teníamos mediante <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.reset_format"><code>Dataset.reset_format()</code></a>:</p>
+<pre><code class="language-python">squad_transformed = Dataset.from_pandas(df)
+squad_original = squad_dataset.reset_format()
+</code></pre>
+<h2 id="creando-un-dataset-desde-cero">Creando un dataset desde cero</h2>
+<p>Si en vez de cargar un <em>dataset</em>, tenemos que crear uno, el primer paso será obtener los datos.</p>
+<p>Ya sea mediante peticiones a URL externas con la librería <code>request</code>, accediendo a bases de datos relacionales, por ejemplo, mediante <em>SQLAlchemy</em> o a <em>MongoDB</em> mediante <code>PyMongo</code>, lo más normal es crear una estructura de datos mediante una lista o un diccionario y luego crear el <em>dataset</em> a partir del mismo.</p>
+<p>Así pues, si en vez de cargar un <em>dataset</em> queremos crear uno desde cero, podemos hacer uso de <code>Dataset.from_dict()</code> o <code>Dataset.from_list()</code> dependiendo de donde tengamos los datos. Por ejemplo, vamos a conectarnos a <em>MongoDB</em> y creamos una lista con todos los datos. A partir de la lista, generamos un <em>Dataset</em>:</p>
+<p>``` python title="dataset-mongodb.py"
+from datasets import Dataset
+from pymongo import MongoClient</p>
+<p>cliente = MongoClient('mongodb+srv://iabd:iabdiabd@cluster0.dfaz5er.mongodb.net')</p>
+<h1 id="vamos-a-trabajar-con-la-coleccion-grades-de-sample_training">Vamos a trabajar con la colección grades de sample_training</h1>
+<p>iabd_db = cliente.sample_training
+grades_coll = iabd_db.grades</p>
+<h1 id="creamos-un-dataset-vacio-mediante-una-lista">Creamos un dataset vacío mediante una lista</h1>
+<p>documentos = []</p>
+<h1 id="recuperamos-todas-las-calificaciones">Recuperamos todas las calificaciones</h1>
+<p>cursor = grades_coll.find({})
+for document in cursor:
+  del document["_id"]  # Quitamos el ObjectId
+  documentos.append(document)</p>
+<p>mongo_dataset = Dataset.from_list(documentos)
+print(mongo_dataset)</p>
+<h1 id="dataset">Dataset({</h1>
+<h1 id="features-student_id-scores-class_id">features: ['student_id', 'scores', 'class_id'],</h1>
+<h1 id="num_rows-100000">num_rows: 100000</h1>
+<h1 id="_1">})</h1>
+<pre><code>
+O si queremos almacenar los datos de forma temporal, por ejemplo, podemos hacer uso de *Pandas*:
+
+``` python
+df = pd.DataFrame.from_records(documentos)
+df.to_json(&quot;grades-docs.jsonl&quot;, orient=&quot;records&quot;, lines=True)
+jsonl_dataset = load_dataset(&quot;json&quot;, data_files=&quot;grades-docs.jsonl&quot;, split=&quot;train&quot;)
+</code></pre>
+<h2 id="persistiendo">Persistiendo</h2>
+<p>Cuando cargamos un <em>dataset</em> se cachean los datos para evitar tener que descargar los datos de forma remota y crear las tablas de <em>PyArrow</em>. Podemos averiguar donde se almacenan los datos mediante la propiedad <code>cache_files</code>:</p>
+<pre><code class="language-python">ficheros_datos = {&quot;train&quot;: &quot;train-v2.0-es.json&quot;, &quot;test&quot;: &quot;dev-v2.0-es.json&quot;}
+squad_dataset = load_dataset(&quot;json&quot;, data_files=ficheros_datos, field=&quot;data&quot;)
+print(squad_dataset.cache_files)
+# {'train': [{'filename': '/Users/aitormedrano/.cache/huggingface/datasets/json/default-e3ff36a1d8fe78df/0.0.0/ab573428e7a11a7e23eebd41a2a71665ac3789ce311cbad7049572034a9bda05/json-train.arrow'}],
+#  'test': [{'filename': '/Users/aitormedrano/.cache/huggingface/datasets/json/default-e3ff36a1d8fe78df/0.0.0/ab573428e7a11a7e23eebd41a2a71665ac3789ce311cbad7049572034a9bda05/json-test.arrow'}]}
+</code></pre>
+<p>Si necesitamos persistir los datos de nuevo con las transformaciones realizadas, podemos hacerlo en diferentes formatos:</p>
+<ul>
+<li><em>Arrow</em>: <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.save_to_disk"><code>Dataset.save_to_disk()</code></a></li>
+<li>CSV: <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.to_csv"><code>Dataset.to_csv()</code></a></li>
+<li>Pandas: <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.to_pandas"><code>Dataset.to_pandas()</code></a></li>
+<li>JSON: <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.to_json"><code>Dataset.to_json()</code></a></li>
+<li>Parquet: <a href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.to_parquet"><code>Dataset.to_parquet()</code></a></li>
+</ul>
+<p>Si por ejemplo persistimos el dataset en <em>Arrow</em>:</p>
+<pre><code class="language-python">squad_dataset.save_to_disk(&quot;squad_train_test&quot;)
+</code></pre>
+<!-- tree squad_train_test -->
+<p>Se creará la siguiente estructura en las carpetas, donde para cada <em>split</em> se ha creado su propia carpeta, así como un par de archivos con metadatos:</p>
+<pre><code class="language-tree">squad_train_test
+├── dataset_dict.json
+├── test
+│   ├── data-00000-of-00001.arrow
+│   ├── dataset_info.json
+│   └── state.json
+└── train
+    ├── data-00000-of-00001.arrow
+    ├── dataset_info.json
+    └── state.json
+</code></pre>
+<p>Una vez que hemos persistido el <em>dataset</em>, lo podemos volver a cargar mediante <code>load_from_disk</code>:</p>
+<pre><code class="language-python">from datasets import load_from_disk
+squad_disk = load_from_disk(&quot;squad_train_test&quot;)
+</code></pre>
+<p>Si queremos persistirlos en formato CSV o JSON, por cada uno de los <em>splits</em> se crea un archivo separado. Para ello, podemos iterar sobre las claves mediante <code>DatasetDict.items()</code>:</p>
+<pre><code class="language-python">for split, dataset in squad_dataset.items():
+    dataset.to_json(f&quot;squad_{split}.jsonl&quot;)
+</code></pre>
+<h2 id="publicando">Publicando</h2>
+<p>Pues una vez hemos creado nuestro Dataset y lo hemos persistido en disco, el único paso que nos queda es publicar en <em>Hugging Face</em>. Para ello, en vez de subir los archivos a mano como hicimos en la sesión inicial desde el interfaz web o hacer uso de Git y copiar los archivos, desde <em>Python</em> es mucho más cómodo.</p>
+<p>Previamente debemos realizar <em>login</em> para autenticarnos, tal como vimos en la sección de <a href="hf.md#login">Login de la sesión anterior</a> y usar nuestro token de acceso (en este caso, necesitamos que nuestro token sea de escritura):</p>
+<pre><code class="language-python">hf auth login
+</code></pre>
+<p>!!! tip "Login desde un cuaderno Jupyter / Colab"</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>Si trabajamos con un cuaderno de Jupyter o Colab, podemos utilizar la librería de *huggingface_hub* y al ejecutarlo, nos aparecerá una ventana donde introducir el token de acceso:
+
+``` python
+from huggingface_hub import login
+login()
+```
+
+&lt;figure style=&quot;align: center;&quot;&gt;
+    &lt;img src=&quot;https://aitor-medrano.github.io/iabd/hf/images/03hf-hub-login-notebook.png&quot; alt=&quot;Login desde un notebook&quot; width=&quot;500&quot;&gt;
+    &lt;figcaption&gt;Login desde un notebook&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+También podemos hacer uso de la variable de entorno `HF_TOKEN` para almacenar el token de acceso, ya sea con un Space almacenándolo en un [*secret de Spaces*](https://huggingface.co/docs/hub/spaces-overview#managing-secrets) o en [claves privadas de Google Colab](https://twitter.com/GoogleColab/status/1719798406195867814).
+</code></pre></div></td></tr></table></div>
+<p>Una vez autenticado, es tan sencillo como usar el método <a href="https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.push_to_hub"><code>push_to_hub()</code></a> (si queremos publicar el <em>dataset</em> como privado, le añadimos el parámetro <code>private=True</code>):</p>
+<pre><code class="language-python">midataset.push_to_hub(&quot;aitor-medrano/midatasetpushed&quot;)
+# midataset.push_to_hub(&quot;aitor-medrano/midatasetpushed&quot;, private=True)
+</code></pre>
+<p>Si tuviéramos diferentes <em>splits</em> podríamos hacer:</p>
+<pre><code class="language-python">train_dataset.push_to_hub(&quot;aitor-medrano/midatasetpushed&quot;, split=&quot;train&quot;)
+val_dataset.push_to_hub(&quot;aitor-medrano/midatasetpushed&quot;, split=&quot;validation&quot;)
+</code></pre>
+<p>!!! tip "Creando el dataset card"
+    Para crear el <em>dataset card</em>, podemos emplear la aplicación <a href="https://huggingface.co/spaces/huggingface/datasets-tagging">https://huggingface.co/spaces/huggingface/datasets-tagging</a> que facilita rellenar los campos e incluye recomendaciones de otros datasets.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>También se recomienda leer la [*Dataset Card Creation Guide*](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md)
+</code></pre></div></td></tr></table></div>
+<h2 id="datasets-multimedia">Datasets multimedia</h2>
+<p>Si nuestro <em>dataset</em> va a contener elementos multimedia con imágenes o audios, podemos subir los archivos en crudo, lo cual es lo más practico en la mayoría de los casos. Si los <em>dataset</em> de imágenes o audios son muy grandes, se recomienda el formato <a href="https://github.com/webdataset/webdataset">WebDataset</a>, aunque lo más normal, es almacenar el dataset en formato <em>Parquet</em>.</p>
+<p>Dicho esto, vamos a ver como trabajar con datasets que contienen elementos multimedia.</p>
+<h3 id="audios">Audios</h3>
+<p>Para trabajar con audios, necesitaremos instalar las librerías de audio:</p>
+<pre><code class="language-bash">pip install datasets[audio]
+</code></pre>
+<p>Una vez instalado, vamos a <a href="https://huggingface.co/docs/datasets/audio_load">cargar un <em>dataset</em> que contiene audios</a>, como es <a href="https://huggingface.co/datasets/PolyAI/minds14">PolyAI/minds14</a>:</p>
+<pre><code class="language-python">from datasets import load_dataset
+
+minds = load_dataset(&quot;PolyAI/minds14&quot;, name=&quot;es-ES&quot;, split=&quot;train&quot;)
+print(minds)
+# Dataset({
+#     features: ['path', 'audio', 'transcription', 'english_transcription', 'intent_class', 'lang_id'],
+#     num_rows: 486
+# })
+</code></pre>
+<p>El <em>dataset</em> contiene 486 archivos de audio, cada uno de los cuales va acompañado de una transcripción, una traducción al inglés y una etiqueta que indica la intención de la consulta de la persona. La columna de audio contiene los datos de audio sin procesar. Veamos uno de los ejemplos:</p>
+<pre><code class="language-json">{'path': '/home/jupyter-iabd/.cache/huggingface/datasets/downloads/extracted/a809f65b01ef0d5806ac705a72b9ca382622a5c03d9a17adf1ee73de4591650b/es-ES~APP_ERROR/60266571dc3604f481bcb50a.wav',
+ 'audio': {'path': '/home/jupyter-iabd/.cache/huggingface/datasets/downloads/extracted/a809f65b01ef0d5806ac705a72b9ca382622a5c03d9a17adf1ee73de4591650b/es-ES~APP_ERROR/60266571dc3604f481bcb50a.wav',
+    'array': array([ 0.        ,  0.        ,  0.        , ...,  0.        ,
+            -0.00024414, -0.00024414]),
+    'sampling_rate': 8000
+ },
+ 'transcription': 'hola buenas a ver tengo un problema con vuestra aplicación resulta que quiero hacer una transferencia bancaria a una cuenta conocida',
+ 'english_transcription': 'hello good to see I have a problem with your application it turns out that I want to make a bank transfer to a known account',
+ 'intent_class': 2,
+ 'lang_id': 5}
+</code></pre>
+<p>Si nos centramos en el campo <code>audio</code>, vemos como contiene diferentes valores, los cuales forman parte de un objeto <a href="https://huggingface.co/docs/datasets/v2.19.0/en/package_reference/main_classes#datasets.Audio"><code>Audio</code></a>:</p>
+<ul>
+<li><code>path</code>: ruta al archivo de audio (en este ejemplo <code>*.wav</code>).</li>
+<li><code>array</code>: los datos del audio decodificados, representados por un array de <em>NumPy</em></li>
+<li><code>sampling_rate</code>: la frecuencia de muestreo (8,000 Hz).</li>
+</ul>
+<pre><code class="language-python">ejemplo = minds.shuffle()[0]
+
+id2label = minds.features[&quot;intent_class&quot;].int2str
+label = id2label(ejemplo[&quot;intent_class&quot;])
+</code></pre>
+<p>Y si queremos escuchar el audio, usando <em>Gradio</em> podemos crear un componente:</p>
+<pre><code class="language-python"> with gr.Blocks() as demo:
+    with gr.Column():
+        gr.Audio(audio[&quot;path&quot;], label=label)
+demo.launch(share=True)
+</code></pre>
+<p>Y reproducir el audio seleccionado:</p>
+<figure style="align: center;">
+    <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-gradio.png" alt="Reproduciendo un audio desde Gradio" width="800px">
+    <figcaption>Reproduciendo un audio desde Gradio</figcaption>
+</figure>
+
+<p>Finalmente, si queremos mostrar un gráfico con el espectograma del audio, y haciendo uso de la librería <a href="https://librosa.org/doc/latest/index.html"><em>Librosa</em></a>:</p>
+<pre><code class="language-python">import librosa
+import matplotlib.pyplot as plt
+import librosa.display
+
+array = ejemplo[&quot;audio&quot;][&quot;array&quot;]
+sampling_rate = ejemplo[&quot;audio&quot;][&quot;sampling_rate&quot;]
+
+plt.figure().set_figwidth(12)
+librosa.display.waveshow(array, sr=sampling_rate)
+</code></pre>
+<p>Obteniendo:</p>
+<figure style="align: center;">
+    <img src="https://aitor-medrano.github.io/iabd/hf/images/03hf-audio-grafico.png" alt="Representación gráfica de un audio" width="800px">
+    <figcaption>Representación gráfica de un audio</figcaption>
+</figure>
+
+<h3 id="creando-un-dataset-desde-python">Creando un dataset desde Python</h3>
+<p>Si queremos crear un dataset a partir de audios propios, necesitamos crear un diccionario o una lista con la ruta a nuestros audios, y a continuación, llamar al método <a href="https://huggingface.co/docs/datasets/v2.19.0/en/package_reference/main_classes#datasets.Dataset.cast_column"><code>cast_column</code></a> para transformar la columna a tipo <code>Audio</code> con las características que hemos visto antes.</p>
+<p>Así pues, si tenemos los datos en un diccionario podemos hacer:</p>
+<pre><code class="language-python">audio_dataset = Dataset.from_dict({&quot;audio&quot;: [&quot;path/to/audio_1&quot;, &quot;path/to/audio_2&quot;, ..., &quot;path/to/audio_n&quot;]}).cast_column(&quot;audio&quot;, Audio())
+</code></pre>
+<h3 id="audiofolder">Audiofolder</h3>
+<p>Otra posibilidad es crear el dataset a partir de una <a href="https://huggingface.co/docs/datasets/audio_load#audiofolder">carpeta</a> con todos los audios, y un archivo <code>metadata.csv</code> con los datos:</p>
+<pre><code class="language-bash">folder/train/metadata.csv
+folder/train/first_audio_file.mp3
+folder/train/second_audio_file.mp3
+folder/train/third_audio_file.mp3
+</code></pre>
+<p>Y un archivo de metadatos con:</p>
+<p>``` csv title="metadata.csv"
+file_name,transcription
+first_audio_file.mp3,este es el texto del primer audio
+second_audio_file.mp3,en el segundo audio cuento un chiste
+third_audio_file.mp3,y en este audio agradezco al público sus abucheos</p>
+<pre><code>
+Y a continuación, indicamos como primer parámetro `autofolder` y con `data_dir` indicamos la carpeta que contiene los audios:
+
+``` python
+from datasets import load_dataset
+
+dataset = load_dataset(&quot;audiofolder&quot;, data_dir=&quot;/path/to/folder&quot;)
+</code></pre>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/datasets/index">Documentación oficial</a> de <em>dataset</em></li>
+<li>El capítulo <a href="https://huggingface.co/learn/nlp-course/chapter5/1">La librería <em>Dataset</em> del curso NLP</a> de <em>Hugging Face</em>.</li>
+</ul>
+<h2 id="actividades">Actividades</h2>
+<ol>
+<li>
+<p>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 2.5p) Siguiendo el ejemplo inicial trabajado en la sesión y sólo empleando <em>Python</em>:</p>
+<ol>
+<li>Descarga los datos de <em>SquadES</em> considerando que los datos remotos son los de entrenamiento y validación.</li>
+<li>Con lo datos de entrenamiento, divídelos en entrenamiento y pruebas.</li>
+<li>Tras ello, sobre el dataset de entrenamiento, añade una columna a los datos de entrenamiento con la cantidad de párrafos.</li>
+<li>Filtra los datos de entrenamiento para que el <em>dataset</em> sólo contenga aquellos registros que tienen más de 10 párrafos.</li>
+<li>Elimina la columna con la cantidad de párrafos.</li>
+<li>Persiste todo el dataset en formato Parquet.</li>
+<li>Finalmente, publícalo en <em>Hugging Face</em>, editando la tarjeta y poniendo un documento de ejemplo en la documentación.</li>
+</ol>
+</li>
+<li>
+<p>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 0.5p) Carga en streaming el <em>dataset</em> de <a href="https://huggingface.co/datasets/ILSVRC/imagenet-1k">imagenet-1k</a>, y muestra la etiqueta de los primeros 5 elementos.</p>
+</li>
+<li>
+<p>(RAPIA.3 / CEPIA.3b, CEPIA.3c / 1p) Tenemos un dataset con información sobre <a href="../resources/dataset_flights.csv">vuelos retrasados</a> en España y otro con información general sobre los <a href="../resources/dataset_airports.csv">aeropuertos</a>. Se pide:</p>
+<ol>
+<li>Une ambos <em>datasets</em> para que la información de los vuelos contengan el nombre y la ciudad de los aeropuertos.</li>
+<li>Persiste los datos (sin elementos repetidos) en un <em>dataset</em> en formato <em>Arrow</em>.</li>
+<li>Publícalo en <em>Hugging Face</em>.</li>
+</ol>
+</li>
+<li>
+<p>(RAPIA.3 / CEPIA.3b, CEPIA.3c / opcional ) Sobre la base de datos de <em>MongoDB</em> de <code>sample_training</code> disponible en los datos de muestra de <em>MongoAtlas</em>:</p>
+<ol>
+<li>Carga los de estados de <a href="../sa/resources/states.js"><code>states.js</code></a>.</li>
+<li>Realiza una join entre las colecciones <code>zips</code> y <code>states</code>.</li>
+<li>Persiste los datos (sin elementos repetidos) en un <em>dataset</em> en formato <em>JSON</em>.</li>
+<li>Publícalo en <em>Hugging Face</em>.</li>
+</ol>
+</li>
+</ol>
+<p><em>[RAPIA.3]: Evalúa las mejoras en los negocios integrando convergencia tecnológica.
+</em>[CEPIA.3b]: Se han identificado sistemas que facilitan la conexión tecnológica.
+*[CEPIA.3c]: Se han evaluado las características de dichos sistemas.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Datasets/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Datasets en Hugging Face">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Datasets en Hugging Face
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Actividad1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Actividad 1 - Datasets de Hugging Face">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Actividad 1 - Datasets de Hugging Face
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
