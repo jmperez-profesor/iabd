@@ -461,7 +461,6 @@ print(squad_train[0]["title"]) # Beyoncé Knowles
 squad_train_shuffled = squad_train.shuffle(seed=333)
 print(squad_train_shuffled[0]["title"]) # Carnaval
 ```
-
 #### ¿Por qué se usa seed (semilla) fija de 333 en el método suffle()?
 ```python
 squad_train_shuffled = squad_train.shuffle(seed=333)
