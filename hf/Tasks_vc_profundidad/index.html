@@ -720,12 +720,20 @@
 <li><strong>Aplicaciones</strong>: Robótica, realidad aumentada, vehículos autónomos, etc.</li>
 <li><strong>Modelos populares</strong>: DPT, MiDaS</li>
 </ul>
-<p>```python {hl_lines="5 7" linenums="1"} </p>
-<h1 id="utiliza-el-pipeline">Utiliza el pipeline:</h1>
-<p>from transformers import pipeline</p>
-<p>depth = pipeline("depth-estimation", model="Intel/zoedepth-nyu-kitti")</p>
-<p>result = depth("ruta_o_url_imagen")</p>
-<p>```</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Utiliza el pipeline:</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="hll"><span class="n">depth</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;depth-estimation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Intel/zoedepth-nyu-kitti&quot;</span><span class="p">)</span>
+</span>
+<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">depth</span><span class="p">(</span><span class="s2">&quot;ruta_o_url_imagen&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 

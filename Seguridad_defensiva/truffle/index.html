@@ -735,18 +735,18 @@
 <p>Personalizar y configurar TruffleHog para casos muy específicos es una funcionalidad muy interesante.</p>
 <p>Merece la pena comentar que se pueden utilizar distintas instancias de TruffleHog  en distintos entornos (test, preprod, prod...) con distintas configuraciones.</p>
 <p>TruffleHog trabaja tanto con expresiones regulares como con un concepto conocido como entropía:</p>
-<p>!!!quote "Cita"
-     [TruffleHog] will go through the entire commit history of each branch, and check each diff from each commit, and check for secrets. This is both by regex and by entropy. For entropy checks, truffleHog will evaluate the shannon entropy for both the base64 charset and hexadecimal char set for every blob of text greater than 20 characters comprised of those character sets in each diff. If at any point a high entropy string &gt;20 characters is detected, it will print to the screen.”</p>
+<div class="admonition quote">
+<p class="admonition-title">Cita</p>
+<p>[TruffleHog] will go through the entire commit history of each branch, and check each diff from each commit, and check for secrets. This is both by regex and by entropy. For entropy checks, truffleHog will evaluate the shannon entropy for both the base64 charset and hexadecimal char set for every blob of text greater than 20 characters comprised of those character sets in each diff. If at any point a high entropy string &gt;20 characters is detected, it will print to the screen.”</p>
+</div>
 <p>Es decir, calcula la entropía de las diferencias entre cada commit, tanto en base64 como hexadecimal y para cada texto mayor de 20 carácteres.</p>
-<p>!!!nota "Aclaración"
-    El concepto de entropía o entropía de Shannon proviende de la teoría de la comunicación y mide la incertidumbre de una fuente de información. No obstante, esta definición es imprecisa. La definición real de entropía es el grado de información/desinformación que tenemos de un sistema. Es decir, cuanta más información tengamos menos entropía. </p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> Citando a la [Wikipedia](https://es.wikipedia.org/wiki/Entrop%C3%ADa_(informaci%C3%B3n)):
-
- &quot;Los símbolos con menor probabilidad son los que aportan mayor información; por ejemplo, si se considera como sistema de símbolos a las palabras en un texto, palabras frecuentes como «que», «el», «a» aportan poca información, mientras que palabras menos frecuentes como «corren», «niño», «perro» aportan más información. Si de un texto dado borramos un «que», seguramente no afectará a la comprensión y se sobreentenderá, no siendo así si borramos la palabra «niño» del mismo texto original. Cuando todos los símbolos son igualmente probables (distribución de probabilidad plana), todos aportan información relevante y la entropía es máxima. &quot;
-</code></pre></div></td></tr></table></div>
-<p><img alt="" src="../img/entropia.png" />{: style="height:300px;width:400px"}</p>
+<div class="admonition nota">
+<p class="admonition-title">Aclaración</p>
+<p>El concepto de entropía o entropía de Shannon proviende de la teoría de la comunicación y mide la incertidumbre de una fuente de información. No obstante, esta definición es imprecisa. La definición real de entropía es el grado de información/desinformación que tenemos de un sistema. Es decir, cuanta más información tengamos menos entropía. </p>
+<p>Citando a la <a href="https://es.wikipedia.org/wiki/Entrop%C3%ADa_(informaci%C3%B3n)">Wikipedia</a>:</p>
+<p>"Los símbolos con menor probabilidad son los que aportan mayor información; por ejemplo, si se considera como sistema de símbolos a las palabras en un texto, palabras frecuentes como «que», «el», «a» aportan poca información, mientras que palabras menos frecuentes como «corren», «niño», «perro» aportan más información. Si de un texto dado borramos un «que», seguramente no afectará a la comprensión y se sobreentenderá, no siendo así si borramos la palabra «niño» del mismo texto original. Cuando todos los símbolos son igualmente probables (distribución de probabilidad plana), todos aportan información relevante y la entropía es máxima. "</p>
+</div>
+<p><img alt="" src="../img/entropia.png" style="height:300px;width:400px" /></p>
 <p>Antes de continuar, deben nombrarse los frameworks o marcos de ciberseguridad. Hay muchos marcos disponbiles y la decisión de elegir uno en concreto depende de la ideneidad para la empresa en cuestión.</p>
 <p>El NIST es una de las organizaciones que elabora estos marcos y que abarcan un conjunto de normas, directrices y mejores prácticas para alcanzar un nivel de madurez adecuado en cuanto a ciberseguridad. Como véis en la imagen, las categorías están divididas en: identificar, proteger, detectar, responder y recuperar.</p>
 <p><img alt="" src="../img/NIST.png" /></p>
@@ -781,43 +781,48 @@
 <h3 id="uso-de-contrasenas-senuelo">Uso de contraseñas señuelo</h3>
 <p>En primer lugar debemos instalar TruffleHog en nuestro sistema. A partir de la versión 3 TruffleHog ha sido reescrito en Go y ha cambiado su funcionamiento ya que no utiliza la entropía para nada debido a su dificultad de escalamiento para grandes volúmenes de datos. </p>
 <p>Por motivos de facilidad y para prueba de concepto, utilizaremos versiones anteriores, para ello lo podemos intalar con pip3 (o pipenv si estamos en un entorno virtual):</p>
-<pre><code class="language-console">$ pip3 install 'truffleHog&gt;=2.1.0,&lt;3.0'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;truffleHog&gt;=2.1.0,&lt;3.0&#39;</span>
+</code></pre></div>
 <p>Para esta práctica vamos a utilizar la configuración por defecto de TruffleHog. Deshabilitaremos el uso de la entropía y le indicaremos que haga uso de la funcionalidad <code>regex</code>, que trataremos con mayor profundidad más adelante pero básicamente busca tipos concretos de credenciales haciendo uso de expresiones regulares.</p>
 <p>Básicamente, buscaremos cadenas aleatorias que puedan ser una potencial credencial.</p>
 <p>Vamos a simular un repositorio privado donde vamos a colocar un archivo con unas credenciales señuelo falsas como método de protección activa, tal y como recomendaba el Mitre Shield. Lo ideal sería tener una pantalla de login donde puedan utilizarse estas credenciales de tal forma que, sabiendo que no funcionan, pudiésemos monitorizar el comportamiento, mediante su descubrimiento, de los actores de amenazas.</p>
 <p>Así pues, analicemos el repositorio: </p>
-<pre><code class="language-console">$ trufflehog --regex --entropy=False  https://github.com/raul-profesor/repositorio-interno
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>trufflehog<span class="w"> </span>--regex<span class="w"> </span>--entropy<span class="o">=</span>False<span class="w">  </span>https://github.com/raul-profesor/repositorio-interno
+</code></pre></div>
 <p>Parece que TruffleHog no ha encontrado nada. Cuando esto ocurre, la aplicación simplemente no devuelve nada.</p>
-<p>!!!Task "Tarea"
-    Probad ahora activando la entropía y comprobad qué se obtiene.</p>
+<div class="admonition task">
+<p class="admonition-title">Tarea</p>
+<p>Probad ahora activando la entropía y comprobad qué se obtiene.</p>
+</div>
 <h3 id="uso-de-analisis-personalizados">Uso de análisis personalizados</h3>
 <p>En esta tarea lo que haremos será intentar que TruffleHog busque específicamente claves de Azure Storage.</p>
 <p>Personalizar o customizar los criterios de búsqueda resulta tremendamente útil puesto que con ello reducimos la cantidad de resultados a un nivel realista que podemos manejar, así como los falsos positivos que nos harían perder mucho tiempo.</p>
 <p>Para este ejemplo vamos a suponer que asumimos el rol de un miembro del equipo de seguridad que ha observado que en la organización se emplean contenedores Azure Storage. Es por ello que, en previsión, queremos hacer una búsqueda en el repositorio por si se pudiera filtrar una de las claves asociadas por error.</p>
 <p>Para personalizar la búsqueda utilizaremos nuestra propia expresión regular. Las claves de Azure Storage son alfanuméricas, es decir, están formadas por letras y número y además al final de la clave nos encontramos con un símbolo de suma y dos símbolos "igual". Además, la longitud de la clave es de 88 carácteres.</p>
-<p>!!!task "Tarea"
-    Haciendo uso de sitios como <a href="https://regex101.com/">este</a> o <a href="https://regexr.com/">este</a>, crea una expresión regular que haga match con una cadena formadas por números del 0 al 9, y letras (mayúsculas y minúsculas) de la a a la z. 
-    Si no recuerdas las expresiones regulares, puedes hacer uso de consultas en Internet como <a href="https://www.adictosaltrabajo.com/2015/01/29/regexsam/">esta</a> u otras que encuentres.</p>
+<div class="admonition task">
+<p class="admonition-title">Tarea</p>
+<p>Haciendo uso de sitios como <a href="https://regex101.com/">este</a> o <a href="https://regexr.com/">este</a>, crea una expresión regular que haga match con una cadena formadas por números del 0 al 9, y letras (mayúsculas y minúsculas) de la a a la z. 
+Si no recuerdas las expresiones regulares, puedes hacer uso de consultas en Internet como <a href="https://www.adictosaltrabajo.com/2015/01/29/regexsam/">esta</a> u otras que encuentres.</p>
+</div>
 <p>Para hacer que TruffleHog haga uso de esta expresión regular, debemos localizar y modificar el archivo <code>regexes.json</code> que es el que utiliza para este cometido. Este archivo puede variar su ubicación en función del sistema que estéis utilizando. En mi caso está aquí:</p>
-<pre><code class="language-console">/home/raul/.local/lib/python3.9/site-packages/truffleHogRegexes/regexes.json
-</code></pre>
-<p>Aunque si no lo tuvieráis ahí, podéis hacer uso de la herramienta <code>locate</code> (deberéis instalarla) para buscarlo:</p>
-<pre><code class="language-console">$ sudo updatedb
-$ locate regexes.json
-</code></pre>
-<p>El primer comando actualiza la base de datos de <em>locate</em> y el segundo hace la búsqueda.</p>
+<p><div class="highlight"><pre><span></span><code><span class="go">/home/raul/.local/lib/python3.9/site-packages/truffleHogRegexes/regexes.json</span>
+</code></pre></div>
+Aunque si no lo tuvieráis ahí, podéis hacer uso de la herramienta <code>locate</code> (deberéis instalarla) para buscarlo:</p>
+<p><div class="highlight"><pre><span></span><code><span class="gp">$ </span>sudo<span class="w"> </span>updatedb
+<span class="gp">$ </span>locate<span class="w"> </span>regexes.json
+</code></pre></div>
+El primer comando actualiza la base de datos de <em>locate</em> y el segundo hace la búsqueda.</p>
 <ul>
 <li>Es recomendable que hagáis una copia de seguridad el archivo antes de modificarlo para ahorrarnos posibles problemas.</li>
 </ul>
 <p>En este archivo y con el mismo formato que el resto de reglas que ya contiene, debéis introducir una nueva con la clave "Claves de acceso para Azure Storage"  y como valor, la expresión regular formada anterioremente.</p>
 <p>Y tras esto, ya no queda más que probar que la expresión regular es correcta y que TruffleHog hace uso de ella, detectando en la salida una clave de la tipología que le hemos dicho. Para ello le diremos, igual que antes, que utilice las expresiones regulares (utilizará por defecto el archivo <strong>regexes.json</strong> que hemos modificado) pero no la entropía, ya que no nos hace falta al querer afinar la búsqueda con las regex.</p>
 <p>El repositorio que queremos analizar es el siguiente: <strong><code>https://github.com/raul-profesor/clave-azure</code></strong></p>
-<p>!!!task "Tarea"
-    Documenta el comando y la salida que obtienes, haciendo notar que se obtienen únicamente valores a partir de las expresiones regulares que contiene el archivo regexes.json, así como señalando en concreto los resultados de nuestra propia expresión regular.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Utiliza todas las capturas de pantallas y explicaciones que consideres necesarias para este caso y el anterior.
-</code></pre></div></td></tr></table></div>
+<div class="admonition task">
+<p class="admonition-title">Tarea</p>
+<p>Documenta el comando y la salida que obtienes, haciendo notar que se obtienen únicamente valores a partir de las expresiones regulares que contiene el archivo regexes.json, así como señalando en concreto los resultados de nuestra propia expresión regular.</p>
+<p>Utiliza todas las capturas de pantallas y explicaciones que consideres necesarias para este caso y el anterior.</p>
+</div>
 
 
 

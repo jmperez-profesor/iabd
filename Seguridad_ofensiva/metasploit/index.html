@@ -729,13 +729,13 @@
 <p>Destacar también que es multiplataforma y gratuita, aunque tiene una versión de pago, en la que se nos ofrecen exploits ya desarrollados, pero cuyo coste es bastante elevado. La versión gratuita es muy interesante porque contiene todas las vulnerabilidades públicas.</p>
 <h3 id="arquitectura-de-msf">Arquitectura de MSF</h3>
 <p>Metasploit está formado por varios componentes como bibliotecas, módulos, complementos y herramientas importantes. Una pequeño esquema de la estructura de Metasploit podría ser el siguiente:</p>
-<p><img alt="" src="../img/msf-1.png" />{: style="height:300px;width:500px" }</p>
+<p><img alt="" src="../img/msf-1.png" style="height:300px;width:500px" /></p>
 <p>El diseño modular facilita la expansión y adaptación del framework de acuerdo a sus respectivos requerimientos, esto es debido a que las funcionalidades ya existentes pueden ser fácilmente reutilizadas.</p>
 <p>A continuación una brevísima reseña de los componentes individuales.</p>
 <h4 id="ruby-extension-library-rex">Ruby Extension Library (REX)</h4>
 <p>La biblioteca de extensión de Ruby (Ruby Extension Library) es el componente básico del framework. Contiene una variedad de clases que pueden ser utilizadas por las capas subyacentes o directamente por otras herramientas. </p>
 <p>Se utiliza para manejar diversas funciones de bajo nivel dentro de la plataforma. Esta biblioteca es fundamental para el funcionamiento de Metasploit, ya que proporciona herramientas y métodos esenciales que permiten la interacción con redes, el manejo de sockets, la codificación de datos y otras tareas críticas. Algunas de las características principales de Rex incluyen:</p>
-<p>+<strong> Manejo de Sockets</strong>: Proporciona herramientas para crear y gestionar conexiones de red, incluyendo TCP, UDP y SSL, esenciales para realizar ataques y explotación de vulnerabilidades.</p>
+<p>+** Manejo de Sockets**: Proporciona herramientas para crear y gestionar conexiones de red, incluyendo TCP, UDP y SSL, esenciales para realizar ataques y explotación de vulnerabilidades.</p>
 <ul>
 <li>
 <p><strong>Codificación y Decodificación de Datos</strong>: Incluye métodos para convertir datos a diferentes formatos como base64, hexadecimal, y otros, permitiendo que los exploits se transmitan de manera encubierta y compatible.</p>
@@ -806,14 +806,12 @@
 <p>Como curiosidad el ranking que se utiliza, de acuerdo con la documentación oficial, es este:</p>
 <p><img alt="" src="../img/msf-ranking.png" /></p>
 <p>Dado que Metasploit abarca un gran abanico de posibilidades y conocimientos, escapa por completo al propósito de este curso el impartir una formación detallada del framework. Es por ello que símplemente veremos unas ínfimas pinceladas de sus posibilidades, relacionadas con el uso de exploits.</p>
-<p>!!!Note "Nota del autor"
-    Si bien es cierto que Metasploit es una herramienta de gran utilidad y que permite automatizar un gran número de tareas, ahorrando de esta manera en ocasiones un tiempo valioso, se recomienda no ceñirse ni abusar de ella.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Podríamos llegar a explotar vulnerabilidades graves y complejas de una forma relativamente sencilla mediante el uso de Metasploit. Sin embargo, el fin último de un estudiante de seguridad informática será entender las bases, los principios y funcionamientos internos con el mayor detalle posible. Sólo de esta manera podremos desarrollar adecuadamente nuestro perfil en ciberseguridad, así como evitar futuros desastres.
-
-En resumen, siempre que se pueda, se recomienda la explotación manual de las vulnerabilidades para su perfecta comprensión.
-</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota del autor</p>
+<p>Si bien es cierto que Metasploit es una herramienta de gran utilidad y que permite automatizar un gran número de tareas, ahorrando de esta manera en ocasiones un tiempo valioso, se recomienda no ceñirse ni abusar de ella.</p>
+<p>Podríamos llegar a explotar vulnerabilidades graves y complejas de una forma relativamente sencilla mediante el uso de Metasploit. Sin embargo, el fin último de un estudiante de seguridad informática será entender las bases, los principios y funcionamientos internos con el mayor detalle posible. Sólo de esta manera podremos desarrollar adecuadamente nuestro perfil en ciberseguridad, así como evitar futuros desastres.</p>
+<p>En resumen, siempre que se pueda, se recomienda la explotación manual de las vulnerabilidades para su perfecta comprensión.</p>
+</div>
 <h2 id="uso-de-exploits-en-metasploit">Uso de exploits en Metasploit</h2>
 <p>Como ya se ha comentado, se presentará la forma más básica de uso de un exploit en Metasploit sin apenas entrar en detalle. Se deja a elección del alumno profundizar tanto cuanto quiera en el tema con los múltiples recursos gratuitos o de pago que existen hoy día en la red.</p>
 <p>Dicho esto, ilustraremos esta sección con un ejemplo.</p>

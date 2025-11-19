@@ -714,74 +714,87 @@
 
 <h1 id="1-descargar-los-datos-de-squades-desde-fuente-remota">1. Descargar los datos de SquadES desde fuente remota</h1>
 <p>El primer paso es cargar los archivos de entrenamiento y validación desde URLs remotas. Utilizaremos la función <code>load_dataset()</code> de la librería Hugging Face Datasets, indicando que queremos cargar archivos JSON alojados en GitHub. Los datos remotos se corresponden con <code>train-v2.0-es.json</code> (entrenamiento) y <code>dev-v2.0-es.json</code> (validación).</p>
-<p>```python {linenums="1"}
-from datasets import load_dataset</p>
-<p>url = "https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/"
-data_files = {
-    "train": url + "train-v2.0-es.json",
-    "val": url + "dev-v2.0-es.json"
-}
-squad_es = load_dataset("json", data_files=data_files, field="data")  # field="data" porque los datos están bajo esa clave
-print(squad_es)</p>
-<pre><code>Esto produce un objeto DatasetDict con splits train y val, donde cada elemento tiene las claves title y paragraphs.​
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-# 2. Dividir los datos de entrenamiento en entrenamiento y prueba
-Para realizar una partición del `split` de entrenamiento en dos partes (por ejemplo, 90% entrenamiento y 10% prueba), usamos el método `train_test_split()`:
-
-```python {linenums=&quot;1&quot;}
-squad_train_full = squad_es[&quot;train&quot;]
-split_dataset = squad_train_full.train_test_split(test_size=0.1, seed=42)
-squad_train = split_dataset[&quot;train&quot;]
-squad_test = split_dataset[&quot;test&quot;]
-print(squad_train)
-print(squad_test)
-</code></pre>
-<p>Ahora disponemos de <code>squad_train</code> (entrenamiento 90%) y <code>squad_test</code> (prueba 10%).​</p>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/ccasimiro88/TranslateAlignRetrieve/master/SQuAD-es-v2.0/&quot;</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;dev-v2.0-es.json&quot;</span>
+<span class="p">}</span>
+<span class="n">squad_es</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>  <span class="c1"># field=&quot;data&quot; porque los datos están bajo esa clave</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_es</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Esto produce un objeto DatasetDict con splits train y val, donde cada elemento tiene las claves title y paragraphs.​</p>
+<h1 id="2-dividir-los-datos-de-entrenamiento-en-entrenamiento-y-prueba">2. Dividir los datos de entrenamiento en entrenamiento y prueba</h1>
+<p>Para realizar una partición del <code>split</code> de entrenamiento en dos partes (por ejemplo, 90% entrenamiento y 10% prueba), usamos el método <code>train_test_split()</code>:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_full</span> <span class="o">=</span> <span class="n">squad_es</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">split_dataset</span> <span class="o">=</span> <span class="n">squad_train_full</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">squad_train</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">squad_test</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_test</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Ahora disponemos de <code>squad_train</code> (entrenamiento 90%) y <code>squad_test</code> (prueba 10%).​</p>
 <h1 id="3-anadir-una-columna-con-el-numero-de-parrafos">3. Añadir una columna con el número de párrafos</h1>
 <p>Podemos emplear el método <code>map()</code> para agregar una columna llamada, por ejemplo, <code>num_paragraphs</code>, contando los elementos en la clave <code>paragraphs</code> de cada ejemplo.</p>
-<p>```python {linenums="1"}
-squad_train = squad_train.map(lambda x: {"num_paragraphs": len(x["paragraphs"])})
-print(squad_train.column_names)  # Debe incluir 'num_paragraphs'
-print(squad_train[0]["num_paragraphs"])</p>
-<pre><code>De este modo, cada registro en el `split` de entrenamiento tiene la columna con el número de párrafos.​
-
-# 4. Filtrar los ejemplos con más de 10 párrafos
-Usaremos el método `filter()`, pasando una función lambda que conserve solo aquellos ejemplos cuya columna `num_paragraphs` sea mayor que 10:
-
-```python {linenums=&quot;1&quot;}
-squad_train_large = squad_train.filter(lambda x: x[&quot;num_paragraphs&quot;] &gt; 10)
-print(squad_train_large)
-</code></pre>
-<p>Así, el dataset de entrenamiento contiene únicamente los registros relevantes para el criterio pedido.​</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>  <span class="c1"># Debe incluir &#39;num_paragraphs&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_train</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+De este modo, cada registro en el <code>split</code> de entrenamiento tiene la columna con el número de párrafos.​</p>
+<h1 id="4-filtrar-los-ejemplos-con-mas-de-10-parrafos">4. Filtrar los ejemplos con más de 10 párrafos</h1>
+<p>Usaremos el método <code>filter()</code>, pasando una función lambda que conserve solo aquellos ejemplos cuya columna <code>num_paragraphs</code> sea mayor que 10:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_large</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_train_large</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Así, el dataset de entrenamiento contiene únicamente los registros relevantes para el criterio pedido.​</p>
 <h1 id="5-eliminar-la-columna-num_paragraphs">5. Eliminar la columna num_paragraphs</h1>
 <p>Para dejar el dataset limpio, eliminamos la columna extra:</p>
-<p>```python {linenums="1"}
-squad_train_final = squad_train_large.remove_columns("num_paragraphs")
-print(squad_train_final.column_names)</p>
-<pre><code>Esto deja únicamente las columnas originales: `title` y `paragraphs`.​
-
-# 6. Persistir el dataset en formato Parquet
-El método to_parquet() permite guardar el dataset resultante en disco en formato Parquet, que es eficiente y compatible para grandes volúmenes de datos.
-
-```python {linenums=&quot;1&quot;}
-squad_train_final.to_parquet(&quot;squad_train_filtered.parquet&quot;)
-</code></pre>
-<p>Esto crea el archivo Parquet con los ejemplos filtrados.​</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_final</span> <span class="o">=</span> <span class="n">squad_train_large</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">(</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_train_final</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Esto deja únicamente las columnas originales: <code>title</code> y <code>paragraphs</code>.​</p>
+<h1 id="6-persistir-el-dataset-en-formato-parquet">6. Persistir el dataset en formato Parquet</h1>
+<p>El método to_parquet() permite guardar el dataset resultante en disco en formato Parquet, que es eficiente y compatible para grandes volúmenes de datos.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">squad_train_final</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;squad_train_filtered.parquet&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Esto crea el archivo Parquet con los ejemplos filtrados.​</p>
 <h1 id="7-publicar-el-dataset-en-hugging-face">7. Publicar el dataset en Hugging Face</h1>
 <p>Antes de publicar necesitas autenticarte con tu cuenta (asegúrate de tener instalado huggingface_hub y un token de escritura):</p>
-<p>```python {linenums="1"}
-from huggingface_hub import login
-login()  # Te pedirá el token</p>
-<pre><code>A continuación, puedes usar el método `push_to_hub` del dataset. Opcionalmente, crea primero un `DatasetDict` si quieres incluir también el `split` de validación o test:
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
+<span class="n">login</span><span class="p">()</span>  <span class="c1"># Te pedirá el token</span>
+</code></pre></div></td></tr></table></div>
+A continuación, puedes usar el método <code>push_to_hub</code> del dataset. Opcionalmente, crea primero un <code>DatasetDict</code> si quieres incluir también el <code>split</code> de validación o test:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetDict</span>
 
-```python {linenums=&quot;1&quot;}
-from datasets import DatasetDict
-
-final_dataset = DatasetDict({
-    &quot;train&quot;: squad_train_final,
-    &quot;test&quot;: squad_test
-})
-</code></pre>
+<span class="n">final_dataset</span> <span class="o">=</span> <span class="n">DatasetDict</span><span class="p">({</span>
+    <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">squad_train_final</span><span class="p">,</span>
+    <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">squad_test</span>
+<span class="p">})</span>
+</code></pre></div></td></tr></table></div>
 <p>Sube el dataset (reemplaza <tu_usuario>/squad_es_filtrado por tu nombre de usuario/repositorio en Hugging Face)
 <code>final_dataset.push_to_hub("&lt;tu_usuario&gt;/squad_es_filtrado")</code></p>
 <h1 id="opcionalmente-anade-un-ejemplo-en-la-documentacion-editando-la-dataset-card-en-la-propia-web-de-hugging-face-tal-como-recomienda-la-sesionattached_file1">Opcionalmente, añade un ejemplo en la documentación editando la "Dataset Card" en la propia web de Hugging Face, tal como recomienda la sesión[attached_file:1].</h1>

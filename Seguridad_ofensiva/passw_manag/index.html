@@ -719,7 +719,7 @@
 <ul>
 <li>
 <p><strong>Base de datos del administrador de cuentas de seguridad (SAM).</strong></p>
-<p>La base de datos SAM es un archivo que está presente en ^^todos^^ los sistemas Windows en la ubicación <code>C:\Windows\System32\config\SAM</code></p>
+<p>La base de datos SAM es un archivo que está presente en <ins>todos</ins> los sistemas Windows en la ubicación <code>C:\Windows\System32\config\SAM</code></p>
 <p>Este archivo contiene todas las cuentas locales creadas, así como todas las cuentas locales integradas que se encuentran en un sistema operativo Windows (XP, Vista, Win7, 8.1 y 10). Las contraseñas se almacenan aquí como hashes. (hash de contraseña NT).</p>
 <p>Protección:</p>
 <ul>
@@ -742,7 +742,7 @@
 </li>
 <li>
 <p><strong>Credenciales en caché</strong></p>
-<p>^^Las credenciales de dominio se almacenan en caché en el registro para permitir que los usuarios inicien sesión en su sistema cuando no está conectado al dominio.^^</p>
+<p><ins>Las credenciales de dominio se almacenan en caché en el registro para permitir que los usuarios inicien sesión en su sistema cuando no está conectado al dominio.</ins></p>
 <p>El sistema de Windows almacena en caché los últimos 10 hashes de inicio de sesión y algunos almacenan hasta 25 de forma predeterminada. Este número es configurable en el registro.</p>
 <p>Como ya se ha dicho, esto permite que si se pierda la conectividad con el Domain Controller de Active Directory, por la razón que sea, podamos al menos acceder a nuestro sistema.</p>
 <p>Las credenciales en caché están físicamente guardadas en el archivo <code>%SystemRoot%\System32\config\SECURITY</code>.</p>
@@ -761,7 +761,7 @@
 <li>
 <p><strong>Proceso de servicio del subsistema de la autoridad de seguridad local (LSASS)</strong></p>
 <p>Al iniciar sesión en una máquina con Windows, ya sea localmente o en un dominio, las credenciales se almacenan en el proceso LSASS en la memoria (lsass.exe) y reside en la memoria RAM del sistema operativo mientras el proceso está en ejecución. Las credenciales no se escriben directamente en disco en esta etapa.</p>
-<p>^^Esto se usa principalmente para permitir que el usuario acceda a otros recursos en la red a los que está autorizado a acceder sin tener que volver a autenticarse.^^ </p>
+<p><ins>Esto se usa principalmente para permitir que el usuario acceda a otros recursos en la red a los que está autorizado a acceder sin tener que volver a autenticarse.</ins> </p>
 <p>Los formatos almacenados pueden ser texto sin formato (cifrado reversible), hash NT y LM y tickets Kerberos.</p>
 </li>
 </ul>
@@ -806,7 +806,7 @@
 <h3 id="hash-lm">Hash LM</h3>
 <p>El hash <strong>LAN Manager</strong> fue uno de los primeros algoritmos de hash de contraseñas que usaron los sistemas operativos Windows y la única versión compatible, hasta la llegada de NTLM, que se usaba en Windows 2000, XP, Vista y 7. Los sistemas operativos más nuevos aún admiten el uso de hash LM con fines de compatibilidad con versiones anteriores. Sin embargo, está deshabilitado de forma predeterminada para Windows Vista y Windows 7.</p>
 <p>Si realizaramos un volcado de la base de datos SAM/NTDS, se muestran junto con NTHash, antes de los dos puntos.</p>
-<p>^^Ejemplo^^</p>
+<p><ins>Ejemplo</ins></p>
 <ul>
 <li>
 <p>Si los hashes LM están habilitados en el sistema (Win XP y versiones anteriores), un volcado de hash se verá así:</p>
@@ -902,7 +902,7 @@
 <h3 id="ntlmv2-aka-net-ntlmv2">NTLMv2 (a.k.a Net-NTLMv2)</h3>
 <p>Esta es la versión nueva y mejorada del protocolo NTLM, lo que lo hace un poco más difícil de descifrar. El concepto es el mismo que NTLMv1, sólo cambia el algoritmo utilizado para cifrar y las respuestas enviadas al servidor. </p>
 <p>NTLMv2 necesita además que la posible diferencia horaria entre clientes y servidores no supere los 30 minutos.</p>
-<p>^^Ejemplo^^</p>
+<p><ins>Ejemplo</ins></p>
 <p><code>admin::n46isnekpt:08CA45B7D7EA58EE:88DCBE4446168966A153A0064958DAC6: 5C7830315C78303100100000000000b45c67103d07d7b95acd12fa11230E0000000052920b85f78d013c31cdb3b92f5d765c783030</code></p>
 <h2 id="dumping-de-credenciales">Dumping de credenciales</h2>
 <p>El dumping de credenciales es un tipo de ciberataque en el que se vulnera un ordenador y el atacante obtiene los nombres de usuario y las contraseñas. Esto puede ser perjudicial si le ocurre a su ordenador personal, pero puede ser absolutamente devastador si un atacante es capaz de realizar el dumping de credenciales en un ordenador que forma parte de una red más grande.</p>

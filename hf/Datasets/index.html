@@ -737,68 +737,67 @@
 </ul>
 <hr />
 <h2 id="instalacion">⚙️ Instalación</h2>
-<pre><code class="language-bash">pip install datasets
-pip install datasets[audio]
-pip install datasets[vision]
-</code></pre>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>datasets
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>audio<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>datasets<span class="o">[</span>vision<span class="o">]</span>
+</code></pre></div>
 <hr />
 <h2 id="ejemplo-cargar-un-dataset-local">🧩 Ejemplo: Cargar un dataset local</h2>
-<p>```python {linenums="1"}
-from datasets import load_dataset</p>
-<p>squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")</p>
-<p>print(squad_dataset)</p>
-<pre><code>
-Salida esperada:
-</code></pre>
-<p>DatasetDict({
-    train: Dataset({ features: ['title', 'paragraphs'], num_rows: 442 })
-})</p>
-<pre><code>
----
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-## 2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face
+<span class="n">squad_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;train-v2.0-es.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
-### 🎯 Objetivo
-Aprender a trabajar con **datasets en Hugging Face**, realizar transformaciones y publicar un dataset en el **Hugging Face Hub**.
+<span class="nb">print</span><span class="p">(</span><span class="n">squad_dataset</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Salida esperada:
+<div class="highlight"><pre><span></span><code>DatasetDict({
+    train: Dataset({ features: [&#39;title&#39;, &#39;paragraphs&#39;], num_rows: 442 })
+})
+</code></pre></div></p>
+<hr />
+<h2 id="2-reto-gamificado-publica-tu-primer-dataset-en-hugging-face">2️⃣ Reto Gamificado: Publica tu primer Dataset en Hugging Face</h2>
+<h3 id="objetivo">🎯 Objetivo</h3>
+<p>Aprender a trabajar con <strong>datasets en Hugging Face</strong>, realizar transformaciones y publicar un dataset en el <strong>Hugging Face Hub</strong>.</p>
+<h3 id="niveles-del-reto">🕹️ Niveles del reto</h3>
+<ol>
+<li><strong>Descarga y explora:</strong> Cargar <code>SquadES</code>.</li>
+<li><strong>Divide en train/test:</strong> Crear split adicional.</li>
+<li><strong>Añade columna:</strong> <code>num_paragraphs</code>.</li>
+<li><strong>Filtra y persiste:</strong> Guardar en Parquet.</li>
+<li><strong>Publica en Hugging Face:</strong> Añadir documentación.</li>
+</ol>
+<p><img alt="Tablero del reto" src="../img/reto_datasets.png" /></p>
+<hr />
+<h2 id="plantilla-del-ejercicio">📂 Plantilla del ejercicio</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-### 🕹️ Niveles del reto
-1. **Descarga y explora:** Cargar `SquadES`.
-2. **Divide en train/test:** Crear split adicional.
-3. **Añade columna:** `num_paragraphs`.
-4. **Filtra y persiste:** Guardar en Parquet.
-5. **Publica en Hugging Face:** Añadir documentación.
+<span class="c1"># Nivel 1: Descargar y explorar</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PlanTL-GOB-ES/squad-es&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 
-![Tablero del reto](./img/reto_datasets.png)
+<span class="c1"># Nivel 2: Dividir en train/test</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">split_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+<span class="n">test_split</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
 
----
+<span class="c1"># Nivel 3: Añadir columna con cantidad de párrafos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_num_paragraphs</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">])}</span>
+<span class="n">train_split</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">add_num_paragraphs</span><span class="p">)</span>
 
-## 📂 Plantilla del ejercicio
-```python
-from datasets import load_dataset
+<span class="c1"># Nivel 4: Filtrar y persistir</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">train_split</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">filtered_train</span> <span class="o">=</span> <span class="n">filtered_train</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="s2">&quot;num_paragraphs&quot;</span><span class="p">])</span>
+<span class="n">filtered_train</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;filtered_train.parquet&quot;</span><span class="p">)</span>
 
-# Nivel 1: Descargar y explorar
-dataset = load_dataset(&quot;PlanTL-GOB-ES/squad-es&quot;)
-print(dataset)
-
-# Nivel 2: Dividir en train/test
-train_dataset = dataset[&quot;train&quot;]
-split_dataset = train_dataset.train_test_split(test_size=0.2)
-train_split = split_dataset[&quot;train&quot;]
-test_split = split_dataset[&quot;test&quot;]
-
-# Nivel 3: Añadir columna con cantidad de párrafos
-def add_num_paragraphs(example):
-    return {&quot;num_paragraphs&quot;: len(example[&quot;paragraphs&quot;])}
-train_split = train_split.map(add_num_paragraphs)
-
-# Nivel 4: Filtrar y persistir
-filtered_train = train_split.filter(lambda x: x[&quot;num_paragraphs&quot;] &gt; 10)
-filtered_train = filtered_train.remove_columns([&quot;num_paragraphs&quot;])
-filtered_train.to_parquet(&quot;filtered_train.parquet&quot;)
-
-# Nivel 5: Publicar en Hugging Face
-# filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)
-</code></pre>
+<span class="c1"># Nivel 5: Publicar en Hugging Face</span>
+<span class="c1"># filtered_train.push_to_hub(&quot;usuario/nombre-dataset&quot;)</span>
+</code></pre></div>
 <hr />
 <h2 id="recursos">🔗 Recursos</h2>
 <ul>
