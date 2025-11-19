@@ -165,7 +165,8 @@ Para este apartado nos vamos a centrar en los datos de SQuAD (*Stanford Question
 
 Si descargamos los archivos y los colocamos en la misma carpeta que el siguiente *script*, podemos realizar una carga local de los datos:
 
-``` python {linenums="1" title="squad-es-local.py" hl_lines="3"}
+**squad-es-local.py**
+``` python {linenums="1" hl_lines="3"}
 from datasets import load_dataset
 
 squad_dataset = load_dataset("json", data_files="train-v2.0-es.json", field="data")
@@ -502,7 +503,9 @@ squad_train_shuffled = squad_train_shuffled.remove_columns(["modificada"])
 Y la joya de la corona es la función [`Dataset.map()`](https://huggingface.co/docs/datasets/v2.18.0/en/package_reference/main_classes#datasets.Dataset.map) para aplicar una transformación a medida.
 Por ejemplo, si queremos modificar todos los títulos y pasarlos a minúscula haremos:
 
-``` python title="squad-map.py" {linenums="1"}
+
+**squad-map.py**
+```python {linenums="1"}
 from datasets import load_dataset
 
 ficheros_datos = {"train": "train-v2.0-es.json", "test": "dev-v2.0-es.json"}
@@ -550,7 +553,8 @@ Por ello, debemos modificar la función que realiza el `map` para que trabaje co
 
 Para el siguiente ejemplo, vamos a coger el *dataset* de *SQuAD_es* desde *Hugging Face* que contiene más datos, y vamos a comparar el tiempo de ejecución, recodificando la función para trabajar con un diccionario que contiene una lista por cada campo:
 
-``` python title="squad-map-batch.py" {linenums="1" hl_lines="8 11 16-17 20"}
+**squad-map-batch.py**
+```python {linenums="1" hl_lines="8 11 16-17 20"}
 from datasets import load_dataset
 import time
 
@@ -633,7 +637,8 @@ Ya sea mediante peticiones a URL externas con la librería `request`, accediendo
 
 Así pues, si en vez de cargar un *dataset* queremos crear uno desde cero, podemos hacer uso de `Dataset.from_dict()` o `Dataset.from_list()` dependiendo de donde tengamos los datos. Por ejemplo, vamos a conectarnos a *MongoDB* y creamos una lista con todos los datos. A partir de la lista, generamos un *Dataset*:
 
-``` python title="dataset-mongodb.py" {linenums="1"}
+**dataset-mongodb.py**
+```python {linenums="1"}
 from datasets import Dataset
 from pymongo import MongoClient
 
@@ -916,7 +921,8 @@ folder/train/third_audio_file.mp3
 
 Y un archivo de metadatos con:
 
-``` csv title="metadata.csv"
+**metadata.csv**
+```csv
 file_name,transcription
 first_audio_file.mp3,este es el texto del primer audio
 second_audio_file.mp3,en el segundo audio cuento un chiste
