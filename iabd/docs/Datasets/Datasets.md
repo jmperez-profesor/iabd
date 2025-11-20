@@ -466,15 +466,15 @@ squad_train_shuffled = squad_train.shuffle(seed=333)
 ```
 Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.
 
-***✅ ¿Qué significa esto?***
+**✅ ¿Qué significa esto?**
 
 - Cuando barajas datos, el orden resultante depende de un generador aleatorio.
 - Si no se fija una semilla, cada ejecución produce un orden distinto.
-- Al establecer seed=333:
+- Al establecer `seed=333`:
     - El generador aleatorio se inicializa siempre igual.
     - El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.
 
-***✅ ¿Por qué es importante en Machine Learning?***
+**✅ ¿Por qué es importante en Machine Learning?**
 
 - **Consistencia**: Si compartes código con otros, obtendrán el mismo resultado.
 - **Depuración**: Puedes repetir pruebas sin que el orden cambie.
