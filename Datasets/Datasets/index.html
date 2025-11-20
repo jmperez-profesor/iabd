@@ -779,6 +779,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Dividiendo el dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tamano-de-la-division-de-prueba-test_size-numpyrandomgenerator-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tamaño de la división de prueba: test_size (numpy.random.Generator, opcional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1364,11 +1379,12 @@ DatasetDict<span class="o">({</span>
 <span class="n">squad_split_dataset</span> <span class="o">=</span> <span class="n">squad_dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">squad_split_dataset</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div></p>
-<p><code>test_size (numpy.random.Generator, opcional)</code> - Tamaño de la división de prueba. 
-  Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
-     incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
-  Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
-  Si train_size también es None, se establecerá en 0.25.</p>
+<h4 id="tamano-de-la-division-de-prueba-test_size-numpyrandomgenerator-opcional">Tamaño de la división de prueba: <code>test_size (numpy.random.Generator, opcional)</code></h4>
+<ul>
+<li>Si es <code>float</code>, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. </li>
+<li>Si es <code>None</code>, el valor se establece en el complemento del tamaño de entrenamiento. 
+  Si <code>train_size</code> también es <code>None</code>, se establecerá en 0.25.</li>
+</ul>
 <p>De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1564,17 +1580,23 @@ DatasetDict<span class="o">({</span>
 <h4 id="por-que-se-usa-seed-semilla-fija-de-333-en-el-metodo-suffle">¿Por qué se usa seed (semilla) fija de 333 en el método suffle()?</h4>
 <p><div class="highlight"><pre><span></span><code><span class="n">squad_train_shuffled</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
 </code></pre></div>
-Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.
-✅ ¿Qué significa esto?
-- Cuando barajas datos, el orden resultante depende de un generador aleatorio.
-- Si no se fija una semilla, cada ejecución produce un orden distinto.
-- Al establecer seed=333:
-    - El generador aleatorio se inicializa siempre igual.
-    - El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.</p>
-<p>✅ ¿Por qué es importante en Machine Learning?
-- Consistencia: Si compartes código con otros, obtendrán el mismo resultado.
-- Depuración: Puedes repetir pruebas sin que el orden cambie.
-- Comparación justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.</p>
+Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.</p>
+<p><strong><em>✅ ¿Qué significa esto?</em></strong></p>
+<ul>
+<li>Cuando barajas datos, el orden resultante depende de un generador aleatorio.</li>
+<li>Si no se fija una semilla, cada ejecución produce un orden distinto.</li>
+<li>Al establecer seed=333:<ul>
+<li>El generador aleatorio se inicializa siempre igual.</li>
+<li>El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>✅ ¿Por qué es importante en Machine Learning?</em></strong></p>
+<ul>
+<li><strong>Consistencia</strong>: Si compartes código con otros, obtendrán el mismo resultado.</li>
+<li><strong>Depuración</strong>: Puedes repetir pruebas sin que el orden cambie.</li>
+<li><strong>Comparación</strong> justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.</li>
+</ul>
 <h3 id="seleccionando-filas">Seleccionando filas</h3>
 <p>Para recuperar filas, usaremos el método <code>Dataset.select()</code> pasándole un iterador con las posiciones a seleccionar:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
