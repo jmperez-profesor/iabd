@@ -287,11 +287,10 @@ squad_split_dataset = squad_dataset.train_test_split(test_size=0.1)
 print(squad_split_dataset)
 ```
 
-```test_size (numpy.random.Generator, opcional)``` - Tamaño de la división de prueba. 
-  Si es float, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se 
-     incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
-  Si es None, el valor se establece en el complemento del tamaño de entrenamiento. 
-  Si train_size también es None, se establecerá en 0.25.
+#### Tamaño de la división de prueba: ```test_size (numpy.random.Generator, opcional)``` 
+- Si es `float`, debe estar entre 0.0 y 1.0 y representar la proporción del conjunto de datos que se incluirá en la división de prueba. Si es int, representa el número absoluto de muestras de prueba. 
+- Si es `None`, el valor se establece en el complemento del tamaño de entrenamiento. 
+  Si `train_size` también es `None`, se establecerá en 0.25.
 
 De manera que pasamos de un dataset de 442 filas a uno dividido en 397 para entrenamiento y 45 para test:
 
@@ -466,19 +465,20 @@ print(squad_train_shuffled[0]["title"]) # Carnaval
 squad_train_shuffled = squad_train.shuffle(seed=333)
 ```
 Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.
-✅ ¿Qué significa esto?
+
+***✅ ¿Qué significa esto?***
+
 - Cuando barajas datos, el orden resultante depende de un generador aleatorio.
 - Si no se fija una semilla, cada ejecución produce un orden distinto.
 - Al establecer seed=333:
     - El generador aleatorio se inicializa siempre igual.
     - El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.
 
-✅ ¿Por qué es importante en Machine Learning?
-- Consistencia: Si compartes código con otros, obtendrán el mismo resultado.
-- Depuración: Puedes repetir pruebas sin que el orden cambie.
-- Comparación justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.
+***✅ ¿Por qué es importante en Machine Learning?***
 
-
+- **Consistencia**: Si compartes código con otros, obtendrán el mismo resultado.
+- **Depuración**: Puedes repetir pruebas sin que el orden cambie.
+- **Comparación** justa: Cuando evalúas modelos, necesitas que los datos sean los mismos en cada experimento.
 
 ### Seleccionando filas
 
