@@ -1581,17 +1581,17 @@ DatasetDict<span class="o">({</span>
 <p><div class="highlight"><pre><span></span><code><span class="n">squad_train_shuffled</span> <span class="o">=</span> <span class="n">squad_train</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">333</span><span class="p">)</span>
 </code></pre></div>
 Se usa una semilla fija (seed) en el método shuffle() para garantizar reproducibilidad.</p>
-<p><strong><em>✅ ¿Qué significa esto?</em></strong></p>
+<p><strong>✅ ¿Qué significa esto?</strong></p>
 <ul>
 <li>Cuando barajas datos, el orden resultante depende de un generador aleatorio.</li>
 <li>Si no se fija una semilla, cada ejecución produce un orden distinto.</li>
-<li>Al establecer seed=333:<ul>
+<li>Al establecer <code>seed=333</code>:<ul>
 <li>El generador aleatorio se inicializa siempre igual.</li>
 <li>El orden barajado será idéntico en cada ejecución, lo que permite reproducir experimentos.</li>
 </ul>
 </li>
 </ul>
-<p><strong><em>✅ ¿Por qué es importante en Machine Learning?</em></strong></p>
+<p><strong>✅ ¿Por qué es importante en Machine Learning?</strong></p>
 <ul>
 <li><strong>Consistencia</strong>: Si compartes código con otros, obtendrán el mismo resultado.</li>
 <li><strong>Depuración</strong>: Puedes repetir pruebas sin que el orden cambie.</li>
