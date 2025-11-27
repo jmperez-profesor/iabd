@@ -1244,12 +1244,14 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 </tbody>
 </table>
 <h2 id="4-eleccion-estrategica-del-modelo">4. Elección estratégica del modelo</h2>
-<p>Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.
-- <strong>Modelos de Amazon (Titan/Nova)</strong>: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.
-- <strong>Anthropic (Claude)</strong>: Modelos que destacan en razonamiento complejo, generación de código y seguimiento de instrucciones, adecuados para industrias que exigen cumplimiento y confianza.
-- <strong>Stability AI</strong>: Conocidos por sus modelos de generación de imágenes, como Stable Diffusion 3.5 Large.
-- <strong>DeepSeek</strong>: Modelos avanzados de razonamiento que resuelven problemas complejos paso a paso.
-- <strong>Mistral AI</strong>: Modelos especializados para el razonamiento agentic y tareas multimodales.</p>
+<p>Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.</p>
+<ul>
+<li><strong>Modelos de Amazon (Titan/Nova)</strong>: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.</li>
+<li><strong>Anthropic (Claude)</strong>: Modelos que destacan en razonamiento complejo, generación de código y seguimiento de instrucciones, adecuados para industrias que exigen cumplimiento y confianza.</li>
+<li><strong>Stability AI</strong>: Conocidos por sus modelos de generación de imágenes, como Stable Diffusion 3.5 Large.</li>
+<li><strong>DeepSeek</strong>: Modelos avanzados de razonamiento que resuelven problemas complejos paso a paso.</li>
+<li><strong>Mistral AI</strong>: Modelos especializados para el razonamiento agentic y tareas multimodales.</li>
+</ul>
 <h2 id="ejemplo-basico-generar-texto-con-claude">Ejemplo básico: Generar texto con Claude</h2>
 <p>Código en Python usando <strong>boto3</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
