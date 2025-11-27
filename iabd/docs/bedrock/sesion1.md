@@ -5,8 +5,23 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # 📘 Material Docente: Amazon Bedrock
 
+## Objetivos:
+
+- Comprender qué es Amazon Bedrock, sus funcionalidades principales y su propósito.
+- Explorar los conceptos de “modelos fundacionales” (FMs), “RAG” (generación aumentada por recuperación), “fine-tuning” y “guards / guardrails” para IA responsable.
+- Formular hipótesis sobre cómo una empresa (hotel, restaurante, ...) o centros educativos, ayuntamientos, etcétera podrían beneficiarse de IA generativa.
+- Diseñar, en equipo, una propuesta de aplicación concreta usando Amazon Bedrock adaptada a un caso real.
+
 ## 1. Introducción a Amazon Bedrock
 Amazon Bedrock es un servicio de AWS que permite a los desarrolladores construir aplicaciones generativas utilizando modelos fundacionales (FMs) sin necesidad de gestionar infraestructura. Ofrece acceso a modelos como **Claude (Anthropic)**, **Titan (Amazon)** y **Stable Diffusion (Stability AI)**.
+
+## Capacidades destacadas
+
+- **RAG (Retrieval-Augmented Generation)**: podemos conectar Bedrock a nuestras propias fuentes de datos (documentos, bases de conocimiento) de modo que las respuestas del modelo estén informadas por datos reales de nuestra empresa. Esto ayuda a responder consultas concretas basadas en información actualizada. 
+Amazon Web Services, Inc. 
+- **Fine-tuning / personalización privada**: es posible adaptar un modelo para tareas específicas o para un dominio concreto (por ejemplo, hotelería, turismo, restaurante, etc.), usando nuestros propios datos, sin que esos datos entren a formar parte del modelo base. 
+- **Seguridad, privacidad e IA responsable**: Bedrock integra funcionalidades de protección, guardrails, control de contenidos y privacidad de datos, para reducir riesgos — por ejemplo, filtrado de contenido inapropiado, protección de datos, auditoría… 
+- **Flexibilidad de modelos**: podemos elegir entre muchos FMs de distintos proveedores según el uso: algunos serán mejores para generación de texto creativa; otros para respuestas precisas; otros para integración con datos. 
 
 ### Ventajas
 - Sin necesidad de entrenar modelos desde cero.
