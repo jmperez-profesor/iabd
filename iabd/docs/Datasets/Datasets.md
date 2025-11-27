@@ -993,7 +993,7 @@ dataset = load_dataset("audiofolder", data_dir="/path/to/folder")
 
 4. (RAPIA.3 / CEPIA.3b, CEPIA.3c / opcional ) Sobre la base de datos de *MongoDB* de `sample_training` disponible en los datos de muestra de *MongoAtlas*:
 
-    1. Carga los de estados de [`states.js`](../sa/resources/states.js).
+    1. Carga los de estados de [`states.js`](resources/states.js).
     2. Realiza una join entre las colecciones `zips` y `states`.
     3. Persiste los datos (sin elementos repetidos) en un *dataset* en formato *JSON*.
     4. Publícalo en *Hugging Face*.
