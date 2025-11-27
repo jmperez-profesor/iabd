@@ -8,8 +8,8 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## Objetivos:
 
 - Comprender qué es Amazon Bedrock, sus funcionalidades principales y su propósito.
-- Explorar los conceptos de “modelos fundacionales” (FMs), “RAG” (generación aumentada por recuperación), “fine-tuning” y “guards / guardrails” para IA responsable.
-- Formular hipótesis sobre cómo una empresa (hotel, restaurante, ...) o centros educativos, ayuntamientos, etcétera podrían beneficiarse de IA generativa.
+- Explorar los conceptos de “modelos fundacionales” (FMs), “RAG” (generación aumentada por recuperación), “fine-tuning” y “guards / guardrails” para una IA responsable.
+- Formular hipótesis sobre cómo una empresa (hotel, restaurante, ...) o centros educativos, ayuntamientos, etcétera podrían beneficiarse de la IA generativa.
 - Diseñar, en equipo, una propuesta de aplicación concreta usando Amazon Bedrock adaptada a un caso real.
 
 ## 1. Introducción a Amazon Bedrock
