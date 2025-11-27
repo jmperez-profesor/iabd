@@ -456,13 +456,31 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-introduccion-a-amazon-bedrock" class="md-nav__link">
     <span class="md-ellipsis">
       1. Introducción a Amazon Bedrock
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Introducción a Amazon Bedrock">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacidades-destacadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capacidades destacadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacidades destacadas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1123,8 +1141,23 @@
 
 
 <h1 id="material-docente-amazon-bedrock">📘 Material Docente: Amazon Bedrock</h1>
+<h2 id="objetivos">Objetivos:</h2>
+<ul>
+<li>Comprender qué es Amazon Bedrock, sus funcionalidades principales y su propósito.</li>
+<li>Explorar los conceptos de “modelos fundacionales” (FMs), “RAG” (generación aumentada por recuperación), “fine-tuning” y “guards / guardrails” para IA responsable.</li>
+<li>Formular hipótesis sobre cómo una empresa (hotel, restaurante, ...) o centros educativos, ayuntamientos, etcétera podrían beneficiarse de IA generativa.</li>
+<li>Diseñar, en equipo, una propuesta de aplicación concreta usando Amazon Bedrock adaptada a un caso real.</li>
+</ul>
 <h2 id="1-introduccion-a-amazon-bedrock">1. Introducción a Amazon Bedrock</h2>
 <p>Amazon Bedrock es un servicio de AWS que permite a los desarrolladores construir aplicaciones generativas utilizando modelos fundacionales (FMs) sin necesidad de gestionar infraestructura. Ofrece acceso a modelos como <strong>Claude (Anthropic)</strong>, <strong>Titan (Amazon)</strong> y <strong>Stable Diffusion (Stability AI)</strong>.</p>
+<h2 id="capacidades-destacadas">Capacidades destacadas</h2>
+<ul>
+<li><strong>RAG (Retrieval-Augmented Generation)</strong>: podemos conectar Bedrock a nuestras propias fuentes de datos (documentos, bases de conocimiento) de modo que las respuestas del modelo estén informadas por datos reales de nuestra empresa. Esto ayuda a responder consultas concretas basadas en información actualizada. 
+Amazon Web Services, Inc. </li>
+<li><strong>Fine-tuning / personalización privada</strong>: es posible adaptar un modelo para tareas específicas o para un dominio concreto (por ejemplo, hotelería, turismo, restaurante, etc.), usando nuestros propios datos, sin que esos datos entren a formar parte del modelo base. </li>
+<li><strong>Seguridad, privacidad e IA responsable</strong>: Bedrock integra funcionalidades de protección, guardrails, control de contenidos y privacidad de datos, para reducir riesgos — por ejemplo, filtrado de contenido inapropiado, protección de datos, auditoría… </li>
+<li><strong>Flexibilidad de modelos</strong>: podemos elegir entre muchos FMs de distintos proveedores según el uso: algunos serán mejores para generación de texto creativa; otros para respuestas precisas; otros para integración con datos. </li>
+</ul>
 <h3 id="ventajas">Ventajas</h3>
 <ul>
 <li>Sin necesidad de entrenar modelos desde cero.</li>

@@ -23,6 +23,24 @@ Amazon Web Services, Inc.
 - **Seguridad, privacidad e IA responsable**: Bedrock integra funcionalidades de protección, guardrails, control de contenidos y privacidad de datos, para reducir riesgos — por ejemplo, filtrado de contenido inapropiado, protección de datos, auditoría… 
 - **Flexibilidad de modelos**: podemos elegir entre muchos FMs de distintos proveedores según el uso: algunos serán mejores para generación de texto creativa; otros para respuestas precisas; otros para integración con datos. 
 
+### ¿Qué es "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación ?
+
+La "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación en español es una técnica de IA que combina dos componentes: un sistema de recuperación de información y un modelo de lenguaje grande (LLM). El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM al permitirle acceder y utilizar información de fuentes de datos externas y específicas antes de generar su respuesta, sin necesidad de reentrenamiento. 
+
+#### Cómo funciona
+1. Recuperación: Cuando se hace una consulta, un sistema de recuperación busca y selecciona los fragmentos de información más relevantes de una base de conocimiento externa (que puede incluir documentos privados, bases de datos o fuentes de noticias).
+2. Generación: El modelo de lenguaje grande (LLM) toma la consulta original junto con la información recuperada para generar una respuesta más precisa, actualizada y contextualizada.
+3. Ejemplo: Si un usuario pregunta sobre un producto específico, el sistema RAG puede buscar en la base de datos de la empresa información sobre ese producto y luego usarla para que el LLM genere una respuesta detallada y precisa. 
+
+### Beneficios de RAG
+- Acceso a datos actualizados: Permite a los LLM acceder a información más reciente que la que tenían durante su entrenamiento inicial.
+- Reducción de "alucinaciones": Disminuye la probabilidad de que el modelo "invente" información, ya que se basa en datos concretos.
+- Adaptación a dominios específicos: Facilita la creación de chatbots o aplicaciones que pueden responder preguntas sobre temas muy específicos o propietarios, como el conocimiento interno de una empresa.
+- Referencia de fuentes: Puede citar las fuentes de información utilizadas, lo que aumenta la transparencia y la confianza en las respuestas.
+- Eficiencia: Es una forma más rápida y económica de actualizar la información de un LLM en comparación con el reentrenamiento completo del modelo. 
+
+[Más información en este vídeo](https://www.youtube.com/watch?v=-NqZehslaNk)
+
 ### Ventajas
 - Sin necesidad de entrenar modelos desde cero.
 - Integración nativa con servicios AWS.
@@ -43,6 +61,21 @@ Amazon Web Services, Inc.
 | **Automatización de Agentes** | Construir agentes de IA que pueden realizar tareas complejas de varios pasos (ej. procesar reclamaciones). | Agents for Amazon Bedrock (usando modelos como Claude) |
 | **Generación de Código** | Asistencia para desarrolladores que genera fragmentos de código, traduce lenguajes o explica funciones. | Anthropic Claude Code |
 
+
+### Ejemplo ilustrativo
+
+Imagina que tienes un hotel y quieres ofrecer a tus clientes un “asistente inteligente” (chatbot) que:
+- Responda preguntas frecuentes: horarios, servicios, recomendaciones locales.
+- Sugiera experiencias según perfil del cliente (familia, pareja, negocios, con mascotas).
+- Responda en varios idiomas.
+
+Con Amazon Bedrock podríamos:
+- Crear una base de conocimiento con información propia del hotel: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.
+- Usar RAG (Retrieval-Augmented Generation) para que el modelo “se base” en esa información interna cuando responda.
+- Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), haríamos un fine-tuning con ejemplos de interacciones típicas.
+- Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar, sin tener que disponer de servidores propios: Bedrock lo gestiona.
+
+
 ---
 
 ## 2. Requisitos previos
@@ -54,15 +87,24 @@ Amazon Web Services, Inc.
 ---
 
 
+## 3. Parámetros de Inferencia y Experimentación
+Los alumnos deben experimentar con las configuraciones del prompt para controlar el comportamiento del modelo.
 
-## 3. Primeros pasos con la consola
-Accede al **Playground** de Amazon Bedrock para probar prompts y modelos.
+| Parámetro | Descripción | Impacto en el resultado |
+| :--- | :--- | :--- |
+| **Temperatura** | Controla la creatividad y la diversidad de las respuestas. | Un valor superior genera respuestas más creativas y diversas. |
+| **P Superior (Top P)** | Permite seleccionar palabras más probables. | Permite variar entre respuestas más probables o menos probables. |
+| **Longitud Máxima (MaxTokenCount)** | Define el tamaño máximo de la respuesta generada. | Limita el coste y la extensión de la respuesta. |
 
-![Consola Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/images/playground.png)
+## 4. Elección estratégica del modelo
+Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.
+- **Modelos de Amazon (Titan/Nova)**: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.
+- **Anthropic (Claude)**: Modelos que destacan en razonamiento complejo, generación de código y seguimiento de instrucciones, adecuados para industrias que exigen cumplimiento y confianza.
+- **Stability AI**: Conocidos por sus modelos de generación de imágenes, como Stable Diffusion 3.5 Large.
+- **DeepSeek**: Modelos avanzados de razonamiento que resuelven problemas complejos paso a paso.
+- **Mistral AI**: Modelos especializados para el razonamiento agentic y tareas multimodales.
 
----
-
-## 4. Ejemplo básico: Generar texto con Claude
+## Ejemplo básico: Generar texto con Claude
 Código en Python usando **boto3**:
 
 ```python
