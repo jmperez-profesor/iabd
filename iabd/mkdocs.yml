@@ -56,6 +56,10 @@ markdown_extensions:
 
 nav:
   - Introducción: index.md 
+  - Bedrock: 
+    - bedrock/sesion1.md
+    - Actividades: 
+      - bedrock/Actividad1.md
   - Hugging Face:
     - hf/index.md
     - Gradio: hf/Ejemplo_gradio.md
@@ -69,8 +73,7 @@ nav:
     - Actividades: 
       - Datasets/Actividad1.md
       #- Datasets/Actividad1_solution.md
-    #- Entornos Windows: hf/Apuntes_Windows.md
-    #- Ejercicios propuestos Windows: hf/Ejercicios_Windows.md
+  
     
 extra_css:
   - stylesheets/extra.css
