@@ -58,8 +58,6 @@ nav:
   - Introducción: index.md 
   - Bedrock: 
     - bedrock/sesion1.md
-    - Actividades: 
-      - bedrock/actividad1.md
   - Hugging Face:
     - hf/index.md
     - Gradio: hf/Ejemplo_gradio.md
