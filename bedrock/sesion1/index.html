@@ -24,7 +24,7 @@
     
     
       
-        <title>Bedrock - Inteligencia Artificial y Big Data</title>
+        <title>Introducción a Amazon Bedrock - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#material-docente-amazon-bedrock" class="md-skip">
+        <a href="#sesion-1-introduccion-a-amazon-bedrock" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bedrock
+              Introducción a Amazon Bedrock
             
           </span>
         </div>
@@ -420,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    Bedrock
+    Introducción a Amazon Bedrock
     
   </span>
   
@@ -433,7 +433,7 @@
   
   
   <span class="md-ellipsis">
-    Bedrock
+    Introducción a Amazon Bedrock
     
   </span>
   
@@ -1191,7 +1191,7 @@
 
 
 
-<h1 id="material-docente-amazon-bedrock">📘 Material Docente: Amazon Bedrock</h1>
+<h1 id="sesion-1-introduccion-a-amazon-bedrock">📘 Sesión 1: Introducción a Amazon Bedrock</h1>
 <h2 id="objetivos">Objetivos:</h2>
 <ul>
 <li>Comprender qué es Amazon Bedrock, sus funcionalidades principales y su propósito.</li>
@@ -1209,23 +1209,24 @@ Amazon Web Services, Inc. </li>
 <li><strong>Seguridad, privacidad e IA responsable</strong>: Bedrock integra funcionalidades de protección, guardrails, control de contenidos y privacidad de datos, para reducir riesgos — por ejemplo, filtrado de contenido inapropiado, protección de datos, auditoría… </li>
 <li><strong>Flexibilidad de modelos</strong>: podemos elegir entre muchos FMs de distintos proveedores según el uso: algunos serán mejores para generación de texto creativa; otros para respuestas precisas; otros para integración con datos. </li>
 </ul>
-<h3 id="que-es-retrieval-augmented-generation-rag-o-generacion-aumentada-por-recuperacion">¿Qué es "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación ?</h3>
-<p>La "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación en español es una técnica de IA que combina dos componentes: un sistema de recuperación de información y un modelo de lenguaje grande (LLM). El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM al permitirle acceder y utilizar información de fuentes de datos externas y específicas antes de generar su respuesta, sin necesidad de reentrenamiento. </p>
+<h3 id="que-es-retrieval-augmented-generation-rag-o-generacion-aumentada-por-recuperacion">¿Qué es <strong>"Retrieval Augmented Generation"</strong> (RAG) o <strong>Generación Aumentada por Recuperación</strong> ?</h3>
+<p>La <em>Retrieval Augmented Generation</em> (RAG) o Generación Aumentada por Recuperación en español, es una técnica de IA que combina dos componentes: un sistema de recuperación de información y un modelo de lenguaje grande (LLM). 
+El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM al permitirle acceder y utilizar información de fuentes de datos externas y específicas antes de generar su respuesta, sin necesidad de reentrenamiento. </p>
 <h4 id="como-funciona">Cómo funciona</h4>
 <ol>
-<li>Recuperación: Cuando se hace una consulta, un sistema de recuperación busca y selecciona los fragmentos de información más relevantes de una base de conocimiento externa (que puede incluir documentos privados, bases de datos o fuentes de noticias).</li>
-<li>Generación: El modelo de lenguaje grande (LLM) toma la consulta original junto con la información recuperada para generar una respuesta más precisa, actualizada y contextualizada.</li>
-<li>Ejemplo: Si un usuario pregunta sobre un producto específico, el sistema RAG puede buscar en la base de datos de la empresa información sobre ese producto y luego usarla para que el LLM genere una respuesta detallada y precisa. </li>
+<li><strong>Recuperación</strong>: Cuando se hace una consulta, un sistema de recuperación busca y selecciona los fragmentos de información más relevantes de una base de conocimiento externa (que puede incluir documentos privados, bases de datos o fuentes de noticias).</li>
+<li><strong>Generación</strong>: El modelo de lenguaje grande (LLM) toma la consulta original junto con la información recuperada para generar una respuesta más precisa, actualizada y contextualizada.</li>
+<li><strong>Ejemplo</strong>: Si un usuario pregunta sobre un producto específico, el sistema RAG puede buscar en la base de datos de la empresa información sobre ese producto y luego usarla para que el LLM genere una respuesta detallada y precisa. </li>
 </ol>
 <h3 id="beneficios-de-rag">Beneficios de RAG</h3>
 <ul>
-<li>Acceso a datos actualizados: Permite a los LLM acceder a información más reciente que la que tenían durante su entrenamiento inicial.</li>
-<li>Reducción de "alucinaciones": Disminuye la probabilidad de que el modelo "invente" información, ya que se basa en datos concretos.</li>
-<li>Adaptación a dominios específicos: Facilita la creación de chatbots o aplicaciones que pueden responder preguntas sobre temas muy específicos o propietarios, como el conocimiento interno de una empresa.</li>
-<li>Referencia de fuentes: Puede citar las fuentes de información utilizadas, lo que aumenta la transparencia y la confianza en las respuestas.</li>
-<li>Eficiencia: Es una forma más rápida y económica de actualizar la información de un LLM en comparación con el reentrenamiento completo del modelo. </li>
+<li><strong>Acceso a datos actualizados</strong>: Permite a los LLM acceder a información más reciente que la que tenían durante su entrenamiento inicial.</li>
+<li><strong>Reducción de <em>alucinaciones</em></strong> : Disminuye la probabilidad de que el modelo "invente" información, ya que se basa en datos concretos.</li>
+<li><strong>Adaptación a dominios específicos</strong>: Facilita la creación de chatbots o aplicaciones que pueden responder preguntas sobre temas muy específicos o propietarios, como el conocimiento interno de una empresa.</li>
+<li><strong>Referencia de fuentes</strong>: Puede citar las fuentes de información utilizadas, lo que aumenta la transparencia y la confianza en las respuestas.</li>
+<li><strong>Eficiencia</strong>: Es una forma más rápida y económica de actualizar la información de un LLM en comparación con el reentrenamiento completo del modelo. </li>
 </ul>
-<p><a href="https://www.youtube.com/watch?v=-NqZehslaNk">Más información en este vídeo</a></p>
+<p>Más información en este vídeo: <a href="https://www.youtube.com/watch?v=-NqZehslaNk">https://www.youtube.com/watch?v=-NqZehslaNk</a></p>
 <h3 id="ventajas">Ventajas</h3>
 <ul>
 <li>Sin necesidad de entrenar modelos desde cero.</li>
@@ -1250,37 +1251,41 @@ Amazon Web Services, Inc. </li>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Generación de Contenido</strong></td>
+<td style="text-align: left;"><strong>Generación de contenido</strong></td>
 <td style="text-align: left;">Crear artículos, descripciones de productos o <em>scripts</em> automáticamente.</td>
 <td style="text-align: left;">Amazon Titan Text, Anthropic Claude</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Búsqueda y Resumen</strong></td>
+<td style="text-align: left;"><strong>Búsqueda y resumen</strong></td>
 <td style="text-align: left;">Crear <em>chatbots</em> que responden preguntas basándose en documentos internos (patrones RAG).</td>
 <td style="text-align: left;">Amazon Titan Embeddings, Meta Llama 2</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Automatización de Agentes</strong></td>
+<td style="text-align: left;"><strong>Automatización de agentes</strong></td>
 <td style="text-align: left;">Construir agentes de IA que pueden realizar tareas complejas de varios pasos (ej. procesar reclamaciones).</td>
 <td style="text-align: left;">Agents for Amazon Bedrock (usando modelos como Claude)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Generación de Código</strong></td>
+<td style="text-align: left;"><strong>Generación de código</strong></td>
 <td style="text-align: left;">Asistencia para desarrolladores que genera fragmentos de código, traduce lenguajes o explica funciones.</td>
 <td style="text-align: left;">Anthropic Claude Code</td>
 </tr>
 </tbody>
 </table>
 <h3 id="ejemplo-ilustrativo">Ejemplo ilustrativo</h3>
-<p>Imagina que tienes un hotel y quieres ofrecer a tus clientes un “asistente inteligente” (chatbot) que:
-- Responda preguntas frecuentes: horarios, servicios, recomendaciones locales.
-- Sugiera experiencias según perfil del cliente (familia, pareja, negocios, con mascotas).
-- Responda en varios idiomas.</p>
-<p>Con Amazon Bedrock podríamos:
-- Crear una base de conocimiento con información propia del hotel: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.
-- Usar RAG (Retrieval-Augmented Generation) para que el modelo “se base” en esa información interna cuando responda.
-- Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), haríamos un fine-tuning con ejemplos de interacciones típicas.
-- Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar, sin tener que disponer de servidores propios: Bedrock lo gestiona.</p>
+<p>Imagina que gestinamos un hotel y queremos ofrecer a nuestros clientes un “asistente inteligente” (chatbot) que:</p>
+<ul>
+<li><strong>Responda preguntas frecuentes</strong>: horarios, servicios, recomendaciones locales.</li>
+<li><strong>Sugiera experiencias según perfil del cliente (familia, pareja, negocios, con mascotas)</strong>.</li>
+<li><strong>Responda en varios idiomas</strong>.</li>
+</ul>
+<p>Con Amazon Bedrock podríamos:</p>
+<ul>
+<li><strong>Crear una base de conocimiento con información propia del hotel</strong>: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.</li>
+<li>Usar <strong>RAG (Retrieval-Augmented Generation)</strong> para que el modelo <em>se base</em> en esa información interna cuando responda.</li>
+<li>Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), <em>haríamos un *fine-tuning</em> con ejemplos de interacciones típicas*.</li>
+<li><strong>Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar</strong> sin tener que disponer de servidores propios: Bedrock lo gestiona.</li>
+</ul>
 <hr />
 <h2 id="2-requisitos-previos">2. Requisitos previos</h2>
 <ul>
