@@ -484,6 +484,39 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#que-es-retrieval-augmented-generation-rag-o-generacion-aumentada-por-recuperacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación ?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="¿Qué es &#34;Retrieval Augmented Generation&#34; (RAG) o Generación Aumentada por Recuperación ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo funciona
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-de-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beneficios de RAG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ventajas" class="md-nav__link">
     <span class="md-ellipsis">
       Ventajas
@@ -510,6 +543,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ejemplo-ilustrativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo ilustrativo
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -525,18 +567,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-primeros-pasos-con-la-consola" class="md-nav__link">
+  <a href="#3-parametros-de-inferencia-y-experimentacion" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Primeros pasos con la consola
+      3. Parámetros de Inferencia y Experimentación
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-ejemplo-basico-generar-texto-con-claude" class="md-nav__link">
+  <a href="#4-eleccion-estrategica-del-modelo" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Ejemplo básico: Generar texto con Claude
+      4. Elección estratégica del modelo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-basico-generar-texto-con-claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo básico: Generar texto con Claude
     </span>
   </a>
   
@@ -1158,6 +1209,23 @@ Amazon Web Services, Inc. </li>
 <li><strong>Seguridad, privacidad e IA responsable</strong>: Bedrock integra funcionalidades de protección, guardrails, control de contenidos y privacidad de datos, para reducir riesgos — por ejemplo, filtrado de contenido inapropiado, protección de datos, auditoría… </li>
 <li><strong>Flexibilidad de modelos</strong>: podemos elegir entre muchos FMs de distintos proveedores según el uso: algunos serán mejores para generación de texto creativa; otros para respuestas precisas; otros para integración con datos. </li>
 </ul>
+<h3 id="que-es-retrieval-augmented-generation-rag-o-generacion-aumentada-por-recuperacion">¿Qué es "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación ?</h3>
+<p>La "Retrieval Augmented Generation" (RAG) o Generación Aumentada por Recuperación en español es una técnica de IA que combina dos componentes: un sistema de recuperación de información y un modelo de lenguaje grande (LLM). El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM al permitirle acceder y utilizar información de fuentes de datos externas y específicas antes de generar su respuesta, sin necesidad de reentrenamiento. </p>
+<h4 id="como-funciona">Cómo funciona</h4>
+<ol>
+<li>Recuperación: Cuando se hace una consulta, un sistema de recuperación busca y selecciona los fragmentos de información más relevantes de una base de conocimiento externa (que puede incluir documentos privados, bases de datos o fuentes de noticias).</li>
+<li>Generación: El modelo de lenguaje grande (LLM) toma la consulta original junto con la información recuperada para generar una respuesta más precisa, actualizada y contextualizada.</li>
+<li>Ejemplo: Si un usuario pregunta sobre un producto específico, el sistema RAG puede buscar en la base de datos de la empresa información sobre ese producto y luego usarla para que el LLM genere una respuesta detallada y precisa. </li>
+</ol>
+<h3 id="beneficios-de-rag">Beneficios de RAG</h3>
+<ul>
+<li>Acceso a datos actualizados: Permite a los LLM acceder a información más reciente que la que tenían durante su entrenamiento inicial.</li>
+<li>Reducción de "alucinaciones": Disminuye la probabilidad de que el modelo "invente" información, ya que se basa en datos concretos.</li>
+<li>Adaptación a dominios específicos: Facilita la creación de chatbots o aplicaciones que pueden responder preguntas sobre temas muy específicos o propietarios, como el conocimiento interno de una empresa.</li>
+<li>Referencia de fuentes: Puede citar las fuentes de información utilizadas, lo que aumenta la transparencia y la confianza en las respuestas.</li>
+<li>Eficiencia: Es una forma más rápida y económica de actualizar la información de un LLM en comparación con el reentrenamiento completo del modelo. </li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=-NqZehslaNk">Más información en este vídeo</a></p>
 <h3 id="ventajas">Ventajas</h3>
 <ul>
 <li>Sin necesidad de entrenar modelos desde cero.</li>
@@ -1203,6 +1271,16 @@ Amazon Web Services, Inc. </li>
 </tr>
 </tbody>
 </table>
+<h3 id="ejemplo-ilustrativo">Ejemplo ilustrativo</h3>
+<p>Imagina que tienes un hotel y quieres ofrecer a tus clientes un “asistente inteligente” (chatbot) que:
+- Responda preguntas frecuentes: horarios, servicios, recomendaciones locales.
+- Sugiera experiencias según perfil del cliente (familia, pareja, negocios, con mascotas).
+- Responda en varios idiomas.</p>
+<p>Con Amazon Bedrock podríamos:
+- Crear una base de conocimiento con información propia del hotel: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.
+- Usar RAG (Retrieval-Augmented Generation) para que el modelo “se base” en esa información interna cuando responda.
+- Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), haríamos un fine-tuning con ejemplos de interacciones típicas.
+- Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar, sin tener que disponer de servidores propios: Bedrock lo gestiona.</p>
 <hr />
 <h2 id="2-requisitos-previos">2. Requisitos previos</h2>
 <ul>
@@ -1212,11 +1290,42 @@ Amazon Web Services, Inc. </li>
 <li>Activación de modelos en la consola.</li>
 </ul>
 <hr />
-<h2 id="3-primeros-pasos-con-la-consola">3. Primeros pasos con la consola</h2>
-<p>Accede al <strong>Playground</strong> de Amazon Bedrock para probar prompts y modelos.</p>
-<p><img alt="Consola Amazon Bedrock" src="https://docs.aws.amazon.com/bedrock/latest/userguide/images/playground.png" /></p>
-<hr />
-<h2 id="4-ejemplo-basico-generar-texto-con-claude">4. Ejemplo básico: Generar texto con Claude</h2>
+<h2 id="3-parametros-de-inferencia-y-experimentacion">3. Parámetros de Inferencia y Experimentación</h2>
+<p>Los alumnos deben experimentar con las configuraciones del prompt para controlar el comportamiento del modelo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parámetro</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Impacto en el resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Temperatura</strong></td>
+<td style="text-align: left;">Controla la creatividad y la diversidad de las respuestas.</td>
+<td style="text-align: left;">Un valor superior genera respuestas más creativas y diversas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P Superior (Top P)</strong></td>
+<td style="text-align: left;">Permite seleccionar palabras más probables.</td>
+<td style="text-align: left;">Permite variar entre respuestas más probables o menos probables.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Longitud Máxima (MaxTokenCount)</strong></td>
+<td style="text-align: left;">Define el tamaño máximo de la respuesta generada.</td>
+<td style="text-align: left;">Limita el coste y la extensión de la respuesta.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-eleccion-estrategica-del-modelo">4. Elección estratégica del modelo</h2>
+<p>Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.
+- <strong>Modelos de Amazon (Titan/Nova)</strong>: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.
+- <strong>Anthropic (Claude)</strong>: Modelos que destacan en razonamiento complejo, generación de código y seguimiento de instrucciones, adecuados para industrias que exigen cumplimiento y confianza.
+- <strong>Stability AI</strong>: Conocidos por sus modelos de generación de imágenes, como Stable Diffusion 3.5 Large.
+- <strong>DeepSeek</strong>: Modelos avanzados de razonamiento que resuelven problemas complejos paso a paso.
+- <strong>Mistral AI</strong>: Modelos especializados para el razonamiento agentic y tareas multimodales.</p>
+<h2 id="ejemplo-basico-generar-texto-con-claude">Ejemplo básico: Generar texto con Claude</h2>
 <p>Código en Python usando <strong>boto3</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 
