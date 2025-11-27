@@ -99,6 +99,7 @@ Los alumnos deben experimentar con las configuraciones del prompt para controlar
 
 ## 4. Elección estratégica del modelo
 Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.
+
 - **Modelos de Amazon (Titan/Nova)**: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.
 - **Anthropic (Claude)**: Modelos que destacan en razonamiento complejo, generación de código y seguimiento de instrucciones, adecuados para industrias que exigen cumplimiento y confianza.
 - **Stability AI**: Conocidos por sus modelos de generación de imágenes, como Stable Diffusion 3.5 Large.
