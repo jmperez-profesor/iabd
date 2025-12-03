@@ -80,7 +80,7 @@ Con Amazon Bedrock podríamos:
 
 - **Crear una base de conocimiento con información propia del hotel**: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.
 - Usar **RAG (Retrieval-Augmented Generation)** para que el modelo *se base* en esa información interna cuando responda.
-- Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), *haríamos un *fine-tuning* con ejemplos de interacciones típicas*.
+- Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), haríamos un *fine-tuning* con ejemplos de interacciones típicas.
 - **Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar** sin tener que disponer de servidores propios: Bedrock lo gestiona.
 
 ---
@@ -137,6 +137,7 @@ print(response['body'])
 
 #### Ejercicio "Hello Bedrock":
 Ejemplos de prompts para demostración:
+
 1. Prompt básico de presentación:
 ```txt
 Preséntate y explica brevemente qué puedes hacer como asistente de IA.
@@ -145,7 +146,6 @@ Preséntate y explica brevemente qué puedes hacer como asistente de IA.
 ```txt
 Explica en 5 puntos clave qué es la Inteligencia Artificial Generativa y cómo está cambiando el sector educativo.
 ```
-
 3. Prompt con instrucciones específicas:
 ```txt
 Actúa como un experto en formación profesional y crea un plan de estudios breve para un módulo de introducción a la IA. El plan debe incluir 3 unidades con sus respectivos objetivos y actividades principales.
@@ -157,6 +157,7 @@ Genera tres ideas creativas para utilizar la IA en el aula. Sé muy conciso.
 (Demostrar cómo cambia la respuesta modificando la temperatura)
 
 Preguntas para la audiencia:
+
 - "¿Qué diferencias notáis entre un prompt simple y uno más estructurado?"
 - "¿Cómo creéis que afecta la temperatura a la creatividad de las respuestas?"
 
@@ -164,15 +165,21 @@ Preguntas para la audiencia:
 **Ejemplos de prompts que muestran limitaciones:**
 
 1. Conocimiento actualizado:
+```txt
 ¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publi cadas este año?
-
+```
 2. Información específica local:
+```txt
 Describe el proceso actual para solicitar una beca de formación profesional en la Comunidad Valenciana, incluyendo plazos y requisitos específicos.
+```
 
 3. Datos técnicos precisos:
+```txt
 ¿Cuál es el presupuesto exacto asignado a formación profesional por la Generalitat Valenciana para el año actual?
+```
 
 Discusión guiada:
+
 - "¿Por qué creéis que el modelo no puede responder con precisión a estas preguntas?"
 - "¿Qué consecuencias podría tener confiar en estas respuestas en un entorno profesional?"
 - Explicación del concepto de "conocimiento limitado al entrenamiento" y "fecha de corte"
