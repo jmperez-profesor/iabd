@@ -121,8 +121,9 @@ print(response['body'])
 ```
 
 ---
+# WORKSHOP 
 
-## HELLO BEDROCK - PRIMEROS PASOS (20 minutos)
+## 1. HELLO BEDROCK - PRIMEROS PASOS (20 minutos)
 
 ### Objetivos:
 - Entender la interfaz básica de Amazon Bedrock
@@ -184,7 +185,7 @@ Discusión guiada:
 - Explicación del concepto de "conocimiento limitado al entrenamiento" y "fecha de corte"
 
 
-## BASES DE CONOCIMIENTO (KB) 
+## 2. BASES DE CONOCIMIENTO (KB) 
 ### Objetivos:
 - Comprender qué es una base de conocimiento y su importancia
 - Identificar los componentes necesarios para crear una KB
@@ -194,10 +195,10 @@ Discusión guiada:
 
 ### Elementos clave explicados:
 - Presentación: https://docs.google.com/presentation/d/1lRpMixrurXHReZgOSvTRono_rKKaiqhfuf5uFSFOP_U/edit?slide=id.g3347f17ef2a_0_14#slide=id.g3347f17ef2a_0_14
-- Fuentes de datos compatibles: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
-- Vector store y embeddings: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
-- Chunking: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
-- Metadatos: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
+- *Fuentes de datos compatibles*: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
+- *Vector store* y *embeddings*: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
+- *Chunking*: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
+- *Metadatos*: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
 
 ### Actividad práctica:
 **Preparación de documentos:**
@@ -223,12 +224,60 @@ Discusión guiada:
    - "Así podemos comprobar que nuestra KB se ha creado correctamente"
    - Demostración de búsqueda básica para verificar la ingesta
 
-### RAG BEDROCK: TEORÍA Y PRÁCTICA
+### 3. RAG BEDROCK: TEORÍA Y PRÁCTICA
 #### Objetivos:
-- Entender el flujo RAG (Retrieval Augmented Generation)
+- Entender el flujo **RAG (Retrieval Augmented Generation)**
 - Visualizar el proceso de razonamiento del modelo
 - Comprender la memoria conversacional
 
+#### Contenido teórico:
+##### Arquitectura RAG explicada:
+- Diagrama visual del flujo RAG 
+- "RAG es como tener una biblioteca y un escritor trabajando juntos"
+
+##### Explicación paso a paso:
+1. **Recepción de la pregunta:** "El usuario pregunta sobre un trámite específico"
+2. **Generación de embeddings:** "Convertimos la pregunta a su representación vectorial"
+3. **Búsqueda vectorial:** "Buscamos fragmentos similares en nuestra KB"
+4. **Ranking:** "Ordenamos los resultados por relevancia"
+5. **Inyección en contexto:** "Proporcionamos al modelo la información recuperada"
+6. **Generación:** "El modelo formula una respuesta basada en la información proporcionada"
+
+##### Pregunta para la audiencia:
+- "¿En qué se diferencia este enfoque de simplemente entrenar un modelo con toda la documentación?"
+
+##### Memoria conversacional:
+- "La memoria permite mantener el contexto de una conversación"
+- Ejemplos de conversaciones con y sin memoria
+
+### Actividad práctica:
+##### Implementación de RAG:
+- Configuración del flujo RAG:
+  - Conexión de la KB creada con el modelo seleccionado
+Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
+Ejemplos de prompts para RAG:
+1. Prompt básico para consulta:
+¿Cuál es el procedimiento para solicitar una licencia de apertura de negocio según la normativa ac
+tual?
+2. Prompt con seguimiento (memoria conversacional):
+¿Qué documentación necesito presentar para ese trámite?
+3. Prompt con instrucciones específicas:
+Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respue
+sta en forma de lista numerada y destaca los plazos importantes.
+Visualización del proceso:
+Mostrar los fragmentos recuperados
+Explicar cómo se construye el prompt aumentado
+Analizar la respuesta generada
+Experimentación:
+Comparativa:
+"Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"
+Análisis de precisión, detalle y fuentes citadas
+Ajuste de parámetros:
+Modificar número de resultados recuperados
+Cambiar temperatura del modelo
+Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
+
+### 4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA
 
 
 
