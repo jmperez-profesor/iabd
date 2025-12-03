@@ -1211,7 +1211,7 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <p><strong>Knowledge Basement (KB)</strong>: Una base de conocimiento es un repositorio que almacena información estructurada y permite a los modelos de IA acceder a datos específicos fuera de su entrenamiento original.</p>
 <h3 id="elementos-clave-explicados">Elementos clave explicados:</h3>
 <ul>
-<li>Presentación: <a href="https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490">https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490</a></li>
+<li><strong>Presentación</strong>: <a href="https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490">https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490</a></li>
 <li><strong>Fuentes de datos compatibles</strong>: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"</li>
 <li><strong>Vector store</strong> y <strong>embeddings</strong>: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"</li>
 <li><strong>Chunking</strong>: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"</li>
@@ -1228,27 +1228,27 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <li>Mejores prácticas para estructurar información:<ul>
 <li>"Los documentos bien estructurados mejoran la precisión de las respuestas"</li>
 <li>Ejemplos de buena versus mala estructuración
-<img alt="" src="../images/rag_function.png" /></li>
+<img alt="" src="../images/json-file.png" /></li>
 <li>Importancia de los títulos, subtítulos y formato consistente</li>
 </ul>
 </li>
+</ul>
+<h5 id="datosinformacion-estructurada">Datos/información estructurada</h5>
+<p>La información estructurada es aquella que sigue un esquema fijo (tablas, campos, tipos bien definidos) y se puede consultar con lenguajes como SQL o JSON.​
+Ejemplos típicos serían tablas de una base de datos relacional con columnas como “id_cliente”, “fecha”, “importe”, o un data warehouse en Redshift con registros de ventas, inventario o métricas numéricas.​</p>
+<p>En Bedrock, las bases de conocimiento ya permiten lanzar consultas en lenguaje natural que se traducen automáticamente a consultas SQL sobre estos orígenes de datos estructurados, de forma que un usuario puede preguntar “ventas del último trimestre por región” sin escribir SQL.​ En JSON, esto se traduce en documentos con una estructura homogénea, por ejemplo, registros de clientes, pedidos o logs con claves bien definidas como id, fecha, importe, producto, etc.</p>
+<p>En resumen, Bedrock puede convertir preguntas en consultas estructuradas (p. ej. SQL) y devolver respuestas precisas sobre esos registros.​</p>
+<h5 id="datosinformacion-no-estructurada">Datos/información no estructurada</h5>
+<p>La información no estructurada no encaja en tablas de filas y columnas, porque no sigue un formato fijo ni un modelo predefinido.​
+Aquí entran documentos largos (PDF, Word), correos, presentaciones, páginas web, contenido multimedia (audio, vídeo, imágenes) o mensajes en redes sociales, que suelen almacenarse en sistemas de ficheros, S3, gestores de contenidos, Confluence, SharePoint, etc.​</p>
+<p>Las bases de conocimiento de Bedrock se conectan a este tipo de orígenes (por ejemplo, S3, Confluence, Salesforce o SharePoint) y aplican técnicas como RAG: indexan el contenido, lo vectorizan y luego recuperan los fragmentos relevantes para enriquecer las respuestas de los modelos generativos con ese contexto específico.​</p>
+<ul>
 <li>Consideraciones lingüísticas:<ul>
 <li>"Nuestra KB debe manejar documentos en castellano y valenciano"</li>
 <li>Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"</li>
 </ul>
 </li>
 </ul>
-<h3 id="datosinformacion-estructurada">Datos/información estructurada</h3>
-<p>La información estructurada es aquella que sigue un esquema fijo (tablas, campos, tipos bien definidos) y se puede consultar con lenguajes como SQL o JSON.​
-Ejemplos típicos serían tablas de una base de datos relacional con columnas como “id_cliente”, “fecha”, “importe”, o un data warehouse en Redshift con registros de ventas, inventario o métricas numéricas.​</p>
-<p>En Bedrock, las bases de conocimiento ya permiten lanzar consultas en lenguaje natural que se traducen automáticamente a consultas SQL sobre estos orígenes de datos estructurados, de forma que un usuario puede preguntar “ventas del último trimestre por región” sin escribir SQL.​ En JSON, esto se traduce en documentos con una estructura homogénea, por ejemplo, registros de clientes, pedidos o logs con claves bien definidas como id, fecha, importe, producto, etc.</p>
-<h3 id="datosinformacion-no-estructurada">Datos/información no estructurada</h3>
-<p>La información no estructurada no encaja en tablas de filas y columnas, porque no sigue un formato fijo ni un modelo predefinido.​
-Aquí entran documentos largos (PDF, Word), correos, presentaciones, páginas web, contenido multimedia (audio, vídeo, imágenes) o mensajes en redes sociales, que suelen almacenarse en sistemas de ficheros, S3, gestores de contenidos, Confluence, SharePoint, etc.​</p>
-<p>Las bases de conocimiento de Bedrock se conectan a este tipo de orígenes (por ejemplo, S3, Confluence, Salesforce o SharePoint) y aplican técnicas como RAG: indexan el contenido, lo vectorizan y luego recuperan los fragmentos relevantes para enriquecer las respuestas de los modelos generativos con ese contexto específico.​</p>
-<p>Resumen práctico en Bedrock
-Estructurada: datos tabulares con esquema fijo; Bedrock puede convertir preguntas en consultas estructuradas (p. ej. SQL) y devolver respuestas precisas sobre esos registros.​</p>
-<p>No estructurada: documentos y contenidos libres; Bedrock ingiere, indexa y usa recuperación semántica para que el modelo responda apoyándose en esos textos o archivos, sin necesidad de reentrenar el modelo.​</p>
 <h4 id="creacion-de-una-kb-basica">Creación de una KB básica:</h4>
 <ul>
 <li>Demostración paso a paso:<ul>
@@ -1357,9 +1357,10 @@ Visualización del proceso:</p>
 <li>Creación de la KB especializada:</li>
 <li>Demostración de la ingesta de estos documentos</li>
 <li>Configuración específica para documentación administrativa</li>
-<li>Diseño de prompts efectivos:
-<strong>Ejemplo de prompt sistema para el asistente:</strong>
-<div class="highlight"><pre><span></span><code>Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana*
+<li>Diseño de prompts efectivos:</li>
+</ul>
+<p><strong>Ejemplo de prompt/sistema para el asistente:</strong>
+<div class="highlight"><pre><span></span><code>Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana.
 Tu objetivo es proporcionar información precisa y actualizada sobre trámites, requisitos y plazos.
 Debes:
 1. Responder con claridad y precisión
@@ -1370,8 +1371,7 @@ Debes:
 </code></pre></div>
 <strong>Ejemplos de consultas para probar:</strong>
 <div class="highlight"><pre><span></span><code>¿Cuáles son los requisitos para solicitar una ayuda al alquiler?
-</code></pre></div></li>
-</ul>
+</code></pre></div></p>
 <div class="highlight"><pre><span></span><code>Necesito saber el procedimiento para presentar una reclamación por una multa de tráfico.
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>¿Cuáles son los plazos para la presentación del impuesto de sucesiones?
