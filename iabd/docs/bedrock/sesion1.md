@@ -204,25 +204,25 @@ Discusión guiada:
 **Preparación de documentos:**
 
 - Análisis de documentos de muestra:
-  - Mostrar ejemplos de documentos administrativos de la Generalitat
-  - "Vamos a analizar este documento sobre procedimientos de contratación pública"
+    - Mostrar ejemplos de documentos administrativos de la Generalitat
+    - "Vamos a analizar este documento sobre procedimientos de contratación pública"
 - Mejores prácticas para estructurar información:
-  - "Los documentos bien estructurados mejoran la precisión de las respuestas"
-  - Ejemplos de buena vs. mala estructuración
-  - Importancia de los títulos, subtítulos y formato consistente
+    - "Los documentos bien estructurados mejoran la precisión de las respuestas"
+    - Ejemplos de buena vs. mala estructuración
+    - Importancia de los títulos, subtítulos y formato consistente
 - Consideraciones lingüísticas:
-  - "Nuestra KB debe manejar documentos en castellano y valenciano"
-  - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
+    - "Nuestra KB debe manejar documentos en castellano y valenciano"
+    - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
 
 #### Creación de una KB básica:
 - Demostración paso a paso:
-   - Creación de un data source
-   - Configuración del vector store
-   - Selección de opciones de chunking (tamaño, solapamiento)
-   - Proceso de ingesta con ejemplos visuales
+    - Creación de un data source
+    - Configuración del vector store
+    - Selección de opciones de chunking (tamaño, solapamiento)
+    - Proceso de ingesta con ejemplos visuales
 - Verificación:
-   - "Así podemos comprobar que nuestra KB se ha creado correctamente"
-   - Demostración de búsqueda básica para verificar la ingesta
+    - "Así podemos comprobar que nuestra KB se ha creado correctamente"
+    - Demostración de búsqueda básica para verificar la ingesta
 
 ### 3. RAG BEDROCK: TEORÍA Y PRÁCTICA
 #### Objetivos:
@@ -253,21 +253,21 @@ Discusión guiada:
 ### Actividad práctica:
 ##### Implementación de RAG:
 - Configuración del flujo RAG:
-  - Conexión de la KB creada con el modelo seleccionado
-- Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
-Ejemplos de prompts para RAG:
+    - Conexión de la KB creada con el modelo seleccionado
+    - Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
+- Ejemplos de prompts para RAG:
 1. Prompt básico para consulta:
 ```txt
 ¿Cuál es el procedimiento para solicitar una licencia de apertura de negocio según la normativa actual?
-
+```
 2. Prompt con seguimiento (memoria conversacional):
 ```txt
 ¿Qué documentación necesito presentar para ese trámite?
-
+```
 3. Prompt con instrucciones específicas:
 ```txt
 Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respuesta en forma de lista numerada y destaca los plazos importantes.
-
+```
 Visualización del proceso:
 
 - Mostrar los fragmentos recuperados
@@ -276,12 +276,12 @@ Visualización del proceso:
 
 #### Experimentación:
 - Comparativa:
-  - "Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"
-  - Análisis de precisión, detalle y fuentes citadas
+    - "Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"
+    - Análisis de precisión, detalle y fuentes citadas
 - Ajuste de parámetros:
-  - Modificar número de resultados recuperados
-  - Cambiar temperatura del modelo
-  - Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
+    - Modificar número de resultados recuperados
+    - Cambiar temperatura del modelo
+    - Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
 
 ### 4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA
 #### Objetivos:
