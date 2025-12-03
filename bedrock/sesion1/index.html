@@ -1347,7 +1347,7 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <ul>
 <li><strong>Crear una base de conocimiento con información propia del hotel</strong>: descripciones de servicios, normas, tarifas, actividades, recomendaciones locales.</li>
 <li>Usar <strong>RAG (Retrieval-Augmented Generation)</strong> para que el modelo <em>se base</em> en esa información interna cuando responda.</li>
-<li>Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), <em>haríamos un *fine-tuning</em> con ejemplos de interacciones típicas*.</li>
+<li>Si queremos precisión en el estilo de las respuestas (por ejemplo, tono amable, cercano, profesional), haríamos un <em>fine-tuning</em> con ejemplos de interacciones típicas.</li>
 <li><strong>Publicar ese asistente como chatbot web, Bot de Telegram, WhatsApp o similar</strong> sin tener que disponer de servidores propios: Bedrock lo gestiona.</li>
 </ul>
 <hr />
@@ -1418,14 +1418,14 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <li>Explicación de la interfaz del playground de Bedrock</li>
 </ul>
 <h4 id="ejercicio-hello-bedrock">Ejercicio "Hello Bedrock":</h4>
-<p>Ejemplos de prompts para demostración:
-1. Prompt básico de presentación:
-<div class="highlight"><pre><span></span><code>Preséntate y explica brevemente qué puedes hacer como asistente de IA.
-</code></pre></div>
-2. Prompt de conocimiento general:
-<div class="highlight"><pre><span></span><code>Explica en 5 puntos clave qué es la Inteligencia Artificial Generativa y cómo está cambiando el sector educativo.
-</code></pre></div></p>
+<p>Ejemplos de prompts para demostración:</p>
 <ol>
+<li>Prompt básico de presentación:
+<div class="highlight"><pre><span></span><code>Preséntate y explica brevemente qué puedes hacer como asistente de IA.
+</code></pre></div></li>
+<li>Prompt de conocimiento general:
+<div class="highlight"><pre><span></span><code>Explica en 5 puntos clave qué es la Inteligencia Artificial Generativa y cómo está cambiando el sector educativo.
+</code></pre></div></li>
 <li>Prompt con instrucciones específicas:
 <div class="highlight"><pre><span></span><code>Actúa como un experto en formación profesional y crea un plan de estudios breve para un módulo de introducción a la IA. El plan debe incluir 3 unidades con sus respectivos objetivos y actividades principales.
 </code></pre></div></li>
@@ -1434,29 +1434,34 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 </code></pre></div>
 (Demostrar cómo cambia la respuesta modificando la temperatura)</li>
 </ol>
-<p>Preguntas para la audiencia:
-- "¿Qué diferencias notáis entre un prompt simple y uno más estructurado?"
-- "¿Cómo creéis que afecta la temperatura a la creatividad de las respuestas?"</p>
+<p>Preguntas para la audiencia:</p>
+<ul>
+<li>"¿Qué diferencias notáis entre un prompt simple y uno más estructurado?"</li>
+<li>"¿Cómo creéis que afecta la temperatura a la creatividad de las respuestas?"</li>
+</ul>
 <h3 id="analisis-de-limitaciones">Análisis de limitaciones:</h3>
 <p><strong>Ejemplos de prompts que muestran limitaciones:</strong></p>
 <ol>
-<li>
-<p>Conocimiento actualizado:
-¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publi cadas este año?</p>
-</li>
+<li>Conocimiento actualizado:
+<div class="highlight"><pre><span></span><code>¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publi cadas este año?
+</code></pre></div></li>
 <li>
 <p>Información específica local:
-Describe el proceso actual para solicitar una beca de formación profesional en la Comunidad Valenciana, incluyendo plazos y requisitos específicos.</p>
+<div class="highlight"><pre><span></span><code>Describe el proceso actual para solicitar una beca de formación profesional en la Comunidad Valenciana, incluyendo plazos y requisitos específicos.
+</code></pre></div></p>
 </li>
 <li>
 <p>Datos técnicos precisos:
-¿Cuál es el presupuesto exacto asignado a formación profesional por la Generalitat Valenciana para el año actual?</p>
+<div class="highlight"><pre><span></span><code>¿Cuál es el presupuesto exacto asignado a formación profesional por la Generalitat Valenciana para el año actual?
+</code></pre></div></p>
 </li>
 </ol>
-<p>Discusión guiada:
-- "¿Por qué creéis que el modelo no puede responder con precisión a estas preguntas?"
-- "¿Qué consecuencias podría tener confiar en estas respuestas en un entorno profesional?"
-- Explicación del concepto de "conocimiento limitado al entrenamiento" y "fecha de corte"</p>
+<p>Discusión guiada:</p>
+<ul>
+<li>"¿Por qué creéis que el modelo no puede responder con precisión a estas preguntas?"</li>
+<li>"¿Qué consecuencias podría tener confiar en estas respuestas en un entorno profesional?"</li>
+<li>Explicación del concepto de "conocimiento limitado al entrenamiento" y "fecha de corte"</li>
+</ul>
 <h2 id="bases-de-conocimiento-kb">BASES DE CONOCIMIENTO (KB)</h2>
 <h3 id="objetivos_2">Objetivos:</h3>
 <ul>
