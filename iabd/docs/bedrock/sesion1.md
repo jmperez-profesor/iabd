@@ -167,7 +167,7 @@ Preguntas para la audiencia:
 
 1. Conocimiento actualizado:
 ```txt
-¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publi cadas este año?
+¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publicadas este año?
 ```
 2. Información específica local:
 ```txt
@@ -194,7 +194,7 @@ Discusión guiada:
 **Knowledge Basement (KB)**: Una base de conocimiento es un repositorio que almacena información estructurada y permite a los modelos de IA acceder a datos específicos fuera de su entrenamiento original.
 
 ### Elementos clave explicados:
-- Presentación: https://docs.google.com/presentation/d/1lRpMixrurXHReZgOSvTRono_rKKaiqhfuf5uFSFOP_U/edit?slide=id.g3347f17ef2a_0_14#slide=id.g3347f17ef2a_0_14
+- Presentación: [https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490](https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490)
 - **Fuentes de datos compatibles**: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
 - **Vector store** y **embeddings**: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
 - **Chunking**: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
@@ -208,7 +208,8 @@ Discusión guiada:
     - "Vamos a analizar este documento sobre procedimientos de contratación pública"
 - Mejores prácticas para estructurar información:
     - "Los documentos bien estructurados mejoran la precisión de las respuestas"
-    - Ejemplos de buena vs. mala estructuración
+    - Ejemplos de buena versus mala estructuración
+    ![](./images/rag_function.png)
     - Importancia de los títulos, subtítulos y formato consistente
 - Consideraciones lingüísticas:
     - "Nuestra KB debe manejar documentos en castellano y valenciano"
