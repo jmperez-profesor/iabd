@@ -195,10 +195,10 @@ Discusión guiada:
 
 ### Elementos clave explicados:
 - Presentación: https://docs.google.com/presentation/d/1lRpMixrurXHReZgOSvTRono_rKKaiqhfuf5uFSFOP_U/edit?slide=id.g3347f17ef2a_0_14#slide=id.g3347f17ef2a_0_14
-- *Fuentes de datos compatibles*: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
-- *Vector store* y *embeddings*: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
-- *Chunking*: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
-- *Metadatos*: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
+- **Fuentes de datos compatibles**: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
+- **Vector store* y *embeddings**: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
+- **Chunking**: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
+- **Metadatos**: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
 
 ### Actividad práctica:
 **Preparación de documentos:**
@@ -254,31 +254,80 @@ Discusión guiada:
 ##### Implementación de RAG:
 - Configuración del flujo RAG:
   - Conexión de la KB creada con el modelo seleccionado
-Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
+- Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
 Ejemplos de prompts para RAG:
 1. Prompt básico para consulta:
-¿Cuál es el procedimiento para solicitar una licencia de apertura de negocio según la normativa ac
-tual?
+```txt
+¿Cuál es el procedimiento para solicitar una licencia de apertura de negocio según la normativa actual?
+
 2. Prompt con seguimiento (memoria conversacional):
+```txt
 ¿Qué documentación necesito presentar para ese trámite?
+
 3. Prompt con instrucciones específicas:
-Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respue
-sta en forma de lista numerada y destaca los plazos importantes.
+```txt
+Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respuesta en forma de lista numerada y destaca los plazos importantes.
+
 Visualización del proceso:
-Mostrar los fragmentos recuperados
-Explicar cómo se construye el prompt aumentado
-Analizar la respuesta generada
-Experimentación:
-Comparativa:
-"Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"
-Análisis de precisión, detalle y fuentes citadas
-Ajuste de parámetros:
-Modificar número de resultados recuperados
-Cambiar temperatura del modelo
-Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
+
+- Mostrar los fragmentos recuperados
+- Explicar cómo se construye el prompt aumentado
+- Analizar la respuesta generada
+
+#### Experimentación:
+- Comparativa:
+  - "Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"
+  - Análisis de precisión, detalle y fuentes citadas
+- Ajuste de parámetros:
+  - Modificar número de resultados recuperados
+  - Cambiar temperatura del modelo
+  - Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
 
 ### 4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA
+#### Objetivos:
+- Aplicar lo aprendido a un caso real
+- Construir un asistente para documentación administrativa
 
+####Actividad:
+- Presentación del escenario:
+  - "Vamos a crear un asistente virtual que ayude a ciudadanos y funcionarios a navegar por los procedimientos administrativos de la Generalitat"
+- Implementación paso a paso:
+1. Selección de documentos:
+- Documentos de procedimientos administrativos
+- Formularios oficiales
+- FAQs existentes
+2. Creación de la KB especializada:
+- Demostración de la ingesta de estos documentos
+- Configuración específica para documentación administrativa
+3. Diseño de prompts efectivos:
+**Ejemplo de prompt sistema para el asistente:**
+```txt
+Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana*
+Tu objetivo es proporcionar información precisa y actualizada sobre trámites, requisitos y plazos.
+Debes:
+1. Responder con claridad y precisión
+2. Citar la normativa o documento específico de donde extraes la información
+3. Indicar claramente cuando no tengas información suficiente
+4. Estructurar las respuestas complejas en pasos numerados
+5. Ser respetuoso y profesional en todo momento
+```
+**Ejemplos de consultas para probar:**
+```txt 
+¿Cuáles son los requisitos para solicitar una ayuda al alquiler?
+```
+
+```txt
+Necesito saber el procedimiento para presentar una reclamación por una multa de tráfico.
+```
+
+```txt
+¿Cuáles son los plazos para la presentación del impuesto de sucesiones?
+```
+
+4. Pruebas con escenarios reales:
+- Invitar a los participantes a formular preguntas
+- Analizar la calidad y precisión de las respuestas
+- Pregunta: "¿Qué mejoras podríamos implementar en este asistente?"
 
 
 ## 5. Aprendizaje basado en retos
