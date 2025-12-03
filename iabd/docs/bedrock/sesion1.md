@@ -25,13 +25,19 @@ Amazon Web Services, Inc.
 
 ### ¿Qué es **"Retrieval Augmented Generation"** (RAG) o **Generación Aumentada por Recuperación** ?
 
-La *Retrieval Augmented Generation* (RAG) o Generación Aumentada por Recuperación en español, es una técnica de IA que combina dos componentes: un sistema de recuperación de información y un modelo de lenguaje grande (LLM). 
+La *Retrieval Augmented Generation* (RAG) o Generación Aumentada por Recuperación en español, es una técnica de IA que combina dos componentes: un sistema de recuperación de información (bases de datos vectoriales) y un LLM (modelo de lenguaje grande). 
 El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM al permitirle acceder y utilizar información de fuentes de datos externas y específicas antes de generar su respuesta, sin necesidad de reentrenamiento. 
+
+- **Retrieval (Recuperación)**: Esta etapa consiste en indexar, recuperar los segmentos de texto creados (embeddings) que son relevantes en función de la similutd semántica.
+- **Augmentation (aumentar)**: Incrementar con información adicional los conocimientos del LLM.
+- **Generation**: Generar o elaborar respuestas a partir de los conocimientos del LLM. 
 
 #### Cómo funciona
 1. **Recuperación**: Cuando se hace una consulta, un sistema de recuperación busca y selecciona los fragmentos de información más relevantes de una base de conocimiento externa (que puede incluir documentos privados, bases de datos o fuentes de noticias).
 2. **Generación**: El modelo de lenguaje grande (LLM) toma la consulta original junto con la información recuperada para generar una respuesta más precisa, actualizada y contextualizada.
 3. **Ejemplo**: Si un usuario pregunta sobre un producto específico, el sistema RAG puede buscar en la base de datos de la empresa información sobre ese producto y luego usarla para que el LLM genere una respuesta detallada y precisa. 
+
+![](./images/rag_function.png)
 
 ### Beneficios de RAG
 - **Acceso a datos actualizados**: Permite a los LLM acceder a información más reciente que la que tenían durante su entrenamiento inicial.
@@ -79,17 +85,8 @@ Con Amazon Bedrock podríamos:
 
 ---
 
-## 2. Requisitos previos
-- Cuenta activa en AWS.
-- Permisos IAM para Amazon Bedrock.
-- SDK de AWS (Python o Node.js).
-- Activación de modelos en la consola.
-
----
-
-
-## 3. Parámetros de Inferencia y Experimentación
-Los alumnos deben experimentar con las configuraciones del prompt para controlar el comportamiento del modelo.
+## 2. Parámetros de Inferencia y Experimentación
+Podemos experimentar con las configuraciones del prompt para controlar el comportamiento del modelo.
 
 | Parámetro | Descripción | Impacto en el resultado |
 | :--- | :--- | :--- |
@@ -97,7 +94,7 @@ Los alumnos deben experimentar con las configuraciones del prompt para controlar
 | **P Superior (Top P)** | Permite seleccionar palabras más probables. | Permite variar entre respuestas más probables o menos probables. |
 | **Longitud Máxima (MaxTokenCount)** | Define el tamaño máximo de la respuesta generada. | Limita el coste y la extensión de la respuesta. |
 
-## 4. Elección estratégica del modelo
+## 3. Elección estratégica del modelo
 Amazon Bedrock ofrece flexibilidad para elegir el modelo que mejor se adapte a cada necesidad.
 
 - **Modelos de Amazon (Titan/Nova)**: Modelos propietarios que ofrecen inteligencia multimodal rápida y rentable, incluyendo generación de texto, imágenes, comprensión de documentos y código. El modelo Nova Lite es multimodal y sensible a los costes, mientras que Nova Pro es competente para tareas más complejas. Los modelos Titan Text Express son recomendados para tareas de alto volumen y bajo coste como el resumen.
@@ -124,6 +121,109 @@ print(response['body'])
 ```
 
 ---
+
+## HELLO BEDROCK - PRIMEROS PASOS (20 minutos)
+
+### Objetivos:
+- Entender la interfaz básica de Amazon Bedrock
+- Realizar primeras interacciones con modelos fundacionales
+- Identificar limitaciones de los modelos sin base de conocimiento
+
+### Actividades prácticas:
+#### Configuración inicial:
+- Guía paso a paso para acceder a la consola AWS
+- "Vamos a seleccionar el modelo Nova Pro para nuestros primeros ejemplos"
+- Explicación de la interfaz del playground de Bedrock
+
+#### Ejercicio "Hello Bedrock":
+Ejemplos de prompts para demostración:
+1. Prompt básico de presentación:
+```txt
+Preséntate y explica brevemente qué puedes hacer como asistente de IA.
+```
+2. Prompt de conocimiento general:
+```txt
+Explica en 5 puntos clave qué es la Inteligencia Artificial Generativa y cómo está cambiando el sector educativo.
+```
+
+3. Prompt con instrucciones específicas:
+```txt
+Actúa como un experto en formación profesional y crea un plan de estudios breve para un módulo de introducción a la IA. El plan debe incluir 3 unidades con sus respectivos objetivos y actividades principales.
+```
+4. Prompt para probar parámetros:
+```txt
+Genera tres ideas creativas para utilizar la IA en el aula. Sé muy conciso. 
+```
+(Demostrar cómo cambia la respuesta modificando la temperatura)
+
+Preguntas para la audiencia:
+- "¿Qué diferencias notáis entre un prompt simple y uno más estructurado?"
+- "¿Cómo creéis que afecta la temperatura a la creatividad de las respuestas?"
+
+### Análisis de limitaciones:
+**Ejemplos de prompts que muestran limitaciones:**
+
+1. Conocimiento actualizado:
+¿Cuáles son las últimas normativas de la Generalitat Valenciana sobre formación profesional publi cadas este año?
+
+2. Información específica local:
+Describe el proceso actual para solicitar una beca de formación profesional en la Comunidad Valenciana, incluyendo plazos y requisitos específicos.
+
+3. Datos técnicos precisos:
+¿Cuál es el presupuesto exacto asignado a formación profesional por la Generalitat Valenciana para el año actual?
+
+Discusión guiada:
+- "¿Por qué creéis que el modelo no puede responder con precisión a estas preguntas?"
+- "¿Qué consecuencias podría tener confiar en estas respuestas en un entorno profesional?"
+- Explicación del concepto de "conocimiento limitado al entrenamiento" y "fecha de corte"
+
+
+## BASES DE CONOCIMIENTO (KB) 
+### Objetivos:
+- Comprender qué es una base de conocimiento y su importancia
+- Identificar los componentes necesarios para crear una KB
+- Aprender a preparar documentos para su ingesta
+
+**Knowledge Basement (KB)**: Una base de conocimiento es un repositorio que almacena información estructurada y permite a los modelos de IA acceder a datos específicos fuera de su entrenamiento original.
+
+### Elementos clave explicados:
+- Presentación: https://docs.google.com/presentation/d/1lRpMixrurXHReZgOSvTRono_rKKaiqhfuf5uFSFOP_U/edit?slide=id.g3347f17ef2a_0_14#slide=id.g3347f17ef2a_0_14
+- Fuentes de datos compatibles: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
+- Vector store y embeddings: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
+- Chunking: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
+- Metadatos: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
+
+### Actividad práctica:
+**Preparación de documentos:**
+- Análisis de documentos de muestra:
+ - Mostrar ejemplos de documentos administrativos de la Generalitat
+ - "Vamos a analizar este documento sobre procedimientos de contratación pública"
+- Mejores prácticas para estructurar información:
+ - "Los documentos bien estructurados mejoran la precisión de las respuestas"
+ - Ejemplos de buena vs. mala estructuración
+ - Importancia de los títulos, subtítulos y formato consistente
+- Consideraciones lingüísticas:
+ - "Nuestra KB debe manejar documentos en castellano y valenciano"
+ - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
+
+#### Creación de una KB básica:
+- Demostración paso a paso:
+  - Creación de un data source
+  - Configuración del vector store
+  - Selección de opciones de chunking (tamaño, solapamiento)
+  - Proceso de ingesta con ejemplos visuales
+- Verificación:
+  - "Así podemos comprobar que nuestra KB se ha creado correctamente"
+  - Demostración de búsqueda básica para verificar la ingesta
+
+### RAG BEDROCK: TEORÍA Y PRÁCTICA
+#### Objetivos:
+- Entender el flujo RAG (Retrieval Augmented Generation)
+- Visualizar el proceso de razonamiento del modelo
+- Comprender la memoria conversacional
+
+
+
 
 ## 5. Aprendizaje basado en retos
 
