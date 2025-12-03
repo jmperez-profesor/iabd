@@ -215,6 +215,25 @@ Discusión guiada:
     - "Nuestra KB debe manejar documentos en castellano y valenciano"
     - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
 
+### Datos/información estructurada
+La información estructurada es aquella que sigue un esquema fijo (tablas, campos, tipos bien definidos) y se puede consultar con lenguajes como SQL o JSON.​
+Ejemplos típicos serían tablas de una base de datos relacional con columnas como “id_cliente”, “fecha”, “importe”, o un data warehouse en Redshift con registros de ventas, inventario o métricas numéricas.​
+
+En Bedrock, las bases de conocimiento ya permiten lanzar consultas en lenguaje natural que se traducen automáticamente a consultas SQL sobre estos orígenes de datos estructurados, de forma que un usuario puede preguntar “ventas del último trimestre por región” sin escribir SQL.​ En JSON, esto se traduce en documentos con una estructura homogénea, por ejemplo, registros de clientes, pedidos o logs con claves bien definidas como id, fecha, importe, producto, etc.
+
+### Datos/información no estructurada
+La información no estructurada no encaja en tablas de filas y columnas, porque no sigue un formato fijo ni un modelo predefinido.​
+Aquí entran documentos largos (PDF, Word), correos, presentaciones, páginas web, contenido multimedia (audio, vídeo, imágenes) o mensajes en redes sociales, que suelen almacenarse en sistemas de ficheros, S3, gestores de contenidos, Confluence, SharePoint, etc.​
+
+Las bases de conocimiento de Bedrock se conectan a este tipo de orígenes (por ejemplo, S3, Confluence, Salesforce o SharePoint) y aplican técnicas como RAG: indexan el contenido, lo vectorizan y luego recuperan los fragmentos relevantes para enriquecer las respuestas de los modelos generativos con ese contexto específico.​
+
+Resumen práctico en Bedrock
+Estructurada: datos tabulares con esquema fijo; Bedrock puede convertir preguntas en consultas estructuradas (p. ej. SQL) y devolver respuestas precisas sobre esos registros.​
+
+No estructurada: documentos y contenidos libres; Bedrock ingiere, indexa y usa recuperación semántica para que el modelo responda apoyándose en esos textos o archivos, sin necesidad de reentrenar el modelo.​
+
+
+
 #### Creación de una KB básica:
 - Demostración paso a paso:
     - Creación de un data source
