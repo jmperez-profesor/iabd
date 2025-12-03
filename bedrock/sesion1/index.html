@@ -1220,27 +1220,37 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <h3 id="actividad-practica">Actividad práctica:</h3>
 <p><strong>Preparación de documentos:</strong></p>
 <ul>
-<li>Análisis de documentos de muestra:</li>
+<li>Análisis de documentos de muestra:<ul>
 <li>Mostrar ejemplos de documentos administrativos de la Generalitat</li>
 <li>"Vamos a analizar este documento sobre procedimientos de contratación pública"</li>
-<li>Mejores prácticas para estructurar información:</li>
+</ul>
+</li>
+<li>Mejores prácticas para estructurar información:<ul>
 <li>"Los documentos bien estructurados mejoran la precisión de las respuestas"</li>
 <li>Ejemplos de buena vs. mala estructuración</li>
 <li>Importancia de los títulos, subtítulos y formato consistente</li>
-<li>Consideraciones lingüísticas:</li>
+</ul>
+</li>
+<li>Consideraciones lingüísticas:<ul>
 <li>"Nuestra KB debe manejar documentos en castellano y valenciano"</li>
 <li>Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"</li>
 </ul>
+</li>
+</ul>
 <h4 id="creacion-de-una-kb-basica">Creación de una KB básica:</h4>
 <ul>
-<li>Demostración paso a paso:</li>
+<li>Demostración paso a paso:<ul>
 <li>Creación de un data source</li>
 <li>Configuración del vector store</li>
 <li>Selección de opciones de chunking (tamaño, solapamiento)</li>
 <li>Proceso de ingesta con ejemplos visuales</li>
-<li>Verificación:</li>
+</ul>
+</li>
+<li>Verificación:<ul>
 <li>"Así podemos comprobar que nuestra KB se ha creado correctamente"</li>
 <li>Demostración de búsqueda básica para verificar la ingesta</li>
+</ul>
+</li>
 </ul>
 <h3 id="3-rag-bedrock-teoria-y-practica">3. RAG BEDROCK: TEORÍA Y PRÁCTICA</h3>
 <h4 id="objetivos_3">Objetivos:</h4>
@@ -1276,56 +1286,65 @@ El objetivo es mejorar la precisión y la actualidad de las respuestas del LLM a
 <h3 id="actividad-practica_1">Actividad práctica:</h3>
 <h5 id="implementacion-de-rag">Implementación de RAG:</h5>
 <ul>
-<li>Configuración del flujo RAG:</li>
+<li>Configuración del flujo RAG:<ul>
 <li>Conexión de la KB creada con el modelo seleccionado</li>
-<li>Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)
-Ejemplos de prompts para RAG:</li>
+<li>Configuración de parámetros de búsqueda (número de resultados, umbral de similitud)</li>
+</ul>
+</li>
+<li>Ejemplos de prompts para RAG:</li>
 <li>Prompt básico para consulta:
 <div class="highlight"><pre><span></span><code>¿Cuál es el procedimiento para solicitar una licencia de apertura de negocio según la normativa actual?
-
-2. Prompt con seguimiento (memoria conversacional):
-```txt
-¿Qué documentación necesito presentar para ese trámite?
-
-3. Prompt con instrucciones específicas:
-```txt
-Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respuesta en forma de lista numerada y destaca los plazos importantes.
-
-Visualización del proceso:
-
-- Mostrar los fragmentos recuperados
-- Explicar cómo se construye el prompt aumentado
-- Analizar la respuesta generada
-
-#### Experimentación:
-- Comparativa:
-  - &quot;Vamos a hacer la misma pregunta con y sin KB para ver la diferencia&quot;
-  - Análisis de precisión, detalle y fuentes citadas
-- Ajuste de parámetros:
-  - Modificar número de resultados recuperados
-  - Cambiar temperatura del modelo
-  - Pregunta: &quot;¿Qué cambios observáis al modificar estos parámetros?&quot;
-
-### 4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA
-#### Objetivos:
-- Aplicar lo aprendido a un caso real
-- Construir un asistente para documentación administrativa
-
-####Actividad:
-- Presentación del escenario:
-  - &quot;Vamos a crear un asistente virtual que ayude a ciudadanos y funcionarios a navegar por los procedimientos administrativos de la Generalitat&quot;
-- Implementación paso a paso:
-1. Selección de documentos:
-- Documentos de procedimientos administrativos
-- Formularios oficiales
-- FAQs existentes
-2. Creación de la KB especializada:
-- Demostración de la ingesta de estos documentos
-- Configuración específica para documentación administrativa
-3. Diseño de prompts efectivos:
-**Ejemplo de prompt sistema para el asistente:**
-```txt
-Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana*
+</code></pre></div></li>
+<li>Prompt con seguimiento (memoria conversacional):
+<div class="highlight"><pre><span></span><code>¿Qué documentación necesito presentar para ese trámite?
+</code></pre></div></li>
+<li>
+<p>Prompt con instrucciones específicas:
+<div class="highlight"><pre><span></span><code>Explica paso a paso el proceso de solicitud de subvenciones para empresas. Estructura tu respuesta en forma de lista numerada y destaca los plazos importantes.
+</code></pre></div>
+Visualización del proceso:</p>
+</li>
+<li>
+<p>Mostrar los fragmentos recuperados</p>
+</li>
+<li>Explicar cómo se construye el prompt aumentado</li>
+<li>Analizar la respuesta generada</li>
+</ul>
+<h4 id="experimentacion">Experimentación:</h4>
+<ul>
+<li>Comparativa:<ul>
+<li>"Vamos a hacer la misma pregunta con y sin KB para ver la diferencia"</li>
+<li>Análisis de precisión, detalle y fuentes citadas</li>
+</ul>
+</li>
+<li>Ajuste de parámetros:<ul>
+<li>Modificar número de resultados recuperados</li>
+<li>Cambiar temperatura del modelo</li>
+<li>Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-caso-practico-documentacion-administrativa">4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA</h3>
+<h4 id="objetivos_4">Objetivos:</h4>
+<ul>
+<li>Aplicar lo aprendido a un caso real</li>
+<li>Construir un asistente para documentación administrativa</li>
+</ul>
+<h4 id="actividad">Actividad:</h4>
+<ul>
+<li>Presentación del escenario:</li>
+<li>"Vamos a crear un asistente virtual que ayude a ciudadanos y funcionarios a navegar por los procedimientos administrativos de la Generalitat"</li>
+<li>Implementación paso a paso:</li>
+<li>Selección de documentos:</li>
+<li>Documentos de procedimientos administrativos</li>
+<li>Formularios oficiales</li>
+<li>FAQs existentes</li>
+<li>Creación de la KB especializada:</li>
+<li>Demostración de la ingesta de estos documentos</li>
+<li>Configuración específica para documentación administrativa</li>
+<li>Diseño de prompts efectivos:
+<strong>Ejemplo de prompt sistema para el asistente:</strong>
+<div class="highlight"><pre><span></span><code>Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana*
 Tu objetivo es proporcionar información precisa y actualizada sobre trámites, requisitos y plazos.
 Debes:
 1. Responder con claridad y precisión
