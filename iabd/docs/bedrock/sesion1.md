@@ -172,7 +172,6 @@ Preguntas para la audiencia:
 ```txt
 Describe el proceso actual para solicitar una beca de formación profesional en la Comunidad Valenciana, incluyendo plazos y requisitos específicos.
 ```
-
 3. Datos técnicos precisos:
 ```txt
 ¿Cuál es el presupuesto exacto asignado a formación profesional por la Generalitat Valenciana para el año actual?
@@ -202,26 +201,27 @@ Discusión guiada:
 
 ### Actividad práctica:
 **Preparación de documentos:**
+
 - Análisis de documentos de muestra:
- - Mostrar ejemplos de documentos administrativos de la Generalitat
- - "Vamos a analizar este documento sobre procedimientos de contratación pública"
+  - Mostrar ejemplos de documentos administrativos de la Generalitat
+  - "Vamos a analizar este documento sobre procedimientos de contratación pública"
 - Mejores prácticas para estructurar información:
- - "Los documentos bien estructurados mejoran la precisión de las respuestas"
- - Ejemplos de buena vs. mala estructuración
- - Importancia de los títulos, subtítulos y formato consistente
+  - "Los documentos bien estructurados mejoran la precisión de las respuestas"
+  - Ejemplos de buena vs. mala estructuración
+  - Importancia de los títulos, subtítulos y formato consistente
 - Consideraciones lingüísticas:
- - "Nuestra KB debe manejar documentos en castellano y valenciano"
- - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
+  - "Nuestra KB debe manejar documentos en castellano y valenciano"
+  - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
 
 #### Creación de una KB básica:
 - Demostración paso a paso:
-  - Creación de un data source
-  - Configuración del vector store
-  - Selección de opciones de chunking (tamaño, solapamiento)
-  - Proceso de ingesta con ejemplos visuales
+   - Creación de un data source
+   - Configuración del vector store
+   - Selección de opciones de chunking (tamaño, solapamiento)
+   - Proceso de ingesta con ejemplos visuales
 - Verificación:
-  - "Así podemos comprobar que nuestra KB se ha creado correctamente"
-  - Demostración de búsqueda básica para verificar la ingesta
+   - "Así podemos comprobar que nuestra KB se ha creado correctamente"
+   - Demostración de búsqueda básica para verificar la ingesta
 
 ### RAG BEDROCK: TEORÍA Y PRÁCTICA
 #### Objetivos:
