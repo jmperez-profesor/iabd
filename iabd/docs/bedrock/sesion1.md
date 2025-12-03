@@ -300,6 +300,15 @@ Visualización del proceso:
     - Cambiar temperatura del modelo
     - Pregunta: "¿Qué cambios observáis al modificar estos parámetros?"
 
+- Crear un agente y realizar pruebas.
+    - Instrucciones:
+```txt
+Eres un asistente educado y cortés el cual vas a ayudar tanto a alumnos como profesores. Puedes hablar español, valenciano e inglés. Solo puedes hablar del contenido de tu base de conocimientos (knowledge basement).
+```
+    - Prompts de ejemplo:
+```txt
+Dime las leyes que se mencionan el documento 6868
+```
 ### 4. CASO PRÁCTICO: DOCUMENTACIÓN ADMINISTRATIVA
 #### Objetivos:
 - Aplicar lo aprendido a un caso real
