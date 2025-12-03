@@ -196,7 +196,7 @@ Discusión guiada:
 ### Elementos clave explicados:
 - Presentación: https://docs.google.com/presentation/d/1lRpMixrurXHReZgOSvTRono_rKKaiqhfuf5uFSFOP_U/edit?slide=id.g3347f17ef2a_0_14#slide=id.g3347f17ef2a_0_14
 - **Fuentes de datos compatibles**: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
-- **Vector store* y *embeddings**: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
+- **Vector store** y **embeddings**: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
 - **Chunking**: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
 - **Metadatos**: "Información adicional que nos ayuda a filtrar y organizar el conocimiento"
 
@@ -233,6 +233,7 @@ Discusión guiada:
 #### Contenido teórico:
 ##### Arquitectura RAG explicada:
 - Diagrama visual del flujo RAG 
+![](./images/rag_arquitectura.png)
 - "RAG es como tener una biblioteca y un escritor trabajando juntos"
 
 ##### Explicación paso a paso:
@@ -290,7 +291,7 @@ Visualización del proceso:
 
 ####Actividad:
 - Presentación del escenario:
-  - "Vamos a crear un asistente virtual que ayude a ciudadanos y funcionarios a navegar por los procedimientos administrativos de la Generalitat"
+    - "Vamos a crear un asistente virtual que ayude a ciudadanos y funcionarios a navegar por los procedimientos administrativos de la Generalitat"
 - Implementación paso a paso:
 1. Selección de documentos:
 - Documentos de procedimientos administrativos
