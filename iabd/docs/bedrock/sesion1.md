@@ -194,7 +194,7 @@ Discusión guiada:
 **Knowledge Basement (KB)**: Una base de conocimiento es un repositorio que almacena información estructurada y permite a los modelos de IA acceder a datos específicos fuera de su entrenamiento original.
 
 ### Elementos clave explicados:
-- Presentación: [https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490](https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490)
+- **Presentación**: [https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490](https://aules.edu.gva.es/fp/mod/resource/view.php?id=9716490)
 - **Fuentes de datos compatibles**: "Bedrock puede procesar PDFs, documentos de texto, HTML, y otros formatos"
 - **Vector store** y **embeddings**: "Los embeddings son representaciones numéricas del significado de un texto" * Analogía visual: "Imaginad una biblioteca donde cada libro está ubicado junto a otros con temas similares, no por orden alfabético"
 - **Chunking**: "Dividimos los documentos en fragmentos manejables para el modelo"* Pregunta: "¿Por qué creéis que es necesario dividir los documentos en fragmentos más pequeños?"
@@ -209,30 +209,26 @@ Discusión guiada:
 - Mejores prácticas para estructurar información:
     - "Los documentos bien estructurados mejoran la precisión de las respuestas"
     - Ejemplos de buena versus mala estructuración
-    ![](./images/rag_function.png)
+    ![](./images/json-file.png)
     - Importancia de los títulos, subtítulos y formato consistente
-- Consideraciones lingüísticas:
-    - "Nuestra KB debe manejar documentos en castellano y valenciano"
-    - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
 
-### Datos/información estructurada
+##### Datos/información estructurada
 La información estructurada es aquella que sigue un esquema fijo (tablas, campos, tipos bien definidos) y se puede consultar con lenguajes como SQL o JSON.​
 Ejemplos típicos serían tablas de una base de datos relacional con columnas como “id_cliente”, “fecha”, “importe”, o un data warehouse en Redshift con registros de ventas, inventario o métricas numéricas.​
 
 En Bedrock, las bases de conocimiento ya permiten lanzar consultas en lenguaje natural que se traducen automáticamente a consultas SQL sobre estos orígenes de datos estructurados, de forma que un usuario puede preguntar “ventas del último trimestre por región” sin escribir SQL.​ En JSON, esto se traduce en documentos con una estructura homogénea, por ejemplo, registros de clientes, pedidos o logs con claves bien definidas como id, fecha, importe, producto, etc.
 
-### Datos/información no estructurada
+En resumen, Bedrock puede convertir preguntas en consultas estructuradas (p. ej. SQL) y devolver respuestas precisas sobre esos registros.​
+
+##### Datos/información no estructurada
 La información no estructurada no encaja en tablas de filas y columnas, porque no sigue un formato fijo ni un modelo predefinido.​
 Aquí entran documentos largos (PDF, Word), correos, presentaciones, páginas web, contenido multimedia (audio, vídeo, imágenes) o mensajes en redes sociales, que suelen almacenarse en sistemas de ficheros, S3, gestores de contenidos, Confluence, SharePoint, etc.​
 
 Las bases de conocimiento de Bedrock se conectan a este tipo de orígenes (por ejemplo, S3, Confluence, Salesforce o SharePoint) y aplican técnicas como RAG: indexan el contenido, lo vectorizan y luego recuperan los fragmentos relevantes para enriquecer las respuestas de los modelos generativos con ese contexto específico.​
 
-Resumen práctico en Bedrock
-Estructurada: datos tabulares con esquema fijo; Bedrock puede convertir preguntas en consultas estructuradas (p. ej. SQL) y devolver respuestas precisas sobre esos registros.​
-
-No estructurada: documentos y contenidos libres; Bedrock ingiere, indexa y usa recuperación semántica para que el modelo responda apoyándose en esos textos o archivos, sin necesidad de reentrenar el modelo.​
-
-
+- Consideraciones lingüísticas:
+    - "Nuestra KB debe manejar documentos en castellano y valenciano"
+    - Pregunta: "¿Qué desafíos creéis que plantea trabajar con documentos bilingües?"
 
 #### Creación de una KB básica:
 - Demostración paso a paso:
@@ -321,9 +317,10 @@ Visualización del proceso:
 - Demostración de la ingesta de estos documentos
 - Configuración específica para documentación administrativa
 3. Diseño de prompts efectivos:
-**Ejemplo de prompt sistema para el asistente:**
+
+**Ejemplo de prompt/sistema para el asistente:**
 ```txt
-Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana*
+Eres un asistente especializado en procedimientos administrativos de la Generalitat Valenciana.
 Tu objetivo es proporcionar información precisa y actualizada sobre trámites, requisitos y plazos.
 Debes:
 1. Responder con claridad y precisión
