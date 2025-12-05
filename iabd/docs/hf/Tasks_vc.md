@@ -734,3 +734,25 @@ Pasos:
 Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. 
 
 Entrega el fichero py y las imágenes que hayas utilizado. 
+
+## 4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)
+
+La clasificación de imágenes sin entrenamiento previo es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo.
+
+![](./img/zero_shot_image_classification_explication.png)
+
+### Acerca de la clasificación de imágenes sin entrenamiento previo
+
+La clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes en una de varias clases, sin ningún entrenamiento previo ni conocimiento de las clases.
+
+La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos.
+
+Los datos en este paradigma de aprendizaje consisten en
+
+- Datos vistos: imágenes y sus etiquetas correspondientes.
+- Datos no vistos: solo etiquetas y sin imágenes.
+- Información auxiliar: información adicional proporcionada al modelo durante el entrenamiento que conecta los datos vistos y no vistos. Esto puede ser en forma de descripción textual o incrustaciones de palabras.
+
+#### Reconocimiento de acciones
+El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.
+
