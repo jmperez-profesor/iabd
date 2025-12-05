@@ -737,22 +737,33 @@ Entrega el fichero py y las imágenes que hayas utilizado.
 
 ## 4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)
 
-La clasificación de imágenes sin entrenamiento previo es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo.
+La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes en una de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  
 
 ![](./img/zero_shot_image_classification_explication.png)
-
-### Acerca de la clasificación de imágenes sin entrenamiento previo
-
-La clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes en una de varias clases, sin ningún entrenamiento previo ni conocimiento de las clases.
 
 La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos.
 
 Los datos en este paradigma de aprendizaje consisten en
 
-- Datos vistos: imágenes y sus etiquetas correspondientes.
-- Datos no vistos: solo etiquetas y sin imágenes.
-- Información auxiliar: información adicional proporcionada al modelo durante el entrenamiento que conecta los datos vistos y no vistos. Esto puede ser en forma de descripción textual o incrustaciones de palabras.
+- **Datos vistos**: imágenes y sus etiquetas correspondientes.
+- **Datos no vistos**: solo etiquetas y sin imágenes.
+- **Información auxiliar**: información adicional proporcionada al modelo durante el entrenamiento que conecta los datos vistos y no vistos. Esto puede ser en forma de descripción textual o incrustaciones de palabras.
+
+Tradicionalmente, la clasificación de imágenes requiere entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un ajuste fino para «recalibrar» el modelo.
+
+Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.
+
+Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.
 
 #### Reconocimiento de acciones
 El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.
+
+Antes de comenzar, instalamos todas las bibliotecas necesarias:
+```python
+pip install -q «transformers[torch]» pillow
+```
+
+#### Pipeline de clasificación de imágenes sin entrenamiento previo
+
+La forma más sencilla de probar la inferencia con un modelo que admite la clasificación de imágenes sin entrenamiento previo es utilizar el pipeline() correspondiente. Instancie un pipeline desde un punto de control en Hugging Face Hub:
 
