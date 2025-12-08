@@ -802,25 +802,56 @@ Device set to use cpu
  {'score': 0.00014685299538541585, 'label': 'fox'}
 ]
 ```
+> Es posible que veamos una advertencia del `transformers` indicando que el `image processor`se guardó con el modelo más lento (“slow”), y que en una versión futura (v4.52) el valor por defecto será `use_fast=True`.
 
-### Resultado típico:
-```json
+Para eliminar la advertencia instalamos las librerías `accelerate` y `torchvision`:
+```bash
+pip install accelerate torchvision
+```
+
+Y retocamos el código anterior realizando los siguientes ajustes:
+```python
+from transformers import pipeline, AutoImageProcessor
+
+model_name = "openai/clip-vit-base-patch32"
+
+# Fozramos el uso del procesador "fast"
+image_processor = AutoImageProcessor.from_pretrained(model_name, use_fast=True)
+
+classifier = pipeline(
+    task="zero-shot-image-classification",
+    model=model_name,
+    image_processor=image_processor,  # usamos el procesador rápido
+    device_map="auto"  # si tenemos GPU configurada, la usa
+)
+
+image_path = "./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg"
+candidate_labels = ["fox", "bear", "seagull", "owl"]
+
+results = classifier(image_path, candidate_labels)
+print(results)
+```
+Resultado (ya no se muestra la advertencia):
+```bash
+Device set to use cpu
 [
-  {'score': 0.85, 'label': 'perro'},
-  {'score': 0.10, 'label': 'gato'},
-  {'score': 0.03, 'label': 'automóvil'},
-  {'score': 0.02, 'label': 'persona'}
+    {'score': 0.9991913437843323, 'label': 'owl'}, 
+    {'score': 0.0004113616014365107, 'label': 'seagull'}, 
+    {'score': 0.00025038630701601505, 'label': 'bear'}, 
+    {'score': 0.00014685996575281024, 'label': 'fox'}
 ]
 ```
-
-
+### Resultado en JSON:
+```json
+[
+    {'score': 0.9991913437843323, 'label': 'owl'}, 
+    {'score': 0.0004113616014365107, 'label': 'seagull'}, 
+    {'score': 0.00025038630701601505, 'label': 'bear'}, 
+    {'score': 0.00014685996575281024, 'label': 'fox'}
+]
+```
 ### Reconocimiento de acciones
 El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.
-
-Antes de comenzar, instalamos todas las bibliotecas necesarias:
-```python
-pip install -q «transformers[torch]» pillow
-```
 
 #### Pipeline de clasificación de imágenes sin entrenamiento previo
 
