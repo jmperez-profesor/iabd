@@ -755,7 +755,66 @@ Por el contrario, los modelos de clasificación de imágenes de vocabulario abie
 
 Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.
 
-#### Reconocimiento de acciones
+## 🧰 Modelos disponibles en Hugging Face
+
+| Modelo | Arquitectura | Característica | Enlace |
+|--------|--------------|---------------|--------|
+| `openai/clip-vit-base-patch32` | CLIP (ViT + Transformer) | Texto + Imagen | [🔗 Ver modelo](https://huggingface.co/openai/clip-vit-base-patch32) |
+| `laion/CLIP-ViT-B-32-laion2B-s34B-b79K` | CLIP | Entrenado en LAION | [🔗 Ver modelo](https://huggingface.co/laion/CLIP-ViT-B-32-laion2B-s34B-b79K) |
+
+---
+
+## 🧪 Cómo usar la tarea en Python
+
+Hugging Face proporciona la tarea mediante `pipeline`. Para poder ejecuarlo necesitamos instalar previamente las librerías `transformers`, `torch` y `PIL` (CLIPImageProcessor require la librería PIL):
+
+```bash
+pip install transformers torch pillow
+```
+A continuación probamos un ejemplo sencillo que en el que pasamos una imagen al pipeline y mostramos el resulado con consola.
+
+![](./img/jevgeni.jpg)
+
+> La imagen la podéis descargar desde esta url [](https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&force=true&w=640)
+
+```python
+from transformers import pipeline
+
+#classifier = pipeline("zero-shot-image-classification", model="openai/clip-vit-base-patch32")
+classifier = pipeline("zero-shot-image-classification", model="openai/clip-vit-base-patch32", use_fast=True)
+
+image_path = "./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg"
+candidate_labels = ["fox", "bear", "seagull", "owl"] #["zorro", "oso", "gaviota", "búho"]
+
+results = classifier(image_path, candidate_labels)
+print(results)
+```
+Predicciones:
+```bash
+Using a slow image processor as "use_fast" is unset and a slow processor was saved with this model. 
+"use_fast=True" will be the default behavior in v4.52, even if the model was saved with a slow processor. 
+This will result in minor differences in outputs. You'll still be able to use a slow processor with "use_fast=False".
+Device set to use cpu
+[
+ {'score': 0.9991915822029114, 'label': 'owl'}, 
+ {'score': 0.00041212819633074105, 'label': 'seagull'}, 
+ {'score': 0.00024944543838500977, 'label': 'bear'}, 
+ {'score': 0.00014685299538541585, 'label': 'fox'}
+]
+```
+
+### Resultado típico:
+```json
+[
+  {'score': 0.85, 'label': 'perro'},
+  {'score': 0.10, 'label': 'gato'},
+  {'score': 0.03, 'label': 'automóvil'},
+  {'score': 0.02, 'label': 'persona'}
+]
+```
+
+
+### Reconocimiento de acciones
 El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.
 
 Antes de comenzar, instalamos todas las bibliotecas necesarias:
