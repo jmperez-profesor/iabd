@@ -828,7 +828,6 @@ Un buen ejemplo de ello es un [sistema de gestión de aparcamientos](https://doc
 ‍
 Integrado con otras tecnologías, este sistema puede guiar a los conductores hasta la plaza disponible más cercana, ayudando a reducir el tiempo de búsqueda y la congestión del tráfico. El aprendizaje por transferencia lo hace posible basándose en las capacidades de detección de objetos existentes de YOLO11, lo que le permite adaptarse a las necesidades específicas de la gestión de aparcamientos sin empezar de cero. Este enfoque ahorra tiempo y recursos al tiempo que crea una solución altamente eficiente y escalable que mejora las operaciones de aparcamiento y mejora la experiencia general del usuario.
 
-
 Los datos en este paradigma de aprendizaje consisten en:
 
 - **Datos vistos**: imágenes y sus etiquetas correspondientes.
