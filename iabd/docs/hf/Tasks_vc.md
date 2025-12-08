@@ -737,14 +737,14 @@ Entrega el fichero py y las imágenes que hayas utilizado.
 
 ## 4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)
 
-La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes de una o de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  
+La clasificación de imágenes sin entrenamiento previo (Zero-shot) es una tarea de visión artificial que consiste en clasificar imágenes de una o de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  
 
 ![](./img/zero_shot_image_classification_explication.png)
 
 --- 
-### ¿Qué es el aprendizaje zero-shot?
+### Pero, ¿qué es eso del aprendizaje zero-shot (Zero-Shot learning)?
 
-El aprendizaje zero-shot (ZSL) es un enfoque de machine learning en el que un modelo es capaz de reconocer o clasificar categorías para las que no ha visto ningún ejemplo etiquetado durante el entrenamiento. En lugar de aprender directamente a partir de ejemplos de esas clases, se apoya en conocimiento auxiliar (descripciones textuales, atributos, embeddings, etc.) y en lo que ya ha aprendido sobre otras clases relacionadas.​
+El **aprendizaje zero-shot (ZSL)** es un enfoque de machine learning en el que un modelo es capaz de reconocer o clasificar categorías para las que no ha visto ningún ejemplo etiquetado durante el entrenamiento. En lugar de aprender directamente a partir de ejemplos de esas clases, se apoya en conocimiento auxiliar (descripciones textuales, atributos, embeddings, etc.) y en lo que ya ha aprendido sobre otras clases relacionadas.​
 
 #### Idea básica
 En el aprendizaje supervisado clásico (y en few-shot/one-shot) el modelo ve ejemplos etiquetados de todas las clases que luego tendrá que reconocer. En zero-shot, el modelo nunca ve ejemplos etiquetados de las clases “no vistas”, pero puede inferirlas gracias a información semántica sobre esas clases (por ejemplo, descripciones, atributos o relaciones con clases conocidas).​
@@ -752,8 +752,8 @@ En el aprendizaje supervisado clásico (y en few-shot/one-shot) el modelo ve eje
 **Un ejemplo intuitivo**: un niño puede aprender qué es un “pájaro” leyendo una descripción (tiene plumas, pico, alas…) y luego reconocer un pájaro sin haber visto antes fotos etiquetadas como “pájaro”.​
 
 ### Zero-shot vs. few-shot y generalizado zero-shot
-- Few-shot / one-shot: el modelo recibe unos pocos ejemplos etiquetados (p. ej. 1, 5 o 10) de las nuevas clases para adaptarse.​
-- Zero-shot: no hay ejemplos etiquetados de las nuevas clases; solo información auxiliar.​
+- **Few-shot** / **one-shot**: el modelo recibe unos pocos ejemplos etiquetados (p. ej. 1, 5 o 10) de las nuevas clases para adaptarse.​
+- **Zero-shot**: no hay ejemplos etiquetados de las nuevas clases; solo información auxiliar.​
 
 En muchos escenarios reales, el modelo debe clasificar datos que pueden pertenecer tanto a clases ya vistas como a clases nuevas: esto se llama aprendizaje generalizado zero-shot (GZSL). En GZSL hay un problema adicional: el modelo tiende a sesgarse hacia las clases vistas, así que se necesitan técnicas específicas para reducir ese sesgo.​
 
@@ -764,20 +764,70 @@ Como no hay ejemplos etiquetados de las clases nuevas, los métodos ZSL suelen u
 - Atributos semánticos (color, forma, “insecto volador amarillo a rayas”, etc.).​
 - Embeddings vectoriales (representaciones numéricas) de palabras, imágenes u otras modalidades.​
 
-Una estrategia común es representar tanto las muestras como las clases como vectores en un espacio de incrustación conjunta y luego clasificar midiendo la similitud (coseno, distancia euclídea, etc.) entre la muestra y cada clase. Si la incrustación de una muestra está más cerca de la incrustación de la clase “abeja” que de otras, se clasifica como “abeja”, aunque nunca se hayan visto ejemplos etiquetados de abejas.​
+Una estrategia común es representar tanto las muestras como las clases como vectores en un espacio de incrustación conjunta y luego clasificar midiendo la similitud (coseno, distancia euclídea, etc.) entre la muestra y cada clase. Si la incrustación de una muestra está más cerca de la incrustación de la clase “abeja” que de otras, se clasifica como “abeja”, aunque nunca se hayan visto ejemplos etiquetados de abejas.​ La palabra rei está más cerca de reina que la de manzana. Pero también debemos pensar que mantequilla y tostada suelen estar "cerca" semánticamente ya que aparecen juntas en muchos textos.
 
 ### Relación con modelos preentrenados y aprendizaje por transferencia
-ZSL suele apoyarse en aprendizaje por transferencia: se reutilizan modelos ya entrenados (por ejemplo, BERT para texto, ResNet o ViT para imágenes) para obtener buenas representaciones sin empezar desde cero. Estos modelos preentrenados generan embeddings útiles que luego se pueden combinar con información auxiliar para hacer clasificación zero-shot.​
+ZSL suele apoyarse en aprendizaje por transferencia: se reutilizan modelos ya entrenados (por ejemplo, **BERT** para texto, **ResNet** o **ViT** para imágenes) para obtener buenas representaciones sin empezar desde cero. Estos modelos preentrenados generan *embeddings* útiles que luego se pueden combinar con información auxiliar para hacer clasificación zero-shot.​
 
-Los grandes modelos de lenguaje (LLM) son especialmente interesantes para ZSL porque, al estar entrenados en enormes corpus de texto, capturan el significado de las palabras y las etiquetas, y pueden razonar sobre clases que no han visto etiquetadas explícitamente.​
+Los grandes modelos de lenguaje (LLM) son especialmente interesantes para ZSL porque, al estar entrenados en enormes *corpus* de texto, capturan el significado de las palabras y las etiquetas, y pueden razonar sobre clases que no han visto etiquetadas explícitamente.​
 
 ### Variantes y métodos generativos
-Además de los métodos basados en incrustaciones, existen enfoques generativos que usan modelos como VAE, GAN o modelos de IA generativa para sintetizar ejemplos de las clases no vistas a partir de sus descripciones. Una vez generados y etiquetados esos ejemplos sintéticos, el problema se convierte en un aprendizaje supervisado clásico.​
+Además de los métodos basados en incrustaciones, existen enfoques generativos que usan modelos como **VAE**, **GAN** o modelos de IA generativa para sintetizar ejemplos de las clases no vistas a partir de sus descripciones. Una vez generados y etiquetados esos ejemplos sintéticos, el problema se convierte en un aprendizaje supervisado clásico.​
+
+> “Ejemplos sintéticos” son datos creados artificialmente por un modelo o algoritmo, en lugar de venir de casos reales observados.​
+En el contexto de zero-shot, significa que el modelo genera “falsos ejemplos” de una clase nueva (por ejemplo, textos que describen o simulan esa clase) usando su conocimiento previo y descripciones auxiliares; después, esos ejemplos generados se tratan como si fueran datos de entrenamiento normales para entrenar o ajustar otro modelo
 
 En resumen, **el aprendizaje zero-shot permite que un modelo generalice a categorías nuevas utilizando conocimiento semántico y modelos preentrenados, reduciendo la necesidad de grandes conjuntos de datos etiquetados para cada nueva clase que se quiera reconocer**.
 
 ---
-Respecto al uso de ZSL, la clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, **un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos**.
+Volviendo a la visión por computador, la clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, **un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos**.
+
+### Aprendizaje con pocos ejemplos
+El aprendizaje con pocos ejemplos es un método en el que los sistemas aprenden a reconocer nuevos objetos utilizando solo un pequeño número de ejemplos. Por ejemplo, si le mostramos a un modelo algunas imágenes de un pingüino, un pelícano y un frailecillo (este pequeño grupo se llama el "conjunto de soporte"), aprende cómo son estos pájaros. 
+
+Más tarde, si le mostramos al modelo una nueva imagen, como un pingüino, compara esta nueva imagen con las de su conjunto de soporte y elige la coincidencia más cercana. Cuando es difícil reunir una gran cantidad de datos, este método es beneficioso porque el sistema aún puede aprender y adaptarse con solo unos pocos ejemplos.
+
+![](./img/aprendizaje_con_pocos_ejemplos.png)
+
+### Aprendizaje Zero-shot
+Tal y como es comentado, el aprendizaje zero-shot es una forma de que las máquinas reconozcan cosas que nunca han visto antes sin necesidad de ejemplos de ellas. Utiliza información semántica, como descripciones, para ayudar a establecer conexiones.
+
+Por ejemplo, si una máquina ha aprendido sobre animales como gatos, leones y caballos comprendiendo características como "pequeño y esponjoso", "gran felino salvaje" o "cara larga", puede utilizar este conocimiento para identificar un nuevo animal, como un tigre. Incluso si nunca ha visto un tigre antes, puede utilizar una descripción como "un animal parecido a un león con rayas oscuras" para identificarlo correctamente. Esto facilita que las máquinas aprendan y se adapten sin necesidad de muchos ejemplos.
+
+![](./img/aprendizaje_zero_shot.png)
+
+### Aprendizaje por transferencia (Transfer learning)
+El **aprendizaje por transferencia** es un paradigma de aprendizaje en el que un modelo utiliza lo que ha aprendido de una tarea para ayudar a resolver una tarea nueva similar. Esta técnica es especialmente útil cuando se trata de tareas de visión artificial como la detección de objetos, la clasificación de imágenes y el reconocimiento de patrones. 
+
+Por ejemplo, en visión artificial, un modelo preentrenado puede reconocer objetos generales, como animales, y luego ajustarse mediante el aprendizaje por transferencia para identificar objetos específicos, como diferentes razas de perros. Al reutilizar el conocimiento de tareas anteriores, el aprendizaje por transferencia facilita el entrenamiento de **modelos de visión artificial** en conjuntos de datos más pequeños, lo que ahorra tiempo y esfuerzo.
+
+![](./img/aprendizaje_por_transferencia.png)
+
+### Aplicaciones en el mundo real de varios paradigmas de aprendizaje
+
+#### Diagnóstico de enfermedades raras con aprendizaje de pocos ejemplos
+El aprendizaje con pocos ejemplos ha cambiado las reglas del juego para el sector de la salud, especialmente en imágenes médicas. Puede ayudar a los médicos a diagnosticar enfermedades raras utilizando solo unos pocos ejemplos o incluso descripciones, sin necesidad de grandes cantidades de datos. Esto es especialmente útil cuando los datos son limitados, lo que suele ser el caso porque la recopilación de grandes conjuntos de datos para afecciones raras puede ser un desafío.
+
+Por ejemplo, [SHEPHERD](https://www.medrxiv.org/content/10.1101/2022.12.07.22283238v3.full) utiliza el aprendizaje con pocos ejemplos y grafos de conocimiento biomédico para diagnosticar trastornos genéticos raros. Mapea la información del paciente, como los síntomas y los resultados de las pruebas, en una red de genes y enfermedades conocidos. Esto ayuda a identificar la causa genética probable y a encontrar casos similares, incluso cuando los datos son limitados. 
+
+![](./img/zsl_modelo_shepherd.png)
+
+#### Mejora de la detección de enfermedades de plantas con aprendizaje zero-shot
+En agricultura, la identificación rápida de enfermedades en las plantas es esencial porque los retrasos en la detección pueden provocar daños generalizados en los cultivos, la reducción de los rendimientos y pérdidas financieras significativas. Los métodos tradicionales a menudo se basan en grandes conjuntos de datos y conocimientos especializados, que no siempre son accesibles, especialmente en áreas remotas o con recursos limitados. Aquí es donde entran en juego los avances en IA, como el aprendizaje zero-shot.
+
+Supongamos que un agricultor cultiva tomates y patatas y observa síntomas como hojas amarillentas o manchas marrones. El aprendizaje cero puede ayudar a identificar enfermedades como el tizón tardío sin necesidad de grandes conjuntos de datos. Utilizando descripciones de los síntomas, el modelo puede classify enfermedades que no ha visto antes. Este método es rápido, escalable y permite a los agricultores detect diversos problemas de las plantas. Les ayuda a controlar la salud de los cultivos de forma más eficaz, tomar medidas a tiempo y reducir las pérdidas.
+
+![](./img/zsl_tomato_potato.png)
+
+#### Vehículos autónomos y aprendizaje por transferencia
+Los vehículos autónomos a menudo necesitan adaptarse a diferentes entornos para navegar de forma segura. El aprendizaje por transferencia les ayuda a utilizar el conocimiento previo para adaptarse rápidamente a nuevas condiciones sin comenzar su entrenamiento desde cero. Combinadas con la visión artificial, que ayuda a los vehículos a interpretar la información visual, estas tecnologías permiten una navegación más fluida en diferentes terrenos y condiciones climáticas, lo que hace que la conducción autónoma sea más eficiente y fiable.
+
+Un buen ejemplo de ello es un [sistema de gestión de aparcamientos](https://docs.ultralytics.com/es/guides/parking-management/#what-is-parking-management-system) que utiliza [YOLO11 Ultralytics](https://ultralytics.com/) para controlar las plazas de aparcamiento. YOLO11, un modelo de detección de objetos preentrenado, puede ajustarse mediante aprendizaje por transferencia para identificar plazas de aparcamiento vacías y ocupadas en tiempo real. Al entrenar el modelo en un conjunto de datos más pequeño de imágenes de aparcamientos, aprende a detect con precisión plazas abiertas, plazas llenas e incluso zonas reservadas.
+
+![](./img/zsl_parking_with_yolo.png)
+‍
+Integrado con otras tecnologías, este sistema puede guiar a los conductores hasta la plaza disponible más cercana, ayudando a reducir el tiempo de búsqueda y la congestión del tráfico. El aprendizaje por transferencia lo hace posible basándose en las capacidades de detección de objetos existentes de YOLO11, lo que le permite adaptarse a las necesidades específicas de la gestión de aparcamientos sin empezar de cero. Este enfoque ahorra tiempo y recursos al tiempo que crea una solución altamente eficiente y escalable que mejora las operaciones de aparcamiento y mejora la experiencia general del usuario.
+
 
 Los datos en este paradigma de aprendizaje consisten en:
 
