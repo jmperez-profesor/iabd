@@ -841,18 +841,11 @@ Device set to use cpu
     {'score': 0.00014685996575281024, 'label': 'fox'}
 ]
 ```
-### Resultado en JSON:
-```json
-[
-    {'score': 0.9991913437843323, 'label': 'owl'}, 
-    {'score': 0.0004113616014365107, 'label': 'seagull'}, 
-    {'score': 0.00025038630701601505, 'label': 'bear'}, 
-    {'score': 0.00014685996575281024, 'label': 'fox'}
-]
-```
 ## 📝 **Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio** 
 
- Crea una interfaz interactiva con Gradio que permita subir una imagen, introducir etiquetas personalizadas y mostrar las probabilidades para cada etiqueta.
+Crea una interfaz interactiva con Gradio que permita subir una imagen, introducir etiquetas personalizadas y mostrar las probabilidades para cada etiqueta.
+
+![](./img/act4_prototipo.png)
 
 **Requisitos:**
 - Usar el modelo `openai/clip-vit-base-patch32`.

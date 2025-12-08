@@ -936,32 +936,26 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#reconocimiento-de-acciones" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reconocimiento de acciones
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reconocimiento de acciones">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pipeline-de-clasificacion-de-imagenes-sin-entrenamiento-previo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pipeline de clasificación de imágenes sin entrenamiento previo
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#actividad-4-clasificacion-zero-shot-con-clip-usando-gradio" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensiones-posibles-optativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 Extensiones posibles (Optativas)
+    </span>
+  </a>
   
 </li>
         
@@ -2203,9 +2197,9 @@ Pasos:  </p>
 <p>Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. </p>
 <p>Entrega el fichero py y las imágenes que hayas utilizado. </p>
 <h2 id="4-modelo-de-clasificacion-de-imagenes-sin-entrenamiento-previo-zero-shot-image-classification">4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)</h2>
-<p>La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes en una de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  </p>
+<p>La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes de una o de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  </p>
 <p><img alt="" src="../img/zero_shot_image_classification_explication.png" /></p>
-<p>La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos.</p>
+<p>La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, <strong>un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos</strong>c.</p>
 <p>Los datos en este paradigma de aprendizaje consisten en</p>
 <ul>
 <li><strong>Datos vistos</strong>: imágenes y sus etiquetas correspondientes.</li>
@@ -2215,6 +2209,7 @@ Pasos:  </p>
 <p>Tradicionalmente, la clasificación de imágenes requiere entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un ajuste fino para «recalibrar» el modelo.</p>
 <p>Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.</p>
 <p>Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.</p>
+<p>Hugging Face proporciona herramientas y procesos para implementar la clasificación de imágenes sin entrenamiento previo utilizando modelos multimodales preentrenados como <strong>CLIP</strong> (Contrastive Language–Image Pre-training), que se entrenan con grandes conjuntos de datos de imágenes emparejadas con descripciones en lenguaje natural. Estos modelos aprenden a comprender la relación entre el contenido visual y el lenguaje, lo que los hace muy eficaces para tareas sin entrenamiento previo. Por ejemplo, un modelo entrenado en categorías de objetos comunes puede clasificar una imagen de un barco comparando sus características visuales con la incrustación semántica de la palabra «barco».</p>
 <h2 id="modelos-disponibles-en-hugging-face_1">🧰 Modelos disponibles en Hugging Face</h2>
 <table>
 <thead>
@@ -2245,15 +2240,14 @@ Pasos:  </p>
 <p>Hugging Face proporciona la tarea mediante <code>pipeline</code>. Para poder ejecuarlo necesitamos instalar previamente las librerías <code>transformers</code>, <code>torch</code> y <code>PIL</code> (CLIPImageProcessor require la librería PIL):</p>
 <p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch<span class="w"> </span>pillow
 </code></pre></div>
-A continuación probamos un ejemplo sencillo que en el que pasamos una imagen al pipeline y mostramos el resulado con consola.</p>
+A continuación probamos un ejemplo sencillo en el que pasamos una imagen al pipeline y mostramos el resulado por la consola.</p>
 <p><img alt="" src="../img/jevgeni.jpg" /></p>
 <blockquote>
-<p>La imagen la podéis descargar desde esta url <a href="https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640"></a></p>
+<p>La imagen la podéis descargar desde esta url <a href="https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640">https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640</a></p>
 </blockquote>
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
-<span class="c1">#classifier = pipeline(&quot;zero-shot-image-classification&quot;, model=&quot;openai/clip-vit-base-patch32&quot;)</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span><span class="p">)</span>
 
 <span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
 <span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fox&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;seagull&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">]</span> <span class="c1">#[&quot;zorro&quot;, &quot;oso&quot;, &quot;gaviota&quot;, &quot;búho&quot;]</span>
@@ -2278,20 +2272,20 @@ This<span class="w"> </span>will<span class="w"> </span>result<span class="w"> <
 </blockquote>
 <p>Para eliminar la advertencia instalamos las librerías <code>accelerate</code> y <code>torchvision</code>:
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>accelerate<span class="w"> </span>torchvision
-</code></pre></div></p>
-<p>Y retocamos el código anterior realizando los siguientes ajustes:
+</code></pre></div>
+Y retocamos el código anterior realizando los siguientes ajustes:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">AutoImageProcessor</span>
 
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span>
 
-<span class="c1"># Fozramos el uso del procesador &quot;fast&quot;</span>
+<span class="c1"># Forzamos el uso del procesador &quot;fast&quot;</span>
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
     <span class="n">task</span><span class="o">=</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
     <span class="n">image_processor</span><span class="o">=</span><span class="n">image_processor</span><span class="p">,</span>  <span class="c1"># usamos el procesador rápido</span>
-    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  <span class="c1"># si tenemos GPU configurada, la usa</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  <span class="c1"># si tenemos GPU configurada, la usa. Si no, usa la CPU normal</span>
 <span class="p">)</span>
 
 <span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
@@ -2317,10 +2311,18 @@ Resultado (ya no se muestra la advertencia):
 <span class="w">    </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00014685996575281024</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">ox&#39;</span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<h3 id="reconocimiento-de-acciones">Reconocimiento de acciones</h3>
-<p>El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.</p>
-<h4 id="pipeline-de-clasificacion-de-imagenes-sin-entrenamiento-previo">Pipeline de clasificación de imágenes sin entrenamiento previo</h4>
-<p>La forma más sencilla de probar la inferencia con un modelo que admite la clasificación de imágenes sin entrenamiento previo es utilizar el pipeline() correspondiente. Instancie un pipeline desde un punto de control en Hugging Face Hub:</p>
+<h2 id="actividad-4-clasificacion-zero-shot-con-clip-usando-gradio">📝 <strong>Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio</strong></h2>
+<p>Crea una interfaz interactiva con Gradio que permita subir una imagen, introducir etiquetas personalizadas y mostrar las probabilidades para cada etiqueta.</p>
+<p><strong>Requisitos:</strong>
+- Usar el modelo <code>openai/clip-vit-base-patch32</code>.
+- Implementar la interfaz con Gradio.
+- Mostrar las etiquetas ordenadas por score.</p>
+<h2 id="extensiones-posibles-optativas">🧩 Extensiones posibles (Optativas)</h2>
+<ul>
+<li>Añadir visualización de la imagen con la etiqueta más probable superpuesta.</li>
+<li>Integrar con una API para obtener etiquetas dinámicas.</li>
+<li>Comparar resultados con otro modelo CLIP entrenado en LAION.</li>
+</ul>
 
 
 
