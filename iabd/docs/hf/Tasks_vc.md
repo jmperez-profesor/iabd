@@ -790,7 +790,7 @@ Más tarde, si le mostramos al modelo una nueva imagen, como un pingüino, compa
 ![](./img/aprendizaje_con_pocos_ejemplos.png)
 
 ### Aprendizaje Zero-shot
-Tal y como es comentado, el aprendizaje zero-shot es una forma de que las máquinas reconozcan cosas que nunca han visto antes sin necesidad de ejemplos de ellas. Utiliza información semántica, como descripciones, para ayudar a establecer conexiones.
+Tal y como hemos comentado, el aprendizaje zero-shot es una forma de que las máquinas reconozcan cosas que nunca han visto antes sin necesidad de ejemplos de ellas. Utiliza información semántica, como descripciones, para ayudar a establecer conexiones.
 
 Por ejemplo, si una máquina ha aprendido sobre animales como gatos, leones y caballos comprendiendo características como "pequeño y esponjoso", "gran felino salvaje" o "cara larga", puede utilizar este conocimiento para identificar un nuevo animal, como un tigre. Incluso si nunca ha visto un tigre antes, puede utilizar una descripción como "un animal parecido a un león con rayas oscuras" para identificarlo correctamente. Esto facilita que las máquinas aprendan y se adapten sin necesidad de muchos ejemplos.
 
@@ -840,7 +840,7 @@ Por el contrario, los modelos de clasificación de imágenes de vocabulario abie
 
 Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.
 
-Hugging Face proporciona herramientas y procesos para implementar la clasificación de imágenes sin entrenamiento previo utilizando modelos multimodales preentrenados como **CLIP** (Contrastive Language–Image Pre-training), que se entrenan con grandes conjuntos de datos de imágenes emparejadas con descripciones en lenguaje natural. Estos modelos aprenden a comprender la relación entre el contenido visual y el lenguaje, lo que los hace muy eficaces para tareas sin entrenamiento previo. Por ejemplo, un modelo entrenado en categorías de objetos comunes puede clasificar una imagen de un barco comparando sus características visuales con la incrustación semántica de la palabra «barco».
+Hugging Face proporciona herramientas y procesos para implementar la clasificación de imágenes sin entrenamiento previo utilizando modelos multimodales preentrenados como **CLIP** (Contrastive Language–Image Pre-training), que se entrenan con grandes conjuntos de datos de imágenes emparejadas con descripciones en lenguaje natural. Estos modelos aprenden a comprender la relación entre el contenido visual y el lenguaje, lo que los hace muy eficaces para tareas sin entrenamiento previo. **Por ejemplo**, un modelo entrenado en categorías de objetos comunes puede clasificar una imagen de un barco comparando sus características visuales con la incrustación semántica de la palabra «barco».
 
 ## 🧰 Modelos disponibles en Hugging Face
 
