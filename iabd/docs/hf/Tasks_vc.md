@@ -741,15 +741,51 @@ La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea 
 
 ![](./img/zero_shot_image_classification_explication.png)
 
-La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, **un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos**c.
+--- 
+### ¿Qué es el aprendizaje zero-shot?
 
-Los datos en este paradigma de aprendizaje consisten en
+El aprendizaje zero-shot (ZSL) es un enfoque de machine learning en el que un modelo es capaz de reconocer o clasificar categorías para las que no ha visto ningún ejemplo etiquetado durante el entrenamiento. En lugar de aprender directamente a partir de ejemplos de esas clases, se apoya en conocimiento auxiliar (descripciones textuales, atributos, embeddings, etc.) y en lo que ya ha aprendido sobre otras clases relacionadas.​
+
+#### Idea básica
+En el aprendizaje supervisado clásico (y en few-shot/one-shot) el modelo ve ejemplos etiquetados de todas las clases que luego tendrá que reconocer. En zero-shot, el modelo nunca ve ejemplos etiquetados de las clases “no vistas”, pero puede inferirlas gracias a información semántica sobre esas clases (por ejemplo, descripciones, atributos o relaciones con clases conocidas).​
+
+**Un ejemplo intuitivo**: un niño puede aprender qué es un “pájaro” leyendo una descripción (tiene plumas, pico, alas…) y luego reconocer un pájaro sin haber visto antes fotos etiquetadas como “pájaro”.​
+
+### Zero-shot vs. few-shot y generalizado zero-shot
+- Few-shot / one-shot: el modelo recibe unos pocos ejemplos etiquetados (p. ej. 1, 5 o 10) de las nuevas clases para adaptarse.​
+- Zero-shot: no hay ejemplos etiquetados de las nuevas clases; solo información auxiliar.​
+
+En muchos escenarios reales, el modelo debe clasificar datos que pueden pertenecer tanto a clases ya vistas como a clases nuevas: esto se llama aprendizaje generalizado zero-shot (GZSL). En GZSL hay un problema adicional: el modelo tiende a sesgarse hacia las clases vistas, así que se necesitan técnicas específicas para reducir ese sesgo.​
+
+### Papel de la información auxiliar y las incrustaciones (embeddings)
+
+Como no hay ejemplos etiquetados de las clases nuevas, los métodos ZSL suelen usar información auxiliar como:​
+- Descripciones de texto de las clases (por ejemplo, “oso polar: parecido a un oso pardo pero con pelaje blanco”).​
+- Atributos semánticos (color, forma, “insecto volador amarillo a rayas”, etc.).​
+- Embeddings vectoriales (representaciones numéricas) de palabras, imágenes u otras modalidades.​
+
+Una estrategia común es representar tanto las muestras como las clases como vectores en un espacio de incrustación conjunta y luego clasificar midiendo la similitud (coseno, distancia euclídea, etc.) entre la muestra y cada clase. Si la incrustación de una muestra está más cerca de la incrustación de la clase “abeja” que de otras, se clasifica como “abeja”, aunque nunca se hayan visto ejemplos etiquetados de abejas.​
+
+### Relación con modelos preentrenados y aprendizaje por transferencia
+ZSL suele apoyarse en aprendizaje por transferencia: se reutilizan modelos ya entrenados (por ejemplo, BERT para texto, ResNet o ViT para imágenes) para obtener buenas representaciones sin empezar desde cero. Estos modelos preentrenados generan embeddings útiles que luego se pueden combinar con información auxiliar para hacer clasificación zero-shot.​
+
+Los grandes modelos de lenguaje (LLM) son especialmente interesantes para ZSL porque, al estar entrenados en enormes corpus de texto, capturan el significado de las palabras y las etiquetas, y pueden razonar sobre clases que no han visto etiquetadas explícitamente.​
+
+### Variantes y métodos generativos
+Además de los métodos basados en incrustaciones, existen enfoques generativos que usan modelos como VAE, GAN o modelos de IA generativa para sintetizar ejemplos de las clases no vistas a partir de sus descripciones. Una vez generados y etiquetados esos ejemplos sintéticos, el problema se convierte en un aprendizaje supervisado clásico.​
+
+En resumen, **el aprendizaje zero-shot permite que un modelo generalice a categorías nuevas utilizando conocimiento semántico y modelos preentrenados, reduciendo la necesidad de grandes conjuntos de datos etiquetados para cada nueva clase que se quiera reconocer**.
+
+---
+Respecto al uso de ZSL, la clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, **un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos**.
+
+Los datos en este paradigma de aprendizaje consisten en:
 
 - **Datos vistos**: imágenes y sus etiquetas correspondientes.
 - **Datos no vistos**: solo etiquetas y sin imágenes.
 - **Información auxiliar**: información adicional proporcionada al modelo durante el entrenamiento que conecta los datos vistos y no vistos. Esto puede ser en forma de descripción textual o incrustaciones de palabras.
 
-Tradicionalmente, la clasificación de imágenes requiere entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un ajuste fino para «recalibrar» el modelo.
+Tradicionalmente, la clasificación de imágenes ha requierdo entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un fine-tunning (ajuste fino) para «recalibrar» el modelo.
 
 Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.
 

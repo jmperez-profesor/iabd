@@ -1,15 +1,12 @@
 ---
-title: Tasks de Hugging face
+title: Tasks NLP con los Transformers y pipelines de Hugging Face
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-## Objetivos
-
-- Diferenciar qué es un "task" en Machine Learning según Hugging Face.
-- Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.
-- Probar ejemplos prácticos con pipelines de Hugging Face.
-
-Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.
+## Objetivos de la sesión
+- Comprender la arquitectura Transformer
+- Aprender a usar la librería Hugging Face Transformers
+- Realizar tareas NLP con pipelines
 
 # ¿Qué es un task?
 
