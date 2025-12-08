@@ -906,8 +906,35 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-disponibles-en-hugging-face_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-usar-la-tarea-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Cómo usar la tarea en Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Cómo usar la tarea en Python">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultado-en-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado en JSON:
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#reconocimiento-de-acciones" class="md-nav__link">
@@ -916,7 +943,8 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Reconocimiento de acciones">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#pipeline-de-clasificacion-de-imagenes-sin-entrenamiento-previo" class="md-nav__link">
@@ -924,6 +952,11 @@
       Pipeline de clasificación de imágenes sin entrenamiento previo
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2182,11 +2215,110 @@ Pasos:  </p>
 <p>Tradicionalmente, la clasificación de imágenes requiere entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un ajuste fino para «recalibrar» el modelo.</p>
 <p>Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.</p>
 <p>Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.</p>
-<h4 id="reconocimiento-de-acciones">Reconocimiento de acciones</h4>
-<p>El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.</p>
-<p>Antes de comenzar, instalamos todas las bibliotecas necesarias:
-<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="err">«</span><span class="n">transformers</span><span class="p">[</span><span class="n">torch</span><span class="p">]</span><span class="err">»</span> <span class="n">pillow</span>
+<h2 id="modelos-disponibles-en-hugging-face_1">🧰 Modelos disponibles en Hugging Face</h2>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Arquitectura</th>
+<th>Característica</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openai/clip-vit-base-patch32</code></td>
+<td>CLIP (ViT + Transformer)</td>
+<td>Texto + Imagen</td>
+<td><a href="https://huggingface.co/openai/clip-vit-base-patch32">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>laion/CLIP-ViT-B-32-laion2B-s34B-b79K</code></td>
+<td>CLIP</td>
+<td>Entrenado en LAION</td>
+<td><a href="https://huggingface.co/laion/CLIP-ViT-B-32-laion2B-s34B-b79K">🔗 Ver modelo</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="como-usar-la-tarea-en-python">🧪 Cómo usar la tarea en Python</h2>
+<p>Hugging Face proporciona la tarea mediante <code>pipeline</code>. Para poder ejecuarlo necesitamos instalar previamente las librerías <code>transformers</code>, <code>torch</code> y <code>PIL</code> (CLIPImageProcessor require la librería PIL):</p>
+<p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch<span class="w"> </span>pillow
+</code></pre></div>
+A continuación probamos un ejemplo sencillo que en el que pasamos una imagen al pipeline y mostramos el resulado con consola.</p>
+<p><img alt="" src="../img/jevgeni.jpg" /></p>
+<blockquote>
+<p>La imagen la podéis descargar desde esta url <a href="https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640"></a></p>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="c1">#classifier = pipeline(&quot;zero-shot-image-classification&quot;, model=&quot;openai/clip-vit-base-patch32&quot;)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
+<span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fox&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;seagull&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">]</span> <span class="c1">#[&quot;zorro&quot;, &quot;oso&quot;, &quot;gaviota&quot;, &quot;búho&quot;]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+Predicciones:
+<div class="highlight"><pre><span></span><code>Using<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>image<span class="w"> </span>processor<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;use_fast&quot;</span><span class="w"> </span>is<span class="w"> </span><span class="nb">unset</span><span class="w"> </span>and<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>processor<span class="w"> </span>was<span class="w"> </span>saved<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>model.<span class="w"> </span>
+<span class="s2">&quot;use_fast=True&quot;</span><span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>behavior<span class="w"> </span><span class="k">in</span><span class="w"> </span>v4.52,<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>saved<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>processor.<span class="w"> </span>
+This<span class="w"> </span>will<span class="w"> </span>result<span class="w"> </span><span class="k">in</span><span class="w"> </span>minor<span class="w"> </span>differences<span class="w"> </span><span class="k">in</span><span class="w"> </span>outputs.<span class="w"> </span>You<span class="s1">&#39;ll still be able to use a slow processor with &quot;use_fast=False&quot;.</span>
+<span class="s1">Device set to use cpu</span>
+<span class="s1">[</span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.9991915822029114, &#39;</span>label<span class="s1">&#39;: &#39;</span>owl<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00041212819633074105, &#39;</span>label<span class="s1">&#39;: &#39;</span>seagull<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00024944543838500977, &#39;</span>label<span class="s1">&#39;: &#39;</span>bear<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00014685299538541585, &#39;</span>label<span class="s1">&#39;: &#39;</span>fox<span class="err">&#39;</span><span class="o">}</span>
+<span class="o">]</span>
 </code></pre></div></p>
+<blockquote>
+<p>Es posible que veamos una advertencia del <code>transformers</code> indicando que el <code>image processor</code>se guardó con el modelo más lento (“slow”), y que en una versión futura (v4.52) el valor por defecto será <code>use_fast=True</code>.</p>
+</blockquote>
+<p>Para eliminar la advertencia instalamos las librerías <code>accelerate</code> y <code>torchvision</code>:
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>accelerate<span class="w"> </span>torchvision
+</code></pre></div></p>
+<p>Y retocamos el código anterior realizando los siguientes ajustes:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">AutoImageProcessor</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span>
+
+<span class="c1"># Fozramos el uso del procesador &quot;fast&quot;</span>
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="n">task</span><span class="o">=</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+    <span class="n">image_processor</span><span class="o">=</span><span class="n">image_processor</span><span class="p">,</span>  <span class="c1"># usamos el procesador rápido</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  <span class="c1"># si tenemos GPU configurada, la usa</span>
+<span class="p">)</span>
+
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
+<span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fox&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;seagull&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+Resultado (ya no se muestra la advertencia):
+<div class="highlight"><pre><span></span><code>Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+<span class="o">[</span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.9991913437843323,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;owl&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.0004113616014365107,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;seagull&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.00025038630701601505,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;bear&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.00014685996575281024,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;fox&#39;</span><span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></p>
+<h3 id="resultado-en-json">Resultado en JSON:</h3>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9991913437843323</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;owl&#39;</span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0004113616014365107</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;seagull&#39;</span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00025038630701601505</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;bear&#39;</span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00014685996575281024</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">f</span><span class="err">ox&#39;</span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="reconocimiento-de-acciones">Reconocimiento de acciones</h3>
+<p>El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.</p>
 <h4 id="pipeline-de-clasificacion-de-imagenes-sin-entrenamiento-previo">Pipeline de clasificación de imágenes sin entrenamiento previo</h4>
 <p>La forma más sencilla de probar la inferencia con un modelo que admite la clasificación de imágenes sin entrenamiento previo es utilizar el pipeline() correspondiente. Instancie un pipeline desde un punto de control en Hugging Face Hub:</p>
 
