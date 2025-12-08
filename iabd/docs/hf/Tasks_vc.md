@@ -737,11 +737,11 @@ Entrega el fichero py y las imágenes que hayas utilizado.
 
 ## 4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)
 
-La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes en una de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  
+La clasificación de imágenes sin entrenamiento previo (Zero-shot) es la tarea de clasificar clases nunca vistas durante el entrenamiento de un modelo. Dicho de otra manera, la clasificación de imágenes sin entrenamiento previo es una tarea de visión artificial que consiste en clasificar imágenes de una o de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  
 
 ![](./img/zero_shot_image_classification_explication.png)
 
-La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos.
+La clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, **un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos**c.
 
 Los datos en este paradigma de aprendizaje consisten en
 
@@ -754,6 +754,8 @@ Tradicionalmente, la clasificación de imágenes requiere entrenar un modelo con
 Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.
 
 Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.
+
+Hugging Face proporciona herramientas y procesos para implementar la clasificación de imágenes sin entrenamiento previo utilizando modelos multimodales preentrenados como **CLIP** (Contrastive Language–Image Pre-training), que se entrenan con grandes conjuntos de datos de imágenes emparejadas con descripciones en lenguaje natural. Estos modelos aprenden a comprender la relación entre el contenido visual y el lenguaje, lo que los hace muy eficaces para tareas sin entrenamiento previo. Por ejemplo, un modelo entrenado en categorías de objetos comunes puede clasificar una imagen de un barco comparando sus características visuales con la incrustación semántica de la palabra «barco».
 
 ## 🧰 Modelos disponibles en Hugging Face
 
@@ -771,17 +773,16 @@ Hugging Face proporciona la tarea mediante `pipeline`. Para poder ejecuarlo nece
 ```bash
 pip install transformers torch pillow
 ```
-A continuación probamos un ejemplo sencillo que en el que pasamos una imagen al pipeline y mostramos el resulado con consola.
+A continuación probamos un ejemplo sencillo en el que pasamos una imagen al pipeline y mostramos el resulado por la consola.
 
 ![](./img/jevgeni.jpg)
 
-> La imagen la podéis descargar desde esta url [](https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&force=true&w=640)
+> La imagen la podéis descargar desde esta url [https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&force=true&w=640](https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&force=true&w=640)
 
 ```python
 from transformers import pipeline
 
-#classifier = pipeline("zero-shot-image-classification", model="openai/clip-vit-base-patch32")
-classifier = pipeline("zero-shot-image-classification", model="openai/clip-vit-base-patch32", use_fast=True)
+classifier = pipeline("zero-shot-image-classification", model="openai/clip-vit-base-patch32")
 
 image_path = "./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg"
 candidate_labels = ["fox", "bear", "seagull", "owl"] #["zorro", "oso", "gaviota", "búho"]
@@ -808,21 +809,20 @@ Para eliminar la advertencia instalamos las librerías `accelerate` y `torchvisi
 ```bash
 pip install accelerate torchvision
 ```
-
 Y retocamos el código anterior realizando los siguientes ajustes:
 ```python
 from transformers import pipeline, AutoImageProcessor
 
 model_name = "openai/clip-vit-base-patch32"
 
-# Fozramos el uso del procesador "fast"
+# Forzamos el uso del procesador "fast"
 image_processor = AutoImageProcessor.from_pretrained(model_name, use_fast=True)
 
 classifier = pipeline(
     task="zero-shot-image-classification",
     model=model_name,
     image_processor=image_processor,  # usamos el procesador rápido
-    device_map="auto"  # si tenemos GPU configurada, la usa
+    device_map="auto"  # si tenemos GPU configurada, la usa. Si no, usa la CPU normal
 )
 
 image_path = "./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg"
@@ -850,10 +850,16 @@ Device set to use cpu
     {'score': 0.00014685996575281024, 'label': 'fox'}
 ]
 ```
-### Reconocimiento de acciones
-El reconocimiento de acciones es la tarea de identificar cuándo una persona en una imagen o vídeo está realizando una acción determinada de entre un conjunto de acciones. Si no se conocen de antemano todas las acciones posibles, los modelos convencionales de aprendizaje profundo fallan. Con el aprendizaje sin disparos, para un dominio determinado de un conjunto de acciones, podemos crear una correspondencia que conecte las características de bajo nivel y una descripción semántica de los datos auxiliares para clasificar clases de acciones desconocidas.
+## 📝 **Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio** 
 
-#### Pipeline de clasificación de imágenes sin entrenamiento previo
+ Crea una interfaz interactiva con Gradio que permita subir una imagen, introducir etiquetas personalizadas y mostrar las probabilidades para cada etiqueta.
 
-La forma más sencilla de probar la inferencia con un modelo que admite la clasificación de imágenes sin entrenamiento previo es utilizar el pipeline() correspondiente. Instancie un pipeline desde un punto de control en Hugging Face Hub:
+**Requisitos:**
+- Usar el modelo `openai/clip-vit-base-patch32`.
+- Implementar la interfaz con Gradio.
+- Mostrar las etiquetas ordenadas por score.
 
+## 🧩 Extensiones posibles (Optativas)
+- Añadir visualización de la imagen con la etiqueta más probable superpuesta.
+- Integrar con una API para obtener etiquetas dinámicas.
+- Comparar resultados con otro modelo CLIP entrenado en LAION.
