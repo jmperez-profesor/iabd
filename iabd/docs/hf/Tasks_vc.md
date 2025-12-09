@@ -625,7 +625,7 @@ Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que
 Fuente: [https://unsplash.com/photos/EC_GhFRGTAY](https://unsplash.com/photos/EC_GhFRGTAY)
 
 Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
-```python {hl_lines="5 6 7" linenums="1"} 
+```python {hl_lines="5 6" linenums="1"} 
 from transformers import pipeline 
 from PIL import Image
 import requests
@@ -815,14 +815,14 @@ Por ejemplo, [SHEPHERD](https://www.medrxiv.org/content/10.1101/2022.12.07.22283
 #### Mejora de la detección de enfermedades de plantas con aprendizaje zero-shot
 En agricultura, la identificación rápida de enfermedades en las plantas es esencial porque los retrasos en la detección pueden provocar daños generalizados en los cultivos, la reducción de los rendimientos y pérdidas financieras significativas. Los métodos tradicionales a menudo se basan en grandes conjuntos de datos y conocimientos especializados, que no siempre son accesibles, especialmente en áreas remotas o con recursos limitados. Aquí es donde entran en juego los avances en IA, como el aprendizaje zero-shot.
 
-Supongamos que un agricultor cultiva tomates y patatas y observa síntomas como hojas amarillentas o manchas marrones. El aprendizaje cero puede ayudar a identificar enfermedades como el tizón tardío sin necesidad de grandes conjuntos de datos. Utilizando descripciones de los síntomas, el modelo puede classify enfermedades que no ha visto antes. Este método es rápido, escalable y permite a los agricultores detect diversos problemas de las plantas. Les ayuda a controlar la salud de los cultivos de forma más eficaz, tomar medidas a tiempo y reducir las pérdidas.
+Supongamos que un agricultor cultiva tomates y patatas y observa síntomas como hojas amarillentas o manchas marrones. El aprendizaje cero puede ayudar a identificar enfermedades como el tizón tardío sin necesidad de grandes conjuntos de datos. Utilizando descripciones de los síntomas, el modelo puede classify enfermedades que no ha visto antes. Este método es rápido, escalable y permite a los agricultores detectar diversos problemas de las plantas. Les ayuda a controlar la salud de los cultivos de forma más eficaz, tomar medidas a tiempo y reducir las pérdidas.
 
 ![](./img/zsl_tomato_potato.png)
 
 #### Vehículos autónomos y aprendizaje por transferencia
 Los vehículos autónomos a menudo necesitan adaptarse a diferentes entornos para navegar de forma segura. El aprendizaje por transferencia les ayuda a utilizar el conocimiento previo para adaptarse rápidamente a nuevas condiciones sin comenzar su entrenamiento desde cero. Combinadas con la visión artificial, que ayuda a los vehículos a interpretar la información visual, estas tecnologías permiten una navegación más fluida en diferentes terrenos y condiciones climáticas, lo que hace que la conducción autónoma sea más eficiente y fiable.
 
-Un buen ejemplo de ello es un [sistema de gestión de aparcamientos](https://docs.ultralytics.com/es/guides/parking-management/#what-is-parking-management-system) que utiliza [YOLO11 Ultralytics](https://ultralytics.com/) para controlar las plazas de aparcamiento. YOLO11, un modelo de detección de objetos preentrenado, puede ajustarse mediante aprendizaje por transferencia para identificar plazas de aparcamiento vacías y ocupadas en tiempo real. Al entrenar el modelo en un conjunto de datos más pequeño de imágenes de aparcamientos, aprende a detect con precisión plazas abiertas, plazas llenas e incluso zonas reservadas.
+Un buen ejemplo de ello es un [sistema de gestión de aparcamientos](https://docs.ultralytics.com/es/guides/parking-management/#what-is-parking-management-system) que utiliza [YOLO11 Ultralytics](https://ultralytics.com/) para controlar las plazas de aparcamiento. YOLO11, un modelo de detección de objetos preentrenado, puede ajustarse mediante aprendizaje por transferencia para identificar plazas de aparcamiento vacías y ocupadas en tiempo real. Al entrenar el modelo en un conjunto de datos más pequeño de imágenes de aparcamientos, aprende a detectar con precisión plazas abiertas, plazas llenas e incluso zonas reservadas.
 
 ![](./img/zsl_parking_with_yolo.png)
 ‍
