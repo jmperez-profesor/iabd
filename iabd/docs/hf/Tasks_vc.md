@@ -624,7 +624,11 @@ Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que
 
 Fuente: [https://unsplash.com/photos/EC_GhFRGTAY](https://unsplash.com/photos/EC_GhFRGTAY)
 
-Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*: 
+Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto *pipeline*. Antes, de nada, tendremos que instalar mediante PIP la librería PIL para el procesamiento de imágenes:
+```bash
+pip install Pillow
+``` 
+Una vez instalada, probamos el siguiente código:
 ```python {hl_lines="5 6" linenums="1"} 
 from transformers import pipeline 
 from PIL import Image
@@ -729,7 +733,7 @@ Pasos:
 - Crea una función “segmentation” que reciba los parámetros de entrada correspondientes. Dentro de dicha función 
 - Cuando el modelo devuelva el resultado, iterará a través del resultado y buscará la etiqueta especificada por el usuario (en el parámetro label). 
 - A continuación, la función invierte la máscara correspondiente, la aplica a la imagen y la devuelve automáticamente. 
-> NOTA: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber   
+> CONSEJO: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber que etiquetas ha detectado el modelo   
 
 Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. 
 
