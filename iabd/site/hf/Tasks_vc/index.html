@@ -2331,7 +2331,7 @@ La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>air
     <span class="n">mask_image</span> <span class="o">=</span> <span class="n">ImageOps</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Invierte la máscara </span>
 <span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Aplica la máscara sobre la imagen original </span>
 </span>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>  <span class="c1">#Imprime la etiqueta del segmento</span>
-<span class="hll">    <span class="n">display</span><span class="p">(</span><span class="n">base_image</span><span class="p">)</span> 
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
 La figura siguiente muestra las máscaras invertidas para <em>person</em> (persona) y <em>airplane</em> (avión)aplicadas en la imagen original. </p>
 <p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
