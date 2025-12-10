@@ -709,7 +709,7 @@ for result in results:
     mask_image = ImageOps.invert(mask_image)  #Invierte la máscara 
     base_image.paste(mask_image, mask=mask_image)  #Aplica la máscara sobre la imagen original 
     print(result['label'])  #Imprime la etiqueta del segmento
-    display(base_image) 
+    base_image.show()
 ```
 La figura siguiente muestra las máscaras invertidas para *person* (persona) y *airplane* (avión)aplicadas en la imagen original. 
 
