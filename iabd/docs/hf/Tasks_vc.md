@@ -938,10 +938,10 @@ Crea una interfaz interactiva con Gradio que permita subir una imagen, introduci
 
 ![](./img/act4_prototipo.png)
 
-**Requisitos:**
-- Usar el modelo `openai/clip-vit-base-patch32`.
+### Requisitos:
+- Usar el modelo [`openai/clip-vit-base-patch32`](https://huggingface.co/openai/clip-vit-base-patch32).
 - Implementar la interfaz con Gradio.
-- Mostrar las etiquetas ordenadas por score.
+- Mostrar las etiquetas ordenadas por puntuación (score).
 
 ## 🧩 Extensiones posibles (Optativas)
 - Añadir visualización de la imagen con la etiqueta más probable superpuesta.
