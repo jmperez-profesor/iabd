@@ -697,9 +697,11 @@ La figura siguiente muestra las máscaras de *person* (persona) y *airplane* (av
 
 Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacerlo, podemos invertir la máscara usando la función ```invert()``` de la clase ```ImageOps``` en el paquete ```PIL```. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: 
 
-```python {hl_lines="8 10" linenums="1"} 
+```python {hl_lines="1" linenums="1"} 
 from PIL import ImageOps 
-  
+```
+
+```python {hl_lines="6 8" linenums="1"} 
 for result in results: 
     base_image = image.copy() 
     mask_image = result['mask'] 
@@ -733,7 +735,7 @@ Pasos:
 - Crea una función “segmentation” que reciba los parámetros de entrada correspondientes. Dentro de dicha función 
 - Cuando el modelo devuelva el resultado, iterará a través del resultado y buscará la etiqueta especificada por el usuario (en el parámetro label). 
 - A continuación, la función invierte la máscara correspondiente, la aplica a la imagen y la devuelve automáticamente. 
-> CONSEJO: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber que etiquetas ha detectado el modelo   
+> CONSEJO: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber que etiquetas ha detectado el modelo.
 
 Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. 
 
