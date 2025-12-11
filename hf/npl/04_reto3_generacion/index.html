@@ -1,0 +1,1845 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/npl/04_reto3_generacion/">
+      
+      
+        <link rel="prev" href="../03_reto2_clasificacion/">
+      
+      
+        <link rel="next" href="../../Referencias/">
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Reto3 - Generación - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reto-3-asistente-de-escritura-creativa" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reto3 - Generación
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tasks_texts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Textos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_3" id="__nav_3_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    NPL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            NPL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto-y-motivacion-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎬 Contexto y Motivación (5 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎬 Contexto y Motivación (5 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-problema-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      El Problema Real
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-es-revolucionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por Qué es Revolucionario?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teoria-just-in-time-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Teoría Just-in-Time (10 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Teoría Just-in-Time (10 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generacion-de-texto-tipos-y-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generación de Texto: Tipos y Aplicaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-de-generacion-populares" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos de Generación Populares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-clave-para-controlar-la-generacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros Clave para Controlar la Generación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tecnicas-de-prompting-efectivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Técnicas de Prompting Efectivo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-guiada-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Implementación Guiada (10 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Implementación Guiada (10 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configuracion-y-generacion-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración y Generación Básica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-generador-de-contenido-para-redes-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Generador de Contenido para Redes Sociales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-asistente-de-escritura-interactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Asistente de Escritura Interactivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-evaluador-de-calidad-del-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: Evaluador de Calidad del Texto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experimentacion-libre-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Experimentación Libre (5 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Experimentación Libre (5 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desafios-para-explorar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desafíos para Explorar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experimentos-avanzados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experimentos Avanzados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criterios-de-exito" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏅 Criterios de Éxito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensiones-opcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Extensiones Opcionales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Extensiones Opcionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-los-mas-rapidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para los Más Rápidos:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#felicitaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎉 ¡Felicitaciones!
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎉 ¡Felicitaciones!">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proximos-pasos-recomendados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Próximos Pasos Recomendados:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-del-reto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Recursos del Reto
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="reto-3-asistente-de-escritura-creativa">🏆 Reto 3: Asistente de Escritura Creativa</h1>
+<p><strong>⏱️ Tiempo:</strong> 30 minutos<br />
+<strong>🎯 Nivel:</strong> Avanzado<br />
+<strong>🚀 Objetivo:</strong> Desarrollar un generador de texto contextual para escritura creativa</p>
+<h2 id="contexto-y-motivacion-5-min">🎬 Contexto y Motivación (5 min)</h2>
+<h3 id="el-problema-real">El Problema Real</h3>
+<p>Una agencia de marketing digital necesita generar contenido constantemente:
+- <strong>50+ posts</strong> para redes sociales semanalmente
+- <strong>Artículos de blog</strong> personalizados para diferentes clientes
+- <strong>Copys publicitarios</strong> creativos y únicos
+- <strong>Historias</strong> para campañas de storytelling</p>
+<h3 id="por-que-es-revolucionario">¿Por Qué es Revolucionario?</h3>
+<ul>
+<li><strong>Creatividad aumentada:</strong> IA como co-piloto creativo, no reemplazo</li>
+<li><strong>Velocidad:</strong> De horas a minutos para generar borradores</li>
+<li><strong>Consistencia de marca:</strong> Mantener tono y estilo específicos</li>
+<li><strong>Superación del bloqueo creativo:</strong> Inspiración infinita</li>
+</ul>
+<h2 id="teoria-just-in-time-10-min">🧠 Teoría Just-in-Time (10 min)</h2>
+<h3 id="generacion-de-texto-tipos-y-aplicaciones">Generación de Texto: Tipos y Aplicaciones</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Ejemplo de Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Completado</strong></td>
+<td>Continúa un texto iniciado</td>
+<td>"Era una noche oscura y..."</td>
+</tr>
+<tr>
+<td><strong>Condicional</strong></td>
+<td>Genera según condiciones</td>
+<td>"Escribe un poema sobre el mar"</td>
+</tr>
+<tr>
+<td><strong>Conversacional</strong></td>
+<td>Diálogo interactivo</td>
+<td>Chatbots, asistentes</td>
+</tr>
+<tr>
+<td><strong>Resumen</strong></td>
+<td>Condensa información</td>
+<td>Resúmenes automáticos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modelos-de-generacion-populares">Modelos de Generación Populares</h3>
+<div class="highlight"><pre><span></span><code><span class="n">modelos_generacion</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;gpt2&quot;</span><span class="p">:</span> <span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>  <span class="c1"># Clásico, rápido</span>
+    <span class="s2">&quot;gpt2_spanish&quot;</span><span class="p">:</span> <span class="s2">&quot;DeepESP/gpt2-spanish&quot;</span><span class="p">,</span>  <span class="c1"># Especializado en español</span>
+    <span class="s2">&quot;bloom&quot;</span><span class="p">:</span> <span class="s2">&quot;bigscience/bloom-560m&quot;</span><span class="p">,</span>  <span class="c1"># Multiidioma</span>
+    <span class="s2">&quot;flan_t5&quot;</span><span class="p">:</span> <span class="s2">&quot;google/flan-t5-base&quot;</span><span class="p">,</span>  <span class="c1"># Instrucciones específicas</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="parametros-clave-para-controlar-la-generacion">Parámetros Clave para Controlar la Generación</h3>
+<div class="highlight"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+
+<span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>        <span class="c1"># Longitud máxima</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="c1"># Número de variaciones</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>       <span class="c1"># Creatividad (0.1=conservador, 1.5=muy creativo)</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>        <span class="c1"># Activar sampling</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>             <span class="c1"># Top-k sampling</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>           <span class="c1"># Nucleus sampling</span>
+    <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span> <span class="c1"># Evitar repeticiones</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="tecnicas-de-prompting-efectivo">Técnicas de Prompting Efectivo</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ Prompt básico</span>
+<span class="s2">&quot;Escribe una historia&quot;</span>
+
+<span class="c1"># ✅ Prompt estructurado</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Escribe una historia corta de ciencia ficción que incluya:</span>
+<span class="sd">- Protagonista: Una científica joven</span>
+<span class="sd">- Escenario: Marte en el año 2150</span>
+<span class="sd">- Conflicto: Descubre algo inesperado</span>
+<span class="sd">- Tono: Misterioso pero esperanzador</span>
+<span class="sd">- Longitud: 200 palabras aproximadamente</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+<h2 id="implementacion-guiada-10-min">💻 Implementación Guiada (10 min)</h2>
+<h3 id="paso-1-configuracion-y-generacion-basica">Paso 1: Configuración y Generación Básica</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="c1"># Crear generador</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Prompts creativos de ejemplo</span>
+<span class="n">prompts_creativos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;En un mundo donde los sueños se pueden comprar y vender&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;La última persona en la Tierra recibe un mensaje de radio&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Un detective investiga crímenes que aún no han ocurrido&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;En una biblioteca infinita, cada libro cuenta una vida diferente&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;El día que los robots aprendieron a mentir&quot;</span>
+<span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generar_historia</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">longitud</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">creatividad</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Genera una historia creativa basada en un prompt&quot;&quot;&quot;</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="n">longitud</span><span class="p">,</span>
+        <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="n">creatividad</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+        <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+        <span class="n">pad_token_id</span><span class="o">=</span><span class="n">generator</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+<span class="c1"># Generar historias de ejemplo</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎭 GENERADOR DE HISTORIAS CREATIVAS&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prompts_creativos</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">historia</span> <span class="o">=</span> <span class="n">generar_historia</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📖 Historia </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;💡 Prompt: </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📝 Historia generada:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">historia</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="paso-2-generador-de-contenido-para-redes-sociales">Paso 2: Generador de Contenido para Redes Sociales</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generar_post_social</span><span class="p">(</span><span class="n">tema</span><span class="p">,</span> <span class="n">plataforma</span><span class="p">,</span> <span class="n">tono</span><span class="o">=</span><span class="s2">&quot;profesional&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Genera posts optimizados para diferentes redes sociales&quot;&quot;&quot;</span>
+
+    <span class="c1"># Plantillas por plataforma</span>
+    <span class="n">plantillas</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;twitter&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hilo sobre </span><span class="si">{</span><span class="n">tema</span><span class="si">}</span><span class="s2">: 🧵</span><span class="se">\n</span><span class="s2">1/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linkedin&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Reflexiones sobre </span><span class="si">{</span><span class="n">tema</span><span class="si">}</span><span class="s2"> en el mundo profesional:&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;instagram&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;✨ </span><span class="si">{</span><span class="n">tema</span><span class="si">}</span><span class="s2"> ✨</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;facebook&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;¿Sabías que </span><span class="si">{</span><span class="n">tema</span><span class="si">}</span><span class="s2">?&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Ajustar longitud por plataforma</span>
+    <span class="n">longitudes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;twitter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s2">&quot;linkedin&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s2">&quot;instagram&quot;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+        <span class="s2">&quot;facebook&quot;</span><span class="p">:</span> <span class="mi">180</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Modificadores de tono</span>
+    <span class="n">modificadores_tono</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;profesional&quot;</span><span class="p">:</span> <span class="s2">&quot;Usa un lenguaje formal y datos concretos.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;casual&quot;</span><span class="p">:</span> <span class="s2">&quot;Usa un lenguaje relajado y emojis.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;inspiracional&quot;</span><span class="p">:</span> <span class="s2">&quot;Incluye frases motivadoras y llamadas a la acción.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;educativo&quot;</span><span class="p">:</span> <span class="s2">&quot;Explica conceptos de forma clara y didáctica.&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">prompt_completo</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    </span><span class="si">{</span><span class="n">plantillas</span><span class="p">[</span><span class="n">plataforma</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">    Tema: </span><span class="si">{</span><span class="n">tema</span><span class="si">}</span>
+<span class="s2">    Tono: </span><span class="si">{</span><span class="n">tono</span><span class="si">}</span>
+<span class="s2">    Instrucciones: </span><span class="si">{</span><span class="n">modificadores_tono</span><span class="p">[</span><span class="n">tono</span><span class="p">]</span><span class="si">}</span>
+
+<span class="s2">    Contenido:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">post</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+        <span class="n">prompt_completo</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="n">longitudes</span><span class="p">[</span><span class="n">plataforma</span><span class="p">],</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">top_k</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.9</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">post</span>
+
+<span class="c1"># Generar posts para diferentes plataformas</span>
+<span class="n">tema</span> <span class="o">=</span> <span class="s2">&quot;inteligencia artificial&quot;</span>
+<span class="n">plataformas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;twitter&quot;</span><span class="p">,</span> <span class="s2">&quot;linkedin&quot;</span><span class="p">,</span> <span class="s2">&quot;instagram&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📱 GENERADOR DE CONTENIDO PARA REDES SOCIALES&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">plataforma</span> <span class="ow">in</span> <span class="n">plataformas</span><span class="p">:</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">generar_post_social</span><span class="p">(</span><span class="n">tema</span><span class="p">,</span> <span class="n">plataforma</span><span class="p">,</span> <span class="s2">&quot;inspiracional&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📲 </span><span class="si">{</span><span class="n">plataforma</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="paso-3-asistente-de-escritura-interactivo">Paso 3: Asistente de Escritura Interactivo</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AsistenteEscritura</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelo</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">modelo</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">historial</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">continuar_texto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto_inicial</span><span class="p">,</span> <span class="n">palabras</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Continúa un texto existente&quot;&quot;&quot;</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span>
+            <span class="n">texto_inicial</span><span class="p">,</span>
+            <span class="n">max_length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">texto_inicial</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">+</span> <span class="n">palabras</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+            <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Extraer solo la parte nueva</span>
+        <span class="n">texto_nuevo</span> <span class="o">=</span> <span class="n">resultado</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">texto_inicial</span><span class="p">):]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">texto_nuevo</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">reescribir_con_estilo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">estilo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reescribe texto en un estilo específico&quot;&quot;&quot;</span>
+        <span class="n">estilos</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;formal&quot;</span><span class="p">:</span> <span class="s2">&quot;Reescribe este texto de manera formal y académica:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;casual&quot;</span><span class="p">:</span> <span class="s2">&quot;Reescribe este texto de manera informal y amigable:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;poetico&quot;</span><span class="p">:</span> <span class="s2">&quot;Reescribe este texto como si fuera un poema:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;periodistico&quot;</span><span class="p">:</span> <span class="s2">&quot;Reescribe este texto como una noticia:&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">estilos</span><span class="p">[</span><span class="n">estilo</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">texto</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Versión reescrita:&quot;</span>
+
+        <span class="n">resultado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+            <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">resultado</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;Versión reescrita:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generar_variaciones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">num_variaciones</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Genera múltiples variaciones de un texto&quot;&quot;&quot;</span>
+        <span class="n">variaciones</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_variaciones</span><span class="p">):</span>
+            <span class="n">variacion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span>
+                <span class="n">texto</span><span class="p">,</span>
+                <span class="n">max_length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">+</span> <span class="mi">30</span><span class="p">,</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">),</span>  <span class="c1"># Aumentar creatividad</span>
+                <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+            <span class="n">variaciones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variacion</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">variaciones</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sugerir_titulos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contenido</span><span class="p">,</span> <span class="n">num_titulos</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sugiere títulos para un contenido&quot;&quot;&quot;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Basándote en este contenido, sugiere </span><span class="si">{</span><span class="n">num_titulos</span><span class="si">}</span><span class="s2"> títulos atractivos:</span>
+
+<span class="s2">        Contenido: </span><span class="si">{</span><span class="n">contenido</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span><span class="si">}</span><span class="s2">...</span>
+
+<span class="s2">        Títulos sugeridos:</span>
+<span class="s2">        1.</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">resultado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">max_length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+            <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">resultado</span>
+
+<span class="c1"># Demostración del asistente</span>
+<span class="n">asistente</span> <span class="o">=</span> <span class="n">AsistenteEscritura</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🤖 ASISTENTE DE ESCRITURA CREATIVA&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 1: Continuar texto</span>
+<span class="n">texto_inicial</span> <span class="o">=</span> <span class="s2">&quot;La inteligencia artificial está transformando&quot;</span>
+<span class="n">continuacion</span> <span class="o">=</span> <span class="n">asistente</span><span class="o">.</span><span class="n">continuar_texto</span><span class="p">(</span><span class="n">texto_inicial</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📝 Texto inicial: </span><span class="si">{</span><span class="n">texto_inicial</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔄 Continuación: </span><span class="si">{</span><span class="n">continuacion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 2: Reescribir con estilo</span>
+<span class="n">texto_base</span> <span class="o">=</span> <span class="s2">&quot;La IA es muy útil para automatizar tareas repetitivas&quot;</span>
+<span class="n">version_poetica</span> <span class="o">=</span> <span class="n">asistente</span><span class="o">.</span><span class="n">reescribir_con_estilo</span><span class="p">(</span><span class="n">texto_base</span><span class="p">,</span> <span class="s2">&quot;poetico&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🎭 Versión poética: </span><span class="si">{</span><span class="n">version_poetica</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 3: Generar variaciones</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔀 Variaciones del texto:&quot;</span><span class="p">)</span>
+<span class="n">variaciones</span> <span class="o">=</span> <span class="n">asistente</span><span class="o">.</span><span class="n">generar_variaciones</span><span class="p">(</span><span class="s2">&quot;El futuro de la tecnología&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variaciones</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="paso-4-evaluador-de-calidad-del-texto">Paso 4: Evaluador de Calidad del Texto</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evaluar_calidad_texto</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evalúa la calidad de un texto generado&quot;&quot;&quot;</span>
+
+    <span class="c1"># Métricas básicas</span>
+    <span class="n">palabras</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">oraciones</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">texto</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()])</span>
+    <span class="n">palabras_por_oracion</span> <span class="o">=</span> <span class="n">palabras</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">oraciones</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Diversidad léxica (palabras únicas / total palabras)</span>
+    <span class="n">palabras_unicas</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">texto</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+    <span class="n">diversidad_lexica</span> <span class="o">=</span> <span class="n">palabras_unicas</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">palabras</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Detección de repeticiones</span>
+    <span class="n">palabras_lista</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">repeticiones</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabras_lista</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">palabras_lista</span><span class="p">))</span>
+
+    <span class="c1"># Puntuación de calidad (0-100)</span>
+    <span class="n">puntuacion_longitud</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="n">palabras</span> <span class="o">/</span> <span class="mi">50</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Óptimo: 50 palabras</span>
+    <span class="n">puntuacion_diversidad</span> <span class="o">=</span> <span class="n">diversidad_lexica</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">puntuacion_repeticion</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">repeticiones</span> <span class="o">*</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="n">puntuacion_total</span> <span class="o">=</span> <span class="p">(</span><span class="n">puntuacion_longitud</span> <span class="o">+</span> <span class="n">puntuacion_diversidad</span> <span class="o">+</span> <span class="n">puntuacion_repeticion</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;puntuacion_total&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">puntuacion_total</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;palabras&#39;</span><span class="p">:</span> <span class="n">palabras</span><span class="p">,</span>
+        <span class="s1">&#39;oraciones&#39;</span><span class="p">:</span> <span class="n">oraciones</span><span class="p">,</span>
+        <span class="s1">&#39;palabras_por_oracion&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">palabras_por_oracion</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;diversidad_lexica&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">diversidad_lexica</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;repeticiones&#39;</span><span class="p">:</span> <span class="n">repeticiones</span><span class="p">,</span>
+        <span class="s1">&#39;calidad&#39;</span><span class="p">:</span> <span class="s1">&#39;Excelente&#39;</span> <span class="k">if</span> <span class="n">puntuacion_total</span> <span class="o">&gt;</span> <span class="mi">80</span> <span class="k">else</span> 
+                  <span class="s1">&#39;Buena&#39;</span> <span class="k">if</span> <span class="n">puntuacion_total</span> <span class="o">&gt;</span> <span class="mi">60</span> <span class="k">else</span> 
+                  <span class="s1">&#39;Regular&#39;</span> <span class="k">if</span> <span class="n">puntuacion_total</span> <span class="o">&gt;</span> <span class="mi">40</span> <span class="k">else</span> <span class="s1">&#39;Necesita mejoras&#39;</span>
+    <span class="p">}</span>
+
+<span class="c1"># Evaluar textos generados</span>
+<span class="n">textos_prueba</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">generar_historia</span><span class="p">(</span><span class="s2">&quot;En un laboratorio secreto&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span>
+    <span class="n">generar_historia</span><span class="p">(</span><span class="s2">&quot;El último día de clases&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 EVALUACIÓN DE CALIDAD&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">texto</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">textos_prueba</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">evaluacion</span> <span class="o">=</span> <span class="n">evaluar_calidad_texto</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📝 Texto </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Puntuación: </span><span class="si">{</span><span class="n">evaluacion</span><span class="p">[</span><span class="s1">&#39;puntuacion_total&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/100 (</span><span class="si">{</span><span class="n">evaluacion</span><span class="p">[</span><span class="s1">&#39;calidad&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Palabras: </span><span class="si">{</span><span class="n">evaluacion</span><span class="p">[</span><span class="s1">&#39;palabras&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Oraciones: </span><span class="si">{</span><span class="n">evaluacion</span><span class="p">[</span><span class="s1">&#39;oraciones&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diversidad léxica: </span><span class="si">{</span><span class="n">evaluacion</span><span class="p">[</span><span class="s1">&#39;diversidad_lexica&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Texto: </span><span class="si">{</span><span class="n">texto</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="experimentacion-libre-5-min">🎯 Experimentación Libre (5 min)</h2>
+<h3 id="desafios-para-explorar">Desafíos para Explorar</h3>
+<ol>
+<li>
+<p><strong>Generación Condicional:</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Genera texto basado en múltiples condiciones</span>
+<span class="n">condiciones</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;genero&quot;</span><span class="p">:</span> <span class="s2">&quot;ciencia ficción&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;protagonista&quot;</span><span class="p">:</span> <span class="s2">&quot;robot&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;escenario&quot;</span><span class="p">:</span> <span class="s2">&quot;espacio&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;emocion&quot;</span><span class="p">:</span> <span class="s2">&quot;nostalgia&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Chatbot Creativo:</strong>
+   <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">chatbot_creativo</span><span class="p">(</span><span class="n">mensaje_usuario</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Usuario: </span><span class="si">{</span><span class="n">mensaje_usuario</span><span class="si">}</span><span class="se">\n</span><span class="s2">Asistente creativo:&quot;</span>
+    <span class="c1"># Implementar respuesta contextual</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Generador de Poesía:</strong>
+   <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generar_poema</span><span class="p">(</span><span class="n">tema</span><span class="p">,</span> <span class="n">estilo</span><span class="o">=</span><span class="s2">&quot;libre&quot;</span><span class="p">):</span>
+    <span class="c1"># Haiku, soneto, verso libre, etc.</span>
+    <span class="k">pass</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="experimentos-avanzados">Experimentos Avanzados</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Control de creatividad dinámico</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generar_con_creatividad_adaptativa</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">contexto</span><span class="o">=</span><span class="s2">&quot;profesional&quot;</span><span class="p">):</span>
+    <span class="n">creatividad_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;profesional&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s2">&quot;creativo&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+        <span class="s2">&quot;experimental&quot;</span><span class="p">:</span> <span class="mf">1.2</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">creatividad_map</span><span class="p">[</span><span class="n">contexto</span><span class="p">])</span>
+
+<span class="c1"># 2. Generación colaborativa</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">escritura_colaborativa</span><span class="p">(</span><span class="n">prompts_multiples</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combina múltiples prompts para crear una narrativa cohesiva&quot;&quot;&quot;</span>
+    <span class="n">historia_completa</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">prompts_multiples</span><span class="p">:</span>
+        <span class="n">continuacion</span> <span class="o">=</span> <span class="n">generar_historia</span><span class="p">(</span><span class="n">historia_completa</span> <span class="o">+</span> <span class="n">prompt</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="n">historia_completa</span> <span class="o">+=</span> <span class="n">continuacion</span>
+    <span class="k">return</span> <span class="n">historia_completa</span>
+
+<span class="c1"># 3. Análisis de estilo</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">analizar_estilo_autor</span><span class="p">(</span><span class="n">texto_muestra</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza el estilo de escritura para replicarlo&quot;&quot;&quot;</span>
+    <span class="c1"># Implementar análisis de patrones lingüísticos</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h2 id="criterios-de-exito">🏅 Criterios de Éxito</h2>
+<p>Al completar este reto, deberías poder:
+- ✅ Generar texto creativo con diferentes niveles de creatividad
+- ✅ Crear contenido específico para diferentes plataformas
+- ✅ Implementar un asistente de escritura interactivo
+- ✅ Evaluar la calidad del texto generado
+- ✅ Controlar el estilo y tono de la generación</p>
+<h2 id="extensiones-opcionales">🚀 Extensiones Opcionales</h2>
+<h3 id="para-los-mas-rapidos">Para los Más Rápidos:</h3>
+<ol>
+<li>
+<p><strong>Interfaz Web Completa:</strong>
+   <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">app_escritura_creativa</span><span class="p">():</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;✍️ Asistente de Escritura IA&quot;</span><span class="p">)</span>
+
+    <span class="n">tipo_contenido</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Tipo de contenido&quot;</span><span class="p">,</span> 
+                                <span class="p">[</span><span class="s2">&quot;Historia&quot;</span><span class="p">,</span> <span class="s2">&quot;Post social&quot;</span><span class="p">,</span> <span class="s2">&quot;Artículo&quot;</span><span class="p">,</span> <span class="s2">&quot;Poema&quot;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">tipo_contenido</span> <span class="o">==</span> <span class="s2">&quot;Historia&quot;</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s2">&quot;Comienza tu historia:&quot;</span><span class="p">)</span>
+        <span class="n">creatividad</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Nivel de creatividad&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Generar&quot;</span><span class="p">):</span>
+            <span class="n">historia</span> <span class="o">=</span> <span class="n">generar_historia</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">creatividad</span><span class="o">=</span><span class="n">creatividad</span><span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">historia</span><span class="p">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Sistema de Plantillas:</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">plantillas</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;email_marketing&quot;</span><span class="p">:</span> <span class="s2">&quot;Asunto: </span><span class="si">{asunto}</span><span class="se">\n\n</span><span class="s2">Hola </span><span class="si">{nombre}</span><span class="s2">,</span><span class="se">\n\n</span><span class="si">{contenido_principal}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;post_blog&quot;</span><span class="p">:</span> <span class="s2">&quot;# </span><span class="si">{titulo}</span><span class="se">\n\n</span><span class="s2">## Introducción</span><span class="se">\n</span><span class="si">{intro}</span><span class="se">\n\n</span><span class="s2">## Desarrollo</span><span class="se">\n</span><span class="si">{desarrollo}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;historia_corta&quot;</span><span class="p">:</span> <span class="s2">&quot;Personaje: </span><span class="si">{personaje}</span><span class="se">\n</span><span class="s2">Escenario: </span><span class="si">{escenario}</span><span class="se">\n</span><span class="s2">Conflicto: </span><span class="si">{conflicto}</span><span class="s2">&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Análisis de Sentimientos del Texto Generado:</strong>
+   <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analizar_tono_generado</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+    <span class="n">sentiment_analyzer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">sentiment_analyzer</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="felicitaciones">🎉 ¡Felicitaciones!</h2>
+<p>Has completado los tres retos del taller. Ahora tienes las herramientas para:
+- Analizar sentimientos en tiempo real
+- Clasificar texto automáticamente
+- Generar contenido creativo con IA</p>
+<h3 id="proximos-pasos-recomendados">🚀 Próximos Pasos Recomendados:</h3>
+<ol>
+<li><strong>Combina las tres técnicas</strong> en un proyecto integrado</li>
+<li><strong>Explora modelos más avanzados</strong> como GPT-3.5 o Claude</li>
+<li><strong>Implementa fine-tuning</strong> para casos de uso específicos</li>
+<li><strong>Crea APIs</strong> para integrar en aplicaciones reales</li>
+</ol>
+<p><a href="soluciones/">👉 Ver Soluciones Completas</a></p>
+<hr />
+<h2 id="recursos-del-reto">📚 Recursos del Reto</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/tasks/language_modeling">Text Generation Guide</a></li>
+<li><a href="https://huggingface.co/gpt2">GPT-2 Documentation</a></li>
+<li><a href="https://huggingface.co/docs/transformers/tasks/prompting">Prompt Engineering Best Practices</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../03_reto2_clasificacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Reto2 - Clasificacion">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Reto2 - Clasificacion
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Referencias/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Referencias">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Referencias
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
