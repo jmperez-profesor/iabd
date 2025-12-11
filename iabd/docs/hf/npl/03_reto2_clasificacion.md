@@ -1,0 +1,310 @@
+# 🏆 Reto 2: Clasificador Inteligente de Noticias
+
+**⏱️ Tiempo:** 30 minutos  
+**🎯 Nivel:** Intermedio  
+**🚀 Objetivo:** Construir un sistema de categorización automática de noticias
+
+## 🎬 Contexto y Motivación (5 min)
+
+### El Problema Real
+Un periódico digital recibe **500+ artículos diarios** de diferentes fuentes. Su equipo editorial necesita:
+- Clasificar automáticamente las noticias por categorías
+- Priorizar noticias importantes para la portada
+- Detectar noticias duplicadas o similares
+- Organizar el contenido para diferentes secciones
+
+### ¿Por Qué es Crucial?
+- **Ahorro de tiempo:** De 4 horas manuales a 10 minutos automáticos
+- **Consistencia:** Clasificación uniforme sin sesgos humanos
+- **Escalabilidad:** Manejar volúmenes masivos de información
+- **Personalización:** Contenido relevante para cada usuario
+
+## 🧠 Teoría Just-in-Time (10 min)
+
+### Clasificación de Texto vs Análisis de Sentimientos
+
+| Aspecto | Análisis de Sentimientos | Clasificación de Texto |
+|---------|-------------------------|------------------------|
+| **Objetivo** | Detectar emociones | Categorizar por tema |
+| **Clases** | Positivo/Negativo/Neutral | Deportes/Política/Tecnología/etc |
+| **Complejidad** | 2-3 categorías | 10+ categorías |
+| **Aplicaciones** | Redes sociales, reviews | Noticias, emails, documentos |
+
+### Modelos Especializados
+
+```python
+# Modelos populares para clasificación
+modelos_clasificacion = {
+    "noticias_español": "bertin-project/bertin-roberta-base-spanish",
+    "noticias_general": "facebook/bart-large-mnli",
+    "multiidioma": "microsoft/DialoGPT-medium",
+    "zero_shot": "facebook/bart-large-mnli"  # ¡Sin entrenamiento previo!
+}
+```
+
+### Zero-Shot Classification: La Magia
+
+```python
+# ¡Clasificar SIN entrenar el modelo!
+classifier = pipeline("zero-shot-classification")
+texto = "El Real Madrid ganó 3-1 al Barcelona en el Clásico"
+categorias = ["deportes", "política", "tecnología", "economía"]
+
+resultado = classifier(texto, categorias)
+# Resultado: "deportes" con alta confianza
+```
+
+## 💻 Implementación Guiada (10 min)
+
+### Paso 1: Configuración y Datos
+
+```python
+from transformers import pipeline
+import pandas as pd
+import numpy as np
+
+# Datos de ejemplo (noticias reales simuladas)
+noticias = [
+    {
+        "titulo": "El Real Madrid ficha a Mbappé por 180 millones",
+        "contenido": "El delantero francés firma por cinco temporadas con el club blanco..."
+    },
+    {
+        "titulo": "Nueva ley de inteligencia artificial aprobada en Europa",
+        "contenido": "El Parlamento Europeo aprueba regulaciones para el uso de IA..."
+    },
+    {
+        "titulo": "Bitcoin alcanza nuevo máximo histórico",
+        "contenido": "La criptomoneda supera los 70.000 dólares por primera vez..."
+    },
+    {
+        "titulo": "Descubren nueva especie de dinosaurio en Argentina",
+        "contenido": "Paleontólogos argentinos encuentran restos de un titanosaurio..."
+    },
+    {
+        "titulo": "Apple presenta el iPhone 16 con IA integrada",
+        "contenido": "La nueva generación incluye procesador neuronal avanzado..."
+    }
+]
+
+# Categorías objetivo
+categorias = ["deportes", "política", "economía", "ciencia", "tecnología"]
+```
+
+### Paso 2: Clasificación Zero-Shot
+
+```python
+# Crear clasificador zero-shot
+classifier = pipeline("zero-shot-classification", 
+                     model="facebook/bart-large-mnli")
+
+def clasificar_noticia(noticia, categorias):
+    """Clasifica una noticia usando zero-shot learning"""
+    texto_completo = f"{noticia['titulo']} {noticia['contenido']}"
+    resultado = classifier(texto_completo, categorias)
+    
+    return {
+        'titulo': noticia['titulo'],
+        'categoria_predicha': resultado['labels'][0],
+        'confianza': resultado['scores'][0],
+        'todas_las_scores': dict(zip(resultado['labels'], resultado['scores']))
+    }
+
+# Clasificar todas las noticias
+resultados = []
+for noticia in noticias:
+    resultado = clasificar_noticia(noticia, categorias)
+    resultados.append(resultado)
+    
+    print(f"📰 {resultado['titulo'][:50]}...")
+    print(f"🏷️  Categoría: {resultado['categoria_predicha']} ({resultado['confianza']:.2f})")
+    print("-" * 60)
+```
+
+### Paso 3: Análisis Avanzado con Múltiples Categorías
+
+```python
+def clasificacion_multinivel(noticia, categorias_principales, subcategorias):
+    """Clasificación jerárquica: primero categoría principal, luego subcategoría"""
+    
+    # Paso 1: Categoría principal
+    texto = f"{noticia['titulo']} {noticia['contenido']}"
+    resultado_principal = classifier(texto, categorias_principales)
+    categoria_principal = resultado_principal['labels'][0]
+    
+    # Paso 2: Subcategoría (si existe)
+    if categoria_principal in subcategorias:
+        resultado_sub = classifier(texto, subcategorias[categoria_principal])
+        subcategoria = resultado_sub['labels'][0]
+    else:
+        subcategoria = "general"
+    
+    return {
+        'categoria_principal': categoria_principal,
+        'subcategoria': subcategoria,
+        'confianza_principal': resultado_principal['scores'][0],
+        'ruta_completa': f"{categoria_principal}/{subcategoria}"
+    }
+
+# Definir jerarquía de categorías
+categorias_principales = ["deportes", "tecnología", "ciencia", "economía", "política"]
+subcategorias = {
+    "deportes": ["fútbol", "baloncesto", "tenis", "otros deportes"],
+    "tecnología": ["inteligencia artificial", "móviles", "software", "hardware"],
+    "ciencia": ["medicina", "física", "biología", "paleontología"],
+    "economía": ["criptomonedas", "bolsa", "empresas", "comercio"]
+}
+
+# Probar clasificación multinivel
+for noticia in noticias[:3]:  # Solo las primeras 3 para el ejemplo
+    resultado = clasificacion_multinivel(noticia, categorias_principales, subcategorias)
+    print(f"📰 {noticia['titulo']}")
+    print(f"🗂️  Ruta: {resultado['ruta_completa']}")
+    print(f"📊 Confianza: {resultado['confianza_principal']:.2f}")
+    print("-" * 50)
+```
+
+### Paso 4: Sistema de Recomendación Simple
+
+```python
+def recomendar_noticias_similares(noticia_objetivo, todas_las_noticias, top_k=3):
+    """Encuentra noticias similares basándose en la clasificación"""
+    
+    # Clasificar la noticia objetivo
+    resultado_objetivo = clasificar_noticia(noticia_objetivo, categorias)
+    categoria_objetivo = resultado_objetivo['categoria_predicha']
+    
+    # Clasificar todas las noticias
+    noticias_clasificadas = []
+    for noticia in todas_las_noticias:
+        if noticia != noticia_objetivo:  # Excluir la noticia objetivo
+            resultado = clasificar_noticia(noticia, categorias)
+            noticias_clasificadas.append(resultado)
+    
+    # Filtrar por misma categoría y ordenar por confianza
+    similares = [n for n in noticias_clasificadas 
+                if n['categoria_predicha'] == categoria_objetivo]
+    similares.sort(key=lambda x: x['confianza'], reverse=True)
+    
+    return similares[:top_k]
+
+# Probar recomendaciones
+noticia_test = noticias[0]  # Noticia de fútbol
+recomendaciones = recomendar_noticias_similares(noticia_test, noticias)
+
+print(f"🎯 Noticia objetivo: {noticia_test['titulo']}")
+print("\n📋 Noticias similares recomendadas:")
+for i, rec in enumerate(recomendaciones, 1):
+    print(f"{i}. {rec['titulo']}")
+    print(f"   Categoría: {rec['categoria_predicha']} ({rec['confianza']:.2f})")
+```
+
+## 🎯 Experimentación Libre (5 min)
+
+### Desafíos para Explorar
+
+1. **Categorías Personalizadas:**
+   ```python
+   # Prueba con tus propias categorías
+   mis_categorias = ["urgente", "no urgente", "entretenimiento", "educativo"]
+   ```
+
+2. **Detección de Fake News:**
+   ```python
+   categorias_veracidad = ["noticia real", "posible fake news", "sátira"]
+   ```
+
+3. **Análisis de Sentimiento + Clasificación:**
+   ```python
+   def analisis_completo(noticia):
+       # Combinar clasificación temática + análisis de sentimientos
+       pass
+   ```
+
+### Experimentos Avanzados
+
+```python
+# 1. Clasificación con confianza mínima
+def clasificar_con_umbral(noticia, categorias, umbral_confianza=0.7):
+    resultado = clasificar_noticia(noticia, categorias)
+    if resultado['confianza'] < umbral_confianza:
+        return "clasificación_incierta"
+    return resultado['categoria_predicha']
+
+# 2. Detección de noticias atípicas
+def detectar_noticias_atipicas(noticias, categorias):
+    confianzas = []
+    for noticia in noticias:
+        resultado = clasificar_noticia(noticia, categorias)
+        confianzas.append(resultado['confianza'])
+    
+    umbral_atipico = np.percentile(confianzas, 25)  # 25% más bajas
+    return [n for n, c in zip(noticias, confianzas) if c < umbral_atipico]
+```
+
+## 🏅 Criterios de Éxito
+
+Al completar este reto, deberías poder:
+- ✅ Implementar clasificación zero-shot
+- ✅ Crear sistemas de clasificación jerárquica
+- ✅ Construir recomendadores simples basados en categorías
+- ✅ Manejar múltiples categorías y subcategorías
+- ✅ Evaluar la confianza de las predicciones
+
+## 🚀 Extensiones Opcionales
+
+### Para los Más Rápidos:
+
+1. **Dashboard Interactivo:**
+   ```python
+   import streamlit as st
+   
+   def crear_dashboard_noticias():
+       st.title("📰 Clasificador de Noticias IA")
+       texto_noticia = st.text_area("Pega aquí tu noticia:")
+       if st.button("Clasificar"):
+           resultado = clasificar_noticia({'titulo': '', 'contenido': texto_noticia}, categorias)
+           st.success(f"Categoría: {resultado['categoria_predicha']}")
+           st.info(f"Confianza: {resultado['confianza']:.2f}")
+   ```
+
+2. **API REST Simple:**
+   ```python
+   from flask import Flask, request, jsonify
+   
+   app = Flask(__name__)
+   
+   @app.route('/clasificar', methods=['POST'])
+   def clasificar_api():
+       data = request.json
+       resultado = clasificar_noticia(data, categorias)
+       return jsonify(resultado)
+   ```
+
+3. **Análisis de Tendencias:**
+   ```python
+   def analizar_tendencias_diarias(noticias_por_dia):
+       """Analiza qué categorías son trending cada día"""
+       tendencias = {}
+       for dia, noticias in noticias_por_dia.items():
+           categorias_dia = [clasificar_noticia(n, categorias)['categoria_predicha'] 
+                           for n in noticias]
+           tendencias[dia] = pd.Series(categorias_dia).value_counts()
+       return tendencias
+   ```
+
+## 🎯 Próximo Reto
+
+¡Increíble! Has construido un sistema completo de clasificación de noticias. 
+
+Para el reto final, vamos a explorar la frontera más emocionante del NLP: **la generación de texto creativo**. Crearemos un asistente de escritura que ayude a generar contenido original.
+
+[👉 Ir al Reto 3: Asistente de Escritura Creativa](04_reto3_generacion.md)
+
+---
+
+## 📚 Recursos del Reto
+
+- [Zero-Shot Classification Guide](https://huggingface.co/docs/transformers/tasks/zero_shot_classification)
+- [Modelos de Clasificación](https://huggingface.co/models?pipeline_tag=zero-shot-classification)
+- [BART Model Documentation](https://huggingface.co/facebook/bart-large-mnli)
