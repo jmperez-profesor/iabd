@@ -64,6 +64,9 @@ nav:
     - Tasks: 
       - Visión por computador: hf/Tasks_vc.md
       - Textos: hf/Tasks_texts.md
+      - NPL: 
+        - Introducción: hf/npl/01_intro.md
+        - Reto1: hf/npl/02_reto1_sentimientos.md
     - Referencias: hf/Referencias.md
   - Datasets: 
     - Datasets/Datasets.md
