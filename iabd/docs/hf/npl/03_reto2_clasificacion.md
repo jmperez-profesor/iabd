@@ -1,3 +1,8 @@
+---
+title: Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 3
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
 # 🏆 Reto 2: Clasificador Inteligente de Noticias
 
 **⏱️ Tiempo:** 30 minutos  

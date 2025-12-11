@@ -1,5 +1,5 @@
 ---
-title: Tasks NLP con los Transformers y pipelines de Hugging Face - Introducción
+title: Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 1
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
