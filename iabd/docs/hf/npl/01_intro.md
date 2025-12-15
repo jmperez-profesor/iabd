@@ -9,7 +9,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### ¡Empezamos con magia! ✨
 
-```python
+```python {hl_lines="1 4 5" linenums="1"} 
 from transformers import pipeline
 
 # ¡Una línea para crear un analizador de sentimientos!
@@ -50,7 +50,7 @@ Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado →
 ## 🚀 Demo Interactiva: "Probemos Juntos"
 
 ### Experimento 1: Sentimientos Multiidioma
-```python
+```python{hl_lines="1 2" linenums="1"} 
 classifier = pipeline("sentiment-analysis")
 
 textos = [
