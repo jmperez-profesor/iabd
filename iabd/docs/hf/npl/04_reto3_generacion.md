@@ -410,6 +410,7 @@ def analizar_estilo_autor(texto_muestra):
 ## 🏅 Criterios de Éxito
 
 Al completar este reto, deberías poder:
+
 - ✅ Generar texto creativo con diferentes niveles de creatividad
 - ✅ Crear contenido específico para diferentes plataformas
 - ✅ Implementar un asistente de escritura interactivo

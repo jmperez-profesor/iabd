@@ -251,6 +251,7 @@ def detectar_noticias_atipicas(noticias, categorias):
 ## 🏅 Criterios de Éxito
 
 Al completar este reto, deberías poder:
+
 - ✅ Implementar clasificación zero-shot
 - ✅ Crear sistemas de clasificación jerárquica
 - ✅ Construir recomendadores simples basados en categorías
