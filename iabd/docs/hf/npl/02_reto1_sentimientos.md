@@ -99,6 +99,31 @@ for r in resultados:
     print("-" * 50)
 ```
 
+Resultados:
+```bash
+No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned-sst-2-english and revision 714eb0f (https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use cpu
+Tweet: ¡Esta nueva app es increíble! 🚀
+Sentimiento: NEGATIVE (Confianza: 0.98)
+--------------------------------------------------
+Tweet: La app se cuelga constantemente 😡
+Sentimiento: NEGATIVE (Confianza: 0.92)
+--------------------------------------------------
+Tweet: Funciona bien, pero podría mejorar
+Sentimiento: POSITIVE (Confianza: 0.99)
+--------------------------------------------------
+Tweet: ¡Gracias por esta herramienta tan útil! ❤️
+Sentimiento: POSITIVE (Confianza: 0.63)
+--------------------------------------------------
+Tweet: No entiendo cómo usarla, muy confusa
+Sentimiento: NEGATIVE (Confianza: 0.98)
+--------------------------------------------------
+Tweet: Perfecta para lo que necesitaba 👌
+Sentimiento: POSITIVE (Confianza: 0.98)
+--------------------------------------------------
+```
+
 ### Paso 3: Análisis Avanzado con Múltiples Modelos
 
 ```python {linenums="1"}
@@ -127,45 +152,6 @@ print(f"Tweet: {tweet_test}")
 for modelo, resultado in comparacion.items():
     print(f"{modelo}: {resultado['label']} ({resultado['score']:.2f})")
 ```
-
-### Paso 4: Dashboard Simple
-
-```bash
-pip install matplotlib
-```
-
-```python {linenums="1"}
-import matplotlib.pyplot as plt
-
-def crear_dashboard(resultados):
-    # Contar sentimientos
-    sentimientos = [r['sentimiento'] for r in resultados]
-    conteo = pd.Series(sentimientos).value_counts()
-    
-    # Crear gráfico
-    plt.figure(figsize=(10, 6))
-    
-    # Gráfico de barras
-    plt.subplot(1, 2, 1)
-    conteo.plot(kind='bar', color=['green', 'red', 'gray'])
-    plt.title('Distribución de Sentimientos')
-    plt.ylabel('Número de Tweets')
-    
-    # Gráfico de confianza
-    plt.subplot(1, 2, 2)
-    confianzas = [r['confianza'] for r in resultados]
-    plt.hist(confianzas, bins=10, alpha=0.7, color='blue')
-    plt.title('Distribución de Confianza')
-    plt.xlabel('Nivel de Confianza')
-    plt.ylabel('Frecuencia')
-    
-    plt.tight_layout()
-    plt.show()
-
-# Crear dashboard
-crear_dashboard(resultados)
-```
-
 ## 🎯 Experimentación Libre (5 min)
 
 ### Desafíos para Explorar
@@ -193,7 +179,6 @@ crear_dashboard(resultados)
        "¡Me encanta esta aplicación!"
    ]
    ```
-
 ### Preguntas para Reflexionar
 - ¿Qué modelo funciona mejor para tu caso de uso?
 - ¿Cómo manejas la incertidumbre (scores bajos)?
@@ -212,9 +197,9 @@ Al completar este reto, deberías poder:
 ## 🚀 Extensiones Opcionales
 
 ### Para los Más Rápidos:
-1. **Análisis en Tiempo Real:** Conectar con la API de X
-2. **Alertas Automáticas:** Notificar cuando el sentimiento baja del 70%
-3. **Análisis Temporal:** Seguir la evolución del sentimiento por horas/días
+1. **Análisis en tiempo real:** Conectar con la API de X
+2. **Alertas automáticas:** Notificar cuando el sentimiento baja del 70%
+3. **Análisis temporal:** Seguir la evolución del sentimiento por horas/días
 
 ### Código de Extensión:
 ```python {linenums="1"}
