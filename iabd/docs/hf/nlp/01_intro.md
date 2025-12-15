@@ -3,6 +3,13 @@ title: Tasks NLP con los Transformers y pipelines de Hugging Face - Introducció
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
+# Tasks de Natural Language Processing (NLP) en Hugging Face
+
+![Tasks of NLP in Hugging Face](./img/tasks_nlp_hf.png)
+
+[Tasks en Hugging Face](https://huggingface.co/tasks)
+
+
 # 🔥 Introducción: El Poder de los Transformers
 
 ## 🎬 Demo en Vivo: "5 Líneas de código sencillas"
@@ -63,7 +70,7 @@ for texto in textos:
 ```
 **¿Funciona correctamente?**
 
-No funciona correctamente porque usamos `pipeline("sentiment-analysis")` sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.
+No funciona correctamente porque usamos `pipeline("sentiment-analysis")` sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un `DistilBERT` entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como `SST‑2`. La frase **"I love this workshop!"** probablemente se clasifique bien, pero **"Este taller es aburrido"** o **"Je suis très content"** pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.
 
 Vamos a modificar el código especificando, por ejemplo, el modelo [`tabularisai/multilingual-sentiment-analysis`](https://huggingface.co/tabularisai/multilingual-sentiment-analysis) `(model="tabularisai/multilingual-sentiment-analysis")`. Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. 
 
@@ -160,7 +167,7 @@ for i, texto in enumerate(resultado):
 
 ## 🏆 ¡Listos para el primer reto!
 
-Ahora que hemos visto algunos modelos de NPL en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
+Ahora que hemos visto algunos modelos de NLP en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
 
 **¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en X.
 
