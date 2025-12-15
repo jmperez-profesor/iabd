@@ -26,7 +26,7 @@ print(result)  # [{'label': 'POSITIVE', 'score': 0.9998}]
 
 Los **pipelines** son como "herramientas mágicas" que encapsulan modelos complejos en interfaces súper simples:
 
-```python
+```python{linenums="1"}  
 # Formato general
 pipeline("tarea", model="modelo_específico")
 ```
@@ -50,7 +50,7 @@ Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado →
 ## 🚀 Demo Interactiva: "Probemos Juntos"
 
 ### Experimento 1: Sentimientos Multiidioma
-```python{hl_lines="1 2" linenums="1"} 
+```python {hl_lines="1 2" linenums="1"} 
 classifier = pipeline("sentiment-analysis")
 
 textos = [

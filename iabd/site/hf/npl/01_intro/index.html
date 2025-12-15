@@ -805,15 +805,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#experimento-2-generacion-instantanea" class="md-nav__link">
-    <span class="md-ellipsis">
-      Experimento 2: Generación Instantánea
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1228,13 +1219,18 @@
 <h1 id="introduccion-el-poder-de-los-transformers">🔥 Introducción: El Poder de los Transformers</h1>
 <h2 id="demo-en-vivo-5-lineas-de-codigo-infinitas-posibilidades">🎬 Demo en Vivo: "5 Líneas de Código, Infinitas Posibilidades"</h2>
 <h3 id="empezamos-con-magia">¡Empezamos con magia! ✨</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+</span>
 <span class="c1"># ¡Una línea para crear un analizador de sentimientos!</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;¡Este taller va a ser increíble!&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># [{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9998}]</span>
-</code></pre></div>
+<span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;¡Este taller va a ser increíble!&quot;</span><span class="p">)</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># [{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9998}]</span>
+</code></pre></div></td></tr></table></div>
 <p><strong>¿Qué acabamos de hacer?</strong> En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. ¡Sin entrenar nada, sin configurar modelos complejos!</p>
 <h2 id="conceptos-clave-just-in-time-learning">🧠 Conceptos Clave (Just-in-Time Learning)</h2>
 <h3 id="que-son-los-pipelines-de-hugging-face">¿Qué son los Pipelines de Hugging Face?</h3>
@@ -1284,27 +1280,26 @@
 </code></pre></div>
 <h2 id="demo-interactiva-probemos-juntos">🚀 Demo Interactiva: "Probemos Juntos"</h2>
 <h3 id="experimento-1-sentimientos-multiidioma">Experimento 1: Sentimientos Multiidioma</h3>
-<div class="highlight"><pre><span></span><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+<p>```python{hl_lines="1 2" linenums="1"} 
+classifier = pipeline("sentiment-analysis")</p>
+<p>textos = [
+    "I love this workshop!",
+    "Este taller es aburrido",
+    "Je suis très content",
+    "😍🎉✨"
+]</p>
+<p>for texto in textos:
+    resultado = classifier(texto)
+    print(f"{texto} → {resultado[0]['label']} ({resultado[0]['score']:.2f})")
+<div class="highlight"><pre><span></span><code>### Experimento 2: Generación Instantánea
+```python
+generator = pipeline(&quot;text-generation&quot;, model=&quot;gpt2&quot;)
+prompt = &quot;En el futuro, la inteligencia artificial&quot;
+resultado = generator(prompt, max_length=50, num_return_sequences=2)
 
-<span class="n">textos</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;I love this workshop!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Este taller es aburrido&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Je suis très content&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;😍🎉✨&quot;</span>
-<span class="p">]</span>
-
-<span class="k">for</span> <span class="n">texto</span> <span class="ow">in</span> <span class="n">textos</span><span class="p">:</span>
-    <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">texto</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="experimento-2-generacion-instantanea">Experimento 2: Generación Instantánea</h3>
-<div class="highlight"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;En el futuro, la inteligencia artificial&quot;</span>
-<span class="n">resultado</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">texto</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">resultado</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Versión </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">texto</span><span class="p">[</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+for i, texto in enumerate(resultado):
+    print(f&quot;Versión {i+1}: {texto[&#39;generated_text&#39;]}&quot;)
+</code></pre></div></p>
 <h2 id="por-que-funciona-tan-bien">🎯 ¿Por Qué Funciona Tan Bien?</h2>
 <h3 id="el-secreto-modelos-pre-entrenados">El Secreto: Modelos Pre-entrenados</h3>
 <ul>
