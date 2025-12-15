@@ -829,6 +829,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#paso-0-instalar-pandas-con-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 0: Instalar pandas con PIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#paso-1-configuracion-basica" class="md-nav__link">
     <span class="md-ellipsis">
       Paso 1: Configuración Básica
@@ -1298,19 +1307,19 @@
 </thead>
 <tbody>
 <tr>
-<td><code>cardiffnlp/twitter-roberta-base-sentiment-latest</code></td>
+<td><a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest"><code>cardiffnlp/twitter-roberta-base-sentiment-latest</code></a></td>
 <td>EN</td>
-<td>X</td>
+<td>X (Twitter)</td>
 <td>Redes sociales</td>
 </tr>
 <tr>
-<td><code>nlptown/bert-base-multilingual-uncased-sentiment</code></td>
+<td><a href="https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment"><code>nlptown/bert-base-multilingual-uncased-sentiment</code></a></td>
 <td>Multi</td>
 <td>General</td>
 <td>Textos variados</td>
 </tr>
 <tr>
-<td><code>pysentimiento/robertuito-sentiment-analysis</code></td>
+<td><a href="https://huggingface.co/pysentimiento/robertuito-sentiment-analysis"><code>pysentimiento/robertuito-sentiment-analysis</code></a></td>
 <td>ES</td>
 <td>Español</td>
 <td>Textos en español</td>
@@ -1329,6 +1338,9 @@
 <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="implementacion-guiada-10-min">💻 Implementación Guiada (10 min)</h2>
+<h3 id="paso-0-instalar-pandas-con-pip">Paso 0: Instalar pandas con PIP</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</code></pre></div>
 <h3 id="paso-1-configuracion-basica">Paso 1: Configuración Básica</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1441,6 +1453,8 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="paso-4-dashboard-simple">Paso 4: Dashboard Simple</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>matplotlib
+</code></pre></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
