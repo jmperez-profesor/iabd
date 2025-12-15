@@ -864,15 +864,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#paso-4-dashboard-simple" class="md-nav__link">
-    <span class="md-ellipsis">
-      Paso 4: Dashboard Simple
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1403,6 +1394,29 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentimiento: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Confianza: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>Resultados:
+<div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>714eb0f<span class="w"> </span><span class="o">(</span>https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="o">)</span>.
+Using<span class="w"> </span>a<span class="w"> </span>pipeline<span class="w"> </span>without<span class="w"> </span>specifying<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span><span class="k">in</span><span class="w"> </span>production<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>recommended.
+Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+Tweet:<span class="w"> </span>¡Esta<span class="w"> </span>nueva<span class="w"> </span>app<span class="w"> </span>es<span class="w"> </span>increíble!<span class="w"> </span>🚀
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>La<span class="w"> </span>app<span class="w"> </span>se<span class="w"> </span>cuelga<span class="w"> </span>constantemente<span class="w"> </span>😡
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.92<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Funciona<span class="w"> </span>bien,<span class="w"> </span>pero<span class="w"> </span>podría<span class="w"> </span>mejorar
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.99<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>¡Gracias<span class="w"> </span>por<span class="w"> </span>esta<span class="w"> </span>herramienta<span class="w"> </span>tan<span class="w"> </span>útil!<span class="w"> </span>❤️
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.63<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>No<span class="w"> </span>entiendo<span class="w"> </span>cómo<span class="w"> </span>usarla,<span class="w"> </span>muy<span class="w"> </span>confusa
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Perfecta<span class="w"> </span>para<span class="w"> </span>lo<span class="w"> </span>que<span class="w"> </span>necesitaba<span class="w"> </span>👌
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+</code></pre></div></p>
 <h3 id="paso-3-analisis-avanzado-con-multiples-modelos">Paso 3: Análisis Avanzado con Múltiples Modelos</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1452,67 +1466,6 @@
 <span class="k">for</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">resultado</span> <span class="ow">in</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="paso-4-dashboard-simple">Paso 4: Dashboard Simple</h3>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>matplotlib
-</code></pre></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">crear_dashboard</span><span class="p">(</span><span class="n">resultados</span><span class="p">):</span>
-    <span class="c1"># Contar sentimientos</span>
-    <span class="n">sentimientos</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">]</span>
-    <span class="n">conteo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">sentimientos</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-
-    <span class="c1"># Crear gráfico</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-    <span class="c1"># Gráfico de barras</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">conteo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Sentimientos&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Número de Tweets&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Gráfico de confianza</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">confianzas</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">confianzas</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Confianza&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Nivel de Confianza&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Crear dashboard</span>
-<span class="n">crear_dashboard</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
 <h2 id="experimentacion-libre-5-min">🎯 Experimentación Libre (5 min)</h2>
 <h3 id="desafios-para-explorar">Desafíos para Explorar</h3>
 <ol>
@@ -1559,9 +1512,9 @@
 <h2 id="extensiones-opcionales">🚀 Extensiones Opcionales</h2>
 <h3 id="para-los-mas-rapidos">Para los Más Rápidos:</h3>
 <ol>
-<li><strong>Análisis en Tiempo Real:</strong> Conectar con la API de X</li>
-<li><strong>Alertas Automáticas:</strong> Notificar cuando el sentimiento baja del 70%</li>
-<li><strong>Análisis Temporal:</strong> Seguir la evolución del sentimiento por horas/días</li>
+<li><strong>Análisis en tiempo real:</strong> Conectar con la API de X</li>
+<li><strong>Alertas automáticas:</strong> Notificar cuando el sentimiento baja del 70%</li>
+<li><strong>Análisis temporal:</strong> Seguir la evolución del sentimiento por horas/días</li>
 </ol>
 <h3 id="codigo-de-extension">Código de Extensión:</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
