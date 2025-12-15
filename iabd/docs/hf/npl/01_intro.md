@@ -7,7 +7,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 🎬 Demo en Vivo: "5 Líneas de Código, Infinitas Posibilidades"
 
-### ¡Empezamos con magia! ✨
+### Ejemplo sencillo ✨
 
 ```python {hl_lines="1 4 5" linenums="1"} 
 from transformers import pipeline
@@ -19,17 +19,6 @@ print(result)  # [{'label': 'POSITIVE', 'score': 0.9998}]
 ```
 
 **¿Qué acabamos de hacer?** En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. ¡Sin entrenar nada, sin configurar modelos complejos!
-
-## 🧠 Conceptos Clave (Just-in-Time Learning)
-
-### ¿Qué son los Pipelines de Hugging Face?
-
-Los **pipelines** son como "herramientas mágicas" que encapsulan modelos complejos en interfaces súper simples:
-
-```python{linenums="1"}  
-# Formato general
-pipeline("tarea", model="modelo_específico")
-```
 
 ### 🎯 Tareas NLP Principales
 
