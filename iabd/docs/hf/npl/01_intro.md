@@ -42,6 +42,7 @@ No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned
 ```
 Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
 ```
+![Arquitectura simplificada](./img/designer.png)
 
 ## 🚀 Demo Interactiva: 
 
