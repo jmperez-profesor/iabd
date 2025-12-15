@@ -39,9 +39,9 @@ El análisis de sentimientos clasifica texto según la **emoción** o **actitud*
 
 | Modelo | Idioma | Especialidad | Uso Recomendado |
 |--------|--------|--------------|-----------------|
-| `cardiffnlp/twitter-roberta-base-sentiment-latest` | EN | X | Redes sociales |
-| `nlptown/bert-base-multilingual-uncased-sentiment` | Multi | General | Textos variados |
-| `pysentimiento/robertuito-sentiment-analysis` | ES | Español | Textos en español |
+| [`cardiffnlp/twitter-roberta-base-sentiment-latest`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest) | EN | X (Twitter) | Redes sociales |
+| [`nlptown/bert-base-multilingual-uncased-sentiment`](https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment) | Multi | General | Textos variados |
+| [`pysentimiento/robertuito-sentiment-analysis`](https://huggingface.co/pysentimiento/robertuito-sentiment-analysis) | ES | Español | Textos en español |
 
 ### Parámetros importantes
 
@@ -55,6 +55,10 @@ classifier = pipeline(
 
 ## 💻 Implementación Guiada (10 min)
 
+### Paso 0: Instalar pandas con PIP
+```bash
+pip install pandas
+```
 ### Paso 1: Configuración Básica
 
 ```python {linenums="1"}
@@ -125,6 +129,10 @@ for modelo, resultado in comparacion.items():
 ```
 
 ### Paso 4: Dashboard Simple
+
+```bash
+pip install matplotlib
+```
 
 ```python {linenums="1"}
 import matplotlib.pyplot as plt
