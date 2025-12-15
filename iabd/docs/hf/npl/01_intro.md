@@ -5,8 +5,12 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # 🔥 Introducción: El Poder de los Transformers
 
-## 🎬 Demo en Vivo: "5 Líneas de Código, Infinitas Posibilidades"
+## 🎬 Demo en Vivo: "5 Líneas de código sencillas"
 
+### Instalación Rápida
+```bash
+pip install transformers torch
+```
 ### Ejemplo sencillo ✨
 
 ```python {hl_lines="1 4 5" linenums="1"} 
@@ -14,11 +18,14 @@ from transformers import pipeline
 
 # ¡Una línea para crear un analizador de sentimientos!
 classifier = pipeline("sentiment-analysis")
-result = classifier("¡Este taller va a ser increíble!")
+result = classifier("I loved Star Wars so much!")
 print(result)  # [{'label': 'POSITIVE', 'score': 0.9998}]
 ```
-
-**¿Qué acabamos de hacer?** En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. ¡Sin entrenar nada, sin configurar modelos complejos!
+Destacar el siguiente mensaje:
+```bash
+No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned-sst-2-english and revision 714eb0f (https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english).
+```
+**¿Qué acabamos de hacer?** En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. 
 
 ### 🎯 Tareas NLP Principales
 
@@ -36,10 +43,10 @@ print(result)  # [{'label': 'POSITIVE', 'score': 0.9998}]
 Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
 ```
 
-## 🚀 Demo Interactiva: "Probemos Juntos"
+## 🚀 Demo Interactiva: 
 
 ### Experimento 1: Sentimientos Multiidioma
-```python {hl_lines="1 2" linenums="1"} 
+```python {hl_lines="1" linenums="1"} 
 classifier = pipeline("sentiment-analysis")
 
 textos = [
@@ -53,18 +60,50 @@ for texto in textos:
     resultado = classifier(texto)
     print(f"{texto} → {resultado[0]['label']} ({resultado[0]['score']:.2f})")
 ```
+**¿Funciona correctamente?**
+
+No funciona correctamente porque usamos `pipeline("sentiment-analysis")` sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.
+
+Vamos a modificar el código especificando, por ejemplo, el modelo [`tabularisai/multilingual-sentiment-analysis`](https://huggingface.co/tabularisai/multilingual-sentiment-analysis) (model="tabularisai/multilingual-sentiment-analysis"). Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. 
+
+Modificamos el código y volvemos a probar.
+
+```python {hl_lines="1" linenums="3 4"}
+from transformers import pipeline
+
+classifier = pipeline("sentiment-analysis", 
+                        model="tabularisai/multilingual-sentiment-analysis")
+
+textos = [
+    "I love this workshop!",
+    "Este taller es aburrido",
+    "Je suis très content",
+    "😍🎉✨"
+]
+
+for texto in textos:
+    resultado = classifier(texto)
+    print(f"{texto} → {resultado[0]['label']} ({resultado[0]['score']:.2f})")
+
+#I love this workshop! → Positive (0.52)
+#Este taller es aburrido → Negative (0.73)
+#Je suis très content → Positive (0.88)
+#😍🎉✨ → Neutral (0.34)
+```
 
 ### Experimento 2: Generación Instantánea
-```python
+```python {hl_lines="1" linenums="1"}
 generator = pipeline("text-generation", model="gpt2")
+
 prompt = "En el futuro, la inteligencia artificial"
+
 resultado = generator(prompt, max_length=50, num_return_sequences=2)
 
 for i, texto in enumerate(resultado):
     print(f"Versión {i+1}: {texto['generated_text']}")
 ```
 
-## 🎯 ¿Por Qué Funciona Tan Bien?
+## 🎯 ¿Por Qué funciona tan bien?
 
 ### El Secreto: Modelos Pre-entrenados
 - **Millones de parámetros** entrenados en enormes datasets
@@ -77,7 +116,7 @@ for i, texto in enumerate(resultado):
 - ✅ **Comunidad**: Modelos compartidos y mejorados constantemente
 - ✅ **Flexibilidad**: Desde uso básico hasta personalización avanzada
 
-## 🎮 Preparación para los Retos
+## 🎮 Preparación para los retos
 
 ### Instalación Rápida
 ```bash
