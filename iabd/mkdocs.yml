@@ -63,8 +63,7 @@ nav:
     - Gradio: hf/Ejemplo_gradio.md
     - Tasks: 
       - Visión por computador: hf/Tasks_vc.md
-      - Textos: hf/Tasks_texts.md
-      - NPL: 
+      - Textos (NPL) : 
         - Introducción: hf/npl/01_intro.md
         - Reto1 - Sentimientos: hf/npl/02_reto1_sentimientos.md
         - Reto2 - Clasificacion: hf/npl/03_reto2_clasificacion.md
