@@ -64,7 +64,7 @@ for texto in textos:
 
 No funciona correctamente porque usamos `pipeline("sentiment-analysis")` sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.
 
-Vamos a modificar el código especificando, por ejemplo, el modelo [`tabularisai/multilingual-sentiment-analysis`](https://huggingface.co/tabularisai/multilingual-sentiment-analysis) (model="tabularisai/multilingual-sentiment-analysis"). Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. 
+Vamos a modificar el código especificando, por ejemplo, el modelo [`tabularisai/multilingual-sentiment-analysis`](https://huggingface.co/tabularisai/multilingual-sentiment-analysis) `(model="tabularisai/multilingual-sentiment-analysis")`. Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. 
 
 Modificamos el código y volvemos a probar.
 

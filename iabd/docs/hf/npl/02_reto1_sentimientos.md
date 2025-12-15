@@ -13,6 +13,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### El Problema Real
 Una startup de tecnología quiere monitorizar qué dice la gente sobre su nueva app en redes sociales. Necesitan:
+
 - Detectar comentarios positivos y negativos automáticamente
 - Identificar crisis de reputación temprano
 - Medir el impacto de sus campañas de marketing
@@ -193,6 +194,7 @@ crear_dashboard(resultados)
 ## 🏅 Criterios de Éxito
 
 Al completar este reto, deberías poder:
+
 - ✅ Implementar análisis de sentimientos básico
 - ✅ Comparar diferentes modelos
 - ✅ Interpretar scores de confianza

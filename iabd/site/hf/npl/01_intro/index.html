@@ -1293,27 +1293,27 @@ Destacar el siguiente mensaje:
 <p>No funciona correctamente porque usamos <code>pipeline("sentiment-analysis")</code> sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.</p>
 <p>Vamos a modificar el código especificando, por ejemplo, el modelo <a href="https://huggingface.co/tabularisai/multilingual-sentiment-analysis"><code>tabularisai/multilingual-sentiment-analysis</code></a> (model="tabularisai/multilingual-sentiment-analysis"). Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. </p>
 <p>Modificamos el código y volvemos a probar.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  </span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
 <span class="normal"> 4</span>
-<span class="normal">  </span>
-<span class="normal">  </span>
-<span class="normal">  </span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
 <span class="normal"> 8</span>
-<span class="normal">  </span>
-<span class="normal">  </span>
-<span class="normal">  </span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">  </span>
-<span class="normal">  </span>
-<span class="normal">  </span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">  </span>
-<span class="normal">  </span>
-<span class="normal">  </span>
-<span class="normal">20</span>
-<span class="normal">  </span>
-<span class="normal">  </span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> 
                         <span class="n">model</span><span class="o">=</span><span class="s2">&quot;tabularisai/multilingual-sentiment-analysis&quot;</span><span class="p">)</span>
 
@@ -1333,6 +1333,16 @@ Destacar el siguiente mensaje:
 <span class="c1">#Je suis très content → Positive (0.88)</span>
 <span class="c1">#😍🎉✨ → Neutral (0.34)</span>
 </code></pre></div></td></tr></table></div>
+Antes de ejecutar el ejemplo, veremos unas barras de progreso de Hugging Face mientras descarga el modelo y el tokenizador desde el Hub la primera vez que ejecutamoss el <code>pipeline</code>.</p>
+<ul>
+<li>
+<p><code>config.json</code>, <code>model.safetensors</code>, <code>tokenizer_config.json</code>, <code>vocab.txt</code>, <code>tokenizer.json</code>, <code>special_tokens_map.json</code> son los ficheros que necesita el modelo (arquitectura, pesos, vocabulario, configuración del tokenizer, etc.).​</p>
+</li>
+<li>
+<p>La descarga puede tardar (en nuestros caso ~541 MB de model.safetensors), pero solo se hace la primera vez; después se reutiliza desde la caché local y ya no veremos esa descarga completa a menos que borremos la caché.​</p>
+</li>
+</ul>
+<p>Si tras esas barras de progreso nuestro script se queda “parado”, normalmente es porque sigue ejecutando el pipeline sobre los textos (inferencia); si no aparece nada, revisa que tengas el print(...) dentro del bucle y que no haya errores posteriores.</p>
 <div class="highlight"><pre><span></span><code>config.json:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████<span class="p">|</span><span class="w"> </span><span class="m">851</span>/851<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">9</span>.89MB/s<span class="o">]</span>
 model.safetensors:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████<span class="p">|</span><span class="w"> </span>541M/541M<span class="w"> </span><span class="o">[</span><span class="m">01</span>:10&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">7</span>.64MB/s<span class="o">]</span>
 tokenizer_config.json:<span class="w"> </span><span class="m">1</span>.20kB<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00,<span class="w"> </span><span class="m">2</span>.69MB/s<span class="o">]</span>
@@ -1347,11 +1357,11 @@ special_tokens_map.json:<span class="w"> </span><span class="m">100</span>%<span
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+<span class="hll">
+</span><span class="hll"><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>  
+</span><span class="hll">                     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">)</span> 
 </span>
-<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>  
-                     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">)</span> 
-
 <span class="n">generator</span><span class="p">(</span><span class="s2">&quot;In this course, we will teach you how to&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 Genera la siguiente salida (tengamos en cuenta que la salida será diferente cada vez que se ejecute el fragmento de código): 
