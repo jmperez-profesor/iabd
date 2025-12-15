@@ -763,134 +763,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#tareas-nlp-principales" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Tareas NLP Principales
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arquitectura-simplificada" class="md-nav__link">
-    <span class="md-ellipsis">
-      🏗️ Arquitectura Simplificada
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#demo-interactiva-probemos-juntos" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Demo Interactiva: "Probemos Juntos"
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Demo Interactiva: &#34;Probemos Juntos&#34;">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#experimento-1-sentimientos-multiidioma" class="md-nav__link">
-    <span class="md-ellipsis">
-      Experimento 1: Sentimientos Multiidioma
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#por-que-funciona-tan-bien" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 ¿Por Qué Funciona Tan Bien?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🎯 ¿Por Qué Funciona Tan Bien?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#el-secreto-modelos-pre-entrenados" class="md-nav__link">
-    <span class="md-ellipsis">
-      El Secreto: Modelos Pre-entrenados
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas-de-hugging-face" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ventajas de Hugging Face
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preparacion-para-los-retos" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎮 Preparación para los Retos
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🎮 Preparación para los Retos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#instalacion-rapida" class="md-nav__link">
-    <span class="md-ellipsis">
-      Instalación Rápida
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#estructura-mental-para-los-retos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Estructura Mental para los Retos
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#listos-para-el-primer-reto" class="md-nav__link">
-    <span class="md-ellipsis">
-      🏆 ¡Listos para el Primer Reto!
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recursos-adicionales" class="md-nav__link">
-    <span class="md-ellipsis">
-      📚 Recursos Adicionales
-    </span>
-  </a>
   
 </li>
       
@@ -1235,71 +1109,47 @@
 <h2 id="conceptos-clave-just-in-time-learning">🧠 Conceptos Clave (Just-in-Time Learning)</h2>
 <h3 id="que-son-los-pipelines-de-hugging-face">¿Qué son los Pipelines de Hugging Face?</h3>
 <p>Los <strong>pipelines</strong> son como "herramientas mágicas" que encapsulan modelos complejos en interfaces súper simples:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Formato general</span>
-<span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;tarea&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;modelo_específico&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="tareas-nlp-principales">🎯 Tareas NLP Principales</h3>
-<table>
-<thead>
-<tr>
-<th>Tarea</th>
-<th>Pipeline</th>
-<th>Ejemplo de Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Análisis de Sentimientos</strong></td>
-<td><code>sentiment-analysis</code></td>
-<td>Redes sociales, reviews</td>
-</tr>
-<tr>
-<td><strong>Clasificación de Texto</strong></td>
-<td><code>text-classification</code></td>
-<td>Categorizar noticias, emails</td>
-</tr>
-<tr>
-<td><strong>Generación de Texto</strong></td>
-<td><code>text-generation</code></td>
-<td>Chatbots, escritura creativa</td>
-</tr>
-<tr>
-<td><strong>Traducción</strong></td>
-<td><code>translation</code></td>
-<td>Apps multiidioma</td>
-</tr>
-<tr>
-<td><strong>Resumen</strong></td>
-<td><code>summarization</code></td>
-<td>Resúmenes automáticos</td>
-</tr>
-</tbody>
-</table>
-<h3 id="arquitectura-simplificada">🏗️ Arquitectura Simplificada</h3>
-<div class="highlight"><pre><span></span><code>Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
-</code></pre></div>
-<h2 id="demo-interactiva-probemos-juntos">🚀 Demo Interactiva: "Probemos Juntos"</h2>
-<h3 id="experimento-1-sentimientos-multiidioma">Experimento 1: Sentimientos Multiidioma</h3>
-<p>```python{hl_lines="1 2" linenums="1"} 
-classifier = pipeline("sentiment-analysis")</p>
-<p>textos = [
-    "I love this workshop!",
-    "Este taller es aburrido",
-    "Je suis très content",
-    "😍🎉✨"
-]</p>
-<p>for texto in textos:
-    resultado = classifier(texto)
-    print(f"{texto} → {resultado[0]['label']} ({resultado[0]['score']:.2f})")
-<div class="highlight"><pre><span></span><code>### Experimento 2: Generación Instantánea
-```python
-generator = pipeline(&quot;text-generation&quot;, model=&quot;gpt2&quot;)
-prompt = &quot;En el futuro, la inteligencia artificial&quot;
-resultado = generator(prompt, max_length=50, num_return_sequences=2)
+<p>```python{linenums="1"}  </p>
+<h1 id="formato-general">Formato general</h1>
+<p>pipeline("tarea", model="modelo_específico")
+<div class="highlight"><pre><span></span><code>### 🎯 Tareas NLP Principales
 
-for i, texto in enumerate(resultado):
-    print(f&quot;Versión {i+1}: {texto[&#39;generated_text&#39;]}&quot;)
+| Tarea | Pipeline | Ejemplo de Uso |
+|-------|----------|----------------|
+| **Análisis de Sentimientos** | `sentiment-analysis` | Redes sociales, reviews |
+| **Clasificación de Texto** | `text-classification` | Categorizar noticias, emails |
+| **Generación de Texto** | `text-generation` | Chatbots, escritura creativa |
+| **Traducción** | `translation` | Apps multiidioma |
+| **Resumen** | `summarization` | Resúmenes automáticos |
+
+### 🏗️ Arquitectura Simplificada
+</code></pre></div>
+Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
+<div class="highlight"><pre><span></span><code>## 🚀 Demo Interactiva: &quot;Probemos Juntos&quot;
+
+### Experimento 1: Sentimientos Multiidioma
+```python {hl_lines=&quot;1 2&quot; linenums=&quot;1&quot;} 
+classifier = pipeline(&quot;sentiment-analysis&quot;)
+
+textos = [
+    &quot;I love this workshop!&quot;,
+    &quot;Este taller es aburrido&quot;,
+    &quot;Je suis très content&quot;,
+    &quot;😍🎉✨&quot;
+]
+
+for texto in textos:
+    resultado = classifier(texto)
+    print(f&quot;{texto} → {resultado[0][&#39;label&#39;]} ({resultado[0][&#39;score&#39;]:.2f})&quot;)
 </code></pre></div></p>
+<h3 id="experimento-2-generacion-instantanea">Experimento 2: Generación Instantánea</h3>
+<div class="highlight"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;En el futuro, la inteligencia artificial&quot;</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">texto</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">resultado</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Versión </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">texto</span><span class="p">[</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="por-que-funciona-tan-bien">🎯 ¿Por Qué Funciona Tan Bien?</h2>
 <h3 id="el-secreto-modelos-pre-entrenados">El Secreto: Modelos Pre-entrenados</h3>
 <ul>
