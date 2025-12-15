@@ -48,7 +48,7 @@ modelos_clasificacion = {
 }
 ```
 
-### Zero-Shot Classification: La Magia
+### Zero-Shot Classification: Un poco de "magia"
 
 ```python {linenums="1"}
 # ¡Clasificar SIN entrenar el modelo!

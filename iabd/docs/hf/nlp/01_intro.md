@@ -101,7 +101,7 @@ Antes de ejecutar el ejemplo, veremos unas barras de progreso de Hugging Face mi
 
 - `config.json`, `model.safetensors`, `tokenizer_config.json`, `vocab.txt`, `tokenizer.json`, `special_tokens_map.json` son los ficheros que necesita el modelo (arquitectura, pesos, vocabulario, configuración del tokenizer, etc.).​
 
-- La descarga puede tardar (en nuestros caso ~541 MB de model.safetensors), pero solo se hace la primera vez; después se reutiliza desde la caché local y ya no veremos esa descarga completa a menos que borremos la caché.​
+- La descarga puede tardar (en nuestro caso ~541 MB de `model.safetensors`), pero solo se hace la primera vez; después se reutiliza desde la caché local y ya no veremos esa descarga completa a menos que borremos la caché.​
 
 Si tras esas barras de progreso nuestro script se queda “parado”, normalmente es porque sigue ejecutando el pipeline sobre los textos (inferencia); si no aparece nada, revisa que tengas el print(...) dentro del bucle y que no haya errores posteriores.
 

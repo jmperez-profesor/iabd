@@ -7,7 +7,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 **⏱️ Tiempo:** 30 minutos  
 **🎯 Nivel:** Principiante  
-**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en X
+**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en X (Twitter)
 
 ## 🎬 Contexto y Motivación (5 min)
 
@@ -78,7 +78,6 @@ tweets = [
     "Perfecta para lo que necesitaba 👌"
 ]
 ```
-
 ### Paso 2: Análisis Básico
 
 ```python {linenums="1"}
