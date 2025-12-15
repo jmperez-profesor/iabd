@@ -779,7 +779,7 @@
           <li class="md-nav__item">
   <a href="#el-problema-real" class="md-nav__link">
     <span class="md-ellipsis">
-      El Problema Real
+      El problema real
     </span>
   </a>
   
@@ -788,7 +788,7 @@
           <li class="md-nav__item">
   <a href="#por-que-es-crucial" class="md-nav__link">
     <span class="md-ellipsis">
-      ¿Por Qué es Crucial?
+      ¿Por qué es crucial?
     </span>
   </a>
   
@@ -844,11 +844,11 @@
         <li class="md-nav__item">
   <a href="#implementacion-guiada-10-min" class="md-nav__link">
     <span class="md-ellipsis">
-      💻 Implementación Guiada (10 min)
+      💻 Implementación guiada (10 min)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="💻 Implementación Guiada (10 min)">
+    <nav class="md-nav" aria-label="💻 Implementación guiada (10 min)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -947,7 +947,7 @@
           <li class="md-nav__item">
   <a href="#para-los-mas-rapidos" class="md-nav__link">
     <span class="md-ellipsis">
-      Para los Más Rápidos:
+      Para los más rápidos:
     </span>
   </a>
   
@@ -1257,13 +1257,13 @@
 <strong>🎯 Nivel:</strong> Intermedio<br />
 <strong>🚀 Objetivo:</strong> Construir un sistema de categorización automática de noticias</p>
 <h2 id="contexto-y-motivacion-5-min">🎬 Contexto y Motivación (5 min)</h2>
-<h3 id="el-problema-real">El Problema Real</h3>
+<h3 id="el-problema-real">El problema real</h3>
 <p>Un periódico digital recibe <strong>500+ artículos diarios</strong> de diferentes fuentes. Su equipo editorial necesita:
 - Clasificar automáticamente las noticias por categorías
 - Priorizar noticias importantes para la portada
 - Detectar noticias duplicadas o similares
 - Organizar el contenido para diferentes secciones</p>
-<h3 id="por-que-es-crucial">¿Por Qué es Crucial?</h3>
+<h3 id="por-que-es-crucial">¿Por qué es crucial?</h3>
 <ul>
 <li><strong>Ahorro de tiempo:</strong> De 4 horas manuales a 10 minutos automáticos</li>
 <li><strong>Consistencia:</strong> Clasificación uniforme sin sesgos humanos</li>
@@ -1304,26 +1304,67 @@
 </tbody>
 </table>
 <h3 id="modelos-especializados">Modelos Especializados</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Modelos populares para clasificación</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Modelos populares para clasificación</span>
 <span class="n">modelos_clasificacion</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;noticias_español&quot;</span><span class="p">:</span> <span class="s2">&quot;bertin-project/bertin-roberta-base-spanish&quot;</span><span class="p">,</span>
     <span class="s2">&quot;noticias_general&quot;</span><span class="p">:</span> <span class="s2">&quot;facebook/bart-large-mnli&quot;</span><span class="p">,</span>
     <span class="s2">&quot;multiidioma&quot;</span><span class="p">:</span> <span class="s2">&quot;microsoft/DialoGPT-medium&quot;</span><span class="p">,</span>
     <span class="s2">&quot;zero_shot&quot;</span><span class="p">:</span> <span class="s2">&quot;facebook/bart-large-mnli&quot;</span>  <span class="c1"># ¡Sin entrenamiento previo!</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="zero-shot-classification-la-magia">Zero-Shot Classification: La Magia</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
 <span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
 <span class="n">categorias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deportes&quot;</span><span class="p">,</span> <span class="s2">&quot;política&quot;</span><span class="p">,</span> <span class="s2">&quot;tecnología&quot;</span><span class="p">,</span> <span class="s2">&quot;economía&quot;</span><span class="p">]</span>
 
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
 <span class="c1"># Resultado: &quot;deportes&quot; con alta confianza</span>
-</code></pre></div>
-<h2 id="implementacion-guiada-10-min">💻 Implementación Guiada (10 min)</h2>
+</code></pre></div></td></tr></table></div>
+<h2 id="implementacion-guiada-10-min">💻 Implementación guiada (10 min)</h2>
 <h3 id="paso-1-configuracion-y-datos">Paso 1: Configuración y Datos</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1353,9 +1394,33 @@
 
 <span class="c1"># Categorías objetivo</span>
 <span class="n">categorias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deportes&quot;</span><span class="p">,</span> <span class="s2">&quot;política&quot;</span><span class="p">,</span> <span class="s2">&quot;economía&quot;</span><span class="p">,</span> <span class="s2">&quot;ciencia&quot;</span><span class="p">,</span> <span class="s2">&quot;tecnología&quot;</span><span class="p">]</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-2-clasificacion-zero-shot">Paso 2: Clasificación Zero-Shot</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Crear clasificador zero-shot</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Crear clasificador zero-shot</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">,</span> 
                      <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/bart-large-mnli&quot;</span><span class="p">)</span>
 
@@ -1380,9 +1445,46 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📰 </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">][:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🏷️  Categoría: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-3-analisis-avanzado-con-multiples-categorias">Paso 3: Análisis Avanzado con Múltiples Categorías</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clasificacion_multinivel</span><span class="p">(</span><span class="n">noticia</span><span class="p">,</span> <span class="n">categorias_principales</span><span class="p">,</span> <span class="n">subcategorias</span><span class="p">):</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clasificacion_multinivel</span><span class="p">(</span><span class="n">noticia</span><span class="p">,</span> <span class="n">categorias_principales</span><span class="p">,</span> <span class="n">subcategorias</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Clasificación jerárquica: primero categoría principal, luego subcategoría&quot;&quot;&quot;</span>
 
     <span class="c1"># Paso 1: Categoría principal</span>
@@ -1420,9 +1522,38 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🗂️  Ruta: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;ruta_completa&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📊 Confianza: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza_principal&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-4-sistema-de-recomendacion-simple">Paso 4: Sistema de Recomendación Simple</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">recomendar_noticias_similares</span><span class="p">(</span><span class="n">noticia_objetivo</span><span class="p">,</span> <span class="n">todas_las_noticias</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">recomendar_noticias_similares</span><span class="p">(</span><span class="n">noticia_objetivo</span><span class="p">,</span> <span class="n">todas_las_noticias</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Encuentra noticias similares basándose en la clasificación&quot;&quot;&quot;</span>
 
     <span class="c1"># Clasificar la noticia objetivo</span>
@@ -1452,7 +1583,7 @@
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rec</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">recomendaciones</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;titulo&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Categoría: </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="experimentacion-libre-5-min">🎯 Experimentación Libre (5 min)</h2>
 <h3 id="desafios-para-explorar">Desafíos para Explorar</h3>
 <ol>
@@ -1476,7 +1607,22 @@
 </li>
 </ol>
 <h3 id="experimentos-avanzados">Experimentos Avanzados</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. Clasificación con confianza mínima</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 1. Clasificación con confianza mínima</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">clasificar_con_umbral</span><span class="p">(</span><span class="n">noticia</span><span class="p">,</span> <span class="n">categorias</span><span class="p">,</span> <span class="n">umbral_confianza</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
     <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">(</span><span class="n">noticia</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">umbral_confianza</span><span class="p">:</span>
@@ -1492,7 +1638,7 @@
 
     <span class="n">umbral_atipico</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">confianzas</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>  <span class="c1"># 25% más bajas</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">noticias</span><span class="p">,</span> <span class="n">confianzas</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">umbral_atipico</span><span class="p">]</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="criterios-de-exito">🏅 Criterios de Éxito</h2>
 <p>Al completar este reto, deberías poder:
 - ✅ Implementar clasificación zero-shot
@@ -1501,11 +1647,19 @@
 - ✅ Manejar múltiples categorías y subcategorías
 - ✅ Evaluar la confianza de las predicciones</p>
 <h2 id="extensiones-opcionales">🚀 Extensiones Opcionales</h2>
-<h3 id="para-los-mas-rapidos">Para los Más Rápidos:</h3>
+<h3 id="para-los-mas-rapidos">Para los más rápidos:</h3>
 <ol>
 <li>
 <p><strong>Dashboard Interactivo:</strong>
-   <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">crear_dashboard_noticias</span><span class="p">():</span>
     <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;📰 Clasificador de Noticias IA&quot;</span><span class="p">)</span>
@@ -1514,11 +1668,19 @@
         <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">({</span><span class="s1">&#39;titulo&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;contenido&#39;</span><span class="p">:</span> <span class="n">texto_noticia</span><span class="p">},</span> <span class="n">categorias</span><span class="p">)</span>
         <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Categoría: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confianza: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div></td></tr></table></div></p>
 </li>
 <li>
 <p><strong>API REST Simple:</strong>
-   <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -1527,11 +1689,18 @@
     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
     <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div></td></tr></table></div></p>
 </li>
 <li>
 <p><strong>Análisis de Tendencias:</strong>
-   <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analizar_tendencias_diarias</span><span class="p">(</span><span class="n">noticias_por_dia</span><span class="p">):</span>
+   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analizar_tendencias_diarias</span><span class="p">(</span><span class="n">noticias_por_dia</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza qué categorías son trending cada día&quot;&quot;&quot;</span>
     <span class="n">tendencias</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">dia</span><span class="p">,</span> <span class="n">noticias</span> <span class="ow">in</span> <span class="n">noticias_por_dia</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1539,11 +1708,11 @@
                         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">noticias</span><span class="p">]</span>
         <span class="n">tendencias</span><span class="p">[</span><span class="n">dia</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categorias_dia</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">tendencias</span>
-</code></pre></div></p>
+</code></pre></div></td></tr></table></div></p>
 </li>
 </ol>
 <h2 id="proximo-reto">🎯 Próximo Reto</h2>
-<p>¡Increíble! Has construido un sistema completo de clasificación de noticias. </p>
+<p>Has construido un sistema completo de clasificación de noticias. </p>
 <p>Para el reto final, vamos a explorar la frontera más emocionante del NLP: <strong>la generación de texto creativo</strong>. Crearemos un asistente de escritura que ayude a generar contenido original.</p>
 <p><a href="../04_reto3_generacion/">👉 Ir al Reto 3: Asistente de Escritura Creativa</a></p>
 <hr />

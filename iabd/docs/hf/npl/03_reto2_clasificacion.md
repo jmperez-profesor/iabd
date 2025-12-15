@@ -262,15 +262,44 @@ Al completar este reto, deberías poder:
 
 1. **Dashboard Interactivo:**
    ```python {linenums="1"}
-   import streamlit as st
-   
-   def crear_dashboard_noticias():
-       st.title("📰 Clasificador de Noticias IA")
-       texto_noticia = st.text_area("Pega aquí tu noticia:")
-       if st.button("Clasificar"):
-           resultado = clasificar_noticia({'titulo': '', 'contenido': texto_noticia}, categorias)
-           st.success(f"Categoría: {resultado['categoria_predicha']}")
-           st.info(f"Confianza: {resultado['confianza']:.2f}")
+   import gradio as gr
+
+    # Se asume que ya tienes definida esta función y la lista `categorias`
+    # def clasificar_noticia(noticia: dict, categorias: list) -> dict:
+    #     # devuelve, por ejemplo: {"categoria_predicha": "Política", "confianza": 0.87}
+    #     ...
+    # categorias = ["Política", "Economía", "Deportes", "Tecnología", "Cultura"]
+
+    def clasificar_noticia_interface(texto_noticia):
+        if not texto_noticia.strip():
+            return "Por favor, pega una noticia para clasificar.", ""
+        resultado = clasificar_noticia({"titulo": "", "contenido": texto_noticia}, categorias)
+        categoria = f"Categoría: {resultado['categoria_predicha']}"
+        confianza = f"Confianza: {resultado['confianza']:.2f}"
+        return categoria, confianza
+
+    with gr.Blocks(title="📰 Clasificador de Noticias IA") as demo:
+        gr.Markdown("# 📰 Clasificador de Noticias IA")
+
+        texto_noticia = gr.Textbox(
+            label="Pega aquí tu noticia:",
+            lines=10,
+            placeholder="Copia y pega el texto completo de la noticia..."
+        )
+
+        boton = gr.Button("Clasificar")
+
+        salida_categoria = gr.Markdown()
+        salida_confianza = gr.Markdown()
+
+        boton.click(
+            fn=clasificar_noticia_interface,
+            inputs=texto_noticia,
+            outputs=[salida_categoria, salida_confianza],
+        )
+
+    if __name__ == "__main__":
+        demo.launch()
    ```
 
 2. **API REST Simple:**

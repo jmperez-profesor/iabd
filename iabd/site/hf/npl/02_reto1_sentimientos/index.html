@@ -798,7 +798,7 @@
           <li class="md-nav__item">
   <a href="#modelos-disponibles-en-hugging-face" class="md-nav__link">
     <span class="md-ellipsis">
-      Modelos Disponibles en Hugging Face
+      Modelos disponibles en Hugging Face
     </span>
   </a>
   
@@ -807,7 +807,7 @@
           <li class="md-nav__item">
   <a href="#parametros-importantes" class="md-nav__link">
     <span class="md-ellipsis">
-      Parámetros Importantes
+      Parámetros importantes
     </span>
   </a>
   
@@ -1284,7 +1284,7 @@
 &quot;Esta app es terrible&quot; → NEGATIVO (0.89)
 &quot;La app funciona bien&quot; → NEUTRAL (0.72)
 </code></pre></div>
-<h3 id="modelos-disponibles-en-hugging-face">Modelos Disponibles en Hugging Face</h3>
+<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
 <table>
 <thead>
 <tr>
@@ -1315,16 +1315,34 @@
 </tr>
 </tbody>
 </table>
-<h3 id="parametros-importantes">Parámetros Importantes</h3>
-<div class="highlight"><pre><span></span><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+<h3 id="parametros-importantes">Parámetros importantes</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
     <span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cardiffnlp/twitter-roberta-base-sentiment-latest&quot;</span><span class="p">,</span>
     <span class="n">return_all_scores</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Ver todas las probabilidades</span>
 <span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="implementacion-guiada-10-min">💻 Implementación Guiada (10 min)</h2>
 <h3 id="paso-1-configuracion-basica">Paso 1: Configuración Básica</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Crear el clasificador</span>
@@ -1339,9 +1357,23 @@
     <span class="s2">&quot;No entiendo cómo usarla, muy confusa&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Perfecta para lo que necesitaba 👌&quot;</span>
 <span class="p">]</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-2-analisis-basico">Paso 2: Análisis Básico</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Analizar cada tweet</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Analizar cada tweet</span>
 <span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
     <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
@@ -1356,9 +1388,32 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentimiento: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Confianza: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-3-analisis-avanzado-con-multiples-modelos">Paso 3: Análisis Avanzado con Múltiples Modelos</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Comparar diferentes modelos</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Comparar diferentes modelos</span>
 <span class="n">modelos</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;cardiffnlp/twitter-roberta-base-sentiment-latest&quot;</span><span class="p">,</span>
     <span class="s2">&quot;nlptown/bert-base-multilingual-uncased-sentiment&quot;</span>
@@ -1382,9 +1437,37 @@
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">tweet_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">resultado</span> <span class="ow">in</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="paso-4-dashboard-simple">Paso 4: Dashboard Simple</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">crear_dashboard</span><span class="p">(</span><span class="n">resultados</span><span class="p">):</span>
     <span class="c1"># Contar sentimientos</span>
@@ -1413,7 +1496,7 @@
 
 <span class="c1"># Crear dashboard</span>
 <span class="n">crear_dashboard</span><span class="p">(</span><span class="n">resultados</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="experimentacion-libre-5-min">🎯 Experimentación Libre (5 min)</h2>
 <h3 id="desafios-para-explorar">Desafíos para Explorar</h3>
 <ol>
@@ -1463,7 +1546,21 @@
 <li><strong>Análisis Temporal:</strong> Seguir la evolución del sentimiento por horas/días</li>
 </ol>
 <h3 id="codigo-de-extension">Código de Extensión:</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">monitor_sentimiento</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">umbral</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">monitor_sentimiento</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">umbral</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Monitoriza sentimientos y genera alertas&quot;&quot;&quot;</span>
     <span class="n">negativos</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
@@ -1478,7 +1575,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚨 ALERTA: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negativos</span><span class="p">)</span><span class="si">}</span><span class="s2"> tweets muy negativos detectados!&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">neg</span> <span class="ow">in</span> <span class="n">negativos</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">neg</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Score: </span><span class="si">{</span><span class="n">neg</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="proximo-reto">🎯 Próximo Reto</h2>
 <p>¡Excelente trabajo! Has creado tu primer sistema de análisis de sentimientos. </p>
 <p>En el siguiente reto, subiremos el nivel: <strong>clasificaremos noticias automáticamente</strong> para crear un sistema de organización inteligente.</p>

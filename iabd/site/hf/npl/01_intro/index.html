@@ -848,15 +848,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#instalacion-rapida_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Instalación Rápida
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#estructura-mental-para-los-retos" class="md-nav__link">
     <span class="md-ellipsis">
       Estructura Mental para los Retos
@@ -873,7 +864,7 @@
         <li class="md-nav__item">
   <a href="#listos-para-el-primer-reto" class="md-nav__link">
     <span class="md-ellipsis">
-      🏆 ¡Listos para el Primer Reto!
+      🏆 ¡Listos para el primer reto!
     </span>
   </a>
   
@@ -1342,7 +1333,31 @@ Destacar el siguiente mensaje:
 <span class="c1">#Je suis très content → Positive (0.88)</span>
 <span class="c1">#😍🎉✨ → Neutral (0.34)</span>
 </code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code>config.json:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████<span class="p">|</span><span class="w"> </span><span class="m">851</span>/851<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">9</span>.89MB/s<span class="o">]</span>
+model.safetensors:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████<span class="p">|</span><span class="w"> </span>541M/541M<span class="w"> </span><span class="o">[</span><span class="m">01</span>:10&lt;<span class="m">00</span>:00,<span class="w"> </span><span class="m">7</span>.64MB/s<span class="o">]</span>
+tokenizer_config.json:<span class="w"> </span><span class="m">1</span>.20kB<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00,<span class="w"> </span><span class="m">2</span>.69MB/s<span class="o">]</span>
+vocab.txt:<span class="w"> </span>996kB<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00,<span class="w"> </span><span class="m">9</span>.65MB/s<span class="o">]</span>
+tokenizer.json:<span class="w"> </span><span class="m">2</span>.92MB<span class="w"> </span><span class="o">[</span><span class="m">00</span>:00,<span class="w"> </span><span class="m">25</span>.5MB/s<span class="o">]</span>
+special_tokens_map.json:<span class="w"> </span><span class="m">100</span>%<span class="p">|</span>██████████████
+</code></pre></div>
 <h3 id="experimento-2-generacion-instantanea">Experimento 2: Generación Instantánea</h3>
+<p>Otra tarea común de NLP es la generación de textos. La tarea de generación de texto implica la creación de texto nuevo, coherente y contextualmente relevante basado en un mensaje o entrada determinados. Esta tarea aprovecha los modelos de aprendizaje automático, particularmente los basados en el aprendizaje profundo (deep learning) y las redes neuronales, para producir texto similar al humano. En el siguiente fragmento de código, se muestra cómo utilizar el modelo openai-community/gpt2 para generar un párrafo de texto basado en una frase inicial:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>  
+                     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">)</span> 
+
+<span class="n">generator</span><span class="p">(</span><span class="s2">&quot;In this course, we will teach you how to&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Genera la siguiente salida (tengamos en cuenta que la salida será diferente cada vez que se ejecute el fragmento de código): 
+<div class="highlight"><pre><span></span><code><span class="o">[{</span><span class="s1">&#39;generated_text&#39;</span>:<span class="w"> </span><span class="s1">&#39;In this course, we will teach you how to build the best online games or use it to build your own. After this, this course covers: 1) how to make awesome games in Google Play and 2) how to develop a game based on&#39;</span><span class="o">}]</span><span class="w"> </span>
+</code></pre></div>
+Podemos controlar la salida utilizando los parámetros <code>max_length</code> (el número máximo de tokens en el texto generado) y <code>num_return_sequences</code> (número de párrafos generados): </p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1350,9 +1365,9 @@ Destacar el siguiente mensaje:
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">)</span>
 </span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;En el futuro, la inteligencia artificial&quot;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;In the future, artificial intelligence&quot;</span>
 
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
@@ -1374,9 +1389,6 @@ Destacar el siguiente mensaje:
 <li>✅ <strong>Flexibilidad</strong>: Desde uso básico hasta personalización avanzada</li>
 </ul>
 <h2 id="preparacion-para-los-retos">🎮 Preparación para los retos</h2>
-<h3 id="instalacion-rapida_1">Instalación Rápida</h3>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch<span class="w"> </span>datasets<span class="w"> </span>evaluate
-</code></pre></div>
 <h3 id="estructura-mental-para-los-retos">Estructura Mental para los Retos</h3>
 <ol>
 <li><strong>Identifica el problema</strong> → ¿Qué tarea NLP necesito?</li>
@@ -1385,8 +1397,8 @@ Destacar el siguiente mensaje:
 <li><strong>Optimiza</strong> → Ajusta parámetros y modelos</li>
 <li><strong>Evalúa</strong> → ¿Funciona bien para mi caso de uso?</li>
 </ol>
-<h2 id="listos-para-el-primer-reto">🏆 ¡Listos para el Primer Reto!</h2>
-<p>Ahora que hemos visto la magia en acción, es hora de crear nuestro primer proyecto real: <strong>un detector de emociones para redes sociales</strong>.</p>
+<h2 id="listos-para-el-primer-reto">🏆 ¡Listos para el primer reto!</h2>
+<p>Ahora que hemos visto algunos modelos de NPL en acción, es hora de crear nuestro primer proyecto real: <strong>un detector de emociones para redes sociales</strong>.</p>
 <p><strong>¿El objetivo?</strong> Ayudar a una empresa a monitorizar la percepción de su marca en X.</p>
 <p><a href="../02_reto1_sentimientos/">👉 Ir al Reto 1: Detector de Emociones</a></p>
 <hr />
