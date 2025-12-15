@@ -13,6 +13,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### El problema real
 Una agencia de marketing digital necesita generar contenido constantemente:
+
 - **50+ posts** para redes sociales semanalmente
 - **Artículos de blog** personalizados para diferentes clientes
 - **Copys publicitarios** creativos y únicos
