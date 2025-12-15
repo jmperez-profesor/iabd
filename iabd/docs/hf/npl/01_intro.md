@@ -68,7 +68,7 @@ Vamos a modificar el código especificando, por ejemplo, el modelo [`tabularisai
 
 Modificamos el código y volvemos a probar.
 
-```python {hl_lines="1" linenums="3 4"}
+```python {linenums="1"}
 from transformers import pipeline
 
 classifier = pipeline("sentiment-analysis", 
@@ -90,6 +90,13 @@ for texto in textos:
 #Je suis très content → Positive (0.88)
 #😍🎉✨ → Neutral (0.34)
 ```
+Antes de ejecutar el ejemplo, veremos unas barras de progreso de Hugging Face mientras descarga el modelo y el tokenizador desde el Hub la primera vez que ejecutamoss el `pipeline`.
+
+- `config.json`, `model.safetensors`, `tokenizer_config.json`, `vocab.txt`, `tokenizer.json`, `special_tokens_map.json` son los ficheros que necesita el modelo (arquitectura, pesos, vocabulario, configuración del tokenizer, etc.).​
+
+- La descarga puede tardar (en nuestros caso ~541 MB de model.safetensors), pero solo se hace la primera vez; después se reutiliza desde la caché local y ya no veremos esa descarga completa a menos que borremos la caché.​
+
+Si tras esas barras de progreso nuestro script se queda “parado”, normalmente es porque sigue ejecutando el pipeline sobre los textos (inferencia); si no aparece nada, revisa que tengas el print(...) dentro del bucle y que no haya errores posteriores.
 
 ```bash
 config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 851/851 [00:00<00:00, 9.89MB/s]
@@ -103,7 +110,7 @@ special_tokens_map.json: 100%|██████████████
 ### Experimento 2: Generación Instantánea
 
 Otra tarea común de NLP es la generación de textos. La tarea de generación de texto implica la creación de texto nuevo, coherente y contextualmente relevante basado en un mensaje o entrada determinados. Esta tarea aprovecha los modelos de aprendizaje automático, particularmente los basados en el aprendizaje profundo (deep learning) y las redes neuronales, para producir texto similar al humano. En el siguiente fragmento de código, se muestra cómo utilizar el modelo openai-community/gpt2 para generar un párrafo de texto basado en una frase inicial:
-```python {hl_lines="1" linenums="1"}
+```python {hl_lines="2 3 4" linenums="1"}
 from transformers import pipeline 
   
 generator = pipeline("text-generation",  
