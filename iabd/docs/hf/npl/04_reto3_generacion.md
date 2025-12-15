@@ -3,7 +3,7 @@ title: Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 3
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# 🏆 Reto 3: Asistente de Escritura Creativa
+# 🏆 Reto 3: Asistente de escritura creativa
 
 **⏱️ Tiempo:** 30 minutos  
 **🎯 Nivel:** Avanzado  
@@ -11,14 +11,14 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 🎬 Contexto y Motivación (5 min)
 
-### El Problema Real
+### El problema real
 Una agencia de marketing digital necesita generar contenido constantemente:
 - **50+ posts** para redes sociales semanalmente
 - **Artículos de blog** personalizados para diferentes clientes
 - **Copys publicitarios** creativos y únicos
 - **Historias** para campañas de storytelling
 
-### ¿Por Qué es Revolucionario?
+### ¿Por qué es revolucionario?
 - **Creatividad aumentada:** IA como co-piloto creativo, no reemplazo
 - **Velocidad:** De horas a minutos para generar borradores
 - **Consistencia de marca:** Mantener tono y estilo específicos
@@ -35,9 +35,9 @@ Una agencia de marketing digital necesita generar contenido constantemente:
 | **Conversacional** | Diálogo interactivo | Chatbots, asistentes |
 | **Resumen** | Condensa información | Resúmenes automáticos |
 
-### Modelos de Generación Populares
+### Modelos de generación populares
 
-```python
+```python {linenums="1"} {linenums="1"}
 modelos_generacion = {
     "gpt2": "gpt2",  # Clásico, rápido
     "gpt2_spanish": "DeepESP/gpt2-spanish",  # Especializado en español
@@ -46,9 +46,9 @@ modelos_generacion = {
 }
 ```
 
-### Parámetros Clave para Controlar la Generación
+### Parámetros clave para controlar la generación
 
-```python
+```python {linenums="1"} {linenums="1"}
 generator = pipeline("text-generation", model="gpt2")
 
 texto = generator(
@@ -65,7 +65,7 @@ texto = generator(
 
 ### Técnicas de Prompting Efectivo
 
-```python
+```python {linenums="1"} {linenums="1"}
 # ❌ Prompt básico
 "Escribe una historia"
 
@@ -82,9 +82,9 @@ Escribe una historia corta de ciencia ficción que incluya:
 
 ## 💻 Implementación Guiada (10 min)
 
-### Paso 1: Configuración y Generación Básica
+### Paso 1: Configuración y generación básica
 
-```python
+```python {linenums="1"} {linenums="1"}
 from transformers import pipeline
 import random
 
@@ -129,15 +129,15 @@ for i, prompt in enumerate(prompts_creativos[:3], 1):
     print("-" * 50)
 ```
 
-### Paso 2: Generador de Contenido para Redes Sociales
+### Paso 2: Generador de contenido para redes sociales
 
-```python
+```python {linenums="1"} {linenums="1"}
 def generar_post_social(tema, plataforma, tono="profesional"):
     """Genera posts optimizados para diferentes redes sociales"""
     
     # Plantillas por plataforma
     plantillas = {
-        "twitter": f"Hilo sobre {tema}: 🧵\n1/",
+        "X": f"Hilo sobre {tema}: 🧵\n1/",
         "linkedin": f"Reflexiones sobre {tema} en el mundo profesional:",
         "instagram": f"✨ {tema} ✨\n\n",
         "facebook": f"¿Sabías que {tema}?"
@@ -145,7 +145,7 @@ def generar_post_social(tema, plataforma, tono="profesional"):
     
     # Ajustar longitud por plataforma
     longitudes = {
-        "twitter": 100,
+        "X": 100,
         "linkedin": 200,
         "instagram": 150,
         "facebook": 180
@@ -181,7 +181,7 @@ def generar_post_social(tema, plataforma, tono="profesional"):
 
 # Generar posts para diferentes plataformas
 tema = "inteligencia artificial"
-plataformas = ["twitter", "linkedin", "instagram"]
+plataformas = ["X", "linkedin", "instagram"]
 
 print("📱 GENERADOR DE CONTENIDO PARA REDES SOCIALES")
 print("=" * 60)
@@ -195,7 +195,7 @@ for plataforma in plataformas:
 
 ### Paso 3: Asistente de Escritura Interactivo
 
-```python
+```python {linenums="1"} {linenums="1"}
 class AsistenteEscritura:
     def __init__(self, modelo="gpt2"):
         self.generator = pipeline("text-generation", model=modelo)
@@ -296,7 +296,7 @@ for i, var in enumerate(variaciones, 1):
 
 ### Paso 4: Evaluador de Calidad del Texto
 
-```python
+```python {linenums="1"} {linenums="1"}
 def evaluar_calidad_texto(texto):
     """Evalúa la calidad de un texto generado"""
     
@@ -355,7 +355,7 @@ for i, texto in enumerate(textos_prueba, 1):
 ### Desafíos para Explorar
 
 1. **Generación Condicional:**
-   ```python
+   ```python {linenums="1"}
    # Genera texto basado en múltiples condiciones
    condiciones = {
        "genero": "ciencia ficción",
@@ -366,14 +366,14 @@ for i, texto in enumerate(textos_prueba, 1):
    ```
 
 2. **Chatbot Creativo:**
-   ```python
+   ```python {linenums="1"}
    def chatbot_creativo(mensaje_usuario):
        prompt = f"Usuario: {mensaje_usuario}\nAsistente creativo:"
        # Implementar respuesta contextual
    ```
 
 3. **Generador de Poesía:**
-   ```python
+   ```python {linenums="1"}
    def generar_poema(tema, estilo="libre"):
        # Haiku, soneto, verso libre, etc.
        pass
@@ -381,7 +381,7 @@ for i, texto in enumerate(textos_prueba, 1):
 
 ### Experimentos Avanzados
 
-```python
+```python {linenums="1"}
 # 1. Control de creatividad dinámico
 def generar_con_creatividad_adaptativa(prompt, contexto="profesional"):
     creatividad_map = {
@@ -418,29 +418,61 @@ Al completar este reto, deberías poder:
 
 ## 🚀 Extensiones Opcionales
 
-### Para los Más Rápidos:
+### Para los más rápidos:
 
 1. **Interfaz Web Completa:**
-   ```python
-   import streamlit as st
-   
-   def app_escritura_creativa():
-       st.title("✍️ Asistente de Escritura IA")
-       
-       tipo_contenido = st.selectbox("Tipo de contenido", 
-                                   ["Historia", "Post social", "Artículo", "Poema"])
-       
-       if tipo_contenido == "Historia":
-           prompt = st.text_input("Comienza tu historia:")
-           creatividad = st.slider("Nivel de creatividad", 0.1, 1.5, 0.8)
-           
-           if st.button("Generar"):
-               historia = generar_historia(prompt, creatividad=creatividad)
-               st.write(historia)
+   ```python {linenums="1"}
+   import gradio as gr
+
+    # Se asume que ya tienes definida esta función
+    # def generar_historia(prompt: str, creatividad: float) -> str:
+    #     ...
+
+    def generar_historia_interface(tipo_contenido, prompt, creatividad):
+        if tipo_contenido != "Historia":
+            return "Por ahora solo está implementado el modo 'Historia'."
+        if not prompt:
+            return "Escribe al menos el inicio de la historia."
+        return generar_historia(prompt, creatividad=creatividad)
+
+    with gr.Blocks(title="✍️ Asistente de Escritura IA") as demo:
+        gr.Markdown("# ✍️ Asistente de Escritura IA")
+
+        tipo_contenido = gr.Dropdown(
+            ["Historia", "Post social", "Artículo", "Poema"],
+            value="Historia",
+            label="Tipo de contenido"
+        )
+
+        prompt = gr.Textbox(
+            label="Comienza tu historia:",
+            placeholder="Érase una vez...",
+            lines=3
+        )
+
+        creatividad = gr.Slider(
+            minimum=0.1,
+            maximum=1.5,
+            value=0.8,
+            step=0.1,
+            label="Nivel de creatividad"
+        )
+
+        boton = gr.Button("Generar")
+        salida = gr.Textbox(label="Resultado", lines=10)
+
+        boton.click(
+            fn=generar_historia_interface,
+            inputs=[tipo_contenido, prompt, creatividad],
+            outputs=salida,
+        )
+
+    if __name__ == "__main__":
+        demo.launch()
    ```
 
 2. **Sistema de Plantillas:**
-   ```python
+   ```python {linenums="1"}
    plantillas = {
        "email_marketing": "Asunto: {asunto}\n\nHola {nombre},\n\n{contenido_principal}",
        "post_blog": "# {titulo}\n\n## Introducción\n{intro}\n\n## Desarrollo\n{desarrollo}",
@@ -449,27 +481,18 @@ Al completar este reto, deberías poder:
    ```
 
 3. **Análisis de Sentimientos del Texto Generado:**
-   ```python
+   ```python {linenums="1"}
    def analizar_tono_generado(texto):
        sentiment_analyzer = pipeline("sentiment-analysis")
        resultado = sentiment_analyzer(texto)
        return resultado[0]['label'], resultado[0]['score']
    ```
 
-## 🎉 ¡Felicitaciones!
-
-Has completado los tres retos del taller. Ahora tienes las herramientas para:
-- Analizar sentimientos en tiempo real
-- Clasificar texto automáticamente
-- Generar contenido creativo con IA
-
 ### 🚀 Próximos Pasos Recomendados:
 1. **Combina las tres técnicas** en un proyecto integrado
 2. **Explora modelos más avanzados** como GPT-3.5 o Claude
 3. **Implementa fine-tuning** para casos de uso específicos
 4. **Crea APIs** para integrar en aplicaciones reales
-
-[👉 Ver Soluciones Completas](soluciones/)
 
 ---
 

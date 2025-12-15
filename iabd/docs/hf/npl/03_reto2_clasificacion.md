@@ -11,14 +11,14 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 🎬 Contexto y Motivación (5 min)
 
-### El Problema Real
+### El problema real
 Un periódico digital recibe **500+ artículos diarios** de diferentes fuentes. Su equipo editorial necesita:
 - Clasificar automáticamente las noticias por categorías
 - Priorizar noticias importantes para la portada
 - Detectar noticias duplicadas o similares
 - Organizar el contenido para diferentes secciones
 
-### ¿Por Qué es Crucial?
+### ¿Por qué es crucial?
 - **Ahorro de tiempo:** De 4 horas manuales a 10 minutos automáticos
 - **Consistencia:** Clasificación uniforme sin sesgos humanos
 - **Escalabilidad:** Manejar volúmenes masivos de información
@@ -37,7 +37,7 @@ Un periódico digital recibe **500+ artículos diarios** de diferentes fuentes. 
 
 ### Modelos Especializados
 
-```python
+```python {linenums="1"}
 # Modelos populares para clasificación
 modelos_clasificacion = {
     "noticias_español": "bertin-project/bertin-roberta-base-spanish",
@@ -49,7 +49,7 @@ modelos_clasificacion = {
 
 ### Zero-Shot Classification: La Magia
 
-```python
+```python {linenums="1"}
 # ¡Clasificar SIN entrenar el modelo!
 classifier = pipeline("zero-shot-classification")
 texto = "El Real Madrid ganó 3-1 al Barcelona en el Clásico"
@@ -59,11 +59,11 @@ resultado = classifier(texto, categorias)
 # Resultado: "deportes" con alta confianza
 ```
 
-## 💻 Implementación Guiada (10 min)
+## 💻 Implementación guiada (10 min)
 
 ### Paso 1: Configuración y Datos
 
-```python
+```python {linenums="1"}
 from transformers import pipeline
 import pandas as pd
 import numpy as np
@@ -98,7 +98,7 @@ categorias = ["deportes", "política", "economía", "ciencia", "tecnología"]
 
 ### Paso 2: Clasificación Zero-Shot
 
-```python
+```python {linenums="1"}
 # Crear clasificador zero-shot
 classifier = pipeline("zero-shot-classification", 
                      model="facebook/bart-large-mnli")
@@ -128,7 +128,7 @@ for noticia in noticias:
 
 ### Paso 3: Análisis Avanzado con Múltiples Categorías
 
-```python
+```python {linenums="1"}
 def clasificacion_multinivel(noticia, categorias_principales, subcategorias):
     """Clasificación jerárquica: primero categoría principal, luego subcategoría"""
     
@@ -171,7 +171,7 @@ for noticia in noticias[:3]:  # Solo las primeras 3 para el ejemplo
 
 ### Paso 4: Sistema de Recomendación Simple
 
-```python
+```python {linenums="1"}
 def recomendar_noticias_similares(noticia_objetivo, todas_las_noticias, top_k=3):
     """Encuentra noticias similares basándose en la clasificación"""
     
@@ -228,7 +228,7 @@ for i, rec in enumerate(recomendaciones, 1):
 
 ### Experimentos Avanzados
 
-```python
+```python {linenums="1"}
 # 1. Clasificación con confianza mínima
 def clasificar_con_umbral(noticia, categorias, umbral_confianza=0.7):
     resultado = clasificar_noticia(noticia, categorias)
@@ -258,10 +258,10 @@ Al completar este reto, deberías poder:
 
 ## 🚀 Extensiones Opcionales
 
-### Para los Más Rápidos:
+### Para los más rápidos:
 
 1. **Dashboard Interactivo:**
-   ```python
+   ```python {linenums="1"}
    import streamlit as st
    
    def crear_dashboard_noticias():
@@ -274,7 +274,7 @@ Al completar este reto, deberías poder:
    ```
 
 2. **API REST Simple:**
-   ```python
+   ```python {linenums="1"}
    from flask import Flask, request, jsonify
    
    app = Flask(__name__)
@@ -287,7 +287,7 @@ Al completar este reto, deberías poder:
    ```
 
 3. **Análisis de Tendencias:**
-   ```python
+   ```python {linenums="1"}
    def analizar_tendencias_diarias(noticias_por_dia):
        """Analiza qué categorías son trending cada día"""
        tendencias = {}
@@ -300,7 +300,7 @@ Al completar este reto, deberías poder:
 
 ## 🎯 Próximo Reto
 
-¡Increíble! Has construido un sistema completo de clasificación de noticias. 
+Has construido un sistema completo de clasificación de noticias. 
 
 Para el reto final, vamos a explorar la frontera más emocionante del NLP: **la generación de texto creativo**. Crearemos un asistente de escritura que ayude a generar contenido original.
 

@@ -91,11 +91,36 @@ for texto in textos:
 #😍🎉✨ → Neutral (0.34)
 ```
 
-### Experimento 2: Generación Instantánea
-```python {hl_lines="1" linenums="1"}
-generator = pipeline("text-generation", model="gpt2")
+```bash
+config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 851/851 [00:00<00:00, 9.89MB/s]
+model.safetensors: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 541M/541M [01:10<00:00, 7.64MB/s]
+tokenizer_config.json: 1.20kB [00:00, 2.69MB/s]
+vocab.txt: 996kB [00:00, 9.65MB/s]
+tokenizer.json: 2.92MB [00:00, 25.5MB/s]
+special_tokens_map.json: 100%|██████████████
+``` 
 
-prompt = "En el futuro, la inteligencia artificial"
+### Experimento 2: Generación Instantánea
+
+Otra tarea común de NLP es la generación de textos. La tarea de generación de texto implica la creación de texto nuevo, coherente y contextualmente relevante basado en un mensaje o entrada determinados. Esta tarea aprovecha los modelos de aprendizaje automático, particularmente los basados en el aprendizaje profundo (deep learning) y las redes neuronales, para producir texto similar al humano. En el siguiente fragmento de código, se muestra cómo utilizar el modelo openai-community/gpt2 para generar un párrafo de texto basado en una frase inicial:
+```python {hl_lines="1" linenums="1"}
+from transformers import pipeline 
+  
+generator = pipeline("text-generation",  
+                     model="openai-community/gpt2") 
+
+generator("In this course, we will teach you how to")
+```
+Genera la siguiente salida (tengamos en cuenta que la salida será diferente cada vez que se ejecute el fragmento de código): 
+```bash
+[{'generated_text': 'In this course, we will teach you how to build the best online games or use it to build your own. After this, this course covers: 1) how to make awesome games in Google Play and 2) how to develop a game based on'}] 
+``` 
+Podemos controlar la salida utilizando los parámetros `max_length` (el número máximo de tokens en el texto generado) y `num_return_sequences` (número de párrafos generados): 
+
+```python {hl_lines="1" linenums="1"}
+generator = pipeline("text-generation", model="openai-community/gpt2")
+
+prompt = "In the future, artificial intelligence"
 
 resultado = generator(prompt, max_length=50, num_return_sequences=2)
 
@@ -118,11 +143,6 @@ for i, texto in enumerate(resultado):
 
 ## 🎮 Preparación para los retos
 
-### Instalación Rápida
-```bash
-pip install transformers torch datasets evaluate
-```
-
 ### Estructura Mental para los Retos
 1. **Identifica el problema** → ¿Qué tarea NLP necesito?
 2. **Elige el pipeline** → ¿Cuál es el más adecuado?
@@ -130,11 +150,11 @@ pip install transformers torch datasets evaluate
 4. **Optimiza** → Ajusta parámetros y modelos
 5. **Evalúa** → ¿Funciona bien para mi caso de uso?
 
-## 🏆 ¡Listos para el Primer Reto!
+## 🏆 ¡Listos para el primer reto!
 
-Ahora que hemos visto la magia en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
+Ahora que hemos visto algunos modelos de NPL en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
 
-**¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en Twitter.
+**¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en X.
 
 [👉 Ir al Reto 1: Detector de Emociones](02_reto1_sentimientos.md)
 

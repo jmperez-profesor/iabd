@@ -7,7 +7,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 **⏱️ Tiempo:** 30 minutos  
 **🎯 Nivel:** Principiante  
-**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en Twitter
+**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en X
 
 ## 🎬 Contexto y Motivación (5 min)
 
@@ -34,17 +34,17 @@ El análisis de sentimientos clasifica texto según la **emoción** o **actitud*
 "La app funciona bien" → NEUTRAL (0.72)
 ```
 
-### Modelos Disponibles en Hugging Face
+### Modelos disponibles en Hugging Face
 
 | Modelo | Idioma | Especialidad | Uso Recomendado |
 |--------|--------|--------------|-----------------|
-| `cardiffnlp/twitter-roberta-base-sentiment-latest` | EN | Twitter | Redes sociales |
+| `cardiffnlp/twitter-roberta-base-sentiment-latest` | EN | X | Redes sociales |
 | `nlptown/bert-base-multilingual-uncased-sentiment` | Multi | General | Textos variados |
 | `pysentimiento/robertuito-sentiment-analysis` | ES | Español | Textos en español |
 
-### Parámetros Importantes
+### Parámetros importantes
 
-```python
+```python {linenums="1"}
 classifier = pipeline(
     "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest",
@@ -56,7 +56,7 @@ classifier = pipeline(
 
 ### Paso 1: Configuración Básica
 
-```python
+```python {linenums="1"}
 from transformers import pipeline
 import pandas as pd
 
@@ -76,7 +76,7 @@ tweets = [
 
 ### Paso 2: Análisis Básico
 
-```python
+```python {linenums="1"}
 # Analizar cada tweet
 resultados = []
 for tweet in tweets:
@@ -96,7 +96,7 @@ for r in resultados:
 
 ### Paso 3: Análisis Avanzado con Múltiples Modelos
 
-```python
+```python {linenums="1"}
 # Comparar diferentes modelos
 modelos = [
     "cardiffnlp/twitter-roberta-base-sentiment-latest",
@@ -125,7 +125,7 @@ for modelo, resultado in comparacion.items():
 
 ### Paso 4: Dashboard Simple
 
-```python
+```python {linenums="1"}
 import matplotlib.pyplot as plt
 
 def crear_dashboard(resultados):
@@ -202,12 +202,12 @@ Al completar este reto, deberías poder:
 ## 🚀 Extensiones Opcionales
 
 ### Para los Más Rápidos:
-1. **Análisis en Tiempo Real:** Conectar con la API de Twitter
+1. **Análisis en Tiempo Real:** Conectar con la API de X
 2. **Alertas Automáticas:** Notificar cuando el sentimiento baja del 70%
 3. **Análisis Temporal:** Seguir la evolución del sentimiento por horas/días
 
 ### Código de Extensión:
-```python
+```python {linenums="1"}
 def monitor_sentimiento(tweets, umbral=0.7):
     """Monitoriza sentimientos y genera alertas"""
     negativos = []

@@ -721,14 +721,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#demo-en-vivo-5-lineas-de-codigo-infinitas-posibilidades" class="md-nav__link">
+  <a href="#demo-en-vivo-5-lineas-de-codigo-sencillas" class="md-nav__link">
     <span class="md-ellipsis">
-      🎬 Demo en Vivo: "5 Líneas de Código, Infinitas Posibilidades"
+      🎬 Demo en Vivo: "5 Líneas de código sencillas"
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎬 Demo en Vivo: &#34;5 Líneas de Código, Infinitas Posibilidades&#34;">
+    <nav class="md-nav" aria-label="🎬 Demo en Vivo: &#34;5 Líneas de código sencillas&#34;">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación Rápida
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#ejemplo-sencillo" class="md-nav__link">
@@ -763,13 +772,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#demo-interactiva-probemos-juntos" class="md-nav__link">
+  <a href="#demo-interactiva" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Demo Interactiva: "Probemos Juntos"
+      🚀 Demo Interactiva:
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Demo Interactiva: &#34;Probemos Juntos&#34;">
+    <nav class="md-nav" aria-label="🚀 Demo Interactiva:">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -798,11 +807,11 @@
         <li class="md-nav__item">
   <a href="#por-que-funciona-tan-bien" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 ¿Por Qué Funciona Tan Bien?
+      🎯 ¿Por Qué funciona tan bien?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 ¿Por Qué Funciona Tan Bien?">
+    <nav class="md-nav" aria-label="🎯 ¿Por Qué funciona tan bien?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -831,15 +840,15 @@
         <li class="md-nav__item">
   <a href="#preparacion-para-los-retos" class="md-nav__link">
     <span class="md-ellipsis">
-      🎮 Preparación para los Retos
+      🎮 Preparación para los retos
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎮 Preparación para los Retos">
+    <nav class="md-nav" aria-label="🎮 Preparación para los retos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#instalacion-rapida" class="md-nav__link">
+  <a href="#instalacion-rapida_1" class="md-nav__link">
     <span class="md-ellipsis">
       Instalación Rápida
     </span>
@@ -1202,9 +1211,12 @@
 
 
 <h1 id="introduccion-el-poder-de-los-transformers">🔥 Introducción: El Poder de los Transformers</h1>
-<h2 id="demo-en-vivo-5-lineas-de-codigo-infinitas-posibilidades">🎬 Demo en Vivo: "5 Líneas de Código, Infinitas Posibilidades"</h2>
+<h2 id="demo-en-vivo-5-lineas-de-codigo-sencillas">🎬 Demo en Vivo: "5 Líneas de código sencillas"</h2>
+<h3 id="instalacion-rapida">Instalación Rápida</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch
+</code></pre></div>
 <h3 id="ejemplo-sencillo">Ejemplo sencillo ✨</h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1213,10 +1225,13 @@
 </span>
 <span class="c1"># ¡Una línea para crear un analizador de sentimientos!</span>
 <span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
-</span><span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;¡Este taller va a ser increíble!&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;I loved Star Wars so much!&quot;</span><span class="p">)</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># [{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9998}]</span>
 </code></pre></div></td></tr></table></div>
-<p><strong>¿Qué acabamos de hacer?</strong> En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. ¡Sin entrenar nada, sin configurar modelos complejos!</p>
+Destacar el siguiente mensaje:
+<div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>714eb0f<span class="w"> </span><span class="o">(</span>https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="o">)</span>.
+</code></pre></div>
+<strong>¿Qué acabamos de hacer?</strong> En 3 líneas hemos creado un sistema de IA que entiende emociones humanas. </p>
 <h3 id="tareas-nlp-principales">🎯 Tareas NLP Principales</h3>
 <table>
 <thead>
@@ -1257,9 +1272,9 @@
 <h3 id="arquitectura-simplificada">🏗️ Arquitectura Simplificada</h3>
 <div class="highlight"><pre><span></span><code>Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
 </code></pre></div>
-<h2 id="demo-interactiva-probemos-juntos">🚀 Demo Interactiva: "Probemos Juntos"</h2>
+<h2 id="demo-interactiva">🚀 Demo Interactiva:</h2>
 <h3 id="experimento-1-sentimientos-multiidioma">Experimento 1: Sentimientos Multiidioma</h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1271,8 +1286,8 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
-</span><span class="hll">
-</span><span class="n">textos</span> <span class="o">=</span> <span class="p">[</span>
+</span>
+<span class="n">textos</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;I love this workshop!&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Este taller es aburrido&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Je suis très content&quot;</span><span class="p">,</span>
@@ -1283,15 +1298,68 @@
     <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">texto</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<strong>¿Funciona correctamente?</strong></p>
+<p>No funciona correctamente porque usamos <code>pipeline("sentiment-analysis")</code> sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.</p>
+<p>Vamos a modificar el código especificando, por ejemplo, el modelo <a href="https://huggingface.co/tabularisai/multilingual-sentiment-analysis"><code>tabularisai/multilingual-sentiment-analysis</code></a> (model="tabularisai/multilingual-sentiment-analysis"). Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. </p>
+<p>Modificamos el código y volvemos a probar.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  </span>
+<span class="normal"> 4</span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal"> 8</span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">12</span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">16</span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">  </span>
+<span class="normal">20</span>
+<span class="normal">  </span>
+<span class="normal">  </span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> 
+                        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;tabularisai/multilingual-sentiment-analysis&quot;</span><span class="p">)</span>
+
+<span class="n">textos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;I love this workshop!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Este taller es aburrido&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Je suis très content&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;😍🎉✨&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">texto</span> <span class="ow">in</span> <span class="n">textos</span><span class="p">:</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">texto</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1">#I love this workshop! → Positive (0.52)</span>
+<span class="c1">#Este taller es aburrido → Negative (0.73)</span>
+<span class="c1">#Je suis très content → Positive (0.88)</span>
+<span class="c1">#😍🎉✨ → Neutral (0.34)</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="experimento-2-generacion-instantanea">Experimento 2: Generación Instantánea</h3>
-<div class="highlight"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+</span>
 <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;En el futuro, la inteligencia artificial&quot;</span>
+
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">texto</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">resultado</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Versión </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">texto</span><span class="p">[</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="por-que-funciona-tan-bien">🎯 ¿Por Qué Funciona Tan Bien?</h2>
+</code></pre></div></td></tr></table></div>
+<h2 id="por-que-funciona-tan-bien">🎯 ¿Por Qué funciona tan bien?</h2>
 <h3 id="el-secreto-modelos-pre-entrenados">El Secreto: Modelos Pre-entrenados</h3>
 <ul>
 <li><strong>Millones de parámetros</strong> entrenados en enormes datasets</li>
@@ -1305,8 +1373,8 @@
 <li>✅ <strong>Comunidad</strong>: Modelos compartidos y mejorados constantemente</li>
 <li>✅ <strong>Flexibilidad</strong>: Desde uso básico hasta personalización avanzada</li>
 </ul>
-<h2 id="preparacion-para-los-retos">🎮 Preparación para los Retos</h2>
-<h3 id="instalacion-rapida">Instalación Rápida</h3>
+<h2 id="preparacion-para-los-retos">🎮 Preparación para los retos</h2>
+<h3 id="instalacion-rapida_1">Instalación Rápida</h3>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch<span class="w"> </span>datasets<span class="w"> </span>evaluate
 </code></pre></div>
 <h3 id="estructura-mental-para-los-retos">Estructura Mental para los Retos</h3>
@@ -1319,7 +1387,7 @@
 </ol>
 <h2 id="listos-para-el-primer-reto">🏆 ¡Listos para el Primer Reto!</h2>
 <p>Ahora que hemos visto la magia en acción, es hora de crear nuestro primer proyecto real: <strong>un detector de emociones para redes sociales</strong>.</p>
-<p><strong>¿El objetivo?</strong> Ayudar a una empresa a monitorizar la percepción de su marca en Twitter.</p>
+<p><strong>¿El objetivo?</strong> Ayudar a una empresa a monitorizar la percepción de su marca en X.</p>
 <p><a href="../02_reto1_sentimientos/">👉 Ir al Reto 1: Detector de Emociones</a></p>
 <hr />
 <h2 id="recursos-adicionales">📚 Recursos Adicionales</h2>

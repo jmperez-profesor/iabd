@@ -123,7 +123,7 @@ pip install transformers torch datasets evaluate
 
 Ahora que hemos visto la magia en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
 
-**¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en Twitter.
+**¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en X.
 
 ---
 
@@ -137,7 +137,7 @@ Ahora que hemos visto la magia en acción, es hora de crear nuestro primer proye
 
 **⏱️ Tiempo:** 30 minutos  
 **🎯 Nivel:** Principiante  
-**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en Twitter
+**🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en X
 
 ## 🎬 Contexto y Motivación (5 min)
 
@@ -168,7 +168,7 @@ El análisis de sentimientos clasifica texto según la **emoción** o **actitud*
 
 | Modelo | Idioma | Especialidad | Uso Recomendado |
 |--------|--------|--------------|-----------------|
-| `cardiffnlp/twitter-roberta-base-sentiment-latest` | EN | Twitter | Redes sociales |
+| `cardiffnlp/twitter-roberta-base-sentiment-latest` | EN | X | Redes sociales |
 | `nlptown/bert-base-multilingual-uncased-sentiment` | Multi | General | Textos variados |
 | `pysentimiento/robertuito-sentiment-analysis` | ES | Español | Textos en español |
 
@@ -331,7 +331,7 @@ Al completar este reto, deberías poder:
 ## 🚀 Extensiones Opcionales
 
 ### Para los Más Rápidos:
-1. **Análisis en Tiempo Real:** Conectar con la API de Twitter
+1. **Análisis en Tiempo Real:** Conectar con la API de X
 2. **Alertas Automáticas:** Notificar cuando el sentimiento baja del 70%
 3. **Análisis Temporal:** Seguir la evolución del sentimiento por horas/días
 
