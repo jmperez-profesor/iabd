@@ -13,6 +13,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### El problema real
 Un periódico digital recibe **500+ artículos diarios** de diferentes fuentes. Su equipo editorial necesita:
+
 - Clasificar automáticamente las noticias por categorías
 - Priorizar noticias importantes para la portada
 - Detectar noticias duplicadas o similares

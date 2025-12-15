@@ -1291,7 +1291,7 @@ Destacar el siguiente mensaje:
 </code></pre></div></td></tr></table></div>
 <strong>¿Funciona correctamente?</strong></p>
 <p>No funciona correctamente porque usamos <code>pipeline("sentiment-analysis")</code> sin especificar modelo, así que se carga el modelo por defecto de la librería, que suele ser un DistilBERT entrenado para sentimiento en inglés (positivo/negativo) sobre un dataset como SST‑2. La frase "I love this workshop!" probablemente se clasifique bien, pero "Este taller es aburrido" o "Je suis très content" pueden recibir resultados menos fiables porque el modelo está optimizado para inglés. Los emojis pueden interpretarse, pero de forma limitada.</p>
-<p>Vamos a modificar el código especificando, por ejemplo, el modelo <a href="https://huggingface.co/tabularisai/multilingual-sentiment-analysis"><code>tabularisai/multilingual-sentiment-analysis</code></a> (model="tabularisai/multilingual-sentiment-analysis"). Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. </p>
+<p>Vamos a modificar el código especificando, por ejemplo, el modelo <a href="https://huggingface.co/tabularisai/multilingual-sentiment-analysis"><code>tabularisai/multilingual-sentiment-analysis</code></a> <code>(model="tabularisai/multilingual-sentiment-analysis")</code>. Un modelo entrenado explícitamente para análisis de sentimiento multilingüe, pensado para manejar varios idiomas, incluido el español. </p>
 <p>Modificamos el código y volvemos a probar.</p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
