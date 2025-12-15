@@ -23,7 +23,7 @@ pip install transformers torch
 ```python {hl_lines="1 4 5" linenums="1"} 
 from transformers import pipeline
 
-# ¡Una línea para crear un analizador de sentimientos!
+# En el pipeline especificamos el modelo de Análisis de Sentimientos genérico
 classifier = pipeline("sentiment-analysis")
 result = classifier("I loved Star Wars so much!")
 print(result)  # [{'label': 'POSITIVE', 'score': 0.9998}]
@@ -45,7 +45,6 @@ No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned
 | **Resumen** | `summarization` | Resúmenes automáticos |
 
 ### 🏗️ Arquitectura Simplificada
-
 ```
 Texto de Entrada → Tokenización → Modelo Transformer → Post-procesado → Resultado
 ```
