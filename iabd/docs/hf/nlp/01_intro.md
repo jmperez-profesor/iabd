@@ -116,7 +116,7 @@ special_tokens_map.json: 100%|██████████████
 
 ### Experimento 2: Generación Instantánea
 
-Otra tarea común de NLP es la generación de textos. La tarea de generación de texto implica la creación de texto nuevo, coherente y contextualmente relevante basado en un mensaje o entrada determinados. Esta tarea aprovecha los modelos de aprendizaje automático, particularmente los basados en el aprendizaje profundo (deep learning) y las redes neuronales, para producir texto similar al humano. En el siguiente fragmento de código, se muestra cómo utilizar el modelo openai-community/gpt2 para generar un párrafo de texto basado en una frase inicial:
+Otra tarea común de NLP es la generación de textos. La tarea de generación de texto implica la creación de texto nuevo, coherente y contextualmente relevante basado en un mensaje o entrada determinados. Esta tarea aprovecha los modelos de aprendizaje automático, particularmente los basados en el aprendizaje profundo (deep learning) y las redes neuronales, para producir texto similar al humano. En el siguiente fragmento de código, se muestra cómo utilizar el modelo [openai-community/gpt2](https://huggingface.co/openai-community/gpt2) para generar un párrafo de texto basado en una frase inicial:
 ```python {hl_lines="2 3 4" linenums="1"}
 from transformers import pipeline 
   
