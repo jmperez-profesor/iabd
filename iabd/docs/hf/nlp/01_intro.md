@@ -165,7 +165,7 @@ Ahora que hemos visto algunos modelos de NLP en acción, es hora de crear nuestr
 
 **¿El objetivo?** Ayudar a una empresa a monitorizar la percepción de su marca en X.
 
-[👉 Ir al Reto 1: Detector de Emociones](02_reto1_sentimientos.md)
+[👉 Ir al Reto 1: Detector de emociones](02_reto1_sentimientos.md)
 
 ---
 
