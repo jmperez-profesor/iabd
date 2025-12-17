@@ -142,7 +142,7 @@ for i, texto in enumerate(resultado):
     print(f"Versión {i+1}: {texto['generated_text']}")
 ```
 
-## 🎯 ¿Por Qué funciona tan bien?
+## 🎯 ¿Por qué funciona tan bien?
 
 ### El Secreto: Modelos Pre-entrenados
 - **Millones de parámetros** entrenados en enormes datasets
