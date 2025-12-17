@@ -1314,8 +1314,8 @@
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
-
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+</span>
 <span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
     <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
     <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>        <span class="c1"># Longitud máxima</span>
@@ -1332,16 +1332,25 @@ Resultado:
 Setting<span class="w"> </span><span class="sb">`</span>pad_token_id<span class="sb">`</span><span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>eos_token_id<span class="sb">`</span>:50256<span class="w"> </span><span class="k">for</span><span class="w"> </span>open-end<span class="w"> </span>generation.
 Both<span class="w"> </span><span class="sb">`</span>max_new_tokens<span class="sb">`</span><span class="w"> </span><span class="o">(=</span><span class="m">256</span><span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="sb">`</span>max_length<span class="sb">`</span><span class="o">(=</span><span class="m">100</span><span class="o">)</span><span class="w"> </span>seem<span class="w"> </span>to<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>set.<span class="w"> </span><span class="sb">`</span>max_new_tokens<span class="sb">`</span><span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>precedence.<span class="w"> </span>Please<span class="w"> </span>refer<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>documentation<span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.<span class="w"> </span><span class="o">(</span>https://huggingface.co/docs/transformers/main/en/main_classes/text_generation<span class="o">)</span>
 </code></pre></div>
-Estos mensajes son avisos de configuración de la generación de texto. </p>
+Estos mensajes son avisos de configuración de la generación de texto. Veamos cada uno de ellos.</p>
 <ol>
 <li>Aviso sobre max_length y truncado</li>
 </ol>
 <p><code>Truncation was not explicitly activated but max_length is provided…</code></p>
-<p>El tokenizer ve que hemos puesto <code>max_length=100</code>, pero no le hemos dicho si debe truncar las entradas largas.</p>
-<p>Te avisa de que aplica la estrategia por defecto (longest_first).​</p>
+<p>El tokenizer ve que hemos puesto <code>max_length=100</code>, pero no le hemos dicho si debe truncar las entradas largas. Nos avisa de que aplica la estrategia por defecto (longest_first).​</p>
 <p>Solución simple: podríamos activar el truncado de forma explícita en la llamada:</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
-    <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+</span>    <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
     <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
@@ -1351,7 +1360,7 @@ Estos mensajes son avisos de configuración de la generación de texto. </p>
     <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
     <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span>      <span class="c1"># &lt;- añadido</span>
 <span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 2. Aviso sobre pad_token_id
 <code>Setting pad_token_id to eos_token_id:50256…</code></p>
 <p><strong>GPT‑2</strong> no tiene <code>pad_token</code> definido, así que <strong>Transformers</strong>, por defecto, usa el token de fin de secuencia (`eos_token_id=50256) para rellenar cuando hace batching. </p>
