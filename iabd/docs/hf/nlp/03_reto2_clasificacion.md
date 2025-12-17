@@ -107,14 +107,16 @@ indica exactamente eso: para el modelo, “es sobre política” es ligeramente 
 
 En resumen, gana “política” porque el modelo compara nuestro texto con hipótesis generadas a partir de las etiquetas, en un espacio **NLI** centrado en inglés, y en ese espacio la hipótesis “es política” le resulta ligeramente más plausible que “es deportes”. No es un “error lógico” del programa, sino una limitación del modelo y de cómo se formulan las etiquetas en zero‑shot.
 
-Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`
-https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli  
-### Zero-Shot Classification: Un poco de "magia"
+Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es [`MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`](
+https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli)
 
 ```python {linenums="1" hl_lines="3"}
 from transformers import pipeline
 # ¡Clasificar SIN entrenar el modelo!
-classifier = pipeline("zero-shot-classification")
+classifier = pipeline(
+    "zero-shot-classification",
+    model="MoritzLaurer/mDeBERTa-v3-base-mnli-xnli")
+    
 texto = "El Real Madrid ganó 3-1 al Barcelona en el Clásico"
 categorias = ["deportes", "política", "tecnología", "economía"]
 

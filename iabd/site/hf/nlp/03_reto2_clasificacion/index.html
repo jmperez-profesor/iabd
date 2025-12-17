@@ -811,6 +811,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#zero-shot-classification-un-poco-de-magia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-Shot Classification: Un poco de "magia"
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1287,24 +1296,27 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Modelos populares para clasificación</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Modelos populares para clasificación</span>
 <span class="n">modelos_clasificacion</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;noticias_español&quot;</span><span class="p">:</span> <span class="s2">&quot;bertin-project/bertin-roberta-base-spanish&quot;</span><span class="p">,</span>
     <span class="s2">&quot;noticias_general&quot;</span><span class="p">:</span> <span class="s2">&quot;facebook/bart-large-mnli&quot;</span><span class="p">,</span>
     <span class="s2">&quot;multiidioma&quot;</span><span class="p">:</span> <span class="s2">&quot;microsoft/DialoGPT-medium&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;zero_shot&quot;</span><span class="p">:</span> <span class="s2">&quot;facebook/bart-large-mnli&quot;</span>  <span class="c1"># ¡Sin entrenamiento previo!</span>
+    <span class="s2">&quot;zero_shot&quot;</span><span class="p">:</span> <span class="s2">&quot;facebook/bart-large-mnli&quot;</span><span class="p">,</span>  <span class="c1"># ¡Sin entrenamiento previo!</span>
+    <span class="s2">&quot;zero_shot&quot;</span> <span class="p">:</span> <span class="s2">&quot;MoritzLaurer/mDeBERTa-v3-base-mnli-xnli&quot;</span> <span class="c1"># Admite el idioma español </span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="zero-shot-classification-un-poco-de-magia">Zero-Shot Classification: Un poco de "magia"</h3>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 <span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
 <span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
 </span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
@@ -1312,15 +1324,78 @@
 
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
-<span class="c1"># Resultado: &quot;deportes&quot; con alta confianza</span>
+<span class="c1"># Resultado esperado: &quot;deportes&quot; debería de tener alta confianza</span>
+<span class="c1"># Resultado obtenido: &quot;política&quot; con alta confianza</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>facebook/bart-large-mnli<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>d7645e1<span class="w"> </span><span class="o">(</span>https://huggingface.co/facebook/bart-large-mnli<span class="o">)</span>.
 Using<span class="w"> </span>a<span class="w"> </span>pipeline<span class="w"> </span>without<span class="w"> </span>specifying<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span><span class="k">in</span><span class="w"> </span>production<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>recommended.
 Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="err">&#39;seque</span><span class="kc">n</span><span class="err">ce&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;El</span><span class="w"> </span><span class="err">Real</span><span class="w"> </span><span class="err">Madrid</span><span class="w"> </span><span class="err">ga</span><span class="kc">n</span><span class="err">ó</span><span class="w"> </span><span class="mi">3-1</span><span class="w"> </span><span class="err">al</span><span class="w"> </span><span class="err">Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">Clásico&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="err">&#39;labels&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;polí</span><span class="kc">t</span><span class="err">ica&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;eco</span><span class="kc">n</span><span class="err">omía&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;depor</span><span class="kc">tes</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">c</span><span class="kc">n</span><span class="err">ología&#39;</span><span class="p">],</span><span class="w"> </span>
-<span class="err">&#39;scores&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5234475135803223</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18149752914905548</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15290531516075134</span><span class="p">,</span><span class="w"> </span><span class="mf">0.14214962720870972</span><span class="p">]}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;seque</span><span class="kc">n</span><span class="err">ce&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;El</span><span class="w"> </span><span class="err">Real</span><span class="w"> </span><span class="err">Madrid</span><span class="w"> </span><span class="err">ga</span><span class="kc">n</span><span class="err">ó</span><span class="w"> </span><span class="mi">3-1</span><span class="w"> </span><span class="err">al</span><span class="w"> </span><span class="err">Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">Clásico&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;labels&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;polí</span><span class="kc">t</span><span class="err">ica&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;eco</span><span class="kc">n</span><span class="err">omía&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;depor</span><span class="kc">tes</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">c</span><span class="kc">n</span><span class="err">ología&#39;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;scores&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5234475135803223</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18149752914905548</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15290531516075134</span><span class="p">,</span><span class="w"> </span><span class="mf">0.14214962720870972</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<strong>¿Funciona?</strong> </p>
+<p>No funciona por cómo funciona realmente la <strong>clasificación zero-shot</strong> con modelos <strong>NLI</strong> como <code>facebook/bart-large-mnli</code>: el modelo no “entiende” las etiquetas como humanos, sino que compara texto y etiqueta a través de frases en inglés, y ahí se le cuela el sesgo.​</p>
+<ol>
+<li>Cómo decide el modelo en zero‑shot</li>
+</ol>
+<p>El <code>pipeline("zero-shot-classification")</code> con <strong>BART‑MNLI</strong> hace, de forma simplificada, algo así para cada etiqueta:​
+- Construye una hipótesis tipo:
+    - “This text is about política.”
+    - “This text is about deportes.”
+- Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).
+- Convierte esos <em>scores</em> en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de <em>“entailment”</em> (que el texto implique esa etiqueta).</p>
+<p>No usa un diccionario semántico ni sabe que “Real Madrid” y “Barcelona” son clubes de fútbol; solo ve que ciertas palabras coocurren más a menudo con “política” que con “deportes” en sus datos de entrenamiento, o que la frase <strong>“is about política”</strong> le parece más probable en general.​</p>
+<ol>
+<li>Problemas concretos de nuestro caso</li>
+</ol>
+<p>Algunos factores que hacen que gane “política”:</p>
+<ul>
+<li>El modelo es <strong>inglés‑céntrico</strong>: está entrenado principalmente con datos y plantillas en inglés; al ver etiquetas en español, su comportamiento es menos fiable.​</li>
+<li>Las etiquetas son palabras muy generales: “política”, “economía”, “deportes”, “tecnología”. La diferencia semántica en el <strong>embedding</strong> de la hipótesis puede no ser tan clara, y el modelo puede haber visto muchas veces “This text is about politics” en sus datos de preentrenamiento, lo que le da una especie de “prioridad” a favor de política.​</li>
+<li>El texto está en español: entiende algo (por contexto multilingüe parcial), pero la alineación entre texto español y etiquetas españolas no es perfecta.</li>
+</ul>
+<p>El resultado que vemos:
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;política&#39;</span><span class="p">,</span> <span class="s1">&#39;economía&#39;</span><span class="p">,</span> <span class="s1">&#39;deportes&#39;</span><span class="p">,</span> <span class="s1">&#39;tecnología&#39;</span><span class="p">],</span>
+<span class="s1">&#39;scores&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">]</span>
+</code></pre></div>
+indica exactamente eso: para el modelo, “es sobre política” es ligeramente más plausible que “es sobre deportes”, aunque para nosotros sea evidente lo contrario.</p>
+<p>En resumen, gana “política” porque el modelo compara nuestro texto con hipótesis generadas a partir de las etiquetas, en un espacio <strong>NLI</strong> centrado en inglés, y en ese espacio la hipótesis “es política” le resulta ligeramente más plausible que “es deportes”. No es un “error lógico” del programa, sino una limitación del modelo y de cómo se formulan las etiquetas en zero‑shot.</p>
+<p>Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es <code>MoritzLaurer/mDeBERTa-v3-base-mnli-xnli</code>
+https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli  </p>
+<h3 id="zero-shot-classification-un-poco-de-magia_1">Zero-Shot Classification: Un poco de "magia"</h3>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
+<span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
+</span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
+<span class="n">categorias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deportes&quot;</span><span class="p">,</span> <span class="s2">&quot;política&quot;</span><span class="p">,</span> <span class="s2">&quot;tecnología&quot;</span><span class="p">,</span> <span class="s2">&quot;economía&quot;</span><span class="p">]</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+<span class="c1"># Resultado esperado: &quot;deportes&quot; debería de tener alta confianza</span>
+<span class="c1"># Resultado obtenido: &quot;política&quot; con alta confianza</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>facebook/bart-large-mnli<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>d7645e1<span class="w"> </span><span class="o">(</span>https://huggingface.co/facebook/bart-large-mnli<span class="o">)</span>.
+Using<span class="w"> </span>a<span class="w"> </span>pipeline<span class="w"> </span>without<span class="w"> </span>specifying<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span><span class="k">in</span><span class="w"> </span>production<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>recommended.
+Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;seque</span><span class="kc">n</span><span class="err">ce&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;El</span><span class="w"> </span><span class="err">Real</span><span class="w"> </span><span class="err">Madrid</span><span class="w"> </span><span class="err">ga</span><span class="kc">n</span><span class="err">ó</span><span class="w"> </span><span class="mi">3-1</span><span class="w"> </span><span class="err">al</span><span class="w"> </span><span class="err">Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">Clásico&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;labels&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;polí</span><span class="kc">t</span><span class="err">ica&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;eco</span><span class="kc">n</span><span class="err">omía&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;depor</span><span class="kc">tes</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">c</span><span class="kc">n</span><span class="err">ología&#39;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="err">&#39;scores&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5234475135803223</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18149752914905548</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15290531516075134</span><span class="p">,</span><span class="w"> </span><span class="mf">0.14214962720870972</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div></p>
 <h2 id="implementacion-guiada-10-min">💻 Implementación guiada (10 min)</h2>
 <h3 id="paso-1-configuracion-y-datos">Paso 1: Configuración y Datos</h3>
