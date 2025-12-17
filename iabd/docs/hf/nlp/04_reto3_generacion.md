@@ -69,20 +69,19 @@ Truncation was not explicitly activated but `max_length` is provided a specific 
 Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
 Both `max_new_tokens` (=256) and `max_length`(=100) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
 ```
-Estos mensajes son avisos de configuración de la generación de texto. Te explico cada uno y cómo dejar el código “limpio”.​
+Estos mensajes son avisos de configuración de la generación de texto. 
 
 1. Aviso sobre max_length y truncado
-Truncation was not explicitly activated but max_length is provided…
 
-Significa:
+`Truncation was not explicitly activated but max_length is provided…`
 
-El tokenizer ve que has puesto max_length=100, pero no le has dicho si debe truncar las entradas largas.
+El tokenizer ve que hemos puesto `max_length=100`, pero no le hemos dicho si debe truncar las entradas largas.
 
 Te avisa de que aplica la estrategia por defecto (longest_first).​
 
-Solución simple: activa el truncado de forma explícita en la llamada:
+Solución simple: podríamos activar el truncado de forma explícita en la llamada:
 
-python
+```python
 texto = generator(
     "Había una vez",
     max_length=100,
@@ -94,27 +93,21 @@ texto = generator(
     repetition_penalty=1.2,
     truncation=True      # <- añadido
 )
+```
 2. Aviso sobre pad_token_id
-Setting pad_token_id to eos_token_id:50256…
+`Setting pad_token_id to eos_token_id:50256…`
 
-GPT‑2 no tiene pad_token definido, así que Transformers, por defecto, usa el token de fin de secuencia (eos_token_id=50256) para rellenar cuando hace batching. No es grave; si quieres ser explícito:​
+**GPT‑2** no tiene `pad_token` definido, así que **Transformers**, por defecto, usa el token de fin de secuencia (`eos_token_id=50256) para rellenar cuando hace batching. 
 
-python
-generator = pipeline(
-    "text-generation",
-    model="gpt2",
-    pad_token_id=50256
-)
-3. Aviso sobre max_new_tokens y max_length
-Both max_new_tokens (=256) and max_length(=100) seem to have been set…
+3. Aviso sobre `max_new_tokens` y `max_length`
 
-Esto indica que en algún sitio (por defecto del pipeline o de la versión de Transformers que usas) se ha fijado max_new_tokens=256, y tú además pasas max_length=100. Cuando están ambos:​
+`Both max_new_tokens (=256) and max_length(=100) seem to have been set…`
 
-Gana max_new_tokens, y max_length se ignora.
+Indica que en algún sitio (por defecto del pipeline o de la versión de Transformers que usamos) se ha fijado `max_new_tokens=256`, y nosotros además pasamos `max_length=100`. Cuando están ambos:​ Gana `max_new_tokens`, y `max_length` se ignora.
 
-Para controlar claramente la longitud, usa solo uno, lo más recomendable hoy es max_new_tokens:
+Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es `max_new_tokens`:
 
-python
+```python
 from transformers import pipeline
 
 generator = pipeline(
@@ -138,7 +131,8 @@ texto = generator(
 for t in texto:
     print("----")
     print(t["generated_text"])
-Con esto deberías dejar de ver esos avisos y tener un control claro sobre la longitud y el comportamiento de la generación
+```
+Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la longitud y el comportamiento de la generación.
 
 
 ### Técnicas de Prompting Efectivo
