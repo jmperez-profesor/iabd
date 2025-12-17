@@ -44,7 +44,8 @@ modelos_clasificacion = {
     "noticias_español": "bertin-project/bertin-roberta-base-spanish",
     "noticias_general": "facebook/bart-large-mnli",
     "multiidioma": "microsoft/DialoGPT-medium",
-    "zero_shot": "facebook/bart-large-mnli"  # ¡Sin entrenamiento previo!
+    "zero_shot": "facebook/bart-large-mnli",  # ¡Sin entrenamiento previo!
+    "zero_shot" : "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli" # Admite el idioma español 
 }
 ```
 
@@ -59,7 +60,8 @@ categorias = ["deportes", "política", "tecnología", "economía"]
 
 resultado = classifier(texto, categorias)
 print(resultado)
-# Resultado: "deportes" con alta confianza
+# Resultado esperado: "deportes" debería de tener alta confianza
+# Resultado obtenido: "política" con alta confianza
 ```
 ```bash
 No model was supplied, defaulted to facebook/bart-large-mnli and revision d7645e1 (https://huggingface.co/facebook/bart-large-mnli).
@@ -67,11 +69,72 @@ Using a pipeline without specifying a model name and revision in production is n
 Device set to use cpu
 ```
 ```json
-{'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
-'labels': ['política', 'economía', 'deportes', 'tecnología'], 
-'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]}
+{
+    'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
+    'labels': ['política', 'economía', 'deportes', 'tecnología'], 
+    'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]
+    }
 ```
+**¿Funciona?** 
 
+No funciona por cómo funciona realmente la **clasificación zero-shot** con modelos **NLI** como `facebook/bart-large-mnli`: el modelo no “entiende” las etiquetas como humanos, sino que compara texto y etiqueta a través de frases en inglés, y ahí se le cuela el sesgo.​
+
+1. Cómo decide el modelo en zero‑shot
+
+El `pipeline("zero-shot-classification")` con **BART‑MNLI** hace, de forma simplificada, algo así para cada etiqueta:​
+- Construye una hipótesis tipo:
+    - “This text is about política.”
+    - “This text is about deportes.”
+- Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).
+- Convierte esos *scores* en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de *“entailment”* (que el texto implique esa etiqueta).
+
+No usa un diccionario semántico ni sabe que “Real Madrid” y “Barcelona” son clubes de fútbol; solo ve que ciertas palabras coocurren más a menudo con “política” que con “deportes” en sus datos de entrenamiento, o que la frase **“is about política”** le parece más probable en general.​
+
+2. Problemas concretos de nuestro caso
+
+Algunos factores que hacen que gane “política”:
+
+- El modelo es **inglés‑céntrico**: está entrenado principalmente con datos y plantillas en inglés; al ver etiquetas en español, su comportamiento es menos fiable.​
+- Las etiquetas son palabras muy generales: “política”, “economía”, “deportes”, “tecnología”. La diferencia semántica en el **embedding** de la hipótesis puede no ser tan clara, y el modelo puede haber visto muchas veces “This text is about politics” en sus datos de preentrenamiento, lo que le da una especie de “prioridad” a favor de política.​
+- El texto está en español: entiende algo (por contexto multilingüe parcial), pero la alineación entre texto español y etiquetas españolas no es perfecta.
+
+El resultado que vemos:
+```python
+'labels': ['política', 'economía', 'deportes', 'tecnología'],
+'scores': [0.52, 0.18, 0.15, 0.14]
+```
+indica exactamente eso: para el modelo, “es sobre política” es ligeramente más plausible que “es sobre deportes”, aunque para nosotros sea evidente lo contrario.
+
+En resumen, gana “política” porque el modelo compara nuestro texto con hipótesis generadas a partir de las etiquetas, en un espacio **NLI** centrado en inglés, y en ese espacio la hipótesis “es política” le resulta ligeramente más plausible que “es deportes”. No es un “error lógico” del programa, sino una limitación del modelo y de cómo se formulan las etiquetas en zero‑shot.
+
+Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli`
+https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli  
+### Zero-Shot Classification: Un poco de "magia"
+
+```python {linenums="1" hl_lines="3"}
+from transformers import pipeline
+# ¡Clasificar SIN entrenar el modelo!
+classifier = pipeline("zero-shot-classification")
+texto = "El Real Madrid ganó 3-1 al Barcelona en el Clásico"
+categorias = ["deportes", "política", "tecnología", "economía"]
+
+resultado = classifier(texto, categorias)
+print(resultado)
+# Resultado esperado: "deportes" debería de tener alta confianza
+# Resultado obtenido: "política" con alta confianza
+```
+```bash
+No model was supplied, defaulted to facebook/bart-large-mnli and revision d7645e1 (https://huggingface.co/facebook/bart-large-mnli).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use cpu
+```
+```json
+{
+    'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
+    'labels': ['política', 'economía', 'deportes', 'tecnología'], 
+    'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]
+    }
+```
 
 ## 💻 Implementación guiada (10 min)
 
