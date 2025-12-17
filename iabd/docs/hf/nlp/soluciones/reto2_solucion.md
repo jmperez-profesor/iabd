@@ -1,5 +1,5 @@
 ---
-title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 2: Clasificador Inteligente de Noticias
+title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 2 "Clasificador Inteligente de Noticias"
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 

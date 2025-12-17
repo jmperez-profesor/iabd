@@ -1,5 +1,5 @@
 ---
-title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 3: Asistente de Escritura Creativa
+title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 3 "Asistente de Escritura Creativa"
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 

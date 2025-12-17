@@ -1,5 +1,5 @@
 ---
-title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 1: Detector de Emociones en Redes Sociales - 
+title: Tasks NLP 🏆 SOLUCIÓN COMPLETA Reto 1 "Detector de Emociones en Redes Sociales"
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
