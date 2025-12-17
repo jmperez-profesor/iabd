@@ -38,7 +38,7 @@ Una agencia de marketing digital necesita generar contenido constantemente:
 
 ### Modelos de generación populares
 
-```python {linenums="1"} {linenums="1"}
+```python {linenums="1"} 
 modelos_generacion = {
     "gpt2": "gpt2",  # Clásico, rápido
     "gpt2_spanish": "DeepESP/gpt2-spanish",  # Especializado en español
@@ -49,7 +49,7 @@ modelos_generacion = {
 
 ### Parámetros clave para controlar la generación
 
-```python {linenums="1"} {linenums="1"}
+```python {linenums="1" hl_lines="1"} 
 generator = pipeline("text-generation", model="gpt2")
 
 texto = generator(
@@ -69,19 +69,17 @@ Truncation was not explicitly activated but `max_length` is provided a specific 
 Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
 Both `max_new_tokens` (=256) and `max_length`(=100) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
 ```
-Estos mensajes son avisos de configuración de la generación de texto. 
+Estos mensajes son avisos de configuración de la generación de texto. Veamos cada uno de ellos.
 
 1. Aviso sobre max_length y truncado
 
 `Truncation was not explicitly activated but max_length is provided…`
 
-El tokenizer ve que hemos puesto `max_length=100`, pero no le hemos dicho si debe truncar las entradas largas.
-
-Te avisa de que aplica la estrategia por defecto (longest_first).​
+El tokenizer ve que hemos puesto `max_length=100`, pero no le hemos dicho si debe truncar las entradas largas. Nos avisa de que aplica la estrategia por defecto (longest_first).​
 
 Solución simple: podríamos activar el truncado de forma explícita en la llamada:
 
-```python
+```python {linenums="1" hl_lines="1"}
 texto = generator(
     "Había una vez",
     max_length=100,
@@ -133,7 +131,6 @@ for t in texto:
     print(t["generated_text"])
 ```
 Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la longitud y el comportamiento de la generación.
-
 
 ### Técnicas de Prompting Efectivo
 
