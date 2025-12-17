@@ -83,8 +83,10 @@ No funciona por cómo funciona realmente la **clasificación zero-shot** con mod
 
 El `pipeline("zero-shot-classification")` con **BART‑MNLI** hace, de forma simplificada, algo así para cada etiqueta:​
 - Construye una hipótesis tipo:
+
     - “This text is about política.”
     - “This text is about deportes.”
+    
 - Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).
 - Convierte esos *scores* en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de *“entailment”* (que el texto implique esa etiqueta).
 

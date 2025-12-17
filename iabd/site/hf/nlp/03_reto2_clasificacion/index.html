@@ -811,15 +811,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#zero-shot-classification-un-poco-de-magia_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zero-Shot Classification: Un poco de "magia"
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1364,9 +1355,7 @@ Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span
 </code></pre></div>
 indica exactamente eso: para el modelo, “es sobre política” es ligeramente más plausible que “es sobre deportes”, aunque para nosotros sea evidente lo contrario.</p>
 <p>En resumen, gana “política” porque el modelo compara nuestro texto con hipótesis generadas a partir de las etiquetas, en un espacio <strong>NLI</strong> centrado en inglés, y en ese espacio la hipótesis “es política” le resulta ligeramente más plausible que “es deportes”. No es un “error lógico” del programa, sino una limitación del modelo y de cómo se formulan las etiquetas en zero‑shot.</p>
-<p>Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es <code>MoritzLaurer/mDeBERTa-v3-base-mnli-xnli</code>
-https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli  </p>
-<h3 id="zero-shot-classification-un-poco-de-magia_1">Zero-Shot Classification: Un poco de "magia"</h3>
+<p>Vamos a modificar el ejemplo seleccionando un modelo que admite Zero-shot y el idioma español. El modelo es <a href="https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli"><code>MoritzLaurer/mDeBERTa-v3-base-mnli-xnli</code></a></p>
 <p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1376,10 +1365,16 @@ https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli  </p>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 <span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
-<span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
-</span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
+<span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+</span>    <span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;MoritzLaurer/mDeBERTa-v3-base-mnli-xnli&quot;</span><span class="p">)</span>
+
+<span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
 <span class="n">categorias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deportes&quot;</span><span class="p">,</span> <span class="s2">&quot;política&quot;</span><span class="p">,</span> <span class="s2">&quot;tecnología&quot;</span><span class="p">,</span> <span class="s2">&quot;economía&quot;</span><span class="p">]</span>
 
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
