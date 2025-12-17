@@ -1296,20 +1296,32 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="zero-shot-classification-un-poco-de-magia">Zero-Shot Classification: Un poco de "magia"</h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
-<span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="c1"># ¡Clasificar SIN entrenar el modelo!</span>
+<span class="hll"><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-classification&quot;</span><span class="p">)</span>
+</span><span class="n">texto</span> <span class="o">=</span> <span class="s2">&quot;El Real Madrid ganó 3-1 al Barcelona en el Clásico&quot;</span>
 <span class="n">categorias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;deportes&quot;</span><span class="p">,</span> <span class="s2">&quot;política&quot;</span><span class="p">,</span> <span class="s2">&quot;tecnología&quot;</span><span class="p">,</span> <span class="s2">&quot;economía&quot;</span><span class="p">]</span>
 
 <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
 <span class="c1"># Resultado: &quot;deportes&quot; con alta confianza</span>
 </code></pre></div></td></tr></table></div>
+<div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>facebook/bart-large-mnli<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>d7645e1<span class="w"> </span><span class="o">(</span>https://huggingface.co/facebook/bart-large-mnli<span class="o">)</span>.
+Using<span class="w"> </span>a<span class="w"> </span>pipeline<span class="w"> </span>without<span class="w"> </span>specifying<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span><span class="k">in</span><span class="w"> </span>production<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>recommended.
+Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="err">&#39;seque</span><span class="kc">n</span><span class="err">ce&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;El</span><span class="w"> </span><span class="err">Real</span><span class="w"> </span><span class="err">Madrid</span><span class="w"> </span><span class="err">ga</span><span class="kc">n</span><span class="err">ó</span><span class="w"> </span><span class="mi">3-1</span><span class="w"> </span><span class="err">al</span><span class="w"> </span><span class="err">Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">Clásico&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="err">&#39;labels&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;polí</span><span class="kc">t</span><span class="err">ica&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;eco</span><span class="kc">n</span><span class="err">omía&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;depor</span><span class="kc">tes</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">te</span><span class="err">c</span><span class="kc">n</span><span class="err">ología&#39;</span><span class="p">],</span><span class="w"> </span>
+<span class="err">&#39;scores&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5234475135803223</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18149752914905548</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15290531516075134</span><span class="p">,</span><span class="w"> </span><span class="mf">0.14214962720870972</span><span class="p">]}</span>
+</code></pre></div></p>
 <h2 id="implementacion-guiada-10-min">💻 Implementación guiada (10 min)</h2>
 <h3 id="paso-1-configuracion-y-datos">Paso 1: Configuración y Datos</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1736,13 +1748,11 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analizar_tendencias_diarias</span><span class="p">(</span><span class="n">noticias_por_dia</span><span class="p">):</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analizar_tendencias_diarias</span><span class="p">(</span><span class="n">noticias_por_dia</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza qué categorías son trending cada día&quot;&quot;&quot;</span>
     <span class="n">tendencias</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">dia</span><span class="p">,</span> <span class="n">noticias</span> <span class="ow">in</span> <span class="n">noticias_por_dia</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">categorias_dia</span> <span class="o">=</span> <span class="p">[</span><span class="n">clasificar_noticia</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span> 
-                        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">noticias</span><span class="p">]</span>
+        <span class="n">categorias_dia</span> <span class="o">=</span> <span class="p">[</span><span class="n">clasificar_noticia</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">noticias</span><span class="p">]</span>
         <span class="n">tendencias</span><span class="p">[</span><span class="n">dia</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categorias_dia</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">tendencias</span>
 </code></pre></div></td></tr></table></div></p>
