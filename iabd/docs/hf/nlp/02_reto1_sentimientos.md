@@ -53,7 +53,7 @@ classifier = pipeline(
 )
 ```
 
-## 💻 Implementación Guiada (10 min)
+## 💻 Implementación guiada (10 min)
 
 ### Paso 0: Instalar pandas con PIP
 ```bash
@@ -211,9 +211,9 @@ print(f"Tweet: {tweet_test}")
 for modelo, resultado in comparacion.items():
     print(f"{modelo}: {resultado['label']} ({resultado['score']:.2f})")
 ```
-## 🎯 Experimentación Libre (5 min)
+## 🎯 Experimentación libre (5 min)
 
-### Desafíos para Explorar
+### Desafíos para explorar
 
 1. **Prueba con Emojis:**
    ```python
