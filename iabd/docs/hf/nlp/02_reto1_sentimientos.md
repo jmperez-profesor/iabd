@@ -230,7 +230,7 @@ for modelo, resultado in comparacion.items():
    ]
    ```
 
-3. **Diferentes Idiomas:**
+3. **Diferentes idiomas:**
    ```python
    tweets_multiidioma = [
        "I love this app!",
@@ -238,12 +238,12 @@ for modelo, resultado in comparacion.items():
        "¡Me encanta esta aplicación!"
    ]
    ```
-### Preguntas para Reflexionar
+### Preguntas para reflexionar
 - ¿Qué modelo funciona mejor para tu caso de uso?
 - ¿Cómo manejas la incertidumbre (scores bajos)?
 - ¿Qué harías con sentimientos neutrales?
 
-## 🏅 Criterios de Éxito
+## 🏅 Criterios de éxito
 
 Al completar este reto, deberías poder:
 
@@ -253,9 +253,9 @@ Al completar este reto, deberías poder:
 - ✅ Crear visualizaciones simples
 - ✅ Identificar limitaciones del modelo
 
-## 🚀 Extensiones Opcionales
+## 🚀 Extensiones opcionales
 
-### Para los Más Rápidos:
+### Para los más rápidos:
 1. **Análisis en tiempo real:** Conectar con la API de X
 2. **Alertas automáticas:** Notificar cuando el sentimiento baja del 70%
 
