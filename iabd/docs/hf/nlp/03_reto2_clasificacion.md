@@ -5,7 +5,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # 🏆 Reto 2: Clasificador Inteligente de Noticias
 
-**⏱️ Tiempo:** 30 minutos  
+**⏱️ Tiempo:** 20 minutos  
 **🎯 Nivel:** Intermedio  
 **🚀 Objetivo:** Construir un sistema de categorización automática de noticias
 

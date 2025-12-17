@@ -155,16 +155,11 @@ for i, texto in enumerate(resultado):
 - ✅ **Comunidad**: Modelos compartidos y mejorados constantemente
 - ✅ **Flexibilidad**: Desde uso básico hasta personalización avanzada
 
-## 🎮 Preparación para los retos
+### Retos a realizar 
 
-### Estructura Mental para los Retos
-1. **Identifica el problema** → ¿Qué tarea NLP necesito?
-2. **Elige el pipeline** → ¿Cuál es el más adecuado?
-3. **Experimenta** → Prueba con diferentes textos
-4. **Optimiza** → Ajusta parámetros y modelos
-5. **Evalúa** → ¿Funciona bien para mi caso de uso?
-
-## 🏆 ¡Listos para el primer reto!
+- 🏆 Reto 1: Detector de Emociones en Redes Sociales
+- 🏆 Reto 2: Clasificador Inteligente de Noticias
+- 🏆 Reto 3: Asistente de escritura creativa
 
 Ahora que hemos visto algunos modelos de NLP en acción, es hora de crear nuestro primer proyecto real: **un detector de emociones para redes sociales**.
 

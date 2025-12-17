@@ -5,7 +5,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # 🏆 Reto 3: Asistente de escritura creativa
 
-**⏱️ Tiempo:** 30 minutos  
+**⏱️ Tiempo:** 20 minutos  
 **🎯 Nivel:** Avanzado  
 **🚀 Objetivo:** Desarrollar un generador de texto contextual para escritura creativa
 
@@ -71,7 +71,7 @@ Both `max_new_tokens` (=256) and `max_length`(=100) seem to have been set. `max_
 ```
 Estos mensajes son avisos de configuración de la generación de texto. Veamos cada uno de ellos.
 
-1. Aviso sobre max_length y truncado
+1. Aviso sobre `max_length` y truncado
 
 `Truncation was not explicitly activated but max_length is provided…`
 
@@ -92,7 +92,7 @@ texto = generator(
     truncation=True      # <- añadido
 )
 ```
-2. Aviso sobre pad_token_id
+2. Aviso sobre `pad_token_id`
 `Setting pad_token_id to eos_token_id:50256…`
 
 **GPT‑2** no tiene `pad_token` definido, así que **Transformers**, por defecto, usa el token de fin de secuencia (`eos_token_id=50256) para rellenar cuando hace batching. 
@@ -174,6 +174,7 @@ def generar_historia(prompt, longitud=150, creatividad=0.8):
     """Genera una historia creativa basada en un prompt"""
     resultado = generator(
         prompt,
+        max_new_tokens=100,      # nº de tokens NUEVOS generados
         max_length=longitud,
         num_return_sequences=1,
         temperature=creatividad,
@@ -181,7 +182,8 @@ def generar_historia(prompt, longitud=150, creatividad=0.8):
         top_k=50,
         top_p=0.95,
         repetition_penalty=1.2,
-        pad_token_id=generator.tokenizer.eos_token_id
+        pad_token_id=generator.tokenizer.eos_token_id,
+        truncation=True
     )
     
     return resultado[0]['generated_text']

@@ -5,7 +5,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # 🏆 Reto 1: Detector de Emociones en Redes Sociales
 
-**⏱️ Tiempo:** 30 minutos  
+**⏱️ Tiempo:** 15 minutos  
 **🎯 Nivel:** Principiante  
 **🚀 Objetivo:** Crear un analizador de sentimientos para monitorizar la percepción de marca en X (Twitter)
 
