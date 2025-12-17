@@ -124,22 +124,16 @@ categorias = ["deportes", "política", "tecnología", "economía"]
 
 resultado = classifier(texto, categorias)
 print(resultado)
-# Resultado esperado: "deportes" debería de tener alta confianza
-# Resultado obtenido: "política" con alta confianza
+# Resultado: "deportes" tiene alta confianza
 ```
-```bash
-No model was supplied, defaulted to facebook/bart-large-mnli and revision d7645e1 (https://huggingface.co/facebook/bart-large-mnli).
-Using a pipeline without specifying a model name and revision in production is not recommended.
-Device set to use cpu
-```
+Resultado:
 ```json
-{
+{   
     'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
-    'labels': ['política', 'economía', 'deportes', 'tecnología'], 
-    'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]
-    }
+    'labels': ['deportes', 'tecnología', 'economía', 'política'], 
+    'scores': [0.6116266846656799, 0.15320605039596558, 0.13130027055740356, 0.1038670614361763]
+}
 ```
-
 ## 💻 Implementación guiada (10 min)
 
 ### Paso 1: Configuración y Datos
@@ -181,8 +175,8 @@ categorias = ["deportes", "política", "economía", "ciencia", "tecnología"]
 
 ```python {linenums="1"}
 # Crear clasificador zero-shot
-classifier = pipeline("zero-shot-classification", 
-                     model="facebook/bart-large-mnli")
+classifier = pipeline("zero-shot-classification",
+                     model="MoritzLaurer/mDeBERTa-v3-base-mnli-xnli")
 
 def clasificar_noticia(noticia, categorias):
     """Clasifica una noticia usando zero-shot learning"""
