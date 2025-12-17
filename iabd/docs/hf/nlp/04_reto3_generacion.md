@@ -27,7 +27,7 @@ Una agencia de marketing digital necesita generar contenido constantemente:
 
 ## 🧠 Teoría Just-in-Time (10 min)
 
-### Generación de Texto: Tipos y Aplicaciones
+### Generación de Texto: Tipos y aplicaciones
 
 | Tipo | Descripción | Ejemplo de Uso |
 |------|-------------|----------------|
@@ -133,7 +133,7 @@ for t in texto:
 ```
 Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la longitud y el comportamiento de la generación.
 
-### Técnicas de Prompting Efectivo
+### Técnicas de prompting efectivo
 
 ```python {linenums="1"} {linenums="1"}
 # ❌ Prompt básico
@@ -150,7 +150,7 @@ Escribe una historia corta de ciencia ficción que incluya:
 """
 ```
 
-## 💻 Implementación Guiada (10 min)
+## 💻 Implementación guiada (10 min)
 
 ### Paso 1: Configuración y generación básica
 
@@ -265,7 +265,7 @@ for plataforma in plataformas:
     print("-" * 40)
 ```
 
-### Paso 3: Asistente de Escritura Interactivo
+### Paso 3: Asistente de escritura interactivo
 
 ```python {linenums="1"} {linenums="1"}
 class AsistenteEscritura:
@@ -366,7 +366,7 @@ for i, var in enumerate(variaciones, 1):
     print(f"{i}. {var}")
 ```
 
-### Paso 4: Evaluador de Calidad del Texto
+### Paso 4: Evaluador de calidad del texto
 
 ```python {linenums="1"} {linenums="1"}
 def evaluar_calidad_texto(texto):
@@ -422,11 +422,11 @@ for i, texto in enumerate(textos_prueba, 1):
     print(f"Texto: {texto[:100]}...")
 ```
 
-## 🎯 Experimentación Libre (5 min)
+## 🎯 Experimentación libre (5 min)
 
-### Desafíos para Explorar
+### Desafíos para explorar
 
-1. **Generación Condicional:**
+1. **Generación condicional:**
    ```python {linenums="1"}
    # Genera texto basado en múltiples condiciones
    condiciones = {
@@ -437,21 +437,20 @@ for i, texto in enumerate(textos_prueba, 1):
    }
    ```
 
-2. **Chatbot Creativo:**
+2. **Chatbot creativo:**
    ```python {linenums="1"}
    def chatbot_creativo(mensaje_usuario):
        prompt = f"Usuario: {mensaje_usuario}\nAsistente creativo:"
        # Implementar respuesta contextual
    ```
 
-3. **Generador de Poesía:**
+3. **Generador de poesía:**
    ```python {linenums="1"}
    def generar_poema(tema, estilo="libre"):
        # Haiku, soneto, verso libre, etc.
        pass
    ```
-
-### Experimentos Avanzados
+### Experimentos avanzados
 
 ```python {linenums="1"}
 # 1. Control de creatividad dinámico
@@ -478,8 +477,7 @@ def analizar_estilo_autor(texto_muestra):
     # Implementar análisis de patrones lingüísticos
     pass
 ```
-
-## 🏅 Criterios de Éxito
+## 🏅 Criterios de éxito
 
 Al completar este reto, deberías poder:
 
@@ -489,11 +487,11 @@ Al completar este reto, deberías poder:
 - ✅ Evaluar la calidad del texto generado
 - ✅ Controlar el estilo y tono de la generación
 
-## 🚀 Extensiones Opcionales
+## 🚀 Extensiones opcionales
 
 ### Para los más rápidos:
 
-1. **Interfaz Web Completa:**
+1. **Interfaz Web completa:**
    ```python {linenums="1"}
    import gradio as gr
 
@@ -544,7 +542,7 @@ Al completar este reto, deberías poder:
         demo.launch()
    ```
 
-2. **Sistema de Plantillas:**
+2. **Sistema de plantillas:**
    ```python {linenums="1"}
    plantillas = {
        "email_marketing": "Asunto: {asunto}\n\nHola {nombre},\n\n{contenido_principal}",
@@ -553,7 +551,7 @@ Al completar este reto, deberías poder:
    }
    ```
 
-3. **Análisis de Sentimientos del Texto Generado:**
+3. **Análisis de sentimientos del texto generado:**
    ```python {linenums="1"}
    def analizar_tono_generado(texto):
        sentiment_analyzer = pipeline("sentiment-analysis")
@@ -561,7 +559,7 @@ Al completar este reto, deberías poder:
        return resultado[0]['label'], resultado[0]['score']
    ```
 
-### 🚀 Próximos Pasos Recomendados:
+### 🚀 Próximos pasos recomendados:
 1. **Combina las tres técnicas** en un proyecto integrado
 2. **Explora modelos más avanzados** como GPT-3.5 o Claude
 3. **Implementa fine-tuning** para casos de uso específicos
@@ -575,7 +573,7 @@ Al completar este reto, deberías poder:
 - [GPT-2 Documentation](https://huggingface.co/gpt2)
 - [Prompt Engineering Best Practices](https://huggingface.co/docs/transformers/tasks/prompting)
 
-# Anexo 🎭 Prompts Creativos para Generación de Texto
+# Anexo 🎭 Prompts creativos para generación de texto
 
 ## 📚 Historias de Ciencia Ficción
 - En un mundo donde los sueños se pueden comprar y vender
