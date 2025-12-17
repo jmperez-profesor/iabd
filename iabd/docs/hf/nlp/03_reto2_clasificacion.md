@@ -281,9 +281,9 @@ for i, rec in enumerate(recomendaciones, 1):
 
 ## 🎯 Experimentación Libre (5 min)
 
-### Desafíos para Explorar
+### Desafíos para explorar
 
-1. **Categorías Personalizadas:**
+1. **Categorías personalizadas:**
    ```python
    # Prueba con tus propias categorías
    mis_categorias = ["urgente", "no urgente", "entretenimiento", "educativo"]
@@ -301,7 +301,7 @@ for i, rec in enumerate(recomendaciones, 1):
        pass
    ```
 
-### Experimentos Avanzados
+### Experimentos avanzados
 
 ```python {linenums="1"}
 # 1. Clasificación con confianza mínima
@@ -322,7 +322,7 @@ def detectar_noticias_atipicas(noticias, categorias):
     return [n for n, c in zip(noticias, confianzas) if c < umbral_atipico]
 ```
 
-## 🏅 Criterios de Éxito
+## 🏅 Criterios de éxito
 
 Al completar este reto, deberías poder:
 
@@ -332,7 +332,7 @@ Al completar este reto, deberías poder:
 - ✅ Manejar múltiples categorías y subcategorías
 - ✅ Evaluar la confianza de las predicciones
 
-## 🚀 Extensiones Opcionales
+## 🚀 Extensiones opcionales
 
 ### Para los más rápidos:
 
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     demo.launch()
 ```
 
-**Análisis de Tendencias:**
+**Análisis de tendencias:**
 ```python {linenums="1"}
 def analizar_tendencias_diarias(noticias_por_dia):
     """Analiza qué categorías son trending cada día"""
@@ -389,13 +389,13 @@ def analizar_tendencias_diarias(noticias_por_dia):
     return tendencias
 ```
 
-## 🎯 Próximo Reto
+## 🎯 Próximo reto
 
 Has construido un sistema completo de clasificación de noticias. 
 
 Para el reto final, vamos a explorar la frontera más emocionante del NLP: **la generación de texto creativo**. Crearemos un asistente de escritura que ayude a generar contenido original.
 
-[👉 Ir al Reto 3: Asistente de Escritura Creativa](04_reto3_generacion.md)
+[👉 Ir al Reto 3: Asistente de escritura creativa](04_reto3_generacion.md)
 
 ---
 
