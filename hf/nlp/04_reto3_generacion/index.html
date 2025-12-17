@@ -1303,7 +1303,7 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="parametros-clave-para-controlar-la-generacion">Parámetros clave para controlar la generación</h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1327,6 +1327,65 @@
     <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span> <span class="c1"># Evitar repeticiones</span>
 <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+Resultado:
+<div class="highlight"><pre><span></span><code>Truncation<span class="w"> </span>was<span class="w"> </span>not<span class="w"> </span>explicitly<span class="w"> </span>activated<span class="w"> </span>but<span class="w"> </span><span class="sb">`</span>max_length<span class="sb">`</span><span class="w"> </span>is<span class="w"> </span>provided<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span>value,<span class="w"> </span>please<span class="w"> </span>use<span class="w"> </span><span class="sb">`</span><span class="nv">truncation</span><span class="o">=</span>True<span class="sb">`</span><span class="w"> </span>to<span class="w"> </span>explicitly<span class="w"> </span>truncate<span class="w"> </span>examples<span class="w"> </span>to<span class="w"> </span>max<span class="w"> </span>length.<span class="w"> </span>Defaulting<span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;longest_first&#39;</span><span class="w"> </span>truncation<span class="w"> </span>strategy.<span class="w"> </span>If<span class="w"> </span>you<span class="w"> </span>encode<span class="w"> </span>pairs<span class="w"> </span>of<span class="w"> </span>sequences<span class="w"> </span><span class="o">(</span>GLUE-style<span class="o">)</span><span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>tokenizer<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span><span class="k">select</span><span class="w"> </span>this<span class="w"> </span>strategy<span class="w"> </span>more<span class="w"> </span>precisely<span class="w"> </span>by<span class="w"> </span>providing<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span>strategy<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>truncation<span class="sb">`</span>.
+Setting<span class="w"> </span><span class="sb">`</span>pad_token_id<span class="sb">`</span><span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>eos_token_id<span class="sb">`</span>:50256<span class="w"> </span><span class="k">for</span><span class="w"> </span>open-end<span class="w"> </span>generation.
+Both<span class="w"> </span><span class="sb">`</span>max_new_tokens<span class="sb">`</span><span class="w"> </span><span class="o">(=</span><span class="m">256</span><span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="sb">`</span>max_length<span class="sb">`</span><span class="o">(=</span><span class="m">100</span><span class="o">)</span><span class="w"> </span>seem<span class="w"> </span>to<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>set.<span class="w"> </span><span class="sb">`</span>max_new_tokens<span class="sb">`</span><span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>precedence.<span class="w"> </span>Please<span class="w"> </span>refer<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>documentation<span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.<span class="w"> </span><span class="o">(</span>https://huggingface.co/docs/transformers/main/en/main_classes/text_generation<span class="o">)</span>
+</code></pre></div>
+Estos mensajes son avisos de configuración de la generación de texto. </p>
+<ol>
+<li>Aviso sobre max_length y truncado</li>
+</ol>
+<p><code>Truncation was not explicitly activated but max_length is provided…</code></p>
+<p>El tokenizer ve que hemos puesto <code>max_length=100</code>, pero no le hemos dicho si debe truncar las entradas largas.</p>
+<p>Te avisa de que aplica la estrategia por defecto (longest_first).​</p>
+<p>Solución simple: podríamos activar el truncado de forma explícita en la llamada:</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
+    <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+    <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span>      <span class="c1"># &lt;- añadido</span>
+<span class="p">)</span>
+</code></pre></div>
+2. Aviso sobre pad_token_id
+<code>Setting pad_token_id to eos_token_id:50256…</code></p>
+<p><strong>GPT‑2</strong> no tiene <code>pad_token</code> definido, así que <strong>Transformers</strong>, por defecto, usa el token de fin de secuencia (`eos_token_id=50256) para rellenar cuando hace batching. </p>
+<ol>
+<li>Aviso sobre <code>max_new_tokens</code> y <code>max_length</code></li>
+</ol>
+<p><code>Both max_new_tokens (=256) and max_length(=100) seem to have been set…</code></p>
+<p>Indica que en algún sitio (por defecto del pipeline o de la versión de Transformers que usamos) se ha fijado <code>max_new_tokens=256</code>, y nosotros además pasamos <code>max_length=100</code>. Cuando están ambos:​ Gana <code>max_new_tokens</code>, y <code>max_length</code> se ignora.</p>
+<p>Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es <code>max_new_tokens</code>:</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>
+    <span class="n">pad_token_id</span><span class="o">=</span><span class="mi">50256</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">texto</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="s2">&quot;Había una vez&quot;</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      <span class="c1"># nº de tokens NUEVOS generados</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">repetition_penalty</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+    <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">texto</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</code></pre></div>
+Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la longitud y el comportamiento de la generación.</p>
 <h3 id="tecnicas-de-prompting-efectivo">Técnicas de Prompting Efectivo</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
