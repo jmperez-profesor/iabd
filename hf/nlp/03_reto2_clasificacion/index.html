@@ -1707,10 +1707,8 @@ Resultado:
 </ul>
 <h2 id="extensiones-opcionales">🚀 Extensiones Opcionales</h2>
 <h3 id="para-los-mas-rapidos">Para los más rápidos:</h3>
-<ol>
-<li>
 <p><strong>Dashboard Interactivo:</strong>
-   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1749,68 +1747,45 @@ Resultado:
 <span class="normal">37</span>
 <span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
 
- <span class="c1"># Se asume que ya tienes definida esta función y la lista `categorias`</span>
- <span class="c1"># def clasificar_noticia(noticia: dict, categorias: list) -&gt; dict:</span>
- <span class="c1">#     # devuelve, por ejemplo: {&quot;categoria_predicha&quot;: &quot;Política&quot;, &quot;confianza&quot;: 0.87}</span>
- <span class="c1">#     ...</span>
- <span class="c1"># categorias = [&quot;Política&quot;, &quot;Economía&quot;, &quot;Deportes&quot;, &quot;Tecnología&quot;, &quot;Cultura&quot;]</span>
+<span class="c1"># Se asume que ya tienes definida esta función y la lista `categorias`</span>
+<span class="c1"># def clasificar_noticia(noticia: dict, categorias: list) -&gt; dict:</span>
+<span class="c1">#     # devuelve, por ejemplo: {&quot;categoria_predicha&quot;: &quot;Política&quot;, &quot;confianza&quot;: 0.87}</span>
+<span class="c1">#     ...</span>
+<span class="c1"># categorias = [&quot;Política&quot;, &quot;Economía&quot;, &quot;Deportes&quot;, &quot;Tecnología&quot;, &quot;Cultura&quot;]</span>
 
- <span class="k">def</span><span class="w"> </span><span class="nf">clasificar_noticia_interface</span><span class="p">(</span><span class="n">texto_noticia</span><span class="p">):</span>
-     <span class="k">if</span> <span class="ow">not</span> <span class="n">texto_noticia</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
-         <span class="k">return</span> <span class="s2">&quot;Por favor, pega una noticia para clasificar.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
-     <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">({</span><span class="s2">&quot;titulo&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;contenido&quot;</span><span class="p">:</span> <span class="n">texto_noticia</span><span class="p">},</span> <span class="n">categorias</span><span class="p">)</span>
-     <span class="n">categoria</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Categoría: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-     <span class="n">confianza</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Confianza: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
-     <span class="k">return</span> <span class="n">categoria</span><span class="p">,</span> <span class="n">confianza</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">clasificar_noticia_interface</span><span class="p">(</span><span class="n">texto_noticia</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">texto_noticia</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;Por favor, pega una noticia para clasificar.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">({</span><span class="s2">&quot;titulo&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;contenido&quot;</span><span class="p">:</span> <span class="n">texto_noticia</span><span class="p">},</span> <span class="n">categorias</span><span class="p">)</span>
+    <span class="n">categoria</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Categoría: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;categoria_predicha&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">confianza</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Confianza: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">categoria</span><span class="p">,</span> <span class="n">confianza</span>
 
- <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;📰 Clasificador de Noticias IA&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
-     <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# 📰 Clasificador de Noticias IA&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;📰 Clasificador de Noticias IA&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# 📰 Clasificador de Noticias IA&quot;</span><span class="p">)</span>
 
-     <span class="n">texto_noticia</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span>
-         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pega aquí tu noticia:&quot;</span><span class="p">,</span>
-         <span class="n">lines</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-         <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Copia y pega el texto completo de la noticia...&quot;</span>
-     <span class="p">)</span>
+    <span class="n">texto_noticia</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pega aquí tu noticia:&quot;</span><span class="p">,</span>
+        <span class="n">lines</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Copia y pega el texto completo de la noticia...&quot;</span>
+    <span class="p">)</span>
 
-     <span class="n">boton</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Clasificar&quot;</span><span class="p">)</span>
+    <span class="n">boton</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Clasificar&quot;</span><span class="p">)</span>
 
-     <span class="n">salida_categoria</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">()</span>
-     <span class="n">salida_confianza</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">()</span>
+    <span class="n">salida_categoria</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">()</span>
+    <span class="n">salida_confianza</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">()</span>
 
-     <span class="n">boton</span><span class="o">.</span><span class="n">click</span><span class="p">(</span>
-         <span class="n">fn</span><span class="o">=</span><span class="n">clasificar_noticia_interface</span><span class="p">,</span>
-         <span class="n">inputs</span><span class="o">=</span><span class="n">texto_noticia</span><span class="p">,</span>
-         <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">salida_categoria</span><span class="p">,</span> <span class="n">salida_confianza</span><span class="p">],</span>
-     <span class="p">)</span>
+    <span class="n">boton</span><span class="o">.</span><span class="n">click</span><span class="p">(</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">clasificar_noticia_interface</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="o">=</span><span class="n">texto_noticia</span><span class="p">,</span>
+        <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">salida_categoria</span><span class="p">,</span> <span class="n">salida_confianza</span><span class="p">],</span>
+    <span class="p">)</span>
 
- <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-     <span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p><strong>API REST Simple:</strong>
-   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/clasificar&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">clasificar_api</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
-    <span class="n">resultado</span> <span class="o">=</span> <span class="n">clasificar_noticia</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">categorias</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
 <p><strong>Análisis de Tendencias:</strong>
-   <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -1824,8 +1799,6 @@ Resultado:
         <span class="n">tendencias</span><span class="p">[</span><span class="n">dia</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categorias_dia</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">tendencias</span>
 </code></pre></div></td></tr></table></div></p>
-</li>
-</ol>
 <h2 id="proximo-reto">🎯 Próximo Reto</h2>
 <p>Has construido un sistema completo de clasificación de noticias. </p>
 <p>Para el reto final, vamos a explorar la frontera más emocionante del NLP: <strong>la generación de texto creativo</strong>. Crearemos un asistente de escritura que ayude a generar contenido original.</p>
