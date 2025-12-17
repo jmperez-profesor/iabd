@@ -1391,7 +1391,95 @@ Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class=
 Tweet:<span class="w"> </span>Perfecta<span class="w"> </span>para<span class="w"> </span>lo<span class="w"> </span>que<span class="w"> </span>necesitaba<span class="w"> </span>👌
 Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
 --------------------------------------------------
-</code></pre></div></p>
+</code></pre></div>
+Sería interesante elegir un modelo que admitiera el español como el <code>pysentimiento/robertuito-sentiment-analysis</code>:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Crear el clasificador</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> 
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;pysentimiento/robertuito-sentiment-analysis&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Datos de ejemplo (simula tweets reales)</span>
+<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;¡Esta nueva app es increíble! 🚀&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;La app se cuelga constantemente 😡&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Funciona bien, pero podría mejorar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¡Gracias por esta herramienta tan útil! ❤️&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No entiendo cómo usarla, muy confusa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Perfecta para lo que necesitaba 👌&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Analizar cada tweet</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;tweet&#39;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">,</span>
+        <span class="s1">&#39;sentimiento&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;confianza&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+    <span class="p">})</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentimiento: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Confianza: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Lo añadimos y volvemos a probar:
+<div class="highlight"><pre><span></span><code>Tweet:<span class="w"> </span>¡Esta<span class="w"> </span>nueva<span class="w"> </span>app<span class="w"> </span>es<span class="w"> </span>increíble!<span class="w"> </span>🚀
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.96<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>La<span class="w"> </span>app<span class="w"> </span>se<span class="w"> </span>cuelga<span class="w"> </span>constantemente<span class="w"> </span>😡
+Sentimiento:<span class="w"> </span>NEG<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.95<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Funciona<span class="w"> </span>bien,<span class="w"> </span>pero<span class="w"> </span>podría<span class="w"> </span>mejorar
+Sentimiento:<span class="w"> </span>NEU<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.82<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>¡Gracias<span class="w"> </span>por<span class="w"> </span>esta<span class="w"> </span>herramienta<span class="w"> </span>tan<span class="w"> </span>útil!<span class="w"> </span>❤️
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.96<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>No<span class="w"> </span>entiendo<span class="w"> </span>cómo<span class="w"> </span>usarla,<span class="w"> </span>muy<span class="w"> </span>confusa
+Sentimiento:<span class="w"> </span>NEG<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.92<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Perfecta<span class="w"> </span>para<span class="w"> </span>lo<span class="w"> </span>que<span class="w"> </span>necesitaba<span class="w"> </span>👌
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.93<span class="o">)</span>
+--------------------------------------------------
+</code></pre></div>
+Vemos un resultado totalmente distinto.</p>
 <h3 id="paso-3-analisis-avanzado-con-multiples-modelos">Paso 3: Análisis Avanzado con Múltiples Modelos</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1489,7 +1577,6 @@ Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class=
 <ol>
 <li><strong>Análisis en tiempo real:</strong> Conectar con la API de X</li>
 <li><strong>Alertas automáticas:</strong> Notificar cuando el sentimiento baja del 70%</li>
-<li><strong>Análisis temporal:</strong> Seguir la evolución del sentimiento por horas/días</li>
 </ol>
 <h3 id="codigo-de-extension">Código de Extensión:</h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
