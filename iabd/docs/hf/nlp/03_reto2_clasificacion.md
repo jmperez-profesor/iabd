@@ -336,71 +336,58 @@ Al completar este reto, deberías poder:
 
 ### Para los más rápidos:
 
-1. **Dashboard Interactivo:**
-   ```python {linenums="1"}
-   import gradio as gr
+**Dashboard Interactivo:**
+```python {linenums="1"}
+import gradio as gr
 
-    # Se asume que ya tienes definida esta función y la lista `categorias`
-    # def clasificar_noticia(noticia: dict, categorias: list) -> dict:
-    #     # devuelve, por ejemplo: {"categoria_predicha": "Política", "confianza": 0.87}
-    #     ...
-    # categorias = ["Política", "Economía", "Deportes", "Tecnología", "Cultura"]
+# Se asume que ya tienes definida esta función y la lista `categorias`
+# def clasificar_noticia(noticia: dict, categorias: list) -> dict:
+#     # devuelve, por ejemplo: {"categoria_predicha": "Política", "confianza": 0.87}
+#     ...
+# categorias = ["Política", "Economía", "Deportes", "Tecnología", "Cultura"]
 
-    def clasificar_noticia_interface(texto_noticia):
-        if not texto_noticia.strip():
-            return "Por favor, pega una noticia para clasificar.", ""
-        resultado = clasificar_noticia({"titulo": "", "contenido": texto_noticia}, categorias)
-        categoria = f"Categoría: {resultado['categoria_predicha']}"
-        confianza = f"Confianza: {resultado['confianza']:.2f}"
-        return categoria, confianza
+def clasificar_noticia_interface(texto_noticia):
+    if not texto_noticia.strip():
+        return "Por favor, pega una noticia para clasificar.", ""
+    resultado = clasificar_noticia({"titulo": "", "contenido": texto_noticia}, categorias)
+    categoria = f"Categoría: {resultado['categoria_predicha']}"
+    confianza = f"Confianza: {resultado['confianza']:.2f}"
+    return categoria, confianza
 
-    with gr.Blocks(title="📰 Clasificador de Noticias IA") as demo:
-        gr.Markdown("# 📰 Clasificador de Noticias IA")
+with gr.Blocks(title="📰 Clasificador de Noticias IA") as demo:
+    gr.Markdown("# 📰 Clasificador de Noticias IA")
 
-        texto_noticia = gr.Textbox(
-            label="Pega aquí tu noticia:",
-            lines=10,
-            placeholder="Copia y pega el texto completo de la noticia..."
-        )
+    texto_noticia = gr.Textbox(
+        label="Pega aquí tu noticia:",
+        lines=10,
+        placeholder="Copia y pega el texto completo de la noticia..."
+    )
 
-        boton = gr.Button("Clasificar")
+    boton = gr.Button("Clasificar")
 
-        salida_categoria = gr.Markdown()
-        salida_confianza = gr.Markdown()
+    salida_categoria = gr.Markdown()
+    salida_confianza = gr.Markdown()
 
-        boton.click(
-            fn=clasificar_noticia_interface,
-            inputs=texto_noticia,
-            outputs=[salida_categoria, salida_confianza],
-        )
+    boton.click(
+        fn=clasificar_noticia_interface,
+        inputs=texto_noticia,
+        outputs=[salida_categoria, salida_confianza],
+    )
 
-    if __name__ == "__main__":
-        demo.launch()
-   ```
+if __name__ == "__main__":
+    demo.launch()
+```
 
-2. **API REST Simple:**
-   ```python {linenums="1"}
-   from flask import Flask, request, jsonify
-   
-   app = Flask(__name__)
-   
-   @app.route('/clasificar', methods=['POST'])
-   def clasificar_api():
-       data = request.json
-       resultado = clasificar_noticia(data, categorias)
-       return jsonify(resultado)
-   ```
-
-3. **Análisis de Tendencias:**
-   ```python {linenums="1"}
-   def analizar_tendencias_diarias(noticias_por_dia):
-       """Analiza qué categorías son trending cada día"""
-       tendencias = {}
-       for dia, noticias in noticias_por_dia.items():
-           categorias_dia = [clasificar_noticia(n, categorias)['categoria_predicha'] for n in noticias]
-           tendencias[dia] = pd.Series(categorias_dia).value_counts()
-       return tendencias
-   ```
+**Análisis de Tendencias:**
+```python {linenums="1"}
+def analizar_tendencias_diarias(noticias_por_dia):
+    """Analiza qué categorías son trending cada día"""
+    tendencias = {}
+    for dia, noticias in noticias_por_dia.items():
+        categorias_dia = [clasificar_noticia(n, categorias)['categoria_predicha'] for n in noticias]
+        tendencias[dia] = pd.Series(categorias_dia).value_counts()
+    return tendencias
+```
 
 ## 🎯 Próximo Reto
 
