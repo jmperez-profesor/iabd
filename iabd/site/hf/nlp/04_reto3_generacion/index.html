@@ -1369,12 +1369,13 @@ Estos mensajes son avisos de configuración de la generación de texto. Veamos c
 </ol>
 <p><code>Both max_new_tokens (=256) and max_length(=100) seem to have been set…</code></p>
 <p>Indica que en algún sitio (por defecto del pipeline o de la versión de Transformers que usamos) se ha fijado <code>max_new_tokens=256</code>, y nosotros además pasamos <code>max_length=100</code>. Cuando están ambos:​ Gana <code>max_new_tokens</code>, y <code>max_length</code> se ignora.</p>
-<p>Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es <code>max_new_tokens</code>:</p>
+<p>Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es <code>max_new_tokens</code>. Además, vamos a usar el modelo 
+<code>DeepESP/gpt2-spanish</code> el cual funciona mejor para generar texto en español.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
 <span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
     <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;DeepESP/gpt2-spanish&quot;</span><span class="p">,</span>
     <span class="n">pad_token_id</span><span class="o">=</span><span class="mi">50256</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -1467,7 +1468,7 @@ Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la 
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 <span class="c1"># Crear generador</span>
-<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;DeepESP/gpt2-spanish&quot;</span><span class="p">)</span>
 
 <span class="c1"># Prompts creativos de ejemplo</span>
 <span class="n">prompts_creativos</span> <span class="o">=</span> <span class="p">[</span>
@@ -1722,7 +1723,7 @@ Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la 
 <span class="normal">94</span>
 <span class="normal">95</span>
 <span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AsistenteEscritura</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelo</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelo</span><span class="o">=</span><span class="s2">&quot;DeepESP/gpt2-spanish&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">modelo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">historial</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -2154,6 +2155,98 @@ Con esto deberíamos dejar de ver esos avisos y tener un control claro sobre la 
 <li><a href="https://huggingface.co/docs/transformers/tasks/language_modeling">Text Generation Guide</a></li>
 <li><a href="https://huggingface.co/gpt2">GPT-2 Documentation</a></li>
 <li><a href="https://huggingface.co/docs/transformers/tasks/prompting">Prompt Engineering Best Practices</a></li>
+</ul>
+<h1 id="anexo-prompts-creativos-para-generacion-de-texto">Anexo 🎭 Prompts Creativos para Generación de Texto</h1>
+<h2 id="historias-de-ciencia-ficcion">📚 Historias de Ciencia Ficción</h2>
+<ul>
+<li>En un mundo donde los sueños se pueden comprar y vender</li>
+<li>La última persona en la Tierra recibe un mensaje de radio</li>
+<li>Un detective investiga crímenes que aún no han ocurrido</li>
+<li>En una biblioteca infinita, cada libro cuenta una vida diferente</li>
+<li>El día que los robots aprendieron a mentir</li>
+<li>Una máquina del tiempo que solo funciona los martes</li>
+<li>En 2150, los humanos han olvidado cómo caminar</li>
+<li>Un algoritmo de IA se enamora de una canción</li>
+<li>La primera colonia en Marte descubre que no están solos</li>
+<li>Un hacker descubre que la realidad es un videojuego</li>
+</ul>
+<h2 id="fantasia-y-aventura">🏰 Fantasía y Aventura</h2>
+<ul>
+<li>Un dragón que colecciona libros en lugar de oro</li>
+<li>La última bruja del mundo abre una cafetería</li>
+<li>Un mapa que cambia cada vez que lo miras</li>
+<li>El reino donde las emociones tienen forma física</li>
+<li>Una espada que solo corta mentiras</li>
+<li>Un bosque donde cada árbol guarda un secreto</li>
+<li>La escuela de magia para adultos mayores</li>
+<li>Un genio de la lámpara que concede deseos terribles</li>
+<li>El día que la magia regresó al mundo moderno</li>
+<li>Una princesa que prefiere los libros a los príncipes</li>
+</ul>
+<h2 id="situaciones-cotidianas-con-giro">💼 Situaciones Cotidianas con Giro</h2>
+<ul>
+<li>El ascensor que lleva a dimensiones paralelas</li>
+<li>Una aplicación de citas que conecta almas gemelas de diferentes épocas</li>
+<li>El café donde cada mesa está en un país diferente</li>
+<li>Un GPS que da direcciones para la vida</li>
+<li>La lavandería donde se lavan los recuerdos</li>
+<li>Un supermercado que vende tiempo embotellado</li>
+<li>El dentista que cura corazones rotos</li>
+<li>Una biblioteca que presta experiencias en lugar de libros</li>
+<li>El taxi que te lleva a donde realmente necesitas ir</li>
+<li>Un restaurante donde pagas con historias</li>
+</ul>
+<h2 id="prompts-para-contenido-creativo">🎨 Prompts para Contenido Creativo</h2>
+<ul>
+<li>Escribe como si fueras un alien describiendo la Tierra</li>
+<li>Cuenta la historia desde la perspectiva de un objeto inanimado</li>
+<li>Describe un día normal en el año 3024</li>
+<li>Escribe una carta de amor a tu comida favorita</li>
+<li>Narra la biografía de un color</li>
+<li>Describe una emoción como si fuera un lugar</li>
+<li>Escribe las memorias de una canción famosa</li>
+<li>Cuenta la historia de la última palabra del diccionario</li>
+<li>Describe un superpoder completamente inútil</li>
+<li>Escribe el manual de instrucciones para ser humano</li>
+</ul>
+<h2 id="prompts-para-redes-sociales">📱 Prompts para Redes Sociales</h2>
+<ul>
+<li>"Hoy aprendí que..."</li>
+<li>"Plot twist: resulta que..."</li>
+<li>"Cosas que nadie te dice sobre..."</li>
+<li>"Si pudiera viajar en el tiempo, le diría a mi yo de hace 10 años..."</li>
+<li>"La diferencia entre lo que esperaba vs. la realidad..."</li>
+<li>"Pequeñas cosas que me hacen feliz:"</li>
+<li>"Consejos que me hubiera gustado recibir antes..."</li>
+<li>"Lo que he aprendido después de..."</li>
+<li>"Mitos vs. realidades sobre..."</li>
+<li>"El mejor consejo que he recibido:"</li>
+</ul>
+<h2 id="prompts-profesionales">🏢 Prompts Profesionales</h2>
+<ul>
+<li>"El futuro del trabajo remoto será..."</li>
+<li>"La habilidad más importante en 2025 será..."</li>
+<li>"Cómo la IA está cambiando mi industria..."</li>
+<li>"Lecciones aprendidas después de 5 años en..."</li>
+<li>"El error más común que veo en..."</li>
+<li>"Tendencias que están transformando..."</li>
+<li>"Lo que me hubiera gustado saber cuando empecé..."</li>
+<li>"Cómo construir una cultura de..."</li>
+<li>"El impacto de la tecnología en..."</li>
+<li>"Estrategias para adaptarse a..."</li>
+</ul>
+<h2 id="prompts-experimentales">🎪 Prompts Experimentales</h2>
+<ul>
+<li>Escribe usando solo preguntas</li>
+<li>Cuenta una historia en tweets de 280 caracteres</li>
+<li>Describe algo complejo usando solo palabras de una sílaba</li>
+<li>Escribe un diálogo entre dos conceptos abstractos</li>
+<li>Narra una historia hacia atrás</li>
+<li>Escribe desde la perspectiva de un número</li>
+<li>Cuenta una historia usando solo títulos de películas</li>
+<li>Describe un proceso como si fuera una receta de cocina</li>
+<li>Escribe una historia donde cada párrafo es un género diferente</li>
+<li>Narra usando solo metáforas relacionadas con la comida</li>
 </ul>
 
 
