@@ -122,6 +122,66 @@ Tweet: Perfecta para lo que necesitaba 👌
 Sentimiento: POSITIVE (Confianza: 0.98)
 --------------------------------------------------
 ```
+Sería interesante elegir un modelo que admitiera el español como el `pysentimiento/robertuito-sentiment-analysis`:
+
+```python {linenums="1"}
+from transformers import pipeline
+import pandas as pd
+
+# Crear el clasificador
+classifier = pipeline("sentiment-analysis", 
+            model="pysentimiento/robertuito-sentiment-analysis")
+
+
+# Datos de ejemplo (simula tweets reales)
+tweets = [
+    "¡Esta nueva app es increíble! 🚀",
+    "La app se cuelga constantemente 😡",
+    "Funciona bien, pero podría mejorar",
+    "¡Gracias por esta herramienta tan útil! ❤️",
+    "No entiendo cómo usarla, muy confusa",
+    "Perfecta para lo que necesitaba 👌"
+]
+
+# Analizar cada tweet
+resultados = []
+for tweet in tweets:
+    resultado = classifier(tweet)
+    resultados.append({
+        'tweet': tweet,
+        'sentimiento': resultado[0]['label'],
+        'confianza': resultado[0]['score']
+    })
+
+# Mostrar resultados
+for r in resultados:
+    print(f"Tweet: {r['tweet']}")
+    print(f"Sentimiento: {r['sentimiento']} (Confianza: {r['confianza']:.2f})")
+    print("-" * 50)
+```
+Lo añadimos y volvemos a probar:
+```bash
+Tweet: ¡Esta nueva app es increíble! 🚀
+Sentimiento: POS (Confianza: 0.96)
+--------------------------------------------------
+Tweet: La app se cuelga constantemente 😡
+Sentimiento: NEG (Confianza: 0.95)
+--------------------------------------------------
+Tweet: Funciona bien, pero podría mejorar
+Sentimiento: NEU (Confianza: 0.82)
+--------------------------------------------------
+Tweet: ¡Gracias por esta herramienta tan útil! ❤️
+Sentimiento: POS (Confianza: 0.96)
+--------------------------------------------------
+Tweet: No entiendo cómo usarla, muy confusa
+Sentimiento: NEG (Confianza: 0.92)
+--------------------------------------------------
+Tweet: Perfecta para lo que necesitaba 👌
+Sentimiento: POS (Confianza: 0.93)
+--------------------------------------------------
+```
+Vemos un resultado totalmente distinto.
+
 
 ### Paso 3: Análisis Avanzado con Múltiples Modelos
 
@@ -198,7 +258,6 @@ Al completar este reto, deberías poder:
 ### Para los Más Rápidos:
 1. **Análisis en tiempo real:** Conectar con la API de X
 2. **Alertas automáticas:** Notificar cuando el sentimiento baja del 70%
-3. **Análisis temporal:** Seguir la evolución del sentimiento por horas/días
 
 ### Código de Extensión:
 ```python {linenums="1"}

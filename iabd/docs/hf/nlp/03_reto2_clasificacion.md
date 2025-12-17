@@ -50,15 +50,28 @@ modelos_clasificacion = {
 
 ### Zero-Shot Classification: Un poco de "magia"
 
-```python {linenums="1"}
+```python {linenums="1" hl_lines="3"}
+from transformers import pipeline
 # ¡Clasificar SIN entrenar el modelo!
 classifier = pipeline("zero-shot-classification")
 texto = "El Real Madrid ganó 3-1 al Barcelona en el Clásico"
 categorias = ["deportes", "política", "tecnología", "economía"]
 
 resultado = classifier(texto, categorias)
+print(resultado)
 # Resultado: "deportes" con alta confianza
 ```
+```bash
+No model was supplied, defaulted to facebook/bart-large-mnli and revision d7645e1 (https://huggingface.co/facebook/bart-large-mnli).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use cpu
+```
+```json
+{'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
+'labels': ['política', 'economía', 'deportes', 'tecnología'], 
+'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]}
+```
+
 
 ## 💻 Implementación guiada (10 min)
 
@@ -323,8 +336,7 @@ Al completar este reto, deberías poder:
        """Analiza qué categorías son trending cada día"""
        tendencias = {}
        for dia, noticias in noticias_por_dia.items():
-           categorias_dia = [clasificar_noticia(n, categorias)['categoria_predicha'] 
-                           for n in noticias]
+           categorias_dia = [clasificar_noticia(n, categorias)['categoria_predicha'] for n in noticias]
            tendencias[dia] = pd.Series(categorias_dia).value_counts()
        return tendencias
    ```
