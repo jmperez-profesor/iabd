@@ -1334,11 +1334,14 @@ Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span
 <li>Cómo decide el modelo en zero‑shot</li>
 </ol>
 <p>El <code>pipeline("zero-shot-classification")</code> con <strong>BART‑MNLI</strong> hace, de forma simplificada, algo así para cada etiqueta:​
-- Construye una hipótesis tipo:
-    - “This text is about política.”
-    - “This text is about deportes.”
-- Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).
-- Convierte esos <em>scores</em> en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de <em>“entailment”</em> (que el texto implique esa etiqueta).</p>
+- Construye una hipótesis tipo:</p>
+<div class="highlight"><pre><span></span><code>- “This text is about política.”
+- “This text is about deportes.”
+</code></pre></div>
+<ul>
+<li>Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).</li>
+<li>Convierte esos <em>scores</em> en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de <em>“entailment”</em> (que el texto implique esa etiqueta).</li>
+</ul>
 <p>No usa un diccionario semántico ni sabe que “Real Madrid” y “Barcelona” son clubes de fútbol; solo ve que ciertas palabras coocurren más a menudo con “política” que con “deportes” en sus datos de entrenamiento, o que la frase <strong>“is about política”</strong> le parece más probable en general.​</p>
 <ol>
 <li>Problemas concretos de nuestro caso</li>
