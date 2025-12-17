@@ -3,7 +3,7 @@ title: Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 1
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# 🏆 Reto 1: Detector de Emociones en Redes Sociales
+# 🏆 Reto 1: Detector de emociones en Redes Sociales
 
 **⏱️ Tiempo:** 15 minutos  
 **🎯 Nivel:** Principiante  
@@ -18,7 +18,7 @@ Una startup de tecnología quiere monitorizar qué dice la gente sobre su nueva 
 - Identificar crisis de reputación temprano
 - Medir el impacto de sus campañas de marketing
 
-### ¿Por Qué es Importante?
+### ¿Por qué es importante?
 - **85% de las empresas** usan análisis de sentimientos para tomar decisiones
 - **Detección temprana** de problemas puede ahorrar millones
 - **Automatización** permite analizar miles de comentarios por minuto
