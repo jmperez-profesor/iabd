@@ -103,14 +103,15 @@ texto = generator(
 
 Indica que en algún sitio (por defecto del pipeline o de la versión de Transformers que usamos) se ha fijado `max_new_tokens=256`, y nosotros además pasamos `max_length=100`. Cuando están ambos:​ Gana `max_new_tokens`, y `max_length` se ignora.
 
-Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es `max_new_tokens`:
+Para controlar claramente la longitud, deberíamos usar solo uno, lo más recomendable hoy es `max_new_tokens`. Además, vamos a usar el modelo 
+`DeepESP/gpt2-spanish` el cual funciona mejor para generar texto en español.
 
 ```python
 from transformers import pipeline
 
 generator = pipeline(
     "text-generation",
-    model="gpt2",
+    model="DeepESP/gpt2-spanish",
     pad_token_id=50256,
 )
 
@@ -158,7 +159,7 @@ from transformers import pipeline
 import random
 
 # Crear generador
-generator = pipeline("text-generation", model="gpt2")
+generator = pipeline("text-generation", model="DeepESP/gpt2-spanish")
 
 # Prompts creativos de ejemplo
 prompts_creativos = [
@@ -266,7 +267,7 @@ for plataforma in plataformas:
 
 ```python {linenums="1"} {linenums="1"}
 class AsistenteEscritura:
-    def __init__(self, modelo="gpt2"):
+    def __init__(self, modelo="DeepESP/gpt2-spanish"):
         self.generator = pipeline("text-generation", model=modelo)
         self.historial = []
     
@@ -571,3 +572,89 @@ Al completar este reto, deberías poder:
 - [Text Generation Guide](https://huggingface.co/docs/transformers/tasks/language_modeling)
 - [GPT-2 Documentation](https://huggingface.co/gpt2)
 - [Prompt Engineering Best Practices](https://huggingface.co/docs/transformers/tasks/prompting)
+
+# Anexo 🎭 Prompts Creativos para Generación de Texto
+
+## 📚 Historias de Ciencia Ficción
+- En un mundo donde los sueños se pueden comprar y vender
+- La última persona en la Tierra recibe un mensaje de radio
+- Un detective investiga crímenes que aún no han ocurrido
+- En una biblioteca infinita, cada libro cuenta una vida diferente
+- El día que los robots aprendieron a mentir
+- Una máquina del tiempo que solo funciona los martes
+- En 2150, los humanos han olvidado cómo caminar
+- Un algoritmo de IA se enamora de una canción
+- La primera colonia en Marte descubre que no están solos
+- Un hacker descubre que la realidad es un videojuego
+
+## 🏰 Fantasía y Aventura
+- Un dragón que colecciona libros en lugar de oro
+- La última bruja del mundo abre una cafetería
+- Un mapa que cambia cada vez que lo miras
+- El reino donde las emociones tienen forma física
+- Una espada que solo corta mentiras
+- Un bosque donde cada árbol guarda un secreto
+- La escuela de magia para adultos mayores
+- Un genio de la lámpara que concede deseos terribles
+- El día que la magia regresó al mundo moderno
+- Una princesa que prefiere los libros a los príncipes
+
+## 💼 Situaciones Cotidianas con Giro
+- El ascensor que lleva a dimensiones paralelas
+- Una aplicación de citas que conecta almas gemelas de diferentes épocas
+- El café donde cada mesa está en un país diferente
+- Un GPS que da direcciones para la vida
+- La lavandería donde se lavan los recuerdos
+- Un supermercado que vende tiempo embotellado
+- El dentista que cura corazones rotos
+- Una biblioteca que presta experiencias en lugar de libros
+- El taxi que te lleva a donde realmente necesitas ir
+- Un restaurante donde pagas con historias
+
+## 🎨 Prompts para Contenido Creativo
+- Escribe como si fueras un alien describiendo la Tierra
+- Cuenta la historia desde la perspectiva de un objeto inanimado
+- Describe un día normal en el año 3024
+- Escribe una carta de amor a tu comida favorita
+- Narra la biografía de un color
+- Describe una emoción como si fuera un lugar
+- Escribe las memorias de una canción famosa
+- Cuenta la historia de la última palabra del diccionario
+- Describe un superpoder completamente inútil
+- Escribe el manual de instrucciones para ser humano
+
+## 📱 Prompts para Redes Sociales
+- "Hoy aprendí que..."
+- "Plot twist: resulta que..."
+- "Cosas que nadie te dice sobre..."
+- "Si pudiera viajar en el tiempo, le diría a mi yo de hace 10 años..."
+- "La diferencia entre lo que esperaba vs. la realidad..."
+- "Pequeñas cosas que me hacen feliz:"
+- "Consejos que me hubiera gustado recibir antes..."
+- "Lo que he aprendido después de..."
+- "Mitos vs. realidades sobre..."
+- "El mejor consejo que he recibido:"
+
+## 🏢 Prompts Profesionales
+- "El futuro del trabajo remoto será..."
+- "La habilidad más importante en 2025 será..."
+- "Cómo la IA está cambiando mi industria..."
+- "Lecciones aprendidas después de 5 años en..."
+- "El error más común que veo en..."
+- "Tendencias que están transformando..."
+- "Lo que me hubiera gustado saber cuando empecé..."
+- "Cómo construir una cultura de..."
+- "El impacto de la tecnología en..."
+- "Estrategias para adaptarse a..."
+
+## 🎪 Prompts Experimentales
+- Escribe usando solo preguntas
+- Cuenta una historia en tweets de 280 caracteres
+- Describe algo complejo usando solo palabras de una sílaba
+- Escribe un diálogo entre dos conceptos abstractos
+- Narra una historia hacia atrás
+- Escribe desde la perspectiva de un número
+- Cuenta una historia usando solo títulos de películas
+- Describe un proceso como si fuera una receta de cocina
+- Escribe una historia donde cada párrafo es un género diferente
+- Narra usando solo metáforas relacionadas con la comida
