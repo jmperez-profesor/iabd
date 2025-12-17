@@ -73,7 +73,7 @@ Device set to use cpu
     'sequence': 'El Real Madrid ganó 3-1 al Barcelona en el Clásico', 
     'labels': ['política', 'economía', 'deportes', 'tecnología'], 
     'scores': [0.5234475135803223, 0.18149752914905548, 0.15290531516075134, 0.14214962720870972]
-    }
+}
 ```
 **¿Funciona?** 
 
@@ -86,7 +86,7 @@ El `pipeline("zero-shot-classification")` con **BART‑MNLI** hace, de forma sim
 
     - “This text is about política.”
     - “This text is about deportes.”
-    
+
 - Pasa `(premisa = tu texto, hipótesis) al modelo NLI (entailment / contradiction / neutral).
 - Convierte esos *scores* en probabilidades y se queda con la etiqueta cuya hipótesis tiene mayor probabilidad de *“entailment”* (que el texto implique esa etiqueta).
 
