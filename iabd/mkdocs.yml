@@ -68,9 +68,9 @@ nav:
         - Reto1 - Sentimientos: hf/nlp/02_reto1_sentimientos.md
         - Reto2 - Clasificacion: hf/nlp/03_reto2_clasificacion.md
         - Reto3 - Generación: hf/nlp/04_reto3_generacion.md
-        - Solución Reto1 - Sentimientos: hf/nlp/soluciones/reto1_solucion.md
-        - Solución Reto2 - Clasificacion: hf/nlp/soluciones/reto2_solucion.md
-        - Solución Reto3 - Generación: hf/nlp/soluciones/reto3_solucion.md
+        #- Solución Reto1 - Sentimientos: hf/nlp/soluciones/reto1_solucion.md
+        #- Solución Reto2 - Clasificacion: hf/nlp/soluciones/reto2_solucion.md
+        #- Solución Reto3 - Generación: hf/nlp/soluciones/reto3_solucion.md
     - Referencias: hf/Referencias.md
   - Datasets: 
     - Datasets/Datasets.md
