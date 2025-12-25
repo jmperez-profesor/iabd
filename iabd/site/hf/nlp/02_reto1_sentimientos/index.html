@@ -1,0 +1,1992 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/nlp/02_reto1_sentimientos/">
+      
+      
+        <link rel="prev" href="../01_intro/">
+      
+      
+        <link rel="next" href="../soluciones/reto1_solucion/">
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 1 - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reto-1-detector-de-emociones-en-redes-sociales" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tasks NLP con los Transformers y pipelines de Hugging Face - Reto 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../cloud/sesion1/sesion1_cloud_aws_copilot/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sesión 1 Cloud y AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloud/sesion1/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloud/sesion1/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto-y-motivacion-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎬 Contexto y Motivación (5 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎬 Contexto y Motivación (5 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-problema-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      El Problema Real
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-es-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por qué es importante?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teoria-just-in-time-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Teoría Just-in-Time (10 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Teoría Just-in-Time (10 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-el-analisis-de-sentimientos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es el Análisis de Sentimientos?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-disponibles-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros importantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-guiada-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Implementación guiada (10 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Implementación guiada (10 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-0-instalar-pandas-con-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 0: Instalar pandas con PIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configuracion-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración Básica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-analisis-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Análisis Básico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-analisis-avanzado-con-multiples-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Análisis Avanzado con Múltiples Modelos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experimentacion-libre-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Experimentación libre (5 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Experimentación libre (5 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desafios-para-explorar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desafíos para explorar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preguntas-para-reflexionar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preguntas para reflexionar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criterios-de-exito" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏅 Criterios de éxito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensiones-opcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Extensiones opcionales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Extensiones opcionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#para-los-mas-rapidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para los más rápidos:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-de-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código de Extensión:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximo-reto" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Próximo Reto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-del-reto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Recursos del Reto
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="reto-1-detector-de-emociones-en-redes-sociales">🏆 Reto 1: Detector de emociones en Redes Sociales</h1>
+<p><strong>⏱️ Tiempo:</strong> 15 minutos<br />
+<strong>🎯 Nivel:</strong> Principiante<br />
+<strong>🚀 Objetivo:</strong> Crear un analizador de sentimientos para monitorizar la percepción de marca en X (Twitter)</p>
+<h2 id="contexto-y-motivacion-5-min">🎬 Contexto y Motivación (5 min)</h2>
+<h3 id="el-problema-real">El Problema Real</h3>
+<p>Una startup de tecnología quiere monitorizar qué dice la gente sobre su nueva app en redes sociales. Necesitan:</p>
+<ul>
+<li>Detectar comentarios positivos y negativos automáticamente</li>
+<li>Identificar crisis de reputación temprano</li>
+<li>Medir el impacto de sus campañas de marketing</li>
+</ul>
+<h3 id="por-que-es-importante">¿Por qué es importante?</h3>
+<ul>
+<li><strong>85% de las empresas</strong> usan análisis de sentimientos para tomar decisiones</li>
+<li><strong>Detección temprana</strong> de problemas puede ahorrar millones</li>
+<li><strong>Automatización</strong> permite analizar miles de comentarios por minuto</li>
+</ul>
+<h2 id="teoria-just-in-time-10-min">🧠 Teoría Just-in-Time (10 min)</h2>
+<h3 id="que-es-el-analisis-de-sentimientos">¿Qué es el Análisis de Sentimientos?</h3>
+<p>El análisis de sentimientos clasifica texto según la <strong>emoción</strong> o <strong>actitud</strong> que expresa:</p>
+<div class="highlight"><pre><span></span><code>&quot;¡Me encanta esta app!&quot; → POSITIVO (0.95)
+&quot;Esta app es terrible&quot; → NEGATIVO (0.89)
+&quot;La app funciona bien&quot; → NEUTRAL (0.72)
+</code></pre></div>
+<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Idioma</th>
+<th>Especialidad</th>
+<th>Uso Recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest"><code>cardiffnlp/twitter-roberta-base-sentiment-latest</code></a></td>
+<td>EN</td>
+<td>X (Twitter)</td>
+<td>Redes sociales</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment"><code>nlptown/bert-base-multilingual-uncased-sentiment</code></a></td>
+<td>Multi</td>
+<td>General</td>
+<td>Textos variados</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/pysentimiento/robertuito-sentiment-analysis"><code>pysentimiento/robertuito-sentiment-analysis</code></a></td>
+<td>ES</td>
+<td>Español</td>
+<td>Textos en español</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-importantes">Parámetros importantes</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cardiffnlp/twitter-roberta-base-sentiment-latest&quot;</span><span class="p">,</span>
+    <span class="n">return_all_scores</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Ver todas las probabilidades</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="implementacion-guiada-10-min">💻 Implementación guiada (10 min)</h2>
+<h3 id="paso-0-instalar-pandas-con-pip">Paso 0: Instalar pandas con PIP</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</code></pre></div>
+<h3 id="paso-1-configuracion-basica">Paso 1: Configuración Básica</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Crear el clasificador</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+
+<span class="c1"># Datos de ejemplo (simula tweets reales)</span>
+<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;¡Esta nueva app es increíble! 🚀&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;La app se cuelga constantemente 😡&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Funciona bien, pero podría mejorar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¡Gracias por esta herramienta tan útil! ❤️&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No entiendo cómo usarla, muy confusa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Perfecta para lo que necesitaba 👌&quot;</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="paso-2-analisis-basico">Paso 2: Análisis Básico</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Analizar cada tweet</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;tweet&#39;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">,</span>
+        <span class="s1">&#39;sentimiento&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;confianza&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+    <span class="p">})</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentimiento: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Confianza: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Resultados:
+<div class="highlight"><pre><span></span><code>No<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>supplied,<span class="w"> </span>defaulted<span class="w"> </span>to<span class="w"> </span>distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span>714eb0f<span class="w"> </span><span class="o">(</span>https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english<span class="o">)</span>.
+Using<span class="w"> </span>a<span class="w"> </span>pipeline<span class="w"> </span>without<span class="w"> </span>specifying<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>revision<span class="w"> </span><span class="k">in</span><span class="w"> </span>production<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>recommended.
+Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+Tweet:<span class="w"> </span>¡Esta<span class="w"> </span>nueva<span class="w"> </span>app<span class="w"> </span>es<span class="w"> </span>increíble!<span class="w"> </span>🚀
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>La<span class="w"> </span>app<span class="w"> </span>se<span class="w"> </span>cuelga<span class="w"> </span>constantemente<span class="w"> </span>😡
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.92<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Funciona<span class="w"> </span>bien,<span class="w"> </span>pero<span class="w"> </span>podría<span class="w"> </span>mejorar
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.99<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>¡Gracias<span class="w"> </span>por<span class="w"> </span>esta<span class="w"> </span>herramienta<span class="w"> </span>tan<span class="w"> </span>útil!<span class="w"> </span>❤️
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.63<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>No<span class="w"> </span>entiendo<span class="w"> </span>cómo<span class="w"> </span>usarla,<span class="w"> </span>muy<span class="w"> </span>confusa
+Sentimiento:<span class="w"> </span>NEGATIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Perfecta<span class="w"> </span>para<span class="w"> </span>lo<span class="w"> </span>que<span class="w"> </span>necesitaba<span class="w"> </span>👌
+Sentimiento:<span class="w"> </span>POSITIVE<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.98<span class="o">)</span>
+--------------------------------------------------
+</code></pre></div>
+Sería interesante elegir un modelo que admitiera el español como el <code>pysentimiento/robertuito-sentiment-analysis</code>:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Crear el clasificador</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> 
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;pysentimiento/robertuito-sentiment-analysis&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Datos de ejemplo (simula tweets reales)</span>
+<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;¡Esta nueva app es increíble! 🚀&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;La app se cuelga constantemente 😡&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Funciona bien, pero podría mejorar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¡Gracias por esta herramienta tan útil! ❤️&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No entiendo cómo usarla, muy confusa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Perfecta para lo que necesitaba 👌&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Analizar cada tweet</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;tweet&#39;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">,</span>
+        <span class="s1">&#39;sentimiento&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;confianza&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+    <span class="p">})</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentimiento: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;sentimiento&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Confianza: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;confianza&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Lo añadimos y volvemos a probar:
+<div class="highlight"><pre><span></span><code>Tweet:<span class="w"> </span>¡Esta<span class="w"> </span>nueva<span class="w"> </span>app<span class="w"> </span>es<span class="w"> </span>increíble!<span class="w"> </span>🚀
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.96<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>La<span class="w"> </span>app<span class="w"> </span>se<span class="w"> </span>cuelga<span class="w"> </span>constantemente<span class="w"> </span>😡
+Sentimiento:<span class="w"> </span>NEG<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.95<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Funciona<span class="w"> </span>bien,<span class="w"> </span>pero<span class="w"> </span>podría<span class="w"> </span>mejorar
+Sentimiento:<span class="w"> </span>NEU<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.82<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>¡Gracias<span class="w"> </span>por<span class="w"> </span>esta<span class="w"> </span>herramienta<span class="w"> </span>tan<span class="w"> </span>útil!<span class="w"> </span>❤️
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.96<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>No<span class="w"> </span>entiendo<span class="w"> </span>cómo<span class="w"> </span>usarla,<span class="w"> </span>muy<span class="w"> </span>confusa
+Sentimiento:<span class="w"> </span>NEG<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.92<span class="o">)</span>
+--------------------------------------------------
+Tweet:<span class="w"> </span>Perfecta<span class="w"> </span>para<span class="w"> </span>lo<span class="w"> </span>que<span class="w"> </span>necesitaba<span class="w"> </span>👌
+Sentimiento:<span class="w"> </span>POS<span class="w"> </span><span class="o">(</span>Confianza:<span class="w"> </span><span class="m">0</span>.93<span class="o">)</span>
+--------------------------------------------------
+</code></pre></div>
+Vemos un resultado totalmente distinto.</p>
+<h3 id="paso-3-analisis-avanzado-con-multiples-modelos">Paso 3: Análisis Avanzado con Múltiples Modelos</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Comparar diferentes modelos</span>
+<span class="n">modelos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;cardiffnlp/twitter-roberta-base-sentiment-latest&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nlptown/bert-base-multilingual-uncased-sentiment&quot;</span>
+<span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">comparar_modelos</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">modelos</span><span class="p">):</span>
+    <span class="n">resultados</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">modelo</span> <span class="ow">in</span> <span class="n">modelos</span><span class="p">:</span>
+        <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">modelo</span><span class="p">)</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+        <span class="n">resultados</span><span class="p">[</span><span class="n">modelo</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">resultados</span>
+
+<span class="c1"># Probar con un tweet específico</span>
+<span class="n">tweet_test</span> <span class="o">=</span> <span class="s2">&quot;Esta app es genial pero tiene algunos bugs&quot;</span>
+<span class="n">comparacion</span> <span class="o">=</span> <span class="n">comparar_modelos</span><span class="p">(</span><span class="n">tweet_test</span><span class="p">,</span> <span class="n">modelos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet: </span><span class="si">{</span><span class="n">tweet_test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">resultado</span> <span class="ow">in</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">resultado</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="experimentacion-libre-5-min">🎯 Experimentación libre (5 min)</h2>
+<h3 id="desafios-para-explorar">Desafíos para explorar</h3>
+<ol>
+<li>
+<p><strong>Prueba con Emojis:</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">tweets_emojis</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;😍&quot;</span><span class="p">,</span> <span class="s2">&quot;😡&quot;</span><span class="p">,</span> <span class="s2">&quot;🤔&quot;</span><span class="p">,</span> <span class="s2">&quot;👍&quot;</span><span class="p">,</span> <span class="s2">&quot;💔&quot;</span><span class="p">]</span>
+<span class="c1"># ¿Cómo los interpreta el modelo?</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Textos Ambiguos:</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">tweets_ambiguos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Esta app es... interesante&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Bueno, funciona&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;No está mal, supongo&quot;</span>
+<span class="p">]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Diferentes idiomas:</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">tweets_multiidioma</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;I love this app!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;J&#39;adore cette application!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;¡Me encanta esta aplicación!&quot;</span>
+<span class="p">]</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="preguntas-para-reflexionar">Preguntas para reflexionar</h3>
+<ul>
+<li>¿Qué modelo funciona mejor para tu caso de uso?</li>
+<li>¿Cómo manejas la incertidumbre (scores bajos)?</li>
+<li>¿Qué harías con sentimientos neutrales?</li>
+</ul>
+<h2 id="criterios-de-exito">🏅 Criterios de éxito</h2>
+<p>Al completar este reto, deberías poder:</p>
+<ul>
+<li>✅ Implementar análisis de sentimientos básico</li>
+<li>✅ Comparar diferentes modelos</li>
+<li>✅ Interpretar scores de confianza</li>
+<li>✅ Crear visualizaciones simples</li>
+<li>✅ Identificar limitaciones del modelo</li>
+</ul>
+<h2 id="extensiones-opcionales">🚀 Extensiones opcionales</h2>
+<h3 id="para-los-mas-rapidos">Para los más rápidos:</h3>
+<ol>
+<li><strong>Análisis en tiempo real:</strong> Conectar con la API de X</li>
+<li><strong>Alertas automáticas:</strong> Notificar cuando el sentimiento baja del 70%</li>
+</ol>
+<h3 id="codigo-de-extension">Código de Extensión:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">monitor_sentimiento</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">umbral</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Monitoriza sentimientos y genera alertas&quot;&quot;&quot;</span>
+    <span class="n">negativos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;NEGATIVE&#39;</span> <span class="ow">and</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">umbral</span><span class="p">:</span>
+            <span class="n">negativos</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;tweet&#39;</span><span class="p">:</span> <span class="n">tweet</span><span class="p">,</span>
+                <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="n">resultado</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+            <span class="p">})</span>
+
+    <span class="k">if</span> <span class="n">negativos</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚨 ALERTA: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negativos</span><span class="p">)</span><span class="si">}</span><span class="s2"> tweets muy negativos detectados!&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">neg</span> <span class="ow">in</span> <span class="n">negativos</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">neg</span><span class="p">[</span><span class="s1">&#39;tweet&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Score: </span><span class="si">{</span><span class="n">neg</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="proximo-reto">🎯 Próximo Reto</h2>
+<p>¡Excelente trabajo! Has creado tu primer sistema de análisis de sentimientos. </p>
+<p>En el siguiente reto, subiremos el nivel: <strong>clasificaremos noticias automáticamente</strong> para crear un sistema de organización inteligente.</p>
+<p><a href="../03_reto2_clasificacion/">👉 Ir al Reto 2: Clasificador de Noticias</a></p>
+<hr />
+<h2 id="recursos-del-reto">📚 Recursos del Reto</h2>
+<ul>
+<li><a href="https://huggingface.co/models?pipeline_tag=text-classification&amp;sort=downloads">Modelos de Sentimientos en Hugging Face</a></li>
+<li><a href="https://huggingface.co/docs/transformers/tasks/sequence_classification">Documentación de Text Classification</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../01_intro/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Introducción">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Introducción
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../soluciones/reto1_solucion/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Solución Reto1 - Sentimientos">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Solución Reto1 - Sentimientos
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

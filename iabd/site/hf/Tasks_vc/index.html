@@ -1,0 +1,3038 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/">
+      
+      
+        <link rel="prev" href="../Ejemplo_gradio/">
+      
+      
+        <link rel="next" href="../nlp/01_intro/">
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Tasks de Hugging face relacionadas con la Visión por computador - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objetivos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tasks de Hugging face relacionadas con la Visión por computador
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cloud/sesion1/sesion1_cloud_aws_copilot/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sesión 1 Cloud y AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/sesion1/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cloud/sesion1/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-un-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es un task?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-hugging-face-para-tareas-de-vision-por-computadora" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de Hugging Face para tareas de Visión por Computadora
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso de Hugging Face para tareas de Visión por Computadora">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clasificacion-de-imagenes-image-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clasificación de Imágenes (Image Classification)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Clasificación de Imágenes (Image Classification)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de aplicaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-disponibles-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-draw-de-google" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Quick, Draw!" de Google
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desarrollo-de-nuestro-propio-pictionary-con-gradio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desarrollo de nuestro propio Pictionary con Gradio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-una-red-neuronal-convolucional-cnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué es una red neuronal convolucional (CNN)?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características principales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-tipicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicaciones típicas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-didactico-sencillo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo didáctico sencillo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-1-usar-un-space-de-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Actividad 1. Usar un Space de Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deteccion-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Detección de objetos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Detección de objetos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algunos-modelos-disponibles-en-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algunos modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principales-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principales Aplicaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de Evaluación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-uso-con-gradio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de uso con Gradio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividad guiada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objetivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lectura-e-investigacion-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Lectura e investigación inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implementacion-y-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Implementación y pruebas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-comparativa-objetiva-con-hugging-face" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comparativa objetiva con Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrega
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-segmentacion-de-imagenes-image-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Segmentación de imágenes (Image segmentation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Segmentación de imágenes (Image segmentation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-del-modelo-con-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso del modelo con pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-3-gradio-para-segmentacion-de-imagenes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Actividad 3: Gradio para segmentación de imágenes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-modelo-de-clasificacion-de-imagenes-sin-entrenamiento-previo-zero-shot-image-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pero-que-es-eso-del-aprendizaje-zero-shot-zero-shot-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pero, ¿qué es eso del aprendizaje zero-shot (Zero-Shot learning)?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pero, ¿qué es eso del aprendizaje zero-shot (Zero-Shot learning)?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idea-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Idea básica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-shot-vs-few-shot-y-generalizado-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-shot vs. few-shot y generalizado zero-shot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#papel-de-la-informacion-auxiliar-y-las-incrustaciones-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Papel de la información auxiliar y las incrustaciones (embeddings)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-con-modelos-preentrenados-y-aprendizaje-por-transferencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relación con modelos preentrenados y aprendizaje por transferencia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variantes-y-metodos-generativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variantes y métodos generativos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprendizaje-con-pocos-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizaje con pocos ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprendizaje-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizaje Zero-shot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprendizaje-por-transferencia-transfer-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizaje por transferencia (Transfer learning)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-en-el-mundo-real-de-varios-paradigmas-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicaciones en el mundo real de varios paradigmas de aprendizaje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aplicaciones en el mundo real de varios paradigmas de aprendizaje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnostico-de-enfermedades-raras-con-aprendizaje-de-pocos-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnóstico de enfermedades raras con aprendizaje de pocos ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mejora-de-la-deteccion-de-enfermedades-de-plantas-con-aprendizaje-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mejora de la detección de enfermedades de plantas con aprendizaje zero-shot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vehiculos-autonomos-y-aprendizaje-por-transferencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vehículos autónomos y aprendizaje por transferencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-disponibles-en-hugging-face_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Modelos disponibles en Hugging Face
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-usar-la-tarea-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Cómo usar la tarea en Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-4-clasificacion-zero-shot-con-clip-usando-gradio" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensiones-posibles-optativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 Extensiones posibles (Optativas)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h2 id="objetivos">Objetivos</h2>
+<ul>
+<li>Diferenciar qué es un "task" en Machine Learning según Hugging Face.</li>
+<li>Aprender los conceptos y ejemplos de estimación de profundidad, clasificación y segmentación de imágenes.</li>
+<li>Probar ejemplos prácticos con pipelines de Hugging Face.</li>
+</ul>
+<p>Hugging Face es el portal para todas las tareas de aprendizaje automático. Aquí encontraremos todo lo necesario para empezar con una tarea: demostraciones, casos de uso, modelos, conjuntos de datos y mucho más.</p>
+<h1 id="que-es-un-task">¿Qué es un task?</h1>
+<p>Un <em>task</em> en Hugging Face define el tipo de problema que un modelo está diseñado para resolver. Esta clasificación facilita la búsqueda, prueba y reutilización de modelos según la tarea específica que se desea abordar.
+<a href="https://huggingface.co/tasks"><strong>Tasks (tareas) en Hugging Face</strong></a>
+<img alt="Tasks (tareas) en Hugging Face" src="../img/01hf-tasks.png" /></p>
+<h1 id="uso-de-hugging-face-para-tareas-de-vision-por-computadora">Uso de Hugging Face para tareas de Visión por Computadora</h1>
+<p>Hugging Face también proporciona una amplia colección de modelos preentrenados para tareas de visión artificial. Con todos estos modelos alojados previamente entrenados, podemos crear aplicaciones interesantes que detectan objetos en imágenes, la edad de una persona y más. En este tema, aprenderemos a realizar las primeras cuatro tareas utilizando modelos de Hugging Face. </p>
+<h2 id="1-clasificacion-de-imagenes-image-classification">1. Clasificación de Imágenes (Image Classification)</h2>
+<p>La clasificación de imágenes es una tarea de visión por computador que consiste en asignar una o varias etiquetas predefinidas a una imagen, según su contenido.
+<img alt="Tasks (tareas) en Hugging Face" src="../img/image-classification-input_hf.png" /></p>
+<h3 id="ejemplos-de-aplicaciones">Ejemplos de aplicaciones</h3>
+<ul>
+<li>Diagnóstico médico: clasificación de radiografías para detectar enfermedades.</li>
+<li>Reconocimiento de objetos</li>
+<li>Clasificación de productos en e-commerce</li>
+<li>Moderación de contenido visual</li>
+</ul>
+<h3 id="modelos-disponibles-en-hugging-face">Modelos disponibles en Hugging Face</h3>
+<p>Hugging Face ofrece múltiples modelos preentrenados para clasificación de imágenes. Estos modelos han sido entrenados con grandes conjuntos de datos, como ImageNet, lo que les permite reconocer una amplia variedad de objetos y escenas. Algunos destacados:</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Arquitectura</th>
+<th>Dataset de entrenamiento</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>google/vit-base-patch16-224</code></td>
+<td>Vision Transformer (ViT)</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/google/vit-base-patch16-224">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>microsoft/resnet-50</code></td>
+<td>ResNet-50</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/microsoft/resnet-50">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>facebook/deit-base-patch16-224</code></td>
+<td>DeiT</td>
+<td>ImageNet</td>
+<td><a href="https://huggingface.co/facebook/deit-base-patch16-224">🔗 Ver modelo</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-draw-de-google">"Quick, Draw!" de Google</h3>
+<p><img alt="" src="../img/quickdraw1.png" /></p>
+<p><a href="https://quickdraw.withgoogle.com/">Quick, Draw!</a> es un juego basado en aprendizaje automático en el que una red neuronal intenta adivinar el objeto que el usuario está dibujando. Evidentemente, no siempre funciona; pero cuanto más tiempo pasemos jugando, más aprenderá. Destacar que ya reconoce cientos de conceptos y esperan poder añadir más en el futuro. El gran objetivo de esta aplicación, es mostrar un ejemplo de cómo se puede usar el aprendizaje automático de forma divertida. </p>
+<p><strong>Características clave</strong></p>
+<ul>
+<li>
+<p><strong>Juego con IA</strong>: El juego es un experimento de aprendizaje automático. El jugador dibuja y la red neuronal intenta adivinar el dibujo en tiempo real.</p>
+</li>
+<li>
+<p><strong>Aprendizaje continuo</strong>: La IA aprende de cada dibujo, mejorando su capacidad para adivinar correctamente en el futuro. Esto ayuda a Google a recopilar uno de los conjuntos de datos de garabatos más grandes del mundo para la investigación en aprendizaje automático.</p>
+</li>
+<li>
+<p><strong>Mecánica simple</strong>: El juego es similar al Pictionary. Consiste en seis rondas, y en cada una se nos pide dibujar un objeto diferente en 20 segundos. Al final, podemos ver nuestros dibujos y los resultados.</p>
+</li>
+</ul>
+<p>Podemos acceder al juego en el sitio web oficial: <a href="https://quickdraw.withgoogle.com/">Web oficial</a>. </p>
+<p><strong>Importancia de los datos - BigData</strong></p>
+<p>Los datos recopilados en Quick, Draw! son fundamentales para el Big Data y el aprendizaje automático, ya que constituyen el conjunto de datos de garabatos más grande del mundo, esencial para entrenar y mejorar modelos de IA. 
+Su importancia radica en varios puntos clave:</p>
+<ul>
+<li>
+<p><strong>Entrenamiento de IA</strong>: Los millones de dibujos (actualmente más de 50 millones en 345 categorías) sirven como un vasto corpus de datos para entrenar redes neuronales, enseñándoles a reconocer e interpretar garabatos de formas muy diversas. La IA aprende a identificar patrones visuales, sin importar el estilo individual del dibujante.</p>
+</li>
+<li>
+<p><strong>Diversidad y variabilidad</strong>: A diferencia de conjuntos de datos de imágenes tradicionales, los garabatos muestran una enorme variabilidad en cómo las personas de diferentes culturas y con distintas habilidades dibujan un mismo objeto. Esta diversidad es crucial para crear modelos de IA más robustos y menos sesgados que puedan funcionar globalmente.</p>
+</li>
+<li>
+<p><strong>Datos en tiempo real y secuenciales</strong>: Los dibujos se capturan como series temporales de posiciones del lápiz (vectores con marca de tiempo), no solo como imágenes estáticas. Esto permite a los investigadores comprender no solo el resultado final, sino también el proceso de dibujo (qué trazo se hizo primero, en qué dirección), lo cual es valioso para desarrollar modelos de IA más avanzados, como el modelo <em>Sketch-RNN</em> (Recurrent Neural Network para Bocetos es un modelo generativo de aprendizaje automático desarrollado por David Ha y Douglas Eck en Google Brain, que es capaz de crear, completar y manipular bocetos vectoriales de objetos comunes)</p>
+</li>
+<li>
+<p><strong>Investigación abierta</strong>: Google ha hecho público este conjunto de datos para que investigadores de todo el mundo puedan utilizarlo en sus propios proyectos y estudios de aprendizaje automático, fomentando la innovación en el campo.</p>
+</li>
+<li>
+<p><strong>Ejemplo de gamificación para la recolección de datos</strong>: El juego es un excelente ejemplo de cómo la gamificación puede motivar a un gran número de usuarios a generar datos valiosos de forma divertida y a gran escala, un desafío común en el Big Data.</p>
+</li>
+</ul>
+<p><a href="https://quickdraw.withgoogle.com/data">Datos de entrenamiento</a></p>
+<p><img alt="" src="../img/quickdraw2.webp" /></p>
+<p>En esta página podemos ver, en el momento en el que se redactaban estos apuntes, 126.372 dibujos de pelotas de baloncesto hechas por personales reales...en Internet. Incluso, podemos ver los trazos que han realizado estas personas hasta que el modelo ha sido capaz de adivinar el dibujo. 
+Destacar la importancia del Big Data, ya que, los datos de entrenamiento son muy importantes para cualquier modelo de aprendizaje. </p>
+<p><a href="https://quickdraw.withgoogle.com/data/basketball">Datos de entrenamiento para la pelota de baloncesto</a></p>
+<p><img alt="" src="../img/data_basketball_quickdraw.png" /></p>
+<h3 id="desarrollo-de-nuestro-propio-pictionary-con-gradio">Desarrollo de nuestro propio Pictionary con Gradio</h3>
+<p>Vamos a desarrollar nuestra propia aplicación Pictionary utilizando Gradio, basada en el siguiente vídeo: <a href="https://www.youtube.com/watch?v=LS9Y2wDVI0k">https://www.youtube.com/watch?v=LS9Y2wDVI0k</a></p>
+<p>Todos los ficheros se encuentran en el siguiente espacio de Hugging Face: <a href="https://huggingface.co/spaces/nateraw/quickdraw">https://huggingface.co/spaces/nateraw/quickdraw</a></p>
+<p>Lo primero que debemos es, descargar los ficheros siguientes: <code>class_names.txt</code>, <code>pytorch_model.bin</code> y <code>app.py</code></p>
+<p><strong>Analizamos el código elaborado por el usuario</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>             
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>       
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>      
+
+<span class="c1"># Lee las etiquetas/clases del archivo de texto, una por línea. </span>
+<span class="c1"># Cada línea es una categoría que el modelo puede predecir.</span>
+<span class="n">LABELS</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;class_names.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="c1"># Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="c1"># Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>  
+    <span class="c1"># Función de activación no lineal ReLU (acelera y facilita el aprendizaje)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                            
+    <span class="c1"># Max Pooling: reduce la resolución espacial de las características</span>
+    <span class="c1">#  (comprime la imagen a la vez que mantiene zonas más “activas”)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>                      
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span> <span class="c1"># Segunda capa: 32→64 filtros</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span><span class="c1"># Tercera capa: 64→128 filtros</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="c1"># Aplana los datos resultantes para prepararlos para las capas densas </span>
+    <span class="c1"># (total elementos = 128 canales * 3 * 3)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>                         
+    <span class="c1"># Capa totalmente conectada: de 1152 (productos anteriores) a 256 neuronas</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1152</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>                 
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="c1"># Capa de salida: 1 neurona por clase del archivo de etiquetas</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">LABELS</span><span class="p">)),</span>          
+<span class="p">)</span>
+<span class="c1"># Carga los pesos entrenados previamente desde </span>
+<span class="c1"># el archivo binario (estado del modelo)</span>
+<span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;pytorch_model.bin&#39;</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Coloca el modelo en modo &quot;solo inferencia&quot; </span>
+<span class="c1"># (no entrenamiento): no calcula gradientes ni actualiza pesos</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> 
+
+<span class="c1"># Función de predicción principal: toma una imagen (array) </span>
+<span class="c1"># y devuelve las top-5 categorías con su probabilidad</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="c1"># Convierte el array de la imagen en un tensor, escala los valores a rango [0,1] </span>
+    <span class="c1"># y añade dimensiones de batch y canal</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+
+    <span class="c1"># Desactiva el cálculo de gradientes (más rápido, no entrena)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>            
+        <span class="c1"># Hacemos pasar la imagen por el modelo (forward pass)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>               
+
+    <span class="c1"># Calcula las probabilidades (softmax)</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+
+    <span class="c1"># Obtiene las 5 clases más probables</span>
+    <span class="n">values</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>              
+
+    <span class="c1"># Devuelve un diccionario {clase: probabilidad} para las 5 mejores</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">LABELS</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">values</span><span class="p">)}</span>
+
+<span class="c1"># Creamos la interfaz web con Gradio:</span>
+<span class="c1">#   - predict: función a ejecutar al recibir la entrada.</span>
+<span class="c1">#   - inputs: &#39;sketchpad&#39;, una zona para que el usuario dibuje a mano alzada.</span>
+<span class="c1">#   - outputs: &#39;label&#39;, salida tipo clasificación de etiquetas.</span>
+<span class="c1">#   - live=True: muestra predicciones en tiempo real mientras dibujas.</span>
+<span class="n">interface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;sketchpad&#39;</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">live</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">interface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="que-es-una-red-neuronal-convolucional-cnn">¿Qué es una red neuronal convolucional (CNN)?</h3>
+<p>Una <strong>red neuronal convolucional</strong> (CNN, por sus siglas en inglés, <em>Convolutional Neural Network</em>) es un tipo de red neuronal artificial especialmente diseñada para procesar datos que tienen una estructura en forma de cuadrícula, como imágenes, audio o vídeo.</p>
+<h3 id="caracteristicas-principales">Características principales</h3>
+<ul>
+<li>
+<p><strong>Inspiración biológica:</strong>: Las CNNs se inspiran en la corteza visual de los mamíferos. Primero detectan reglas simples (líneas, bordes) y después patrones más complejos (formas, objetos).</p>
+</li>
+<li>
+<p><strong>Arquitectura en capas:</strong><br />
+  Una CNN está compuesta por diferentes capas conectadas:</p>
+<ul>
+<li><strong>Capas convolucionales:</strong> Aplican filtros o “kernels” para extraer patrones y características locales (bordes, texturas, esquinas).</li>
+<li><strong>Capas de activación (ReLU):</strong> Introducen no linealidad, permitiendo que la red aprenda funciones más complejas.</li>
+<li><strong>Capas de agrupamiento (pooling):</strong> Reducen la resolución espacial y la cantidad de computación, logrando robustez ante desplazamientos.</li>
+<li><strong>Capas totalmente conectadas:</strong> Integran toda la información para tomar decisiones y realizar la predicción final.</li>
+</ul>
+</li>
+<li>
+<p><strong>Aprendizaje jerárquico:</strong><br />
+  Las CNNs aprenden jerarquías de características: Las primeras capas detectan elementos simples, las siguientes combinan estos elementos y las últimas reconocen patrones complejos y abstractos.</p>
+</li>
+<li>
+<p><strong>Campos receptivos y parámetros compartidos:</strong> Los filtros se aplican en toda la imagen usando los mismos parámetros, lo que permite detectar el mismo patrón en distintas posiciones. Así, el número de parámetros y el coste de memoria disminuyen en comparación con una red completamente conectada.</p>
+</li>
+</ul>
+<h3 id="aplicaciones-tipicas">Aplicaciones típicas</h3>
+<ul>
+<li><strong>Reconocimiento y clasificación de imágenes:</strong> Detección de objetos, diagnóstico médico, moderación de contenido, etc.</li>
+<li><strong>Visión por computador:</strong> Conducción autónoma, videovigilancia, análisis de tráfico.</li>
+<li><strong>Procesamiento de vídeo:</strong> Reconocimiento de acciones, seguimiento de objetos en secuencias de imágenes, análisis deportivo.</li>
+</ul>
+<h3 id="ejemplo-didactico-sencillo">Ejemplo didáctico sencillo</h3>
+<p>Cuando pasas una imagen por una CNN:</p>
+<ul>
+<li>Las primeras capas detectan bordes y formas sencillas.</li>
+<li>Las siguientes detectan partes más grandes (ruedas, patas, ojos).</li>
+<li>Al final, la red puede identificar el objeto completo (ej. “bicicleta”, “gato”, “persona”) en la imagen.</li>
+</ul>
+<p>Como hemos comprobado en el ejemplo, el código desarrollado por el usuario no funciona actualmente, por lo que debemos realizar algunas mejoras para que el código original funcione. A continuación podemos visualizar la solución final:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Leemos las etiquetas de clases (categorías) desde un fichero de texto</span>
+<span class="n">LABELS</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;class_names.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="c1"># Definimos la arquitectura de la red neuronal convolucional (CNN) ya entrenada:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="c1"># Primera capa: 1 canal de entrada, 32 filtros, tamaño de filtro 3x3</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span>  
+    <span class="c1"># Función de activación no lineal ReLU (acelera y facilita el aprendizaje)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>                            
+    <span class="c1"># Max Pooling: reduce la resolución espacial de las características </span>
+    <span class="c1"># (comprime la imagen a la vez que mantiene zonas más “activas”)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>                      
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span> <span class="c1"># Segunda capa: 32→64 filtros</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">),</span><span class="c1"># Tercera capa: 64→128 filtros</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="c1"># Aplana los datos resultantes para prepararlos para las capas</span>
+    <span class="c1"># densas (total elementos = 128 canales * 3 * 3)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>                         
+    <span class="c1"># Capa totalmente conectada: de 1152 (productos anteriores) </span>
+    <span class="c1"># a 256 neuronas</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1152</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>                 
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="c1"># Capa de salida: 1 neurona por clase del archivo de etiquetas</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">LABELS</span><span class="p">)),</span>          
+<span class="p">)</span>
+<span class="c1"># Cargamos los pesos previamente entrenados del modelo</span>
+<span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;pytorch_model.bin&#39;</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Ponemos el modelo en modo inferencia (no entrenamiento)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  
+
+<span class="c1"># Función principal de predicción, procesará el dibujo </span>
+<span class="c1"># de Gradio y calculará su clase</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>   
+    <span class="c1"># Si no hay dibujo o la clave &#39;composite&#39; no existe o está vacía, avisamos:</span>
+    <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;composite&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">img</span> <span class="ow">or</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;composite&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Por favor, dibuja algo&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
+    <span class="c1"># Extraemos la imagen resultado del canvas, canal RGBA</span>
+    <span class="c1"># Array con forma (ej. [800, 800, 4]), tipo uint8</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;composite&quot;</span><span class="p">]</span>        
+    <span class="c1"># Convertimos de RGBA a escala de grises (Quick Draw es gris)</span>
+    <span class="n">arr_gray</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Convertimos a uint8 por si PIL lo necesita</span>
+    <span class="n">arr_gray_uint8</span> <span class="o">=</span> <span class="n">arr_gray</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+    <span class="c1"># Redimensionamos a 28x28 píxeles (tamaño de entrada del modelo)</span>
+    <span class="n">arr_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr_gray_uint8</span><span class="p">)</span>
+    <span class="n">arr_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr_img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">))</span>
+    <span class="c1"># Escalamos a rango [0,1]</span>
+    <span class="n">arr_normalized</span> <span class="o">=</span> <span class="n">arr_resized</span> <span class="o">/</span> <span class="mf">255.0</span>
+    <span class="c1"># Añadimos dimensiones de batch y canal: (1, 1, 28, 28)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">arr_normalized</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Ejecutamos inferencia sin calcular gradientes (más eficiente)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># Calculamos probabilidades con softmax</span>
+    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Obtenemos las 5 clases más probables (top-5)</span>
+    <span class="n">values</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Devolvemos un diccionario: categoría : probabilidad (~confianza)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">LABELS</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">values</span><span class="p">)}</span>
+
+<span class="c1"># Creamos la interfaz Gradio:</span>
+<span class="c1"># - El input es un sketchpad (zona para dibujar)</span>
+<span class="c1"># - El output son etiquetas: las categorías predecidas</span>
+<span class="c1"># - live=True: actualiza la predicción en tiempo real al dibujar</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">predict</span><span class="p">,</span>     
+    <span class="n">inputs</span><span class="o">=</span><span class="s1">&#39;sketchpad&#39;</span><span class="p">,</span>
+    <span class="n">outputs</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> 
+    <span class="n">live</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<p>La función <em>softmax</em> de <em>torch</em> (<em>PyTorch</em>) es una operación matemática que transforma un vector de valores reales —normalmente llamados "logits"— en una distribución de probabilidades sobre diferentes clases, donde todos los elementos resultantes están entre 0 y 1 y la suma es exactamente 1. Por ejemplo, si tu modelo clasifica imágenes en tres clases, la salida softmax será un vector con tres valores que representan la probabilidad atribuida a cada clase.​</p>
+<p>En PyTorch, podemos usar esta función tanto como capa de activación en la salida de nuestro modelo, como directamente llamando torch.nn.functional.softmax() sobre un tensor de logits. Es común utilizar softmax en la inferencia para obtener probabilidades interpretables, mientras que durante el entrenamiento suele usarse CrossEntropyLoss, que incorpora la softmax de forma interna y más eficiente.​</p>
+<p>Aplicaciones comunes:</p>
+<ul>
+<li>Clasificación multiclase: transforma las salidas del modelo en probabilidades para cada categoría.​</li>
+<li>Visualización de la confianza del modelo en cada posible resultado.
+En resumen, softmax convierte los resultados numéricos en probabilidades útiles para tomar decisiones y analizar resultados en <em>Deep learning</em>.</li>
+</ul>
+<hr />
+<h2 id="actividad-1-usar-un-space-de-hugging-face">📝 <strong>Actividad 1. Usar un Space de Hugging Face</strong></h2>
+<p>Basándote en lo aprendido a partir de los casos de uso de <a href="https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces">Hola Spaces</a> y <a href="https://aitor-medrano.github.io/iabd/hf/hf.html#hola-spaces-20">Hola Spaces 2.0</a> trabajadas en una sesión anterior, mediante <em>Gradio</em> en <em>Hugging Face</em> crea un nuevo espacio público en tu cuenta que permita probar la aplicación del <em>pictionary</em> desarrollada de forma local en un Space de Hugging Face. </p>
+<p>Entrega la url del espacio y algunas capturas de pantalla usando la aplicación. </p>
+<h2 id="2-deteccion-de-objetos">2. Detección de objetos</h2>
+<p><img alt="Tasks - Object detection in Hugging Face" src="../img/object-detecction-hf.png" /></p>
+<p>La detección de objetos predice la distancia de cada píxel respecto a la cámara usando solo una imagen. Es una técnica fundamental en visión computacional que permite identificar y localizar instancias de objetos definidos dentro de imágenes. Es ampliamente utilizada en aplicaciones como <strong>conducción autónoma</strong>, <strong>seguimiento de objetos en deportes</strong>, <strong>búsqueda de imágenes</strong> y <strong>conteo de objetos en diferentes escenarios</strong>. </p>
+<p>Hugging Face alberga varios modelos que han sido entrenados previamente para detectar objetos en imágenes. Podemos ver una lista de modelos en <a href="https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending">https://huggingface.co/models?pipeline_tag=object-detection&amp;sort=trending</a> </p>
+<p>En la figura siguiente podemos visualizar un listado de la categoría <em>Object Detection</em>:</p>
+<p><img alt="" src="../img/tasks_hf_object_detection.png" /></p>
+<p>Ejemplo de uso del modelo <a href="https://huggingface.co/facebook/detr-resnet-50"><strong>facebook/detr-resnet-50</strong></a> para la detección de objetos:</p>
+<p><img alt="" src="../img/tasks_hf_object_detection_example.png" /></p>
+<p>Podemos probar el modelo directamente utilizando la API de inferencia alojada en Hugging Face. Para ello, usaremos una imagen de una oficina con algunas mujeres:
+<img alt="" src="../img/Good_Smile_Company_offices_ladies.jpg" /></p>
+<p>Fuente: <a href="https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg">https://en.wikipedia.org/wiki/Office#/media/File:Good_Smile_Company_offices_ladies.jpg</a> </p>
+<p>Al arrastrar y soltar la imagen en la sección "Inference API" alojada en la página del modelo en Hugging Face, veremos la lista de objetos detectados, así como sus probabilidades correspondientes:
+<img alt="" src="../img/object_detection_good_Smile_Company_offices_ladies.png" /></p>
+<p>Al pasar el ratón por encima del nombre de un objeto detectado, la imagen resalta el cuadro delimitador del objeto seleccionado.</p>
+<h3 id="algunos-modelos-disponibles-en-hugging-face">Algunos modelos disponibles en Hugging Face</h3>
+<p>Hugging Face ofrece modelos preentrenados que permiten realizar detección de objetos sin necesidad de entrenamiento adicional.</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Arquitectura</th>
+<th>Dataset</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>facebook/detr-resnet-50</code></td>
+<td>DETR (DEtection TRansformer)</td>
+<td>COCO</td>
+<td>🔗 <a href="https://huggingface.co/facebook/detr-resnet-50">Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>hustvl/yolos-small</code></td>
+<td>YOLOS (Vision Transformer)</td>
+<td>COCO</td>
+<td>🔗 <a href="https://huggingface.co/hustvl/yolos-small">Ver modelo</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="principales-aplicaciones">Principales Aplicaciones</h3>
+<ul>
+<li><strong>Conducción autónoma:</strong> Los coches sin conductor usan la detección de objetos para reconocer peatones, bicicletas, semáforos y señales de tráfico, ayudando a la toma de decisiones en tiempo real.</li>
+<li><strong>Seguimiento en deportes:</strong> En partidos de fútbol o tenis se rastrea el balón o los jugadores para mejorar el arbitraje y el análisis estadístico.</li>
+<li><strong>Búsqueda de imágenes:</strong> Los teléfonos inteligentes permiten buscar lugares u objetos directamente en internet mediante la detección de entidades en fotos.</li>
+<li><strong>Conteo de objetos:</strong> La detección ayuda a contar existencias en almacenes, tiendas, o personas en eventos.</li>
+</ul>
+<h3 id="metricas-de-evaluacion">Métricas de Evaluación</h3>
+<ul>
+<li><strong>Precisión media promedio (AP):</strong> Área bajo la curva de precisión versus recall para cada clase.</li>
+<li><strong>mAP (mean Average Precision):</strong> Promedio de AP en todas las clases.</li>
+<li><strong>APα:</strong> Precisión promedio según el umbral de IoU (por ejemplo, AP50 muestra AP cuando el IoU es &gt;0,5).</li>
+</ul>
+<h3 id="ejemplo-de-uso-con-gradio">Ejemplo de uso con Gradio</h3>
+<p>Vamos a crear una aplicación web con Gradio que use un objeto <em>pipeline</em> del modelo <code>facebook/detr-resnet-50</code>.</p>
+<p>Así es como se carga: 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">detection</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;object-detection&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/detr-resnet-50&quot;</span><span class="p">)</span>
+</code></pre></div>
+Una vez que hayamos creado el objeto tipo pipeline (detección en este caso), podemos pasar directamente la imagen (en formato PIL) al pipeline y obtener el resultado: </p>
+<p><div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">results</span>
+</code></pre></div>
+Debemos tener en cuenta que el objeto de tipo pipeline (detección) también puede incluir una URL de una imagen, no solo un objeto de imagen tipo PIL. Es decir, también podemos llamar al objeto pipeline de la siguiente manera: </p>
+<p><div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="s1">&#39;http://bit.ly/46xv3sL&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Si no funcionara, prueba a descargar el fichero y ejecutarlo de forma local:</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="s1">&#39;Good_Smile_Company_offices_ladies.jpg&#39;</span><span class="p">)</span>
+</code></pre></div>
+Debemos instalar la librería <code>timm</code> (PyTorch Image Models) para Python. Es una extensa colección de modelos de visión por computadora de última generación (SOTA, por sus siglas en inglés). Está diseñada para ser utilizada con el framework PyTorch y es muy apreciada en la comunidad de aprendizaje profundo por su flexibilidad y la gran cantidad de modelos preentrenados que ofrece.
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>timm
+</code></pre></div>
+El resultado impreso se vería así:
+<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9179903864860535</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">564</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">165</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9960624575614929</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">317</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">212</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">416</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">299</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9425505995750427</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;chair&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">661</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">429</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9753392338752747</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">673</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">705</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.962176501750946</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">703</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">722</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9881888628005981</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">497</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">202</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9871691465377808</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;keyboard&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">344</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">276</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">445</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">346</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9371852874755859</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">309</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">194</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">374</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">237</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9975801706314087</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">395</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">446</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9986708164215088</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">237</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">308</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">264</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9173707365989685</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">720</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">737</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9895991086959839</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;po</span><span class="kc">tte</span><span class="err">d</span><span class="w"> </span><span class="err">pla</span><span class="kc">nt</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">211</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">330</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9996592998504639</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">369</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">535</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">427</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9821581840515137</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">t</span><span class="err">v&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">491</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">181</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">530</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">223</span><span class="p">}},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9970135688781738</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;box&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&#39;xmi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">516</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymi</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">177</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;xmax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">628</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;ymax&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">318</span><span class="p">}}]</span>
+</code></pre></div>
+El resultado es una lista de diccionarios para cada objeto detectado. Para dibujar la etiqueta y el cuadro delimitador de cada objeto, utilizaremos el siguiente fragmento de código: </p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> with confidence &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% at </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">box</span><span class="p">,</span>
+                   <span class="n">outline</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                   <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span>
+              <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+              <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+La imagen sería idéntica a la que se muestra anteriormente pero con los cuadrados correspondientes. Con el objeto pipeline, también podemos obtener una lista de etiquetas directamente mediante el atributo <code>model.config.id2label</code>: 
+<div class="highlight"><pre><span></span><code><span class="n">detection</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span>
+</code></pre></div></p>
+<h3 id="actividad-guiada">Actividad guiada</h3>
+<p>Desarrollar con Gradio un template similar es este: 
+<img alt="" src="../img/object_detection_template_gradio.png" />
+Resultado final:
+<img alt="" src="../img/object_detection_ladies_gradio.png" /></p>
+<p>Define:</p>
+<ul>
+<li>Una función llamada <em>predict</em></li>
+<li>Interface Gradio que envíe una imagen y muestre la imagen con los objetos detectados</li>
+</ul>
+<p>Código final en Gradio:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>    
+
+    <span class="n">detection</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;object-detection&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/detr-resnet-50&quot;</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">detection</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>       
+
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> 
+
+    <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+        <span class="n">box</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span> 
+        <span class="nb">print</span><span class="p">(</span> 
+            <span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> with confidence &quot;</span>   
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="nb">object</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% at </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span>   
+        <span class="p">)</span> 
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">g</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span> 
+        <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> 
+
+        <span class="c1">#Dibuja un cuadro delimitador alrededor del objeto.</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">box</span><span class="p">,</span>  
+                    <span class="n">outline</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>  
+                    <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  
+        <span class="c1">#Muestra la etiqueta del objeto</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span>  
+                <span class="nb">object</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>  
+                <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>  
+
+    <span class="k">return</span> <span class="n">image</span>
+
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">predict</span><span class="p">,</span> 
+    <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;pil&quot;</span><span class="p">),</span> 
+    <span class="n">outputs</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="actividad-2-comparativa-practica-de-deteccion-de-objetos-con-hugging-face-y-ultralytics-yolo11">📝 <strong>Actividad 2: Comparativa práctica de Detección de Objetos con Hugging Face y Ultralytics YOLO11</strong></h2>
+<h2 id="contexto">Contexto</h2>
+<p>Hemos trabajado en clase con modelos de detección de objetos, usando ejemplos como <code>facebook/detr-resnet-50</code> <a href="https://huggingface.co/facebook/detr-resnet-50"></a> en Hugging Face (<a href="https://jmperez-profesor.github.io/iabd/hf/Tasks_vc/#2-deteccion-de-objetos">ver ejemplo y recursos de clase</a>).<br />
+En esta actividad, irás un paso más allá probando la herramienta Ultralytics YOLO11, consultando su <a href="https://docs.ultralytics.com/es/integrations/gradio/">documentación oficial de integración con Gradio</a>.</p>
+<h2 id="objetivos_1">Objetivos</h2>
+<ul>
+<li>Investigar y comprender el funcionamiento de la familia YOLO (en especial YOLO11).</li>
+<li>Probar distintos códigos y ejemplos reales usando YOLO11 y Gradio.</li>
+<li>Comparar los resultados con los de <code>facebook/detr-resnet-50</code> en velocidad, facilidad de uso y precisión.</li>
+<li>Reflexionar sobre ventajas e inconvenientes de cada enfoque en distintos escenarios reales.</li>
+</ul>
+<h3 id="1-lectura-e-investigacion-inicial">1. Lectura e investigación inicial</h3>
+<ul>
+<li>Lee la documentación de <a href="https://docs.ultralytics.com/es/#what-are-the-licensing-options-available-for-ultralytics-yolo">Ultralytics YOLO11</a> y familiarízate con su API y flujo de trabajo.</li>
+<li>Consulta y ejecuta el ejemplo de integración con Gradio: <a href="https://docs.ultralytics.com/es/integrations/gradio/">docs oficiales</a>.</li>
+</ul>
+<h3 id="2-implementacion-y-pruebas">2. Implementación y pruebas</h3>
+<ul>
+<li>Ejecuta la demo básica de YOLO11+Gradio incluida en la documentación.</li>
+<li>Realiza anotaciones sobre el input, formato de resultados y velocidad tras varias ejecuciones con imágenes reales o ejemplos propios.</li>
+</ul>
+<h3 id="3-comparativa-objetiva-con-hugging-face">3. Comparativa objetiva con Hugging Face</h3>
+<ul>
+<li>Utiliza el modelo <code>facebook/detr-resnet-50</code> desde Hugging Face (ya visto en clase) para detectar objetos en al menos dos imágenes iguales a las usadas en YOLO11.</li>
+<li>Rellena la tabla comparativa:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Imagen</th>
+<th>Modelo</th>
+<th>Objetos detectados</th>
+<th>Tiempo de inferencia</th>
+<th>Falsos positivos/negativos</th>
+<th>Facilidad de integración</th>
+<th>Observaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(insertar nombre)</td>
+<td>YOLO11</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(insertar nombre)</td>
+<td>detr-resnet-50 (HF)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Comenta los resultados en términos de:<ul>
+<li>Exactitud y número/calidad de predicciones.</li>
+<li>Consumo de recursos y tiempo de ejecución (compara si es posible en CPU y GPU).</li>
+<li>Facilidad de uso/grado de documentación o número de líneas de código para uso en Gradio.</li>
+</ul>
+</li>
+</ul>
+<h2 id="entrega">Entrega</h2>
+<ul>
+<li>Un archivo <code>.py</code> con el código empleado y comentarios.</li>
+<li>Las imágenes o capturas de pantalla de las pruebas realizadas.</li>
+<li>Rellena y agrega la tabla comparativa.</li>
+</ul>
+<hr />
+<h2 id="3-segmentacion-de-imagenes-image-segmentation">3. Segmentación de imágenes (Image segmentation)</h2>
+<p>La segmentación de imágenes es una técnica de visión por computador que divide una imagen en segmentos o regiones, cada una correspondiente a un objeto de interés. Con la segmentación de imágenes, podemos analizar una imagen y extraer información valiosa de ella. </p>
+<p><img alt="" src="../img/image_segmentation_explication.png" /></p>
+<p>Algunos de sus usos son: </p>
+<ul>
+<li><strong>Imágenes médicas</strong>: se utilizan para identificar y segmentar tumores en resonancias magnéticas o tomografías computarizadas </li>
+<li><strong>Detección y reconocimiento de objetos</strong>: al igual que la detección de objetos que hemos visto anteriormente, también podemos utilizar la segmentación de imágenes para identificar y localizar objetos en una imagen </li>
+<li><strong>Procesamiento de documentos</strong>: se utiliza para segmentar regiones de texto en documentos escaneados </li>
+<li><strong>Biometría</strong>: se utiliza para identificar y localizar rostros en imágenes o fotogramas de vídeo </li>
+</ul>
+<p>Hugging Face incluye varios modelos de segmentación de imágenes que podemos usar. Uno de ellos es el modelo SegFormer <a href="https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512">"SegFormer model fine-tuned on ADE20k"</a>, optimizado con ADE20k.</p>
+<p>La siguiente imagen muestra el modelo SegFormer <em>fine-tuned</em> (optimizado) por el modelo ADE20k en la web de Hugging Face:
+<img alt="" src="../img/tasks_image_segmentation_ade20k_hf.png" /></p>
+<p>Para probar el modelo de segmentación, usaremos una imagen del Taj Mahal. La arrastraremos y la soltaremos en la sección de "<strong>Hosted inference API</strong>" alojada en la página de Hugging Face:</p>
+<p>Imagen del <strong>Taj Mahal</strong> 
+<img alt="" src="../img/Taj_Mahal_Agra%2C_India_edit3.jpg" />
+Fuente: <a href="https://mng.bz/5vzD">https://mng.bz/5vzD</a></p>
+<p>Resultado de la segmentación de imágenes utilizando una imagen del Taj Mahal:
+<img alt="" src="../img/tasks_image_segmentation_taj_mahal_result.png" /></p>
+<p>Como podemos ver en el resultado, el modelo puede detectar diferentes objetos en la imagen (edificios, cielos, árboles, etcétera) y resaltar los diversos segmentos en dicha imagen. De hecho, podemos pasar el ratón sobre las diversas etiquetas segmentadas y la imagen resaltará dicha etiqueta seleccionada. </p>
+<h3 id="uso-del-modelo-con-pipeline">Uso del modelo con pipeline</h3>
+<p>Como es habitual, usaremos el modelo mediante programación. Primero, cargamos el modelo y luego verificamos cuántos objetos puede detectar el modelo. La forma más fácil de usar el modelo es usar un pipeline  de la librería <code>transformers</code>: 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+
+<span class="n">segmentation</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-segmentation&quot;</span><span class="p">,</span>  
+               <span class="n">model</span><span class="o">=</span><span class="s2">&quot;nvidia/segformer-b0-finetuned-ade-512-512&quot;</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="n">segmentation</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+Estos son los primeros y últimos cinco objetos que puede detectar (el modelo puede detectar un total de 150 objetos): 
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;wall&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;buildi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;sky&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">fl</span><span class="err">oor&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">tree</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="err">...</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">145</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;shower&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">146</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;radia</span><span class="kc">t</span><span class="err">or&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">147</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;glass&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">148</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;clock&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w"> </span><span class="mi">149</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="kc">fla</span><span class="err">g&#39;</span><span class="p">}</span><span class="w"> </span>
+</code></pre></div>
+Para este ejemplo, usaremos una imagen donde vemos a un hombre y a un avión que vuela por encima, para así descubrir los distintos segmentos de dicha imagen: </p>
+<p><img alt="" src="../img/photo-1487553333251-6c8e26d3dc2c.avif" /> </p>
+<p>Fuente: <a href="https://unsplash.com/photos/EC_GhFRGTAY">https://unsplash.com/photos/EC_GhFRGTAY</a></p>
+<p>Para detectar los distintos segmentos de la imagen, pasamos la dirección URL de una imagen al objeto <em>pipeline</em>. Antes, de nada, tendremos que instalar mediante PIP la librería PIL para el procesamiento de imágenes:
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>Pillow
+</code></pre></div>
+Una vez instalada, probamos el siguiente código:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="hll"><span class="n">segmentation</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;image-segmentation&quot;</span><span class="p">,</span>  
+</span><span class="hll">               <span class="n">model</span><span class="o">=</span><span class="s2">&quot;nvidia/segformer-b0-finetuned-ade-512-512&quot;</span><span class="p">)</span> 
+</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://bit.ly/46iDeJQ&#39;</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+La salida de la variable <em>results</em> es una lista de diccionarios que contiene detalles de cada uno de los segmentos detectados en la imagen: 
+<div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;wall&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;buildi</span><span class="kc">n</span><span class="err">g&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;sky&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;perso</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">},</span>
+<span class="w"> </span><span class="p">{</span><span class="err">&#39;score&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">No</span><span class="kc">ne</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;label&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;airpla</span><span class="kc">ne</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="err">&#39;mask&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PIL.Image.Image</span><span class="w"> </span><span class="err">image</span><span class="w"> </span><span class="err">mode=L</span><span class="w"> </span><span class="err">size=</span><span class="mi">1587</span><span class="err">x</span><span class="mi">2381</span><span class="err">&gt;</span><span class="p">}]</span>
+</code></pre></div>
+En particular, el elemento <em>mask</em> contiene la máscara del segmento detectado. Para ver cada una de las máscaras detectadas, recorremos la variable <em>results</em>: </p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+<span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>
+</span><span class="hll">    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+Por pantalla visualizamos las etiquetas encontradas:
+<div class="highlight"><pre><span></span><code>wall
+building
+sky
+person
+airplane
+</code></pre></div>
+La figura siguiente muestra las máscaras detectadas para <em>person</em> (persona) y <em>airplane</em> (avión):
+<img alt="" src="../img/parte_blanca_hombre_avion.jpg" /></p>
+<p>La parte blanca de la máscara representa la parte de la imagen que contiene el segmento de interés. Podemos aplicar la máscara sobre la imagen original mediante el siguiente fragmento de código: </p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span> 
+
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+    <span class="n">base_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span> 
+
+    <span class="c1"># Aplica la máscara sobre la imagen original</span>
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span> 
+</span>    <span class="c1">#Imprime la etiqueta del segmento</span>
+<span class="hll">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span> 
+</span>    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+La figura siguiente muestra las máscaras de <em>person</em> (persona) y <em>airplane</em> (avión) aplicadas sobre la imagen original:
+<img alt="" src="../img/mascaras_en_imagen_original.jpg" /></p>
+<p>Cuando aplicamos la máscara sobre la imagen, observaremos que el segmento de interés está en blanco. Sería más natural invertir esto, es decir, el segmento de interés debería mostrarse mientras que el resto debería estar en blanco. Para hacerlo, podemos invertir la máscara usando la función <code>invert()</code> de la clase <code>ImageOps</code> en el paquete <code>PIL</code>. Los siguientes cambios invierten la máscara y, a continuación, la aplican sobre la imagen original: </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageOps</span> 
+</span></code></pre></div></td></tr></table></div>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span> 
+    <span class="n">base_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span> 
+
+    <span class="n">mask_image</span> <span class="o">=</span> <span class="n">ImageOps</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Invierte la máscara </span>
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">mask_image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_image</span><span class="p">)</span>  <span class="c1">#Aplica la máscara sobre la imagen original </span>
+</span>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span>  <span class="c1">#Imprime la etiqueta del segmento</span>
+<span class="hll">    <span class="n">base_image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+La figura siguiente muestra las máscaras invertidas para <em>person</em> (persona) y <em>airplane</em> (avión)aplicadas en la imagen original. </p>
+<p><img alt="" src="../img/imagenes_mascaras_invertidas.jpg" /></p>
+<h2 id="actividad-3-gradio-para-segmentacion-de-imagenes">📝 <strong>Actividad 3: Gradio para segmentación de imágenes</strong></h2>
+<p>Crea un prototipo mediante Gradio haciendo uso de la clase Interface que te permita probar el modelo de segmentación basándote en el siguiente prototipo: 
+<img alt="" src="../img/act2_prototipo_gradio.png" /></p>
+<p>Pasamos una foto y en el campo Label especificamos el objeto a buscar, por ejemplo, person: 
+<img alt="" src="../img/act2_imagen_con_etiqueta.png" /></p>
+<p>Resultados: 
+Detección de <em>person</em>
+<img alt="" src="../img/act2_resultado_con_gradio_person.png" /></p>
+<p>Detección de <em>airplane</em>
+<img alt="" src="../img/act2_resultado_con_gradio_airplane.png" />
+Pasos:  </p>
+<ul>
+<li>Definir la interfaz de Gradio con los componentes de entrada y de salida similares al prototipo de la imagen </li>
+<li>Crea una función “segmentation” que reciba los parámetros de entrada correspondientes. Dentro de dicha función </li>
+<li>Cuando el modelo devuelva el resultado, iterará a través del resultado y buscará la etiqueta especificada por el usuario (en el parámetro label). </li>
+<li>A continuación, la función invierte la máscara correspondiente, la aplica a la imagen y la devuelve automáticamente. <blockquote>
+<p>CONSEJO: Dentro de la función deberías de imprimir los labels que te devuelve el modelo para saber que etiquetas ha detectado el modelo.</p>
+</blockquote>
+</li>
+</ul>
+<p>Realiza algunas pruebas con imágenes diferentes y adjunta en este documento los resultados. </p>
+<p>Entrega el fichero py y las imágenes que hayas utilizado. </p>
+<h2 id="4-modelo-de-clasificacion-de-imagenes-sin-entrenamiento-previo-zero-shot-image-classification">4. Modelo de clasificación de imágenes sin entrenamiento previo (Zero-shot Image Classification)</h2>
+<p>La clasificación de imágenes sin entrenamiento previo (Zero-shot) es una tarea de visión artificial que consiste en clasificar imágenes de una o de varias clases, sin ningún entrenamiento previo ni conocimiento de dichas clases.  </p>
+<p><img alt="" src="../img/zero_shot_image_classification_explication.png" /></p>
+<hr />
+<h3 id="pero-que-es-eso-del-aprendizaje-zero-shot-zero-shot-learning">Pero, ¿qué es eso del aprendizaje zero-shot (Zero-Shot learning)?</h3>
+<p>El <strong>aprendizaje zero-shot (ZSL)</strong> es un enfoque de machine learning en el que un modelo es capaz de reconocer o clasificar categorías para las que no ha visto ningún ejemplo etiquetado durante el entrenamiento. En lugar de aprender directamente a partir de ejemplos de esas clases, se apoya en conocimiento auxiliar (descripciones textuales, atributos, embeddings, etc.) y en lo que ya ha aprendido sobre otras clases relacionadas.​</p>
+<h4 id="idea-basica">Idea básica</h4>
+<p>En el aprendizaje supervisado clásico (y en few-shot/one-shot) el modelo ve ejemplos etiquetados de todas las clases que luego tendrá que reconocer. En zero-shot, el modelo nunca ve ejemplos etiquetados de las clases “no vistas”, pero puede inferirlas gracias a información semántica sobre esas clases (por ejemplo, descripciones, atributos o relaciones con clases conocidas).​</p>
+<p><strong>Un ejemplo intuitivo</strong>: un niño puede aprender qué es un “pájaro” leyendo una descripción (tiene plumas, pico, alas…) y luego reconocer un pájaro sin haber visto antes fotos etiquetadas como “pájaro”.​</p>
+<h3 id="zero-shot-vs-few-shot-y-generalizado-zero-shot">Zero-shot vs. few-shot y generalizado zero-shot</h3>
+<ul>
+<li><strong>Few-shot</strong> / <strong>one-shot</strong>: el modelo recibe unos pocos ejemplos etiquetados (p. ej. 1, 5 o 10) de las nuevas clases para adaptarse.​</li>
+<li><strong>Zero-shot</strong>: no hay ejemplos etiquetados de las nuevas clases; solo información auxiliar.​</li>
+</ul>
+<p>En muchos escenarios reales, el modelo debe clasificar datos que pueden pertenecer tanto a clases ya vistas como a clases nuevas: esto se llama aprendizaje generalizado zero-shot (GZSL). En GZSL hay un problema adicional: el modelo tiende a sesgarse hacia las clases vistas, así que se necesitan técnicas específicas para reducir ese sesgo.​</p>
+<h3 id="papel-de-la-informacion-auxiliar-y-las-incrustaciones-embeddings">Papel de la información auxiliar y las incrustaciones (embeddings)</h3>
+<p>Como no hay ejemplos etiquetados de las clases nuevas, los métodos ZSL suelen usar información auxiliar como:​
+- Descripciones de texto de las clases (por ejemplo, “oso polar: parecido a un oso pardo pero con pelaje blanco”).​
+- Atributos semánticos (color, forma, “insecto volador amarillo a rayas”, etc.).​
+- Embeddings vectoriales (representaciones numéricas) de palabras, imágenes u otras modalidades.​</p>
+<p>Una estrategia común es representar tanto las muestras como las clases como vectores en un espacio de incrustación conjunta y luego clasificar midiendo la similitud (coseno, distancia euclídea, etc.) entre la muestra y cada clase. Si la incrustación de una muestra está más cerca de la incrustación de la clase “abeja” que de otras, se clasifica como “abeja”, aunque nunca se hayan visto ejemplos etiquetados de abejas.​ La palabra rei está más cerca de reina que la de manzana. Pero también debemos pensar que mantequilla y tostada suelen estar "cerca" semánticamente ya que aparecen juntas en muchos textos.</p>
+<h3 id="relacion-con-modelos-preentrenados-y-aprendizaje-por-transferencia">Relación con modelos preentrenados y aprendizaje por transferencia</h3>
+<p>ZSL suele apoyarse en aprendizaje por transferencia: se reutilizan modelos ya entrenados (por ejemplo, <strong>BERT</strong> para texto, <strong>ResNet</strong> o <strong>ViT</strong> para imágenes) para obtener buenas representaciones sin empezar desde cero. Estos modelos preentrenados generan <em>embeddings</em> útiles que luego se pueden combinar con información auxiliar para hacer clasificación zero-shot.​</p>
+<p>Los grandes modelos de lenguaje (LLM) son especialmente interesantes para ZSL porque, al estar entrenados en enormes <em>corpus</em> de texto, capturan el significado de las palabras y las etiquetas, y pueden razonar sobre clases que no han visto etiquetadas explícitamente.​</p>
+<h3 id="variantes-y-metodos-generativos">Variantes y métodos generativos</h3>
+<p>Además de los métodos basados en incrustaciones, existen enfoques generativos que usan modelos como <strong>VAE</strong>, <strong>GAN</strong> o modelos de IA generativa para sintetizar ejemplos de las clases no vistas a partir de sus descripciones. Una vez generados y etiquetados esos ejemplos sintéticos, el problema se convierte en un aprendizaje supervisado clásico.​</p>
+<blockquote>
+<p>“Ejemplos sintéticos” son datos creados artificialmente por un modelo o algoritmo, en lugar de venir de casos reales observados.​
+En el contexto de zero-shot, significa que el modelo genera “falsos ejemplos” de una clase nueva (por ejemplo, textos que describen o simulan esa clase) usando su conocimiento previo y descripciones auxiliares; después, esos ejemplos generados se tratan como si fueran datos de entrenamiento normales para entrenar o ajustar otro modelo</p>
+</blockquote>
+<p>En resumen, <strong>el aprendizaje zero-shot permite que un modelo generalice a categorías nuevas utilizando conocimiento semántico y modelos preentrenados, reduciendo la necesidad de grandes conjuntos de datos etiquetados para cada nueva clase que se quiera reconocer</strong>.</p>
+<hr />
+<p>Volviendo a la visión por computador, la clasificación de imágenes sin entrenamiento previo funciona transfiriendo el conocimiento aprendido durante el entrenamiento de un modelo para clasificar clases nuevas que no estaban presentes en los datos de entrenamiento. Por lo tanto, se trata de una variante del aprendizaje por transferencia. Por ejemplo, <strong>un modelo entrenado para diferenciar coches de aviones puede utilizarse para clasificar imágenes de barcos</strong>.</p>
+<h3 id="aprendizaje-con-pocos-ejemplos">Aprendizaje con pocos ejemplos</h3>
+<p>El aprendizaje con pocos ejemplos es un método en el que los sistemas aprenden a reconocer nuevos objetos utilizando solo un pequeño número de ejemplos. Por ejemplo, si le mostramos a un modelo algunas imágenes de un pingüino, un pelícano y un frailecillo (este pequeño grupo se llama el "conjunto de soporte"), aprende cómo son estos pájaros. </p>
+<p>Más tarde, si le mostramos al modelo una nueva imagen, como un pingüino, compara esta nueva imagen con las de su conjunto de soporte y elige la coincidencia más cercana. Cuando es difícil reunir una gran cantidad de datos, este método es beneficioso porque el sistema aún puede aprender y adaptarse con solo unos pocos ejemplos.</p>
+<p><img alt="" src="../img/aprendizaje_con_pocos_ejemplos.png" /></p>
+<h3 id="aprendizaje-zero-shot">Aprendizaje Zero-shot</h3>
+<p>Tal y como hemos comentado, el aprendizaje zero-shot es una forma de que las máquinas reconozcan cosas que nunca han visto antes sin necesidad de ejemplos de ellas. Utiliza información semántica, como descripciones, para ayudar a establecer conexiones.</p>
+<p>Por ejemplo, si una máquina ha aprendido sobre animales como gatos, leones y caballos comprendiendo características como "pequeño y esponjoso", "gran felino salvaje" o "cara larga", puede utilizar este conocimiento para identificar un nuevo animal, como un tigre. Incluso si nunca ha visto un tigre antes, puede utilizar una descripción como "un animal parecido a un león con rayas oscuras" para identificarlo correctamente. Esto facilita que las máquinas aprendan y se adapten sin necesidad de muchos ejemplos.</p>
+<p><img alt="" src="../img/aprendizaje_zero_shot.png" /></p>
+<h3 id="aprendizaje-por-transferencia-transfer-learning">Aprendizaje por transferencia (Transfer learning)</h3>
+<p>El <strong>aprendizaje por transferencia</strong> es un paradigma de aprendizaje en el que un modelo utiliza lo que ha aprendido de una tarea para ayudar a resolver una tarea nueva similar. Esta técnica es especialmente útil cuando se trata de tareas de visión artificial como la detección de objetos, la clasificación de imágenes y el reconocimiento de patrones. </p>
+<p>Por ejemplo, en visión artificial, un modelo preentrenado puede reconocer objetos generales, como animales, y luego ajustarse mediante el aprendizaje por transferencia para identificar objetos específicos, como diferentes razas de perros. Al reutilizar el conocimiento de tareas anteriores, el aprendizaje por transferencia facilita el entrenamiento de <strong>modelos de visión artificial</strong> en conjuntos de datos más pequeños, lo que ahorra tiempo y esfuerzo.</p>
+<p><img alt="" src="../img/aprendizaje_por_transferencia.png" /></p>
+<h3 id="aplicaciones-en-el-mundo-real-de-varios-paradigmas-de-aprendizaje">Aplicaciones en el mundo real de varios paradigmas de aprendizaje</h3>
+<h4 id="diagnostico-de-enfermedades-raras-con-aprendizaje-de-pocos-ejemplos">Diagnóstico de enfermedades raras con aprendizaje de pocos ejemplos</h4>
+<p>El aprendizaje con pocos ejemplos ha cambiado las reglas del juego para el sector de la salud, especialmente en imágenes médicas. Puede ayudar a los médicos a diagnosticar enfermedades raras utilizando solo unos pocos ejemplos o incluso descripciones, sin necesidad de grandes cantidades de datos. Esto es especialmente útil cuando los datos son limitados, lo que suele ser el caso porque la recopilación de grandes conjuntos de datos para afecciones raras puede ser un desafío.</p>
+<p>Por ejemplo, <a href="https://www.medrxiv.org/content/10.1101/2022.12.07.22283238v3.full">SHEPHERD</a> utiliza el aprendizaje con pocos ejemplos y grafos de conocimiento biomédico para diagnosticar trastornos genéticos raros. Mapea la información del paciente, como los síntomas y los resultados de las pruebas, en una red de genes y enfermedades conocidos. Esto ayuda a identificar la causa genética probable y a encontrar casos similares, incluso cuando los datos son limitados. </p>
+<p><img alt="" src="../img/zsl_modelo_shepherd.png" /></p>
+<h4 id="mejora-de-la-deteccion-de-enfermedades-de-plantas-con-aprendizaje-zero-shot">Mejora de la detección de enfermedades de plantas con aprendizaje zero-shot</h4>
+<p>En agricultura, la identificación rápida de enfermedades en las plantas es esencial porque los retrasos en la detección pueden provocar daños generalizados en los cultivos, la reducción de los rendimientos y pérdidas financieras significativas. Los métodos tradicionales a menudo se basan en grandes conjuntos de datos y conocimientos especializados, que no siempre son accesibles, especialmente en áreas remotas o con recursos limitados. Aquí es donde entran en juego los avances en IA, como el aprendizaje zero-shot.</p>
+<p>Supongamos que un agricultor cultiva tomates y patatas y observa síntomas como hojas amarillentas o manchas marrones. El aprendizaje cero puede ayudar a identificar enfermedades como el tizón tardío sin necesidad de grandes conjuntos de datos. Utilizando descripciones de los síntomas, el modelo puede classify enfermedades que no ha visto antes. Este método es rápido, escalable y permite a los agricultores detectar diversos problemas de las plantas. Les ayuda a controlar la salud de los cultivos de forma más eficaz, tomar medidas a tiempo y reducir las pérdidas.</p>
+<p><img alt="" src="../img/zsl_tomato_potato.png" /></p>
+<h4 id="vehiculos-autonomos-y-aprendizaje-por-transferencia">Vehículos autónomos y aprendizaje por transferencia</h4>
+<p>Los vehículos autónomos a menudo necesitan adaptarse a diferentes entornos para navegar de forma segura. El aprendizaje por transferencia les ayuda a utilizar el conocimiento previo para adaptarse rápidamente a nuevas condiciones sin comenzar su entrenamiento desde cero. Combinadas con la visión artificial, que ayuda a los vehículos a interpretar la información visual, estas tecnologías permiten una navegación más fluida en diferentes terrenos y condiciones climáticas, lo que hace que la conducción autónoma sea más eficiente y fiable.</p>
+<p>Un buen ejemplo de ello es un <a href="https://docs.ultralytics.com/es/guides/parking-management/#what-is-parking-management-system">sistema de gestión de aparcamientos</a> que utiliza <a href="https://ultralytics.com/">YOLO11 Ultralytics</a> para controlar las plazas de aparcamiento. YOLO11, un modelo de detección de objetos preentrenado, puede ajustarse mediante aprendizaje por transferencia para identificar plazas de aparcamiento vacías y ocupadas en tiempo real. Al entrenar el modelo en un conjunto de datos más pequeño de imágenes de aparcamientos, aprende a detectar con precisión plazas abiertas, plazas llenas e incluso zonas reservadas.</p>
+<p><img alt="" src="../img/zsl_parking_with_yolo.png" />
+‍
+Integrado con otras tecnologías, este sistema puede guiar a los conductores hasta la plaza disponible más cercana, ayudando a reducir el tiempo de búsqueda y la congestión del tráfico. El aprendizaje por transferencia lo hace posible basándose en las capacidades de detección de objetos existentes de YOLO11, lo que le permite adaptarse a las necesidades específicas de la gestión de aparcamientos sin empezar de cero. Este enfoque ahorra tiempo y recursos al tiempo que crea una solución altamente eficiente y escalable que mejora las operaciones de aparcamiento y mejora la experiencia general del usuario.</p>
+<p>Los datos en este paradigma de aprendizaje consisten en:</p>
+<ul>
+<li><strong>Datos vistos</strong>: imágenes y sus etiquetas correspondientes.</li>
+<li><strong>Datos no vistos</strong>: solo etiquetas y sin imágenes.</li>
+<li><strong>Información auxiliar</strong>: información adicional proporcionada al modelo durante el entrenamiento que conecta los datos vistos y no vistos. Esto puede ser en forma de descripción textual o incrustaciones de palabras.</li>
+</ul>
+<p>Tradicionalmente, la clasificación de imágenes ha requierdo entrenar un modelo con un conjunto específico de imágenes etiquetadas, y este modelo aprende a «asignar» ciertas características de las imágenes a las etiquetas. Cuando es necesario utilizar dicho modelo para una tarea de clasificación que introduce un nuevo conjunto de etiquetas, es necesario realizar un fine-tunning (ajuste fino) para «recalibrar» el modelo.</p>
+<p>Por el contrario, los modelos de clasificación de imágenes de vocabulario abierto o sin entrenamiento previo suelen ser modelos multimodales que se han entrenado con un gran conjunto de datos de imágenes y descripciones asociadas. Estos modelos aprenden representaciones alineadas de visión y lenguaje que pueden utilizarse para muchas tareas posteriores, incluida la clasificación de imágenes sin entrenamiento previo.</p>
+<p>Se trata de un enfoque más flexible de la clasificación de imágenes que permite a los modelos generalizar a categorías nuevas y desconocidas sin necesidad de datos de entrenamiento adicionales y permite a los usuarios consultar imágenes con descripciones de texto de formato libre de sus objetos de destino.</p>
+<p>Hugging Face proporciona herramientas y procesos para implementar la clasificación de imágenes sin entrenamiento previo utilizando modelos multimodales preentrenados como <strong>CLIP</strong> (Contrastive Language–Image Pre-training), que se entrenan con grandes conjuntos de datos de imágenes emparejadas con descripciones en lenguaje natural. Estos modelos aprenden a comprender la relación entre el contenido visual y el lenguaje, lo que los hace muy eficaces para tareas sin entrenamiento previo. <strong>Por ejemplo</strong>, un modelo entrenado en categorías de objetos comunes puede clasificar una imagen de un barco comparando sus características visuales con la incrustación semántica de la palabra «barco».</p>
+<h2 id="modelos-disponibles-en-hugging-face_1">🧰 Modelos disponibles en Hugging Face</h2>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Arquitectura</th>
+<th>Característica</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openai/clip-vit-base-patch32</code></td>
+<td>CLIP (ViT + Transformer)</td>
+<td>Texto + Imagen</td>
+<td><a href="https://huggingface.co/openai/clip-vit-base-patch32">🔗 Ver modelo</a></td>
+</tr>
+<tr>
+<td><code>laion/CLIP-ViT-B-32-laion2B-s34B-b79K</code></td>
+<td>CLIP</td>
+<td>Entrenado en LAION</td>
+<td><a href="https://huggingface.co/laion/CLIP-ViT-B-32-laion2B-s34B-b79K">🔗 Ver modelo</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="como-usar-la-tarea-en-python">🧪 Cómo usar la tarea en Python</h2>
+<p>Hugging Face proporciona la tarea mediante <code>pipeline</code>. Para poder ejecuarlo necesitamos instalar previamente las librerías <code>transformers</code>, <code>torch</code> y <code>PIL</code> (CLIPImageProcessor require la librería PIL):</p>
+<p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>torch<span class="w"> </span>pillow
+</code></pre></div>
+A continuación probamos un ejemplo sencillo en el que pasamos una imagen al pipeline y mostramos el resulado por la consola.</p>
+<p><img alt="" src="../img/jevgeni.jpg" /></p>
+<blockquote>
+<p>La imagen la podéis descargar desde esta url <a href="https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640">https://unsplash.com/photos/g8oS8-82DxI/download?ixid=MnwxMjA3fDB8MXx0b3BpY3x8SnBnNktpZGwtSGt8fHx8fDJ8fDE2NzgxMDYwODc&amp;force=true&amp;w=640</a></p>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span><span class="p">)</span>
+
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
+<span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fox&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;seagull&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">]</span> <span class="c1">#[&quot;zorro&quot;, &quot;oso&quot;, &quot;gaviota&quot;, &quot;búho&quot;]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+Predicciones:
+<div class="highlight"><pre><span></span><code>Using<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>image<span class="w"> </span>processor<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;use_fast&quot;</span><span class="w"> </span>is<span class="w"> </span><span class="nb">unset</span><span class="w"> </span>and<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>processor<span class="w"> </span>was<span class="w"> </span>saved<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>model.<span class="w"> </span>
+<span class="s2">&quot;use_fast=True&quot;</span><span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>behavior<span class="w"> </span><span class="k">in</span><span class="w"> </span>v4.52,<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>model<span class="w"> </span>was<span class="w"> </span>saved<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>slow<span class="w"> </span>processor.<span class="w"> </span>
+This<span class="w"> </span>will<span class="w"> </span>result<span class="w"> </span><span class="k">in</span><span class="w"> </span>minor<span class="w"> </span>differences<span class="w"> </span><span class="k">in</span><span class="w"> </span>outputs.<span class="w"> </span>You<span class="s1">&#39;ll still be able to use a slow processor with &quot;use_fast=False&quot;.</span>
+<span class="s1">Device set to use cpu</span>
+<span class="s1">[</span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.9991915822029114, &#39;</span>label<span class="s1">&#39;: &#39;</span>owl<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00041212819633074105, &#39;</span>label<span class="s1">&#39;: &#39;</span>seagull<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00024944543838500977, &#39;</span>label<span class="s1">&#39;: &#39;</span>bear<span class="s1">&#39;}, </span>
+<span class="s1"> {&#39;</span>score<span class="s1">&#39;: 0.00014685299538541585, &#39;</span>label<span class="s1">&#39;: &#39;</span>fox<span class="err">&#39;</span><span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></p>
+<blockquote>
+<p>Es posible que veamos una advertencia del <code>transformers</code> indicando que el <code>image processor</code>se guardó con el modelo más lento (“slow”), y que en una versión futura (v4.52) el valor por defecto será <code>use_fast=True</code>.</p>
+</blockquote>
+<p>Para eliminar la advertencia instalamos las librerías <code>accelerate</code> y <code>torchvision</code>:
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>accelerate<span class="w"> </span>torchvision
+</code></pre></div>
+Y retocamos el código anterior realizando los siguientes ajustes:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">AutoImageProcessor</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;openai/clip-vit-base-patch32&quot;</span>
+
+<span class="c1"># Forzamos el uso del procesador &quot;fast&quot;</span>
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">AutoImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="n">task</span><span class="o">=</span><span class="s2">&quot;zero-shot-image-classification&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+    <span class="n">image_processor</span><span class="o">=</span><span class="n">image_processor</span><span class="p">,</span>  <span class="c1"># usamos el procesador rápido</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  <span class="c1"># si tenemos GPU configurada, la usa. Si no, usa la CPU normal</span>
+<span class="p">)</span>
+
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;./images/jevgeni-fil-g8oS8-82DxI-unsplash.jpg&quot;</span>
+<span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fox&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;seagull&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+Resultado (ya no se muestra la advertencia):
+<div class="highlight"><pre><span></span><code>Device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>cpu
+<span class="o">[</span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.9991913437843323,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;owl&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.0004113616014365107,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;seagull&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.00025038630701601505,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;bear&#39;</span><span class="o">}</span>,<span class="w"> </span>
+<span class="w">    </span><span class="o">{</span><span class="s1">&#39;score&#39;</span>:<span class="w"> </span><span class="m">0</span>.00014685996575281024,<span class="w"> </span><span class="s1">&#39;label&#39;</span>:<span class="w"> </span><span class="s1">&#39;fox&#39;</span><span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></p>
+<h2 id="actividad-4-clasificacion-zero-shot-con-clip-usando-gradio">📝 <strong>Actividad 4: Clasificación Zero-Shot con CLIP usando Gradio</strong></h2>
+<p>Crea una interfaz interactiva con Gradio que permita subir una imagen, introducir etiquetas personalizadas y mostrar las probabilidades para cada etiqueta.</p>
+<p><img alt="" src="../img/act4_prototipo.png" /></p>
+<h3 id="requisitos">Requisitos:</h3>
+<ul>
+<li>Usar el modelo <a href="https://huggingface.co/openai/clip-vit-base-patch32"><code>openai/clip-vit-base-patch32</code></a>.</li>
+<li>Implementar la interfaz con Gradio.</li>
+<li>Mostrar las etiquetas ordenadas por puntuación (score).</li>
+</ul>
+<h2 id="extensiones-posibles-optativas">🧩 Extensiones posibles (Optativas)</h2>
+<ul>
+<li>Añadir visualización de la imagen con la etiqueta más probable superpuesta.</li>
+<li>Integrar con una API para obtener etiquetas dinámicas.</li>
+<li>Comparar resultados con otro modelo CLIP entrenado en LAION.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../Ejemplo_gradio/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Gradio">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Gradio
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../nlp/01_intro/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Introducción
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
