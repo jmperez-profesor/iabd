@@ -56,6 +56,10 @@ markdown_extensions:
 
 nav:
   - Introducción: index.md 
+  - Cloud: 
+    - Sesión 1 Cloud y AWS: 
+      - Reto copilot: cloud/sesion1/sesion1_cloud_aws_copilot.md
+      - Reto Amazon Q: cloud/sesion1/actividad_ayuntamiento_elche.md
   - Bedrock: 
     - bedrock/sesion1.md
   - Hugging Face:
@@ -66,11 +70,11 @@ nav:
       - Textos (NLP): 
         - Introducción: hf/nlp/01_intro.md
         - Reto1 - Sentimientos: hf/nlp/02_reto1_sentimientos.md
-#       - Solución Reto1 - Sentimientos: hf/nlp/soluciones/reto1_solucion.md
+        - Solución Reto1 - Sentimientos: hf/nlp/soluciones/reto1_solucion.md
         - Reto2 - Clasificacion: hf/nlp/03_reto2_clasificacion.md
-#       - Solución Reto2 - Clasificacion: hf/nlp/soluciones/reto2_solucion.md
+        - Solución Reto2 - Clasificacion: hf/nlp/soluciones/reto2_solucion.md
         - Reto3 - Generación: hf/nlp/04_reto3_generacion.md
-#       - Solución Reto3 - Generación: hf/nlp/soluciones/reto3_solucion.md
+        - Solución Reto3 - Generación: hf/nlp/soluciones/reto3_solucion.md
     - Referencias: hf/Referencias.md
   - Datasets: 
     - Datasets/Datasets.md
