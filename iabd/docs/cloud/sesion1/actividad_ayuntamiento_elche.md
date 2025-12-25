@@ -3,7 +3,7 @@ title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE (Amazon Q
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# ACTIVIDAD PRÁCTICA: MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE
+# ACTIVIDAD PRÁCTICA: MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE (Amazon Q)
 
 ## CONTEXTO DE LA ACTIVIDAD
 

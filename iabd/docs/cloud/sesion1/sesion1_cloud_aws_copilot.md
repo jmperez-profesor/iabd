@@ -3,11 +3,12 @@ title: Cloud y AWS - Elche Cloud Move — Actividad de Migración a AWS (Copilot
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# Elche Cloud Move — Actividad de Migración a AWS
+# Elche Cloud Move — Actividad de Migración a AWS (Copilot)
 
 **Versión descargable en formato Markdown**. Preparado para una sesión de **2 horas** en equipos de **3–4 estudiantes**.
 
 > Basado en los contenidos de: 
+
 > - Cloud computing / computación en la nube (modelos, ventajas, TCO, CapEx/OpEx) — https://aitor-medrano.github.io/iabd/cloud/cloud.html  
 > - Amazon Web Services (servicios principales: compute, datos, red, seguridad, gobierno y costes; VPC y responsabilidad compartida) — https://aitor-medrano.github.io/iabd/cloud/aws.html  
 > - Arquitecturas cloud y **AWS Well‑Architected Framework (WAF)** — https://aitor-medrano.github.io/iabd/cloud/waf.html

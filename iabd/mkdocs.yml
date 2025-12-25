@@ -58,8 +58,9 @@ nav:
   - Introducción: index.md 
   - Cloud: 
     - Sesión 1 Cloud y AWS: 
-      - Reto copilot: cloud/sesion1/sesion1_cloud_aws_copilot.md
       - Reto Amazon Q: cloud/sesion1/actividad_ayuntamiento_elche.md
+      - Reto copilot: cloud/sesion1/sesion1_cloud_aws_copilot.md      
+      - Reto Gemini: cloud/sesion1/sesion1_cloud_aws_gemini.md
   - Bedrock: 
     - bedrock/sesion1.md
   - Hugging Face:
