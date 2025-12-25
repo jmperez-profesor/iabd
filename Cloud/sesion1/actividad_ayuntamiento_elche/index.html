@@ -1,0 +1,2795 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/Cloud/sesion1/actividad_ayuntamiento_elche/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE (Amazon Q) - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#actividad-practica-migracion-a-la-nube-caso-ayuntamiento-de-elche" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE (Amazon Q)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../cloud/sesion1/sesion1_cloud_aws_copilot.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sesión 1 Cloud y AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloud/sesion1/sesion1_cloud_aws_copilot.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloud/sesion1/actividad_ayuntamiento_elche.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="actividad-practica-migracion-a-la-nube-caso-ayuntamiento-de-elche">ACTIVIDAD PRÁCTICA: MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE</h1>
+<h2 id="contexto-de-la-actividad">CONTEXTO DE LA ACTIVIDAD</h2>
+<p>El Ayuntamiento de Elche sufrió recientemente un ciberataque que dejó prácticamente colapsados todos los sistemas de información, afectando tanto a ciudadanos como a trabajadores municipales. Ante esta situación crítica, el consistorio está valorando migrar parte de sus servicios a la nube, específicamente a Amazon Web Services (AWS), para mejorar la seguridad, disponibilidad y resiliencia de sus sistemas.</p>
+<h2 id="enunciado-para-el-alumnado">ENUNCIADO PARA EL ALUMNADO</h2>
+<h3 id="situacion-actual-del-ayuntamiento-de-elche">Situación Actual del Ayuntamiento de Elche</h3>
+<p>Tras el ciberataque, se ha identificado la siguiente infraestructura crítica afectada:</p>
+<p><strong>Servicios Ciudadanos:</strong>
+- Portal web municipal (información, trámites online)
+- Sistema de cita previa
+- Padrón municipal y censo
+- Gestión de multas y sanciones
+- Plataforma de participación ciudadana</p>
+<p><strong>Sistemas Internos:</strong>
+- Gestión de recursos humanos y nóminas
+- Contabilidad y presupuestos
+- Gestión de licencias y permisos
+- Sistema de expedientes administrativos
+- Base de datos de proveedores</p>
+<p><strong>Infraestructura Técnica:</strong>
+- Servidores físicos (15 servidores)
+- Sistema de copias de seguridad
+- Red interna y conectividad
+- Sistemas de seguridad y monitorización</p>
+<h3 id="tarea-a-realizar">TAREA A REALIZAR</h3>
+<p>Trabajando en equipos de 3-4 personas, debéis actuar como consultores especializados en Cloud Computing para el Ayuntamiento de Elche. Vuestra misión es:</p>
+<ol>
+<li><strong>Análisis de la situación actual</strong> (30 minutos)</li>
+<li>Identificar los servicios más críticos para migrar</li>
+<li>Evaluar los riesgos de mantener sistemas on-premise</li>
+<li>
+<p>Determinar las ventajas de migrar a AWS</p>
+</li>
+<li>
+<p><strong>Diseño de la arquitectura cloud</strong> (60 minutos)</p>
+</li>
+<li>Proponer qué servicios AWS utilizar para cada necesidad</li>
+<li>Definir la estrategia de migración (IaaS, PaaS, SaaS)</li>
+<li>Establecer medidas de seguridad y backup</li>
+<li>
+<p>Considerar aspectos de cumplimiento normativo (RGPD)</p>
+</li>
+<li>
+<p><strong>Presentación de la propuesta</strong> (30 minutos)</p>
+</li>
+<li>Cada equipo presenta su solución (5-7 minutos)</li>
+<li>Justificar las decisiones técnicas tomadas</li>
+<li>Explicar los beneficios esperados</li>
+</ol>
+<h3 id="entregables">ENTREGABLES</h3>
+<ol>
+<li><strong>Documento técnico</strong> (máximo 3 páginas) que incluya:</li>
+<li>Análisis de servicios a migrar (priorización)</li>
+<li>Arquitectura AWS propuesta con diagrama</li>
+<li>Justificación de servicios AWS seleccionados</li>
+<li>Plan de migración por fases</li>
+<li>
+<p>Medidas de seguridad implementadas</p>
+</li>
+<li>
+<p><strong>Presentación</strong> (máximo 8 slides) para exponer la solución</p>
+</li>
+</ol>
+<h3 id="recursos-disponibles">RECURSOS DISPONIBLES</h3>
+<ul>
+<li>Documentación teórica sobre Cloud Computing y AWS</li>
+<li>AWS Architecture Center (diagramas de referencia)</li>
+<li>Calculadora de precios de AWS</li>
+<li>Casos de estudio de administraciones públicas</li>
+</ul>
+<hr />
+<h2 id="rubrica-de-evaluacion">RÚBRICA DE EVALUACIÓN</h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Excelente (4)</th>
+<th>Bueno (3)</th>
+<th>Satisfactorio (2)</th>
+<th>Insuficiente (1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Análisis de la situación</strong></td>
+<td>Identifica correctamente todos los servicios críticos y evalúa riesgos de forma exhaustiva</td>
+<td>Identifica la mayoría de servicios críticos con buena evaluación de riesgos</td>
+<td>Identifica servicios básicos con evaluación superficial de riesgos</td>
+<td>Análisis incompleto o incorrecto</td>
+</tr>
+<tr>
+<td><strong>Conocimiento técnico Cloud/AWS</strong></td>
+<td>Demuestra dominio avanzado de conceptos cloud y servicios AWS específicos</td>
+<td>Buen conocimiento de conceptos cloud y servicios AWS principales</td>
+<td>Conocimiento básico de cloud computing y algunos servicios AWS</td>
+<td>Conocimiento limitado o incorrecto</td>
+</tr>
+<tr>
+<td><strong>Arquitectura propuesta</strong></td>
+<td>Diseño coherente, escalable y bien justificado con servicios AWS apropiados</td>
+<td>Diseño sólido con buena selección de servicios AWS</td>
+<td>Diseño básico pero funcional</td>
+<td>Diseño incompleto o inadecuado</td>
+</tr>
+<tr>
+<td><strong>Seguridad y cumplimiento</strong></td>
+<td>Implementa medidas de seguridad avanzadas y considera RGPD completamente</td>
+<td>Buenas medidas de seguridad con consideración del RGPD</td>
+<td>Medidas de seguridad básicas</td>
+<td>Seguridad insuficiente o no considerada</td>
+</tr>
+<tr>
+<td><strong>Plan de migración</strong></td>
+<td>Plan detallado por fases con cronograma realista</td>
+<td>Plan estructurado con fases definidas</td>
+<td>Plan básico de migración</td>
+<td>Plan inexistente o poco realista</td>
+</tr>
+<tr>
+<td><strong>Presentación y comunicación</strong></td>
+<td>Presentación clara, profesional y convincente</td>
+<td>Buena presentación con argumentos sólidos</td>
+<td>Presentación adecuada</td>
+<td>Presentación deficiente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Puntuación total: ___/24 puntos</strong></p>
+<p><strong>Calificación:</strong>
+- 22-24 puntos: Sobresaliente (9-10)
+- 18-21 puntos: Notable (7-8)
+- 14-17 puntos: Bien (6-7)
+- 10-13 puntos: Suficiente (5-6)
+- &lt;10 puntos: Insuficiente (&lt;5)</p>
+<hr />
+<h2 id="solucion-1-migracion-hibrida-progresiva">SOLUCIÓN 1: MIGRACIÓN HÍBRIDA PROGRESIVA</h2>
+<h3 id="analisis-detallado-de-prioridades">Análisis Detallado de Prioridades</h3>
+<h4 id="matriz-de-criticidad-y-complejidad">Matriz de Criticidad y Complejidad</h4>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Criticidad</th>
+<th>Complejidad</th>
+<th>Usuarios</th>
+<th>Prioridad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portal web municipal</td>
+<td>Alta</td>
+<td>Media</td>
+<td>50,000+</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Sistema cita previa</td>
+<td>Alta</td>
+<td>Baja</td>
+<td>15,000/mes</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Gestión multas</td>
+<td>Alta</td>
+<td>Media</td>
+<td>8,000/mes</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Padrón municipal</td>
+<td>Media</td>
+<td>Alta</td>
+<td>220,000</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Licencias y permisos</td>
+<td>Media</td>
+<td>Alta</td>
+<td>2,000/mes</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Participación ciudadana</td>
+<td>Baja</td>
+<td>Baja</td>
+<td>1,500/mes</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RRHH y nóminas</td>
+<td>Media</td>
+<td>Alta</td>
+<td>800 empleados</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Contabilidad</td>
+<td>Alta</td>
+<td>Alta</td>
+<td>50 usuarios</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Expedientes</td>
+<td>Media</td>
+<td>Muy Alta</td>
+<td>1,200 usuarios</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cronograma-detallado-por-fases">Cronograma Detallado por Fases</h4>
+<p><strong>FASE 1 - SERVICIOS CRÍTICOS CIUDADANOS (0-3 meses)</strong></p>
+<p><em>Mes 1 - Preparación y Fundación:</em>
+- Semana 1-2: Auditoría técnica completa de sistemas actuales
+- Semana 3: Configuración AWS Organizations y cuentas (Prod, Dev, Test)
+- Semana 4: Implementación VPC multi-AZ con subnets públicas/privadas</p>
+<p><em>Mes 2 - Portal Web Municipal:</em>
+- Semana 1: Migración base de datos a RDS MySQL Multi-AZ
+- Semana 2: Despliegue aplicación web en EC2 con Auto Scaling
+- Semana 3: Configuración CloudFront + Route 53 + certificados SSL
+- Semana 4: Testing y optimización de rendimiento</p>
+<p><em>Mes 3 - Sistemas de Citas y Multas:</em>
+- Semana 1-2: Migración sistema cita previa (API REST + base datos)
+- Semana 3-4: Migración gestión multas con integración DGT</p>
+<h3 id="arquitectura-aws-detallada">Arquitectura AWS Detallada</h3>
+<h4 id="diagrama-de-red-y-seguridad">Diagrama de Red y Seguridad</h4>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
+│                        AWS CLOUD                            │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │                VPC (10.0.0.0/16)                       ││
+│  │  ┌──────────────────┐    ┌──────────────────┐          ││
+│  │  │   AZ-1a          │    │   AZ-1b          │          ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
+│  │  │ │Public Subnet │ │    │ │Public Subnet │ │          ││
+│  │  │ │10.0.1.0/24   │ │    │ │10.0.2.0/24   │ │          ││
+│  │  │ │              │ │    │ │              │ │          ││
+│  │  │ │  ALB         │ │    │ │  ALB         │ │          ││
+│  │  │ │  NAT Gateway │ │    │ │  NAT Gateway │ │          ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
+│  │  │ │Private Subnet│ │    │ │Private Subnet│ │          ││
+│  │  │ │10.0.3.0/24   │ │    │ │10.0.4.0/24   │ │          ││
+│  │  │ │              │ │    │ │              │ │          ││
+│  │  │ │  EC2 Web     │ │    │ │  EC2 Web     │ │          ││
+│  │  │ │  EC2 App     │ │    │ │  EC2 App     │ │          ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
+│  │  │ │DB Subnet     │ │    │ │DB Subnet     │ │          ││
+│  │  │ │10.0.5.0/24   │ │    │ │10.0.6.0/24   │ │          ││
+│  │  │ │              │ │    │ │              │ │          ││
+│  │  │ │  RDS Primary │ │    │ │  RDS Standby │ │          ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
+│  │  └──────────────────┘    └──────────────────┘          ││
+│  └─────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h4 id="configuraciones-especificas-de-servicios">Configuraciones Específicas de Servicios</h4>
+<p><strong>1. Amazon EC2 - Servidores de Aplicación</strong></p>
+<p><em>Configuración Portal Web:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Instance Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t3.medium (2 vCPU, 4GB RAM)</span>
+<span class="nt">AMI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amazon Linux 2023</span>
+<span class="nt">Auto Scaling Group</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 instances</span>
+<span class="w">  </span><span class="nt">Max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 instances</span>
+<span class="w">  </span><span class="nt">Desired</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 instances</span>
+<span class="w">  </span><span class="nt">Target Tracking</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU 70%</span>
+<span class="nt">Security Groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP/HTTPS from ALB only</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSH from Bastion Host only</span>
+<span class="nt">User Data Script</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Apache/Nginx</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy application code from S3</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure CloudWatch agent</span>
+</code></pre></div></p>
+<p><em>Configuración Aplicaciones Backend:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Instance Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t3.large (2 vCPU, 8GB RAM)</span>
+<span class="nt">Auto Scaling Group</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 instances</span>
+<span class="w">  </span><span class="nt">Max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6 instances</span>
+<span class="w">  </span><span class="nt">Desired</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 instances</span>
+<span class="nt">Load Balancer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application Load Balancer</span>
+<span class="nt">Health Checks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health endpoint</span>
+</code></pre></div></p>
+<p><strong>2. Amazon RDS - Base de Datos</strong></p>
+<p><em>Configuración Principal:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL 8.0</span>
+<span class="nt">Instance Class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db.t3.medium</span>
+<span class="nt">Multi-AZ</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="nt">Storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500GB GP3 SSD</span>
+<span class="nt">Backup Retention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 days</span>
+<span class="nt">Maintenance Window</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sunday 03:00-04:00 UTC</span>
+<span class="nt">Security Groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL port 3306 from EC2 security group only</span>
+<span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes (AWS KMS)</span>
+<span class="nt">Performance Insights</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled</span>
+</code></pre></div></p>
+<p><em>Configuración Read Replicas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Read Replica 1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Same AZ as primary (reporting)</span>
+<span class="nt">Read Replica 2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Different region (disaster recovery)</span>
+</code></pre></div></p>
+<p><strong>3. Amazon S3 - Almacenamiento</strong></p>
+<p><em>Buckets Configurados:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">ayto-elche-web-assets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Purpose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Static web content, images, CSS, JS</span>
+<span class="w">  </span><span class="nt">Versioning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled</span>
+<span class="w">  </span><span class="nt">Lifecycle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete old versions after 90 days</span>
+
+<span class="nt">ayto-elche-documents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Purpose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Citizen documents, PDFs, forms</span>
+<span class="w">  </span><span class="nt">Versioning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled</span>
+<span class="w">  </span><span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSE-S3</span>
+<span class="w">  </span><span class="nt">Access</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Presigned URLs only</span>
+
+<span class="nt">ayto-elche-backups</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Purpose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Database and application backups</span>
+<span class="w">  </span><span class="nt">Storage Class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IA after 30 days, Glacier after 90 days</span>
+<span class="w">  </span><span class="nt">Cross-Region Replication</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Madrid region</span>
+
+<span class="nt">ayto-elche-logs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Purpose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application and access logs</span>
+<span class="w">  </span><span class="nt">Lifecycle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete after 2 years</span>
+</code></pre></div></p>
+<p><strong>4. Amazon CloudFront - CDN</strong></p>
+<p><em>Configuración Distribución:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Origins</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALB (dynamic content)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">S3 (static assets)</span>
+<span class="nt">Behaviors</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api/* → ALB (no cache)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/static/* → S3 (cache 1 year)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/* → ALB (cache 1 hour)</span>
+<span class="nt">Security</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WAF Web ACL attached</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS redirect</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom SSL certificate</span>
+<span class="nt">Geo Restrictions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spain only</span>
+</code></pre></div></p>
+<p><strong>5. AWS WAF - Firewall de Aplicaciones</strong></p>
+<p><em>Reglas Configuradas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Rate Limiting</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000 requests per 5 minutes per IP</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100 requests per minute to /login</span>
+<span class="nt">SQL Injection Protection</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Query string inspection</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Body inspection</span>
+<span class="nt">XSS Protection</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTML entity decode</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL decode</span>
+<span class="nt">IP Reputation</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block known malicious IPs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS managed rules</span>
+<span class="nt">Geographic Blocking</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allow only Spain and EU</span>
+<span class="nt">Custom Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block common attack patterns</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allow only business hours for admin panel</span>
+</code></pre></div></p>
+<h4 id="configuracion-de-seguridad-avanzada">Configuración de Seguridad Avanzada</h4>
+<p><strong>1. AWS IAM - Gestión de Identidades</strong></p>
+<p><em>Estructura de Roles:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">EC2InstanceRole</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Policies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">S3ReadOnlyAccess (specific buckets)</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CloudWatchAgentServerPolicy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSMInstanceCore</span>
+
+<span class="nt">LambdaExecutionRole</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Policies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC access</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS connect</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SES send email</span>
+
+<span class="nt">DeveloperRole</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Policies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2 read/write (dev environment only)</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS read (dev databases only)</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">S3 read/write (dev buckets only)</span>
+
+<span class="nt">AdminRole</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Policies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PowerUserAccess</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Billing read access</span>
+<span class="w">    </span><span class="nt">MFA Required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+</code></pre></div></p>
+<p><em>Políticas de Contraseñas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Password Policy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Minimum length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14 characters</span>
+<span class="w">  </span><span class="nt">Require uppercase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Require lowercase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Require numbers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Require symbols</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Password expiration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90 days</span>
+<span class="w">  </span><span class="nt">Prevent reuse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12 passwords</span>
+</code></pre></div></p>
+<p><strong>2. Amazon VPC - Configuración de Red</strong></p>
+<p><em>Network ACLs:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Public Subnet NACL</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Inbound</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP (80) from 0.0.0.0/0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS (443) from 0.0.0.0/0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSH (22) from office IP only</span>
+<span class="w">  </span><span class="nt">Outbound</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">All traffic allowed</span>
+
+<span class="nt">Private Subnet NACL</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Inbound</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP/HTTPS from public subnets only</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL (3306) from app subnets only</span>
+<span class="w">  </span><span class="nt">Outbound</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS (443) to 0.0.0.0/0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL (3306) to DB subnets only</span>
+</code></pre></div></p>
+<p><em>VPC Flow Logs:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Destination</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CloudWatch Logs</span>
+<span class="nt">Traffic Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALL</span>
+<span class="nt">Log Format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom (src, dst, port, protocol, action)</span>
+<span class="nt">Retention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30 days</span>
+</code></pre></div></p>
+<h4 id="monitorizacion-y-alertas-detalladas">Monitorización y Alertas Detalladas</h4>
+<p><strong>1. Amazon CloudWatch - Métricas Personalizadas</strong></p>
+<p><em>Dashboards Configurados:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Infrastructure Dashboard</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2 CPU, Memory, Disk utilization</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS connections, CPU, read/write IOPS</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALB request count, latency, error rate</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CloudFront cache hit ratio, origin latency</span>
+
+<span class="nt">Application Dashboard</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom application metrics</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User session counts</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Transaction success rates</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">API response times by endpoint</span>
+
+<span class="nt">Security Dashboard</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WAF blocked requests</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Failed login attempts</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unusual traffic patterns</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security group changes</span>
+</code></pre></div></p>
+<p><em>Alertas Críticas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">High Priority Alerts</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EC2 CPU &gt; 80% for 10 minutes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS CPU &gt; 80% for 5 minutes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALB 5xx errors &gt; 5% for 5 minutes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS connection count &gt; 80% of max</span>
+
+<span class="nt">Medium Priority Alerts</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disk usage &gt; 85%</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory usage &gt; 85%</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CloudFront 4xx errors &gt; 10%</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backup job failures</span>
+
+<span class="nt">Security Alerts</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WAF blocking &gt; 1000 requests/hour</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Multiple failed logins from same IP</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Root account usage</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security group modifications</span>
+</code></pre></div></p>
+<p><strong>2. AWS Config - Compliance Monitoring</strong></p>
+<p><em>Reglas de Cumplimiento:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Security Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ec2-security-group-attached-to-eni</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rds-storage-encrypted</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3-bucket-ssl-requests-only</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root-access-key-check</span>
+
+<span class="nt">Backup Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rds-backup-enabled</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ec2-backup-enabled</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3-cross-region-replication-enabled</span>
+
+<span class="nt">Network Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-flow-logs-enabled</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-default-security-group-closed</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subnet-auto-assign-public-ip-disabled</span>
+</code></pre></div></p>
+<h4 id="plan-de-migracion-detallado">Plan de Migración Detallado</h4>
+<p><strong>PREPARACIÓN (Mes 1)</strong></p>
+<p><em>Semana 1 - Auditoría y Análisis:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Actividades</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Inventario completo de aplicaciones y dependencias</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Análisis de tráfico y patrones de uso</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Identificación de datos sensibles y requisitos RGPD</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Evaluación de integraciones con sistemas externos</span>
+
+<span class="nt">Entregables</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documento de arquitectura actual</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Matriz de dependencias</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plan de clasificación de datos</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Análisis de riesgos</span>
+</code></pre></div></p>
+<p><em>Semana 2 - Diseño de Arquitectura:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Actividades</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Diseño detallado de VPC y subnets</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Definición de security groups y NACLs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Planificación de estrategia de backup</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Diseño de monitorización y alertas</span>
+
+<span class="nt">Entregables</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Diagramas de arquitectura AWS</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentación de seguridad</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plan de disaster recovery</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Estimación de costes detallada</span>
+</code></pre></div></p>
+<p><em>Semana 3 - Configuración Base:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Actividades</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creación de cuentas AWS y Organizations</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuración de VPC, subnets, gateways</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Implementación de security groups base</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuración de IAM roles y políticas</span>
+
+<span class="nt">Entregables</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Infraestructura base desplegada</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentación de configuración</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Procedimientos de acceso</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tests de conectividad</span>
+</code></pre></div></p>
+<p><em>Semana 4 - Preparación de Herramientas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Actividades</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuración de pipelines CI/CD</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Implementación de herramientas de monitorización</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuración de backup automatizado</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Preparación de entornos de testing</span>
+
+<span class="nt">Entregables</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pipelines de despliegue funcionales</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dashboards de monitorización</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Procedimientos de backup/restore</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Entorno de pruebas validado</span>
+</code></pre></div></p>
+<h4 id="estimacion-de-costes-detallada">Estimación de Costes Detallada</h4>
+<p><strong>Costes Mensuales Estimados (EUR):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">Compute (EC2)</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Web servers (2x t3.medium)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€60/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">App servers (2x t3.large)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€120/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Bastion host (1x t3.micro)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€8/mes</span>
+<span class="w">  </span><span class="nt">Total Compute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€188/mes</span>
+
+<span class="nt">Storage</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDS MySQL (db.t3.medium, 500GB)</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€180/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">S3 Standard (1TB)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€20/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">S3 IA (2TB)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€25/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">EBS volumes (1TB total)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€80/mes</span>
+<span class="w">  </span><span class="nt">Total Storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€305/mes</span>
+
+<span class="nt">Network</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">CloudFront (500GB transfer)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€40/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Data transfer out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€30/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">NAT Gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€32/mes</span>
+<span class="w">  </span><span class="nt">Total Network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€102/mes</span>
+
+<span class="nt">Security &amp; Monitoring</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">WAF requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€15/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">CloudWatch logs/metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€25/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Config rules</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€10/mes</span>
+<span class="w">  </span><span class="nt">Total Security</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€50/mes</span>
+
+<span class="nt">TOTAL MENSUAL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€645/mes</span>
+<span class="nt">TOTAL ANUAL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€7,740/año</span>
+</code></pre></div>
+<p><strong>Comparación con Infraestructura Actual:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">Costes On-Premise Actuales</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Hardware (amortización)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€2,000/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Mantenimiento</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€800/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Personal IT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€3,500/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Electricidad/Refrigeración</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€400/mes</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Licencias software</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€600/mes</span>
+<span class="w">  </span><span class="nt">Total On-Premise</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€7,300/mes</span>
+
+<span class="nt">Ahorro Estimado</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€6,655/mes (91% reducción)</span>
+<span class="nt">ROI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12 meses</span>
+</code></pre></div></p>
+<hr />
+<h2 id="solucion-2-migracion-cloud-native-acelerada">SOLUCIÓN 2: MIGRACIÓN CLOUD-NATIVE ACELERADA</h2>
+<h3 id="analisis-estrategico-detallado">Análisis Estratégico Detallado</h3>
+<h4 id="filosofia-serverless-first">Filosofía Serverless-First</h4>
+<p>La estrategia cloud-native prioriza servicios completamente gestionados para eliminar la gestión de infraestructura y maximizar la seguridad, escalabilidad y eficiencia operativa.</p>
+<p><strong>Principios de Diseño:</strong>
+1. <strong>Serverless por defecto</strong>: Lambda, API Gateway, DynamoDB
+2. <strong>Servicios gestionados</strong>: RDS, ElastiCache, OpenSearch
+3. <strong>Automatización completa</strong>: Infrastructure as Code (CloudFormation)
+4. <strong>Seguridad integrada</strong>: Cognito, WAF, GuardDuty
+5. <strong>Observabilidad nativa</strong>: CloudWatch, X-Ray, EventBridge</p>
+<h4 id="matriz-de-servicios-por-funcionalidad">Matriz de Servicios por Funcionalidad</h4>
+<table>
+<thead>
+<tr>
+<th>Funcionalidad</th>
+<th>Servicio AWS</th>
+<th>Justificación</th>
+<th>SLA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticación ciudadanos</td>
+<td>Amazon Cognito</td>
+<td>SAML/OAuth2, MFA integrado</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>APIs públicas</td>
+<td>API Gateway + Lambda</td>
+<td>Auto-scaling, sin servidores</td>
+<td>99.95%</td>
+</tr>
+<tr>
+<td>Base datos ciudadanos</td>
+<td>DynamoDB</td>
+<td>NoSQL, escalado automático</td>
+<td>99.99%</td>
+</tr>
+<tr>
+<td>Base datos legacy</td>
+<td>RDS Aurora Serverless</td>
+<td>Compatible SQL, auto-scaling</td>
+<td>99.99%</td>
+</tr>
+<tr>
+<td>Almacenamiento docs</td>
+<td>S3 + CloudFront</td>
+<td>CDN global, 11 9s durabilidad</td>
+<td>99.99%</td>
+</tr>
+<tr>
+<td>Búsqueda documentos</td>
+<td>OpenSearch Serverless</td>
+<td>Elasticsearch gestionado</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>Notificaciones</td>
+<td>SNS + SES</td>
+<td>Push, email, SMS</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>Procesamiento batch</td>
+<td>Step Functions + Lambda</td>
+<td>Orquestación visual</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>Monitorización</td>
+<td>CloudWatch + X-Ray</td>
+<td>Métricas, trazas, logs</td>
+<td>99.9%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arquitectura-serverless-detallada">Arquitectura Serverless Detallada</h3>
+<h4 id="diagrama-de-arquitectura-cloud-native">Diagrama de Arquitectura Cloud-Native</h4>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
+│                        FRONTEND LAYER                           │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│  │   Web Portal    │  │  Mobile App     │  │  Admin Panel    │ │
+│  │   (Amplify)     │  │   (React)       │  │   (React)       │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         CDN LAYER                               │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │                  CloudFront + WAF                           │ │
+│  │  • Global edge locations                                   │ │
+│  │  • DDoS protection                                         │ │
+│  │  • SSL termination                                         │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        API LAYER                               │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│  │  Public APIs    │  │  Internal APIs  │  │  Admin APIs     │ │
+│  │ (API Gateway)   │  │ (API Gateway)   │  │ (API Gateway)   │ │
+│  │ • Rate limiting │  │ • VPC endpoints │  │ • IAM auth      │ │
+│  │ • Caching       │  │ • Private       │  │ • Audit logs    │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      COMPUTE LAYER                              │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│  │  Lambda         │  │  Step Functions │  │  ECS Fargate    │ │
+│  │  Functions      │  │  Workflows      │  │  (Legacy apps)  │ │
+│  │ • Auto-scaling  │  │ • State machine │  │ • Containerized │ │
+│  │ • Event-driven  │  │ • Error handling│  │ • Managed       │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       DATA LAYER                               │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
+│  │   DynamoDB      │  │  RDS Aurora     │  │  OpenSearch     │ │
+│  │ • NoSQL         │  │ • SQL legacy    │  │ • Full-text     │ │
+│  │ • Auto-scaling  │  │ • Serverless    │  │ • Analytics     │ │
+│  │ • Global tables │  │ • Multi-AZ      │  │ • Dashboards    │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h4 id="configuraciones-especificas-de-servicios_1">Configuraciones Específicas de Servicios</h4>
+<p><strong>1. AWS Amplify - Frontend Hosting</strong></p>
+<p><em>Configuración Portal Ciudadano:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub integration</span>
+<span class="nt">Build Settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Node.js version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18</span>
+<span class="w">  </span><span class="nt">Build command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run build</span>
+<span class="w">  </span><span class="nt">Output directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dist</span>
+
+<span class="nt">Environment Variables</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">REACT_APP_API_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.aytoelche.es</span>
+<span class="w">  </span><span class="nt">REACT_APP_COGNITO_USER_POOL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-west-1_XXXXXXX</span>
+<span class="w">  </span><span class="nt">REACT_APP_COGNITO_CLIENT_ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XXXXXXXXXXXXXXXXX</span>
+
+<span class="nt">Custom Domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">portal.aytoelche.es</span>
+<span class="nt">SSL Certificate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Auto-generated</span>
+
+<span class="nt">Branch Settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Production deployment</span>
+<span class="w">  </span><span class="nt">develop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Staging deployment</span>
+<span class="w">  </span><span class="nt">feature/*</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Preview deployments</span>
+
+<span class="nt">Performance</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Compression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gzip enabled</span>
+<span class="w">  </span><span class="nt">Caching</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Static assets 1 year, HTML 1 hour</span>
+</code></pre></div></p>
+<p><strong>2. Amazon Cognito - Autenticación</strong></p>
+<p><em>User Pool Configuración:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">User Pool Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ayto-elche-citizens</span>
+<span class="nt">Attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email, phone_number</span>
+<span class="w">  </span><span class="nt">Custom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dni, address, birth_date</span>
+
+<span class="nt">Password Policy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Minimum length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">  </span><span class="nt">Require uppercase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Require lowercase</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span><span class="w">  </span>
+<span class="w">  </span><span class="nt">Require numbers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+<span class="w">  </span><span class="nt">Require symbols</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+
+<span class="nt">MFA Configuration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">SMS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled for all users</span>
+<span class="w">  </span><span class="nt">TOTP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Optional</span>
+
+<span class="nt">Account Recovery</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Email verification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Required</span>
+<span class="w">  </span><span class="nt">Phone verification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Optional</span>
+
+<span class="nt">Lambda Triggers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Pre-signup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Validate DNI format</span>
+<span class="w">  </span><span class="nt">Post-confirmation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create user profile in DynamoDB</span>
+<span class="w">  </span><span class="nt">Pre-authentication</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check account status</span>
+</code></pre></div></p>
+<p><em>Identity Pool Configuración:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Identity Pool Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ayto-elche-identity</span>
+<span class="nt">Authentication Providers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cognito User Pool</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAML (for employees)</span>
+
+<span class="nt">Roles</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Authenticated Role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CitizenRole</span>
+<span class="w">  </span><span class="nt">Unauthenticated Role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GuestRole (read-only)</span>
+
+<span class="nt">Role Mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Citizens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Basic citizen permissions</span>
+<span class="w">  </span><span class="nt">Employees</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extended admin permissions</span>
+<span class="w">  </span><span class="nt">Admins</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Full system access</span>
+</code></pre></div></p>
+<p><strong>3. API Gateway - Gestión de APIs</strong></p>
+<p><em>API Pública Ciudadanos:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">API Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REST API</span>
+<span class="nt">Endpoint Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Regional</span>
+
+<span class="nt">Resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">/appointments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List available slots</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create appointment</span>
+<span class="w">    </span><span class="nt">PUT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Modify appointment</span>
+<span class="w">    </span><span class="nt">DELETE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cancel appointment</span>
+
+<span class="w">  </span><span class="nt">/documents</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List citizen documents</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload document</span>
+
+<span class="w">  </span><span class="nt">/payments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List pending payments</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Process payment</span>
+
+<span class="w">  </span><span class="nt">/notifications</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List notifications</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mark as read</span>
+
+<span class="nt">Authorizers</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Cognito User Pool Authorizer</span>
+
+<span class="nt">Throttling</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000 requests/second</span>
+<span class="w">  </span><span class="nt">Burst</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000 requests</span>
+
+<span class="nt">Caching</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">TTL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300 seconds for GET requests</span>
+<span class="w">  </span><span class="nt">Cache key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User ID + request parameters</span>
+
+<span class="nt">CORS</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Origins</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://portal.aytoelche.es</span>
+<span class="w">  </span><span class="nt">Methods</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET, POST, PUT, DELETE, OPTIONS</span>
+<span class="w">  </span><span class="nt">Headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Authorization, Content-Type</span>
+</code></pre></div></p>
+<p><em>API Interna Empleados:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">API Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REST API</span>
+<span class="nt">Endpoint Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Private (VPC)</span>
+
+<span class="nt">Resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">/citizens</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Search citizens</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create citizen record</span>
+<span class="w">    </span><span class="nt">PUT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update citizen data</span>
+
+<span class="w">  </span><span class="nt">/licenses</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List license applications</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Process license</span>
+<span class="w">    </span><span class="nt">PUT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update license status</span>
+
+<span class="w">  </span><span class="nt">/reports</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">GET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate reports</span>
+<span class="w">    </span><span class="nt">POST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Schedule report</span>
+
+<span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IAM roles</span>
+<span class="nt">VPC Endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Required</span>
+<span class="nt">Rate Limiting</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500 req/sec per user</span>
+</code></pre></div></p>
+<p><strong>4. AWS Lambda - Funciones Serverless</strong></p>
+<p><em>Función: Gestión de Citas</em>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">dynamodb</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="s1">&#39;appointments&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gestiona las citas ciudadanas con validaciones de negocio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">http_method</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;httpMethod&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">http_method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_available_slots</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">create_appointment</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="s1">&#39;PUT&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">update_appointment</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cancel_appointment</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_available_slots</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Obtiene slots disponibles para citas&quot;&quot;&quot;</span>
+    <span class="n">department</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;queryStringParameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">)</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;queryStringParameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Lógica de negocio para slots disponibles</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+        <span class="n">IndexName</span><span class="o">=</span><span class="s1">&#39;department-date-index&#39;</span><span class="p">,</span>
+        <span class="n">KeyConditionExpression</span><span class="o">=</span><span class="s1">&#39;department = :dept AND date_slot = :date&#39;</span><span class="p">,</span>
+        <span class="n">FilterExpression</span><span class="o">=</span><span class="s1">&#39;is_available = :available&#39;</span><span class="p">,</span>
+        <span class="n">ExpressionAttributeValues</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;:dept&#39;</span><span class="p">:</span> <span class="n">department</span><span class="p">,</span>
+            <span class="s1">&#39;:date&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+            <span class="s1">&#39;:available&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Items&#39;</span><span class="p">])</span>
+    <span class="p">}</span>
+
+<span class="c1"># Configuración Lambda</span>
+<span class="n">Runtime</span><span class="p">:</span> <span class="n">Python</span> <span class="mf">3.11</span>
+<span class="n">Memory</span><span class="p">:</span> <span class="mi">512</span> <span class="n">MB</span>
+<span class="n">Timeout</span><span class="p">:</span> <span class="mi">30</span> <span class="n">seconds</span>
+<span class="n">Environment</span> <span class="n">Variables</span><span class="p">:</span>
+  <span class="n">DYNAMODB_TABLE</span><span class="p">:</span> <span class="n">appointments</span>
+  <span class="n">SNS_TOPIC_ARN</span><span class="p">:</span> <span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">sns</span><span class="p">:</span><span class="n">eu</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">123456789</span><span class="p">:</span><span class="n">notifications</span>
+<span class="n">VPC</span><span class="p">:</span> <span class="n">No</span> <span class="p">(</span><span class="n">public</span> <span class="n">internet</span> <span class="n">access</span> <span class="n">needed</span><span class="p">)</span>
+</code></pre></div></p>
+<p><em>Función: Procesamiento de Documentos</em>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytesseract</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+<span class="n">textract</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;textract&#39;</span><span class="p">)</span>
+<span class="n">dynamodb</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Procesa documentos subidos por ciudadanos</span>
+<span class="sd">    - OCR con Textract</span>
+<span class="sd">    - Validación de formato</span>
+<span class="sd">    - Almacenamiento de metadatos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Triggered by S3 event</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;Records&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;s3&#39;</span><span class="p">][</span><span class="s1">&#39;bucket&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;Records&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;s3&#39;</span><span class="p">][</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Extract text using Textract</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">textract</span><span class="o">.</span><span class="n">detect_document_text</span><span class="p">(</span>
+        <span class="n">Document</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;S3Object&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;Bucket&#39;</span><span class="p">:</span> <span class="n">bucket</span><span class="p">,</span>
+                <span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="n">key</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Process extracted text</span>
+    <span class="n">extracted_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Blocks&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;BlockType&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LINE&#39;</span><span class="p">:</span>
+            <span class="n">extracted_text</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Store metadata in DynamoDB</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">put_item</span><span class="p">(</span>
+        <span class="n">Item</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;document_id&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+            <span class="s1">&#39;citizen_id&#39;</span><span class="p">:</span> <span class="n">extract_citizen_id</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+            <span class="s1">&#39;extracted_text&#39;</span><span class="p">:</span> <span class="n">extracted_text</span><span class="p">,</span>
+            <span class="s1">&#39;upload_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;processed&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+
+<span class="c1"># Configuración Lambda</span>
+<span class="n">Runtime</span><span class="p">:</span> <span class="n">Python</span> <span class="mf">3.11</span>
+<span class="n">Memory</span><span class="p">:</span> <span class="mi">1024</span> <span class="n">MB</span>
+<span class="n">Timeout</span><span class="p">:</span> <span class="mi">5</span> <span class="n">minutes</span>
+<span class="n">Layers</span><span class="p">:</span> <span class="n">PIL</span><span class="p">,</span> <span class="n">pytesseract</span>
+<span class="n">Triggers</span><span class="p">:</span> <span class="n">S3</span> <span class="n">bucket</span> <span class="n">events</span>
+</code></pre></div></p>
+<p><strong>5. DynamoDB - Base de Datos NoSQL</strong></p>
+<p><em>Tabla: Citizens</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Table Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizens</span>
+<span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizen_id (String)</span>
+<span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+
+<span class="nt">Attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">citizen_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DNI/NIE</span>
+<span class="w">  </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Map</span>
+<span class="w">  </span><span class="nt">birth_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (active/inactive)</span>
+<span class="w">  </span><span class="nt">created_at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (ISO timestamp)</span>
+<span class="w">  </span><span class="nt">updated_at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (ISO timestamp)</span>
+
+<span class="nt">Global Secondary Indexes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">email-index</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span>
+<span class="w">    </span><span class="nt">Projection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALL</span>
+
+<span class="w">  </span><span class="nt">phone-index</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phone</span>
+<span class="w">    </span><span class="nt">Projection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALL</span>
+
+<span class="nt">Billing Mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">On-Demand</span>
+<span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS managed key</span>
+<span class="nt">Point-in-time Recovery</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled</span>
+<span class="nt">Streams</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled (for audit trail)</span>
+</code></pre></div></p>
+<p><em>Tabla: Appointments</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Table Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">appointments</span>
+<span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">department (String)</span>
+<span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date_time (String)</span>
+
+<span class="nt">Attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">appointment_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (UUID)</span>
+<span class="w">  </span><span class="nt">citizen_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">department</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">date_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (ISO timestamp)</span>
+<span class="w">  </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number (minutes)</span>
+<span class="w">  </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String (scheduled/completed/cancelled)</span>
+<span class="w">  </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">  </span><span class="nt">employee_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+
+<span class="nt">Global Secondary Indexes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">citizen-appointments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizen_id</span>
+<span class="w">    </span><span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date_time</span>
+<span class="w">    </span><span class="nt">Projection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALL</span>
+
+<span class="w">  </span><span class="nt">employee-schedule</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">employee_id</span>
+<span class="w">    </span><span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date_time</span>
+<span class="w">    </span><span class="nt">Projection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALL</span>
+
+<span class="nt">Local Secondary Indexes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">department-status</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">department</span>
+<span class="w">    </span><span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">    </span><span class="nt">Projection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Keys only</span>
+
+<span class="nt">Billing Mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Provisioned</span>
+<span class="nt">Read Capacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100 RCU</span>
+<span class="nt">Write Capacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50 WCU</span>
+<span class="nt">Auto Scaling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled (10-1000 RCU/WCU)</span>
+</code></pre></div></p>
+<p><strong>6. Step Functions - Orquestación de Procesos</strong></p>
+<p><em>Workflow: Procesamiento de Licencias</em>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Workflow para procesamiento automático de licencias&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;StartAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ValidateApplication&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;States&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ValidateApplication&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:eu-west-1:123456789:function:ValidateLicense&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CheckDocuments&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Retry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;ErrorEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;States.TaskFailed&quot;</span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;IntervalSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;MaxAttempts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;BackoffRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;CheckDocuments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:eu-west-1:123456789:function:CheckDocuments&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DocumentsComplete?&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;DocumentsComplete?&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Choices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Variable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$.documentsComplete&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;BooleanEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AutoApprovalCheck&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RequestAdditionalDocs&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;AutoApprovalCheck&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:eu-west-1:123456789:function:AutoApprovalCheck&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CanAutoApprove?&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;CanAutoApprove?&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Choice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Choices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Variable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$.autoApprove&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;BooleanEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ApproveLicense&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;Default&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AssignToEmployee&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ApproveLicense&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:eu-west-1:123456789:function:ApproveLicense&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SendApprovalNotification&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;AssignToEmployee&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:eu-west-1:123456789:function:AssignToEmployee&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WaitForManualReview&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;WaitForManualReview&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wait&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CheckReviewStatus&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;SendApprovalNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:states:::sns:publish&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;TopicArn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:sns:eu-west-1:123456789:license-notifications&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Message.$&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$.approvalMessage&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;End&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>7. Amazon RDS Aurora Serverless - Base de Datos Legacy</strong></p>
+<p><em>Configuración Aurora Serverless v2:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Aurora MySQL 8.0</span>
+<span class="nt">Serverless Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2</span>
+<span class="nt">Capacity Range</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Minimum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5 ACU (1GB RAM)</span>
+<span class="w">  </span><span class="nt">Maximum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16 ACU (32GB RAM)</span>
+<span class="nt">Auto Pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">After 5 minutes of inactivity</span>
+
+<span class="nt">Database Configuration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Database Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ayto_elche_legacy</span>
+<span class="w">  </span><span class="nt">Master Username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">  </span><span class="nt">Password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stored in Secrets Manager</span>
+
+<span class="nt">Backup Configuration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Backup Retention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">35 days</span>
+<span class="w">  </span><span class="nt">Backup Window</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">03:00-04:00 UTC</span>
+<span class="w">  </span><span class="nt">Copy Tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes</span>
+
+<span class="nt">Monitoring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Performance Insights</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled (7 days retention)</span>
+<span class="w">  </span><span class="nt">Enhanced Monitoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60 seconds interval</span>
+
+<span class="nt">Security</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VPC Security Groups</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">database-sg</span>
+<span class="w">  </span><span class="nt">Subnet Group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">private-db-subnets</span>
+<span class="w">  </span><span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yes (AWS KMS)</span>
+
+<span class="nt">Migration from On-Premise</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS DMS (Database Migration Service)</span>
+<span class="w">  </span><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL 5.7 on-premise</span>
+<span class="w">  </span><span class="nt">Migration Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Full load + CDC</span>
+<span class="w">  </span><span class="nt">Validation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data validation enabled</span>
+</code></pre></div></p>
+<p><strong>8. Amazon OpenSearch - Búsqueda y Analytics</strong></p>
+<p><em>Configuración OpenSearch Serverless:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Collection Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ayto-elche-search</span>
+<span class="nt">Collection Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Search</span>
+
+<span class="nt">Data Sources</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DynamoDB streams (citizens, documents)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">S3 documents (via Lambda indexing)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application logs (via Kinesis Data Firehose)</span>
+
+<span class="nt">Index Templates</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">citizens-index</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Mappings</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">citizen_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keyword</span>
+<span class="w">        </span><span class="nt">full_name: text (analyzer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spanish)</span>
+<span class="w">        </span><span class="nt">address: text (analyzer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spanish)</span>
+<span class="w">        </span><span class="nt">documents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nested</span>
+
+<span class="w">  </span><span class="nt">documents-index</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Mappings</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">document_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keyword</span>
+<span class="w">        </span><span class="nt">title: text (analyzer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spanish)</span>
+<span class="w">        </span><span class="nt">content: text (analyzer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spanish)</span>
+<span class="w">        </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keyword</span>
+<span class="w">        </span><span class="nt">upload_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
+
+<span class="nt">Search Features</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Full-text search in Spanish</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Faceted search by category</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Auto-complete suggestions</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fuzzy matching for typos</span>
+
+<span class="nt">Security</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Access Policy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IAM-based</span>
+<span class="w">  </span><span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">In transit and at rest</span>
+<span class="w">  </span><span class="nt">VPC Access</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Private endpoints only</span>
+</code></pre></div></p>
+<h4 id="seguridad-avanzada-y-cumplimiento">Seguridad Avanzada y Cumplimiento</h4>
+<p><strong>1. AWS WAF - Protección Avanzada</strong></p>
+<p><em>Reglas Personalizadas:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Rate-Based Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">CitizenPortalRateLimit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000 requests per 5 minutes</span>
+<span class="w">    </span><span class="nt">Scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IP address</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block for 10 minutes</span>
+
+<span class="w">  </span><span class="nt">APIRateLimit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000 requests per minute</span>
+<span class="w">    </span><span class="nt">Scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IP + User-Agent</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block for 5 minutes</span>
+
+<span class="w">  </span><span class="nt">LoginRateLimit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 failed attempts per minute</span>
+<span class="w">    </span><span class="nt">Scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IP address</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block for 30 minutes</span>
+
+<span class="nt">Managed Rule Groups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSManagedRulesCommonRuleSet</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSManagedRulesKnownBadInputsRuleSet</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSManagedRulesSQLiRuleSet</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSManagedRulesLinuxRuleSet</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSManagedRulesUnixRuleSet</span>
+
+<span class="nt">Custom Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">SpanishGeoRestriction</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeoMatch</span>
+<span class="w">    </span><span class="nt">Countries</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ES</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allow</span>
+<span class="w">    </span><span class="nt">Priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="nt">BlockSuspiciousUserAgents</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ByteMatch</span>
+<span class="w">    </span><span class="nt">Field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User-Agent</span>
+<span class="w">    </span><span class="nt">Patterns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">bot</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">crawler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">scanner</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block</span>
+<span class="w">    </span><span class="nt">Priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+
+<span class="w">  </span><span class="nt">AllowOnlyBusinessHours</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TimeRange</span>
+<span class="w">    </span><span class="nt">Hours</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">08:00-20:00 CET</span>
+<span class="w">    </span><span class="nt">Days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Monday-Friday</span>
+<span class="w">    </span><span class="nt">Scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Admin panel only</span>
+<span class="w">    </span><span class="nt">Action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Allow admin access only during business hours</span>
+</code></pre></div></p>
+<p><strong>2. Amazon GuardDuty - Detección de Amenazas</strong></p>
+<p><em>Configuración de Detección:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Threat Intelligence</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS threat intelligence feeds</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom threat intelligence (Spanish cybersecurity feeds)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Malware protection for S3</span>
+
+<span class="nt">Finding Types Monitored</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backdoor:EC2/C&amp;CActivity.B</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CryptoCurrency:EC2/BitcoinTool.B</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Malware:EC2/SuspiciousFile</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Trojan:EC2/BlackholeTraffic</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UnauthorizedAPI:IAMUser/InstanceCredentialExfiltration</span>
+
+<span class="nt">Suppression Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suppress known good IPs (office networks)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suppress scheduled maintenance activities</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suppress known false positives</span>
+
+<span class="nt">Integration</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SNS notifications for HIGH severity findings</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lambda auto-remediation for specific threats</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security Hub for centralized dashboard</span>
+</code></pre></div></p>
+<p><strong>3. AWS Config - Compliance Monitoring</strong></p>
+<p><em>Reglas de Cumplimiento RGPD:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Data Protection Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s3-bucket-public-access-prohibited</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure S3 buckets don&#39;t allow public access</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+
+<span class="w">  </span><span class="nt">rds-storage-encrypted</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure RDS instances are encrypted</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+
+<span class="w">  </span><span class="nt">dynamodb-encryption-enabled</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure DynamoDB tables are encrypted</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+
+<span class="w">  </span><span class="nt">lambda-function-settings-check</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure Lambda functions don&#39;t have public access</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+
+<span class="nt">Access Control Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">iam-password-policy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure IAM password policy meets requirements</span>
+<span class="w">    </span><span class="nt">Parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">RequireUppercaseCharacters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">RequireLowercaseCharacters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">RequireNumbers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">RequireSymbols</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">MinimumPasswordLength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span>
+
+<span class="w">  </span><span class="nt">mfa-enabled-for-iam-console-access</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure MFA is enabled for console access</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+
+<span class="nt">Audit Rules</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">cloudtrail-enabled</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure CloudTrail is enabled</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Periodic (24 hours)</span>
+
+<span class="w">  </span><span class="nt">cloudwatch-log-group-encrypted</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure CloudWatch log groups are encrypted</span>
+<span class="w">    </span><span class="nt">Trigger</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuration change</span>
+</code></pre></div></p>
+<h4 id="plan-de-migracion-acelerada-detallado">Plan de Migración Acelerada Detallado</h4>
+<p><strong>FASE 1 - FUNDACIÓN CLOUD (Mes 1)</strong></p>
+<p><em>Semana 1 - Configuración de Cuentas y Seguridad:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Día 1-2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS Organizations Setup</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Crear organization master account</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar Service Control Policies (SCPs)</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Establecer billing alerts y budgets</span>
+
+<span class="nt">Día 3-4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS Control Tower Deployment</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar landing zone</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Crear cuentas para prod/dev/test</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar guardrails de seguridad</span>
+
+<span class="nt">Día 5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IAM y Seguridad Base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar roles y políticas base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar MFA obligatorio</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar AWS SSO para empleados</span>
+</code></pre></div></p>
+<p><em>Semana 2 - Infraestructura Base:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Día 1-2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Networking</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Crear VPC en múltiples AZs</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar subnets públicas/privadas</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar VPC endpoints para servicios AWS</span>
+
+<span class="nt">Día 3-4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Seguridad Perimetral</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar WAF con reglas base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar GuardDuty</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar Config rules</span>
+
+<span class="nt">Día 5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Monitorización Base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar CloudTrail</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar CloudWatch dashboards</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar alertas críticas</span>
+</code></pre></div></p>
+<p><em>Semana 3 - Servicios Core:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Día 1-2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autenticación</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar Cognito User Pools</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar federación SAML para empleados</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar MFA y políticas de contraseñas</span>
+
+<span class="nt">Día 3-4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APIs Base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Crear API Gateway para servicios públicos</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar authorizers de Cognito</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar throttling y caching</span>
+
+<span class="nt">Día 5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Almacenamiento</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar buckets S3 con políticas</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementar lifecycle policies</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configurar cross-region replication</span>
+</code></pre></div></p>
+<p><em>Semana 4 - Testing y Validación:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Día 1-3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Desarrollo de Funciones Lambda Base</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Función de autenticación</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Función de gestión de usuarios</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Función de logging y auditoría</span>
+
+<span class="nt">Día 4-5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Testing Integral</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Tests de seguridad (penetration testing)</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Tests de rendimiento</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Validación de compliance RGPD</span>
+</code></pre></div></p>
+<p><strong>FASE 2 - SERVICIOS CRÍTICOS (Meses 2-3)</strong></p>
+<p><em>Mes 2 - Portal Ciudadano:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Semana 1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Frontend Development</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Desarrollo React app con Amplify</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Integración con Cognito</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Implementación de componentes base</span>
+
+<span class="nt">Semana 2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APIs Ciudadanas</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- API de gestión de citas</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- API de consulta de documentos</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- API de notificaciones</span>
+
+<span class="nt">Semana 3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integración y Testing</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Integración frontend-backend</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Tests de usabilidad</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Tests de accesibilidad (WCAG 2.1)</span>
+
+<span class="nt">Semana 4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Despliegue y Optimización</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Despliegue en producción</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configuración CDN</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Optimización de rendimiento</span>
+</code></pre></div></p>
+<p><em>Mes 3 - Servicios Administrativos:</em>
+<div class="highlight"><pre><span></span><code><span class="nt">Semana 1-2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Migración de Datos</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Migración padrón municipal a DynamoDB</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Migración documentos a S3</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Configuración de índices de búsqueda</span>
+
+<span class="nt">Semana 3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Procesos Automatizados</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Workflow de licencias con Step Functions</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Automatización de notificaciones</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Integración con sistemas externos</span>
+
+<span class="nt">Semana 4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Panel de Administración</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Desarrollo panel web para empleados</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Dashboards de métricas</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">- Herramientas de gestión</span>
+</code></pre></div></p>
+<h4 id="analisis-de-costes-detallado">Análisis de Costes Detallado</h4>
+<p><strong>Costes Mensuales Serverless (EUR):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">Compute Serverless</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Lambda Invocations</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">10M requests/month</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€20</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Compute time (GB-seconds)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€35</span>
+<span class="w">  </span><span class="nt">API Gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">10M API calls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€35</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Data transfer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€15</span>
+<span class="w">  </span><span class="nt">Step Functions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">100K state transitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€25</span>
+<span class="w">  </span><span class="nt">Total Compute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€130/mes</span>
+
+<span class="nt">Storage Serverless</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">DynamoDB On-Demand</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">100GB storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€25</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">10M read requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€12.5</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">5M write requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€62.5</span>
+<span class="w">  </span><span class="nt">S3 Storage</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">500GB Standard</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€11.5</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">1TB IA</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€12.5</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€5</span>
+<span class="w">  </span><span class="nt">Total Storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€128.5/mes</span>
+
+<span class="nt">Managed Services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">RDS Aurora Serverless</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Average 2 ACU</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€90</span>
+<span class="w">  </span><span class="nt">OpenSearch Serverless</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">100GB indexed data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€180</span>
+<span class="w">  </span><span class="nt">Cognito</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">50K MAU</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€275</span>
+<span class="w">  </span><span class="nt">Total Managed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€545/mes</span>
+
+<span class="nt">Security &amp; Monitoring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">WAF</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€20/mes</span>
+<span class="w">  </span><span class="nt">GuardDuty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€30/mes</span>
+<span class="w">  </span><span class="nt">Config</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€15/mes</span>
+<span class="w">  </span><span class="nt">CloudWatch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€40/mes</span>
+<span class="w">  </span><span class="nt">Total Security</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€105/mes</span>
+
+<span class="nt">Network &amp; CDN</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">CloudFront</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€50/mes</span>
+<span class="w">  </span><span class="nt">Data Transfer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€25/mes</span>
+<span class="w">  </span><span class="nt">Total Network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€75/mes</span>
+
+<span class="nt">TOTAL MENSUAL SERVERLESS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€983.5/mes</span>
+<span class="nt">TOTAL ANUAL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€11,802/año</span>
+</code></pre></div>
+<p><strong>Comparación de Costes:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">Solución 1 (Híbrida)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€7,740/año</span>
+<span class="nt">Solución 2 (Serverless)</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€11,802/año</span>
+<span class="nt">Diferencia</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+€4,062/año (+52%)</span>
+
+<span class="nt">Justificación del Coste Adicional</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Zero server management (ahorro 2 FTE técnicos)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Auto-scaling ilimitado</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">99.99% availability SLA</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Seguridad avanzada integrada</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Compliance RGPD automático</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disaster recovery automático</span>
+
+<span class="nt">ROI Calculado</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Ahorro en personal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€120,000/año (2 técnicos)</span>
+<span class="w">  </span><span class="nt">Ahorro en downtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€50,000/año (estimado)</span>
+<span class="w">  </span><span class="nt">Coste adicional cloud</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€4,062/año</span>
+<span class="w">  </span><span class="nt">ROI neto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€165,938/año</span>
+</code></pre></div></p>
+<h3 id="beneficios-cuantificados">Beneficios Cuantificados</h3>
+<p><strong>Técnicos:</strong>
+- <strong>Disponibilidad</strong>: 99.99% vs 95% actual (+4.99% uptime)
+- <strong>Escalabilidad</strong>: Automática vs manual (0 intervención)
+- <strong>Tiempo de despliegue</strong>: 5 minutos vs 2 horas (-96%)
+- <strong>Tiempo de recuperación</strong>: 5 minutos vs 4 horas (-95%)</p>
+<p><strong>Operacionales:</strong>
+- <strong>Mantenimiento</strong>: 2 horas/mes vs 40 horas/mes (-95%)
+- <strong>Actualizaciones</strong>: Automáticas vs manuales
+- <strong>Backups</strong>: Automáticos vs manuales
+- <strong>Monitorización</strong>: Proactiva vs reactiva</p>
+<p><strong>Seguridad:</strong>
+- <strong>Detección de amenazas</strong>: Tiempo real vs manual
+- <strong>Compliance</strong>: Automático vs manual
+- <strong>Cifrado</strong>: Por defecto vs configuración manual
+- <strong>Auditoría</strong>: Completa vs parcial</p>
+<p><strong>Económicos:</strong>
+- <strong>CAPEX</strong>: €0 vs €50,000 (hardware)
+- <strong>OPEX</strong>: Reducción 60% en costes operativos
+- <strong>Escalabilidad</strong>: Coste variable vs fijo
+- <strong>ROI</strong>: 12 meses vs 36 meses</p>
+<hr />
+<h2 id="recursos-adicionales">RECURSOS ADICIONALES</h2>
+<h3 id="enlaces-de-referencia">Enlaces de Referencia</h3>
+<ul>
+<li><a href="https://aws.amazon.com/architecture/well-architected/">AWS Well-Architected Framework</a></li>
+<li><a href="https://aws.amazon.com/government-education/">AWS Public Sector Solutions</a></li>
+<li><a href="https://aws.amazon.com/compliance/gdpr-center/">GDPR Compliance on AWS</a></li>
+</ul>
+<h3 id="herramientas-de-apoyo">Herramientas de Apoyo</h3>
+<ul>
+<li><a href="https://calculator.aws/">AWS Pricing Calculator</a></li>
+<li><a href="https://aws.amazon.com/architecture/icons/">AWS Architecture Icons</a></li>
+<li><a href="https://aws.amazon.com/migration-hub/">AWS Migration Hub</a></li>
+</ul>
+<h3 id="casos-de-estudio-relevantes">Casos de Estudio Relevantes</h3>
+<ul>
+<li>Migración Gobierno de Aragón a AWS</li>
+<li>Transformación digital Ayuntamiento de Madrid</li>
+<li>Modernización servicios públicos Generalitat de Catalunya</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
