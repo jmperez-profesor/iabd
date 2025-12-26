@@ -43,17 +43,20 @@ Tras el ciberataque, se ha identificado la siguiente infraestructura crítica af
 Trabajando en equipos de 3-4 personas, debéis actuar como consultores especializados en Cloud Computing para el Ayuntamiento de Elche. Vuestra misión es:
 
 1. **Análisis de la situación actual** (30 minutos)
+
    - Identificar los servicios más críticos para migrar
    - Evaluar los riesgos de mantener sistemas on-premise
    - Determinar las ventajas de migrar a AWS
 
 2. **Diseño de la arquitectura cloud** (60 minutos)
+
    - Proponer qué servicios AWS utilizar para cada necesidad
    - Definir la estrategia de migración (IaaS, PaaS, SaaS)
    - Establecer medidas de seguridad y backup
    - Considerar aspectos de cumplimiento normativo (RGPD)
 
 3. **Presentación de la propuesta** (30 minutos)
+
    - Cada equipo presenta su solución (5-7 minutos)
    - Justificar las decisiones técnicas tomadas
    - Explicar los beneficios esperados
@@ -61,6 +64,7 @@ Trabajando en equipos de 3-4 personas, debéis actuar como consultores especiali
 ### ENTREGABLES
 
 1. **Documento técnico** (máximo 3 páginas) que incluya:
+
    - Análisis de servicios a migrar (priorización)
    - Arquitectura AWS propuesta con diagrama
    - Justificación de servicios AWS seleccionados
@@ -92,6 +96,7 @@ Trabajando en equipos de 3-4 personas, debéis actuar como consultores especiali
 **Puntuación total: ___/24 puntos**
 
 **Calificación:**
+
 - 22-24 puntos: Sobresaliente (9-10)
 - 18-21 puntos: Notable (7-8)
 - 14-17 puntos: Bien (6-7)
@@ -123,17 +128,20 @@ Trabajando en equipos de 3-4 personas, debéis actuar como consultores especiali
 **FASE 1 - SERVICIOS CRÍTICOS CIUDADANOS (0-3 meses)**
 
 *Mes 1 - Preparación y Fundación:*
+
 - Semana 1-2: Auditoría técnica completa de sistemas actuales
 - Semana 3: Configuración AWS Organizations y cuentas (Prod, Dev, Test)
 - Semana 4: Implementación VPC multi-AZ con subnets públicas/privadas
 
 *Mes 2 - Portal Web Municipal:*
+
 - Semana 1: Migración base de datos a RDS MySQL Multi-AZ
 - Semana 2: Despliegue aplicación web en EC2 con Auto Scaling
 - Semana 3: Configuración CloudFront + Route 53 + certificados SSL
 - Semana 4: Testing y optimización de rendimiento
 
 *Mes 3 - Sistemas de Citas y Multas:*
+
 - Semana 1-2: Migración sistema cita previa (API REST + base datos)
 - Semana 3-4: Migración gestión multas con integración DGT
 
@@ -556,6 +564,7 @@ ROI: 12 meses
 La estrategia cloud-native prioriza servicios completamente gestionados para eliminar la gestión de infraestructura y maximizar la seguridad, escalabilidad y eficiencia operativa.
 
 **Principios de Diseño:**
+
 1. **Serverless por defecto**: Lambda, API Gateway, DynamoDB
 2. **Servicios gestionados**: RDS, ElastiCache, OpenSearch
 3. **Automatización completa**: Infrastructure as Code (CloudFormation)
@@ -592,45 +601,45 @@ La estrategia cloud-native prioriza servicios completamente gestionados para eli
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                         CDN LAYER                               │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                  CloudFront + WAF                           │ │
-│  │  • Global edge locations                                   │ │
-│  │  • DDoS protection                                         │ │
-│  │  • SSL termination                                         │ │
-│  └─────────────────────────────────────────────────────────────┘ │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                  CloudFront + WAF                           ││
+│  │  • Global edge locations                                    ││
+│  │  • DDoS protection                                          ││
+│  │  • SSL termination                                          ││
+│  └─────────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                        API LAYER                               │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │  Public APIs    │  │  Internal APIs  │  │  Admin APIs     │ │
-│  │ (API Gateway)   │  │ (API Gateway)   │  │ (API Gateway)   │ │
-│  │ • Rate limiting │  │ • VPC endpoints │  │ • IAM auth      │ │
-│  │ • Caching       │  │ • Private       │  │ • Audit logs    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                        API LAYER                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │  Public APIs    │  │  Internal APIs  │  │  Admin APIs     │  │
+│  │ (API Gateway)   │  │ (API Gateway)   │  │ (API Gateway)   │  │
+│  │ • Rate limiting │  │ • VPC endpoints │  │ • IAM auth      │  │
+│  │ • Caching       │  │ • Private       │  │ • Audit logs    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                      COMPUTE LAYER                              │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │  Lambda         │  │  Step Functions │  │  ECS Fargate    │ │
-│  │  Functions      │  │  Workflows      │  │  (Legacy apps)  │ │
-│  │ • Auto-scaling  │  │ • State machine │  │ • Containerized │ │
-│  │ • Event-driven  │  │ • Error handling│  │ • Managed       │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │  Lambda         │  │  Step Functions │  │  ECS Fargate    │  │
+│  │  Functions      │  │  Workflows      │  │  (Legacy apps)  │  │
+│  │ • Auto-scaling  │  │ • State machine │  │ • Containerized │  │
+│  │ • Event-driven  │  │ • Error handling│  │ • Managed       │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       DATA LAYER                               │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │   DynamoDB      │  │  RDS Aurora     │  │  OpenSearch     │ │
-│  │ • NoSQL         │  │ • SQL legacy    │  │ • Full-text     │ │
-│  │ • Auto-scaling  │  │ • Serverless    │  │ • Analytics     │ │
-│  │ • Global tables │  │ • Multi-AZ      │  │ • Dashboards    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                       DATA LAYER                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │   DynamoDB      │  │  RDS Aurora     │  │  OpenSearch     │  │
+│  │ • NoSQL         │  │ • SQL legacy    │  │ • Full-text     │  │
+│  │ • Auto-scaling  │  │ • Serverless    │  │ • Analytics     │  │
+│  │ • Global tables │  │ • Multi-AZ      │  │ • Dashboards    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -842,7 +851,7 @@ VPC: No (public internet access needed)
 ```
 
 *Función: Procesamiento de Documentos*
-```python
+```python {linenums="1"}
 import boto3
 import json
 from PIL import Image
@@ -905,7 +914,7 @@ Triggers: S3 bucket events
 **5. DynamoDB - Base de Datos NoSQL**
 
 *Tabla: Citizens*
-```yaml
+```yaml {linenums="1"}
 Table Name: citizens
 Partition Key: citizen_id (String)
 Sort Key: None
@@ -1447,24 +1456,28 @@ ROI Calculado:
 ### Beneficios Cuantificados
 
 **Técnicos:**
+
 - **Disponibilidad**: 99.99% vs 95% actual (+4.99% uptime)
 - **Escalabilidad**: Automática vs manual (0 intervención)
 - **Tiempo de despliegue**: 5 minutos vs 2 horas (-96%)
 - **Tiempo de recuperación**: 5 minutos vs 4 horas (-95%)
 
 **Operacionales:**
+
 - **Mantenimiento**: 2 horas/mes vs 40 horas/mes (-95%)
 - **Actualizaciones**: Automáticas vs manuales
 - **Backups**: Automáticos vs manuales
 - **Monitorización**: Proactiva vs reactiva
 
 **Seguridad:**
+
 - **Detección de amenazas**: Tiempo real vs manual
 - **Compliance**: Automático vs manual
 - **Cifrado**: Por defecto vs configuración manual
 - **Auditoría**: Completa vs parcial
 
 **Económicos:**
+
 - **CAPEX**: €0 vs €50,000 (hardware)
 - **OPEX**: Reducción 60% en costes operativos
 - **Escalabilidad**: Coste variable vs fijo
@@ -1485,6 +1498,7 @@ ROI Calculado:
 - [AWS Migration Hub](https://aws.amazon.com/migration-hub/)
 
 ### Casos de Estudio Relevantes
+
 - Migración Gobierno de Aragón a AWS
 - Transformación digital Ayuntamiento de Madrid
 - Modernización servicios públicos Generalitat de Catalunya
