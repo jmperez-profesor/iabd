@@ -16,6 +16,7 @@ El Ayuntamiento de Elche sufrió recientemente un ciberataque que dejó práctic
 Tras el ciberataque, se ha identificado la siguiente infraestructura crítica afectada:
 
 **Servicios Ciudadanos:**
+
 - Portal web municipal (información, trámites online)
 - Sistema de cita previa
 - Padrón municipal y censo
@@ -23,6 +24,7 @@ Tras el ciberataque, se ha identificado la siguiente infraestructura crítica af
 - Plataforma de participación ciudadana
 
 **Sistemas Internos:**
+
 - Gestión de recursos humanos y nóminas
 - Contabilidad y presupuestos
 - Gestión de licencias y permisos
@@ -30,6 +32,7 @@ Tras el ciberataque, se ha identificado la siguiente infraestructura crítica af
 - Base de datos de proveedores
 
 **Infraestructura Técnica:**
+
 - Servidores físicos (15 servidores)
 - Sistema de copias de seguridad
 - Red interna y conectividad
