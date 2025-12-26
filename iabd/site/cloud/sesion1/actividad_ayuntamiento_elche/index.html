@@ -1685,8 +1685,12 @@
 <h3 id="tarea-a-realizar">TAREA A REALIZAR</h3>
 <p>Trabajando en equipos de 3-4 personas, debéis actuar como consultores especializados en Cloud Computing para el Ayuntamiento de Elche. Vuestra misión es:</p>
 <ol>
-<li><strong>Análisis de la situación actual</strong> (30 minutos)</li>
-<li>Identificar los servicios más críticos para migrar</li>
+<li>
+<p><strong>Análisis de la situación actual</strong> (30 minutos)</p>
+</li>
+<li>
+<p>Identificar los servicios más críticos para migrar</p>
+</li>
 <li>Evaluar los riesgos de mantener sistemas on-premise</li>
 <li>
 <p>Determinar las ventajas de migrar a AWS</p>
@@ -1694,7 +1698,9 @@
 <li>
 <p><strong>Diseño de la arquitectura cloud</strong> (60 minutos)</p>
 </li>
-<li>Proponer qué servicios AWS utilizar para cada necesidad</li>
+<li>
+<p>Proponer qué servicios AWS utilizar para cada necesidad</p>
+</li>
 <li>Definir la estrategia de migración (IaaS, PaaS, SaaS)</li>
 <li>Establecer medidas de seguridad y backup</li>
 <li>
@@ -1703,14 +1709,20 @@
 <li>
 <p><strong>Presentación de la propuesta</strong> (30 minutos)</p>
 </li>
-<li>Cada equipo presenta su solución (5-7 minutos)</li>
+<li>
+<p>Cada equipo presenta su solución (5-7 minutos)</p>
+</li>
 <li>Justificar las decisiones técnicas tomadas</li>
 <li>Explicar los beneficios esperados</li>
 </ol>
 <h3 id="entregables">ENTREGABLES</h3>
 <ol>
-<li><strong>Documento técnico</strong> (máximo 3 páginas) que incluya:</li>
-<li>Análisis de servicios a migrar (priorización)</li>
+<li>
+<p><strong>Documento técnico</strong> (máximo 3 páginas) que incluya:</p>
+</li>
+<li>
+<p>Análisis de servicios a migrar (priorización)</p>
+</li>
 <li>Arquitectura AWS propuesta con diagrama</li>
 <li>Justificación de servicios AWS seleccionados</li>
 <li>Plan de migración por fases</li>
@@ -1786,12 +1798,14 @@
 </tbody>
 </table>
 <p><strong>Puntuación total: ___/24 puntos</strong></p>
-<p><strong>Calificación:</strong>
-- 22-24 puntos: Sobresaliente (9-10)
-- 18-21 puntos: Notable (7-8)
-- 14-17 puntos: Bien (6-7)
-- 10-13 puntos: Suficiente (5-6)
-- &lt;10 puntos: Insuficiente (&lt;5)</p>
+<p><strong>Calificación:</strong></p>
+<ul>
+<li>22-24 puntos: Sobresaliente (9-10)</li>
+<li>18-21 puntos: Notable (7-8)</li>
+<li>14-17 puntos: Bien (6-7)</li>
+<li>10-13 puntos: Suficiente (5-6)</li>
+<li>&lt;10 puntos: Insuficiente (&lt;5)</li>
+</ul>
 <hr />
 <h2 id="solucion-1-migracion-hibrida-progresiva">SOLUCIÓN 1: MIGRACIÓN HÍBRIDA PROGRESIVA</h2>
 <h3 id="analisis-detallado-de-prioridades">Análisis Detallado de Prioridades</h3>
@@ -1874,18 +1888,24 @@
 </table>
 <h4 id="cronograma-detallado-por-fases">Cronograma Detallado por Fases</h4>
 <p><strong>FASE 1 - SERVICIOS CRÍTICOS CIUDADANOS (0-3 meses)</strong></p>
-<p><em>Mes 1 - Preparación y Fundación:</em>
-- Semana 1-2: Auditoría técnica completa de sistemas actuales
-- Semana 3: Configuración AWS Organizations y cuentas (Prod, Dev, Test)
-- Semana 4: Implementación VPC multi-AZ con subnets públicas/privadas</p>
-<p><em>Mes 2 - Portal Web Municipal:</em>
-- Semana 1: Migración base de datos a RDS MySQL Multi-AZ
-- Semana 2: Despliegue aplicación web en EC2 con Auto Scaling
-- Semana 3: Configuración CloudFront + Route 53 + certificados SSL
-- Semana 4: Testing y optimización de rendimiento</p>
-<p><em>Mes 3 - Sistemas de Citas y Multas:</em>
-- Semana 1-2: Migración sistema cita previa (API REST + base datos)
-- Semana 3-4: Migración gestión multas con integración DGT</p>
+<p><em>Mes 1 - Preparación y Fundación:</em></p>
+<ul>
+<li>Semana 1-2: Auditoría técnica completa de sistemas actuales</li>
+<li>Semana 3: Configuración AWS Organizations y cuentas (Prod, Dev, Test)</li>
+<li>Semana 4: Implementación VPC multi-AZ con subnets públicas/privadas</li>
+</ul>
+<p><em>Mes 2 - Portal Web Municipal:</em></p>
+<ul>
+<li>Semana 1: Migración base de datos a RDS MySQL Multi-AZ</li>
+<li>Semana 2: Despliegue aplicación web en EC2 con Auto Scaling</li>
+<li>Semana 3: Configuración CloudFront + Route 53 + certificados SSL</li>
+<li>Semana 4: Testing y optimización de rendimiento</li>
+</ul>
+<p><em>Mes 3 - Sistemas de Citas y Multas:</em></p>
+<ul>
+<li>Semana 1-2: Migración sistema cita previa (API REST + base datos)</li>
+<li>Semana 3-4: Migración gestión multas con integración DGT</li>
+</ul>
 <h3 id="arquitectura-aws-detallada">Arquitectura AWS Detallada</h3>
 <h4 id="diagrama-de-red-y-seguridad">Diagrama de Red y Seguridad</h4>
 <div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
@@ -2239,12 +2259,14 @@
 <h3 id="analisis-estrategico-detallado">Análisis Estratégico Detallado</h3>
 <h4 id="filosofia-serverless-first">Filosofía Serverless-First</h4>
 <p>La estrategia cloud-native prioriza servicios completamente gestionados para eliminar la gestión de infraestructura y maximizar la seguridad, escalabilidad y eficiencia operativa.</p>
-<p><strong>Principios de Diseño:</strong>
-1. <strong>Serverless por defecto</strong>: Lambda, API Gateway, DynamoDB
-2. <strong>Servicios gestionados</strong>: RDS, ElastiCache, OpenSearch
-3. <strong>Automatización completa</strong>: Infrastructure as Code (CloudFormation)
-4. <strong>Seguridad integrada</strong>: Cognito, WAF, GuardDuty
-5. <strong>Observabilidad nativa</strong>: CloudWatch, X-Ray, EventBridge</p>
+<p><strong>Principios de Diseño:</strong></p>
+<ol>
+<li><strong>Serverless por defecto</strong>: Lambda, API Gateway, DynamoDB</li>
+<li><strong>Servicios gestionados</strong>: RDS, ElastiCache, OpenSearch</li>
+<li><strong>Automatización completa</strong>: Infrastructure as Code (CloudFormation)</li>
+<li><strong>Seguridad integrada</strong>: Cognito, WAF, GuardDuty</li>
+<li><strong>Observabilidad nativa</strong>: CloudWatch, X-Ray, EventBridge</li>
+</ol>
 <h4 id="matriz-de-servicios-por-funcionalidad">Matriz de Servicios por Funcionalidad</h4>
 <table>
 <thead>
@@ -2325,45 +2347,45 @@
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                         CDN LAYER                               │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                  CloudFront + WAF                           │ │
-│  │  • Global edge locations                                   │ │
-│  │  • DDoS protection                                         │ │
-│  │  • SSL termination                                         │ │
-│  └─────────────────────────────────────────────────────────────┘ │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                  CloudFront + WAF                           ││
+│  │  • Global edge locations                                    ││
+│  │  • DDoS protection                                          ││
+│  │  • SSL termination                                          ││
+│  └─────────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                        API LAYER                               │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │  Public APIs    │  │  Internal APIs  │  │  Admin APIs     │ │
-│  │ (API Gateway)   │  │ (API Gateway)   │  │ (API Gateway)   │ │
-│  │ • Rate limiting │  │ • VPC endpoints │  │ • IAM auth      │ │
-│  │ • Caching       │  │ • Private       │  │ • Audit logs    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                        API LAYER                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │  Public APIs    │  │  Internal APIs  │  │  Admin APIs     │  │
+│  │ (API Gateway)   │  │ (API Gateway)   │  │ (API Gateway)   │  │
+│  │ • Rate limiting │  │ • VPC endpoints │  │ • IAM auth      │  │
+│  │ • Caching       │  │ • Private       │  │ • Audit logs    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                      COMPUTE LAYER                              │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │  Lambda         │  │  Step Functions │  │  ECS Fargate    │ │
-│  │  Functions      │  │  Workflows      │  │  (Legacy apps)  │ │
-│  │ • Auto-scaling  │  │ • State machine │  │ • Containerized │ │
-│  │ • Event-driven  │  │ • Error handling│  │ • Managed       │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │  Lambda         │  │  Step Functions │  │  ECS Fargate    │  │
+│  │  Functions      │  │  Workflows      │  │  (Legacy apps)  │  │
+│  │ • Auto-scaling  │  │ • State machine │  │ • Containerized │  │
+│  │ • Event-driven  │  │ • Error handling│  │ • Managed       │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       DATA LAYER                               │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │   DynamoDB      │  │  RDS Aurora     │  │  OpenSearch     │ │
-│  │ • NoSQL         │  │ • SQL legacy    │  │ • Full-text     │ │
-│  │ • Auto-scaling  │  │ • Serverless    │  │ • Analytics     │ │
-│  │ • Global tables │  │ • Multi-AZ      │  │ • Dashboards    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│                       DATA LAYER                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │   DynamoDB      │  │  RDS Aurora     │  │  OpenSearch     │  │
+│  │ • NoSQL         │  │ • SQL legacy    │  │ • Full-text     │  │
+│  │ • Auto-scaling  │  │ • Serverless    │  │ • Analytics     │  │
+│  │ • Global tables │  │ • Multi-AZ      │  │ • Dashboards    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 </code></pre></div>
 <h4 id="configuraciones-especificas-de-servicios_1">Configuraciones Específicas de Servicios</h4>
@@ -2557,7 +2579,63 @@
 <span class="n">VPC</span><span class="p">:</span> <span class="n">No</span> <span class="p">(</span><span class="n">public</span> <span class="n">internet</span> <span class="n">access</span> <span class="n">needed</span><span class="p">)</span>
 </code></pre></div></p>
 <p><em>Función: Procesamiento de Documentos</em>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pytesseract</span>
@@ -2614,10 +2692,36 @@
 <span class="n">Timeout</span><span class="p">:</span> <span class="mi">5</span> <span class="n">minutes</span>
 <span class="n">Layers</span><span class="p">:</span> <span class="n">PIL</span><span class="p">,</span> <span class="n">pytesseract</span>
 <span class="n">Triggers</span><span class="p">:</span> <span class="n">S3</span> <span class="n">bucket</span> <span class="n">events</span>
-</code></pre></div></p>
+</code></pre></div></td></tr></table></div></p>
 <p><strong>5. DynamoDB - Base de Datos NoSQL</strong></p>
 <p><em>Tabla: Citizens</em>
-<div class="highlight"><pre><span></span><code><span class="nt">Table Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizens</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">Table Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizens</span>
 <span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">citizen_id (String)</span>
 <span class="nt">Sort Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
 
@@ -2644,7 +2748,7 @@
 <span class="nt">Encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS managed key</span>
 <span class="nt">Point-in-time Recovery</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled</span>
 <span class="nt">Streams</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enabled (for audit trail)</span>
-</code></pre></div></p>
+</code></pre></div></td></tr></table></div></p>
 <p><em>Tabla: Appointments</em>
 <div class="highlight"><pre><span></span><code><span class="nt">Table Name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">appointments</span>
 <span class="nt">Partition Key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">department (String)</span>
@@ -3113,26 +3217,34 @@
 <span class="w">  </span><span class="nt">ROI neto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">€165,938/año</span>
 </code></pre></div></p>
 <h3 id="beneficios-cuantificados">Beneficios Cuantificados</h3>
-<p><strong>Técnicos:</strong>
-- <strong>Disponibilidad</strong>: 99.99% vs 95% actual (+4.99% uptime)
-- <strong>Escalabilidad</strong>: Automática vs manual (0 intervención)
-- <strong>Tiempo de despliegue</strong>: 5 minutos vs 2 horas (-96%)
-- <strong>Tiempo de recuperación</strong>: 5 minutos vs 4 horas (-95%)</p>
-<p><strong>Operacionales:</strong>
-- <strong>Mantenimiento</strong>: 2 horas/mes vs 40 horas/mes (-95%)
-- <strong>Actualizaciones</strong>: Automáticas vs manuales
-- <strong>Backups</strong>: Automáticos vs manuales
-- <strong>Monitorización</strong>: Proactiva vs reactiva</p>
-<p><strong>Seguridad:</strong>
-- <strong>Detección de amenazas</strong>: Tiempo real vs manual
-- <strong>Compliance</strong>: Automático vs manual
-- <strong>Cifrado</strong>: Por defecto vs configuración manual
-- <strong>Auditoría</strong>: Completa vs parcial</p>
-<p><strong>Económicos:</strong>
-- <strong>CAPEX</strong>: €0 vs €50,000 (hardware)
-- <strong>OPEX</strong>: Reducción 60% en costes operativos
-- <strong>Escalabilidad</strong>: Coste variable vs fijo
-- <strong>ROI</strong>: 12 meses vs 36 meses</p>
+<p><strong>Técnicos:</strong></p>
+<ul>
+<li><strong>Disponibilidad</strong>: 99.99% vs 95% actual (+4.99% uptime)</li>
+<li><strong>Escalabilidad</strong>: Automática vs manual (0 intervención)</li>
+<li><strong>Tiempo de despliegue</strong>: 5 minutos vs 2 horas (-96%)</li>
+<li><strong>Tiempo de recuperación</strong>: 5 minutos vs 4 horas (-95%)</li>
+</ul>
+<p><strong>Operacionales:</strong></p>
+<ul>
+<li><strong>Mantenimiento</strong>: 2 horas/mes vs 40 horas/mes (-95%)</li>
+<li><strong>Actualizaciones</strong>: Automáticas vs manuales</li>
+<li><strong>Backups</strong>: Automáticos vs manuales</li>
+<li><strong>Monitorización</strong>: Proactiva vs reactiva</li>
+</ul>
+<p><strong>Seguridad:</strong></p>
+<ul>
+<li><strong>Detección de amenazas</strong>: Tiempo real vs manual</li>
+<li><strong>Compliance</strong>: Automático vs manual</li>
+<li><strong>Cifrado</strong>: Por defecto vs configuración manual</li>
+<li><strong>Auditoría</strong>: Completa vs parcial</li>
+</ul>
+<p><strong>Económicos:</strong></p>
+<ul>
+<li><strong>CAPEX</strong>: €0 vs €50,000 (hardware)</li>
+<li><strong>OPEX</strong>: Reducción 60% en costes operativos</li>
+<li><strong>Escalabilidad</strong>: Coste variable vs fijo</li>
+<li><strong>ROI</strong>: 12 meses vs 36 meses</li>
+</ul>
 <hr />
 <h2 id="recursos-adicionales">RECURSOS ADICIONALES</h2>
 <h3 id="enlaces-de-referencia">Enlaces de Referencia</h3>
