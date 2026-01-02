@@ -657,21 +657,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🧰 Plantilla de presentación (Markdown)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#insercion-de-logos-opcional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inserción de logos (opcional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1490,13 +1475,19 @@
 <a href="https://aitor-medrano.github.io/iabd/cloud/cloud.html">Referencia 1</a> · <a href="https://aitor-medrano.github.io/iabd/cloud/aws.html">Referencia 2</a> · <a href="https://aitor-medrano.github.io/iabd/cloud/waf.html">Referencia 3</a></p>
 <hr />
 <h2 id="enunciado">📝 Enunciado</h2>
-<p>Como equipo consultor, entregad una <strong>propuesta técnica</strong> y defendedla al final de la sesión. Debe responder:
-1. <strong>Qué cargas migrar vs mantener on‑premise</strong> (criterios: criticidad, exposición pública, compliance, dependencia de legado) y su <strong>clasificación</strong> por <strong>IaaS/PaaS/SaaS</strong> y <strong>pública/privada/híbrida/multicloud</strong>.<br />
-2. <strong>Modelo de despliegue</strong> recomendado (p. ej., <strong>híbrido</strong> con VPN/Direct Connect) y consideraciones de <strong>latencia, cumplimiento y residencia de datos</strong>.<br />
-3. <strong>Servicios de AWS</strong> elegidos (ejemplos: <strong>S3, Glacier, EBS/EFS, EC2/Auto Scaling, ALB, Lambda, Fargate, RDS/Aurora, DynamoDB, CloudFront, Route 53, VPC, IAM, KMS, Shield, Cognito, CloudWatch, CloudTrail, Config, Budgets, Cost Explorer</strong>), con <strong>justificación</strong>.<br />
-4. <strong>Esquema de red y seguridad</strong> (VPC con subredes públicas/privadas, IGW/NAT, SG/NACL; <strong>responsabilidad compartida</strong>).<br />
-5. <strong>Costes y TCO</strong> (CapEx→OpEx; pago por uso; optimizaciones) y <strong>riesgos/mitigaciones</strong>.<br />
-6. <strong>Mini‑diagrama</strong> y <strong>plan por fases</strong> (piloto → ampliación → operación).</p>
+<p>Como equipo consultor, entregad una <strong>propuesta técnica</strong> y defendedla al final de la sesión. Debe responder:</p>
+<ol>
+<li>
+<p><strong>Qué cargas migrar vs mantener on‑premise</strong> (criterios: criticidad, exposición pública, compliance, dependencia de legado) y su <strong>clasificación</strong> por <strong>IaaS/PaaS/SaaS</strong> y <strong>pública/privada/híbrida/multicloud</strong>.  </p>
+</li>
+<li>
+<p><strong>Modelo de despliegue</strong> recomendado (p. ej., <strong>híbrido</strong> con VPN/Direct Connect) y consideraciones de <strong>latencia, cumplimiento y residencia de datos</strong>.  </p>
+</li>
+<li><strong>Servicios de AWS</strong> elegidos (ejemplos: <strong>S3, Glacier, EBS/EFS, EC2/Auto Scaling, ALB, Lambda, Fargate, RDS/Aurora, DynamoDB, CloudFront, Route 53, VPC, IAM, KMS, Shield, Cognito, CloudWatch, CloudTrail, Config, Budgets, Cost Explorer</strong>), con <strong>justificación</strong>.  </li>
+<li><strong>Esquema de red y seguridad</strong> (VPC con subredes públicas/privadas, IGW/NAT, SG/NACL; <strong>responsabilidad compartida</strong>).  </li>
+<li><strong>Costes y TCO</strong> (CapEx→OpEx; pago por uso; optimizaciones) y <strong>riesgos/mitigaciones</strong>.  </li>
+<li><strong>Mini‑diagrama</strong> y <strong>plan por fases</strong> (piloto → ampliación → operación).</li>
+</ol>
 <blockquote>
 <p>Apoyad las decisiones en las <strong>ventajas de la nube</strong> (alta disponibilidad, elasticidad, escalabilidad, alcance global, agilidad) y en los <strong>pilares WAF</strong> (seguridad, fiabilidad, rendimiento, coste y excelencia operativa).<br />
 <a href="https://aitor-medrano.github.io/iabd/cloud/cloud.html">Cloud</a> · <a href="https://aitor-medrano.github.io/iabd/cloud/aws.html">AWS servicios y VPC</a> · <a href="https://aitor-medrano.github.io/iabd/cloud/waf.html">WAF</a></p>
@@ -1598,21 +1589,21 @@ Auth: Cognito | Seguridad: IAM/KMS | Gobierno: CloudWatch/CloudTrail | DNS: Rout
 <a href="https://aitor-medrano.github.io/iabd/cloud/aws.html">AWS servicios</a></p>
 <hr />
 <h2 id="plantilla-de-presentacion-markdown">🧰 Plantilla de presentación (Markdown)</h2>
-<p>Incluye estos apartados en vuestras diapositivas/markdown:
-- <strong>Portada</strong>: título, equipo, fecha. <em>(En versión PPT: insertar logos del IES y Ayuntamiento en las áreas designadas)</em>
-- <strong>Objetivo y alcance</strong><br />
-- <strong>Roles y responsabilidades</strong> (arquitectura/VPC; datos; seguridad; costes/operación)<br />
-- <strong>Análisis del caso</strong> (servicios públicos vs internos; sensibilidad de datos)<br />
-- <strong>Modelo de servicio y despliegue</strong> (IaaS/PaaS/SaaS; pública/privada/híbrida/multicloud; conectividad)<br />
-- <strong>Arquitectura de red (VPC)</strong> (subred pública/privada; IGW/NAT; SG/NACL; rutas; Multi‑AZ)<br />
-- <strong>Servicios AWS elegidos</strong> (Front/Acceso; Cómputo; Datos; Seguridad/Gobierno; Observabilidad/Costes)<br />
-- <strong>Coste y TCO</strong> (pago por uso; optimizaciones)<br />
-- <strong>Seguridad y responsabilidad compartida</strong><br />
-- <strong>Decisiones según WAF</strong> (2–3 por pilar)<br />
-- <strong>Riesgos y mitigaciones</strong><br />
-- <strong>Plan por fases</strong> (Piloto → Fase 2 → Fase 3)</p>
-<h3 id="insercion-de-logos-opcional">Inserción de logos (opcional)</h3>
-<p>Si convertís este markdown a presentación, colocad los logos en la portada y pie de página. En PPT, usad: <em>Insertar → Imagen</em>.</p>
+<p>Incluye estos apartados en vuestras diapositivas/markdown:</p>
+<ul>
+<li><strong>Portada</strong>: título, equipo, fecha. <em>(En versión PPT: insertar logos del IES y Ayuntamiento en las áreas designadas)</em></li>
+<li><strong>Objetivo y alcance</strong>  </li>
+<li><strong>Roles y responsabilidades</strong> (arquitectura/VPC; datos; seguridad; costes/operación)  </li>
+<li><strong>Análisis del caso</strong> (servicios públicos vs internos; sensibilidad de datos)  </li>
+<li><strong>Modelo de servicio y despliegue</strong> (IaaS/PaaS/SaaS; pública/privada/híbrida/multicloud; conectividad)  </li>
+<li><strong>Arquitectura de red (VPC)</strong> (subred pública/privada; IGW/NAT; SG/NACL; rutas; Multi‑AZ)  </li>
+<li><strong>Servicios AWS elegidos</strong> (Front/Acceso; Cómputo; Datos; Seguridad/Gobierno; Observabilidad/Costes)  </li>
+<li><strong>Coste y TCO</strong> (pago por uso; optimizaciones)  </li>
+<li><strong>Seguridad y responsabilidad compartida</strong>  </li>
+<li><strong>Decisiones según WAF</strong> (2–3 por pilar)  </li>
+<li><strong>Riesgos y mitigaciones</strong>  </li>
+<li><strong>Plan por fases</strong> (Piloto → Fase 2 → Fase 3)</li>
+</ul>
 <hr />
 <h2 id="guion-de-equipo">🗒️ Guion de equipo</h2>
 <ol>
@@ -1640,9 +1631,12 @@ Auth: Cognito | Seguridad: IAM/KMS | Gobierno: CloudWatch/CloudTrail | DNS: Rout
 <hr />
 <h2 id="referencias-seleccion">📚 Referencias (selección)</h2>
 <ul>
-<li><strong>Cloud computing (definición NIST, ventajas, TCO, CapEx/OpEx, modelos de servicio y despliegue)</strong>: https://aitor-medrano.github.io/iabd/cloud/cloud.html  </li>
-<li><strong>Servicios AWS (compute, data, networking, security, governance, costes) y VPC/responsabilidad compartida</strong>: https://aitor-medrano.github.io/iabd/cloud/aws.html  </li>
-<li><strong>AWS Well‑Architected Framework (pilares y buenas prácticas)</strong>: https://aitor-medrano.github.io/iabd/cloud/waf.html</li>
+<li><strong>Cloud computing (definición NIST, ventajas, TCO, CapEx/OpEx, modelos de servicio y despliegue)</strong>: 
+[https://aitor-medrano.github.io/iabd/cloud/cloud.html]  </li>
+<li><strong>Servicios AWS (compute, data, networking, security, governance, costes) y VPC/responsabilidad compartida</strong>: 
+[https://aitor-medrano.github.io/iabd/cloud/aws.html]</li>
+<li><strong>AWS Well‑Architected Framework (pilares y buenas prácticas)</strong>: 
+[https://aitor-medrano.github.io/iabd/cloud/waf.html]</li>
 </ul>
 <hr />
 
