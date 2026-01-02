@@ -26,7 +26,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 📝 Enunciado
 Como equipo consultor, entregad una **propuesta técnica** y defendedla al final de la sesión. Debe responder:
+
 1. **Qué cargas migrar vs mantener on‑premise** (criterios: criticidad, exposición pública, compliance, dependencia de legado) y su **clasificación** por **IaaS/PaaS/SaaS** y **pública/privada/híbrida/multicloud**.  
+
 2. **Modelo de despliegue** recomendado (p. ej., **híbrido** con VPN/Direct Connect) y consideraciones de **latencia, cumplimiento y residencia de datos**.  
 3. **Servicios de AWS** elegidos (ejemplos: **S3, Glacier, EBS/EFS, EC2/Auto Scaling, ALB, Lambda, Fargate, RDS/Aurora, DynamoDB, CloudFront, Route 53, VPC, IAM, KMS, Shield, Cognito, CloudWatch, CloudTrail, Config, Budgets, Cost Explorer**), con **justificación**.  
 4. **Esquema de red y seguridad** (VPC con subredes públicas/privadas, IGW/NAT, SG/NACL; **responsabilidad compartida**).  
@@ -116,6 +118,7 @@ Auth: Cognito | Seguridad: IAM/KMS | Gobierno: CloudWatch/CloudTrail | DNS: Rout
 
 ## 🧰 Plantilla de presentación (Markdown)
 Incluye estos apartados en vuestras diapositivas/markdown:
+
 - **Portada**: título, equipo, fecha. *(En versión PPT: insertar logos del IES y Ayuntamiento en las áreas designadas)*
 - **Objetivo y alcance**  
 - **Roles y responsabilidades** (arquitectura/VPC; datos; seguridad; costes/operación)  
@@ -128,9 +131,6 @@ Incluye estos apartados en vuestras diapositivas/markdown:
 - **Decisiones según WAF** (2–3 por pilar)  
 - **Riesgos y mitigaciones**  
 - **Plan por fases** (Piloto → Fase 2 → Fase 3)
-
-### Inserción de logos (opcional)
-Si convertís este markdown a presentación, colocad los logos en la portada y pie de página. En PPT, usad: *Insertar → Imagen*.
 
 ---
 
@@ -159,9 +159,12 @@ Si convertís este markdown a presentación, colocad los logos en la portada y p
 ---
 
 ## 📚 Referencias (selección)
-- **Cloud computing (definición NIST, ventajas, TCO, CapEx/OpEx, modelos de servicio y despliegue)**: https://aitor-medrano.github.io/iabd/cloud/cloud.html  
-- **Servicios AWS (compute, data, networking, security, governance, costes) y VPC/responsabilidad compartida**: https://aitor-medrano.github.io/iabd/cloud/aws.html  
-- **AWS Well‑Architected Framework (pilares y buenas prácticas)**: https://aitor-medrano.github.io/iabd/cloud/waf.html
+- **Cloud computing (definición NIST, ventajas, TCO, CapEx/OpEx, modelos de servicio y despliegue)**: 
+[https://aitor-medrano.github.io/iabd/cloud/cloud.html]  
+- **Servicios AWS (compute, data, networking, security, governance, costes) y VPC/responsabilidad compartida**: 
+[https://aitor-medrano.github.io/iabd/cloud/aws.html]
+- **AWS Well‑Architected Framework (pilares y buenas prácticas)**: 
+[https://aitor-medrano.github.io/iabd/cloud/waf.html]
 
 ---
 
