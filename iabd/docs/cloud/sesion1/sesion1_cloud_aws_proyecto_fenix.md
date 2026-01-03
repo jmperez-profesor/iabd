@@ -1,5 +1,5 @@
 ---
-title: Cloud y AWS - Proyecto Actividad Práctica: Proyecto Fénix Ilicitano (Gemini pro + notebookLM)
+title: Cloud y AWS - Proyecto Actividad Práctica "Proyecto Fénix Ilicitano" (Gemini pro + notebookLM)
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
