@@ -16,7 +16,7 @@
         <link rel="prev" href="../../..">
       
       
-        <link rel="next" href="../sesion1_cloud_aws_copilot/">
+        <link rel="next" href="../actividad_cloud_aws_perplexity/">
       
       
       <link rel="icon" href="../../../images/favicon.png">
@@ -441,6 +441,8 @@
   
     
     
+      
+        
       
         
       
@@ -889,6 +891,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1936,30 +1961,30 @@
 <div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
 │                        AWS CLOUD                            │
 │  ┌─────────────────────────────────────────────────────────┐│
-│  │                VPC (10.0.0.0/16)                       ││
-│  │  ┌──────────────────┐    ┌──────────────────┐          ││
-│  │  │   AZ-1a          │    │   AZ-1b          │          ││
-│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
-│  │  │ │Public Subnet │ │    │ │Public Subnet │ │          ││
-│  │  │ │10.0.1.0/24   │ │    │ │10.0.2.0/24   │ │          ││
-│  │  │ │              │ │    │ │              │ │          ││
-│  │  │ │  ALB         │ │    │ │  ALB         │ │          ││
-│  │  │ │  NAT Gateway │ │    │ │  NAT Gateway │ │          ││
-│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
-│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
-│  │  │ │Private Subnet│ │    │ │Private Subnet│ │          ││
-│  │  │ │10.0.3.0/24   │ │    │ │10.0.4.0/24   │ │          ││
-│  │  │ │              │ │    │ │              │ │          ││
-│  │  │ │  EC2 Web     │ │    │ │  EC2 Web     │ │          ││
-│  │  │ │  EC2 App     │ │    │ │  EC2 App     │ │          ││
-│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
-│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │          ││
-│  │  │ │DB Subnet     │ │    │ │DB Subnet     │ │          ││
-│  │  │ │10.0.5.0/24   │ │    │ │10.0.6.0/24   │ │          ││
-│  │  │ │              │ │    │ │              │ │          ││
-│  │  │ │  RDS Primary │ │    │ │  RDS Standby │ │          ││
-│  │  │ └──────────────┘ │    │ └──────────────┘ │          ││
-│  │  └──────────────────┘    └──────────────────┘          ││
+│  │                VPC (10.0.0.0/16)                        ││
+│  │  ┌──────────────────┐    ┌──────────────────┐           ││
+│  │  │   AZ-1a          │    │   AZ-1b          │           ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │           ││
+│  │  │ │Public Subnet │ │    │ │Public Subnet │ │           ││
+│  │  │ │10.0.1.0/24   │ │    │ │10.0.2.0/24   │ │           ││
+│  │  │ │              │ │    │ │              │ │           ││
+│  │  │ │  ALB         │ │    │ │  ALB         │ │           ││
+│  │  │ │  NAT Gateway │ │    │ │  NAT Gateway │ │           ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │           ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │           ││
+│  │  │ │Private Subnet│ │    │ │Private Subnet│ │           ││
+│  │  │ │10.0.3.0/24   │ │    │ │10.0.4.0/24   │ │           ││
+│  │  │ │              │ │    │ │              │ │           ││
+│  │  │ │  EC2 Web     │ │    │ │  EC2 Web     │ │           ││
+│  │  │ │  EC2 App     │ │    │ │  EC2 App     │ │           ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │           ││
+│  │  │ ┌──────────────┐ │    │ ┌──────────────┐ │           ││
+│  │  │ │DB Subnet     │ │    │ │DB Subnet     │ │           ││
+│  │  │ │10.0.5.0/24   │ │    │ │10.0.6.0/24   │ │           ││
+│  │  │ │              │ │    │ │              │ │           ││
+│  │  │ │  RDS Primary │ │    │ │  RDS Standby │ │           ││
+│  │  │ └──────────────┘ │    │ └──────────────┘ │           ││
+│  │  └──────────────────┘    └──────────────────┘           ││
 │  └─────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────┘
 </code></pre></div>
@@ -3347,13 +3372,13 @@
         
         
           
-          <a href="../sesion1_cloud_aws_copilot/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Reto copilot">
+          <a href="../actividad_cloud_aws_perplexity/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Reto Perplexity">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Reto copilot
+                Reto Perplexity
               </div>
             </div>
             <div class="md-footer__button md-icon">
