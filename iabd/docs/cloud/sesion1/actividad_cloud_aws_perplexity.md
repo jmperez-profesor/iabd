@@ -3,12 +3,6 @@ title: Cloud y AWS - Estrategia de migración a la nube para el Ayuntamiento de 
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# El contenido de estas páginas [https://aitor-medrano.github.io/iabd/cloud/cloud.html](https://aitor-medrano.github.io/iabd/cloud/cloud.html) y [https://aitor-medrano.github.io/iabd/cloud/aws.html](https://aitor-medrano.github.io/iabd/cloud/aws.html) son muy teóricas. Diseña una actividad para una sesión de dos horas para un alumnado de un curso de especialización en Inteligencia Artificial y Big Data de manera que el alumnado trabaje en equipo y comprenda los conceptos básicos y avanzados sobre cloud y Amazon Web Services.
-
-El ayuntamiento de Elche sufrió un ciberataque recientemente (https://www.elche.es/actualidad-ciber-ataque-elche/ y https://www.apdtic.com/ciberataque-ayuntamiento-elche-5-lecciones-ciberseguridad/) y dejó prácticamente colapsados todos los sistemas de información a los ciudadanos y trabajadores del mismo. Están valorando migrar parte de sus servicios o todos sus servicios a la nube, por ejemplo, a Amazon Web Services. Los alumnos deben decidir qué parte de la infraestructura será interesante migrar a la nube o si deben migrar toda sus infraestructura a la nube.
-Crea un enunciado para el alumnado junto a una rúbrica de evaluación. También añade posibles soluciones como nube pública, nube privada, nube híbrida, multicloud y on primise con información técnica (fases, costes, tiempos, códigos, etcétera) basadas en los enlaces que he puesto en el prompt justificando tus soluciones.
-Por último, elabora toda la actividad con sus soluciones en formato markdown para subir a una página de github. Añade los enlaces en formato markdown.
-
 Esta propuesta de actividad está diseñada para una sesión de dos horas dirigida a estudiantes del curso de especialización en Inteligencia Artificial y Big Data (IABD). Se centra en el caso real del ciberataque al Ayuntamiento de Elche para aplicar conceptos de infraestructura, costes y seguridad en la nube.[^1][^2]
 
 ## Actividad: Modernización del Ayuntamiento de Elche
