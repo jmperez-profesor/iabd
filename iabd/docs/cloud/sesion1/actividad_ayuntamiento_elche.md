@@ -44,32 +44,32 @@ Trabajando en equipos de 3-4 personas, debéis actuar como consultores especiali
 
 1. **Análisis de la situación actual** (30 minutos)
 
-   - Identificar los servicios más críticos para migrar
-   - Evaluar los riesgos de mantener sistemas on-premise
-   - Determinar las ventajas de migrar a AWS
+  - Identificar los servicios más críticos para migrar
+  - Evaluar los riesgos de mantener sistemas on-premise
+  - Determinar las ventajas de migrar a AWS
 
 2. **Diseño de la arquitectura cloud** (60 minutos)
 
-   - Proponer qué servicios AWS utilizar para cada necesidad
-   - Definir la estrategia de migración (IaaS, PaaS, SaaS)
-   - Establecer medidas de seguridad y backup
-   - Considerar aspectos de cumplimiento normativo (RGPD)
+  - Proponer qué servicios AWS utilizar para cada necesidad
+  - Definir la estrategia de migración (IaaS, PaaS, SaaS)
+  - Establecer medidas de seguridad y backup
+  - Considerar aspectos de cumplimiento normativo (RGPD)
 
 3. **Presentación de la propuesta** (30 minutos)
 
-   - Cada equipo presenta su solución (5-7 minutos)
-   - Justificar las decisiones técnicas tomadas
-   - Explicar los beneficios esperados
+  - Cada equipo presenta su solución (5-7 minutos)
+  - Justificar las decisiones técnicas tomadas
+  - Explicar los beneficios esperados
 
 ### ENTREGABLES
 
 1. **Documento técnico** (máximo 3 páginas) que incluya:
 
-   - Análisis de servicios a migrar (priorización)
-   - Arquitectura AWS propuesta con diagrama
-   - Justificación de servicios AWS seleccionados
-   - Plan de migración por fases
-   - Medidas de seguridad implementadas
+  - Análisis de servicios a migrar (priorización)
+  - Arquitectura AWS propuesta con diagrama
+  - Justificación de servicios AWS seleccionados
+  - Plan de migración por fases
+  - Medidas de seguridad implementadas
 
 2. **Presentación** (máximo 8 slides) para exponer la solución
 
