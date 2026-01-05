@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. Dossier para el docente (Cloud + AWS con caso real).">
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/actividad_cloud_aws_perplexity/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/sesion1_cloud_aws_copilot_mejorado/">
       
       
-        <link rel="prev" href="../actividad_ayuntamiento_elche/">
+        <link rel="prev" href="../actividad_cloud_aws_perplexity/">
       
       
-        <link rel="next" href="../sesion1_cloud_aws_copilot_mejorado/">
+        <link rel="next" href="../sesion1_cloud_aws_copilot/">
       
       
       <link rel="icon" href="../../../images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Cloud y AWS - Estrategia de migración a la nube para el Ayuntamiento de Elche (Perplexity) - Inteligencia Artificial y Big Data</title>
+        <title>Cloud y AWS - Migración a AWS tras ciberataque en el Ayuntamiento de Elche (Copilot mejorado) - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#actividad-modernizacion-del-ayuntamiento-de-elche" class="md-skip">
+        <a href="#situacion-de-aprendizaje-migracion-a-aws-tras-ciberataque-en-el-ayuntamiento-de-elche" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cloud y AWS - Estrategia de migración a la nube para el Ayuntamiento de Elche (Perplexity)
+              Cloud y AWS - Migración a AWS tras ciberataque en el Ayuntamiento de Elche (Copilot mejorado)
             
           </span>
         </div>
@@ -515,6 +515,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -524,13 +547,15 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   
   <span class="md-ellipsis">
-    Reto Perplexity
+    Reto copilot mejorado
     
   </span>
   
@@ -543,7 +568,7 @@
   
   
   <span class="md-ellipsis">
-    Reto Perplexity
+    Reto copilot mejorado
     
   </span>
   
@@ -556,6 +581,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -564,61 +591,232 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#actividad-modernizacion-del-ayuntamiento-de-elche" class="md-nav__link">
+  <a href="#indice" class="md-nav__link">
     <span class="md-ellipsis">
-      Actividad: Modernización del Ayuntamiento de Elche
+      Índice
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Actividad: Modernización del Ayuntamiento de Elche">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-teorico-just-in-time-15-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen Teórico “Just-in-Time” (15 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resumen Teórico “Just-in-Time” (15 min)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#enunciado-para-el-alumnado" class="md-nav__link">
+  <a href="#onpremise-vs-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      Enunciado para el alumnado
+      On‑Premise vs Cloud
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#modelo-de-responsabilidad-compartida-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo de Responsabilidad Compartida (AWS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceptos clave
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guia-de-aws-para-no-expertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guía de AWS para “No Expertos”
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guía de AWS para “No Expertos”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#almacenamiento-y-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Almacenamiento y Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bases de Datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguridad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-grupal-90-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actividad Grupal (90 min)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actividad Grupal (90 min)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-a-analisis-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase A — Análisis (30 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-b-propuesta-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase B — Propuesta (30 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-c-arquitectura-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase C — Arquitectura (30 min)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucion-tecnica-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solución Técnica Recomendada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solución Técnica Recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-por-capas-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitectura por capas (resumen)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rubrica-de-evaluacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Rúbrica de evaluación
+      Rúbrica de Evaluación
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#soluciones-tecnicas-propuestas" class="md-nav__link">
+  <a href="#cuatro-soluciones-profesionales-estimacion-de-costes" class="md-nav__link">
     <span class="md-ellipsis">
-      Soluciones técnicas propuestas
+      Cuatro soluciones profesionales + Estimación de costes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Soluciones técnicas propuestas">
+    <nav class="md-nav" aria-label="Cuatro soluciones profesionales + Estimación de costes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparativa-de-modelos-de-infraestructura" class="md-nav__link">
+  <a href="#1-migracion-hibrida-con-servicios-criticos-en-aws-7600-ano-estimado" class="md-nav__link">
     <span class="md-ellipsis">
-      Comparativa de modelos de infraestructura
+      1) Migración híbrida con servicios críticos en AWS — ~7.600 €/año (estimado)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#implementacion-tecnica-en-aws" class="md-nav__link">
+  <a href="#2-lift-shift-completo-31600-ano-estimado" class="md-nav__link">
     <span class="md-ellipsis">
-      Implementación técnica en AWS
+      2) Lift &amp; Shift completo — ~31.600 €/año (estimado)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-modernizacion-progresiva-db-gestionada-primero-6800-ano-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) Modernización progresiva (DB gestionada primero) — ~6.800 €/año (estimado)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cloudnative-con-serverless-y-zero-trust-5300-ano-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) Cloud‑Native con serverless y Zero Trust — ~5.300 €/año (estimado)
     </span>
   </a>
   
@@ -630,9 +828,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#referencias-y-recursos" class="md-nav__link">
+  <a href="#plan-detallado-para-la-sesion-de-2-horas" class="md-nav__link">
     <span class="md-ellipsis">
-      Referencias y recursos
+      Plan detallado para la sesión de 2 horas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-este-enfoque-funciona-para-el-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por qué este enfoque funciona para el docente
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliografia-y-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bibliografía y recursos
     </span>
   </a>
   
@@ -642,29 +858,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Reto copilot mejorado
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1454,133 +1647,258 @@
 
 
 
-  <h1>Reto Perplexity</h1>
-
-<p>Esta propuesta de actividad está diseñada para una sesión de dos horas dirigida a estudiantes del curso de especialización en Inteligencia Artificial y Big Data (IABD). Se centra en el caso real del ciberataque al Ayuntamiento de Elche para aplicar conceptos de infraestructura, costes y seguridad en la nube.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<h2 id="actividad-modernizacion-del-ayuntamiento-de-elche">Actividad: Modernización del Ayuntamiento de Elche</h2>
-<p>El Ayuntamiento de Elche busca una solución tecnológica tras el colapso de sus sistemas por un ciberataque. El objetivo de esta actividad es que, por equipos, diseñen una propuesta de migración a <strong>Amazon Web Services (AWS)</strong> que garantice la continuidad del servicio y la protección de los datos ciudadanos.<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<h3 id="enunciado-para-el-alumnado">Enunciado para el alumnado</h3>
-<p>Tras el reciente ciberataque, el Ayuntamiento debe decidir si mantiene su infraestructura <em>on-premise</em>, migra totalmente a la nube pública, o adopta un modelo híbrido. Vuestro equipo actúa como consultoría técnica para proponer una arquitectura basada en el <strong>Modelo de Responsabilidad Compartida</strong>. Debéis entregar un informe que incluya:<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<ol>
-<li><strong>Análisis de Gastos</strong>: Comparativa entre la inversión actual (<strong>CapEx</strong>) y el modelo de pago por uso (<strong>OpEx</strong>) de AWS.<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
-<li><strong>Diseño de Arquitectura</strong>: Elección razonada entre nube pública, privada o híbrida, identificando servicios específicos como <strong>Amazon EC2</strong>, <strong>S3</strong> y <strong>RDS</strong>.<sup id="fnref5:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-<li><strong>Plan de Seguridad</strong>: Estrategia para mitigar ataques mediante el uso de <strong>IAM</strong>, <strong>AWS Shield</strong> y copias de seguridad en diferentes <strong>Zonas de Disponibilidad (AZ)</strong>.<sup id="fnref6:2"><a class="footnote-ref" href="#fn:2">2</a></sup><sup id="fnref5:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
-</ol>
-<h3 id="rubrica-de-evaluacion">Rúbrica de evaluación</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Criterio</th>
-<th style="text-align: left;">Excelente (5 pts)</th>
-<th style="text-align: left;">En desarrollo (3 pts)</th>
-<th style="text-align: left;">Insuficiente (1 pt)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Análisis TCO</strong></td>
-<td style="text-align: left;">Identifica costes directos/indirectos y justifica el ahorro OpEx <sup id="fnref8:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Menciona el ahorro pero no diferencia claramente CapEx de OpEx.</td>
-<td style="text-align: left;">No realiza cálculos ni comparativas de costes.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Arquitectura</strong></td>
-<td style="text-align: left;">Selecciona un modelo (ej. Híbrido) justificando el uso de AZ y Regiones <sup id="fnref9:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Propone servicios de AWS sin justificar la ubicación geográfica.</td>
-<td style="text-align: left;">No define un modelo de infraestructura claro.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Seguridad</strong></td>
-<td style="text-align: left;">Aplica el principio de mínimo privilegio con IAM y protección DDoS <sup id="fnref11:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</td>
-<td style="text-align: left;">Menciona herramientas de seguridad sin explicar su configuración.</td>
-<td style="text-align: left;">No aborda la prevención de futuros ciberataques.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Trabajo Equipo</strong></td>
-<td style="text-align: left;">Colaboración total y presentación técnica profesional.</td>
-<td style="text-align: left;">Participación desigual de los miembros.</td>
-<td style="text-align: left;">Falta de coordinación y errores técnicos graves.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="soluciones-tecnicas-propuestas">Soluciones técnicas propuestas</h2>
-<p>A continuación se detallan las opciones que el alumnado puede proponer basándose en los materiales de referencia.<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<h3 id="comparativa-de-modelos-de-infraestructura">Comparativa de modelos de infraestructura</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Modelo</th>
-<th style="text-align: left;">Ventajas Técnicas</th>
-<th style="text-align: left;">Desventajas / Retos</th>
-<th style="text-align: left;">Recomendación para Elche</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Nube Pública</strong></td>
-<td style="text-align: left;">Alta disponibilidad, escalabilidad global y CapEx de 0€ <sup id="fnref10:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Dependencia de internet y posibles dudas sobre soberanía de datos <sup id="fnref11:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Ideal para servicios al ciudadano de alto tráfico.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Nube Híbrida</strong></td>
-<td style="text-align: left;">Control de datos críticos localmente y escalabilidad en la nube <sup id="fnref12:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Mayor complejidad en la gestión y latencia en conexiones <sup id="fnref13:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;"><strong>Solución más equilibrada</strong> para la administración pública.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Multicloud</strong></td>
-<td style="text-align: left;">Evita el bloqueo con un solo proveedor (AWS/Azure) <sup id="fnref14:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Dificultad para centralizar políticas de seguridad <sup id="fnref15:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Recomendable para evitar dependencia total de Amazon.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>On-premise</strong></td>
-<td style="text-align: left;">Control total físico de los servidores y los datos <sup id="fnref16:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">Alto coste de mantenimiento, difícil escalado y vulnerable a fallos locales <sup id="fnref17:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</td>
-<td style="text-align: left;">No recomendada tras el fallo de seguridad reciente.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="implementacion-tecnica-en-aws">Implementación técnica en AWS</h3>
-<p>Para una migración efectiva, se proponen las siguientes fases y servicios de AWS:<sup id="fnref4:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<ul>
-<li><strong>Fase 1: Almacenamiento y Backup (S3 y Glacier)</strong>: Migrar los archivos críticos a <strong>Amazon S3</strong> para obtener una durabilidad del 99.999999999%. Esto asegura que, ante un <em>ransomware</em> local, existan copias inmutables en la nube.<sup id="fnref7:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-<li><strong>Fase 2: Computación y Redes (VPC y EC2)</strong>: Crear una <strong>Amazon VPC</strong> con subredes públicas para la web municipal y subredes privadas para las bases de datos. Se utilizaría el asistente de <strong>VPC Wizard</strong> para configurar el aislamiento.<sup id="fnref8:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-<li><strong>Fase 3: Seguridad de Identidad (IAM)</strong>: Implementar políticas de acceso mediante documentos JSON para restringir permisos.<sup id="fnref9:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-</ul>
-<p>Ejemplo de política de IAM para restringir acceso a un técnico de bases de datos:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rds-db:connect&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:rds-db:us-east-1:123456789012:dbuser:pr-db-instance/db-user&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="referencias-y-recursos">Referencias y recursos</h2>
-<p>Para profundizar en la teoría aplicada en esta actividad, se pueden consultar los siguientes enlaces:</p>
-<ul>
-<li><a href="https://aitor-medrano.github.io/iabd/cloud/cloud.html">Información sobre Cloud Computing</a><sup id="fnref6:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
-<li><a href="https://aitor-medrano.github.io/iabd/cloud/aws.html">Guía de servicios y seguridad en AWS</a><sup id="fnref10:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-<li><a href="https://calculator.aws">Calculadora de costes de AWS</a><sup id="fnref7:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
-</ul>
-<div align="center">⁂</div>
-
-<div class="footnote">
+<h1 id="situacion-de-aprendizaje-migracion-a-aws-tras-ciberataque-en-el-ayuntamiento-de-elche">Situación de Aprendizaje: Migración a AWS tras ciberataque en el Ayuntamiento de Elche</h1>
+<p><strong>Rol del docente:</strong> Arquitecto de Soluciones Cloud (AWS) + Experto en Pedagogía FP<br />
+<strong>Duración total:</strong> 120 minutos (2 horas)<br />
+<strong>Objetivo:</strong> Comprender Cloud y AWS <strong>de forma práctica</strong>, aplicándolo al caso real del <strong>ciberataque por ransomware</strong> que paralizó el Ayuntamiento de <strong>Elche</strong>.</p>
+<blockquote>
+<p><strong>Fuentes del caso y verificación</strong>
+- Resumen del ciberataque, paralización operativa y afectación a sede electrónica y nóminas: <a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">Genbeta</a><br />
+- Parada de actividad, rescate millonario y actuaciones policiales: <a href="https://www.antena3.com/noticias/sociedad/ciberataque-ayuntamiento-elche-hackers-exigen-rescate-millonario_2025082868b09f1c506ef67d06e55d60.html">Antena3</a><br />
+- “Red blanca”, 1.500 equipos apagados y 52 infectados; daño en copias de seguridad: <a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">Computing</a><br />
+- Recuperación por fases y coordinación estatal/autonómica: <a href="https://www.elespanol.com/alicante/elche/20250829/ayuntamiento-elche-crea-red-segura-recupera-dias-despues-ciberataque/1003743904837_0.html">El Español</a> y <a href="https://www.estoeselche.es/elche-avanza-en-la-recuperacion-tras-el-ciberataque-que-paralizo-el-ayuntamiento/">Esto Es Elche</a></p>
+</blockquote>
 <hr />
+<h2 id="indice">Índice</h2>
 <ol>
-<li id="fn:1">
-<p>https://aitor-medrano.github.io/iabd/cloud/cloud.html&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref8:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref9:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref10:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref11:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref12:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref13:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref14:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref15:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref16:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref17:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>https://aitor-medrano.github.io/iabd/cloud/aws.html&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref8:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref9:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref10:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref11:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
+<li>[Resumen Teórico “Just-in-Time”] (15 min) </li>
+<li>[Guía de AWS para “No Expertos”]</li>
+<li><a href="#actividad-grupalca Recomendada">Actividad Grupal (90 min)</a>  </li>
+<li>[Rúbrica de Evaluación]</li>
+<li>[Cuatro soluciones profesionales+ Estimación de costes]</li>
+<li>[Plan detallado para la sesión de 2 horas](#plan-detallado-para-la-sesionona para el docente](#por-queografía y recursos)</li>
 </ol>
-</div>
+<hr />
+<h2 id="resumen-teorico-just-in-time-15-min">Resumen Teórico “Just-in-Time” (15 min)</h2>
+<h3 id="onpremise-vs-cloud">On‑Premise vs Cloud</h3>
+<p><strong>On‑Premise:</strong> infraestructura en el edificio municipal (hardware propio, backups locales, seguridad interna). En Elche, un <strong>ransomware</strong> cifró sistemas y paralizó operaciones, afectando trámites, sede electrónica y nóminas, obligando a apagar hasta <strong>1.500</strong> equipos y reconstruir una <strong>red blanca</strong> para retomar servicios esenciales <a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">(Genbeta)</a>, <a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">(Computing)</a>.</p>
+<p><strong>Cloud (AWS):</strong> alquiler de infraestructura profesional y segura.</p>
+<ul>
+<li><strong>IaaS</strong>: Infraestructura como servicio (EC2, S3).  </li>
+<li><strong>PaaS</strong>: Plataforma gestionada (RDS, Lambda).  </li>
+<li><strong>SaaS</strong>: Aplicaciones completas (p. ej. Microsoft 365).</li>
+</ul>
+<h3 id="modelo-de-responsabilidad-compartida-aws">Modelo de Responsabilidad Compartida (AWS)</h3>
+<ul>
+<li><strong>AWS — “Seguridad de la nube”</strong>: CPDs, hardware, red física.  </li>
+<li><strong>Ayuntamiento — “Seguridad en la nube”</strong>: IAM, cifrado, configuraciones, backups.</li>
+</ul>
+<h3 id="conceptos-clave">Conceptos clave</h3>
+<ul>
+<li><strong>Alta disponibilidad (HA):</strong> servicio sigue aunque falle una parte (Multi‑AZ).  </li>
+<li><strong>Escalabilidad:</strong> crecer según demanda (Auto Scaling, serverless).  </li>
+<li><strong>Recuperación de Desastres (DR):</strong> restauración desde copias <strong>inmutables</strong> y externas (S3 Object Lock, AWS Backup). En el incidente de Elche, la <strong>afectación de copias</strong> obligó a reconstruir infra en una <strong>red limpia</strong> <a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">(Computing)</a>, <a href="https://www.elespanol.com/alicante/elche/20250829/ayuntamiento-elche-crea-red-segura-recupera-dias-despues-ciberataque/1003743904837_0.html">(El Español)</a>.</li>
+</ul>
+<hr />
+<h2 id="guia-de-aws-para-no-expertos">Guía de AWS para “No Expertos”</h2>
+<h3 id="computacion">Computación</h3>
+<ul>
+<li><strong>EC2</strong>: servidores virtuales. Útil para “lift &amp; shift” de apps municipales legacy.  </li>
+<li><strong>Lambda</strong>: funciones sin servidor para automatización y tareas event‑driven.</li>
+</ul>
+<h3 id="almacenamiento-y-backup">Almacenamiento y Backup</h3>
+<ul>
+<li><strong>S3</strong>: almacenamiento seguro; <strong>Object Lock</strong> permite <strong>inmutabilidad</strong> (clave anti‑ransomware).  </li>
+<li><strong>AWS Backup</strong>: orquestación central de copias (EC2, RDS, EFS), con políticas y retención.</li>
+</ul>
+<h3 id="bases-de-datos">Bases de Datos</h3>
+<ul>
+<li><strong>RDS (Multi‑AZ)</strong>: base de datos relacional gestionada, backups automáticos y failover.</li>
+</ul>
+<h3 id="seguridad">Seguridad</h3>
+<ul>
+<li><strong>IAM</strong>: identidades y permisos (MFA, mínimo privilegio).  </li>
+<li><strong>AWS WAF</strong>: firewall de aplicaciones web contra inyecciones, bots, etc.  </li>
+<li><strong>AWS Shield</strong>: protección DDoS (recomendable para portales municipales y sede electrónica).</li>
+</ul>
+<p><em>(Ver hoja de servicios y fichas rápidas en esta sección durante la sesión)</em></p>
+<hr />
+<h2 id="actividad-grupal-90-min">Actividad Grupal (90 min)</h2>
+<h3 id="fase-a-analisis-30-min">Fase A — Análisis (30 min)</h3>
+<ul>
+<li>¿Qué falló? (backups afectados, red sin segmentación, dependencia CPD local).  </li>
+<li>¿Por qué el ransomware paraliza un ayuntamiento entero?  </li>
+<li>¿Consecuencias? (interrupción trámites, pagos manuales, reputación).  </li>
+<li>¿Qué medidas preventivas? (copias externas, Zero Trust, nube/híbrido).</li>
+</ul>
+<blockquote>
+<p>Datos reales para discusión: paralización por ransomware, rescate millonario bajo investigación, 1.500 equipos apagados, “red blanca” para recuperar <a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">(Genbeta)</a>, <a href="https://www.antena3.com/noticias/sociedad/ciberataque-ayuntamiento-elche-hackers-exigen-rescate-millonario_2025082868b09f1c506ef67d06e55d60.html">(Antena3)</a>, <a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">(Computing)</a>.</p>
+</blockquote>
+<h3 id="fase-b-propuesta-30-min">Fase B — Propuesta (30 min)</h3>
+<ul>
+<li>¿Todo a la nube o híbrido?  </li>
+<li>¿Qué migrar primero? (sede electrónica, BBDD padrón/censo, backups).  </li>
+<li>¿Cómo evitar una nueva paralización? (RDS Multi‑AZ, S3 Object Lock, WAF/Shield, IAM con MFA).</li>
+</ul>
+<h3 id="fase-c-arquitectura-30-min">Fase C — Arquitectura (30 min)</h3>
+<ul>
+<li>Dibujo orientativo: VPC (subredes públicas/privadas), EC2 en HA, RDS Multi‑AZ, S3 + Backup inmutable, WAF + CloudFront, IAM/MFA, Shield, Client VPN.  </li>
+<li>Preguntas guía: ¿cómo impedir cifrado de copias?, ¿qué ocurre ante fallo AZ?, ¿cómo acceden funcionarios si la red local cae?</li>
+</ul>
+<hr />
+<h2 id="solucion-tecnica-recomendada">Solución Técnica Recomendada</h2>
+<h3 id="objetivo">Objetivo</h3>
+<p>Evitar la <strong>paralización total</strong> ante futuros ataques; priorizar <strong>continuidad de negocio</strong> (servicio al ciudadano) y <strong>disponibilidad de datos</strong> para analítica/Big Data.</p>
+<h3 id="arquitectura-por-capas-resumen">Arquitectura por capas (resumen)</h3>
+<ol>
+<li><strong>Red (VPC + segmentación)</strong>: subredes separadas para públicos/privados/backup.  </li>
+<li><strong>Computación</strong>: EC2 en <strong>Auto Scaling</strong> y <strong>Multi‑AZ</strong>; Lambda para automatización.  </li>
+<li><strong>Almacenamiento y DR</strong>: S3 con <strong>Object Lock</strong> + <strong>AWS Backup</strong> (copias inmutables y replicadas).  </li>
+<li><strong>BBDD</strong>: RDS Multi‑AZ (padrón, censo, expedientes, tributos).  </li>
+<li><strong>Seguridad</strong>: IAM (MFA), WAF, Shield.  </li>
+<li><strong>Acceso interno</strong>: AWS Client VPN para continuidad aunque la red municipal esté caída.</li>
+</ol>
+<blockquote>
+<p>Ajuste al caso Elche: backups afectados y reconstrucción de “red blanca” → se resuelve con <strong>inmutabilidad</strong> y <strong>replicación</strong>, además de segmentación estricta y servicios gestionados <a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">(Computing)</a>, <a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">(Genbeta)</a>.</p>
+</blockquote>
+<hr />
+<h2 id="rubrica-de-evaluacion">Rúbrica de Evaluación</h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>4 – Excelente</th>
+<th>3 – Notable</th>
+<th>2 – Aceptable</th>
+<th>1 – Insuficiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trabajo en equipo</strong></td>
+<td>Roles claros, participación equilibrada, colaboración efectiva.</td>
+<td>Buena coordinación con pequeñas lagunas.</td>
+<td>Participación irregular, dominancia de algunos miembros.</td>
+<td>Descoordinación y poca participación.</td>
+</tr>
+<tr>
+<td><strong>Justificación técnica</strong></td>
+<td>Qué migrar y por qué; servicios adecuados; relación con fallos del caso (backups, CPD, paralización).</td>
+<td>Justificación sólida pero menos profunda.</td>
+<td>Decisiones con poca argumentación.</td>
+<td>Propuesta incoherente o desconectada del caso.</td>
+</tr>
+<tr>
+<td><strong>Seguridad y continuidad</strong></td>
+<td>Domina inmutabilidad, Multi‑AZ, WAF/IAM; explica cómo evitar nueva paralización.</td>
+<td>Comprensión buena, con huecos menores.</td>
+<td>Conceptos básicos sin integración.</td>
+<td>No demuestra comprensión útil.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calificación sugerida:</strong> Total 12 puntos → 11–12 (Sobresaliente), 9–10 (Notable), 6–8 (Aprobado), &lt;6 (Suspenso).</p>
+<hr />
+<h2 id="cuatro-soluciones-profesionales-estimacion-de-costes">Cuatro soluciones profesionales + Estimación de costes</h2>
+<blockquote>
+<p><strong>Notas de costes:</strong><br />
+- Referencias de reducción de costes y valor de negocio: <strong>The Hackett Group/AWS</strong> (20% menos en infraestructura; +66% productividad; +43% time‑to‑market), y mejores prácticas de control financiero <strong>CFM</strong> en migraciones a gran escala <a href="https://d1.awsstatic.com/psc-digital/2022/gc-mig/business-value-of-migration/Business-Value-of-Migration-eBook-ES-ES.pdf">(eBook)</a>, <a href="https://aws.amazon.com/es/blogs/aws-spanish/como-administro-los-costos-durante-las-migraciones-a-gran-escala/">(Blog AWS CFM)</a>.<br />
+- Casos de migración completa con ahorros sustanciales (200 servidores, &gt;1M USD acumulados): <strong>NTT DATA</strong> en AWS <a href="https://mexico.nttdata.com/insights/case-studies/migracion-a-la-cloud-aws-de-una-gran-aseguradora-brasilena">(NTT DATA Case Study)</a>.<br />
+- Los cálculos aquí son <strong>estimaciones docentes</strong> basadas en configuraciones típicas que el alumnado puede reproducir en la <strong>AWS Pricing Calculator</strong> <a href="https://calculator.aws/">(Calculator)</a> y su documentación <a href="https://docs.aws.amazon.com/pricing-calculator/latest/userguide/estimate-examples.html">(Docs ejemplos)</a>.</p>
+</blockquote>
+<h3 id="1-migracion-hibrida-con-servicios-criticos-en-aws-7600-ano-estimado">1) Migración híbrida con servicios críticos en AWS — <strong>~7.600 €/año (estimado)</strong></h3>
+<ul>
+<li><strong>Servicios</strong>: VPC, EC2 (2×t3.medium HA), RDS Multi‑AZ (db.t3.medium), S3 + Backup (inmutable), WAF + Shield Basic, Client VPN.  </li>
+<li><strong>Razonamiento</strong>: minimizar riesgo, proteger backups y mantener continuidad.  </li>
+<li><strong>Respaldo de ahorro</strong>: -20% en infra al migrar a AWS (Hackett Group/AWS) <a href="https://d1.awsstatic.com/psc-digital/2022/gc-mig/business-value-of-migration/Business-Value-of-Migration-eBook-ES-ES.pdf">(eBook)</a>.</li>
+</ul>
+<h3 id="2-lift-shift-completo-31600-ano-estimado">2) Lift &amp; Shift completo — <strong>~31.600 €/año (estimado)</strong></h3>
+<ul>
+<li><strong>Servicios</strong>: 10 instancias EC2 mixtas, 2×RDS Multi‑AZ, S3+Glacier+Backup, WAF + <strong>Shield Advanced</strong>.  </li>
+<li><strong>Razonamiento</strong>: máxima resiliencia y salida del CPD local tras ataque grave.  </li>
+<li><strong>Respaldo</strong>: caso real de migración de centro de datos (200 servidores) con &gt;1M USD ahorro <a href="https://mexico.nttdata.com/insights/case-studies/migracion-a-la-cloud-aws-de-una-gran-aseguradora-brasilena">(NTT DATA)</a> + -20% en infra (Hackett) <a href="https://d1.awsstatic.com/psc-digital/2022/gc-mig/business-value-of-migration/Business-Value-of-Migration-eBook-ES-ES.pdf">(eBook)</a>.</li>
+</ul>
+<h3 id="3-modernizacion-progresiva-db-gestionada-primero-6800-ano-estimado">3) Modernización progresiva (DB gestionada primero) — <strong>~6.800 €/año (estimado)</strong></h3>
+<ul>
+<li><strong>Servicios</strong>: RDS Multi‑AZ, S3 + Backup inmutable, EC2 mínimos (legacy), WAF.  </li>
+<li><strong>Razonamiento</strong>: mover datos críticos y asegurar DR; menor esfuerzo inicial.  </li>
+<li><strong>Respaldo</strong>: prácticas de modernización y HA descritas en experiencias de clientes (7Rs) <a href="https://mexico.nttdata.com/insights/case-studies/migracion-a-la-cloud-aws-de-una-gran-aseguradora-brasilena">(NTT DATA Case)</a>.</li>
+</ul>
+<h3 id="4-cloudnative-con-serverless-y-zero-trust-5300-ano-estimado">4) Cloud‑Native con serverless y Zero Trust — <strong>~5.300 €/año (estimado)</strong></h3>
+<ul>
+<li><strong>Servicios</strong>: Lambda + API Gateway, RDS serverless, S3 + Backup, WAF + Shield Basic.  </li>
+<li><strong>Razonamiento</strong>: mayor eficiencia y menor superficie de ataque; pagos por uso.  </li>
+<li><strong>Respaldo</strong>: enfoque CAF y CI/CD; seguridad en capas y automatización <a href="https://prezi.com/p/oq0p_ejw_05v/migracion-a-la-nube-con-aws-caf-caso-practico/">(Prezi CAF)</a>.</li>
+</ul>
+<blockquote>
+<p><strong>Comparativa rápida:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Solución</th>
+<th style="text-align: right;">Coste anual estimado</th>
+<th>Ventaja principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Híbrida</td>
+<td style="text-align: right;">7.600 €</td>
+<td>Minimiza riesgo y permite transición gradual</td>
+</tr>
+<tr>
+<td>Lift &amp; Shift</td>
+<td style="text-align: right;">31.600 €</td>
+<td>Máxima resiliencia y salida del CPD local</td>
+</tr>
+<tr>
+<td>Modernización</td>
+<td style="text-align: right;">6.800 €</td>
+<td>Protege datos y DR con menos esfuerzo inicial</td>
+</tr>
+<tr>
+<td>Cloud‑Native</td>
+<td style="text-align: right;">5.300 €</td>
+<td>Eficiencia, automatización y seguridad por diseño</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr />
+<h2 id="plan-detallado-para-la-sesion-de-2-horas">Plan detallado para la sesión de 2 horas</h2>
+<p><strong>Min 0–15 – Introducción del caso</strong><br />
+- Proyecta noticias del ciberataque y pregunta:<br />
+<strong>“¿Cuánto dinero y tiempo pierde la ciudad por cada hora de paro?”</strong>  </p>
+<blockquote>
+<p>Apoyo: paralización y rescate millonario bajo investigación <a href="https://www.antena3.com/noticias/sociedad/ciberataque-ayuntamiento-elche-hackers-exigen-rescate-millonario_2025082868b09f1c506ef67d06e55d60.html">(Antena3)</a>, <a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">(Genbeta)</a>.</p>
+</blockquote>
+<p><strong>Min 15–30 – Hoja de herramientas AWS</strong><br />
+- Entrega el bloque “Guía de AWS para No Expertos”.</p>
+<p><strong>Min 30–100 – Trabajo por equipos</strong><br />
+- Fase A: Análisis.<br />
+- Fase B: Propuesta (híbrida, completa, progresiva o cloud‑native).<br />
+- Fase C: Dibujo de arquitectura (Excalidraw/pizarra).</p>
+<p><strong>Min 100–120 – Elevator pitch de cada grupo + cierre</strong><br />
+- Compara con la <strong>Solución Técnica Recomendada</strong>.<br />
+- Conecta con <strong>continuidad de negocio</strong>: que el ciudadano <strong>no pierda el servicio</strong>.</p>
+<hr />
+<h2 id="por-que-este-enfoque-funciona-para-el-docente">Por qué este enfoque funciona para el docente</h2>
+<ul>
+<li><strong>Rol doble</strong> (Arquitecto + Pedagogo): asegura rigor técnico y claridad didáctica.  </li>
+<li><strong>Estructura “Just‑in‑Time”</strong>: se enseña <strong>solo lo necesario</strong> para resolver el problema real de Elche.  </li>
+<li><strong>Contexto real</strong> con fuentes: los alumnos vinculan <strong>ransomware</strong> y <strong>fallo de backups externos</strong> con soluciones AWS (<strong>S3 Object Lock</strong>, <strong>AWS Backup</strong>).  </li>
+<li><strong>Hoja de respuestas</strong>: el docente tiene una <strong>arquitectura ideal</strong> para contrastar con propuestas de alumnos.</li>
+</ul>
+<hr />
+<h2 id="bibliografia-y-recursos">Bibliografía y recursos</h2>
+<ul>
+<li><strong>Caso Ayuntamiento de Elche (ransomware, paralización, red blanca)</strong>  </li>
+<li><a href="https://www.genbeta.com/seguridad/ayuntamiento-elche-paralizado-ciberataque-ransomware-que-no-se-ha-pedido-rescate">Genbeta (26/08/2025)</a>  </li>
+<li><a href="https://www.computing.es/administracion/elche-levanta-una-red-blanca-tras-el-ciberataque-52-equipos-infectados-1-500-desconectados/">Computing (16/09/2025)</a>  </li>
+<li><a href="https://www.antena3.com/noticias/sociedad/ciberataque-ayuntamiento-elche-hackers-exigen-rescate-millonario_2025082868b09f1c506ef67d06e55d60.html">Antena3 (28/08/2025)</a>  </li>
+<li><a href="https://www.elespanol.com/alicante/elche/20250829/ayuntamiento-elche-crea-red-segura-recupera-dias-despues-ciberataque/1003743904837_0.html">El Español (29/08/2025)</a>  </li>
+<li>
+<p><a href="https://www.estoeselche.es/elche-avanza-en-la-recuperacion-tras-el-ciberataque-que-paralizo-el-ayuntamiento/">Esto Es Elche (2025)</a></p>
+</li>
+<li>
+<p><strong>Migración y costes en AWS</strong>  </p>
+</li>
+<li><strong>AWS Pricing Calculator</strong>: <a href="https://calculator.aws/">calculator.aws</a> — <strong>Documentación</strong>: <a href="https://docs.aws.amazon.com/pricing-calculator/latest/userguide/estimate-examples.html">estimate examples</a>  </li>
+<li><strong>Valor de negocio (Hackett/AWS)</strong>: <a href="https://d1.awsstatic.com/psc-digital/2022/gc-mig/business-value-of-migration/Business-Value-of-Migration-eBook-ES-ES.pdf">eBook ES</a>  </li>
+<li><strong>Gestión financiera en migraciones (CFM)</strong>: <a href="https://aws.amazon.com/es/blogs/aws-spanish/como-administro-los-costos-durante-las-migraciones-a-gran-escala/">Blog AWS en español</a>  </li>
+<li><strong>Caso de migración masiva (NTT DATA)</strong>: <a href="https://mexico.nttdata.com/insights/case-studies/migracion-a-la-cloud-aws-de-una-gran-aseguradora-brasilena">Case Study</a></li>
+</ul>
+<hr />
 
 
 
@@ -1621,7 +1939,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../actividad_ayuntamiento_elche/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Reto Amazon Q">
+          <a href="../actividad_cloud_aws_perplexity/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Reto Perplexity">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1631,20 +1949,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Reto Amazon Q
+                Reto Perplexity
               </div>
             </div>
           </a>
         
         
           
-          <a href="../sesion1_cloud_aws_copilot_mejorado/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Reto copilot mejorado">
+          <a href="../sesion1_cloud_aws_copilot/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Reto copilot">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Reto copilot mejorado
+                Reto copilot
               </div>
             </div>
             <div class="md-footer__button md-icon">
