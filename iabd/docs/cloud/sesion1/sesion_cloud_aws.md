@@ -86,7 +86,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### Contexto del Caso Real
 
-El **Ayuntamiento de Elche** sufrió un ciberataque que colapsó sus sistemas informáticos, afectando:
+El Ayuntamiento de Elche sufrió recientemente un ciberataque que dejó prácticamente colapsados todos los sistemas de información, afectando tanto a ciudadanos como a trabajadores municipales. Colapsó sus sistemas informáticos, afectando:
 
 - Portal web municipal y servicios online
 - Sistema de cita previa ciudadana
@@ -94,7 +94,36 @@ El **Ayuntamiento de Elche** sufrió un ciberataque que colapsó sus sistemas in
 - Padrón municipal y censo
 - Sistemas internos (RRHH, contabilidad, licencias)
 
-### Misión de los Equipos
+Ante esta situación crítica, el consistorio está valorando migrar parte de sus servicios a la nube, específicamente a Amazon Web Services (AWS), para mejorar la seguridad, disponibilidad y resiliencia de sus sistemas.
+
+### Situación Actual del Ayuntamiento de Elche
+
+Tras el ciberataque, se ha identificado la siguiente infraestructura crítica afectada:
+
+**Servicios Ciudadanos:**
+
+- Portal web municipal (información, trámites online)
+- Sistema de cita previa
+- Padrón municipal y censo
+- Gestión de multas y sanciones
+- Plataforma de participación ciudadana
+
+**Sistemas Internos:**
+
+- Gestión de recursos humanos y nóminas
+- Contabilidad y presupuestos
+- Gestión de licencias y permisos
+- Sistema de expedientes administrativos
+- Base de datos de proveedores
+
+**Infraestructura Técnica:**
+
+- Servidores físicos (15 servidores)
+- Sistema de copias de seguridad
+- Red interna y conectividad
+- Sistemas de seguridad y monitorización
+
+### Misión para los equipos
 
 Actuar como **consultores cloud** para diseñar la migración de servicios municipales a AWS, considerando:
 
