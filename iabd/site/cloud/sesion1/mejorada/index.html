@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Cloud Computing y AWS - Ayuntamiento de Elche</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌩️ Cloud Computing y AWS</h1>
+            <p class="subtitle">Migración del Ayuntamiento de Elche tras Ciberataque</p>
+            <div class="session-info">
+                <span>⏱️ Duración: 2 horas</span>
+                <span>👥 Equipos: 3-4 alumnos</span>
+                <span>🎯 Nivel: IA y Big Data</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#inicio" class="nav-link active">🏠 Inicio</a></li>
+                <li><a href="#profesorado" class="nav-link">👨‍🏫 Profesorado</a></li>
+                <li><a href="#alumnado" class="nav-link">👥 Alumnado</a></li>
+                <li><a href="#materiales" class="nav-link">📚 Materiales</a></li>
+                <li><a href="#evaluacion" class="nav-link">📊 Evaluación</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- SECCIÓN INICIO -->
+        <section id="inicio" class="content-section active">
+            <div class="hero-box">
+                <h2>🚨 Caso Real: Ciberataque al Ayuntamiento de Elche</h2>
+                <p>En agosto de 2025, un ransomware colapsó todos los sistemas municipales. Los estudiantes actuarán como consultores cloud para diseñar la migración a AWS.</p>
+            </div>
+
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h3>🎯 Objetivos Conceptuales</h3>
+                    <ul>
+                        <li>Distinguir modelos IaaS, PaaS, SaaS</li>
+                        <li>Comparar nube pública, privada, híbrida</li>
+                        <li>Identificar servicios AWS clave</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <h3>🛠️ Objetivos Procedimentales</h3>
+                    <ul>
+                        <li>Diseñar arquitectura cloud básica</li>
+                        <li>Elaborar plan de migración por fases</li>
+                    </ul>
+                </div>
+                <div class="objective-card">
+                    <h3>🤝 Objetivos Actitudinales</h3>
+                    <ul>
+                        <li>Trabajar colaborativamente</li>
+                        <li>Argumentar decisiones técnicas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h3>⏰ Cronograma de la Sesión</h3>
+                <div class="timeline-item">
+                    <div class="time">30 min</div>
+                    <div class="activity">
+                        <h4>Bloque 1: Contextualización</h4>
+                        <p>Análisis del ciberataque y servicios críticos</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">25 min</div>
+                    <div class="activity">
+                        <h4>Bloque 2: Fundamentos Cloud</h4>
+                        <p>IaaS/PaaS/SaaS y modelos de despliegue</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">35 min</div>
+                    <div class="activity">
+                        <h4>Bloque 3: Arquitectura AWS</h4>
+                        <p>Servicios, seguridad y diseño de red</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">20 min</div>
+                    <div class="activity">
+                        <h4>Bloque 4: Plan de Migración</h4>
+                        <p>Fases, cronograma y análisis de costes</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">30 min</div>
+                    <div class="activity">
+                        <h4>Bloque 5: Presentaciones</h4>
+                        <p>Exposición de propuestas y síntesis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PROFESORADO -->
+        <section id="profesorado" class="content-section">
+            <h2>👨‍🏫 Materiales para el Profesorado</h2>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('preparacion')">📋 Preparación</button>
+                <button class="tab-button" onclick="showTab('preguntas')">❓ Preguntas Guía</button>
+                <button class="tab-button" onclick="showTab('recursos')">🔧 Recursos AWS</button>
+                <button class="tab-button" onclick="showTab('gestion')">⏱️ Gestión Tiempo</button>
+            </div>
+
+            <div id="preparacion" class="tab-content active">
+                <h3>📋 Preparación de la Sesión</h3>
+                <div class="checklist">
+                    <h4>✅ Lista de Verificación (15 minutos)</h4>
+                    <label><input type="checkbox"> Leer cronograma completo de actividades</label>
+                    <label><input type="checkbox"> Revisar preguntas guía por bloque</label>
+                    <label><input type="checkbox"> Imprimir hojas de trabajo para equipos</label>
+                    <label><input type="checkbox"> Preparar acceso a plantilla de entrega</label>
+                    <label><input type="checkbox"> Configurar presentación del ciberataque</label>
+                </div>
+
+                <div class="presentation-slides">
+                    <h4>🎯 Diapositivas de Presentación Inicial</h4>
+                    <div class="slide">
+                        <h5>Diapositiva 1: Contexto del Ciberataque</h5>
+                        <ul>
+                            <li><strong>Fecha:</strong> Agosto 2025</li>
+                            <li><strong>Tipo:</strong> Ransomware que cifró sistemas críticos</li>
+                            <li><strong>Duración:</strong> Varios días sin servicios digitales</li>
+                            <li><strong>Impacto:</strong> Portal web, cita previa, sistemas internos bloqueados</li>
+                        </ul>
+                    </div>
+                    <div class="slide">
+                        <h5>Diapositiva 2: La Oportunidad Cloud</h5>
+                        <p><em>"¿Y si este ataque hubiera sido la oportunidad perfecta para replantearse toda la infraestructura municipal?"</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="preguntas" class="tab-content">
+                <h3>❓ Preguntas Guía por Bloque</h3>
+                
+                <div class="question-block">
+                    <h4>🔍 Bloque 1: Análisis de Criticidad</h4>
+                    <div class="questions">
+                        <p><strong>💰 "¿Qué servicios generan ingresos directos al ayuntamiento?"</strong></p>
+                        <p class="hint">→ Guiar hacia multas, tasas, licencias</p>
+                        
+                        <p><strong>👥 "¿Cuáles afectan a más ciudadanos si fallan?"</strong></p>
+                        <p class="hint">→ Portal web, cita previa, padrón</p>
+                        
+                        <p><strong>⚡ "¿Qué sistemas no pueden esperar ni un día?"</strong></p>
+                        <p class="hint">→ Emergencias, comunicaciones, expedientes urgentes</p>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <h4>☁️ Bloque 2: Modelos de Despliegue</h4>
+                    <div class="questions">
+                        <p><strong>🔒 "¿Confiarías los datos del padrón a Amazon?"</strong></p>
+                        <p class="hint">→ Explorar percepciones sobre seguridad y RGPD</p>
+                        
+                        <p><strong>💥 "¿Qué pasa si se cae AWS en toda Europa?"</strong></p>
+                        <p class="hint">→ Introducir multi-región y SLAs</p>
+                        
+                        <p><strong>💼 "¿Puede el ayuntamiento permitirse 5 técnicos cloud?"</strong></p>
+                        <p class="hint">→ Analizar costes vs servicios gestionados</p>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <h4>🏗️ Bloque 3: Arquitectura AWS</h4>
+                    <div class="questions">
+                        <p><strong>🗄️ "¿Dónde pondrías la base de datos del padrón?"</strong></p>
+                        <p class="hint">→ RDS vs DynamoDB, SQL vs NoSQL</p>
+                        
+                        <p><strong>🛡️ "¿Cómo evitas que cualquiera acceda a datos sensibles?"</strong></p>
+                        <p class="hint">→ VPC, Security Groups, IAM</p>
+                        
+                        <p><strong>🚨 "¿Cómo sabes si alguien está hackeando el sistema?"</strong></p>
+                        <p class="hint">→ CloudTrail, GuardDuty, alertas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="recursos" class="tab-content">
+                <h3>🔧 Servicios AWS - Consulta Rápida</h3>
+                <div class="aws-services">
+                    <div class="service-category">
+                        <h4>💻 Compute</h4>
+                        <div class="service">
+                            <strong>EC2:</strong> Servidores virtuales → Portal web, aplicaciones
+                        </div>
+                        <div class="service">
+                            <strong>Lambda:</strong> Funciones serverless → Procesamiento formularios
+                        </div>
+                    </div>
+                    
+                    <div class="service-category">
+                        <h4>🗄️ Database</h4>
+                        <div class="service">
+                            <strong>RDS:</strong> BD relacional gestionada → Padrón, expedientes
+                        </div>
+                        <div class="service">
+                            <strong>DynamoDB:</strong> BD NoSQL → Sesiones, logs
+                        </div>
+                    </div>
+                    
+                    <div class="service-category">
+                        <h4>💾 Storage</h4>
+                        <div class="service">
+                            <strong>S3:</strong> Almacenamiento objetos → Documentos, backups
+                        </div>
+                    </div>
+                    
+                    <div class="service-category">
+                        <h4>🔒 Security</h4>
+                        <div class="service">
+                            <strong>VPC:</strong> Red privada → Aislamiento servicios
+                        </div>
+                        <div class="service">
+                            <strong>IAM:</strong> Gestión identidades → Control acceso empleados
+                        </div>
+                        <div class="service">
+                            <strong>WAF:</strong> Firewall web → Protección ataques
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gestion" class="tab-content">
+                <h3>⏱️ Gestión del Tiempo</h3>
+                
+                <div class="time-management">
+                    <div class="scenario">
+                        <h4>🚀 Si un Equipo Va Muy Rápido</h4>
+                        <ul>
+                            <li>Diseñar disaster recovery cross-región</li>
+                            <li>Implementar CI/CD para actualizaciones</li>
+                            <li>Calcular costes reales con calculadora AWS</li>
+                            <li>Servicios Big Data para análisis ciudadanos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>🐌 Si un Equipo Va Lento</h4>
+                        <ul>
+                            <li>Centrarse solo en EC2, RDS, S3</li>
+                            <li>Plan migración en 2 fases</li>
+                            <li>Plantilla pre-rellenada</li>
+                            <li>Trabajo en parejas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="scenario">
+                        <h4>🚨 Señales de Alerta</h4>
+                        <ul>
+                            <li>>10 min sin escribir nada</li>
+                            <li>Conceptos básicos incorrectos</li>
+                            <li>Soluciones inviables</li>
+                            <li>Un miembro domina</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN ALUMNADO -->
+        <section id="alumnado" class="content-section">
+            <h2>👥 Materiales para el Alumnado</h2>
+            
+            <div class="student-materials">
+                <div class="material-card">
+                    <h3>📝 Hoja de Trabajo</h3>
+                    <p>Guía estructurada para seguir durante la sesión práctica</p>
+                    <button class="btn-primary" onclick="showWorksheet()">Ver Hoja de Trabajo</button>
+                </div>
+                
+                <div class="material-card">
+                    <h3>📋 Plantilla de Entrega</h3>
+                    <p>Formato Markdown para el trabajo final en GitHub</p>
+                    <button class="btn-primary" onclick="showTemplate()">Ver Plantilla</button>
+                </div>
+                
+                <div class="material-card">
+                    <h3>💡 Ejemplo de Solución</h3>
+                    <p>Referencia de calidad esperada para el trabajo</p>
+                    <button class="btn-primary" onclick="showExample()">Ver Ejemplo</button>
+                </div>
+            </div>
+
+            <!-- Modal para Hoja de Trabajo -->
+            <div id="worksheetModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('worksheetModal')">&times;</span>
+                    <h3>📝 Hoja de Trabajo para Equipos</h3>
+                    <div class="worksheet-content">
+                        <div class="worksheet-section">
+                            <h4>BLOQUE 1: Análisis de Servicios (20 min)</h4>
+                            <div class="form-group">
+                                <label>Servicios municipales afectados:</label>
+                                <ol>
+                                    <li>_________________________</li>
+                                    <li>_________________________</li>
+                                    <li>_________________________</li>
+                                    <li>_________________________</li>
+                                    <li>_________________________</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Matriz de Criticidad (1=Bajo, 5=Alto):</label>
+                                <table class="worksheet-table">
+                                    <tr>
+                                        <th>Servicio</th>
+                                        <th>Ciudadanos</th>
+                                        <th>Ingresos</th>
+                                        <th>Urgencia</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Portal web</td>
+                                        <td>___/5</td>
+                                        <td>___/5</td>
+                                        <td>___/5</td>
+                                        <td>___/15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cita previa</td>
+                                        <td>___/5</td>
+                                        <td>___/5</td>
+                                        <td>___/5</td>
+                                        <td>___/15</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="worksheet-section">
+                            <h4>BLOQUE 2: Modelos Cloud (25 min)</h4>
+                            <div class="form-group">
+                                <label>Clasificación IaaS/PaaS/SaaS:</label>
+                                <table class="worksheet-table">
+                                    <tr>
+                                        <th>Servicio</th>
+                                        <th>IaaS</th>
+                                        <th>PaaS</th>
+                                        <th>SaaS</th>
+                                        <th>¿Por qué?</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Portal web</td>
+                                        <td>☐</td>
+                                        <td>☐</td>
+                                        <td>☐</td>
+                                        <td>_____________</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email corporativo</td>
+                                        <td>☐</td>
+                                        <td>☐</td>
+                                        <td>☐</td>
+                                        <td>_____________</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="worksheet-section">
+                            <h4>BLOQUE 3: Arquitectura AWS (35 min)</h4>
+                            <div class="form-group">
+                                <label>Servicios AWS seleccionados:</label>
+                                <table class="worksheet-table">
+                                    <tr>
+                                        <th>Necesidad</th>
+                                        <th>Servicio AWS</th>
+                                        <th>Justificación</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Servidores web</td>
+                                        <td>EC2/Lambda/Beanstalk: ______</td>
+                                        <td>_____________</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Base de datos</td>
+                                        <td>RDS/DynamoDB: ______</td>
+                                        <td>_____________</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Plantilla -->
+            <div id="templateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('templateModal')">&times;</span>
+                    <h3>📋 Plantilla de Entrega - Formato Markdown</h3>
+                    <div class="template-preview">
+                        <pre><code># MIGRACIÓN CLOUD AYUNTAMIENTO DE ELCHE
+
+**Equipo**: [Nombre del equipo]
+**Integrantes**: [Nombres de los miembros]
+**Fecha**: [Fecha de entrega]
+
+## 1. CONTEXTO Y RESUMEN DEL CIBERATAQUE
+[Describir brevemente el incidente y su impacto]
+
+## 2. ANÁLISIS DE SERVICIOS MUNICIPALES
+### 2.1 Clasificación por Criticidad
+| Servicio | Criticidad | Usuarios | Justificación |
+|----------|------------|----------|---------------|
+| Portal web | Alta/Media/Baja | [Número] | [Razón] |
+
+## 3. MODELO ELEGIDO Y JUSTIFICACIÓN
+**Modelo seleccionado**: [Nube Pública/Privada/Híbrida]
+[Explicar en 3-4 párrafos por qué...]
+
+## 4. ARQUITECTURA AWS PROPUESTA
+| Necesidad | Servicio AWS | Justificación |
+|-----------|--------------|---------------|
+| Servidores | EC2/Lambda | [Por qué] |
+
+## 5. PLAN DE MIGRACIÓN
+### FASE 1: [Nombre]
+**Duración**: [X meses]
+**Servicios**: [Lista]
+**Objetivos**: [Qué conseguir]
+
+## 6. ANÁLISIS DE COSTES
+[Estimación cualitativa Alto/Medio/Bajo]
+
+## 7. CONCLUSIONES
+[Resumen ejecutivo de la propuesta]</code></pre>
+                    </div>
+                    <button class="btn-secondary" onclick="downloadTemplate()">📥 Descargar Plantilla</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN MATERIALES -->
+        <section id="materiales" class="content-section">
+            <h2>📚 Materiales y Recursos</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>🔗 Enlaces Útiles</h3>
+                    <ul>
+                        <li><a href="https://calculator.aws/" target="_blank">Calculadora de precios AWS</a></li>
+                        <li><a href="https://aws.amazon.com/architecture/" target="_blank">Diagramas de arquitectura</a></li>
+                        <li><a href="https://aws.amazon.com/government-education/case-studies/" target="_blank">Casos de éxito sector público</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>🛠️ Herramientas</h3>
+                    <ul>
+                        <li><strong>GitHub:</strong> Para subir trabajos finales</li>
+                        <li><strong>Draw.io:</strong> Diagramas de arquitectura</li>
+                        <li><strong>AWS Well-Architected:</strong> Validar arquitecturas</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>📖 Caso Real</h3>
+                    <ul>
+                        <li><a href="https://www.elche.es/actualidad-ciber-ataque-elche/" target="_blank">Noticia oficial del ciberataque</a></li>
+                        <li><a href="https://www.apdtic.com/ciberataque-ayuntamiento-elche-5-lecciones-ciberseguridad/" target="_blank">Análisis técnico del ataque</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="architecture-example">
+                <h3>🏗️ Ejemplo de Arquitectura AWS</h3>
+                <div class="architecture-diagram">
+                    <pre>
+                    Internet
+                        |
+                [CloudFront CDN]
+                        |
+                [Application Load Balancer]
+                        |
+            ┌───────────┼───────────┐
+            │           │           │
+        [EC2 Web]   [EC2 Web]   [EC2 Web]
+        AZ-1a       AZ-1b       AZ-1c
+            │           │           │
+            └───────────┼───────────┘
+                        |
+            [RDS Aurora Multi-AZ]
+                        |
+            [S3 Buckets + Backup]
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN EVALUACIÓN -->
+        <section id="evaluacion" class="content-section">
+            <h2>📊 Evaluación y Rúbrica</h2>
+            
+            <div class="rubric-summary">
+                <h3>📋 Resumen de Evaluación</h3>
+                <div class="total-points">
+                    <span class="points">100</span>
+                    <span class="label">Puntos Totales</span>
+                </div>
+            </div>
+
+            <div class="rubric-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criterio</th>
+                            <th>Peso</th>
+                            <th>Excelente (9-10)</th>
+                            <th>Aceptable (6-8)</th>
+                            <th>Insuficiente (0-5)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Comprensión Modelos Cloud</strong></td>
+                            <td>20 pts</td>
+                            <td>Distingue IaaS/PaaS/SaaS con ejemplos precisos y justifica modelo de despliegue</td>
+                            <td>Identifica conceptos básicos con algunos ejemplos correctos</td>
+                            <td>Confunde conceptos básicos o no los aplica</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calidad Solución</strong></td>
+                            <td>25 pts</td>
+                            <td>Propuesta coherente, bien justificada y técnicamente viable</td>
+                            <td>Propuesta razonable con justificación básica</td>
+                            <td>Propuesta poco realista o sin justificación</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arquitectura AWS</strong></td>
+                            <td>20 pts</td>
+                            <td>Servicios apropiados con explicación de interconexión y seguridad</td>
+                            <td>Identifica servicios principales con explicación básica</td>
+                            <td>Servicios inadecuados o sin explicar su uso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan de Migración</strong></td>
+                            <td>15 pts</td>
+                            <td>Fases lógicas con cronograma realista y análisis de riesgos</td>
+                            <td>Fases definidas con cronograma básico</td>
+                            <td>Fases poco claras o cronograma irrealista</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trabajo en Equipo</strong></td>
+                            <td>10 pts</td>
+                            <td>Colaboración efectiva, roles claros, participación equilibrada</td>
+                            <td>Buena colaboración con participación desigual</td>
+                            <td>Poca colaboración o conflictos evidentes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Presentación</strong></td>
+                            <td>10 pts</td>
+                            <td>Comunicación clara, argumentos sólidos, tiempo respetado</td>
+                            <td>Presentación adecuada con argumentos básicos</td>
+                            <td>Presentación confusa o fuera de tiempo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grading-scale">
+                <h3>📈 Escala de Calificación</h3>
+                <div class="scale-item">
+                    <span class="range">90-100 pts</span>
+                    <span class="grade">Sobresaliente (9-10)</span>
+                </div>
+                <div class="scale-item">
+                    <span class="range">70-89 pts</span>
+                    <span class="grade">Notable (7-8)</span>
+                </div>
+                <div class="scale-item">
+                    <span class="range">60-69 pts</span>
+                    <span class="grade">Bien (6-7)</span>
+                </div>
+                <div class="scale-item">
+                    <span class="range">50-59 pts</span>
+                    <span class="grade">Suficiente (5-6)</span>
+                </div>
+                <div class="scale-item">
+                    <span class="range">0-49 pts</span>
+                    <span class="grade">Insuficiente (<5)</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 - Curso de Especialización en Inteligencia Artificial y Big Data</p>
+            <p>Sesión diseñada para Formación Profesional Superior</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
