@@ -71,6 +71,7 @@ El ciberataque evidenció la vulnerabilidad de mantener toda la infraestructura 
 
 #### Nube Pública (AWS)
 **Ventajas:**
+
 - Implementación rápida (3-6 meses vs 12+ meses on-premise)
 - Costes operacionales reducidos (sin mantenimiento hardware)
 - Escalabilidad automática para picos de tráfico
@@ -78,17 +79,20 @@ El ciberataque evidenció la vulnerabilidad de mantener toda la infraestructura 
 - Backups automáticos y disaster recovery
 
 **Inconvenientes:**
+
 - Dependencia de conectividad a internet
 - Percepción de menor control sobre datos sensibles
 - Costes variables según uso
 
 #### Nube Híbrida
 **Ventajas:**
+
 - Datos más sensibles permanecen on-premise
 - Migración gradual y controlada
 - Aprovecha beneficios cloud para servicios públicos
 
 **Inconvenientes:**
+
 - Mayor complejidad de gestión
 - Costes de conectividad (Direct Connect)
 - Requiere expertise en ambos entornos
@@ -173,17 +177,20 @@ La seguridad se implementará en capas: WAF para protección contra ataques web,
 ### 5.4 Configuración de Seguridad
 
 **VPC y Subnets:**
+
 - VPC: 10.0.0.0/16
 - Subnets públicas: 10.0.1.0/24, 10.0.2.0/24 (ALB)
 - Subnets privadas: 10.0.10.0/24, 10.0.20.0/24 (EC2)
 - Subnets BD: 10.0.100.0/24, 10.0.200.0/24 (RDS)
 
 **Grupos de Seguridad:**
+
 - ALB-SG: HTTP/HTTPS desde internet
 - Web-SG: HTTP desde ALB-SG únicamente
 - DB-SG: MySQL desde Web-SG únicamente
 
 **IAM Roles:**
+
 - CitizenRole: Acceso limitado a servicios públicos
 - EmployeeRole: Acceso a sistemas internos según departamento
 - AdminRole: Acceso completo con MFA obligatorio
@@ -198,18 +205,21 @@ Migración gradual por criticidad de servicios, empezando por los más visibles 
 ### 6.2 Fases de Migración
 
 #### FASE 1: Servicios Ciudadanos Críticos (Meses 1-3)
+
 **Duración estimada**: 3 meses  
 **Servicios incluidos**: Portal web, cita previa, consulta multas  
 **Objetivos**: Restaurar confianza ciudadana y servicios más visibles  
 **Criterios de éxito**: 99.9% uptime, tiempo de carga <3 segundos, 0 incidentes de seguridad
 
 #### FASE 2: Sistemas de Gestión Interna (Meses 4-6)
+
 **Duración estimada**: 3 meses  
 **Servicios incluidos**: Padrón, licencias, expedientes administrativos  
 **Objetivos**: Migrar datos críticos con máxima seguridad  
 **Criterios de éxito**: Migración sin pérdida de datos, cumplimiento RGPD validado, formación completada
 
 #### FASE 3: Sistemas Corporativos (Meses 7-9)
+
 **Duración estimada**: 3 meses  
 **Servicios incluidos**: RRHH, contabilidad, email corporativo  
 **Objetivos**: Completar migración y optimizar costes  
@@ -258,6 +268,7 @@ Mes 10-12: [Optimización + Formación + Documentación] → Consolidación
 ### 7.2 Factores de Coste Considerados
 
 **Costes directos AWS:**
+
 - EC2 instances: €2,400/mes
 - RDS Aurora: €1,800/mes  
 - S3 storage: €300/mes
@@ -265,12 +276,14 @@ Mes 10-12: [Optimización + Formación + Documentación] → Consolidación
 - Otros servicios: €1,000/mes
 
 **Costes ocultos eliminados:**
+
 - Electricidad y refrigeración: €1,200/mes
 - Licencias software: €2,000/mes
 - Hardware EOL: €3,000/mes amortizado
 - Soporte 24/7: €4,000/mes
 
 **Ahorros esperados:**
+
 - Reducción personal IT: €8,000/mes (2 FTE menos)
 - Eliminación mantenimiento hardware: €2,000/mes
 - Reducción downtime: €5,000/mes (estimado por productividad)
