@@ -93,6 +93,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Contexto del Caso Real
 
 El **Ayuntamiento de Elche** sufrió un ciberataque que colapsó sus sistemas informáticos, afectando:
+
 - Portal web municipal y servicios online
 - Sistema de cita previa ciudadana
 - Gestión de multas y sanciones
@@ -112,13 +113,15 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 ### Entregables por Equipo
 
 1. **Documento técnico** (formato Markdown) con:
+
    - Análisis de servicios críticos
    - Justificación del modelo elegido
    - Arquitectura AWS propuesta
    - Plan de migración en 3 fases
    - Estimación cualitativa de costes
 
-2. **Presentación oral** (4 minutos) destacando:
+2. **Presentación oral** (5 minutos) destacando:
+
    - Decisión principal y justificación
    - Arquitectura clave (servicios AWS)
    - Cronograma y riesgos principales
@@ -172,11 +175,13 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 ### Descriptores Detallados
 
 **Comprensión Modelos Cloud (20 pts)**
+
 - **Excelente**: Explica diferencias entre IaaS (EC2), PaaS (RDS), SaaS (Office 365) con ejemplos del ayuntamiento. Justifica elección entre nube pública/privada/híbrida.
 - **Aceptable**: Identifica conceptos básicos y da algunos ejemplos correctos.
 - **Insuficiente**: Confunde IaaS con SaaS o no entiende diferencias entre modelos de despliegue.
 
 **Arquitectura AWS (20 pts)**
+
 - **Excelente**: Propone EC2+RDS+S3+VPC con justificación técnica. Incluye IAM, grupos de seguridad y considera servicios Big Data si procede.
 - **Aceptable**: Identifica servicios principales (EC2, RDS, S3) con explicación básica.
 - **Insuficiente**: Servicios inadecuados (ej: DynamoDB para datos relacionales críticos) o sin explicar por qué los elige.
@@ -198,30 +203,32 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 - Cronómetro para presentaciones
 
 ### Herramientas Digitales
-- GitHub para subir trabajos finales
+- [Calculadora AWS para estimaciones](https://calculator.aws/)
+- [Diagramas de arquitectura](https://aws.amazon.com/architecture/)
+- [Casos de éxito en el sector público](https://aws.amazon.com/government-education/case-studies/)
 - Draw.io o Lucidchart para diagramas (opcional)
-- Calculadora AWS para estimaciones (consulta)
+
 
 ---
 
 ## ADAPTACIONES Y EXTENSIONES
 
-### Si Sobra Tiempo
+### Si sobra tiempo
 - Calcular costes reales con calculadora AWS
 - Diseñar dashboard de monitorización con CloudWatch
 - Considerar servicios de Big Data (EMR, Redshift) para análisis de datos municipales
 
-### Si Falta Tiempo
+### Si falta tiempo
 - Reducir presentaciones a 2 minutos por equipo
 - Simplificar arquitectura a servicios básicos (EC2, RDS, S3)
 - Plan de migración en 2 fases en lugar de 3
 
-### Para Alumnado Avanzado
+### Para alumnado avanzado
 - Incluir consideraciones de DevOps (CI/CD)
 - Diseñar estrategia multi-región para disaster recovery
 - Evaluar servicios serverless (Lambda, API Gateway)
 
-### Para Alumnado con Dificultades
+### Para alumnado con dificultades
 - Proporcionar plantilla pre-rellenada con servicios AWS
 - Trabajo en parejas en lugar de grupos de 4
 - Centrarse en 2-3 servicios AWS principales
