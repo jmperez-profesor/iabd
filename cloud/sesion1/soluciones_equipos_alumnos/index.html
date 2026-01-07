@@ -1146,10 +1146,12 @@
 <h2 id="equipo-1-cloudsecure-solutions">🏆 EQUIPO 1: "CloudSecure Solutions"</h2>
 <h3 id="miembros-ana-garcia-carlos-lopez-maria-rodriguez">Miembros: Ana García, Carlos López, María Rodríguez</h3>
 <h3 id="analisis-del-caso">📋 ANÁLISIS DEL CASO</h3>
-<p>El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales son vulnerables. El ayuntamiento perdió servicios críticos durante días, afectando a más de 250.000 ciudadanos. Identificamos tres problemas principales:
-- Falta de backups seguros y aislados
-- Sistemas desactualizados sin parches de seguridad
-- No había plan de continuidad de negocio</p>
+<p>El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales son vulnerables. El ayuntamiento perdió servicios críticos durante días, afectando a más de 250.000 ciudadanos. Identificamos tres problemas principales:</p>
+<ul>
+<li>Falta de backups seguros y aislados</li>
+<li>Sistemas desactualizados sin parches de seguridad</li>
+<li>No había plan de continuidad de negocio</li>
+</ul>
 <h3 id="clasificacion-de-servicios-cloud">☁️ CLASIFICACIÓN DE SERVICIOS CLOUD</h3>
 <table>
 <thead>
@@ -1187,41 +1189,51 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Modelo de despliegue recomendado</strong>: <strong>Cloud Híbrido</strong>
-- Datos sensibles (padrón, hacienda) en cloud privado local
-- Servicios públicos (web, trámites online) en cloud público AWS
-- Conexión segura mediante VPN Site-to-Site</p>
+<p><strong>Modelo de despliegue recomendado</strong>: <strong>Cloud Híbrido</strong></p>
+<ul>
+<li>Datos sensibles (padrón, hacienda) en cloud privado local</li>
+<li>Servicios públicos (web, trámites online) en cloud público AWS</li>
+<li>Conexión segura mediante VPN Site-to-Site</li>
+</ul>
 <h3 id="arquitectura-aws-propuesta">🏗️ ARQUITECTURA AWS PROPUESTA</h3>
-<p><strong>Servicios principales:</strong>
-- <strong>EC2</strong>: t3.medium para aplicaciones web (2 instancias en Multi-AZ)
-- <strong>RDS</strong>: MySQL Multi-AZ para bases de datos críticas
-- <strong>S3</strong>: Almacenamiento de documentos con versionado
-- <strong>CloudFront</strong>: CDN para acelerar web municipal
-- <strong>VPC</strong>: Red privada con subredes públicas/privadas
-- <strong>IAM</strong>: Control de acceso granular por departamentos
-- <strong>WAF</strong>: Protección contra ataques web
-- <strong>CloudWatch</strong>: Monitorización 24/7</p>
+<p><strong>Servicios principales:</strong></p>
+<ul>
+<li><strong>EC2</strong>: t3.medium para aplicaciones web (2 instancias en Multi-AZ)</li>
+<li><strong>RDS</strong>: MySQL Multi-AZ para bases de datos críticas</li>
+<li><strong>S3</strong>: Almacenamiento de documentos con versionado</li>
+<li><strong>CloudFront</strong>: CDN para acelerar web municipal</li>
+<li><strong>VPC</strong>: Red privada con subredes públicas/privadas</li>
+<li><strong>IAM</strong>: Control de acceso granular por departamentos</li>
+<li><strong>WAF</strong>: Protección contra ataques web</li>
+<li><strong>CloudWatch</strong>: Monitorización 24/7</li>
+</ul>
 <p><strong>Arquitectura de red:</strong>
 <div class="highlight"><pre><span></span><code>Internet → CloudFront → ALB → EC2 (Multi-AZ) → RDS (Multi-AZ)
                               ↓
                          S3 (Backups)
 </code></pre></div></p>
 <h3 id="plan-de-migracion-3-fases-12-meses">📅 PLAN DE MIGRACIÓN (3 FASES - 12 MESES)</h3>
-<p><strong>Fase 1 (Meses 1-3): Fundamentos</strong>
-- Configurar VPC y conectividad
-- Migrar web municipal a EC2
-- Implementar backups en S3
-- Formar equipo técnico básico</p>
-<p><strong>Fase 2 (Meses 4-8): Aplicaciones críticas</strong>
-- Migrar bases de datos a RDS
-- Implementar aplicaciones de trámites
-- Configurar monitorización y alertas
-- Testing exhaustivo</p>
-<p><strong>Fase 3 (Meses 9-12): Optimización</strong>
-- Implementar auto-scaling
-- Optimizar costes
-- Documentación completa
-- Plan de disaster recovery</p>
+<p><strong>Fase 1 (Meses 1-3): Fundamentos</strong></p>
+<ul>
+<li>Configurar VPC y conectividad</li>
+<li>Migrar web municipal a EC2</li>
+<li>Implementar backups en S3</li>
+<li>Formar equipo técnico básico</li>
+</ul>
+<p><strong>Fase 2 (Meses 4-8): Aplicaciones críticas</strong></p>
+<ul>
+<li>Migrar bases de datos a RDS</li>
+<li>Implementar aplicaciones de trámites</li>
+<li>Configurar monitorización y alertas</li>
+<li>Testing exhaustivo</li>
+</ul>
+<p><strong>Fase 3 (Meses 9-12): Optimización</strong></p>
+<ul>
+<li>Implementar auto-scaling</li>
+<li>Optimizar costes</li>
+<li>Documentación completa</li>
+<li>Plan de disaster recovery</li>
+</ul>
 <p><strong>Coste estimado</strong>: 2.500€/mes (30.000€/año)</p>
 <hr />
 <h2 id="equipo-2-innovacloud">🚀 EQUIPO 2: "InnovaCloud"</h2>
@@ -1266,33 +1278,41 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Modelo de despliegue</strong>: <strong>Cloud Público Multi-Región</strong>
-- Región principal: eu-west-1 (Irlanda)
-- Región backup: eu-central-1 (Frankfurt)
-- Disaster Recovery automático entre regiones</p>
+<p><strong>Modelo de despliegue</strong>: <strong>Cloud Público Multi-Región</strong></p>
+<ul>
+<li>Región principal: eu-west-1 (Irlanda)</li>
+<li>Región backup: eu-central-1 (Frankfurt)</li>
+<li>Disaster Recovery automático entre regiones</li>
+</ul>
 <h3 id="arquitectura-aws-propuesta_1">🏗️ ARQUITECTURA AWS PROPUESTA</h3>
-<p><strong>Enfoque Serverless + Containers:</strong>
-- <strong>ECS Fargate</strong>: Aplicaciones containerizadas sin gestión servidores
-- <strong>Lambda</strong>: Funciones para trámites automáticos
-- <strong>API Gateway</strong>: Punto único entrada APIs
-- <strong>DynamoDB</strong>: Base datos NoSQL para alta performance
-- <strong>S3</strong>: Almacenamiento con replicación cross-region
-- <strong>Route 53</strong>: DNS con health checks automáticos
-- <strong>CloudFormation</strong>: Infrastructure as Code</p>
+<p><strong>Enfoque Serverless + Containers:</strong></p>
+<ul>
+<li><strong>ECS Fargate</strong>: Aplicaciones containerizadas sin gestión servidores</li>
+<li><strong>Lambda</strong>: Funciones para trámites automáticos</li>
+<li><strong>API Gateway</strong>: Punto único entrada APIs</li>
+<li><strong>DynamoDB</strong>: Base datos NoSQL para alta performance</li>
+<li><strong>S3</strong>: Almacenamiento con replicación cross-region</li>
+<li><strong>Route 53</strong>: DNS con health checks automáticos</li>
+<li><strong>CloudFormation</strong>: Infrastructure as Code</li>
+</ul>
 <p><strong>Innovación</strong>: Chatbot con Amazon Lex para consultas ciudadanas 24/7</p>
 <h3 id="plan-de-migracion-agile-9-meses">📅 PLAN DE MIGRACIÓN (AGILE - 9 MESES)</h3>
-<p><strong>Sprint 1-3 (Meses 1-3): MVP</strong>
-- Desplegar portal básico en Fargate
-- Configurar CI/CD con CodePipeline
-- Implementar autenticación con Cognito</p>
+<p><strong>Sprint 1-3 (Meses 1-3): MVP</strong></p>
+<ul>
+<li>Desplegar portal básico en Fargate</li>
+<li>Configurar CI/CD con CodePipeline</li>
+<li>Implementar autenticación con Cognito</li>
+</ul>
 <p><strong>Sprint 4-6 (Meses 4-6): Funcionalidades</strong>
 - Migrar aplicaciones legacy
 - Implementar APIs RESTful
 - Testing automatizado</p>
-<p><strong>Sprint 7-9 (Meses 7-9): Optimización</strong>
-- Machine Learning para análisis ciudadano
-- Optimización costes con Spot Instances
-- Documentación y formación</p>
+<p><strong>Sprint 7-9 (Meses 7-9): Optimización</strong></p>
+<ul>
+<li>Machine Learning para análisis ciudadano</li>
+<li>Optimización costes con Spot Instances</li>
+<li>Documentación y formación</li>
+</ul>
 <p><strong>Coste estimado</strong>: 1.800€/mes (21.600€/año)</p>
 <hr />
 <h2 id="equipo-3-securegov">🛡️ EQUIPO 3: "SecureGov"</h2>
@@ -1337,19 +1357,23 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Modelo de despliegue</strong>: <strong>Cloud Privado Virtual (VPC dedicada)</strong>
-- VPC aislada con conexión dedicada (Direct Connect)
-- Subredes completamente privadas
-- Bastion hosts para acceso administrativo</p>
+<p><strong>Modelo de despliegue</strong>: <strong>Cloud Privado Virtual (VPC dedicada)</strong></p>
+<ul>
+<li>VPC aislada con conexión dedicada (Direct Connect)</li>
+<li>Subredes completamente privadas</li>
+<li>Bastion hosts para acceso administrativo</li>
+</ul>
 <h3 id="arquitectura-aws-propuesta_2">🏗️ ARQUITECTURA AWS PROPUESTA</h3>
-<p><strong>Seguridad en capas:</strong>
-- <strong>WAF + Shield</strong>: Protección DDoS y aplicaciones
-- <strong>GuardDuty</strong>: Detección amenazas con ML
-- <strong>Inspector</strong>: Evaluación vulnerabilidades automática
-- <strong>KMS</strong>: Gestión claves cifrado centralizada
-- <strong>Secrets Manager</strong>: Rotación automática credenciales
-- <strong>VPC Flow Logs</strong>: Auditoría completa tráfico red
-- <strong>Config</strong>: Compliance automático configuraciones</p>
+<p><strong>Seguridad en capas:</strong></p>
+<ul>
+<li><strong>WAF + Shield</strong>: Protección DDoS y aplicaciones</li>
+<li><strong>GuardDuty</strong>: Detección amenazas con ML</li>
+<li><strong>Inspector</strong>: Evaluación vulnerabilidades automática</li>
+<li><strong>KMS</strong>: Gestión claves cifrado centralizada</li>
+<li><strong>Secrets Manager</strong>: Rotación automática credenciales</li>
+<li><strong>VPC Flow Logs</strong>: Auditoría completa tráfico red</li>
+<li><strong>Config</strong>: Compliance automático configuraciones</li>
+</ul>
 <p><strong>Arquitectura de red ultra-segura:</strong>
 <div class="highlight"><pre><span></span><code>Direct Connect → VGW → Private Subnets → WAF → ALB → EC2
                                         ↓
@@ -1358,21 +1382,27 @@
                                  CloudTrail + Config
 </code></pre></div></p>
 <h3 id="plan-de-migracion-security-first-15-meses">📅 PLAN DE MIGRACIÓN (SECURITY-FIRST - 15 MESES)</h3>
-<p><strong>Fase 1 (Meses 1-5): Fundamentos Seguridad</strong>
-- Implementar toda la infraestructura de seguridad
-- Configurar logging y monitoring completo
-- Certificación ENS Medio
-- Formación intensiva equipo</p>
-<p><strong>Fase 2 (Meses 6-10): Migración Controlada</strong>
-- Migrar aplicaciones una por una
-- Testing seguridad exhaustivo cada paso
-- Penetration testing externo
-- Documentación compliance</p>
-<p><strong>Fase 3 (Meses 11-15): Operación Segura</strong>
-- Monitorización 24/7 con SOC
-- Simulacros ciberataques regulares
-- Optimización detectores amenazas
-- Certificación ENS Alto</p>
+<p><strong>Fase 1 (Meses 1-5): Fundamentos Seguridad</strong></p>
+<ul>
+<li>Implementar toda la infraestructura de seguridad</li>
+<li>Configurar logging y monitoring completo</li>
+<li>Certificación ENS Medio</li>
+<li>Formación intensiva equipo</li>
+</ul>
+<p><strong>Fase 2 (Meses 6-10): Migración Controlada</strong></p>
+<ul>
+<li>Migrar aplicaciones una por una</li>
+<li>Testing seguridad exhaustivo cada paso</li>
+<li>Penetration testing externo</li>
+<li>Documentación compliance</li>
+</ul>
+<p><strong>Fase 3 (Meses 11-15): Operación Segura</strong></p>
+<ul>
+<li>Monitorización 24/7 con SOC</li>
+<li>Simulacros ciberataques regulares</li>
+<li>Optimización detectores amenazas</li>
+<li>Certificación ENS Alto</li>
+</ul>
 <p><strong>Coste estimado</strong>: 4.200€/mes (50.400€/año)
 <em>Incluye servicios seguridad premium y soporte 24/7</em></p>
 <hr />
@@ -1418,35 +1448,47 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Modelo de despliegue</strong>: <strong>Cloud Público con optimización costes</strong>
-- Una sola región (eu-west-1) para minimizar transferencias
-- Uso intensivo de Reserved Instances (descuento 60%)
-- Auto-scaling para pagar solo lo que se usa</p>
+<p><strong>Modelo de despliegue</strong>: <strong>Cloud Público con optimización costes</strong></p>
+<ul>
+<li>Una sola región (eu-west-1) para minimizar transferencias</li>
+<li>Uso intensivo de Reserved Instances (descuento 60%)</li>
+<li>Auto-scaling para pagar solo lo que se usa</li>
+</ul>
 <h3 id="arquitectura-aws-propuesta_3">🏗️ ARQUITECTURA AWS PROPUESTA</h3>
-<p><strong>Optimizada para costes:</strong>
-- <strong>Lightsail</strong>: VPS simple para web municipal (10$/mes)
-- <strong>EC2 t3.micro</strong>: Aplicaciones con burstable performance
-- <strong>RDS t3.micro</strong>: Base datos pequeña con Multi-AZ
-- <strong>S3 Intelligent Tiering</strong>: Optimización automática costes
-- <strong>CloudFront</strong>: Solo para contenido estático
-- <strong>Route 53</strong>: DNS básico sin health checks premium</p>
-<p><strong>Innovación low-cost</strong>: 
-- Lambda para tareas batch (solo pagar ejecución)
-- SES para emails transaccionales (más barato que servicios externos)
-- EventBridge para automatizaciones sin servidores</p>
+<p><strong>Optimizada para costes:</strong></p>
+<ul>
+<li><strong>Lightsail</strong>: VPS simple para web municipal (10$/mes)</li>
+<li><strong>EC2 t3.micro</strong>: Aplicaciones con burstable performance</li>
+<li><strong>RDS t3.micro</strong>: Base datos pequeña con Multi-AZ</li>
+<li><strong>S3 Intelligent Tiering</strong>: Optimización automática costes</li>
+<li><strong>CloudFront</strong>: Solo para contenido estático</li>
+<li><strong>Route 53</strong>: DNS básico sin health checks premium</li>
+</ul>
+<p><strong>Innovación low-cost</strong>: </p>
+<ul>
+<li>Lambda para tareas batch (solo pagar ejecución)</li>
+<li>SES para emails transaccionales (más barato que servicios externos)</li>
+<li>EventBridge para automatizaciones sin servidores</li>
+</ul>
 <h3 id="plan-de-migracion-lean-6-meses">📅 PLAN DE MIGRACIÓN (LEAN - 6 MESES)</h3>
-<p><strong>Mes 1-2: Quick Wins</strong>
-- Migrar web a Lightsail inmediatamente
-- Configurar backups S3 (protección básica)
-- Email a WorkMail</p>
-<p><strong>Mes 3-4: Aplicaciones Core</strong>
-- Migrar base datos a RDS
-- Aplicaciones principales a EC2
-- Configurar monitorización básica</p>
-<p><strong>Mes 5-6: Optimización</strong>
-- Comprar Reserved Instances (ahorro 60%)
-- Implementar lifecycle policies S3
-- Automatizar tareas con Lambda</p>
+<p><strong>Mes 1-2: Quick Wins</strong></p>
+<ul>
+<li>Migrar web a Lightsail inmediatamente</li>
+<li>Configurar backups S3 (protección básica)</li>
+<li>Email a WorkMail</li>
+</ul>
+<p><strong>Mes 3-4: Aplicaciones Core</strong></p>
+<ul>
+<li>Migrar base datos a RDS</li>
+<li>Aplicaciones principales a EC2</li>
+<li>Configurar monitorización básica</li>
+</ul>
+<p><strong>Mes 5-6: Optimización</strong></p>
+<ul>
+<li>Comprar Reserved Instances (ahorro 60%)</li>
+<li>Implementar lifecycle policies S3</li>
+<li>Automatizar tareas con Lambda</li>
+</ul>
 <p><strong>Coste estimado</strong>: 890€/mes (10.680€/año)
 <em>Ahorro del 65% vs otras soluciones manteniendo funcionalidad</em></p>
 <p><strong>ROI</strong>: La inversión se recupera en 8 meses comparado con coste del downtime por ciberataque.</p>
