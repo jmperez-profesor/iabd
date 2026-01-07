@@ -12,7 +12,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Miembros: Ana García, Carlos López, María Rodríguez
 
 ### 📋 ANÁLISIS DEL CASO
-El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales son vulnerables. El ayuntamiento perdió servicios críticos durante días, afectando a 230.000 ciudadanos. Identificamos tres problemas principales:
+El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales son vulnerables. El ayuntamiento perdió servicios críticos durante días, afectando a más de 250.000 ciudadanos. Identificamos tres problemas principales:
 - Falta de backups seguros y aislados
 - Sistemas desactualizados sin parches de seguridad
 - No había plan de continuidad de negocio

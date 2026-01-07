@@ -124,12 +124,12 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 
 ## PREGUNTAS GUÍA PARA LOS EQUIPOS
 
-### Análisis de Criticidad
+### Análisis de criticidad
 - ¿Qué servicios no pueden estar caídos ni un minuto?
 - ¿Cuáles afectan directamente a los ciudadanos?
 - ¿Qué sistemas manejan datos más sensibles?
 
-### Modelos de Despliegue
+### Modelos de despliegue
 - ¿Qué pasaría si se repite un ransomware en la nube pública?
 - ¿Puede el ayuntamiento permitirse gestionar infraestructura propia?
 - ¿Qué datos NUNCA pueden salir del territorio español?
@@ -140,13 +140,13 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 - ¿Cómo garantizas que solo empleados autorizados accedan a datos sensibles?
 - ¿Qué servicio AWS usarías para copias de seguridad automáticas?
 
-### Migración y Costes
+### Migración y costes
 - ¿Por dónde empezarías la migración? ¿Portal web o sistemas internos?
 - ¿Cuánto tiempo necesitaría cada fase?
 - ¿Será más caro o barato que mantener servidores propios?
 - ¿Qué riesgos tiene migrar demasiado rápido?
 
-### Seguridad y Compliance
+### Seguridad y compliance
 - ¿Cómo cumples con el RGPD en la nube?
 - ¿Qué pasa si AWS tiene una caída en Europa?
 - ¿Cómo monitorizas intentos de intrusión?
@@ -184,21 +184,6 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 
 ## RECURSOS Y MATERIALES
 
-### Para el Profesorado
-
-- Presentación con contexto del ciberataque
-- Enlaces a noticias del caso real
-- Calculadora de precios AWS (para consultas)
-- Diagramas de ejemplo de arquitecturas AWS
-
-### Para el Alumnado
-
-- Plantilla Markdown para entrega
-- Hoja de servicios AWS con descripciones breves
-- Matriz de comparación de modelos de despliegue
-- Cronómetro para presentaciones
-
-### Herramientas Digitales
 - [Calculadora AWS para estimaciones](https://calculator.aws/)
 - [Diagramas de arquitectura](https://aws.amazon.com/architecture/)
 - [Casos de éxito en el sector público](https://aws.amazon.com/government-education/case-studies/)
@@ -223,8 +208,3 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 - Incluir consideraciones de DevOps (CI/CD)
 - Diseñar estrategia multi-región para disaster recovery
 - Evaluar servicios serverless (Lambda, API Gateway)
-
-### Para alumnado con dificultades
-- Proporcionar plantilla pre-rellenada con servicios AWS
-- Trabajo en parejas en lugar de grupos de 4
-- Centrarse en 2-3 servicios AWS principales
