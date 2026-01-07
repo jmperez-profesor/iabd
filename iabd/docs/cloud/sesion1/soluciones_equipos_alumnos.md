@@ -128,6 +128,7 @@ El ransomware paralizó Elche porque dependían de infraestructura local sin red
 - Implementar autenticación con Cognito
 
 **Sprint 4-6 (Meses 4-6): Funcionalidades**
+
 - Migrar aplicaciones legacy
 - Implementar APIs RESTful
 - Testing automatizado
