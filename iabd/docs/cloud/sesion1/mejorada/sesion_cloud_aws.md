@@ -2,14 +2,8 @@
 title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - SESIÓN CLOUD AWS
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
-
 # SESIÓN PRÁCTICA: CLOUD COMPUTING Y AWS
 ## Migración del Ayuntamiento de Elche tras Ciberataque
-
-**Duración**: 2 horas  
-**Modalidad**: Presencial, trabajo en equipos  
-**Nivel**: Curso de Especialización en IA y Big Data  
-
 ---
 
 ## OBJETIVOS DE LA SESIÓN
@@ -112,15 +106,15 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 
 ### Entregables por Equipo
 
-1. **Documento técnico** (formato Markdown) con:
-
+1.**Documento técnico** con:
+  
    - Análisis de servicios críticos
    - Justificación del modelo elegido
    - Arquitectura AWS propuesta
    - Plan de migración en 3 fases
    - Estimación cualitativa de costes
 
-2. **Presentación oral** (5 minutos) destacando:
+2.**Presentación oral** (5 minutos) destacando:
 
    - Decisión principal y justificación
    - Arquitectura clave (servicios AWS)
@@ -191,12 +185,14 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 ## RECURSOS Y MATERIALES
 
 ### Para el Profesorado
+
 - Presentación con contexto del ciberataque
 - Enlaces a noticias del caso real
 - Calculadora de precios AWS (para consultas)
 - Diagramas de ejemplo de arquitecturas AWS
 
 ### Para el Alumnado
+
 - Plantilla Markdown para entrega
 - Hoja de servicios AWS con descripciones breves
 - Matriz de comparación de modelos de despliegue

@@ -77,6 +77,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 📊 RÚBRICA DE EVALUACIÓN
 
 **Total: 100 puntos**
+
 - Comprensión modelos cloud: 20 pts
 - Calidad solución propuesta: 25 pts  
 - Arquitectura AWS: 20 pts
