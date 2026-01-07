@@ -46,7 +46,7 @@ Sí, las soluciones híbridas son válidas y a menudo realistas para administrac
 IaaS: Infraestructura básica (servidores, redes). PaaS: Plataformas de desarrollo (bases de datos gestionadas). SaaS: Aplicaciones completas (email, office).
 
 **12. ¿Un ayuntamiento puede usar cloud público para datos sensibles?**
-Sí, pero debe cumplir normativas como RGPD y ENS. AWS tiene certificaciones de seguridad que lo permiten.
+Sí, pero debe cumplir normativas como RGPD y ENS [Esquema Nacional de Seguridad](https://ens.ccn.cni.es/es/que-es-el-ens). AWS tiene certificaciones de seguridad que lo permiten.
 
 **13. ¿Qué significa "multicloud" en este contexto?**
 Usar servicios de múltiples proveedores cloud (AWS + Azure + Google Cloud) para evitar dependencia de un solo proveedor.
