@@ -58,7 +58,7 @@ nav:
   - Introducción: index.md 
   - Cloud: 
     - Sesión 1 Cloud y AWS: 
-      - Reto Q Mejorado: cloud/sesion1/mejorada/index.md
+      - Reto Q Mejorado: cloud/sesion1/mejorada/retoq_mejorado.md
       - Reto Amazon Q: cloud/sesion1/actividad_ayuntamiento_elche.md
       - Reto Perplexity: cloud/sesion1/actividad_cloud_aws_perplexity.md
       - Reto copilot mejorado: cloud/sesion1/sesion1_cloud_aws_copilot_mejorado.md
