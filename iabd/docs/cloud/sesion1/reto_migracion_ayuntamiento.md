@@ -44,33 +44,33 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Preparación Previa (15 minutos)
 1. Leer [sesion_cloud_aws.md](sesion_cloud_aws.md) para familiarizarse con la estructura
 2. Revisar [materiales_profesorado.md](materiales_profesorado.md) para preguntas guía y recursos
-3. Imprimir `hoja_trabajo_equipos.md` para cada equipo
-4. Preparar acceso a `plantilla_entrega.md` (GitHub, Moodle, etc.)
+3. Compartir [hoja_trabajo_equipos.md](hoja_trabajo_equipos.md) para cada equipo
+4. Preparar acceso a [plantilla_entrega.md](plantilla_entrega.md) en AULES 
 
 ### Durante la Sesión
 1. Seguir el cronograma de [sesion_cloud_aws.md](sesion_cloud_aws.md)
 2. Usar las preguntas guía de [materiales_profesorado.md](materiales_profesorado.md) para dinamizar
-3. Los equipos completan `hoja_trabajo_equipos.md` durante las actividades
+3. Los equipos completan [hoja_trabajo_equipos.md](hoja_trabajo_equipos.md) durante las actividades
 4. Consultar [ejemplo_solucion_completa.md](ejemplo_solucion_completa.md) para orientar a equipos con dificultades
 
 ### Evaluación
-1. Los equipos entregan trabajo final usando `plantilla_entrega.md`
+1. Los equipos entregan trabajo final usando [plantilla_entrega.md]
 2. Aplicar rúbrica detallada de [sesion_cloud_aws.md](sesion_cloud_aws.md)
 3. Comparar con estándares de [ejemplo_solucion_completa.md](ejemplo_solucion_completa.md)
 
 ## 🎓 ADAPTACIONES POSIBLES
 
-### Si Sobra Tiempo
+### Si sobra tiempo
 - Calcular costes reales con calculadora AWS
 - Diseñar dashboard de monitorización
 - Considerar servicios Big Data (EMR, Redshift)
 
-### Si Falta Tiempo  
+### Si falta tiempo  
 - Reducir presentaciones a 2 minutos por equipo
 - Simplificar arquitectura a servicios básicos (EC2, RDS, S3)
 - Plan de migración en 2 fases en lugar de 3
 
-### Para Diferentes Niveles
+### Para diferentes niveles
 - **Alumnado avanzado**: Incluir DevOps, multi-región, serverless
 - **Alumnado con dificultades**: Plantillas pre-rellenadas, trabajo en parejas
 
