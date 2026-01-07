@@ -1442,12 +1442,14 @@
 <hr />
 <h2 id="descripcion-detallada-de-la-actividad-central">DESCRIPCIÓN DETALLADA DE LA ACTIVIDAD CENTRAL</h2>
 <h3 id="contexto-del-caso-real">Contexto del Caso Real</h3>
-<p>El <strong>Ayuntamiento de Elche</strong> sufrió un ciberataque que colapsó sus sistemas informáticos, afectando:
-- Portal web municipal y servicios online
-- Sistema de cita previa ciudadana
-- Gestión de multas y sanciones
-- Padrón municipal y censo
-- Sistemas internos (RRHH, contabilidad, licencias)</p>
+<p>El <strong>Ayuntamiento de Elche</strong> sufrió un ciberataque que colapsó sus sistemas informáticos, afectando:</p>
+<ul>
+<li>Portal web municipal y servicios online</li>
+<li>Sistema de cita previa ciudadana</li>
+<li>Gestión de multas y sanciones</li>
+<li>Padrón municipal y censo</li>
+<li>Sistemas internos (RRHH, contabilidad, licencias)</li>
+</ul>
 <h3 id="mision-de-los-equipos">Misión de los Equipos</h3>
 <p>Actuar como <strong>consultores cloud</strong> para diseñar la migración de servicios municipales a AWS, considerando:</p>
 <ol>
@@ -1459,8 +1461,12 @@
 </ol>
 <h3 id="entregables-por-equipo">Entregables por Equipo</h3>
 <ol>
-<li><strong>Documento técnico</strong> (formato Markdown) con:</li>
-<li>Análisis de servicios críticos</li>
+<li>
+<p><strong>Documento técnico</strong> (formato Markdown) con:</p>
+</li>
+<li>
+<p>Análisis de servicios críticos</p>
+</li>
 <li>Justificación del modelo elegido</li>
 <li>Arquitectura AWS propuesta</li>
 <li>Plan de migración en 3 fases</li>
@@ -1468,9 +1474,11 @@
 <p>Estimación cualitativa de costes</p>
 </li>
 <li>
-<p><strong>Presentación oral</strong> (4 minutos) destacando:</p>
+<p><strong>Presentación oral</strong> (5 minutos) destacando:</p>
 </li>
-<li>Decisión principal y justificación</li>
+<li>
+<p>Decisión principal y justificación</p>
+</li>
 <li>Arquitectura clave (servicios AWS)</li>
 <li>Cronograma y riesgos principales</li>
 </ol>
@@ -1567,14 +1575,18 @@
 </tbody>
 </table>
 <h3 id="descriptores-detallados">Descriptores Detallados</h3>
-<p><strong>Comprensión Modelos Cloud (20 pts)</strong>
-- <strong>Excelente</strong>: Explica diferencias entre IaaS (EC2), PaaS (RDS), SaaS (Office 365) con ejemplos del ayuntamiento. Justifica elección entre nube pública/privada/híbrida.
-- <strong>Aceptable</strong>: Identifica conceptos básicos y da algunos ejemplos correctos.
-- <strong>Insuficiente</strong>: Confunde IaaS con SaaS o no entiende diferencias entre modelos de despliegue.</p>
-<p><strong>Arquitectura AWS (20 pts)</strong>
-- <strong>Excelente</strong>: Propone EC2+RDS+S3+VPC con justificación técnica. Incluye IAM, grupos de seguridad y considera servicios Big Data si procede.
-- <strong>Aceptable</strong>: Identifica servicios principales (EC2, RDS, S3) con explicación básica.
-- <strong>Insuficiente</strong>: Servicios inadecuados (ej: DynamoDB para datos relacionales críticos) o sin explicar por qué los elige.</p>
+<p><strong>Comprensión Modelos Cloud (20 pts)</strong></p>
+<ul>
+<li><strong>Excelente</strong>: Explica diferencias entre IaaS (EC2), PaaS (RDS), SaaS (Office 365) con ejemplos del ayuntamiento. Justifica elección entre nube pública/privada/híbrida.</li>
+<li><strong>Aceptable</strong>: Identifica conceptos básicos y da algunos ejemplos correctos.</li>
+<li><strong>Insuficiente</strong>: Confunde IaaS con SaaS o no entiende diferencias entre modelos de despliegue.</li>
+</ul>
+<p><strong>Arquitectura AWS (20 pts)</strong></p>
+<ul>
+<li><strong>Excelente</strong>: Propone EC2+RDS+S3+VPC con justificación técnica. Incluye IAM, grupos de seguridad y considera servicios Big Data si procede.</li>
+<li><strong>Aceptable</strong>: Identifica servicios principales (EC2, RDS, S3) con explicación básica.</li>
+<li><strong>Insuficiente</strong>: Servicios inadecuados (ej: DynamoDB para datos relacionales críticos) o sin explicar por qué los elige.</li>
+</ul>
 <hr />
 <h2 id="recursos-y-materiales">RECURSOS Y MATERIALES</h2>
 <h3 id="para-el-profesorado">Para el Profesorado</h3>
@@ -1593,31 +1605,32 @@
 </ul>
 <h3 id="herramientas-digitales">Herramientas Digitales</h3>
 <ul>
-<li>GitHub para subir trabajos finales</li>
+<li><a href="https://calculator.aws/">Calculadora AWS para estimaciones</a></li>
+<li><a href="https://aws.amazon.com/architecture/">Diagramas de arquitectura</a></li>
+<li><a href="https://aws.amazon.com/government-education/case-studies/">Casos de éxito en el sector público</a></li>
 <li>Draw.io o Lucidchart para diagramas (opcional)</li>
-<li>Calculadora AWS para estimaciones (consulta)</li>
 </ul>
 <hr />
 <h2 id="adaptaciones-y-extensiones">ADAPTACIONES Y EXTENSIONES</h2>
-<h3 id="si-sobra-tiempo">Si Sobra Tiempo</h3>
+<h3 id="si-sobra-tiempo">Si sobra tiempo</h3>
 <ul>
 <li>Calcular costes reales con calculadora AWS</li>
 <li>Diseñar dashboard de monitorización con CloudWatch</li>
 <li>Considerar servicios de Big Data (EMR, Redshift) para análisis de datos municipales</li>
 </ul>
-<h3 id="si-falta-tiempo">Si Falta Tiempo</h3>
+<h3 id="si-falta-tiempo">Si falta tiempo</h3>
 <ul>
 <li>Reducir presentaciones a 2 minutos por equipo</li>
 <li>Simplificar arquitectura a servicios básicos (EC2, RDS, S3)</li>
 <li>Plan de migración en 2 fases en lugar de 3</li>
 </ul>
-<h3 id="para-alumnado-avanzado">Para Alumnado Avanzado</h3>
+<h3 id="para-alumnado-avanzado">Para alumnado avanzado</h3>
 <ul>
 <li>Incluir consideraciones de DevOps (CI/CD)</li>
 <li>Diseñar estrategia multi-región para disaster recovery</li>
 <li>Evaluar servicios serverless (Lambda, API Gateway)</li>
 </ul>
-<h3 id="para-alumnado-con-dificultades">Para Alumnado con Dificultades</h3>
+<h3 id="para-alumnado-con-dificultades">Para alumnado con dificultades</h3>
 <ul>
 <li>Proporcionar plantilla pre-rellenada con servicios AWS</li>
 <li>Trabajo en parejas en lugar de grupos de 4</li>
