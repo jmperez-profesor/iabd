@@ -1327,25 +1327,33 @@
 </table>
 <h3 id="32-ventajas-e-inconvenientes">3.2 Ventajas e Inconvenientes</h3>
 <h4 id="nube-publica-aws">Nube Pública (AWS)</h4>
-<p><strong>Ventajas:</strong>
-- Implementación rápida (3-6 meses vs 12+ meses on-premise)
-- Costes operacionales reducidos (sin mantenimiento hardware)
-- Escalabilidad automática para picos de tráfico
-- Seguridad avanzada integrada (WAF, GuardDuty)
-- Backups automáticos y disaster recovery</p>
-<p><strong>Inconvenientes:</strong>
-- Dependencia de conectividad a internet
-- Percepción de menor control sobre datos sensibles
-- Costes variables según uso</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Implementación rápida (3-6 meses vs 12+ meses on-premise)</li>
+<li>Costes operacionales reducidos (sin mantenimiento hardware)</li>
+<li>Escalabilidad automática para picos de tráfico</li>
+<li>Seguridad avanzada integrada (WAF, GuardDuty)</li>
+<li>Backups automáticos y disaster recovery</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li>Dependencia de conectividad a internet</li>
+<li>Percepción de menor control sobre datos sensibles</li>
+<li>Costes variables según uso</li>
+</ul>
 <h4 id="nube-hibrida">Nube Híbrida</h4>
-<p><strong>Ventajas:</strong>
-- Datos más sensibles permanecen on-premise
-- Migración gradual y controlada
-- Aprovecha beneficios cloud para servicios públicos</p>
-<p><strong>Inconvenientes:</strong>
-- Mayor complejidad de gestión
-- Costes de conectividad (Direct Connect)
-- Requiere expertise en ambos entornos</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Datos más sensibles permanecen on-premise</li>
+<li>Migración gradual y controlada</li>
+<li>Aprovecha beneficios cloud para servicios públicos</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li>Mayor complejidad de gestión</li>
+<li>Costes de conectividad (Direct Connect)</li>
+<li>Requiere expertise en ambos entornos</li>
+</ul>
 <hr />
 <h2 id="4-modelo-elegido-y-justificacion">4. MODELO ELEGIDO Y JUSTIFICACIÓN</h2>
 <h3 id="41-decision-final">4.1 Decisión Final</h3>
@@ -1470,19 +1478,25 @@
             [Cross-Region Backup]
 </code></pre></div>
 <h3 id="54-configuracion-de-seguridad">5.4 Configuración de Seguridad</h3>
-<p><strong>VPC y Subnets:</strong>
-- VPC: 10.0.0.0/16
-- Subnets públicas: 10.0.1.0/24, 10.0.2.0/24 (ALB)
-- Subnets privadas: 10.0.10.0/24, 10.0.20.0/24 (EC2)
-- Subnets BD: 10.0.100.0/24, 10.0.200.0/24 (RDS)</p>
-<p><strong>Grupos de Seguridad:</strong>
-- ALB-SG: HTTP/HTTPS desde internet
-- Web-SG: HTTP desde ALB-SG únicamente
-- DB-SG: MySQL desde Web-SG únicamente</p>
-<p><strong>IAM Roles:</strong>
-- CitizenRole: Acceso limitado a servicios públicos
-- EmployeeRole: Acceso a sistemas internos según departamento
-- AdminRole: Acceso completo con MFA obligatorio</p>
+<p><strong>VPC y Subnets:</strong></p>
+<ul>
+<li>VPC: 10.0.0.0/16</li>
+<li>Subnets públicas: 10.0.1.0/24, 10.0.2.0/24 (ALB)</li>
+<li>Subnets privadas: 10.0.10.0/24, 10.0.20.0/24 (EC2)</li>
+<li>Subnets BD: 10.0.100.0/24, 10.0.200.0/24 (RDS)</li>
+</ul>
+<p><strong>Grupos de Seguridad:</strong></p>
+<ul>
+<li>ALB-SG: HTTP/HTTPS desde internet</li>
+<li>Web-SG: HTTP desde ALB-SG únicamente</li>
+<li>DB-SG: MySQL desde Web-SG únicamente</li>
+</ul>
+<p><strong>IAM Roles:</strong></p>
+<ul>
+<li>CitizenRole: Acceso limitado a servicios públicos</li>
+<li>EmployeeRole: Acceso a sistemas internos según departamento</li>
+<li>AdminRole: Acceso completo con MFA obligatorio</li>
+</ul>
 <hr />
 <h2 id="6-plan-de-migracion">6. PLAN DE MIGRACIÓN</h2>
 <h3 id="61-estrategia-general">6.1 Estrategia General</h3>
@@ -1563,21 +1577,27 @@ Mes 10-12: [Optimización + Formación + Documentación] → Consolidación
 </tbody>
 </table>
 <h3 id="72-factores-de-coste-considerados">7.2 Factores de Coste Considerados</h3>
-<p><strong>Costes directos AWS:</strong>
-- EC2 instances: €2,400/mes
-- RDS Aurora: €1,800/mes<br />
-- S3 storage: €300/mes
-- Data transfer: €500/mes
-- Otros servicios: €1,000/mes</p>
-<p><strong>Costes ocultos eliminados:</strong>
-- Electricidad y refrigeración: €1,200/mes
-- Licencias software: €2,000/mes
-- Hardware EOL: €3,000/mes amortizado
-- Soporte 24/7: €4,000/mes</p>
-<p><strong>Ahorros esperados:</strong>
-- Reducción personal IT: €8,000/mes (2 FTE menos)
-- Eliminación mantenimiento hardware: €2,000/mes
-- Reducción downtime: €5,000/mes (estimado por productividad)</p>
+<p><strong>Costes directos AWS:</strong></p>
+<ul>
+<li>EC2 instances: €2,400/mes</li>
+<li>RDS Aurora: €1,800/mes  </li>
+<li>S3 storage: €300/mes</li>
+<li>Data transfer: €500/mes</li>
+<li>Otros servicios: €1,000/mes</li>
+</ul>
+<p><strong>Costes ocultos eliminados:</strong></p>
+<ul>
+<li>Electricidad y refrigeración: €1,200/mes</li>
+<li>Licencias software: €2,000/mes</li>
+<li>Hardware EOL: €3,000/mes amortizado</li>
+<li>Soporte 24/7: €4,000/mes</li>
+</ul>
+<p><strong>Ahorros esperados:</strong></p>
+<ul>
+<li>Reducción personal IT: €8,000/mes (2 FTE menos)</li>
+<li>Eliminación mantenimiento hardware: €2,000/mes</li>
+<li>Reducción downtime: €5,000/mes (estimado por productividad)</li>
+</ul>
 <h3 id="73-retorno-de-inversion-roi">7.3 Retorno de Inversión (ROI)</h3>
 <p>La migración se amortizará en <strong>18 meses</strong>. El ahorro anual estimado es de €204,000 (€17K/mes), considerando la reducción de costes operacionales y el aumento de productividad por mayor disponibilidad de servicios.</p>
 <hr />
