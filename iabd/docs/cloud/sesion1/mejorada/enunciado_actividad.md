@@ -1,3 +1,8 @@
+---
+title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - ENUNCIADO ACTIVIDAD
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
 # ACTIVIDAD PRÁCTICA: MIGRACIÓN A CLOUD AWS
 ## Caso Real: Ciberataque al Ayuntamiento de Elche
 
@@ -16,7 +21,7 @@ Al finalizar esta actividad serás capaz de:
 6. Trabajar colaborativamente en problemas técnicos complejos
 
 ### 📖 CONTEXTO DEL CASO
-En marzo de 2022, el Ayuntamiento de Elche sufrió un **ciberataque ransomware** que comprometió gravemente sus sistemas informáticos:
+En agosto de 2024, el Ayuntamiento de Elche sufrió un **ciberataque ransomware** que comprometió gravemente sus sistemas informáticos:
 
 - **Servicios afectados**: Página web municipal, sistemas internos, bases de datos ciudadanas
 - **Duración del incidente**: Varios días sin servicios digitales

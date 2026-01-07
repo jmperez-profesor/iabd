@@ -1,4 +1,9 @@
-# FAQ - PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD
+---
+title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - FAQs PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
+# FAQs - PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD
 ## Migración a Cloud AWS - Caso Ayuntamiento de Elche
 
 ### 📋 PREGUNTAS GENERALES SOBRE LA ACTIVIDAD
@@ -21,7 +26,7 @@ El documento final debe entregarse al finalizar la sesión. Las presentaciones s
 ### 🎯 PREGUNTAS SOBRE EL CASO DE ESTUDIO
 
 **6. ¿El ciberataque al Ayuntamiento de Elche fue real?**
-Sí, ocurrió en marzo de 2022. Podéis buscar información adicional en medios de comunicación para entender mejor el contexto.
+Sí, ocurrió en agosto de 2025. Podéis buscar información adicional en medios de comunicación para entender mejor el contexto.
 
 **7. ¿Tenemos que proponer una solución exacta o podemos ser creativos?**
 Podéis ser creativos siempre que justifiquéis vuestras decisiones técnicamente. No hay una única solución correcta.

@@ -6,13 +6,15 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 📁 CONTENIDO DEL DIRECTORIO
 
 ### 📋 Para el Profesorado
-- **`sesion_cloud_aws.md`** - Diseño completo de la sesión con objetivos, cronograma y actividades
-- **`materiales_profesorado.md`** - Recursos de apoyo, preguntas guía y criterios de evaluación detallados
-- **`ejemplo_solucion_completa.md`** - Ejemplo de solución de referencia para orientar la evaluación
+- **[sesion_cloud_aws.md](sesion_cloud_aws.md)** - Diseño completo de la sesión con objetivos, cronograma y actividades
+- **[materiales_profesorado.md](materiales_profesorado.md)** - Recursos de apoyo, preguntas guía y criterios de evaluación detallados
+- **[ejemplo_solucion_completa.md](ejemplo_solucion_completa.md)** - Ejemplo de solución de referencia para orientar la evaluación
+- **[faq_preguntas_alumnos.md](faq_preguntas_alumnos.md)** - FAQs - Preguntas frecuentes sobre la actividad
 
 ### 👥 Para el Alumnado  
-- **`plantilla_entrega.md`** - Plantilla estructurada para el trabajo final en formato Markdown
-- **`hoja_trabajo_equipos.md`** - Hoja de trabajo para seguir durante la sesión práctica
+- **[plantilla_entrega.md](plantilla_entrega.md)** - Plantilla estructurada para el trabajo final en formato Markdown
+- **[hoja_trabajo_equipos.md](hoja_trabajo_equipos.md)** - Hoja de trabajo para seguir durante la sesión práctica
+- **[faq_preguntas_alumnos.md](faq_preguntas_alumnos.md)** - FAQs - Preguntas frecuentes sobre la actividad
 
 ## 🎯 CARACTERÍSTICAS DE LA SESIÓN
 
@@ -40,21 +42,21 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 🚀 CÓMO USAR ESTOS MATERIALES
 
 ### Preparación Previa (15 minutos)
-1. Leer `sesion_cloud_aws.md` para familiarizarse con la estructura
-2. Revisar `materiales_profesorado.md` para preguntas guía y recursos
+1. Leer [sesion_cloud_aws.md](sesion_cloud_aws.md) para familiarizarse con la estructura
+2. Revisar [materiales_profesorado.md](materiales_profesorado.md) para preguntas guía y recursos
 3. Imprimir `hoja_trabajo_equipos.md` para cada equipo
 4. Preparar acceso a `plantilla_entrega.md` (GitHub, Moodle, etc.)
 
 ### Durante la Sesión
-1. Seguir el cronograma de `sesion_cloud_aws.md`
-2. Usar las preguntas guía de `materiales_profesorado.md` para dinamizar
+1. Seguir el cronograma de [sesion_cloud_aws.md](sesion_cloud_aws.md)
+2. Usar las preguntas guía de [materiales_profesorado.md](materiales_profesorado.md) para dinamizar
 3. Los equipos completan `hoja_trabajo_equipos.md` durante las actividades
-4. Consultar `ejemplo_solucion_completa.md` para orientar a equipos con dificultades
+4. Consultar [ejemplo_solucion_completa.md](ejemplo_solucion_completa.md) para orientar a equipos con dificultades
 
 ### Evaluación
 1. Los equipos entregan trabajo final usando `plantilla_entrega.md`
-2. Aplicar rúbrica detallada de `sesion_cloud_aws.md`
-3. Comparar con estándares de `ejemplo_solucion_completa.md`
+2. Aplicar rúbrica detallada de [sesion_cloud_aws.md](sesion_cloud_aws.md)
+3. Comparar con estándares de [ejemplo_solucion_completa.md](ejemplo_solucion_completa.md)
 
 ## 🎓 ADAPTACIONES POSIBLES
 

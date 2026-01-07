@@ -1,3 +1,8 @@
+---
+title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - SESIÓN CLOUD AWS
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
 # SESIÓN PRÁCTICA: CLOUD COMPUTING Y AWS
 ## Migración del Ayuntamiento de Elche tras Ciberataque
 

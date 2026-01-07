@@ -1,3 +1,8 @@
+---
+title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - EJEMPLO DE SOLUCIÓN COMPLETA
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
 # EJEMPLO DE SOLUCIÓN COMPLETA
 ## Migración del Ayuntamiento de Elche a AWS - Equipo Modelo
 

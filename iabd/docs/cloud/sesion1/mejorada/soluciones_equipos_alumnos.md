@@ -1,4 +1,9 @@
-# SOLUCIONES PROPUESTAS POR EQUIPOS DE ALUMNOS
+---
+title: Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - SOLUCIONES PROPUESTAS POR EQUIPOS DE ALUMNOS
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
+---
+
+# POSIBLES SOLUCIONES PROPUESTAS POR EQUIPOS DE ALUMNOS
 ## Actividad: Migración a Cloud AWS - Caso Ayuntamiento de Elche
 
 ---
