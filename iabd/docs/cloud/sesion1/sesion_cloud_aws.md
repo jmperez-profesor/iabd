@@ -25,7 +25,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## SECUENCIA TEMPORAL DE ACTIVIDADES
 
-### BLOQUE 1: Contextualización y Análisis (30 minutos)
+### BLOQUE 1: Contextualización y Análisis (20 minutos)
 
 #### Actividad 1.1: Presentación del Caso (10 min)
 - **Agrupamiento**: Plenaria
@@ -49,9 +49,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - **Actividad**: Evaluar pros/contras de cada modelo para el ayuntamiento
 - **Producto**: Matriz de decisión con puntuaciones
 
-### BLOQUE 3: Arquitectura AWS (35 minutos)
+### BLOQUE 3: Arquitectura AWS (25 minutos)
 
-#### Actividad 3.1: Servicios AWS Core (20 min)
+#### Actividad 3.1: Servicios AWS Core (10 min)
 - **Agrupamiento**: Equipos
 - **Actividad**: Mapear servicios municipales con servicios AWS
 - **Producto**: Diagrama básico de arquitectura

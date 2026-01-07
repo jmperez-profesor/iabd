@@ -22,7 +22,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - **Duración**: 2 horas
 - **Modalidad**: Trabajo en equipos de 3-4 alumnos
 - **Enfoque**: Altamente práctico y colaborativo
-- **Caso real**: Ciberataque al Ayuntamiento de Elche (2022)
+- **Caso real**: Ciberataque al Ayuntamiento de Elche (agosto 2025)
 
 ### Objetivos de Aprendizaje
 1. Distinguir modelos de servicio cloud (IaaS, PaaS, SaaS)
@@ -33,11 +33,11 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 6. Trabajar colaborativamente en problemas técnicos complejos
 
 ### Estructura Temporal
-- **Bloque 1** (30 min): Contextualización y análisis del caso
+- **Bloque 1** (25 min): Contextualización y análisis del caso
 - **Bloque 2** (25 min): Fundamentos cloud (IaaS/PaaS/SaaS y modelos de despliegue)
-- **Bloque 3** (35 min): Arquitectura AWS (servicios, seguridad, redes)
-- **Bloque 4** (20 min): Plan de migración y análisis de costes
-- **Bloque 5** (30 min): Presentaciones y síntesis
+- **Bloque 3** (25 min): Arquitectura AWS (servicios, seguridad, redes)
+- **Bloque 4** (25 min): Plan de migración y análisis de costes
+- **Bloque 5** (25 min): Presentaciones y síntesis
 
 ## 🚀 CÓMO USAR ESTOS MATERIALES
 
