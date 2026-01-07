@@ -13,6 +13,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### 📋 ANÁLISIS DEL CASO
 El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales son vulnerables. El ayuntamiento perdió servicios críticos durante días, afectando a más de 250.000 ciudadanos. Identificamos tres problemas principales:
+
 - Falta de backups seguros y aislados
 - Sistemas desactualizados sin parches de seguridad
 - No había plan de continuidad de negocio
@@ -28,6 +29,7 @@ El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales so
 | Almacenamiento documentos | PaaS | S3 con lifecycle policies |
 
 **Modelo de despliegue recomendado**: **Cloud Híbrido**
+
 - Datos sensibles (padrón, hacienda) en cloud privado local
 - Servicios públicos (web, trámites online) en cloud público AWS
 - Conexión segura mediante VPN Site-to-Site
@@ -35,6 +37,7 @@ El ciberataque de Elche nos enseña que los sistemas on-premise tradicionales so
 ### 🏗️ ARQUITECTURA AWS PROPUESTA
 
 **Servicios principales:**
+
 - **EC2**: t3.medium para aplicaciones web (2 instancias en Multi-AZ)
 - **RDS**: MySQL Multi-AZ para bases de datos críticas
 - **S3**: Almacenamiento de documentos con versionado
@@ -54,18 +57,21 @@ Internet → CloudFront → ALB → EC2 (Multi-AZ) → RDS (Multi-AZ)
 ### 📅 PLAN DE MIGRACIÓN (3 FASES - 12 MESES)
 
 **Fase 1 (Meses 1-3): Fundamentos**
+
 - Configurar VPC y conectividad
 - Migrar web municipal a EC2
 - Implementar backups en S3
 - Formar equipo técnico básico
 
 **Fase 2 (Meses 4-8): Aplicaciones críticas**
+
 - Migrar bases de datos a RDS
 - Implementar aplicaciones de trámites
 - Configurar monitorización y alertas
 - Testing exhaustivo
 
 **Fase 3 (Meses 9-12): Optimización**
+
 - Implementar auto-scaling
 - Optimizar costes
 - Documentación completa
@@ -94,6 +100,7 @@ El ransomware paralizó Elche porque dependían de infraestructura local sin red
 | Monitorización | SaaS | CloudWatch + SNS |
 
 **Modelo de despliegue**: **Cloud Público Multi-Región**
+
 - Región principal: eu-west-1 (Irlanda)
 - Región backup: eu-central-1 (Frankfurt)
 - Disaster Recovery automático entre regiones
@@ -101,6 +108,7 @@ El ransomware paralizó Elche porque dependían de infraestructura local sin red
 ### 🏗️ ARQUITECTURA AWS PROPUESTA
 
 **Enfoque Serverless + Containers:**
+
 - **ECS Fargate**: Aplicaciones containerizadas sin gestión servidores
 - **Lambda**: Funciones para trámites automáticos
 - **API Gateway**: Punto único entrada APIs
@@ -114,6 +122,7 @@ El ransomware paralizó Elche porque dependían de infraestructura local sin red
 ### 📅 PLAN DE MIGRACIÓN (AGILE - 9 MESES)
 
 **Sprint 1-3 (Meses 1-3): MVP**
+
 - Desplegar portal básico en Fargate
 - Configurar CI/CD con CodePipeline
 - Implementar autenticación con Cognito
@@ -124,6 +133,7 @@ El ransomware paralizó Elche porque dependían de infraestructura local sin red
 - Testing automatizado
 
 **Sprint 7-9 (Meses 7-9): Optimización**
+
 - Machine Learning para análisis ciudadano
 - Optimización costes con Spot Instances
 - Documentación y formación
@@ -151,6 +161,7 @@ El factor crítico fue la **falta de seguridad en capas**. Nuestra solución pri
 | Logs auditoría | PaaS | CloudTrail + Config |
 
 **Modelo de despliegue**: **Cloud Privado Virtual (VPC dedicada)**
+
 - VPC aislada con conexión dedicada (Direct Connect)
 - Subredes completamente privadas
 - Bastion hosts para acceso administrativo
@@ -158,6 +169,7 @@ El factor crítico fue la **falta de seguridad en capas**. Nuestra solución pri
 ### 🏗️ ARQUITECTURA AWS PROPUESTA
 
 **Seguridad en capas:**
+
 - **WAF + Shield**: Protección DDoS y aplicaciones
 - **GuardDuty**: Detección amenazas con ML
 - **Inspector**: Evaluación vulnerabilidades automática
@@ -178,18 +190,21 @@ Direct Connect → VGW → Private Subnets → WAF → ALB → EC2
 ### 📅 PLAN DE MIGRACIÓN (SECURITY-FIRST - 15 MESES)
 
 **Fase 1 (Meses 1-5): Fundamentos Seguridad**
+
 - Implementar toda la infraestructura de seguridad
 - Configurar logging y monitoring completo
 - Certificación ENS Medio
 - Formación intensiva equipo
 
 **Fase 2 (Meses 6-10): Migración Controlada**
+
 - Migrar aplicaciones una por una
 - Testing seguridad exhaustivo cada paso
 - Penetration testing externo
 - Documentación compliance
 
 **Fase 3 (Meses 11-15): Operación Segura**
+
 - Monitorización 24/7 con SOC
 - Simulacros ciberataques regulares
 - Optimización detectores amenazas
@@ -219,6 +234,7 @@ Como ayuntamiento con presupuesto limitado, necesitamos **máximo valor con mín
 | Base datos | PaaS | RDS t3.micro con backup automático |
 
 **Modelo de despliegue**: **Cloud Público con optimización costes**
+
 - Una sola región (eu-west-1) para minimizar transferencias
 - Uso intensivo de Reserved Instances (descuento 60%)
 - Auto-scaling para pagar solo lo que se usa
@@ -226,6 +242,7 @@ Como ayuntamiento con presupuesto limitado, necesitamos **máximo valor con mín
 ### 🏗️ ARQUITECTURA AWS PROPUESTA
 
 **Optimizada para costes:**
+
 - **Lightsail**: VPS simple para web municipal (10$/mes)
 - **EC2 t3.micro**: Aplicaciones con burstable performance
 - **RDS t3.micro**: Base datos pequeña con Multi-AZ
@@ -234,6 +251,7 @@ Como ayuntamiento con presupuesto limitado, necesitamos **máximo valor con mín
 - **Route 53**: DNS básico sin health checks premium
 
 **Innovación low-cost**: 
+
 - Lambda para tareas batch (solo pagar ejecución)
 - SES para emails transaccionales (más barato que servicios externos)
 - EventBridge para automatizaciones sin servidores
@@ -241,16 +259,19 @@ Como ayuntamiento con presupuesto limitado, necesitamos **máximo valor con mín
 ### 📅 PLAN DE MIGRACIÓN (LEAN - 6 MESES)
 
 **Mes 1-2: Quick Wins**
+
 - Migrar web a Lightsail inmediatamente
 - Configurar backups S3 (protección básica)
 - Email a WorkMail
 
 **Mes 3-4: Aplicaciones Core**
+
 - Migrar base datos a RDS
 - Aplicaciones principales a EC2
 - Configurar monitorización básica
 
 **Mes 5-6: Optimización**
+
 - Comprar Reserved Instances (ahorro 60%)
 - Implementar lifecycle policies S3
 - Automatizar tareas con Lambda

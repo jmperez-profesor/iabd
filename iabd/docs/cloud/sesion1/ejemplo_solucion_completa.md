@@ -15,7 +15,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 1. CONTEXTO Y RESUMEN DEL CIBERATAQUE
 
 ### 1.1 Descripción del Incidente
-En marzo de 2022, el Ayuntamiento de Elche sufrió un ciberataque de ransomware que cifró la mayoría de sus sistemas informáticos. El ataque dejó inoperativos los servicios digitales durante varios días, obligando a los empleados municipales a trabajar de forma manual y dejando a los ciudadanos sin acceso a servicios online esenciales.
+En agosto de 2025, el Ayuntamiento de Elche sufrió un ciberataque de ransomware que cifró la mayoría de sus sistemas informáticos. El ataque dejó inoperativos los servicios digitales durante varios días, obligando a los empleados municipales a trabajar de forma manual y dejando a los ciudadanos sin acceso a servicios online esenciales.
 
 ### 1.2 Servicios Afectados
 - Portal web municipal (información y trámites online)
