@@ -237,17 +237,20 @@ Mes 10-12: [Optimización + Formación + Documentación] → Consolidación
 ### 6.4 Recursos Necesarios
 
 **Personal técnico:**
+
 - 1 Arquitecto Cloud AWS (dedicación 100%)
 - 2 Desarrolladores/DevOps (dedicación 75%)
 - 1 Especialista en seguridad (dedicación 50%)
 - 1 DBA para migración de datos (dedicación 100% primeros 6 meses)
 
 **Formación:**
+
 - Curso AWS Fundamentals para todo el equipo IT (40 horas)
 - Certificación AWS Solutions Architect para arquitecto principal
 - Formación RGPD en cloud para equipo de seguridad
 
 **Herramientas:**
+
 - AWS Database Migration Service para migración de datos
 - Terraform para Infrastructure as Code
 - GitLab CI/CD para automatización de despliegues

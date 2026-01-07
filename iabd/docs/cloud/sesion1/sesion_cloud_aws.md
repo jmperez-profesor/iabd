@@ -217,7 +217,11 @@ Actuar como **consultores cloud** para diseñar la migración de servicios munic
 - [Diagramas de arquitectura](https://aws.amazon.com/architecture/)
 - [Casos de éxito en el sector público](https://aws.amazon.com/government-education/case-studies/)
 - Draw.io o Lucidchart para diagramas (opcional)
-
+- [Noticia ciberataque Ayuntamiento Elche](https://www.elche.es/actualidad-ciber-ataque-elche/)
+- [Análisis del ataque - APDTIC](https://www.apdtic.com/ciberataque-ayuntamiento-elche-5-lecciones-ciberseguridad/)
+- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- [Guía RGPD en AWS](https://aws.amazon.com/compliance/gdpr-center/)
+- [Casos de éxito AWS sector público](https://aws.amazon.com/government-education/case-studies/)
 
 ---
 
