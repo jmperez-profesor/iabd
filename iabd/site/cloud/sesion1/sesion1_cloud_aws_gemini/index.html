@@ -1,0 +1,1932 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/sesion1_cloud_aws_gemini/">
+      
+      
+        <link rel="prev" href="../sesion1_cloud_aws_copilot/">
+      
+      
+        <link rel="next" href="../sesion1_cloud_aws_proyecto_fenix/">
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - Proyecto "Resiliencia Elche Cloud" (Gamini) - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#actividad-proyecto-resiliencia-elche-cloud" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - Proyecto "Resiliencia Elche Cloud" (Gamini)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../mejorada/retoq_mejorado/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sesión 1 Cloud y AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mejorada/retoq_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Q Mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Contexto del Proyecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-para-el-alumnado" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Instrucciones para el Alumnado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Instrucciones para el Alumnado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-analisis-e-inventario-20-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase 1: Análisis e Inventario (20 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-seleccion-del-modelo-de-servicio-20-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase 2: Selección del Modelo de Servicio (20 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-diseno-de-infraestructura-global-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase 3: Diseño de Infraestructura Global (30 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-seleccion-de-stack-aws-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase 4: Selección de Stack AWS (30 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-5-elevator-pitch-20-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fase 5: Elevator Pitch (20 min)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rubrica-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Rúbrica de Evaluación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soluciones-de-referencia-para-el-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Soluciones de Referencia (Para el Docente)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Soluciones de Referencia (Para el Docente)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-a-enfoque-de-continuidad-hibridoiaas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opción A: Enfoque de Continuidad (Híbrido/IaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-b-modernizacion-nativa-paassaas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opción B: Modernización Nativa (PaaS/SaaS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesion1_cloud_aws_proyecto_fenix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini+NoteBookLM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="actividad-proyecto-resiliencia-elche-cloud">Actividad: Proyecto "Resiliencia Elche Cloud" 🚀</h1>
+<p>Este proyecto forma parte del curso de especialización en <strong>IA y Big Data</strong>. El objetivo es aplicar conceptos teóricos de Cloud Computing y servicios de Amazon Web Services (AWS) a un caso de uso real y crítico.</p>
+<hr />
+<h2 id="contexto-del-proyecto">📝 Contexto del Proyecto</h2>
+<p>El <strong>Ayuntamiento de Elche</strong> ha sufrido recientemente un ciberataque de tipo <em>ransomware</em> que ha colapsado sus sistemas de información. Como equipo de consultoría experta en Cloud, vuestra misión es diseñar una arquitectura en la nube que garantice:
+1. <strong>Alta disponibilidad</strong> (que los servicios no se detengan).
+2. <strong>Resiliencia</strong> (capacidad de recuperarse ante ataques o fallos).
+3. <strong>Seguridad</strong> (protección de los datos de los ciudadanos).</p>
+<hr />
+<h2 id="instrucciones-para-el-alumnado">🛠️ Instrucciones para el Alumnado</h2>
+<p>La actividad se desarrollará en grupos y tendrá una duración de <strong>120 minutos</strong>.</p>
+<h3 id="fase-1-analisis-e-inventario-20-min">Fase 1: Análisis e Inventario (20 min)</h3>
+<p>Identificad <strong>tres servicios críticos</strong> que el ayuntamiento deba migrar con prioridad (ej. Sede Electrónica, Base de Datos de Empadronamiento, Gestión de Nóminas).</p>
+<h3 id="fase-2-seleccion-del-modelo-de-servicio-20-min">Fase 2: Selección del Modelo de Servicio (20 min)</h3>
+<p>Para cada servicio, decidid qué modelo de despliegue es más adecuado basándoos en el <strong>Modelo de Responsabilidad Compartida</strong>:
+* <strong>IaaS</strong> (Infraestructura como Servicio).
+* <strong>PaaS</strong> (Plataforma como Servicio).
+* <strong>SaaS</strong> (Software como Servicio).</p>
+<h3 id="fase-3-diseno-de-infraestructura-global-30-min">Fase 3: Diseño de Infraestructura Global (30 min)</h3>
+<p>Diseñad la arquitectura física y lógica:
+* <strong>Región:</strong> ¿En qué región de AWS desplegaréis y por qué?
+* <strong>Zonas de Disponibilidad (AZ):</strong> ¿Cómo usaréis las AZ para evitar que un fallo físico tumbe el sistema?</p>
+<h3 id="fase-4-seleccion-de-stack-aws-30-min">Fase 4: Selección de Stack AWS (30 min)</h3>
+<p>Elegid al menos <strong>4 servicios de AWS</strong> y explicad su función específica en la solución:
+* <em>Ejemplos:</em> EC2, S3, RDS, IAM, VPC, CloudFront, Route 53.</p>
+<h3 id="fase-5-elevator-pitch-20-min">Fase 5: Elevator Pitch (20 min)</h3>
+<p>Cada equipo expondrá su solución en un máximo de <strong>3 minutos</strong> simulando una reunión con el comité de crisis del Ayuntamiento.</p>
+<hr />
+<h2 id="rubrica-de-evaluacion">📊 Rúbrica de Evaluación</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Criterio</th>
+<th style="text-align: left;">Excelente (5)</th>
+<th style="text-align: left;">Adecuado (3)</th>
+<th style="text-align: left;">Insuficiente (1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Uso de Terminología</strong></td>
+<td style="text-align: left;">Emplea correctamente términos como Región, AZ, IaaS/PaaS y Responsabilidad Compartida.</td>
+<td style="text-align: left;">Emplea la mayoría de los términos pero con pequeñas imprecisiones.</td>
+<td style="text-align: left;">Confunde conceptos básicos del Cloud.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Arquitectura y Resiliencia</strong></td>
+<td style="text-align: left;">Propone una solución multi-AZ que garantiza alta disponibilidad real.</td>
+<td style="text-align: left;">La solución es funcional pero depende de un único punto de fallo.</td>
+<td style="text-align: left;">No considera la redundancia geográfica.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Justificación de Servicios</strong></td>
+<td style="text-align: left;">Selecciona servicios de AWS que encajan perfectamente con las necesidades del caso.</td>
+<td style="text-align: left;">Selecciona servicios adecuados pero no justifica bien su elección.</td>
+<td style="text-align: left;">Los servicios elegidos no resuelven el problema.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Seguridad y Responsabilidad</strong></td>
+<td style="text-align: left;">Define claramente qué parte de la seguridad gestiona el Ayuntamiento y cuál AWS.</td>
+<td style="text-align: left;">Menciona la seguridad de forma genérica.</td>
+<td style="text-align: left;">No identifica las responsabilidades de seguridad.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="soluciones-de-referencia-para-el-docente">💡 Soluciones de Referencia (Para el Docente)</h2>
+<h3 id="opcion-a-enfoque-de-continuidad-hibridoiaas">Opción A: Enfoque de Continuidad (Híbrido/IaaS)</h3>
+<ul>
+<li><strong>Estrategia:</strong> Prioriza la rapidez de migración y el control.</li>
+<li><strong>Servicios clave:</strong> * <strong>Amazon S3:</strong> Para backups inmutables (anti-ransomware).<ul>
+<li><strong>Amazon EC2:</strong> Servidores espejo listos para arrancar.</li>
+<li><strong>VPC:</strong> Red privada para conectar la sede física con la nube de forma segura.</li>
+</ul>
+</li>
+</ul>
+<h3 id="opcion-b-modernizacion-nativa-paassaas">Opción B: Modernización Nativa (PaaS/SaaS)</h3>
+<ul>
+<li><strong>Estrategia:</strong> Delegar la gestión del hardware y SO a AWS para centrarse en los datos.</li>
+<li><strong>Servicios clave:</strong> * <strong>Amazon RDS (Multi-AZ):</strong> Bases de datos con replicación automática.<ul>
+<li><strong>AWS IAM:</strong> Control de accesos estricto bajo el principio de menor privilegio.</li>
+<li><strong>Amazon CloudFront:</strong> Protección contra ataques DDoS en la web municipal.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><em>Ficha diseñada para el Módulo de Cloud Computing - Especialización IA y Big Data.</em></p>
+<h1 id="test-de-autoevaluacion-cloud-computing-y-aws">📝 Test de Autoevaluación: Cloud Computing y AWS</h1>
+<p><strong>Módulo:</strong> Especialización en IA y Big Data<br />
+<strong>Total de preguntas:</strong> 30  </p>
+<hr />
+<h3 id="1-cual-es-la-caracteristica-del-cloud-computing-que-permite-ajustar-los-recursos-de-forma-automatica-segun-la-demanda">1. ¿Cuál es la característica del Cloud Computing que permite ajustar los recursos de forma automática según la demanda?</h3>
+<ul>
+<li>a) Agrupamiento de recursos.</li>
+<li><strong>b) Elasticidad rápida.</strong> (Correcta: Permite escalar recursos horizontal o verticalmente de forma dinámica).</li>
+<li>c) Autoservicio bajo demanda.</li>
+<li>d) Pago por visión.</li>
+</ul>
+<h3 id="2-si-gestionas-el-sistema-operativo-pero-el-proveedor-te-da-el-hardware-virtual-que-modelo-es">2. Si gestionas el Sistema Operativo pero el proveedor te da el hardware virtual, ¿qué modelo es?</h3>
+<ul>
+<li>a) SaaS.</li>
+<li>b) PaaS.</li>
+<li><strong>c) IaaS.</strong> (Correcta: Infrastructure as a Service te da control sobre el SO).</li>
+<li>d) FaaS.</li>
+</ul>
+<h3 id="3-en-el-modelo-de-responsabilidad-compartida-quien-es-responsable-de-la-seguridad-fisica-del-centro-de-datos">3. En el Modelo de Responsabilidad Compartida, ¿quién es responsable de la seguridad física del centro de datos?</h3>
+<ul>
+<li><strong>a) AWS.</strong> (Correcta: Todo lo referente a la infraestructura global es responsabilidad del proveedor).</li>
+<li>b) El cliente.</li>
+<li>c) Ambos al 50%.</li>
+<li>d) La empresa de seguridad contratada por el cliente.</li>
+</ul>
+<h3 id="4-que-es-una-zona-de-disponibilidad-az">4. ¿Qué es una Zona de Disponibilidad (AZ)?</h3>
+<ul>
+<li>a) Un país donde AWS tiene oficinas.</li>
+<li><strong>b) Uno o más centros de datos discretos con alimentación y conectividad redundante.</strong> (Correcta: Están diseñadas para el aislamiento de fallos).</li>
+<li>c) Un punto de caché para contenido web.</li>
+<li>d) Un tipo de servidor de alto rendimiento.</li>
+</ul>
+<h3 id="5-que-servicio-de-aws-ofrece-almacenamiento-de-objetos-con-durabilidad-del-99999999999">5. ¿Qué servicio de AWS ofrece almacenamiento de objetos con durabilidad del 99,999999999%?</h3>
+<ul>
+<li>a) Amazon EBS.</li>
+<li><strong>b) Amazon S3.</strong> (Correcta: Simple Storage Service es el estándar para almacenamiento de objetos).</li>
+<li>c) Amazon RDS.</li>
+<li>d) Amazon EFS.</li>
+</ul>
+<h3 id="6-que-significa-que-un-servicio-sea-serverless">6. ¿Qué significa que un servicio sea "Serverless"?</h3>
+<ul>
+<li>a) Que no usa servidores físicos en ningún lugar.</li>
+<li><strong>b) Que el usuario no gestiona ni aprovisiona servidores.</strong> (Correcta: El proveedor se encarga de la infraestructura).</li>
+<li>c) Que es un servicio offline.</li>
+<li>d) Que es gratuito.</li>
+</ul>
+<h3 id="7-cual-es-la-funcion-de-aws-iam">7. ¿Cuál es la función de AWS IAM?</h3>
+<ul>
+<li>a) Aumentar la velocidad de la CPU.</li>
+<li><strong>b) Gestionar el acceso seguro a los servicios y recursos.</strong> (Correcta: Identity and Access Management).</li>
+<li>c) Almacenar archivos de configuración.</li>
+<li>d) Crear bases de datos NoSQL.</li>
+</ul>
+<h3 id="8-que-es-una-nube-hibrida">8. ¿Qué es una Nube Híbrida?</h3>
+<ul>
+<li>a) Una nube que funciona con energía solar y eólica.</li>
+<li><strong>b) Una mezcla de infraestructura propia (on-premise) y nube pública.</strong> (Correcta: Permite conectar ambos entornos).</li>
+<li>c) Una nube compartida por varias universidades.</li>
+<li>d) El uso de dos proveedores de nube pública distintos.</li>
+</ul>
+<h3 id="9-para-que-sirve-amazon-rds">9. ¿Para qué sirve Amazon RDS?</h3>
+<ul>
+<li>a) Para enviar correos masivos.</li>
+<li><strong>b) Para gestionar bases de datos relacionales.</strong> (Correcta: Facilita tareas como parches y backups).</li>
+<li>c) Para registrar dominios web.</li>
+<li>d) Para analizar imágenes con IA.</li>
+</ul>
+<h3 id="10-que-beneficio-economico-aporta-el-cloud-al-eliminar-la-inversion-inicial-en-hardware">10. ¿Qué beneficio económico aporta el Cloud al eliminar la inversión inicial en hardware?</h3>
+<ul>
+<li>a) Aumento del CapEx.</li>
+<li><strong>b) Cambio de CapEx a OpEx.</strong> (Correcta: Pasas de gastos de capital a gastos operativos por uso).</li>
+<li>c) Eliminación total de impuestos.</li>
+<li>d) Reducción del salario de los técnicos.</li>
+</ul>
+<h3 id="11-que-es-una-region-en-aws">11. ¿Qué es una Región en AWS?</h3>
+<ul>
+<li>a) Un centro de datos individual.</li>
+<li><strong>b) Un área geográfica que contiene dos o más Zonas de Disponibilidad.</strong> (Correcta: Es la unidad geográfica principal).</li>
+<li>c) Un grupo de usuarios con los mismos permisos.</li>
+<li>d) Un límite de facturación por país.</li>
+</ul>
+<h3 id="12-en-paas-de-que-se-olvida-normalmente-el-desarrollador">12. En PaaS, ¿de qué se olvida normalmente el desarrollador?</h3>
+<ul>
+<li><strong>a) De parchear el Sistema Operativo.</strong> (Correcta: El proveedor gestiona el runtime y el SO).</li>
+<li>b) De escribir el código.</li>
+<li>c) De sus datos.</li>
+<li>d) De pagar la factura.</li>
+</ul>
+<h3 id="13-que-servicio-permite-crear-una-red-virtual-aislada-en-aws">13. ¿Qué servicio permite crear una red virtual aislada en AWS?</h3>
+<ul>
+<li>a) Amazon Route 53.</li>
+<li><strong>b) Amazon VPC.</strong> (Correcta: Virtual Private Cloud).</li>
+<li>c) Amazon Direct Connect.</li>
+<li>d) AWS Snowball.</li>
+</ul>
+<h3 id="14-cual-es-el-objetivo-de-los-puntos-de-presencia-edge-locations">14. ¿Cuál es el objetivo de los Puntos de Presencia (Edge Locations)?</h3>
+<ul>
+<li>a) Almacenar copias de seguridad de larga duración.</li>
+<li><strong>b) Reducir la latencia entregando contenido cerca del usuario.</strong> (Correcta: Se usan con CloudFront).</li>
+<li>c) Ejecutar algoritmos de entrenamiento de IA.</li>
+<li>d) Alojar la base de datos principal.</li>
+</ul>
+<h3 id="15-que-modelo-es-una-aplicacion-como-microsoft-365-o-salesforce">15. ¿Qué modelo es una aplicación como Microsoft 365 o Salesforce?</h3>
+<ul>
+<li>a) IaaS.</li>
+<li>b) PaaS.</li>
+<li><strong>c) SaaS.</strong> (Correcta: Software as a Service).</li>
+<li>d) On-premise.</li>
+</ul>
+<h3 id="16-que-define-la-alta-disponibilidad">16. ¿Qué define la "Alta Disponibilidad"?</h3>
+<ul>
+<li>a) Que el sistema sea el más rápido del mercado.</li>
+<li><strong>b) Que el sistema sea accesible la mayor parte del tiempo, incluso ante fallos.</strong> (Correcta: Se logra con redundancia).</li>
+<li>c) Que los datos estén cifrados.</li>
+<li>d) Que el soporte técnico atienda en 5 minutos.</li>
+</ul>
+<h3 id="17-que-es-una-ami-amazon-machine-image">17. ¿Qué es una AMI (Amazon Machine Image)?</h3>
+<ul>
+<li>a) Un tipo de monitor de AWS.</li>
+<li><strong>b) Una plantilla con el SO y software para lanzar instancias EC2.</strong> (Correcta: Es el "molde" del servidor).</li>
+<li>c) Una foto del centro de datos.</li>
+<li>d) Un servicio de edición de imágenes.</li>
+</ul>
+<h3 id="18-cual-es-la-ventaja-de-la-configuracion-multi-az-en-bases-de-datos">18. ¿Cuál es la ventaja de la configuración Multi-AZ en bases de datos?</h3>
+<ul>
+<li>a) Que es más barata.</li>
+<li><strong>b) Resiliencia ante desastres en un centro de datos.</strong> (Correcta: Si falla una zona, la otra toma el control).</li>
+<li>c) Que los datos se borran más rápido.</li>
+<li>d) Que no requiere contraseñas.</li>
+</ul>
+<h3 id="19-que-servicio-reparte-el-trafico-entre-varios-servidores">19. ¿Qué servicio reparte el tráfico entre varios servidores?</h3>
+<ul>
+<li>a) Auto Scaling.</li>
+<li><strong>b) Elastic Load Balancing (ELB).</strong> (Correcta: Distribuye la carga entrante).</li>
+<li>c) Amazon CloudWatch.</li>
+<li>d) AWS Artifact.</li>
+</ul>
+<h3 id="20-que-dice-el-principio-de-menor-privilegio">20. ¿Qué dice el Principio de Menor Privilegio?</h3>
+<ul>
+<li><strong>a) Dar solo los permisos mínimos necesarios para una tarea.</strong> (Correcta: Reduce el riesgo de seguridad).</li>
+<li>b) Dar acceso total a todos los administradores.</li>
+<li>c) No dar permisos a nadie.</li>
+<li>d) Cambiar las contraseñas cada hora.</li>
+</ul>
+<hr />
+<h3 id="nuevas-preguntas-de-nivel-avanzado-y-servicios-especificos">[NUEVAS] Preguntas de Nivel Avanzado y Servicios Específicos</h3>
+<h3 id="21-que-servicio-permite-aumentar-o-disminuir-el-numero-de-instancias-ec2-automaticamente-segun-el-uso-de-cpu">21. ¿Qué servicio permite aumentar o disminuir el número de instancias EC2 automáticamente según el uso de CPU?</h3>
+<ul>
+<li>a) Elastic Load Balancing.</li>
+<li><strong>b) Amazon EC2 Auto Scaling.</strong> (Correcta: Ajusta la capacidad para mantener el rendimiento).</li>
+<li>c) Amazon Lightsail.</li>
+<li>d) AWS Lambda.</li>
+</ul>
+<h3 id="22-en-una-base-de-datos-amazon-rds-quien-es-responsable-de-realizar-los-backups-y-parches-del-motor-de-base-de-datos">22. En una base de datos Amazon RDS, ¿quién es responsable de realizar los backups y parches del motor de base de datos?</h3>
+<ul>
+<li><strong>a) AWS.</strong> (Correcta: Es una de las ventajas del modelo PaaS/Gestionado).</li>
+<li>b) El cliente.</li>
+<li>c) El fabricante del motor (ej. Oracle o Microsoft).</li>
+<li>d) Nadie, los backups no son necesarios en la nube.</li>
+</ul>
+<h3 id="23-cual-es-el-factor-principal-para-elegir-una-region-de-aws-especifica">23. ¿Cuál es el factor principal para elegir una Región de AWS específica?</h3>
+<ul>
+<li>a) El color de los servidores.</li>
+<li><strong>b) El cumplimiento legal (soberanía de datos) y la latencia para los usuarios.</strong> (Correcta: Los datos deben estar cerca del usuario o cumplir leyes locales).</li>
+<li>c) La cantidad de ingenieros que trabajan allí.</li>
+<li>d) Siempre se debe elegir la más barata sin importar nada más.</li>
+</ul>
+<h3 id="24-como-deben-ser-los-nombres-de-los-buckets-en-amazon-s3">24. ¿Cómo deben ser los nombres de los "Buckets" en Amazon S3?</h3>
+<ul>
+<li>a) Únicos dentro de una Región.</li>
+<li><strong>b) Únicos a nivel mundial (globalmente).</strong> (Correcta: No puede haber dos buckets con el mismo nombre en todo AWS).</li>
+<li>c) Pueden repetirse si son de distintas cuentas.</li>
+<li>d) Solo pueden contener números.</li>
+</ul>
+<h3 id="25-que-servicio-de-aws-es-una-red-de-entrega-de-contenido-cdn">25. ¿Qué servicio de AWS es una red de entrega de contenido (CDN)?</h3>
+<ul>
+<li>a) Amazon VPC.</li>
+<li>b) Amazon Route 53.</li>
+<li><strong>c) Amazon CloudFront.</strong> (Correcta: Acelera la entrega de contenido estático y dinámico).</li>
+<li>d) Amazon AppStream.</li>
+</ul>
+<h3 id="26-cual-es-el-servicio-de-computacion-serverless-que-ejecuta-codigo-en-respuesta-a-eventos">26. ¿Cuál es el servicio de computación "Serverless" que ejecuta código en respuesta a eventos?</h3>
+<ul>
+<li>a) Amazon EC2.</li>
+<li><strong>b) AWS Lambda.</strong> (Correcta: Ejecuta código sin gestionar servidores, pagando solo por el tiempo de ejecución).</li>
+<li>c) Amazon Redshift.</li>
+<li>d) AWS WorkSpaces.</li>
+</ul>
+<h3 id="27-que-servicio-de-aws-se-usa-para-monitorizar-recursos-y-aplicaciones-permitiendo-crear-alarmas">27. ¿Qué servicio de AWS se usa para monitorizar recursos y aplicaciones, permitiendo crear alarmas?</h3>
+<ul>
+<li>a) AWS Config.</li>
+<li><strong>b) Amazon CloudWatch.</strong> (Correcta: Recopila métricas y registros de casi todos los servicios de AWS).</li>
+<li>c) Amazon CloudTrail.</li>
+<li>d) AWS Trusted Advisor.</li>
+</ul>
+<h3 id="28-que-actua-como-un-firewall-virtual-para-controlar-el-trafico-entrante-y-saliente-de-una-instancia-ec2">28. ¿Qué actúa como un firewall virtual para controlar el tráfico entrante y saliente de una instancia EC2?</h3>
+<ul>
+<li>a) Network ACL.</li>
+<li><strong>b) Security Group (Grupo de Seguridad).</strong> (Correcta: Funciona a nivel de instancia/interfaz de red).</li>
+<li>c) AWS WAF.</li>
+<li>d) Route Table.</li>
+</ul>
+<h3 id="29-que-servicio-de-aws-es-un-sistema-de-nombres-de-dominio-dns-con-alta-disponibilidad">29. ¿Qué servicio de AWS es un sistema de nombres de dominio (DNS) con alta disponibilidad?</h3>
+<ul>
+<li>a) Amazon Connect.</li>
+<li>b) Amazon API Gateway.</li>
+<li><strong>c) Amazon Route 53.</strong> (Correcta: Resuelve nombres de dominio y gestiona el tráfico de red).</li>
+<li>d) AWS Direct Connect.</li>
+</ul>
+<h3 id="30-cual-de-estos-no-es-uno-de-los-pilares-del-aws-well-architected-framework">30. ¿Cuál de estos NO es uno de los pilares del "AWS Well-Architected Framework"?</h3>
+<ul>
+<li>a) Excelencia Operativa.</li>
+<li>b) Seguridad.</li>
+<li>c) Optimización de Costes.</li>
+<li><strong>d) Diseño Visual Atractivo.</strong> (Correcta: Los pilares son técnicos y de gestión: Excelencia, Seguridad, Fiabilidad, Rendimiento, Costes y Sostenibilidad).</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../sesion1_cloud_aws_copilot/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Reto copilot">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Reto copilot
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sesion1_cloud_aws_proyecto_fenix/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Reto Gemini+NoteBookLM">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Reto Gemini+NoteBookLM
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Solución Completa - Migración Ayuntamiento Elche</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 { color: #2c3e50; }
+        h2 { border-bottom: 2px solid #3498db; padding-bottom: 0.5rem; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #34495e;
+            color: white;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .architecture {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📋 Ejemplo de Solución Completa</h1>
+        <p>Migración del Ayuntamiento de Elche a AWS - Referencia de Calidad</p>
+    </div>
+    
+    <a href="index.html" class="back-btn">← Volver a la Sesión Principal</a>
+    
+    <div class="content">
+        <h2>🎯 Equipo: CloudElche Solutions</h2>
+        <p><strong>Integrantes:</strong> Ana García, Carlos López, María Rodríguez, David Martín</p>
+        
+        <div class="highlight">
+            <strong>💡 Nota para el Profesorado:</strong> Este ejemplo muestra el nivel de calidad esperado para una solución excelente (9-10 puntos). Los estudiantes deben alcanzar este estándar de análisis técnico, justificación y presentación.
+        </div>
+        
+        <h2>1. Contexto del Ciberataque</h2>
+        <p>En marzo de 2022, el Ayuntamiento de Elche sufrió un ciberataque de ransomware que cifró la mayoría de sus sistemas informáticos. El ataque dejó inoperativos los servicios digitales durante varios días, obligando a los empleados municipales a trabajar de forma manual y dejando a los ciudadanos sin acceso a servicios online esenciales.</p>
+        
+        <h3>Servicios Afectados</h3>
+        <ul>
+            <li>Portal web municipal (información y trámites online)</li>
+            <li>Sistema de cita previa ciudadana</li>
+            <li>Gestión de multas y sanciones</li>
+            <li>Padrón municipal y censo</li>
+            <li>Sistemas internos (RRHH, contabilidad, licencias)</li>
+        </ul>
+        
+        <h2>2. Análisis de Servicios por Criticidad</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Criticidad</th>
+                    <th>Usuarios Afectados</th>
+                    <th>Justificación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Portal web municipal</td>
+                    <td>Alta</td>
+                    <td>50,000+ ciudadanos</td>
+                    <td>Punto de acceso principal a servicios municipales</td>
+                </tr>
+                <tr>
+                    <td>Sistema cita previa</td>
+                    <td>Alta</td>
+                    <td>15,000/mes</td>
+                    <td>Imprescindible para trámites presenciales</td>
+                </tr>
+                <tr>
+                    <td>Gestión de multas</td>
+                    <td>Alta</td>
+                    <td>8,000/mes</td>
+                    <td>Genera ingresos directos al ayuntamiento</td>
+                </tr>
+                <tr>
+                    <td>Padrón municipal</td>
+                    <td>Media</td>
+                    <td>220,000 habitantes</td>
+                    <td>Datos críticos pero consultas menos frecuentes</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>3. Modelo Elegido: Nube Pública AWS</h2>
+        
+        <div class="highlight">
+            <strong>Decisión:</strong> Nube Pública AWS<br>
+            <strong>Puntuación en matriz:</strong> 4.25/5 (mejor valorado)
+        </div>
+        
+        <h3>Justificación Técnica</h3>
+        <p><strong>Urgencia post-ataque:</strong> El ayuntamiento necesita restaurar la confianza ciudadana rápidamente. AWS permite desplegar servicios críticos en 3-6 meses frente a los 12-18 meses que requeriría reconstruir la infraestructura on-premise.</p>
+        
+        <p><strong>Seguridad superior:</strong> AWS ofrece servicios de seguridad avanzados (WAF, GuardDuty, Config) que serían muy costosos de implementar internamente. El cifrado automático, auditorías continuas y detección de amenazas en tiempo real superan las capacidades actuales del ayuntamiento.</p>
+        
+        <p><strong>Coste-beneficio óptimo:</strong> Aunque el control de datos es menor que on-premise, el ahorro en personal técnico (2-3 FTE), hardware y mantenimiento compensa esta limitación. Además, el cumplimiento RGPD está garantizado por los centros de datos AWS en Europa.</p>
+        
+        <h2>4. Arquitectura AWS Propuesta</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Necesidad Municipal</th>
+                    <th>Servicio AWS</th>
+                    <th>Justificación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Servidores web</td>
+                    <td>EC2 + Auto Scaling</td>
+                    <td>Control completo del entorno, escalado automático</td>
+                </tr>
+                <tr>
+                    <td>Base de datos</td>
+                    <td>RDS Aurora MySQL</td>
+                    <td>Alta disponibilidad, backups automáticos, Multi-AZ</td>
+                </tr>
+                <tr>
+                    <td>Almacenamiento</td>
+                    <td>S3 + CloudFront</td>
+                    <td>Durabilidad 99.999999999%, CDN global</td>
+                </tr>
+                <tr>
+                    <td>Seguridad</td>
+                    <td>VPC + WAF + IAM</td>
+                    <td>Aislamiento de red, firewall avanzado, control de acceso</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Diagrama de Arquitectura</h3>
+        <div class="architecture">
+                        Internet
+                            |
+                    [CloudFront CDN]
+                            |
+                    [Application Load Balancer]
+                            |
+                ┌───────────┼───────────┐
+                │           │           │
+            [EC2 Web]   [EC2 Web]   [EC2 Web]
+            AZ-1a       AZ-1b       AZ-1c
+                │           │           │
+                └───────────┼───────────┘
+                            |
+                [RDS Aurora Multi-AZ]
+                            |
+                [S3 Buckets + Backup]
+        </div>
+        
+        <h2>5. Plan de Migración en 3 Fases</h2>
+        
+        <h3>FASE 1: Servicios Ciudadanos Críticos (Meses 1-3)</h3>
+        <ul>
+            <li><strong>Servicios:</strong> Portal web, cita previa, consulta multas</li>
+            <li><strong>Objetivo:</strong> Restaurar confianza ciudadana</li>
+            <li><strong>Criterio de éxito:</strong> 99.9% uptime, <3s carga</li>
+        </ul>
+        
+        <h3>FASE 2: Sistemas de Gestión Interna (Meses 4-6)</h3>
+        <ul>
+            <li><strong>Servicios:</strong> Padrón, licencias, expedientes</li>
+            <li><strong>Objetivo:</strong> Migrar datos críticos con máxima seguridad</li>
+            <li><strong>Criterio de éxito:</strong> 0% pérdida de datos, RGPD validado</li>
+        </ul>
+        
+        <h3>FASE 3: Sistemas Corporativos (Meses 7-9)</h3>
+        <ul>
+            <li><strong>Servicios:</strong> RRHH, contabilidad, email</li>
+            <li><strong>Objetivo:</strong> Completar migración y optimizar</li>
+            <li><strong>Criterio de éxito:</strong> 30% reducción costes IT</li>
+        </ul>
+        
+        <h2>6. Análisis de Costes</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>On-Premise Actual</th>
+                    <th>Nube AWS</th>
+                    <th>Diferencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Coste inicial</td>
+                    <td>Alto (€500K hardware)</td>
+                    <td>Bajo (€50K setup)</td>
+                    <td>-90%</td>
+                </tr>
+                <tr>
+                    <td>Coste mensual</td>
+                    <td>Alto (€25K/mes)</td>
+                    <td>Medio (€8K/mes)</td>
+                    <td>-68%</td>
+                </tr>
+                <tr>
+                    <td>Personal técnico</td>
+                    <td>Alto (4 FTE)</td>
+                    <td>Medio (2 FTE)</td>
+                    <td>-50%</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="highlight">
+            <strong>ROI:</strong> La migración se amortizará en 18 meses con un ahorro anual de €204,000
+        </div>
+        
+        <h2>7. Conclusiones</h2>
+        <p>La migración a AWS representa la mejor oportunidad para el Ayuntamiento de Elche de convertir la crisis del ciberataque en una ventaja competitiva. La nube pública ofrece mayor seguridad, disponibilidad y eficiencia que la infraestructura actual, con un ahorro del 68% en costes operacionales y una implementación 4 veces más rápida que reconstruir on-premise.</p>
+        
+        <h3>Recomendaciones Inmediatas</h3>
+        <ol>
+            <li>Aprobar la migración para restaurar confianza antes del verano 2026</li>
+            <li>Invertir en formación del personal para garantizar el éxito</li>
+            <li>Establecer comité de seguimiento técnico-legal-comunicación</li>
+        </ol>
+        
+        <div class="highlight">
+            <strong>📊 Puntuación Esperada:</strong> Esta solución alcanzaría 95/100 puntos por su análisis técnico completo, justificación sólida, arquitectura viable y plan de migración realista.
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-btn">← Volver a la Sesión Principal</a>
+</body>
+</html>
