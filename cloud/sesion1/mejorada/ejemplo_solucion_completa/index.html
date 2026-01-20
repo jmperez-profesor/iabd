@@ -1,0 +1,1917 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/mejorada/ejemplo_solucion_completa/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - EJEMPLO DE SOLUCIÓN COMPLETA - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejemplo-de-solucion-completa" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - EJEMPLO DE SOLUCIÓN COMPLETA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sesion_cloud_aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesion_cloud_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Otras
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Otras
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reto_migracion_ayuntamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retro migración ayuntamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_proyecto_fenix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini+NoteBookLM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ejemplo-de-solucion-completa">EJEMPLO DE SOLUCIÓN COMPLETA</h1>
+<h2 id="migracion-del-ayuntamiento-de-elche-a-aws-equipo-modelo">Migración del Ayuntamiento de Elche a AWS - Equipo Modelo</h2>
+<p><strong>Equipo</strong>: CloudElche Solutions<br />
+<strong>Integrantes</strong>: Ana García, Carlos López, María Rodríguez, David Martín<br />
+<strong>Fecha</strong>: Enero 2026  </p>
+<hr />
+<h2 id="1-contexto-y-resumen-del-ciberataque">1. CONTEXTO Y RESUMEN DEL CIBERATAQUE</h2>
+<h3 id="11-descripcion-del-incidente">1.1 Descripción del Incidente</h3>
+<p>En marzo de 2022, el Ayuntamiento de Elche sufrió un ciberataque de ransomware que cifró la mayoría de sus sistemas informáticos. El ataque dejó inoperativos los servicios digitales durante varios días, obligando a los empleados municipales a trabajar de forma manual y dejando a los ciudadanos sin acceso a servicios online esenciales.</p>
+<h3 id="12-servicios-afectados">1.2 Servicios Afectados</h3>
+<ul>
+<li>Portal web municipal (información y trámites online)</li>
+<li>Sistema de cita previa ciudadana</li>
+<li>Gestión de multas y sanciones</li>
+<li>Padrón municipal y censo</li>
+<li>Sistemas internos (RRHH, contabilidad, licencias)</li>
+<li>Comunicaciones internas y email corporativo</li>
+</ul>
+<h3 id="13-motivacion-para-la-migracion-cloud">1.3 Motivación para la Migración Cloud</h3>
+<p>El ciberataque evidenció la vulnerabilidad de mantener toda la infraestructura on-premise sin redundancia ni sistemas de backup robustos. La migración a la nube ofrece mayor resiliencia, seguridad avanzada, backups automáticos y capacidad de recuperación ante desastres, reduciendo significativamente el riesgo de futuros ataques similares.</p>
+<hr />
+<h2 id="2-analisis-de-servicios-municipales">2. ANÁLISIS DE SERVICIOS MUNICIPALES</h2>
+<h3 id="21-clasificacion-por-criticidad">2.1 Clasificación por Criticidad</h3>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Criticidad</th>
+<th>Usuarios Afectados</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portal web municipal</td>
+<td>Alta</td>
+<td>50,000+ ciudadanos</td>
+<td>Punto de acceso principal a servicios municipales</td>
+</tr>
+<tr>
+<td>Sistema cita previa</td>
+<td>Alta</td>
+<td>15,000/mes</td>
+<td>Imprescindible para trámites presenciales</td>
+</tr>
+<tr>
+<td>Gestión de multas</td>
+<td>Alta</td>
+<td>8,000/mes</td>
+<td>Genera ingresos directos al ayuntamiento</td>
+</tr>
+<tr>
+<td>Padrón municipal</td>
+<td>Media</td>
+<td>220,000 habitantes</td>
+<td>Datos críticos pero consultas menos frecuentes</td>
+</tr>
+<tr>
+<td>Licencias y permisos</td>
+<td>Media</td>
+<td>2,000/mes</td>
+<td>Importante para actividad económica local</td>
+</tr>
+<tr>
+<td>Participación ciudadana</td>
+<td>Baja</td>
+<td>1,500/mes</td>
+<td>Servicio complementario, no crítico</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-clasificacion-por-modelos-de-servicio">2.2 Clasificación por Modelos de Servicio</h3>
+<table>
+<thead>
+<tr>
+<th>Servicio Municipal</th>
+<th>IaaS</th>
+<th>PaaS</th>
+<th>SaaS</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portal web</td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+<td>Necesita personalización completa y control del entorno</td>
+</tr>
+<tr>
+<td>Base datos ciudadanos</td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>RDS ofrece gestión automática manteniendo control de datos</td>
+</tr>
+<tr>
+<td>Email corporativo</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+<td>Office 365 más eficiente que gestión propia</td>
+</tr>
+<tr>
+<td>Sistema cita previa</td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>Lambda + API Gateway para escalabilidad automática</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-comparacion-de-modelos-de-despliegue">3. COMPARACIÓN DE MODELOS DE DESPLIEGUE</h2>
+<h3 id="31-matriz-de-evaluacion">3.1 Matriz de Evaluación</h3>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Peso</th>
+<th>Nube Pública</th>
+<th>Nube Privada</th>
+<th>Nube Híbrida</th>
+<th>Multicloud</th>
+<th>On-Premise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coste inicial</td>
+<td>20%</td>
+<td>5</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Coste operacional</td>
+<td>20%</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td>25%</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Escalabilidad</td>
+<td>15%</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Control de datos</td>
+<td>20%</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td>100%</td>
+<td><strong>4.25</strong></td>
+<td><strong>3.65</strong></td>
+<td><strong>3.85</strong></td>
+<td><strong>3.15</strong></td>
+<td><strong>2.60</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-ventajas-e-inconvenientes">3.2 Ventajas e Inconvenientes</h3>
+<h4 id="nube-publica-aws">Nube Pública (AWS)</h4>
+<p><strong>Ventajas:</strong>
+- Implementación rápida (3-6 meses vs 12+ meses on-premise)
+- Costes operacionales reducidos (sin mantenimiento hardware)
+- Escalabilidad automática para picos de tráfico
+- Seguridad avanzada integrada (WAF, GuardDuty)
+- Backups automáticos y disaster recovery</p>
+<p><strong>Inconvenientes:</strong>
+- Dependencia de conectividad a internet
+- Percepción de menor control sobre datos sensibles
+- Costes variables según uso</p>
+<h4 id="nube-hibrida">Nube Híbrida</h4>
+<p><strong>Ventajas:</strong>
+- Datos más sensibles permanecen on-premise
+- Migración gradual y controlada
+- Aprovecha beneficios cloud para servicios públicos</p>
+<p><strong>Inconvenientes:</strong>
+- Mayor complejidad de gestión
+- Costes de conectividad (Direct Connect)
+- Requiere expertise en ambos entornos</p>
+<hr />
+<h2 id="4-modelo-elegido-y-justificacion">4. MODELO ELEGIDO Y JUSTIFICACIÓN</h2>
+<h3 id="41-decision-final">4.1 Decisión Final</h3>
+<p><strong>Modelo seleccionado</strong>: Nube Pública AWS</p>
+<h3 id="42-justificacion-tecnica">4.2 Justificación Técnica</h3>
+<p>Hemos elegido la nube pública AWS por tres razones fundamentales:</p>
+<p><strong>Urgencia post-ataque</strong>: El ayuntamiento necesita restaurar la confianza ciudadana rápidamente. AWS permite desplegar servicios críticos en 3-6 meses frente a los 12-18 meses que requeriría reconstruir la infraestructura on-premise.</p>
+<p><strong>Seguridad superior</strong>: AWS ofrece servicios de seguridad avanzados (WAF, GuardDuty, Config) que serían muy costosos de implementar internamente. El cifrado automático, auditorías continuas y detección de amenazas en tiempo real superan las capacidades actuales del ayuntamiento.</p>
+<p><strong>Coste-beneficio óptimo</strong>: Aunque el control de datos es menor que on-premise, el ahorro en personal técnico (2-3 FTE), hardware y mantenimiento compensa esta limitación. Además, el cumplimiento RGPD está garantizado por los centros de datos AWS en Europa.</p>
+<h3 id="43-riesgos-y-mitigacion">4.3 Riesgos y Mitigación</h3>
+<table>
+<thead>
+<tr>
+<th>Riesgo Identificado</th>
+<th>Probabilidad</th>
+<th>Impacto</th>
+<th>Estrategia de Mitigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caída de AWS región</td>
+<td>Baja</td>
+<td>Alto</td>
+<td>Multi-AZ deployment + backup en segunda región</td>
+</tr>
+<tr>
+<td>Pérdida de conectividad</td>
+<td>Media</td>
+<td>Alto</td>
+<td>Conexiones redundantes + 4G backup</td>
+</tr>
+<tr>
+<td>Costes superiores a estimado</td>
+<td>Media</td>
+<td>Medio</td>
+<td>Monitorización continua + alertas de presupuesto</td>
+</tr>
+<tr>
+<td>Resistencia al cambio del personal</td>
+<td>Alta</td>
+<td>Medio</td>
+<td>Formación intensiva + migración gradual</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-arquitectura-propuesta-en-aws">5. ARQUITECTURA PROPUESTA EN AWS</h2>
+<h3 id="51-servicios-aws-seleccionados">5.1 Servicios AWS Seleccionados</h3>
+<table>
+<thead>
+<tr>
+<th>Necesidad Municipal</th>
+<th>Servicio AWS</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidores web</td>
+<td>EC2 + Auto Scaling</td>
+<td>Control completo del entorno, escalado automático</td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td>RDS Aurora MySQL</td>
+<td>Alta disponibilidad, backups automáticos, Multi-AZ</td>
+</tr>
+<tr>
+<td>Almacenamiento documentos</td>
+<td>S3 + CloudFront</td>
+<td>Durabilidad 99.999999999%, CDN global</td>
+</tr>
+<tr>
+<td>Red y seguridad</td>
+<td>VPC + Security Groups + WAF</td>
+<td>Aislamiento de red, firewall avanzado</td>
+</tr>
+<tr>
+<td>Identidad y acceso</td>
+<td>IAM + Cognito</td>
+<td>Control granular de permisos, autenticación ciudadanos</td>
+</tr>
+<tr>
+<td>Monitorización</td>
+<td>CloudWatch + CloudTrail</td>
+<td>Métricas en tiempo real, auditoría completa</td>
+</tr>
+<tr>
+<td>Backup y DR</td>
+<td>S3 + Cross-Region Replication</td>
+<td>Recuperación ante desastres automática</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-descripcion-de-la-arquitectura">5.2 Descripción de la Arquitectura</h3>
+<p>El portal web municipal se ejecutará en instancias EC2 dentro de una VPC privada, distribuidas en múltiples zonas de disponibilidad para alta disponibilidad. Un Application Load Balancer gestionará el tráfico entrante y distribuirá las peticiones entre las instancias, que escalarán automáticamente según la demanda.</p>
+<p>Las bases de datos críticas (padrón, multas, licencias) estarán en RDS Aurora MySQL con configuración Multi-AZ para failover automático. Los documentos ciudadanos se almacenarán en S3 con cifrado automático y se servirán a través de CloudFront para optimizar la velocidad de carga.</p>
+<p>La seguridad se implementará en capas: WAF para protección contra ataques web, VPC con subnets privadas para aislar recursos críticos, Security Groups como firewall de instancia, e IAM para control granular de accesos. CloudTrail registrará todas las acciones para auditoría y cumplimiento normativo.</p>
+<h3 id="53-diagrama-de-arquitectura">5.3 Diagrama de Arquitectura</h3>
+<div class="highlight"><pre><span></span><code>                    Internet
+                        |
+                [CloudFront CDN]
+                        |
+                [Route 53 DNS]
+                        |
+                [WAF + Shield]
+                        |
+            [Application Load Balancer]
+                        |
+        ┌───────────────┼───────────────┐
+        │               │               │
+    [EC2 Web]       [EC2 Web]       [EC2 Web]
+    AZ-1a           AZ-1b           AZ-1c
+        │               │               │
+        └───────────────┼───────────────┘
+                        │
+            [RDS Aurora Multi-AZ]
+                        │
+                [S3 Buckets + Glacier]
+                        │
+            [Cross-Region Backup]
+</code></pre></div>
+<h3 id="54-configuracion-de-seguridad">5.4 Configuración de Seguridad</h3>
+<p><strong>VPC y Subnets:</strong>
+- VPC: 10.0.0.0/16
+- Subnets públicas: 10.0.1.0/24, 10.0.2.0/24 (ALB)
+- Subnets privadas: 10.0.10.0/24, 10.0.20.0/24 (EC2)
+- Subnets BD: 10.0.100.0/24, 10.0.200.0/24 (RDS)</p>
+<p><strong>Grupos de Seguridad:</strong>
+- ALB-SG: HTTP/HTTPS desde internet
+- Web-SG: HTTP desde ALB-SG únicamente
+- DB-SG: MySQL desde Web-SG únicamente</p>
+<p><strong>IAM Roles:</strong>
+- CitizenRole: Acceso limitado a servicios públicos
+- EmployeeRole: Acceso a sistemas internos según departamento
+- AdminRole: Acceso completo con MFA obligatorio</p>
+<hr />
+<h2 id="6-plan-de-migracion">6. PLAN DE MIGRACIÓN</h2>
+<h3 id="61-estrategia-general">6.1 Estrategia General</h3>
+<p>Migración gradual por criticidad de servicios, empezando por los más visibles para los ciudadanos y continuando con sistemas internos. Enfoque "lift and shift" inicialmente, optimizando posteriormente para servicios cloud-native.</p>
+<h3 id="62-fases-de-migracion">6.2 Fases de Migración</h3>
+<h4 id="fase-1-servicios-ciudadanos-criticos-meses-1-3">FASE 1: Servicios Ciudadanos Críticos (Meses 1-3)</h4>
+<p><strong>Duración estimada</strong>: 3 meses<br />
+<strong>Servicios incluidos</strong>: Portal web, cita previa, consulta multas<br />
+<strong>Objetivos</strong>: Restaurar confianza ciudadana y servicios más visibles<br />
+<strong>Criterios de éxito</strong>: 99.9% uptime, tiempo de carga &lt;3 segundos, 0 incidentes de seguridad</p>
+<h4 id="fase-2-sistemas-de-gestion-interna-meses-4-6">FASE 2: Sistemas de Gestión Interna (Meses 4-6)</h4>
+<p><strong>Duración estimada</strong>: 3 meses<br />
+<strong>Servicios incluidos</strong>: Padrón, licencias, expedientes administrativos<br />
+<strong>Objetivos</strong>: Migrar datos críticos con máxima seguridad<br />
+<strong>Criterios de éxito</strong>: Migración sin pérdida de datos, cumplimiento RGPD validado, formación completada</p>
+<h4 id="fase-3-sistemas-corporativos-meses-7-9">FASE 3: Sistemas Corporativos (Meses 7-9)</h4>
+<p><strong>Duración estimada</strong>: 3 meses<br />
+<strong>Servicios incluidos</strong>: RRHH, contabilidad, email corporativo<br />
+<strong>Objetivos</strong>: Completar migración y optimizar costes<br />
+<strong>Criterios de éxito</strong>: Reducción 30% costes IT, automatización backup 100%, personal formado</p>
+<h3 id="63-cronograma-visual">6.3 Cronograma Visual</h3>
+<div class="highlight"><pre><span></span><code>Mes 1-3: [Portal Web + Cita Previa + Multas] → Servicios Ciudadanos
+Mes 4-6: [Padrón + Licencias + Expedientes] → Gestión Interna  
+Mes 7-9: [RRHH + Contabilidad + Email] → Sistemas Corporativos
+Mes 10-12: [Optimización + Formación + Documentación] → Consolidación
+</code></pre></div>
+<h3 id="64-recursos-necesarios">6.4 Recursos Necesarios</h3>
+<p><strong>Personal técnico:</strong>
+- 1 Arquitecto Cloud AWS (dedicación 100%)
+- 2 Desarrolladores/DevOps (dedicación 75%)
+- 1 Especialista en seguridad (dedicación 50%)
+- 1 DBA para migración de datos (dedicación 100% primeros 6 meses)</p>
+<p><strong>Formación:</strong>
+- Curso AWS Fundamentals para todo el equipo IT (40 horas)
+- Certificación AWS Solutions Architect para arquitecto principal
+- Formación RGPD en cloud para equipo de seguridad</p>
+<p><strong>Herramientas:</strong>
+- AWS Database Migration Service para migración de datos
+- Terraform para Infrastructure as Code
+- GitLab CI/CD para automatización de despliegues</p>
+<hr />
+<h2 id="7-analisis-de-costes">7. ANÁLISIS DE COSTES</h2>
+<h3 id="71-estimacion-cualitativa">7.1 Estimación Cualitativa</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>On-Premise Actual</th>
+<th>Nube AWS</th>
+<th>Diferencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coste inicial</td>
+<td>Alto (€500K hardware)</td>
+<td>Bajo (€50K setup)</td>
+<td>-90%</td>
+</tr>
+<tr>
+<td>Coste mensual</td>
+<td>Alto (€25K/mes)</td>
+<td>Medio (€8K/mes)</td>
+<td>-68%</td>
+</tr>
+<tr>
+<td>Personal técnico</td>
+<td>Alto (4 FTE)</td>
+<td>Medio (2 FTE)</td>
+<td>-50%</td>
+</tr>
+<tr>
+<td>Mantenimiento</td>
+<td>Alto (24/7 soporte)</td>
+<td>Bajo (gestionado AWS)</td>
+<td>-80%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-factores-de-coste-considerados">7.2 Factores de Coste Considerados</h3>
+<p><strong>Costes directos AWS:</strong>
+- EC2 instances: €2,400/mes
+- RDS Aurora: €1,800/mes<br />
+- S3 storage: €300/mes
+- Data transfer: €500/mes
+- Otros servicios: €1,000/mes</p>
+<p><strong>Costes ocultos eliminados:</strong>
+- Electricidad y refrigeración: €1,200/mes
+- Licencias software: €2,000/mes
+- Hardware EOL: €3,000/mes amortizado
+- Soporte 24/7: €4,000/mes</p>
+<p><strong>Ahorros esperados:</strong>
+- Reducción personal IT: €8,000/mes (2 FTE menos)
+- Eliminación mantenimiento hardware: €2,000/mes
+- Reducción downtime: €5,000/mes (estimado por productividad)</p>
+<h3 id="73-retorno-de-inversion-roi">7.3 Retorno de Inversión (ROI)</h3>
+<p>La migración se amortizará en <strong>18 meses</strong>. El ahorro anual estimado es de €204,000 (€17K/mes), considerando la reducción de costes operacionales y el aumento de productividad por mayor disponibilidad de servicios.</p>
+<hr />
+<h2 id="8-consideraciones-adicionales">8. CONSIDERACIONES ADICIONALES</h2>
+<h3 id="81-cumplimiento-normativo-rgpd">8.1 Cumplimiento Normativo (RGPD)</h3>
+<p>AWS cumple con RGPD mediante centros de datos en la UE, cifrado automático de datos en reposo y tránsito, y herramientas de auditoría (CloudTrail). Se implementarán políticas de retención de datos y procedimientos de ejercicio de derechos ciudadanos automatizados.</p>
+<h3 id="82-disaster-recovery">8.2 Disaster Recovery</h3>
+<p>Configuración Multi-AZ para RDS y EC2, backups automáticos diarios a S3, y replicación cross-region a Madrid. RTO objetivo: 4 horas. RPO objetivo: 1 hora. Tests de DR trimestrales.</p>
+<h3 id="83-servicios-de-big-data">8.3 Servicios de Big Data</h3>
+<p>En fases posteriores, se evaluará Amazon QuickSight para dashboards de gestión municipal y Amazon Redshift para análisis de datos ciudadanos (patrones de uso, optimización de servicios), siempre respetando la privacidad y anonimización de datos.</p>
+<hr />
+<h2 id="9-conclusiones-y-recomendaciones">9. CONCLUSIONES Y RECOMENDACIONES</h2>
+<h3 id="91-resumen-ejecutivo">9.1 Resumen Ejecutivo</h3>
+<p>La migración a AWS representa la mejor oportunidad para el Ayuntamiento de Elche de convertir la crisis del ciberataque en una ventaja competitiva. La nube pública ofrece mayor seguridad, disponibilidad y eficiencia que la infraestructura actual, con un ahorro del 68% en costes operacionales y una implementación 4 veces más rápida que reconstruir on-premise.</p>
+<h3 id="92-recomendaciones-al-ayuntamiento">9.2 Recomendaciones al Ayuntamiento</h3>
+<ol>
+<li><strong>Aprobar la migración inmediatamente</strong> para restaurar la confianza ciudadana antes del verano 2026</li>
+<li><strong>Invertir en formación del personal</strong> para garantizar el éxito de la transición y reducir resistencias</li>
+<li><strong>Establecer un comité de seguimiento</strong> con representantes técnicos, legales y de comunicación para supervisar el proceso</li>
+</ol>
+<h3 id="93-proximos-pasos">9.3 Próximos Pasos</h3>
+<ol>
+<li>Contratar consultoría especializada en migraciones AWS para administraciones públicas</li>
+<li>Realizar PoC (Proof of Concept) con el portal web en entorno de desarrollo</li>
+<li>Definir métricas de éxito y KPIs para cada fase de migración</li>
+<li>Comunicar el plan a ciudadanos y empleados para gestionar expectativas</li>
+</ol>
+<hr />
+<h2 id="10-referencias-y-fuentes">10. REFERENCIAS Y FUENTES</h2>
+<ul>
+<li><a href="https://www.elche.es/actualidad-ciber-ataque-elche/">Noticia ciberataque Ayuntamiento Elche</a></li>
+<li><a href="https://www.apdtic.com/ciberataque-ayuntamiento-elche-5-lecciones-ciberseguridad/">Análisis del ataque - APDTIC</a></li>
+<li><a href="https://aws.amazon.com/architecture/well-architected/">AWS Well-Architected Framework</a></li>
+<li><a href="https://aws.amazon.com/compliance/gdpr-center/">Guía RGPD en AWS</a></li>
+<li><a href="https://aws.amazon.com/government-education/case-studies/">Casos de éxito AWS sector público</a></li>
+</ul>
+<hr />
+<p><strong>Nota</strong>: Esta solución representa un análisis técnico realista basado en mejores prácticas de migración cloud para administraciones públicas, adaptado al contexto específico del Ayuntamiento de Elche.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
