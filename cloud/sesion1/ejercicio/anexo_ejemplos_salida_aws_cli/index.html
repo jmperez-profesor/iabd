@@ -2097,7 +2097,7 @@
       Este número es único en todo AWS
 </code></pre></div>
 <h4 id="arn-amazon-resource-name">Arn (Amazon Resource Name)</h4>
-<div class="highlight"><pre><span></span><code>arn:aws:iam::123456789012:user/profesor-ias-bd
+<div class="highlight"><pre><span></span><code>arn:aws:iam::123456789012:user/profesor-iabd
 │  │   │  │  │            │    │
 │  │   │  │  │            │    └─ Nombre del usuario
 │  │   │  │  │            └────── Número de cuenta
@@ -2337,8 +2337,12 @@ PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</s
 <h2 id="interpretacion-para-la-clase">INTERPRETACIÓN PARA LA CLASE</h2>
 <h3 id="que-demuestra-cada-comando">Qué demuestra cada comando:</h3>
 <ol>
-<li><strong><code>aws --version</code></strong></li>
-<li>✅ AWS CLI está instalado</li>
+<li>
+<p><strong><code>aws --version</code></strong></p>
+</li>
+<li>
+<p>✅ AWS CLI está instalado</p>
+</li>
 <li>✅ Tu sistema lo reconoce</li>
 <li>
 <p>Equivalente: "¿Tengo la herramienta?"</p>
@@ -2346,7 +2350,9 @@ PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</s
 <li>
 <p><strong><code>aws sts get-caller-identity</code></strong></p>
 </li>
-<li>✅ Tus credenciales son válidas</li>
+<li>
+<p>✅ Tus credenciales son válidas</p>
+</li>
 <li>✅ Estás autenticado en AWS</li>
 <li>✅ AWS sabe quién eres</li>
 <li>
@@ -2355,7 +2361,9 @@ PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</s
 <li>
 <p><strong><code>aws ec2 describe-vpcs</code></strong></p>
 </li>
-<li>✅ Tienes una red privada en AWS</li>
+<li>
+<p>✅ Tienes una red privada en AWS</p>
+</li>
 <li>✅ Puedes ver todos tus recursos de red</li>
 <li>✅ VPCs aisladas = seguridad</li>
 <li>
@@ -2364,7 +2372,9 @@ PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</s
 <li>
 <p><strong><code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></strong></p>
 </li>
-<li>✅ Tu infraestructura está distribuida geográficamente</li>
+<li>
+<p>✅ Tu infraestructura está distribuida geográficamente</p>
+</li>
 <li>✅ Múltiples centros de datos</li>
 <li>✅ Redundancia automática</li>
 <li>Equivalente: "¿Dónde están distribuidos mis datos?"</li>
@@ -2384,10 +2394,12 @@ PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</s
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>--version
 bash:<span class="w"> </span>aws:<span class="w"> </span><span class="nb">command</span><span class="w"> </span>not<span class="w"> </span>found
 </code></pre></div>
-<p><strong>Causas y soluciones:</strong>
-1. AWS CLI no está instalado → Reinstala siguiendo PARTE 1
-2. PATH no actualizado → Reinicia tu terminal/ordenador
-3. Instalación incompleta → Desinstala y reinstala</p>
+<p><strong>Causas y soluciones:</strong></p>
+<ol>
+<li>AWS CLI no está instalado → Reinstala siguiendo PARTE 1</li>
+<li>PATH no actualizado → Reinicia tu terminal/ordenador</li>
+<li>Instalación incompleta → Desinstala y reinstala</li>
+</ol>
 <hr />
 <h3 id="error-2-unable-to-locate-credentials">Error 2: "Unable to locate credentials"</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2397,10 +2409,12 @@ bash:<span class="w"> </span>aws:<span class="w"> </span><span class="nb">comman
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>Causas:</strong>
-- Credenciales no configuradas
-- Credenciales incorrectas
-- Archivo <code>~/.aws/credentials</code> no existe</p>
+<p><strong>Causas:</strong></p>
+<ul>
+<li>Credenciales no configuradas</li>
+<li>Credenciales incorrectas</li>
+<li>Archivo <code>~/.aws/credentials</code> no existe</li>
+</ul>
 <p><strong>Solución:</strong>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure
 <span class="c1"># Introduce:</span>
@@ -2419,12 +2433,14 @@ bash:<span class="w"> </span>aws:<span class="w"> </span><span class="nb">comman
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Causa:</strong> Tu usuario no tiene permiso para ver EC2</p>
-<p><strong>Solución:</strong>
-1. Ve a AWS Console → IAM → Users
-2. Selecciona tu usuario
-3. "Add permissions" → "AmazonEC2ReadOnlyAccess"
-4. Espera 5 minutos
-5. Reintenta</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → IAM → Users</li>
+<li>Selecciona tu usuario</li>
+<li>"Add permissions" → "AmazonEC2ReadOnlyAccess"</li>
+<li>Espera 5 minutos</li>
+<li>Reintenta</li>
+</ol>
 <hr />
 <h3 id="error-4-invalid-credentials">Error 4: "Invalid credentials"</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2435,10 +2451,12 @@ bash:<span class="w"> </span>aws:<span class="w"> </span><span class="nb">comman
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Causa:</strong> Access Key ID inválida o expirada</p>
-<p><strong>Solución:</strong>
-1. Comprueba que copiaste correctamente la Access Key
-2. Si expiró, crea una nueva en AWS Console
-3. Ejecuta <code>aws configure</code> nuevamente</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Comprueba que copiaste correctamente la Access Key</li>
+<li>Si expiró, crea una nueva en AWS Console</li>
+<li>Ejecuta <code>aws configure</code> nuevamente</li>
+</ol>
 <hr />
 <h2 id="comandos-utiles-adicionales">COMANDOS ÚTILES ADICIONALES</h2>
 <h3 id="ver-configuracion-actual">Ver configuración actual:</h3>
