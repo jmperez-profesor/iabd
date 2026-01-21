@@ -48,7 +48,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 2. CONCEPTOS CLOUD: ON-PREMISE VS AWS
 
 ### Comparativa fundamental
-![image alt <](./../../images/ventajas_capex_opex_1.png)
+![image<](./../../images/ventajas_capex_opex_1.png)
 
 | CONCEPTO | ON-PREMISE | CLOUD (AWS) |
 |----------|-----------|-----------|
@@ -118,7 +118,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Almacenamiento y Backup anti-ransomware
 
 **S3 (Simple Storage Service)**
-![image alt <](./../../images/almacenamiento.png)
+![image<](./../../images/almacenamiento.png)
 
 - Almacenar archivos ilimitados
 - Durabilidad: 99,999999999% (once nueves)
