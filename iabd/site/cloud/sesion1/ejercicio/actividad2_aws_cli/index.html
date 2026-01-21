@@ -873,15 +873,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#checklist-de-entrega" class="md-nav__link">
-    <span class="md-ellipsis">
-      CHECKLIST DE ENTREGA
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#explicacion-detallada-por-comando" class="md-nav__link">
     <span class="md-ellipsis">
       EXPLICACIÓN DETALLADA POR COMANDO
@@ -1978,18 +1969,19 @@
 <h1 id="actividad-2-instalacion-aws-cli-y-conexion-a-aws">ACTIVIDAD 2: INSTALACIÓN AWS CLI Y CONEXIÓN A AWS</h1>
 <h2 id="rapia3-cepia3d-acceso-a-servicios-cloud-desde-terminal">RAPIA.3 / CEPIA.3d - Acceso a servicios cloud desde terminal</h2>
 <p><strong>Objetivo:</strong> Instalar AWS CLI, autenticarse en AWS y ejecutar comandos para explorar la infraestructura cloud.</p>
-<p><strong>Duración estimada:</strong> 30-45 minutos</p>
-<p><strong>Requisitos previos:</strong>
-- Ordenador con acceso a internet
-- Cuenta de AWS activa (si es cuenta de estudiante, validar permisos)
-- Permisos de administrador en el PC
-- Terminal/CMD accesible</p>
+<p><strong>Requisitos previos:</strong></p>
+<ul>
+<li>Ordenador con acceso a internet</li>
+<li>Cuenta de AWS activa (si es cuenta de estudiante, validar permisos)</li>
+<li>Permisos de administrador en el PC</li>
+<li>Terminal/CMD accesible</li>
+</ul>
 <hr />
 <h2 id="parte-1-instalacion-de-aws-cli">PARTE 1: INSTALACIÓN DE AWS CLI</h2>
 <h3 id="opcion-1-windows-mas-recomendado">Opción 1: Windows (MÁS RECOMENDADO)</h3>
 <h4 id="paso-1-descargar-el-instalador">Paso 1: Descargar el instalador</h4>
 <ol>
-<li>Abre navegador y ve a: https://awscli.amazonaws.com/AWSCLIV2.msi</li>
+<li>Abre navegador y ve a: <a href="https://awscli.amazonaws.com/AWSCLIV2.msi">AWSCLIV2.msi</a></li>
 <li>Se descargará automáticamente el archivo <strong>AWSCLIV2.msi</strong></li>
 <li>Guarda el archivo en una carpeta fácil de encontrar</li>
 </ol>
@@ -2039,13 +2031,15 @@ aws<span class="w"> </span>--version
 <hr />
 <h2 id="parte-2-configurar-credenciales-de-aws">PARTE 2: CONFIGURAR CREDENCIALES DE AWS</h2>
 <h3 id="obtener-credenciales-de-aws">Obtener credenciales de AWS</h3>
-<p>Necesitarás:
-- <strong>Access Key ID</strong>
-- <strong>Secret Access Key</strong>
-- <strong>Default Region</strong> (ej: eu-south-2 para España)</p>
+<p>Necesitarás:</p>
+<ul>
+<li><strong>Access Key ID</strong></li>
+<li><strong>Secret Access Key</strong></li>
+<li><strong>Default Region</strong> (ej: eu-south-2 para España)</li>
+</ul>
 <p><strong>¿Dónde obtenerlas?</strong></p>
 <ol>
-<li>Abre tu consola de AWS: https://aws.amazon.com/console/</li>
+<li>Abre tu consola de AWS: <a href="https://aws.amazon.com/console/">AWS Console</a></li>
 <li>Inicia sesión con tu cuenta</li>
 <li>Ve a tu perfil (esquina superior derecha) → <strong>Security Credentials</strong></li>
 <li>En la sección "Access keys", haz clic en <strong>Create access key</strong></li>
@@ -2062,11 +2056,13 @@ AWS Secret Access Key [None]: wJalrXU...
 Default region name [None]: eu-south-2
 Default output format [None]: json
 </code></pre></div>
-<p><strong>Explicación:</strong>
-- <strong>Access Key ID:</strong> Tu clave de acceso (empieza con AKIA)
-- <strong>Secret Access Key:</strong> Tu contraseña (NO la vuelvas a compartir)
-- <strong>Default region:</strong> Para España usa <code>eu-south-2</code> (si es otra región, ajusta)
-- <strong>Output format:</strong> Deja <code>json</code> (es el formato más legible)</p>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><strong>Access Key ID:</strong> Tu clave de acceso (empieza con AKIA)</li>
+<li><strong>Secret Access Key:</strong> Tu contraseña (NO la vuelvas a compartir)</li>
+<li><strong>Default region:</strong> Para España usa <code>eu-south-2</code> (si es otra región, ajusta)</li>
+<li><strong>Output format:</strong> Deja <code>json</code> (es el formato más legible)</li>
+</ul>
 <p>✅ <strong>Si no hay errores, la configuración está lista.</strong></p>
 <hr />
 <h2 id="parte-3-ejecutar-los-comandos-aws">PARTE 3: EJECUTAR LOS COMANDOS AWS</h2>
@@ -2077,10 +2073,12 @@ Default output format [None]: json
 <p><strong>Resultado esperado:</strong>
 <div class="highlight"><pre><span></span><code>aws-cli/2.13.27 Python/3.11.5 Windows/10.0.19045
 </code></pre></div></p>
-<p><strong>¿Qué hace?</strong>
-- Muestra la versión de AWS CLI instalada
-- Verifica que AWS CLI está correctamente instalado
-- Muestra también la versión de Python y el sistema operativo</p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li>Muestra la versión de AWS CLI instalada</li>
+<li>Verifica que AWS CLI está correctamente instalado</li>
+<li>Muestra también la versión de Python y el sistema operativo</li>
+</ul>
 <hr />
 <h3 id="comando-2-aws-sts-get-caller-identity">Comando 2: <code>aws sts get-caller-identity</code></h3>
 <div class="highlight"><pre><span></span><code>aws sts get-caller-identity
@@ -2092,13 +2090,15 @@ Default output format [None]: json
 <span class="w">    </span><span class="nt">&quot;Arn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:user/tu-usuario&quot;</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>¿Qué hace?</strong>
-- <strong>STS</strong> = Security Token Service (Servicio de Tokens de Seguridad)
-- Verifica que tus credenciales son válidas
-- Muestra:
-  - <strong>UserId:</strong> Tu ID único en AWS
-  - <strong>Account:</strong> El número de tu cuenta AWS (12 dígitos)
-  - <strong>Arn:</strong> Amazon Resource Name (identificador único de tu usuario)</p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>STS</strong> = Security Token Service (Servicio de Tokens de Seguridad)</li>
+<li>Verifica que tus credenciales son válidas</li>
+<li>Muestra:</li>
+<li><strong>UserId:</strong> Tu ID único en AWS</li>
+<li><strong>Account:</strong> El número de tu cuenta AWS (12 dígitos)</li>
+<li><strong>Arn:</strong> Amazon Resource Name (identificador único de tu usuario)</li>
+</ul>
 <p><strong>En clase:</strong> Este comando demuestra que estamos autenticados en AWS.</p>
 <hr />
 <h3 id="comando-3-aws-ec2-describe-vpcs">Comando 3: <code>aws ec2 describe-vpcs</code></h3>
@@ -2124,15 +2124,21 @@ Default output format [None]: json
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>¿Qué hace?</strong>
-- <strong>EC2</strong> = Elastic Compute Cloud (máquinas virtuales)
-- <strong>describe-vpcs</strong> = Describe todas las VPCs (Virtual Private Cloud)
-- Una <strong>VPC</strong> es una red privada aislada en AWS donde viven tus recursos
-- Muestra:
-  - <strong>VpcId:</strong> ID único de la VPC
-  - <strong>CidrBlock:</strong> Rango de IPs de la VPC (ej: 10.0.0.0/16)
-  - <strong>State:</strong> Estado (available = disponible)
-  - <strong>Tags:</strong> Etiquetas personalizadas para identificar la VPC</p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>EC2</strong> = Elastic Compute Cloud (máquinas virtuales)</li>
+<li><strong>describe-vpcs</strong> = Describe todas las VPCs (Virtual Private Cloud)</li>
+<li>Una <strong>VPC</strong> es una red privada aislada en AWS donde viven tus recursos</li>
+<li>
+<p>Muestra:</p>
+</li>
+<li>
+<p><strong>VpcId:</strong> ID único de la VPC</p>
+</li>
+<li><strong>CidrBlock:</strong> Rango de IPs de la VPC (ej: 10.0.0.0/16)</li>
+<li><strong>State:</strong> Estado (available = disponible)</li>
+<li><strong>Tags:</strong> Etiquetas personalizadas para identificar la VPC</li>
+</ul>
 <p><strong>En clase:</strong> Enseña cómo AWS organiza los recursos en redes privadas.</p>
 <hr />
 <h3 id="comando-4-aws-ec2-describe-subnets-query-subnetsavailabilityzone">Comando 4: <code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></h3>
@@ -2146,14 +2152,20 @@ Default output format [None]: json
 <span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span>
 <span class="p">]</span>
 </code></pre></div></p>
-<p><strong>¿Qué hace?</strong>
-- <strong>describe-subnets</strong> = Describe todas las subredes
-- Una <strong>subred</strong> es una división de una VPC
-- <strong>--query "Subnets[*].AvailabilityZone"</strong> = Filtra solo la columna de Zonas de Disponibilidad
-- Muestra:
-  - <strong>Availability Zones:</strong> Ubicaciones geográficas donde están las subredes
-  - <strong>eu-south-2a, eu-south-2b:</strong> Diferentes centros de datos en España
-  - Esto demuestra <strong>redundancia geográfica</strong> (si falla un centro, hay otro)</p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>describe-subnets</strong> = Describe todas las subredes</li>
+<li>Una <strong>subred</strong> es una división de una VPC</li>
+<li><strong>--query "Subnets[*].AvailabilityZone"</strong> = Filtra solo la columna de Zonas de Disponibilidad</li>
+<li>
+<p>Muestra:</p>
+</li>
+<li>
+<p><strong>Availability Zones:</strong> Ubicaciones geográficas donde están las subredes</p>
+</li>
+<li><strong>eu-south-2a, eu-south-2b:</strong> Diferentes centros de datos en España</li>
+<li>Esto demuestra <strong>redundancia geográfica</strong> (si falla un centro, hay otro)</li>
+</ul>
 <p><strong>En clase:</strong> Conecta con arquitectura anti-ransomware (datos replicados en múltiples zonas).</p>
 <hr />
 <h2 id="resumen-de-resultados">RESUMEN DE RESULTADOS</h2>
@@ -2197,44 +2209,43 @@ Default output format [None]: json
 <li>El resultado de <code>aws ec2 describe-vpcs</code> (parcial)</li>
 <li>El resultado de <code>aws ec2 describe-subnets --query ...</code></li>
 </ol>
-<p><strong>Cómo hacer captura:</strong>
-- Windows: Presiona <strong>Print Screen</strong> → Pega en Paint o Word
-- Windows (alternativa): <strong>Win + Shift + S</strong> → Selecciona área → Copia
-- Mac: <strong>Cmd + Shift + 4</strong> → Selecciona área
-- Linux: <strong>Print Screen</strong> o <strong>Shift + Print Screen</strong></p>
-<p><strong>Cómo presentar:</strong>
-- Guarda como <strong>PNG</strong> o <strong>JPG</strong>
-- Nombre: <code>ACTIVIDAD_2_AWS_CLI_[TU_NOMBRE].png</code>
-- Adjunta en la entrega de actividad</p>
 <hr />
 <h2 id="parte-5-solucion-de-problemas">PARTE 5: SOLUCIÓN DE PROBLEMAS</h2>
 <h3 id="problema-aws-command-not-found">Problema: "aws: command not found"</h3>
-<p><strong>Solución:</strong>
-1. Reinicia tu ordenador (AWS CLI modifica PATH)
-2. Si aún no funciona, reinstala AWS CLI
-3. Verifica que AWS CLI está en: <code>C:\Program Files\Amazon\AWSCLIV2\</code> (Windows)</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Reinicia tu ordenador (AWS CLI modifica PATH)</li>
+<li>Si aún no funciona, reinstala AWS CLI</li>
+<li>Verifica que AWS CLI está en: <code>C:\Program Files\Amazon\AWSCLIV2\</code> (Windows)</li>
+</ol>
 <hr />
 <h3 id="problema-unable-to-locate-credentials">Problema: "Unable to locate credentials"</h3>
-<p><strong>Solución:</strong>
-1. Abre <strong>PowerShell</strong> como administrador
-2. Ejecuta: <code>aws configure</code>
-3. Introduce tus credenciales nuevamente
-4. Verifica que el archivo existe: <code>C:\Users\[TU_USUARIO]\.aws\credentials</code></p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Abre <strong>PowerShell</strong> como administrador</li>
+<li>Ejecuta: <code>aws configure</code></li>
+<li>Introduce tus credenciales nuevamente</li>
+<li>Verifica que el archivo existe: <code>C:\Users\[TU_USUARIO]\.aws\credentials</code></li>
+</ol>
 <hr />
 <h3 id="problema-accessdenied-en-comandos">Problema: "AccessDenied" en comandos</h3>
 <p><strong>Causa:</strong> Tu usuario de AWS no tiene permisos para EC2.</p>
-<p><strong>Solución:</strong>
-1. Ve a AWS Console → IAM → Users
-2. Haz clic en tu usuario
-3. Añade política: <strong>AmazonEC2ReadOnlyAccess</strong> (para leer, sin modificar)
-4. Espera 5 minutos y vuelve a intentar</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → IAM → Users</li>
+<li>Haz clic en tu usuario</li>
+<li>Añade política: <strong>AmazonEC2ReadOnlyAccess</strong> (para leer, sin modificar)</li>
+<li>Espera 5 minutos y vuelve a intentar</li>
+</ol>
 <hr />
 <h3 id="problema-invalid-credentials">Problema: "Invalid credentials"</h3>
-<p><strong>Solución:</strong>
-1. Ve a AWS Console → Security Credentials
-2. Verifica que tu Access Key aún está activa
-3. Si expiró, crea una nueva key
-4. Ejecuta: <code>aws configure</code> nuevamente</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → Security Credentials</li>
+<li>Verifica que tu Access Key aún está activa</li>
+<li>Si expiró, crea una nueva key</li>
+<li>Ejecuta: <code>aws configure</code> nuevamente</li>
+</ol>
 <hr />
 <h2 id="parte-6-explicacion-para-la-clase">PARTE 6: EXPLICACIÓN PARA LA CLASE</h2>
 <h3 id="conexion-con-arquitectura-anti-ransomware">Conexión con arquitectura anti-ransomware</h3>
@@ -2303,37 +2314,32 @@ Analógía:
 <span class="c"># La próxima vez, ejecuta: aws-identity (en lugar del comando completo)</span>
 </code></pre></div>
 <hr />
-<h2 id="checklist-de-entrega">CHECKLIST DE ENTREGA</h2>
-<ul>
-<li>[ ] AWS CLI instalado correctamente</li>
-<li>[ ] Credenciales configuradas sin errores</li>
-<li>[ ] Ejecutados los 4 comandos solicitados</li>
-<li>[ ] Captura de pantalla clara y legible</li>
-<li>[ ] Explicación escrita de cada comando (200-300 palabras)</li>
-<li>[ ] Conexión con arquitectura anti-ransomware (100-150 palabras)</li>
-<li>[ ] Archivo nombrado correctamente: <code>ACTIVIDAD_2_AWS_CLI_[NOMBRE].png</code></li>
-</ul>
-<hr />
 <h2 id="explicacion-detallada-por-comando">EXPLICACIÓN DETALLADA POR COMANDO</h2>
 <h3 id="aws-version"><code>aws --version</code></h3>
-<p><strong>Desglose:</strong>
-- <strong>aws:</strong> Comando principal de AWS CLI
-- <strong>--version:</strong> Bandera que pide mostrar la versión</p>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal de AWS CLI</li>
+<li><strong>--version:</strong> Bandera que pide mostrar la versión</li>
+</ul>
 <p><strong>Información en la salida:</strong>
 <div class="highlight"><pre><span></span><code>aws-cli/2.13.27        &lt;- Versión de AWS CLI
 Python/3.11.5          &lt;- Versión de Python que usa AWS CLI
 Windows/10.0.19045     &lt;- Tu sistema operativo
 </code></pre></div></p>
-<p><strong>Importancia:</strong>
-- Confirma que AWS CLI está instalado
-- Útil para debugging (si algo falla, la versión ayuda a identificar el problema)
-- Primera verificación después de la instalación</p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Confirma que AWS CLI está instalado</li>
+<li>Útil para debugging (si algo falla, la versión ayuda a identificar el problema)</li>
+<li>Primera verificación después de la instalación</li>
+</ul>
 <hr />
 <h3 id="aws-sts-get-caller-identity"><code>aws sts get-caller-identity</code></h3>
-<p><strong>Desglose:</strong>
-- <strong>aws:</strong> Comando principal
-- <strong>sts:</strong> Security Token Service (gestión de tokens de seguridad)
-- <strong>get-caller-identity:</strong> Obtén la identidad del usuario que ejecuta el comando</p>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal</li>
+<li><strong>sts:</strong> Security Token Service (gestión de tokens de seguridad)</li>
+<li><strong>get-caller-identity:</strong> Obtén la identidad del usuario que ejecuta el comando</li>
+</ul>
 <p><strong>Información en la salida:</strong>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AIDAI1234567890ABCDE&quot;</span><span class="p">,</span>
@@ -2347,20 +2353,26 @@ Windows/10.0.19045     &lt;- Tu sistema operativo
 <span class="w">        </span><span class="err">└─</span><span class="w"> </span><span class="err">Forma</span><span class="kc">t</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="err">ar</span><span class="kc">n</span><span class="p">:</span><span class="err">aws</span><span class="p">:[</span><span class="err">SERVICIO</span><span class="p">]::[</span><span class="err">CUENTA</span><span class="p">]:[</span><span class="err">RECURSO</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Importancia:</strong>
-- Valida que tus credenciales son correctas
-- Verifica que tienes acceso a AWS
-- Muestra con quién estás autenticado (usuario/rol)
-- <strong>Conecta con IAM:</strong> Control granular de permisos (responsabilidad compartida)</p>
-<p><strong>En contexto de ransomware:</strong>
-- Si un atacante tiene tus credenciales, verá SU usuario en lugar del tuyo
-- MFA (multi-factor authentication) impide que ejecute este comando sin aprobación</p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Valida que tus credenciales son correctas</li>
+<li>Verifica que tienes acceso a AWS</li>
+<li>Muestra con quién estás autenticado (usuario/rol)</li>
+<li><strong>Conecta con IAM:</strong> Control granular de permisos (responsabilidad compartida)</li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Si un atacante tiene tus credenciales, verá SU usuario en lugar del tuyo</li>
+<li>MFA (multi-factor authentication) impide que ejecute este comando sin aprobación</li>
+</ul>
 <hr />
 <h3 id="aws-ec2-describe-vpcs"><code>aws ec2 describe-vpcs</code></h3>
-<p><strong>Desglose:</strong>
-- <strong>aws:</strong> Comando principal
-- <strong>ec2:</strong> Elastic Compute Cloud (máquinas virtuales)
-- <strong>describe-vpcs:</strong> Describe todas las VPCs (Virtual Private Clouds)</p>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal</li>
+<li><strong>ec2:</strong> Elastic Compute Cloud (máquinas virtuales)</li>
+<li><strong>describe-vpcs:</strong> Describe todas las VPCs (Virtual Private Clouds)</li>
+</ul>
 <p><strong>Información en la salida:</strong>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;Vpcs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">                          </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Lis</span><span class="kc">ta</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">VPCs</span>
@@ -2381,22 +2393,28 @@ Windows/10.0.19045     &lt;- Tu sistema operativo
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Importancia:</strong>
-- Una VPC es como tu "red privada personal" dentro de AWS
-- Muestra todas tus redes disponibles
-- Cada VPC es aislada de otras (seguridad)
-- Base para desplegar aplicaciones de forma segura</p>
-<p><strong>En contexto de ransomware:</strong>
-- Las VPCs con subredes privadas protegen BBDD (RDS)
-- No son accesibles desde Internet directamente
-- Necesitas estar "dentro" de la VPC para acceder</p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Una VPC es como tu "red privada personal" dentro de AWS</li>
+<li>Muestra todas tus redes disponibles</li>
+<li>Cada VPC es aislada de otras (seguridad)</li>
+<li>Base para desplegar aplicaciones de forma segura</li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Las VPCs con subredes privadas protegen BBDD (RDS)</li>
+<li>No son accesibles desde Internet directamente</li>
+<li>Necesitas estar "dentro" de la VPC para acceder</li>
+</ul>
 <hr />
 <h3 id="aws-ec2-describe-subnets-query-subnetsavailabilityzone"><code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></h3>
-<p><strong>Desglose:</strong>
-- <strong>aws ec2 describe-subnets:</strong> Lista todas las subredes
-- <strong>--query "Subnets[*].AvailabilityZone":</strong> Filtra solo la columna AvailabilityZone
-  - <code>Subnets[*]</code> = todos los elementos de la lista Subnets
-  - <code>.AvailabilityZone</code> = toma solo ese atributo</p>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws ec2 describe-subnets:</strong> Lista todas las subredes</li>
+<li><strong>--query "Subnets[*].AvailabilityZone":</strong> Filtra solo la columna AvailabilityZone</li>
+<li><code>Subnets[*]</code> = todos los elementos de la lista Subnets</li>
+<li><code>.AvailabilityZone</code> = toma solo ese atributo</li>
+</ul>
 <p><strong>Información en la salida:</strong>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span><span class="w">    </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Ce</span><span class="kc">ntr</span><span class="err">o</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">da</span><span class="kc">t</span><span class="err">os</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">Palermo/Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">(zo</span><span class="kc">na</span><span class="w"> </span><span class="err">A)</span>
@@ -2405,25 +2423,31 @@ Windows/10.0.19045     &lt;- Tu sistema operativo
 <span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="w">     </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">O</span><span class="kc">tra</span><span class="w"> </span><span class="err">subred</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">zo</span><span class="kc">na</span><span class="w"> </span><span class="err">B</span>
 <span class="p">]</span>
 </code></pre></div></p>
-<p><strong>Nomenclatura de zonas:</strong>
-- <strong>eu-south-2</strong> = Región Europa (Sur)
-  - <strong>eu</strong> = Europa
-  - <strong>south</strong> = Sur (es España/Italia)
-  - <strong>2</strong> = Es la segunda región sur de AWS en Europa
-- <strong>a, b, c, ...</strong> = Zonas de Disponibilidad (AZs)
-  - Cada una es un centro de datos físico separado
-  - Están a decenas de km de distancia
-  - Si uno se incendia/apaga, los otros siguen</p>
-<p><strong>Importancia:</strong>
-- Muestra <strong>redundancia geográfica</strong>
-- Datos replicados en múltiples centros físicos
-- Si AWS-es-sur-2a falla, AWS-eu-south-2b sigue disponible
-- <strong>Esto es la base de High Availability (HA)</strong></p>
-<p><strong>En contexto de ransomware:</strong>
-- Elche tenía un único CPD (punto único de fallo)
-- AWS tiene múltiples AZs (múltiples puntos de fallo tolerable)
-- RDS Multi-AZ copia datos automáticamente a otra zona
-- Si atacan zona A, datos están seguros en zona B</p>
+<p><strong>Nomenclatura de zonas:</strong></p>
+<ul>
+<li><strong>eu-south-2</strong> = Región Europa (Sur)</li>
+<li><strong>eu</strong> = Europa</li>
+<li><strong>south</strong> = Sur (es España/Italia)</li>
+<li><strong>2</strong> = Es la segunda región sur de AWS en Europa</li>
+<li><strong>a, b, c, ...</strong> = Zonas de Disponibilidad (AZs)</li>
+<li>Cada una es un centro de datos físico separado</li>
+<li>Están a decenas de km de distancia</li>
+<li>Si uno se incendia/apaga, los otros siguen</li>
+</ul>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Muestra <strong>redundancia geográfica</strong></li>
+<li>Datos replicados en múltiples centros físicos</li>
+<li>Si AWS-es-sur-2a falla, AWS-eu-south-2b sigue disponible</li>
+<li><strong>Esto es la base de High Availability (HA)</strong></li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Elche tenía un único CPD (punto único de fallo)</li>
+<li>AWS tiene múltiples AZs (múltiples puntos de fallo tolerable)</li>
+<li>RDS Multi-AZ copia datos automáticamente a otra zona</li>
+<li>Si atacan zona A, datos están seguros en zona B</li>
+</ul>
 <hr />
 <h2 id="conexion-con-arquitectura-anti-ransomware_1">CONEXIÓN CON ARQUITECTURA ANTI-RANSOMWARE</h2>
 <p><strong>Los 4 comandos demuestran:</strong></p>
@@ -2459,11 +2483,13 @@ Windows/10.0.19045     &lt;- Tu sistema operativo
 - AWS: Múltiples AZs → Ransomware cifra datos en AZ-a, pero AZ-b tiene copias sin cifrar</p>
 <hr />
 <h2 id="referencias">REFERENCIAS</h2>
-<p><strong>Documentación oficial AWS:</strong>
-- AWS CLI User Guide: https://docs.aws.amazon.com/cli/
-- EC2 describe-vpcs: https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html
-- EC2 describe-subnets: https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-subnets.html
-- STS get-caller-identity: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html</p>
+<p><strong>Documentación oficial AWS:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/cli/">AWS CLI User Guide</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html">EC2 describe-vpcs</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-subnets.html">EC2 describe-subnets</a></li>
+<li><a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html">STS get-caller-identity</a></li>
+</ul>
 <p><strong>Apuntes del curso:</strong>
 - aitor-medrano.github.io/iabd/cloud/aws.html#aws-cloudshell</p>
 <hr />
