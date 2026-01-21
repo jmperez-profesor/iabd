@@ -63,14 +63,14 @@ nav:
       - Anexo solución actividad 2: cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli.md
     - Otras:  
       - Presentación docente: cloud/sesion1/otras/presentacion_docente.md 
-      - Reto migración ayuntamiento: cloud/sesion1/reto_migracion_ayuntamiento.md
-      - Reto migración Perplexity mejorado: cloud/sesion1/otras/sesion1_cloud_aws_perplexity_mejorado.md
-      - Reto Amazon Q: cloud/sesion1/otras/actividad_ayuntamiento_elche.md
-      - Reto Perplexity: cloud/sesion1/otras/actividad_cloud_aws_perplexity.md
-      - Reto copilot mejorado: cloud/sesion1/otras/sesion1_cloud_aws_copilot_mejorado.md
-      - Reto copilot: cloud/sesion1/otras/sesion1_cloud_aws_copilot.md
-      - Reto Gemini: cloud/sesion1/otras/sesion1_cloud_aws_gemini.md
-      - Reto Gemini+NoteBookLM: cloud/sesion1/otras/sesion1_cloud_aws_proyecto_fenix.md
+    #  - Reto migración ayuntamiento: cloud/sesion1/reto_migracion_ayuntamiento.md
+    #  - Reto migración Perplexity mejorado: cloud/sesion1/otras/sesion1_cloud_aws_perplexity_mejorado.md
+    #  - Reto Amazon Q: cloud/sesion1/otras/actividad_ayuntamiento_elche.md
+    #  - Reto Perplexity: cloud/sesion1/otras/actividad_cloud_aws_perplexity.md
+    #  - Reto copilot mejorado: cloud/sesion1/otras/sesion1_cloud_aws_copilot_mejorado.md
+    #  - Reto copilot: cloud/sesion1/otras/sesion1_cloud_aws_copilot.md
+    #  - Reto Gemini: cloud/sesion1/otras/sesion1_cloud_aws_gemini.md
+    #  - Reto Gemini+NoteBookLM: cloud/sesion1/otras/sesion1_cloud_aws_proyecto_fenix.md
   - Bedrock: 
     - bedrock/sesion1.md
   - Hugging Face:
