@@ -48,8 +48,10 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 2. CONCEPTOS CLOUD: ON-PREMISE VS AWS
 
 ### Comparativa fundamental
-
+<div style="text-align: left;">
 ![](./../../images/ventajas_capex_opex_1.png)
+</div>
+
 
 | CONCEPTO | ON-PREMISE | CLOUD (AWS) |
 |----------|-----------|-----------|
@@ -61,12 +63,14 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 | **Recuperación DR** | Difícil (tarda semanas) | Rápida (horas/minutos) |
 
 **Analogía clave:** On-premise es tener tu propia central eléctrica. Cloud es enchufarte a la red eléctrica y pagar solo lo que consumes.
-
+<div style="text-align: left;">
 ![](./../../images/ventajas_capex_opex_2.png)
-
+</div>
 
 ### Modelos de servicio: IaaS, PaaS, SaaS
+<div style="text-align: left;">
 ![](./../../images/iaas_paas_saas.png)
+</div>
 
 | MODELO | EJEMPLO AWS | QUÉ TÚ CONTROLAS | VENTAJA |
 |--------|-------------|-----------------|--------|
@@ -77,11 +81,14 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Modelo de responsabilidad compartida AWS
 
 **"AWS protege LA NUBE. TÚ proteges LO QUE PONES EN LA NUBE."**
+<div style="text-align: left;">
 ![](./../../images/conceptos_fundamentales_de_seguridad.png)
+</div>
 
 **Principio de mínimo privilegio**
+<div style="text-align: left;">
 ![](./../../images/conceptos_fundamentales_de_IAM.png)
-
+</div>
 **AWS es responsable de:**
 
 - ✅ Seguridad física de centros de datos (vigilancia 24/7)
@@ -104,7 +111,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 3. SERVICIOS AWS CLAVE
 
 ### Computación: EC2 y Lambda
-
+<div style="text-align: left;">
+![](./../../images/computacion_ec2_lambda.png)
+</div>
 **EC2 (Elastic Compute Cloud)**
 
 - Máquinas virtuales que puedes crear en minutos
@@ -120,7 +129,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Almacenamiento y Backup anti-ransomware
 
 **S3 (Simple Storage Service)**
-
+<div style="text-align: left;">
+![](./../../images/almacenamiento.png)
+</div>
 - Almacenar archivos ilimitados
 - Durabilidad: 99,999999999% (once nueves)
 - Ejemplo municipal: Expedientes digitalizados, backups de BBDD
