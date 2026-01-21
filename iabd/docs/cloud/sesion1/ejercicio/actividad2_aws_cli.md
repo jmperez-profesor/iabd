@@ -8,9 +8,8 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 **Objetivo:** Instalar AWS CLI, autenticarse en AWS y ejecutar comandos para explorar la infraestructura cloud.
 
-**Duración estimada:** 30-45 minutos
-
 **Requisitos previos:**
+
 - Ordenador con acceso a internet
 - Cuenta de AWS activa (si es cuenta de estudiante, validar permisos)
 - Permisos de administrador en el PC
@@ -24,7 +23,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 #### Paso 1: Descargar el instalador
 
-1. Abre navegador y ve a: https://awscli.amazonaws.com/AWSCLIV2.msi
+1. Abre navegador y ve a: [AWSCLIV2.msi](https://awscli.amazonaws.com/AWSCLIV2.msi)
 2. Se descargará automáticamente el archivo **AWSCLIV2.msi**
 3. Guarda el archivo en una carpeta fácil de encontrar
 
@@ -93,13 +92,14 @@ aws --version
 ### Obtener credenciales de AWS
 
 Necesitarás:
+
 - **Access Key ID**
 - **Secret Access Key**
 - **Default Region** (ej: eu-south-2 para España)
 
 **¿Dónde obtenerlas?**
 
-1. Abre tu consola de AWS: https://aws.amazon.com/console/
+1. Abre tu consola de AWS: [AWS Console](https://aws.amazon.com/console/)
 2. Inicia sesión con tu cuenta
 3. Ve a tu perfil (esquina superior derecha) → **Security Credentials**
 4. En la sección "Access keys", haz clic en **Create access key**
@@ -125,6 +125,7 @@ Default output format [None]: json
 ```
 
 **Explicación:**
+
 - **Access Key ID:** Tu clave de acceso (empieza con AKIA)
 - **Secret Access Key:** Tu contraseña (NO la vuelvas a compartir)
 - **Default region:** Para España usa `eu-south-2` (si es otra región, ajusta)
@@ -150,6 +151,7 @@ aws-cli/2.13.27 Python/3.11.5 Windows/10.0.19045
 ```
 
 **¿Qué hace?**
+
 - Muestra la versión de AWS CLI instalada
 - Verifica que AWS CLI está correctamente instalado
 - Muestra también la versión de Python y el sistema operativo
@@ -172,6 +174,7 @@ aws sts get-caller-identity
 ```
 
 **¿Qué hace?**
+
 - **STS** = Security Token Service (Servicio de Tokens de Seguridad)
 - Verifica que tus credenciales son válidas
 - Muestra:
@@ -212,10 +215,12 @@ aws ec2 describe-vpcs
 ```
 
 **¿Qué hace?**
+
 - **EC2** = Elastic Compute Cloud (máquinas virtuales)
 - **describe-vpcs** = Describe todas las VPCs (Virtual Private Cloud)
 - Una **VPC** es una red privada aislada en AWS donde viven tus recursos
 - Muestra:
+
   - **VpcId:** ID único de la VPC
   - **CidrBlock:** Rango de IPs de la VPC (ej: 10.0.0.0/16)
   - **State:** Estado (available = disponible)
@@ -242,10 +247,12 @@ aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"
 ```
 
 **¿Qué hace?**
+
 - **describe-subnets** = Describe todas las subredes
 - Una **subred** es una división de una VPC
 - **--query "Subnets[*].AvailabilityZone"** = Filtra solo la columna de Zonas de Disponibilidad
 - Muestra:
+
   - **Availability Zones:** Ubicaciones geográficas donde están las subredes
   - **eu-south-2a, eu-south-2b:** Diferentes centros de datos en España
   - Esto demuestra **redundancia geográfica** (si falla un centro, hay otro)
@@ -274,17 +281,6 @@ Realiza una captura de pantalla (Print Screen) que incluya:
 3. El resultado de `aws ec2 describe-vpcs` (parcial)
 4. El resultado de `aws ec2 describe-subnets --query ...`
 
-**Cómo hacer captura:**
-- Windows: Presiona **Print Screen** → Pega en Paint o Word
-- Windows (alternativa): **Win + Shift + S** → Selecciona área → Copia
-- Mac: **Cmd + Shift + 4** → Selecciona área
-- Linux: **Print Screen** o **Shift + Print Screen**
-
-**Cómo presentar:**
-- Guarda como **PNG** o **JPG**
-- Nombre: `ACTIVIDAD_2_AWS_CLI_[TU_NOMBRE].png`
-- Adjunta en la entrega de actividad
-
 ---
 
 ## PARTE 5: SOLUCIÓN DE PROBLEMAS
@@ -292,6 +288,7 @@ Realiza una captura de pantalla (Print Screen) que incluya:
 ### Problema: "aws: command not found"
 
 **Solución:**
+
 1. Reinicia tu ordenador (AWS CLI modifica PATH)
 2. Si aún no funciona, reinstala AWS CLI
 3. Verifica que AWS CLI está en: `C:\Program Files\Amazon\AWSCLIV2\` (Windows)
@@ -301,6 +298,7 @@ Realiza una captura de pantalla (Print Screen) que incluya:
 ### Problema: "Unable to locate credentials"
 
 **Solución:**
+
 1. Abre **PowerShell** como administrador
 2. Ejecuta: `aws configure`
 3. Introduce tus credenciales nuevamente
@@ -313,6 +311,7 @@ Realiza una captura de pantalla (Print Screen) que incluya:
 **Causa:** Tu usuario de AWS no tiene permisos para EC2.
 
 **Solución:**
+
 1. Ve a AWS Console → IAM → Users
 2. Haz clic en tu usuario
 3. Añade política: **AmazonEC2ReadOnlyAccess** (para leer, sin modificar)
@@ -323,6 +322,7 @@ Realiza una captura de pantalla (Print Screen) que incluya:
 ### Problema: "Invalid credentials"
 
 **Solución:**
+
 1. Ve a AWS Console → Security Credentials
 2. Verifica que tu Access Key aún está activa
 3. Si expiró, crea una nueva key
@@ -412,23 +412,12 @@ function aws-zones { aws ec2 describe-subnets --query "Subnets[*].AvailabilityZo
 
 ---
 
-## CHECKLIST DE ENTREGA
-
-- [ ] AWS CLI instalado correctamente
-- [ ] Credenciales configuradas sin errores
-- [ ] Ejecutados los 4 comandos solicitados
-- [ ] Captura de pantalla clara y legible
-- [ ] Explicación escrita de cada comando (200-300 palabras)
-- [ ] Conexión con arquitectura anti-ransomware (100-150 palabras)
-- [ ] Archivo nombrado correctamente: `ACTIVIDAD_2_AWS_CLI_[NOMBRE].png`
-
----
-
 ## EXPLICACIÓN DETALLADA POR COMANDO
 
 ### `aws --version`
 
 **Desglose:**
+
 - **aws:** Comando principal de AWS CLI
 - **--version:** Bandera que pide mostrar la versión
 
@@ -440,6 +429,7 @@ Windows/10.0.19045     <- Tu sistema operativo
 ```
 
 **Importancia:**
+
 - Confirma que AWS CLI está instalado
 - Útil para debugging (si algo falla, la versión ayuda a identificar el problema)
 - Primera verificación después de la instalación
@@ -449,6 +439,7 @@ Windows/10.0.19045     <- Tu sistema operativo
 ### `aws sts get-caller-identity`
 
 **Desglose:**
+
 - **aws:** Comando principal
 - **sts:** Security Token Service (gestión de tokens de seguridad)
 - **get-caller-identity:** Obtén la identidad del usuario que ejecuta el comando
@@ -469,12 +460,14 @@ Windows/10.0.19045     <- Tu sistema operativo
 ```
 
 **Importancia:**
+
 - Valida que tus credenciales son correctas
 - Verifica que tienes acceso a AWS
 - Muestra con quién estás autenticado (usuario/rol)
 - **Conecta con IAM:** Control granular de permisos (responsabilidad compartida)
 
 **En contexto de ransomware:**
+
 - Si un atacante tiene tus credenciales, verá SU usuario en lugar del tuyo
 - MFA (multi-factor authentication) impide que ejecute este comando sin aprobación
 
@@ -483,6 +476,7 @@ Windows/10.0.19045     <- Tu sistema operativo
 ### `aws ec2 describe-vpcs`
 
 **Desglose:**
+
 - **aws:** Comando principal
 - **ec2:** Elastic Compute Cloud (máquinas virtuales)
 - **describe-vpcs:** Describe todas las VPCs (Virtual Private Clouds)
@@ -510,12 +504,14 @@ Windows/10.0.19045     <- Tu sistema operativo
 ```
 
 **Importancia:**
+
 - Una VPC es como tu "red privada personal" dentro de AWS
 - Muestra todas tus redes disponibles
 - Cada VPC es aislada de otras (seguridad)
 - Base para desplegar aplicaciones de forma segura
 
 **En contexto de ransomware:**
+
 - Las VPCs con subredes privadas protegen BBDD (RDS)
 - No son accesibles desde Internet directamente
 - Necesitas estar "dentro" de la VPC para acceder
@@ -525,6 +521,7 @@ Windows/10.0.19045     <- Tu sistema operativo
 ### `aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"`
 
 **Desglose:**
+
 - **aws ec2 describe-subnets:** Lista todas las subredes
 - **--query "Subnets[*].AvailabilityZone":** Filtra solo la columna AvailabilityZone
   - `Subnets[*]` = todos los elementos de la lista Subnets
@@ -541,6 +538,7 @@ Windows/10.0.19045     <- Tu sistema operativo
 ```
 
 **Nomenclatura de zonas:**
+
 - **eu-south-2** = Región Europa (Sur)
   - **eu** = Europa
   - **south** = Sur (es España/Italia)
@@ -551,12 +549,14 @@ Windows/10.0.19045     <- Tu sistema operativo
   - Si uno se incendia/apaga, los otros siguen
 
 **Importancia:**
+
 - Muestra **redundancia geográfica**
 - Datos replicados en múltiples centros físicos
 - Si AWS-es-sur-2a falla, AWS-eu-south-2b sigue disponible
 - **Esto es la base de High Availability (HA)**
 
 **En contexto de ransomware:**
+
 - Elche tenía un único CPD (punto único de fallo)
 - AWS tiene múltiples AZs (múltiples puntos de fallo tolerable)
 - RDS Multi-AZ copia datos automáticamente a otra zona
@@ -594,10 +594,11 @@ Windows/10.0.19045     <- Tu sistema operativo
 ## REFERENCIAS
 
 **Documentación oficial AWS:**
-- AWS CLI User Guide: https://docs.aws.amazon.com/cli/
-- EC2 describe-vpcs: https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html
-- EC2 describe-subnets: https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-subnets.html
-- STS get-caller-identity: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html
+
+- [AWS CLI User Guide](https://docs.aws.amazon.com/cli/)
+- [EC2 describe-vpcs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html)
+- [EC2 describe-subnets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-subnets.html)
+- [STS get-caller-identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html)
 
 **Apuntes del curso:**
 - aitor-medrano.github.io/iabd/cloud/aws.html#aws-cloudshell

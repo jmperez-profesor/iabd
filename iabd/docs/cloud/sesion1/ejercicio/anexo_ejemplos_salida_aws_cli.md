@@ -24,12 +24,14 @@ aws-cli/2.13.27 Python/3.11.5 Windows/10.0.19045 exe/AMD64.10.0.19045
 ```
 
 ### Explicación línea por línea:
+
 - `aws-cli/2.13.27` → Versión de AWS CLI (la 2.13.27)
 - `Python/3.11.5` → Versión de Python que usa internamente
 - `Windows/10.0.19045` → Sistema operativo (Windows 10, build 19045)
 - `exe/AMD64.10.0.19045` → Arquitectura del ejecutable (64 bits)
 
 ### ¿Qué significa cada versión?
+
 - **2.x.x** = AWS CLI v2 (versión actual, más rápida que v1)
 - **3.11.5** = Python 3.11 (versión 3, actualización 11, patch 5)
 - Si ves versión diferente, ¡no importa! Lo importante es que aparezca algo parecido
@@ -72,7 +74,7 @@ AIDACKCEVSQ6C2EXAMPLE
 
 #### Arn (Amazon Resource Name)
 ```
-arn:aws:iam::123456789012:user/profesor-ias-bd
+arn:aws:iam::123456789012:user/profesor-iabd
 │  │   │  │  │            │    │
 │  │   │  │  │            │    └─ Nombre del usuario
 │  │   │  │  │            └────── Número de cuenta
@@ -84,6 +86,7 @@ arn:aws:iam::123456789012:user/profesor-ias-bd
 ```
 
 ### ¿Por qué es importante?
+
 - **Validación de credenciales:** Si ves un error de "InvalidUserID", tus credenciales son incorrectas
 - **Auditoría:** AWS registra todos los accesos a este usuario
 - **Permisos:** Tu usuario tiene los permisos definidos en tu política IAM
@@ -336,23 +339,27 @@ PS C:\Users\profesor> aws ec2 describe-subnets --query "Subnets[*].AvailabilityZ
 ### Qué demuestra cada comando:
 
 1. **`aws --version`**
+
    - ✅ AWS CLI está instalado
    - ✅ Tu sistema lo reconoce
    - Equivalente: "¿Tengo la herramienta?"
 
 2. **`aws sts get-caller-identity`**
+
    - ✅ Tus credenciales son válidas
    - ✅ Estás autenticado en AWS
    - ✅ AWS sabe quién eres
    - Equivalente: "¿Soy quien digo ser?"
 
 3. **`aws ec2 describe-vpcs`**
+
    - ✅ Tienes una red privada en AWS
    - ✅ Puedes ver todos tus recursos de red
    - ✅ VPCs aisladas = seguridad
    - Equivalente: "¿Qué redes tengo disponibles?"
 
 4. **`aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"`**
+
    - ✅ Tu infraestructura está distribuida geográficamente
    - ✅ Múltiples centros de datos
    - ✅ Redundancia automática
@@ -382,6 +389,7 @@ bash: aws: command not found
 ```
 
 **Causas y soluciones:**
+
 1. AWS CLI no está instalado → Reinstala siguiendo PARTE 1
 2. PATH no actualizado → Reinicia tu terminal/ordenador
 3. Instalación incompleta → Desinstala y reinstala
@@ -400,6 +408,7 @@ bash: aws: command not found
 ```
 
 **Causas:**
+
 - Credenciales no configuradas
 - Credenciales incorrectas
 - Archivo `~/.aws/credentials` no existe
@@ -430,6 +439,7 @@ aws configure
 **Causa:** Tu usuario no tiene permiso para ver EC2
 
 **Solución:**
+
 1. Ve a AWS Console → IAM → Users
 2. Selecciona tu usuario
 3. "Add permissions" → "AmazonEC2ReadOnlyAccess"
@@ -452,6 +462,7 @@ aws configure
 **Causa:** Access Key ID inválida o expirada
 
 **Solución:**
+
 1. Comprueba que copiaste correctamente la Access Key
 2. Si expiró, crea una nueva en AWS Console
 3. Ejecuta `aws configure` nuevamente
