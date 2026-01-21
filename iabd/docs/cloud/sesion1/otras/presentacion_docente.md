@@ -160,7 +160,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 4. ARQUITECTURA ANTI-RANSOMWARE
 
-![](./img/arq_ayuntamiento_v2.png)
+![](./images/arq_ayuntamiento_v2.png)
 
 ### 6 Capas de protección
 
@@ -241,6 +241,7 @@ Analizar qué falló en la infraestructura on-premise del ayuntamiento.
 **DECISIÓN CLAVE:**
 
 ¿Qué modelo recomiendan para el Ayuntamiento de Elche?
+
 - [ ] **Nube pública 100%**: Todo en AWS
 - [ ] **Modelo híbrido**: Parte en AWS, parte en local
 - [ ] **On-premise mejorado**: Quedarse en local pero fortalecer seguridad/backups
@@ -276,6 +277,7 @@ Para cada sistema municipal, decidir dónde va y por qué:
 **TAREA DEL GRUPO:**
 
 Dibujar un esquema básico de arquitectura en AWS que:
+
 - ✅ Mantenga el portal ciudadano siempre disponible
 - ✅ Proteja las bases de datos del padrón y tributos
 - ✅ Garantice que un ransomware NO pueda cifrar los backups
