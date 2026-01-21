@@ -58,6 +58,9 @@ nav:
   - Introducción: index.md 
   - Cloud:  
     - Sesión 1 Cloud y AWS: cloud/sesion1/sesion_cloud_aws.md
+    - Ejercicios:
+      - Solución actividad 2: cloud/sesion1/ejercicio/actividad2_aws_cli.md
+      - Anexo solución actividad 2: cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli.md
     - Otras:  
       - Presentación docente: cloud/sesion1/otras/presentacion_docente.md 
       - Reto migración ayuntamiento: cloud/sesion1/reto_migracion_ayuntamiento.md

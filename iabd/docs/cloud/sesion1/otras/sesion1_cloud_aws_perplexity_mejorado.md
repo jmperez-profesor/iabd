@@ -131,6 +131,7 @@ Con RDS Multi-AZ, la base de datos se replica automáticamente en otra zona de d
 | **AWS Shield** | Protección contra ataques DDoS (denegación de servicio). | Evitar que un ataque masivo de tráfico tumbe la sede electrónica. |
 
 **Buenas prácticas IAM:**
+
 - Nunca usar la cuenta root para tareas diarias.
 - Activar MFA (autenticación multifactor) en todas las cuentas privilegiadas.
 - Principio de mínimo privilegio: dar solo los permisos estrictamente necesarios.
@@ -142,6 +143,7 @@ Con RDS Multi-AZ, la base de datos se replica automáticamente en otra zona de d
 ### Organización
 
 - **Grupos:** 3–4 alumnos.
+
 - **Roles sugeridos:**
   - Analista de riesgos.
   - Arquitecto cloud.
