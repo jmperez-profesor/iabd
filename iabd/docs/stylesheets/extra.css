@@ -12,6 +12,7 @@ img[alt$=">"] {
     height: auto;
     margin: auto;
     float: none !important;
+    float: left;
   }
 
 /* Change the background color of table headers */
