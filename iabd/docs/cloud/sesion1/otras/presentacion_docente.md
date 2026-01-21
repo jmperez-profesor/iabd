@@ -49,6 +49,8 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ### Comparativa fundamental
 
+![](./../../images/ventajas_capex_opex_1.png)
+
 | CONCEPTO | ON-PREMISE | CLOUD (AWS) |
 |----------|-----------|-----------|
 | **Inversión** | CapEx (dinero por adelantado) | OpEx (pago mensual por uso) |
@@ -60,7 +62,11 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 **Analogía clave:** On-premise es tener tu propia central eléctrica. Cloud es enchufarte a la red eléctrica y pagar solo lo que consumes.
 
+![](./../../images/ventajas_capex_opex_2.png)
+
+
 ### Modelos de servicio: IaaS, PaaS, SaaS
+![](./../../images/iaas_paas_saas.png)
 
 | MODELO | EJEMPLO AWS | QUÉ TÚ CONTROLAS | VENTAJA |
 |--------|-------------|-----------------|--------|
@@ -71,6 +77,10 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Modelo de responsabilidad compartida AWS
 
 **"AWS protege LA NUBE. TÚ proteges LO QUE PONES EN LA NUBE."**
+![](./../../images/conceptos_fundamentales_de_seguridad.png)
+
+**Principio de mínimo privilegio**
+![](./../../images/conceptos_fundamentales_de_IAM.png)
 
 **AWS es responsable de:**
 
