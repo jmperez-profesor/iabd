@@ -1009,15 +1009,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#materiales-necesarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      Materiales necesarios
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#recomendaciones-pedagogicas" class="md-nav__link">
     <span class="md-ellipsis">
       Recomendaciones pedagógicas
@@ -1950,10 +1941,6 @@
 
 <h1 id="presentacion-docente-ciberataque-al-ayuntamiento-de-elche">PRESENTACIÓN DOCENTE: CIBERATAQUE AL AYUNTAMIENTO DE ELCHE</h1>
 <h2 id="migracion-segura-a-aws-para-gobernanza-municipal">Migración segura a AWS para gobernanza municipal</h2>
-<p><strong>Curso:</strong> Especialización en Inteligencia Artificial y Big Data<br />
-<strong>Duración:</strong> 1 hora de clase interactiva<br />
-<strong>Caso real:</strong> Ciberataque ransomware - Agosto 2025<br />
-<strong>Modelo:</strong> Presentación con 3 actividades grupales</p>
 <hr />
 <h2 id="indice-de-contenidos">ÍNDICE DE CONTENIDOS</h2>
 <ol>
@@ -2117,64 +2104,87 @@
 </table>
 <h3 id="modelo-de-responsabilidad-compartida-aws">Modelo de responsabilidad compartida AWS</h3>
 <p><strong>"AWS protege LA NUBE. TÚ proteges LO QUE PONES EN LA NUBE."</strong></p>
-<p><strong>AWS es responsable de:</strong>
-- ✅ Seguridad física de centros de datos (vigilancia 24/7)
-- ✅ Hardware (servidores, discos, refrigeración)
-- ✅ Infraestructura de red (redundancia)
-- ✅ Cumplimiento de certificaciones (ISO 27001, ENS)</p>
-<p><strong>TÚ eres responsable de:</strong>
-- ✅ Configurar bien los permisos (IAM)
-- ✅ Actualizar sistema operativo en tus EC2
-- ✅ Cifrar datos sensibles (padrón, tributos)
-- ✅ Configurar y probar copias de seguridad
-- ✅ Definir quién accede a qué</p>
+<p><strong>AWS es responsable de:</strong></p>
+<ul>
+<li>✅ Seguridad física de centros de datos (vigilancia 24/7)</li>
+<li>✅ Hardware (servidores, discos, refrigeración)</li>
+<li>✅ Infraestructura de red (redundancia)</li>
+<li>✅ Cumplimiento de certificaciones (ISO 27001, ENS)</li>
+</ul>
+<p><strong>TÚ eres responsable de:</strong></p>
+<ul>
+<li>✅ Configurar bien los permisos (IAM)</li>
+<li>✅ Actualizar sistema operativo en tus EC2</li>
+<li>✅ Cifrar datos sensibles (padrón, tributos)</li>
+<li>✅ Configurar y probar copias de seguridad</li>
+<li>✅ Definir quién accede a qué</li>
+</ul>
 <p><strong>Implicación para Elche:</strong> Si hubieran tenido backups en S3 con Object Lock, el ransomware NO habría podido cifrarlos.</p>
 <hr />
 <h2 id="3-servicios-aws-clave">3. SERVICIOS AWS CLAVE</h2>
 <h3 id="computacion-ec2-y-lambda">Computación: EC2 y Lambda</h3>
-<p><strong>EC2 (Elastic Compute Cloud)</strong>
-- Máquinas virtuales que puedes crear en minutos
-- Ejemplo municipal: Portal web, padrón, tributos
-- Modelo de pago: 24/7 (pagas siempre)</p>
-<p><strong>Lambda</strong>
-- Ejecutar código sin gestionar servidores (serverless)
-- Ejemplo municipal: Procesar formularios, enviar notificaciones automáticas
-- Modelo de pago: Solo pagas cuando se ejecuta</p>
+<p><strong>EC2 (Elastic Compute Cloud)</strong></p>
+<ul>
+<li>Máquinas virtuales que puedes crear en minutos</li>
+<li>Ejemplo municipal: Portal web, padrón, tributos</li>
+<li>Modelo de pago: 24/7 (pagas siempre)</li>
+</ul>
+<p><strong>Lambda</strong></p>
+<ul>
+<li>Ejecutar código sin gestionar servidores (serverless)</li>
+<li>Ejemplo municipal: Procesar formularios, enviar notificaciones automáticas</li>
+<li>Modelo de pago: Solo pagas cuando se ejecuta</li>
+</ul>
 <h3 id="almacenamiento-y-backup-anti-ransomware">Almacenamiento y Backup anti-ransomware</h3>
-<p><strong>S3 (Simple Storage Service)</strong>
-- Almacenar archivos ilimitados
-- Durabilidad: 99,999999999% (once nueves)
-- Ejemplo municipal: Expedientes digitalizados, backups de BBDD
-- Coste: ~0,023€/GB/mes (muy económico)</p>
-<p><strong>Protecciones anti-ransomware en S3:</strong>
-- <strong>Versionado:</strong> Guarda todas las versiones de cada archivo. Si se cifra, recuperas versión anterior
-- <strong>Object Lock (WORM):</strong> Hace objetos inmutables por un período. NI SIQUIERA UN ADMIN puede borrar
-- <strong>Glaciar:</strong> Copias antiguas en almacenamiento barato. Siempre recuperables en horas</p>
-<p><strong>AWS Backup</strong>
-- Gestión centralizada de copias de seguridad
-- Automatiza backups de EC2, RDS, S3, etc.
-- Un clic para restaurar si hay desastre</p>
+<p><strong>S3 (Simple Storage Service)</strong></p>
+<ul>
+<li>Almacenar archivos ilimitados</li>
+<li>Durabilidad: 99,999999999% (once nueves)</li>
+<li>Ejemplo municipal: Expedientes digitalizados, backups de BBDD</li>
+<li>Coste: ~0,023€/GB/mes (muy económico)</li>
+</ul>
+<p><strong>Protecciones anti-ransomware en S3:</strong></p>
+<ul>
+<li><strong>Versionado:</strong> Guarda todas las versiones de cada archivo. Si se cifra, recuperas versión anterior</li>
+<li><strong>Object Lock (WORM):</strong> Hace objetos inmutables por un período. NI SIQUIERA UN ADMIN puede borrar</li>
+<li><strong>Glaciar:</strong> Copias antiguas en almacenamiento barato. Siempre recuperables en horas</li>
+</ul>
+<p><strong>AWS Backup</strong></p>
+<ul>
+<li>Gestión centralizada de copias de seguridad</li>
+<li>Automatiza backups de EC2, RDS, S3, etc.</li>
+<li>Un clic para restaurar si hay desastre</li>
+</ul>
 <h3 id="bases-de-datos-y-seguridad">Bases de datos y Seguridad</h3>
-<p><strong>RDS Multi-AZ (Relational Database Service)</strong>
-- Base de datos relacional gestionada (MySQL, PostgreSQL, etc.)
-- AWS se encarga de: Parches, backups automáticos, replicación
-- Ejemplo municipal: Padrón, Tributos, Registro civil
-- Ventaja clave: <strong>Réplica sincronizada en otra Zona de Disponibilidad</strong>
-  - Si cae AZ principal → failover automático en segundos
-  - Usuario no nota nada</p>
-<p><strong>IAM (Identity and Access Management)</strong>
-- Control granular de quién puede hacer qué
-- Principio de mínimo privilegio: Cada usuario solo lo que necesita</p>
-<p><strong>AWS WAF (Web Application Firewall)</strong>
-- Protege aplicaciones web de ataques comunes:
-  - SQL injection
-  - XSS (Cross-Site Scripting)
-  - Bots maliciosos</p>
-<p><strong>AWS Shield</strong>
-- Protección contra ataques DDoS (denegación de servicio)
-- Evita que un ataque masivo de tráfico tumbe el portal</p>
+<p><strong>RDS Multi-AZ (Relational Database Service)</strong></p>
+<ul>
+<li>Base de datos relacional gestionada (MySQL, PostgreSQL, etc.)</li>
+<li>AWS se encarga de: Parches, backups automáticos, replicación</li>
+<li>Ejemplo municipal: Padrón, Tributos, Registro civil</li>
+<li>Ventaja clave: <strong>Réplica sincronizada en otra Zona de Disponibilidad</strong></li>
+<li>Si cae AZ principal → failover automático en segundos</li>
+<li>Usuario no nota nada</li>
+</ul>
+<p><strong>IAM (Identity and Access Management)</strong></p>
+<ul>
+<li>Control granular de quién puede hacer qué</li>
+<li>Principio de mínimo privilegio: Cada usuario solo lo que necesita</li>
+</ul>
+<p><strong>AWS WAF (Web Application Firewall)</strong></p>
+<ul>
+<li>Protege aplicaciones web de ataques comunes:</li>
+<li>SQL injection</li>
+<li>XSS (Cross-Site Scripting)</li>
+<li>Bots maliciosos</li>
+</ul>
+<p><strong>AWS Shield</strong></p>
+<ul>
+<li>Protección contra ataques DDoS (denegación de servicio)</li>
+<li>Evita que un ataque masivo de tráfico tumbe el portal</li>
+</ul>
 <hr />
 <h2 id="4-arquitectura-anti-ransomware">4. ARQUITECTURA ANTI-RANSOMWARE</h2>
+<p><img alt="" src="./img/arq_ayuntamiento_v2.png" /></p>
 <h3 id="6-capas-de-proteccion">6 Capas de protección</h3>
 <div class="highlight"><pre><span></span><code>1. PROTECCIÓN EN BORDE
    └─ WAF + Shield filtran ataques antes de llegar a tu infraestructura
@@ -2259,25 +2269,29 @@
 <blockquote>
 <p>El Ayuntamiento de Elche sufrió un ataque de ransomware en agosto 2025. Los sistemas quedaron cifrados. Servicios municipales estuvieron caídos durante semanas. Las copias de seguridad también fueron cifradas porque estaban en el mismo CPD.</p>
 </blockquote>
-<p><strong>TAREA DEL GRUPO:</strong>
-Analizar qué falló en la infraestructura on-premise del ayuntamiento.</p>
-<p><strong>PREGUNTAS GUÍA:</strong>
-1. ¿Qué servicios municipales quedaron afectados?
-2. ¿Por qué las copias de seguridad no sirvieron para recuperarse rápidamente?
-3. ¿Qué riesgos tiene tener toda la infraestructura en un único CPD?
-4. ¿Cómo habría cambiado el resultado si los backups estuvieran en otra ciudad?
-5. ¿Cuál fue el mayor error en la planificación de disaster recovery?</p>
-<p><strong>PRODUCTO ESPERADO:</strong>
-- Lista de <strong>3–5 vulnerabilidades</strong> identificadas en el CPD on-premise
-- Conectar cada vulnerabilidad con el impacto real del ataque</p>
+<p><strong>TAREA DEL GRUPO:</strong></p>
+<p>Analizar qué falló en la infraestructura on-premise del ayuntamiento.</p>
+<p><strong>PREGUNTAS GUÍA:</strong></p>
+<ol>
+<li>¿Qué servicios municipales quedaron afectados?</li>
+<li>¿Por qué las copias de seguridad no sirvieron para recuperarse rápidamente?</li>
+<li>¿Qué riesgos tiene tener toda la infraestructura en un único CPD?</li>
+<li>¿Cómo habría cambiado el resultado si los backups estuvieran en otra ciudad?</li>
+<li>¿Cuál fue el mayor error en la planificación de disaster recovery?</li>
+</ol>
+<p><strong>PRODUCTO ESPERADO:</strong></p>
+<ul>
+<li>Lista de <strong>3–5 vulnerabilidades</strong> identificadas en el CPD on-premise</li>
+<li>Conectar cada vulnerabilidad con el impacto real del ataque</li>
+</ul>
 <h3 id="fase-b-propuesta-20-minutos">FASE B: PROPUESTA (20 minutos)</h3>
-<p><strong>DECISIÓN CLAVE:</strong>
-¿Qué modelo recomiendan para el Ayuntamiento de Elche?
+<p><strong>DECISIÓN CLAVE:</strong></p>
+<p>¿Qué modelo recomiendan para el Ayuntamiento de Elche?
 - [ ] <strong>Nube pública 100%</strong>: Todo en AWS
 - [ ] <strong>Modelo híbrido</strong>: Parte en AWS, parte en local
 - [ ] <strong>On-premise mejorado</strong>: Quedarse en local pero fortalecer seguridad/backups</p>
-<p><strong>TAREA DEL GRUPO:</strong>
-Para cada sistema municipal, decidir dónde va y por qué:</p>
+<p><strong>TAREA DEL GRUPO:</strong></p>
+<p>Para cada sistema municipal, decidir dónde va y por qué:</p>
 <table>
 <thead>
 <tr>
@@ -2319,39 +2333,47 @@ Para cada sistema municipal, decidir dónde va y por qué:</p>
 </tr>
 </tbody>
 </table>
-<p><strong>PREGUNTAS GUÍA:</strong>
-1. ¿Qué pasa si AWS sufre una caída masiva? ¿Cómo os protegéis?
-2. ¿Hay datos que por ley NO pueden salir de España?
-3. ¿AWS tiene región en España?
-4. Si elegís modelo híbrido, ¿cómo conectáis el CPD local con AWS de forma segura?
-5. ¿Qué modelo permite recuperarse más rápido de otro ransomware?</p>
-<p><strong>PRODUCTO ESPERADO:</strong>
-- Tabla de decisión completada
-- Párrafo de justificación (5–8 líneas) explicando vuestra estrategia</p>
+<p><strong>PREGUNTAS GUÍA:</strong></p>
+<ol>
+<li>¿Qué pasa si AWS sufre una caída masiva? ¿Cómo os protegéis?</li>
+<li>¿Hay datos que por ley NO pueden salir de España?</li>
+<li>¿AWS tiene región en España?</li>
+<li>Si elegís modelo híbrido, ¿cómo conectáis el CPD local con AWS de forma segura?</li>
+<li>¿Qué modelo permite recuperarse más rápido de otro ransomware?</li>
+</ol>
+<p><strong>PRODUCTO ESPERADO:</strong></p>
+<ul>
+<li>Tabla de decisión completada</li>
+<li>Párrafo de justificación (5–8 líneas) explicando vuestra estrategia</li>
+</ul>
 <h3 id="fase-c-arquitectura-25-minutos">FASE C: ARQUITECTURA (25 minutos)</h3>
-<p><strong>TAREA DEL GRUPO:</strong>
-Dibujar un esquema básico de arquitectura en AWS que:
+<p><strong>TAREA DEL GRUPO:</strong></p>
+<p>Dibujar un esquema básico de arquitectura en AWS que:
 - ✅ Mantenga el portal ciudadano siempre disponible
 - ✅ Proteja las bases de datos del padrón y tributos
 - ✅ Garantice que un ransomware NO pueda cifrar los backups
 - ✅ Permita recuperarse en pocas horas de un desastre</p>
-<p><strong>ELEMENTOS MÍNIMOS QUE DEBEN APARECER:</strong>
-- VPC (Virtual Private Cloud)
-- Subredes públicas (para frontales web)
-- Subredes privadas (para BBDD)
-- EC2 (servidores web)
-- RDS Multi-AZ (bases de datos)
-- S3 con versionado + Object Lock (backups inmutables)
-- IAM (control de acceso)
-- Al menos un servicio de seguridad (WAF, Shield, o ambos)</p>
-<p><strong>PREGUNTAS GUÍA:</strong>
-1. ¿Dónde ponéis la BBDD, en subred pública o privada? ¿Por qué?
-2. ¿Quién puede acceder a los backups en S3? ¿Cómo evitáis que un atacante con credenciales robadas los borre?
-3. Si cae la zona de disponibilidad principal, ¿qué pasa con vuestra BBDD? ¿Hay downtime?
-4. ¿Cómo sabéis si alguien está intentando atacar el portal? ¿Qué servicio usáis para detectarlo?
-5. ¿Dónde está la VPN que conecta con el CPD local para aplicaciones legacy?</p>
-<p><strong>PRODUCTO ESPERADO:</strong>
-Diagrama de arquitectura con:
+<p><strong>ELEMENTOS MÍNIMOS QUE DEBEN APARECER:</strong></p>
+<ul>
+<li>VPC (Virtual Private Cloud)</li>
+<li>Subredes públicas (para frontales web)</li>
+<li>Subredes privadas (para BBDD)</li>
+<li>EC2 (servidores web)</li>
+<li>RDS Multi-AZ (bases de datos)</li>
+<li>S3 con versionado + Object Lock (backups inmutables)</li>
+<li>IAM (control de acceso)</li>
+<li>Al menos un servicio de seguridad (WAF, Shield, o ambos)</li>
+</ul>
+<p><strong>PREGUNTAS GUÍA:</strong></p>
+<ol>
+<li>¿Dónde ponéis la BBDD, en subred pública o privada? ¿Por qué?</li>
+<li>¿Quién puede acceder a los backups en S3? ¿Cómo evitáis que un atacante con credenciales robadas los borre?</li>
+<li>Si cae la zona de disponibilidad principal, ¿qué pasa con vuestra BBDD? ¿Hay downtime?</li>
+<li>¿Cómo sabéis si alguien está intentando atacar el portal? ¿Qué servicio usáis para detectarlo?</li>
+<li>¿Dónde está la VPN que conecta con el CPD local para aplicaciones legacy?</li>
+</ol>
+<p><strong>PRODUCTO ESPERADO:</strong></p>
+<p>Diagrama de arquitectura con:
 - Servicios AWS etiquetados
 - Flechas que muestren flujo de datos
 - Indicación de dónde está la seguridad (WAF, grupos de seguridad, IAM)</p>
@@ -2359,11 +2381,13 @@ Diagrama de arquitectura con:
 <hr />
 <h2 id="6-solucion-tecnica-recomendada-hoja-de-respuestas">6. SOLUCIÓN TÉCNICA RECOMENDADA (Hoja de respuestas)</h2>
 <h3 id="modelo-elegido-nube-hibrida-con-aws-como-nube-principal">Modelo elegido: Nube híbrida con AWS como nube principal</h3>
-<p><strong>Justificación:</strong>
-- El ayuntamiento tiene algunas apps legacy que migrar gradualmente
-- Datos sensibles (padrón, tributos) necesitan residencia en España → AWS región eu-south-2
-- Servicios de cara al ciudadano (portal, sede) se benefician de HA en AWS
-- Los backups DEBEN estar fuera del CPD para ser inmunes a ransomware</p>
+<p><strong>Justificación:</strong></p>
+<ul>
+<li>El ayuntamiento tiene algunas apps legacy que migrar gradualmente</li>
+<li>Datos sensibles (padrón, tributos) necesitan residencia en España → AWS región eu-south-2</li>
+<li>Servicios de cara al ciudadano (portal, sede) se benefician de HA en AWS</li>
+<li>Los backups DEBEN estar fuera del CPD para ser inmunes a ransomware</li>
+</ul>
 <h3 id="distribucion-de-sistemas">Distribución de sistemas:</h3>
 <table>
 <thead>
@@ -2419,10 +2443,12 @@ Diagrama de arquitectura con:
 </tr>
 </tbody>
 </table>
-<p><strong>VPN Site-to-Site:</strong>
-- Conexión cifrada entre CPD local y AWS
-- Permite que apps legacy accedan a BBDD en RDS
-- Plan: migrar progresivamente a AWS</p>
+<p><strong>VPN Site-to-Site:</strong></p>
+<ul>
+<li>Conexión cifrada entre CPD local y AWS</li>
+<li>Permite que apps legacy accedan a BBDD en RDS</li>
+<li>Plan: migrar progresivamente a AWS</li>
+</ul>
 <h3 id="como-aws-evita-que-el-ayuntamiento-se-paralice-otra-vez">¿Cómo AWS evita que el ayuntamiento se paralice otra vez?</h3>
 <table>
 <thead>
@@ -2609,27 +2635,27 @@ Diagrama de arquitectura con:
 </tr>
 </tbody>
 </table>
-<h3 id="materiales-necesarios">Materiales necesarios</h3>
-<ul>
-<li>[ ] Copia de este documento con los apuntes</li>
-<li>[ ] Acceso a <a href="https://calculator.aws">AWS Pricing Calculator</a></li>
-<li>[ ] Herramienta de dibujo (Miro, draw.io, papel + pizarra, Lucidchart)</li>
-<li>[ ] Proyector / pantalla compartida</li>
-<li>[ ] Dispositivos para que los grupos tomen notas</li>
-</ul>
 <h3 id="recomendaciones-pedagogicas">Recomendaciones pedagógicas</h3>
 <ol>
 <li><strong>Humaniza el caso:</strong> Muestra imágenes de Elche, explica cómo afectó al ciudadano</li>
 <li><strong>Conecta con lo local:</strong> Invita a los alumnos a pensar en su ayuntamiento → ¿Qué datos guarda?</li>
-<li><strong>Roles en los grupos:</strong> Asigna:</li>
-<li>Analista de riesgos</li>
+<li>
+<p><strong>Roles en los grupos:</strong> Asigna:</p>
+</li>
+<li>
+<p>Analista de riesgos</p>
+</li>
 <li>Arquitecto cloud</li>
 <li>Responsable de seguridad</li>
 <li>Responsable de comunicación/costes</li>
 <li><strong>Actividad práctica:</strong> No dejes que sea pasiva. Las 3 fases son interactivas.</li>
 <li><strong>Valida esfuerzo:</strong> Usa la rúbrica. Commenta qué grupo hizo qué bien.</li>
-<li><strong>Extensión:</strong> Si queda tiempo, pregunta:</li>
-<li>¿Y si el ataque hubiera incluido borrado de datos (no solo cifrado)?</li>
+<li>
+<p><strong>Extensión:</strong> Si queda tiempo, pregunta:</p>
+</li>
+<li>
+<p>¿Y si el ataque hubiera incluido borrado de datos (no solo cifrado)?</p>
+</li>
 <li>¿Cómo os defendéis contra eso?</li>
 </ol>
 <h3 id="conexion-con-apuntes-de-aitor-medrano">Conexión con apuntes de Aitor Medrano</h3>
@@ -2637,8 +2663,6 @@ Diagrama de arquitectura con:
 - <strong>Cloud computing / computación en la nube</strong> → Teoría (bloques 2–3)
 - <strong>Amazon Web Services. Servicios, redes, seguridad</strong> → Servicios específicos (bloque 3–4)
 - Enlace: <code>aitor-medrano.github.io/iabd/cloud/</code></p>
-<hr />
-<p><strong>Documento preparado para docencia en Ciclos Formativos de Grado Superior – Especialización en IA y Big Data.</strong></p>
 
 
 
