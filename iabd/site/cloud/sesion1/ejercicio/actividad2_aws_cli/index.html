@@ -1,0 +1,2597 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/ejercicio/actividad2_aws_cli/">
+      
+      
+        <link rel="prev" href="../../sesion_cloud_aws/">
+      
+      
+        <link rel="next" href="../anexo_ejemplos_salida_aws_cli/">
+      
+      
+      <link rel="icon" href="../../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - ACTIVIDAD 2 - INSTALACIÓN AWS CLI Y CONEXIÓN A AWS - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#actividad-2-instalacion-aws-cli-y-conexion-a-aws" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - ACTIVIDAD 2 - INSTALACIÓN AWS CLI Y CONEXIÓN A AWS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../sesion_cloud_aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesion_cloud_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Solución actividad 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución actividad 2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rapia3-cepia3d-acceso-a-servicios-cloud-desde-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAPIA.3 / CEPIA.3d - Acceso a servicios cloud desde terminal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-instalacion-de-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 1: INSTALACIÓN DE AWS CLI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 1: INSTALACIÓN DE AWS CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-1-windows-mas-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opción 1: Windows (MÁS RECOMENDADO)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opción 1: Windows (MÁS RECOMENDADO)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-descargar-el-instalador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Descargar el instalador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-ejecutar-el-instalador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Ejecutar el instalador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificar-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Verificar instalación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-2-mac-si-aplica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opción 2: Mac (si aplica)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-3-linux-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opción 3: Linux (Ubuntu/Debian)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-2-configurar-credenciales-de-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 2: CONFIGURAR CREDENCIALES DE AWS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 2: CONFIGURAR CREDENCIALES DE AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtener-credenciales-de-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtener credenciales de AWS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar AWS CLI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-3-ejecutar-los-comandos-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 3: EJECUTAR LOS COMANDOS AWS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 3: EJECUTAR LOS COMANDOS AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comando-1-aws-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando 1: aws --version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comando-2-aws-sts-get-caller-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando 2: aws sts get-caller-identity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comando-3-aws-ec2-describe-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando 3: aws ec2 describe-vpcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comando-4-aws-ec2-describe-subnets-query-subnetsavailabilityzone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando 4: aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-de-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESUMEN DE RESULTADOS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-4-captura-de-pantalla-para-la-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 4: CAPTURA DE PANTALLA (PARA LA ENTREGA)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-5-solucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 5: SOLUCIÓN DE PROBLEMAS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 5: SOLUCIÓN DE PROBLEMAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-aws-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: "aws: command not found"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-unable-to-locate-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: "Unable to locate credentials"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-accessdenied-en-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: "AccessDenied" en comandos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-invalid-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: "Invalid credentials"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-6-explicacion-para-la-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 6: EXPLICACIÓN PARA LA CLASE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 6: EXPLICACIÓN PARA LA CLASE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-arquitectura-anti-ransomware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con arquitectura anti-ransomware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analogia-para-explicar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analógía para explicar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-7-extension-actividades-adicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARTE 7: EXTENSIÓN (ACTIVIDADES ADICIONALES)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PARTE 7: EXTENSIÓN (ACTIVIDADES ADICIONALES)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-todas-las-instancias-ec2-en-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar todas las instancias EC2 en ejecución
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ver-todos-los-buckets-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ver todos los buckets S3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ver-politicas-de-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ver políticas de backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-alias-para-comandos-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear alias para comandos frecuentes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicacion-detallada-por-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXPLICACIÓN DETALLADA POR COMANDO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EXPLICACIÓN DETALLADA POR COMANDO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws --version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-sts-get-caller-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws sts get-caller-identity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-ec2-describe-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws ec2 describe-vpcs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-ec2-describe-subnets-query-subnetsavailabilityzone" class="md-nav__link">
+    <span class="md-ellipsis">
+      aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-con-arquitectura-anti-ransomware_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONEXIÓN CON ARQUITECTURA ANTI-RANSOMWARE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      REFERENCIAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anexo_ejemplos_salida_aws_cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anexo solución actividad 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Otras
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Otras
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/presentacion_docente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presentación docente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reto_migracion_ayuntamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración ayuntamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_perplexity_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración Perplexity mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_proyecto_fenix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini+NoteBookLM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="actividad-2-instalacion-aws-cli-y-conexion-a-aws">ACTIVIDAD 2: INSTALACIÓN AWS CLI Y CONEXIÓN A AWS</h1>
+<h2 id="rapia3-cepia3d-acceso-a-servicios-cloud-desde-terminal">RAPIA.3 / CEPIA.3d - Acceso a servicios cloud desde terminal</h2>
+<p><strong>Objetivo:</strong> Instalar AWS CLI, autenticarse en AWS y ejecutar comandos para explorar la infraestructura cloud.</p>
+<hr />
+<h2 id="parte-1-instalacion-de-aws-cli">PARTE 1: INSTALACIÓN DE AWS CLI</h2>
+<h3 id="opcion-1-windows-mas-recomendado">Opción 1: Windows (MÁS RECOMENDADO)</h3>
+<h4 id="paso-1-descargar-el-instalador">Paso 1: Descargar el instalador</h4>
+<ol>
+<li>Abre navegador y ve a: <a href="https://awscli.amazonaws.com/AWSCLIV2.msi">AWSCLIV2.msi</a></li>
+<li>Se descargará automáticamente el archivo <strong>AWSCLIV2.msi</strong></li>
+<li>Guarda el archivo en una carpeta fácil de encontrar</li>
+</ol>
+<h4 id="paso-2-ejecutar-el-instalador">Paso 2: Ejecutar el instalador</h4>
+<ol>
+<li>Haz doble clic en <strong>AWSCLIV2.msi</strong></li>
+<li>Aparecerá el asistente de instalación de AWS CLI</li>
+<li>Haz clic en <strong>Next</strong> → <strong>Install</strong></li>
+<li>Cuando termine, haz clic en <strong>Finish</strong></li>
+<li><strong>Reinicia tu ordenador</strong> (importante para que se actualice PATH)</li>
+</ol>
+<h4 id="paso-3-verificar-instalacion">Paso 3: Verificar instalación</h4>
+<p>Abre <strong>PowerShell</strong> o <strong>CMD</strong> (como administrador):</p>
+<div class="highlight"><pre><span></span><code><span class="n">aws</span> <span class="p">-</span><span class="n">-version</span>
+</code></pre></div>
+<p><strong>Resultado esperado:</strong>
+<div class="highlight"><pre><span></span><code>aws-cli/2.x.x Python/3.x.x Windows/10.x
+</code></pre></div></p>
+<p>Si ves la versión, ✅ <strong>AWS CLI está instalado correctamente</strong>.</p>
+<hr />
+<h3 id="opcion-2-mac-si-aplica">Opción 2: Mac (si aplica)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Descargar el archivo</span>
+curl<span class="w"> </span><span class="s2">&quot;https://awscli.amazonaws.com/AWSCLIV2.pkg&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;AWSCLIV2.pkg&quot;</span>
+
+<span class="c1"># Ejecutar el instalador</span>
+sudo<span class="w"> </span>installer<span class="w"> </span>-pkg<span class="w"> </span>AWSCLIV2.pkg<span class="w"> </span>-target<span class="w"> </span>/
+
+<span class="c1"># Verificar instalación</span>
+aws<span class="w"> </span>--version
+</code></pre></div>
+<hr />
+<h3 id="opcion-3-linux-ubuntudebian">Opción 3: Linux (Ubuntu/Debian)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Actualizar paquetes</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+
+<span class="c1"># Instalar AWS CLI desde repositorio</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>awscli
+
+<span class="c1"># O descargar versión más reciente</span>
+curl<span class="w"> </span><span class="s2">&quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;awscliv2.zip&quot;</span>
+unzip<span class="w"> </span>awscliv2.zip
+sudo<span class="w"> </span>./aws/install
+
+<span class="c1"># Verificar instalación</span>
+aws<span class="w"> </span>--version
+</code></pre></div>
+<hr />
+<h2 id="parte-2-configurar-credenciales-de-aws">PARTE 2: CONFIGURAR CREDENCIALES DE AWS</h2>
+<h3 id="obtener-credenciales-de-aws">Obtener credenciales de AWS</h3>
+<p>Necesitarás:</p>
+<ul>
+<li><strong>Access Key ID</strong></li>
+<li><strong>Secret Access Key</strong></li>
+<li><strong>Default Region</strong> (ej: eu-south-2 para España)</li>
+</ul>
+<p><strong>¿Dónde obtenerlas?</strong></p>
+<ol>
+<li>Abre tu consola de AWS: <a href="https://aws.amazon.com/console/">AWS Console</a></li>
+<li>Inicia sesión con tu cuenta</li>
+<li>Ve a tu perfil (esquina superior derecha) → <strong>Security Credentials</strong></li>
+<li>En la sección "Access keys", haz clic en <strong>Create access key</strong></li>
+<li>Copia los valores (guárdalos en un lugar seguro)</li>
+</ol>
+<p>⚠️ <strong>IMPORTANTE:</strong> Nunca compartas estas credenciales. Son como tu contraseña de AWS.</p>
+<h3 id="configurar-aws-cli">Configurar AWS CLI</h3>
+<p>Abre <strong>PowerShell</strong> o <strong>CMD</strong> y ejecuta:</p>
+<div class="highlight"><pre><span></span><code>aws configure
+</code></pre></div>
+<p>Te pedirá:</p>
+<div class="highlight"><pre><span></span><code>AWS Access Key ID [None]: AKIA...
+AWS Secret Access Key [None]: wJalrXU...
+Default region name [None]: eu-south-2
+Default output format [None]: json
+</code></pre></div>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><strong>Access Key ID:</strong> Tu clave de acceso (empieza con AKIA)</li>
+<li><strong>Secret Access Key:</strong> Tu contraseña (NO la vuelvas a compartir)</li>
+<li><strong>Default region:</strong> Para España usa <code>eu-south-2</code> (si es otra región, ajusta)</li>
+<li><strong>Output format:</strong> Deja <code>json</code> (es el formato más legible)</li>
+</ul>
+<p>✅ <strong>Si no hay errores, la configuración está lista.</strong></p>
+<hr />
+<h2 id="parte-3-ejecutar-los-comandos-aws">PARTE 3: EJECUTAR LOS COMANDOS AWS</h2>
+<p>Abre <strong>PowerShell</strong> o <strong>CMD</strong> y ejecuta cada comando por separado.</p>
+<h3 id="comando-1-aws-version">Comando 1: <code>aws --version</code></h3>
+<div class="highlight"><pre><span></span><code>aws --version
+</code></pre></div>
+<p><strong>Resultado esperado:</strong>
+<div class="highlight"><pre><span></span><code>aws-cli/2.13.27 Python/3.11.5 Windows/10.0.19045
+</code></pre></div></p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li>Muestra la versión de AWS CLI instalada</li>
+<li>Verifica que AWS CLI está correctamente instalado</li>
+<li>Muestra también la versión de Python y el sistema operativo</li>
+</ul>
+<hr />
+<h3 id="comando-2-aws-sts-get-caller-identity">Comando 2: <code>aws sts get-caller-identity</code></h3>
+<div class="highlight"><pre><span></span><code>aws sts get-caller-identity
+</code></pre></div>
+<p><strong>Resultado esperado (formato JSON):</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AIDAI1234567890ABCDE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Account&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Arn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:user/tu-usuario&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>STS</strong> = Security Token Service (Servicio de Tokens de Seguridad)</li>
+<li>Verifica que tus credenciales son válidas</li>
+<li>Muestra:</li>
+<li><strong>UserId:</strong> Tu ID único en AWS</li>
+<li><strong>Account:</strong> El número de tu cuenta AWS (12 dígitos)</li>
+<li><strong>Arn:</strong> Amazon Resource Name (identificador único de tu usuario)</li>
+</ul>
+<p><strong>En clase:</strong> Este comando demuestra que estamos autenticados en AWS.</p>
+<hr />
+<h3 id="comando-3-aws-ec2-describe-vpcs">Comando 3: <code>aws ec2 describe-vpcs</code></h3>
+<div class="highlight"><pre><span></span><code>aws ec2 describe-vpcs
+</code></pre></div>
+<p><strong>Resultado esperado (muchas líneas JSON):</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Vpcs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;VpcId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-0a1b2c3d4e5f6g7h8&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;InstanceTenancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.0.0/16&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;DhcpOptionsId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dopt-0a1b2c3d&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IsDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mi-VPC-Principal&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>EC2</strong> = Elastic Compute Cloud (máquinas virtuales)</li>
+<li><strong>describe-vpcs</strong> = Describe todas las VPCs (Virtual Private Cloud)</li>
+<li>Una <strong>VPC</strong> es una red privada aislada en AWS donde viven tus recursos</li>
+<li>
+<p>Muestra:</p>
+</li>
+<li>
+<p><strong>VpcId:</strong> ID único de la VPC</p>
+</li>
+<li><strong>CidrBlock:</strong> Rango de IPs de la VPC (ej: 10.0.0.0/16)</li>
+<li><strong>State:</strong> Estado (available = disponible)</li>
+<li><strong>Tags:</strong> Etiquetas personalizadas para identificar la VPC</li>
+</ul>
+<p><strong>En clase:</strong> Enseña cómo AWS organiza los recursos en redes privadas.</p>
+<hr />
+<h3 id="comando-4-aws-ec2-describe-subnets-query-subnetsavailabilityzone">Comando 4: <code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></h3>
+<div class="highlight"><pre><span></span><code>aws ec2 describe-subnets --query &quot;Subnets[*].AvailabilityZone&quot;
+</code></pre></div>
+<p><strong>Resultado esperado:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p><strong>¿Qué hace?</strong></p>
+<ul>
+<li><strong>describe-subnets</strong> = Describe todas las subredes</li>
+<li>Una <strong>subred</strong> es una división de una VPC</li>
+<li><strong>--query "Subnets[*].AvailabilityZone"</strong> = Filtra solo la columna de Zonas de Disponibilidad</li>
+<li>
+<p>Muestra:</p>
+</li>
+<li>
+<p><strong>Availability Zones:</strong> Ubicaciones geográficas donde están las subredes</p>
+</li>
+<li><strong>eu-south-2a, eu-south-2b:</strong> Diferentes centros de datos en España</li>
+<li>Esto demuestra <strong>redundancia geográfica</strong> (si falla un centro, hay otro)</li>
+</ul>
+<p><strong>En clase:</strong> Conecta con arquitectura anti-ransomware (datos replicados en múltiples zonas).</p>
+<hr />
+<h2 id="resumen-de-resultados">RESUMEN DE RESULTADOS</h2>
+<table>
+<thead>
+<tr>
+<th>COMANDO</th>
+<th>PROPÓSITO</th>
+<th>INFORMACIÓN CLAVE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aws --version</code></td>
+<td>Verificar instalación</td>
+<td>Versión AWS CLI + Python + SO</td>
+</tr>
+<tr>
+<td><code>aws sts get-caller-identity</code></td>
+<td>Validar autenticación</td>
+<td>UserId, Account (12 dígitos), ARN</td>
+</tr>
+<tr>
+<td><code>aws ec2 describe-vpcs</code></td>
+<td>Ver redes privadas</td>
+<td>VpcId, CidrBlock, State, Tags</td>
+</tr>
+<tr>
+<td><code>aws ec2 describe-subnets --query ...</code></td>
+<td>Ver zonas de disponibilidad</td>
+<td>Distribución geográfica de subredes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="parte-4-captura-de-pantalla-para-la-entrega">PARTE 4: CAPTURA DE PANTALLA (PARA LA ENTREGA)</h2>
+<p>Realiza una captura de pantalla (Print Screen) que incluya:</p>
+<ol>
+<li>El resultado de <code>aws --version</code></li>
+<li>El resultado de <code>aws sts get-caller-identity</code></li>
+<li>El resultado de <code>aws ec2 describe-vpcs</code> (parcial)</li>
+<li>El resultado de <code>aws ec2 describe-subnets --query ...</code></li>
+</ol>
+<hr />
+<h2 id="parte-5-solucion-de-problemas">PARTE 5: SOLUCIÓN DE PROBLEMAS</h2>
+<h3 id="problema-aws-command-not-found">Problema: "aws: command not found"</h3>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Reinicia tu ordenador (AWS CLI modifica PATH)</li>
+<li>Si aún no funciona, reinstala AWS CLI</li>
+<li>Verifica que AWS CLI está en: <code>C:\Program Files\Amazon\AWSCLIV2\</code> (Windows)</li>
+</ol>
+<hr />
+<h3 id="problema-unable-to-locate-credentials">Problema: "Unable to locate credentials"</h3>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Abre <strong>PowerShell</strong> como administrador</li>
+<li>Ejecuta: <code>aws configure</code></li>
+<li>Introduce tus credenciales nuevamente</li>
+<li>Verifica que el archivo existe: <code>C:\Users\[TU_USUARIO]\.aws\credentials</code></li>
+</ol>
+<hr />
+<h3 id="problema-accessdenied-en-comandos">Problema: "AccessDenied" en comandos</h3>
+<p><strong>Causa:</strong> Tu usuario de AWS no tiene permisos para EC2.</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → IAM → Users</li>
+<li>Haz clic en tu usuario</li>
+<li>Añade política: <strong>AmazonEC2ReadOnlyAccess</strong> (para leer, sin modificar)</li>
+<li>Espera 5 minutos y vuelve a intentar</li>
+</ol>
+<hr />
+<h3 id="problema-invalid-credentials">Problema: "Invalid credentials"</h3>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → Security Credentials</li>
+<li>Verifica que tu Access Key aún está activa</li>
+<li>Si expiró, crea una nueva key</li>
+<li>Ejecuta: <code>aws configure</code> nuevamente</li>
+</ol>
+<hr />
+<h2 id="parte-6-explicacion-para-la-clase">PARTE 6: EXPLICACIÓN PARA LA CLASE</h2>
+<h3 id="conexion-con-arquitectura-anti-ransomware">Conexión con arquitectura anti-ransomware</h3>
+<p><strong>¿Por qué ejecutamos estos comandos?</strong></p>
+<ol>
+<li>
+<p><strong><code>aws --version</code></strong> → Verifica que tenemos herramientas para gestionar AWS programáticamente</p>
+</li>
+<li>
+<p><strong><code>aws sts get-caller-identity</code></strong> → Demuestra <strong>autenticación y autorización (IAM)</strong></p>
+</li>
+<li>Conecta con seguridad cloud</li>
+<li>
+<p>Muestra quién accede a AWS (responsabilidad compartida)</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-vpcs</code></strong> → Muestra cómo AWS organiza <strong>infraestructura de red</strong></p>
+</li>
+<li>VPC = red privada aislada</li>
+<li>
+<p>Base para arquitectura anti-ransomware</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-subnets --query ...</code></strong> → Demuestra <strong>redundancia geográfica</strong></p>
+</li>
+<li>eu-south-2a y eu-south-2b = dos centros de datos</li>
+<li>Si uno cae, el otro sigue funcionando</li>
+<li><strong>Esto es lo que evitó la paralización en la arquitectura anti-ransomware</strong></li>
+</ol>
+<h3 id="analogia-para-explicar">Analógía para explicar</h3>
+<div class="highlight"><pre><span></span><code>AWS CLI es como un &quot;mando a distancia&quot; para AWS:
+
+- Sin AWS CLI: Tienes que entrar a la consola web (lento, gráfico)
+- Con AWS CLI: Ejecutas comandos en terminal (rápido, automatizable)
+
+Analógía:
+- Consola web = Telecomando de TV (botones físicos)
+- AWS CLI = Lenguaje para controlar TV por voz (más potente)
+</code></pre></div>
+<hr />
+<h2 id="parte-7-extension-actividades-adicionales">PARTE 7: EXTENSIÓN (ACTIVIDADES ADICIONALES)</h2>
+<h3 id="listar-todas-las-instancias-ec2-en-ejecucion">Listar todas las instancias EC2 en ejecución</h3>
+<div class="highlight"><pre><span></span><code>aws ec2 describe-instances --filters &quot;Name=instance-state-name,Values=running&quot;
+</code></pre></div>
+<hr />
+<h3 id="ver-todos-los-buckets-s3">Ver todos los buckets S3</h3>
+<div class="highlight"><pre><span></span><code>aws s3 ls
+</code></pre></div>
+<hr />
+<h3 id="ver-politicas-de-backup">Ver políticas de backup</h3>
+<div class="highlight"><pre><span></span><code>aws backup list-backup-vaults
+</code></pre></div>
+<hr />
+<h3 id="crear-alias-para-comandos-frecuentes">Crear alias para comandos frecuentes</h3>
+<p>En <strong>PowerShell</strong>, edita tu perfil:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Abre editor</span>
+<span class="n">notepad</span> <span class="nv">$PROFILE</span>
+
+<span class="c"># Añade estas líneas:</span>
+<span class="k">function</span> <span class="n">aws-version</span> <span class="p">{</span> <span class="n">aws</span> <span class="p">-</span><span class="n">-version</span> <span class="p">}</span>
+<span class="k">function</span> <span class="n">aws-identity</span> <span class="p">{</span> <span class="n">aws</span> <span class="n">sts</span> <span class="nb">get-caller</span><span class="n">-identity</span> <span class="p">}</span>
+<span class="k">function</span> <span class="n">aws-vpcs</span> <span class="p">{</span> <span class="n">aws</span> <span class="n">ec2</span> <span class="n">describe-vpcs</span> <span class="p">}</span>
+<span class="k">function</span> <span class="n">aws-zones</span> <span class="p">{</span> <span class="n">aws</span> <span class="n">ec2</span> <span class="n">describe-subnets</span> <span class="p">-</span><span class="n">-query</span> <span class="s2">&quot;Subnets[*].AvailabilityZone&quot;</span> <span class="p">}</span>
+
+<span class="c"># Guarda y cierra PowerShell</span>
+<span class="c"># La próxima vez, ejecuta: aws-identity (en lugar del comando completo)</span>
+</code></pre></div>
+<hr />
+<h2 id="explicacion-detallada-por-comando">EXPLICACIÓN DETALLADA POR COMANDO</h2>
+<h3 id="aws-version"><code>aws --version</code></h3>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal de AWS CLI</li>
+<li><strong>--version:</strong> Bandera que pide mostrar la versión</li>
+</ul>
+<p><strong>Información en la salida:</strong>
+<div class="highlight"><pre><span></span><code>aws-cli/2.13.27        &lt;- Versión de AWS CLI
+Python/3.11.5          &lt;- Versión de Python que usa AWS CLI
+Windows/10.0.19045     &lt;- Tu sistema operativo
+</code></pre></div></p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Confirma que AWS CLI está instalado</li>
+<li>Útil para debugging (si algo falla, la versión ayuda a identificar el problema)</li>
+<li>Primera verificación después de la instalación</li>
+</ul>
+<hr />
+<h3 id="aws-sts-get-caller-identity"><code>aws sts get-caller-identity</code></h3>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal</li>
+<li><strong>sts:</strong> Security Token Service (gestión de tokens de seguridad)</li>
+<li><strong>get-caller-identity:</strong> Obtén la identidad del usuario que ejecuta el comando</li>
+</ul>
+<p><strong>Información en la salida:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AIDAI1234567890ABCDE&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">└─</span><span class="w"> </span><span class="err">Ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">f</span><span class="err">icador</span><span class="w"> </span><span class="err">ú</span><span class="kc">n</span><span class="err">ico</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="kc">tu</span><span class="w"> </span><span class="err">usuario</span><span class="w"> </span><span class="err">IAM</span>
+
+<span class="w">    </span><span class="nt">&quot;Account&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="err">└─</span><span class="w"> </span><span class="err">Número</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="kc">tu</span><span class="w"> </span><span class="err">cue</span><span class="kc">nta</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">(</span><span class="mi">12</span><span class="w"> </span><span class="err">dígi</span><span class="kc">t</span><span class="err">os)</span>
+
+<span class="w">    </span><span class="nt">&quot;Arn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:user/tu-usuario&quot;</span>
+<span class="w">        </span><span class="err">└─</span><span class="w"> </span><span class="err">Amazo</span><span class="kc">n</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Name</span><span class="w"> </span><span class="err">(</span><span class="kc">n</span><span class="err">ombre</span><span class="w"> </span><span class="err">ú</span><span class="kc">n</span><span class="err">ico</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="kc">tu</span><span class="w"> </span><span class="err">recurso)</span>
+<span class="w">        </span><span class="err">└─</span><span class="w"> </span><span class="err">Forma</span><span class="kc">t</span><span class="err">o</span><span class="p">:</span><span class="w"> </span><span class="err">ar</span><span class="kc">n</span><span class="p">:</span><span class="err">aws</span><span class="p">:[</span><span class="err">SERVICIO</span><span class="p">]::[</span><span class="err">CUENTA</span><span class="p">]:[</span><span class="err">RECURSO</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Valida que tus credenciales son correctas</li>
+<li>Verifica que tienes acceso a AWS</li>
+<li>Muestra con quién estás autenticado (usuario/rol)</li>
+<li><strong>Conecta con IAM:</strong> Control granular de permisos (responsabilidad compartida)</li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Si un atacante tiene tus credenciales, verá SU usuario en lugar del tuyo</li>
+<li>MFA (multi-factor authentication) impide que ejecute este comando sin aprobación</li>
+</ul>
+<hr />
+<h3 id="aws-ec2-describe-vpcs"><code>aws ec2 describe-vpcs</code></h3>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws:</strong> Comando principal</li>
+<li><strong>ec2:</strong> Elastic Compute Cloud (máquinas virtuales)</li>
+<li><strong>describe-vpcs:</strong> Describe todas las VPCs (Virtual Private Clouds)</li>
+</ul>
+<p><strong>Información en la salida:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Vpcs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">                          </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Lis</span><span class="kc">ta</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">VPCs</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;VpcId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-0a1b2c3d&quot;</span><span class="p">,</span><span class="w">   </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">ú</span><span class="kc">n</span><span class="err">ico</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">VPC</span>
+<span class="w">            </span><span class="nt">&quot;InstanceTenancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="p">,</span><span class="w">       </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Es</span><span class="kc">ta</span><span class="err">do</span><span class="w"> </span><span class="err">(dispo</span><span class="kc">n</span><span class="err">ible)</span>
+<span class="w">            </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.0.0/16&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Ra</span><span class="kc">n</span><span class="err">go</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">IPs</span><span class="w"> </span><span class="err">(</span><span class="mf">10.0.0.1</span><span class="w"> </span><span class="mi">-</span><span class="w"> </span><span class="mf">10.0.255.254</span><span class="err">)</span>
+<span class="w">            </span><span class="nt">&quot;DhcpOptionsId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dopt-...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IsDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">         </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">¿Es</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">VPC</span><span class="w"> </span><span class="err">por</span><span class="w"> </span><span class="err">de</span><span class="kc">fe</span><span class="err">c</span><span class="kc">t</span><span class="err">o?</span>
+<span class="w">            </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mi-VPC&quot;</span><span class="w">   </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Nombre</span><span class="w"> </span><span class="err">ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">f</span><span class="err">ica</span><span class="kc">t</span><span class="err">ivo</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Una VPC es como tu "red privada personal" dentro de AWS</li>
+<li>Muestra todas tus redes disponibles</li>
+<li>Cada VPC es aislada de otras (seguridad)</li>
+<li>Base para desplegar aplicaciones de forma segura</li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Las VPCs con subredes privadas protegen BBDD (RDS)</li>
+<li>No son accesibles desde Internet directamente</li>
+<li>Necesitas estar "dentro" de la VPC para acceder</li>
+</ul>
+<hr />
+<h3 id="aws-ec2-describe-subnets-query-subnetsavailabilityzone"><code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></h3>
+<p><strong>Desglose:</strong></p>
+<ul>
+<li><strong>aws ec2 describe-subnets:</strong> Lista todas las subredes</li>
+<li><strong>--query "Subnets[*].AvailabilityZone":</strong> Filtra solo la columna AvailabilityZone</li>
+<li><code>Subnets[*]</code> = todos los elementos de la lista Subnets</li>
+<li><code>.AvailabilityZone</code> = toma solo ese atributo</li>
+</ul>
+<p><strong>Información en la salida:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span><span class="w">    </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Ce</span><span class="kc">ntr</span><span class="err">o</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">da</span><span class="kc">t</span><span class="err">os</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">Palermo/Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">(zo</span><span class="kc">na</span><span class="w"> </span><span class="err">A)</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="p">,</span><span class="w">    </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">Ce</span><span class="kc">ntr</span><span class="err">o</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">da</span><span class="kc">t</span><span class="err">os</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">Palermo/Barcelo</span><span class="kc">na</span><span class="w"> </span><span class="err">(zo</span><span class="kc">na</span><span class="w"> </span><span class="err">B)</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span><span class="w">    </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">O</span><span class="kc">tra</span><span class="w"> </span><span class="err">subred</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">zo</span><span class="kc">na</span><span class="w"> </span><span class="err">A</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="w">     </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="err">O</span><span class="kc">tra</span><span class="w"> </span><span class="err">subred</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="err">zo</span><span class="kc">na</span><span class="w"> </span><span class="err">B</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p><strong>Nomenclatura de zonas:</strong></p>
+<ul>
+<li><strong>eu-south-2</strong> = Región Europa (Sur)</li>
+<li><strong>eu</strong> = Europa</li>
+<li><strong>south</strong> = Sur (es España/Italia)</li>
+<li><strong>2</strong> = Es la segunda región sur de AWS en Europa</li>
+<li><strong>a, b, c, ...</strong> = Zonas de Disponibilidad (AZs)</li>
+<li>Cada una es un centro de datos físico separado</li>
+<li>Están a decenas de km de distancia</li>
+<li>Si uno se incendia/apaga, los otros siguen</li>
+</ul>
+<p><strong>Importancia:</strong></p>
+<ul>
+<li>Muestra <strong>redundancia geográfica</strong></li>
+<li>Datos replicados en múltiples centros físicos</li>
+<li>Si AWS-es-sur-2a falla, AWS-eu-south-2b sigue disponible</li>
+<li><strong>Esto es la base de High Availability (HA)</strong></li>
+</ul>
+<p><strong>En contexto de ransomware:</strong></p>
+<ul>
+<li>Elche tenía un único CPD (punto único de fallo)</li>
+<li>AWS tiene múltiples AZs (múltiples puntos de fallo tolerable)</li>
+<li>RDS Multi-AZ copia datos automáticamente a otra zona</li>
+<li>Si atacan zona A, datos están seguros en zona B</li>
+</ul>
+<hr />
+<h2 id="conexion-con-arquitectura-anti-ransomware_1">CONEXIÓN CON ARQUITECTURA ANTI-RANSOMWARE</h2>
+<p><strong>Los 4 comandos demuestran:</strong></p>
+<ol>
+<li>
+<p><strong><code>aws --version</code></strong> → Herramientas para gestión programática (DevOps)</p>
+</li>
+<li>
+<p><strong><code>aws sts get-caller-identity</code></strong> → <strong>SEGURIDAD (IAM + MFA)</strong></p>
+</li>
+<li>Autenticación válida</li>
+<li>Mínimo privilegio</li>
+<li>
+<p>Auditoría de quién accede</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-vpcs</code></strong> → <strong>AISLAMIENTO (VPC + Subredes privadas)</strong></p>
+</li>
+<li>BBDD en subred privada</li>
+<li>No accesible desde Internet</li>
+<li>
+<p>Protección contra ataques web</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-subnets --query</code></strong> → <strong>REDUNDANCIA GEOGRÁFICA (Multi-AZ)</strong></p>
+</li>
+<li>Replicación automática</li>
+<li>Si cae un centro, hay otro</li>
+<li>RTO bajo (Recovery Time Objective)</li>
+</ol>
+<p><strong>Conexión con Elche:</strong>
+- Elche: 1 CPD → Ransomware cifra todo
+- AWS: Múltiples AZs → Ransomware cifra datos en AZ-a, pero AZ-b tiene copias sin cifrar</p>
+<hr />
+<h2 id="referencias">REFERENCIAS</h2>
+<p><strong>Documentación oficial AWS:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/cli/">AWS CLI User Guide</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html">EC2 describe-vpcs</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-subnets.html">EC2 describe-subnets</a></li>
+<li><a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html">STS get-caller-identity</a></li>
+</ul>
+<p><strong>Apuntes del curso:</strong>
+- aitor-medrano.github.io/iabd/cloud/aws.html#aws-cloudshell</p>
+<hr />
+<p><strong>Actividad preparada para Ciclos Formativos de Grado Superior - IA y Big Data</strong>
+<strong>Elche, enero 2026</strong></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../sesion_cloud_aws/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 1 Cloud y AWS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Sesión 1 Cloud y AWS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../anexo_ejemplos_salida_aws_cli/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Anexo solución actividad 2">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Anexo solución actividad 2
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

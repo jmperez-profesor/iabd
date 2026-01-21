@@ -1,0 +1,2634 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli/">
+      
+      
+        <link rel="prev" href="../actividad2_aws_cli/">
+      
+      
+        <link rel="next" href="../../otras/presentacion_docente/">
+      
+      
+      <link rel="icon" href="../../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - ANEXO "EJEMPLOS DE SALIDA REAL - AWS CLI" - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#anexo-ejemplos-de-salida-real-aws-cli" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - ANEXO "EJEMPLOS DE SALIDA REAL - AWS CLI"
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../sesion_cloud_aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesion_cloud_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actividad2_aws_cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución actividad 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Anexo solución actividad 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anexo solución actividad 2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-completos-de-cada-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      EJEMPLOS COMPLETOS DE CADA COMANDO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-1-aws-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      EJEMPLO 1: aws --version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EJEMPLO 1: aws --version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comando-ejecutado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando ejecutado:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-esperada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salida esperada:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-linea-por-linea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación línea por línea:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-significa-cada-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué significa cada versión?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-2-aws-sts-get-caller-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      EJEMPLO 2: aws sts get-caller-identity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EJEMPLO 2: aws sts get-caller-identity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comando-ejecutado_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando ejecutado:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-esperada-json-formateado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salida esperada (JSON formateado):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-de-cada-campo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación de cada campo:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicación de cada campo:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userid" class="md-nav__link">
+    <span class="md-ellipsis">
+      UserId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arn-amazon-resource-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arn (Amazon Resource Name)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-es-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por qué es importante?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-3-aws-ec2-describe-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      EJEMPLO 3: aws ec2 describe-vpcs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EJEMPLO 3: aws ec2 describe-vpcs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comando-ejecutado_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando ejecutado:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-esperada-json-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salida esperada (JSON completo):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-detallada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación detallada:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicación detallada:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primera-vpc-vpc-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primera VPC (VPC de Producción):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segunda-vpc-vpc-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segunda VPC (VPC por Defecto):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rango-cidr-explicado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rango CIDR explicado:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-4-aws-ec2-describe-subnets-query-subnetsavailabilityzone" class="md-nav__link">
+    <span class="md-ellipsis">
+      EJEMPLO 4: aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EJEMPLO 4: aws ec2 describe-subnets --query &#34;Subnets[*].AvailabilityZone&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comando-ejecutado_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comando ejecutado:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salida-esperada-lista-de-zonas-de-disponibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salida esperada (lista de zonas de disponibilidad):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-de-las-zonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación de las zonas:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicación de las zonas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nomenclatura-de-region-y-zona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nomenclatura de región y zona:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numero-de-zonas-por-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      Número de zonas por región:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distancia-entre-zonas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distancia entre zonas:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-importa-el-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Por qué importa el --query?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinacion-de-los-4-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMBINACIÓN DE LOS 4 COMANDOS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COMBINACIÓN DE LOS 4 COMANDOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujo-completo-que-verias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flujo completo que verías:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpretacion-para-la-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      INTERPRETACIÓN PARA LA CLASE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="INTERPRETACIÓN PARA LA CLASE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-demuestra-cada-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué demuestra cada comando:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-arquitectura-anti-ransomware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con arquitectura anti-ransomware:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errores-comunes-y-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERRORES COMUNES Y SOLUCIONES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ERRORES COMUNES Y SOLUCIONES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-1-aws-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error 1: "aws: command not found"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-2-unable-to-locate-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error 2: "Unable to locate credentials"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-3-accessdenied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error 3: "AccessDenied"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-4-invalid-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error 4: "Invalid credentials"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-utiles-adicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMANDOS ÚTILES ADICIONALES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COMANDOS ÚTILES ADICIONALES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ver-configuracion-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ver configuración actual:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambiar-region-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cambiar región por defecto:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ver-detalles-de-una-vpc-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ver detalles de una VPC específica:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-subredes-con-mas-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar subredes con más detalles:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet-referencia-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHEAT SHEET (Referencia rápida)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Otras
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Otras
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/presentacion_docente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presentación docente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reto_migracion_ayuntamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración ayuntamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_perplexity_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración Perplexity mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../otras/sesion1_cloud_aws_proyecto_fenix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini+NoteBookLM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="anexo-ejemplos-de-salida-real-aws-cli">ANEXO: EJEMPLOS DE SALIDA REAL - AWS CLI</h1>
+<h2 id="ejemplos-completos-de-cada-comando">EJEMPLOS COMPLETOS DE CADA COMANDO</h2>
+<p>Este anexo muestra ejemplos reales de lo que verás al ejecutar cada comando.</p>
+<hr />
+<h2 id="ejemplo-1-aws-version">EJEMPLO 1: <code>aws --version</code></h2>
+<h3 id="comando-ejecutado">Comando ejecutado:</h3>
+<div class="highlight"><pre><span></span><code>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>--version
+</code></pre></div>
+<h3 id="salida-esperada">Salida esperada:</h3>
+<div class="highlight"><pre><span></span><code>aws-cli/2.13.27<span class="w"> </span>Python/3.11.5<span class="w"> </span>Windows/10.0.19045<span class="w"> </span>exe/AMD64.10.0.19045
+</code></pre></div>
+<h3 id="explicacion-linea-por-linea">Explicación línea por línea:</h3>
+<ul>
+<li><code>aws-cli/2.13.27</code> → Versión de AWS CLI (la 2.13.27)</li>
+<li><code>Python/3.11.5</code> → Versión de Python que usa internamente</li>
+<li><code>Windows/10.0.19045</code> → Sistema operativo (Windows 10, build 19045)</li>
+<li><code>exe/AMD64.10.0.19045</code> → Arquitectura del ejecutable (64 bits)</li>
+</ul>
+<h3 id="que-significa-cada-version">¿Qué significa cada versión?</h3>
+<ul>
+<li><strong>2.x.x</strong> = AWS CLI v2 (versión actual, más rápida que v1)</li>
+<li><strong>3.11.5</strong> = Python 3.11 (versión 3, actualización 11, patch 5)</li>
+<li>Si ves versión diferente, ¡no importa! Lo importante es que aparezca algo parecido</li>
+</ul>
+<hr />
+<h2 id="ejemplo-2-aws-sts-get-caller-identity">EJEMPLO 2: <code>aws sts get-caller-identity</code></h2>
+<h3 id="comando-ejecutado_1">Comando ejecutado:</h3>
+<div class="highlight"><pre><span></span><code>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
+<h3 id="salida-esperada-json-formateado">Salida esperada (JSON formateado):</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AIDACKCEVSQ6C2EXAMPLE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Account&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Arn&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:user/profesor-ias-bd&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="explicacion-de-cada-campo">Explicación de cada campo:</h3>
+<h4 id="userid">UserId</h4>
+<div class="highlight"><pre><span></span><code>AIDACKCEVSQ6C2EXAMPLE
+│││└── Caracteres alfanuméricos únicos para ti
+││└─── Código de servicio (C = IAM user)
+│└──── Prefijo regional
+└───── Prefijo de tipo de ID (AID = Access ID)
+</code></pre></div>
+<h4 id="account">Account</h4>
+<div class="highlight"><pre><span></span><code>123456789012
+└──── Tu número de cuenta AWS (12 dígitos)
+      Este número es único en todo AWS
+</code></pre></div>
+<h4 id="arn-amazon-resource-name">Arn (Amazon Resource Name)</h4>
+<div class="highlight"><pre><span></span><code>arn:aws:iam::123456789012:user/profesor-iabd
+│  │   │  │  │            │    │
+│  │   │  │  │            │    └─ Nombre del usuario
+│  │   │  │  │            └────── Número de cuenta
+│  │   │  │  └────────────────── Región (vacío para IAM)
+│  │   │  └───────────────────── ID de partición
+│  │   └────────────────────────── Tipo de recurso
+│  └───────────────────────────── Servicio (IAM)
+└──────────────────────────────── Prefijo obligatorio
+</code></pre></div>
+<h3 id="por-que-es-importante">¿Por qué es importante?</h3>
+<ul>
+<li><strong>Validación de credenciales:</strong> Si ves un error de "InvalidUserID", tus credenciales son incorrectas</li>
+<li><strong>Auditoría:</strong> AWS registra todos los accesos a este usuario</li>
+<li><strong>Permisos:</strong> Tu usuario tiene los permisos definidos en tu política IAM</li>
+</ul>
+<hr />
+<h2 id="ejemplo-3-aws-ec2-describe-vpcs">EJEMPLO 3: <code>aws ec2 describe-vpcs</code></h2>
+<h3 id="comando-ejecutado_2">Comando ejecutado:</h3>
+<div class="highlight"><pre><span></span><code>PS C:\Users\profesor&gt; aws ec2 describe-vpcs
+</code></pre></div>
+<h3 id="salida-esperada-json-completo">Salida esperada (JSON completo):</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Vpcs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.0.0/16&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;DhcpOptionsId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dopt-32bdc05f&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;VpcId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-0d5f55429e55f89a2&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;OwnerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;InstanceTenancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Ipv6CidrBlockAssociationSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">            </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-produccion-elche&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.31.0.0/16&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;DhcpOptionsId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dopt-12345678&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;VpcId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-12345678&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;OwnerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;InstanceTenancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Ipv6CidrBlockAssociationSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">            </span><span class="nt">&quot;IsDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="explicacion-detallada">Explicación detallada:</h3>
+<h4 id="primera-vpc-vpc-de-produccion">Primera VPC (VPC de Producción):</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.0.0/16&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">Ra</span><span class="kc">n</span><span class="err">go</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">IPs</span><span class="p">:</span><span class="w"> </span><span class="err">desde</span><span class="w"> </span><span class="mf">10.0.0.0</span><span class="w"> </span><span class="err">has</span><span class="kc">ta</span><span class="w"> </span><span class="mf">10.0.255.255</span><span class="w"> </span><span class="err">(</span><span class="mf">65.536</span><span class="w"> </span><span class="err">IPs)</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">/</span><span class="mi">16</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">máscara</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">red</span><span class="w"> </span><span class="err">(primeros</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="err">bi</span><span class="kc">ts</span><span class="w"> </span><span class="kc">f</span><span class="err">ijos)</span>
+
+<span class="w">    </span><span class="nt">&quot;VpcId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-0d5f55429e55f89a2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">Ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">f</span><span class="err">icador</span><span class="w"> </span><span class="err">ú</span><span class="kc">n</span><span class="err">ico</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">VPC</span><span class="w"> </span><span class="err">e</span><span class="kc">n</span><span class="w"> </span><span class="kc">tu</span><span class="w"> </span><span class="err">cue</span><span class="kc">nta</span>
+
+<span class="w">    </span><span class="nt">&quot;State&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">Es</span><span class="kc">ta</span><span class="err">do</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;available&quot;</span><span class="w"> </span><span class="err">(dispo</span><span class="kc">n</span><span class="err">ible)</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">O</span><span class="kc">tr</span><span class="err">os</span><span class="w"> </span><span class="err">es</span><span class="kc">ta</span><span class="err">dos</span><span class="w"> </span><span class="err">posibles</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pending&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;deleting&quot;</span>
+
+<span class="w">    </span><span class="nt">&quot;OwnerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">Tu</span><span class="w"> </span><span class="kc">n</span><span class="err">úmero</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">cue</span><span class="kc">nta</span><span class="w"> </span><span class="err">AWS</span>
+
+<span class="w">    </span><span class="nt">&quot;InstanceTenancy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">recursos</span><span class="w"> </span><span class="err">compar</span><span class="kc">t</span><span class="err">idos</span><span class="w"> </span><span class="err">(más</span><span class="w"> </span><span class="err">eco</span><span class="kc">n</span><span class="err">ómico)</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="s2">&quot;dedicated&quot;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">hardware</span><span class="w"> </span><span class="err">dedicado</span><span class="w"> </span><span class="err">(más</span><span class="w"> </span><span class="err">caro)</span>
+
+<span class="w">    </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vpc-produccion-elche&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">E</span><span class="kc">t</span><span class="err">ique</span><span class="kc">ta</span><span class="w"> </span><span class="err">para</span><span class="w"> </span><span class="err">ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">f</span><span class="err">icar</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">VPC</span>
+<span class="w">    </span><span class="err">└─</span><span class="w"> </span><span class="err">Ú</span><span class="kc">t</span><span class="err">il</span><span class="w"> </span><span class="err">para</span><span class="w"> </span><span class="err">orga</span><span class="kc">n</span><span class="err">izar</span><span class="w"> </span><span class="err">y</span><span class="w"> </span><span class="err">buscar</span><span class="w"> </span><span class="err">recursos</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="segunda-vpc-vpc-por-defecto">Segunda VPC (VPC por Defecto):</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.31.0.0/16&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">crea</span><span class="w"> </span><span class="err">es</span><span class="kc">ta</span><span class="w"> </span><span class="err">VPC</span><span class="w"> </span><span class="err">au</span><span class="kc">t</span><span class="err">omá</span><span class="kc">t</span><span class="err">icame</span><span class="kc">nte</span>
+
+<span class="w">    </span><span class="nt">&quot;IsDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">I</span><span class="kc">n</span><span class="err">dica</span><span class="w"> </span><span class="err">que</span><span class="w"> </span><span class="err">es</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">VPC</span><span class="w"> </span><span class="err">por</span><span class="w"> </span><span class="err">de</span><span class="kc">fe</span><span class="err">c</span><span class="kc">t</span><span class="err">o</span>
+<span class="w">    </span><span class="err">├─</span><span class="w"> </span><span class="err">La</span><span class="w"> </span><span class="err">primera</span><span class="w"> </span><span class="err">VPC</span><span class="w"> </span><span class="err">puede</span><span class="w"> </span><span class="err">elimi</span><span class="kc">nar</span><span class="w"> </span><span class="err">i</span><span class="kc">nstan</span><span class="err">cias</span><span class="w"> </span><span class="err">aquí</span><span class="w"> </span><span class="err">por</span><span class="w"> </span><span class="err">error</span>
+
+<span class="w">    </span><span class="nt">&quot;Tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="err">└─</span><span class="w"> </span><span class="err">Si</span><span class="kc">n</span><span class="w"> </span><span class="err">e</span><span class="kc">t</span><span class="err">ique</span><span class="kc">tas</span><span class="w"> </span><span class="err">(</span><span class="kc">n</span><span class="err">o</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">modi</span><span class="kc">f</span><span class="err">icas</span><span class="kc">te</span><span class="err">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="rango-cidr-explicado">Rango CIDR explicado:</h3>
+<div class="highlight"><pre><span></span><code>10.0.0.0/16
+├─ 10.0.0.0     = Primera IP (red)
+├─ 10.0.0.1     = Primera IP usable (gateway)
+├─ 10.0.x.x     = IPs para instancias
+├─ 10.0.255.255 = Última IP (broadcast)
+└─ /16 = 2^(32-16) = 65.536 IPs totales
+
+Otros ejemplos:
+├─ 192.168.0.0/24 = 256 IPs (típico en redes locales)
+├─ 172.16.0.0/12  = 1.048.576 IPs
+└─ 10.0.0.0/8     = 16.777.216 IPs
+</code></pre></div>
+<hr />
+<h2 id="ejemplo-4-aws-ec2-describe-subnets-query-subnetsavailabilityzone">EJEMPLO 4: <code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></h2>
+<h3 id="comando-ejecutado_3">Comando ejecutado:</h3>
+<div class="highlight"><pre><span></span><code>PS C:\Users\profesor&gt; aws ec2 describe-subnets --query &quot;Subnets[*].AvailabilityZone&quot;
+</code></pre></div>
+<h3 id="salida-esperada-lista-de-zonas-de-disponibilidad">Salida esperada (lista de zonas de disponibilidad):</h3>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;us-east-1a&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;us-east-1b&quot;</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="explicacion-de-las-zonas">Explicación de las zonas:</h3>
+<h4 id="nomenclatura-de-region-y-zona">Nomenclatura de región y zona:</h4>
+<div class="highlight"><pre><span></span><code>eu-south-2a
+├─ eu           = Continente (Europa)
+├─ south        = Ubicación (Sur)
+├─ 2            = Número de región sur en Europa
+└─ a            = Zona de disponibilidad (Centro de datos físico)
+
+Desglose de regiones:
+├─ eu-west-1       = Irlanda (1ª región oeste)
+├─ eu-west-2       = Londres (2ª región oeste)
+├─ eu-central-1    = Frankfurt (central)
+├─ eu-south-1      = Milán (1ª región sur)
+├─ eu-south-2      = Barcelona/Palermo (2ª región sur) ← ESPAÑA
+└─ eu-north-1      = Estocolmo (norte)
+
+us-east-1a
+├─ us             = Estados Unidos
+├─ east           = Costa Este
+├─ 1              = 1ª región este
+└─ a              = Zona A (Virginia - datos reales)
+</code></pre></div>
+<h3 id="numero-de-zonas-por-region">Número de zonas por región:</h3>
+<table>
+<thead>
+<tr>
+<th>Región</th>
+<th>Zonas</th>
+<th>Ubicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eu-south-2</td>
+<td>a, b, c</td>
+<td>España/Italia</td>
+</tr>
+<tr>
+<td>us-east-1</td>
+<td>a, b, c, d, e, f</td>
+<td>Virginia, USA</td>
+</tr>
+<tr>
+<td>eu-west-1</td>
+<td>a, b, c</td>
+<td>Irlanda</td>
+</tr>
+</tbody>
+</table>
+<h3 id="distancia-entre-zonas">Distancia entre zonas:</h3>
+<div class="highlight"><pre><span></span><code>eu-south-2 (Zona a y Zona b):
+├─ Distancia: ~50-100 km (ambas en península Ibérica)
+├─ Tiempo de latencia: &lt;10 ms
+└─ Propósito: Redundancia (si una falla, la otra funciona)
+
+Ventaja para anti-ransomware:
+├─ Si zona a es atacada y cifrada
+├─ Zona b tiene copias sin cifrar
+└─ Puedes recuperarte en minutos
+</code></pre></div>
+<h3 id="por-que-importa-el-query">¿Por qué importa el <code>--query</code>?</h3>
+<p>Sin <code>--query</code>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Subnets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;SubnetId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subnet-123...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AvailabilityZone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AvailabilityZoneId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eus2-az1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.1.0/24&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="err">...</span><span class="w"> </span><span class="err">(</span><span class="mf">20+</span><span class="w"> </span><span class="err">campos</span><span class="w"> </span><span class="err">más)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Con <code>--query "Subnets[*].AvailabilityZone"</code>:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<p><strong>Beneficio:</strong> Filtra solo la información que necesitas (mucho más legible).</p>
+<hr />
+<h2 id="combinacion-de-los-4-comandos">COMBINACIÓN DE LOS 4 COMANDOS</h2>
+<h3 id="flujo-completo-que-verias">Flujo completo que verías:</h3>
+<div class="highlight"><pre><span></span><code>PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>--version
+aws-cli/2.13.27<span class="w"> </span>Python/3.11.5<span class="w"> </span>Windows/10.0.19045
+
+PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+<span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;UserId&quot;</span>:<span class="w"> </span><span class="s2">&quot;AIDACKCEVSQ6C2EXAMPLE&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Account&quot;</span>:<span class="w"> </span><span class="s2">&quot;123456789012&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Arn&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:user/profesor-ias-bd&quot;</span>
+<span class="o">}</span>
+
+PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>ec2<span class="w"> </span>describe-vpcs
+<span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;Vpcs&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">        </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;CidrBlock&quot;</span>:<span class="w"> </span><span class="s2">&quot;10.0.0.0/16&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;VpcId&quot;</span>:<span class="w"> </span><span class="s2">&quot;vpc-0d5f55429e55f89a2&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;State&quot;</span>:<span class="w"> </span><span class="s2">&quot;available&quot;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">]</span>
+<span class="o">}</span>
+
+PS<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\p</span>rofesor&gt;<span class="w"> </span>aws<span class="w"> </span>ec2<span class="w"> </span>describe-subnets<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;Subnets[*].AvailabilityZone&quot;</span>
+<span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;eu-south-2a&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;eu-south-2b&quot;</span>
+<span class="o">]</span>
+</code></pre></div>
+<hr />
+<h2 id="interpretacion-para-la-clase">INTERPRETACIÓN PARA LA CLASE</h2>
+<h3 id="que-demuestra-cada-comando">Qué demuestra cada comando:</h3>
+<ol>
+<li>
+<p><strong><code>aws --version</code></strong></p>
+</li>
+<li>
+<p>✅ AWS CLI está instalado</p>
+</li>
+<li>✅ Tu sistema lo reconoce</li>
+<li>
+<p>Equivalente: "¿Tengo la herramienta?"</p>
+</li>
+<li>
+<p><strong><code>aws sts get-caller-identity</code></strong></p>
+</li>
+<li>
+<p>✅ Tus credenciales son válidas</p>
+</li>
+<li>✅ Estás autenticado en AWS</li>
+<li>✅ AWS sabe quién eres</li>
+<li>
+<p>Equivalente: "¿Soy quien digo ser?"</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-vpcs</code></strong></p>
+</li>
+<li>
+<p>✅ Tienes una red privada en AWS</p>
+</li>
+<li>✅ Puedes ver todos tus recursos de red</li>
+<li>✅ VPCs aisladas = seguridad</li>
+<li>
+<p>Equivalente: "¿Qué redes tengo disponibles?"</p>
+</li>
+<li>
+<p><strong><code>aws ec2 describe-subnets --query "Subnets[*].AvailabilityZone"</code></strong></p>
+</li>
+<li>
+<p>✅ Tu infraestructura está distribuida geográficamente</p>
+</li>
+<li>✅ Múltiples centros de datos</li>
+<li>✅ Redundancia automática</li>
+<li>Equivalente: "¿Dónde están distribuidos mis datos?"</li>
+</ol>
+<h3 id="conexion-con-arquitectura-anti-ransomware">Conexión con arquitectura anti-ransomware:</h3>
+<div class="highlight"><pre><span></span><code>CLI muestra infraestructura AWS
+        ↓
+        ├─ Datos en múltiples zonas (eu-south-2a y eu-south-2b)
+        ├─ Replicación automática entre zonas
+        └─ Si ransomware cifra zona A
+           → Zona B sigue disponible sin cifrar
+           → Recuperación en minutos (no semanas)
+</code></pre></div>
+<hr />
+<h2 id="errores-comunes-y-soluciones">ERRORES COMUNES Y SOLUCIONES</h2>
+<h3 id="error-1-aws-command-not-found">Error 1: "aws: command not found"</h3>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>--version
+bash:<span class="w"> </span>aws:<span class="w"> </span><span class="nb">command</span><span class="w"> </span>not<span class="w"> </span>found
+</code></pre></div>
+<p><strong>Causas y soluciones:</strong></p>
+<ol>
+<li>AWS CLI no está instalado → Reinstala siguiendo PARTE 1</li>
+<li>PATH no actualizado → Reinicia tu terminal/ordenador</li>
+<li>Instalación incompleta → Desinstala y reinstala</li>
+</ol>
+<hr />
+<h3 id="error-2-unable-to-locate-credentials">Error 2: "Unable to locate credentials"</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;InvalidUserID.NotFound&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The user ID does not exist&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Causas:</strong></p>
+<ul>
+<li>Credenciales no configuradas</li>
+<li>Credenciales incorrectas</li>
+<li>Archivo <code>~/.aws/credentials</code> no existe</li>
+</ul>
+<p><strong>Solución:</strong>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure
+<span class="c1"># Introduce:</span>
+<span class="c1"># - Access Key ID</span>
+<span class="c1"># - Secret Access Key</span>
+<span class="c1"># - Default region: eu-south-2</span>
+<span class="c1"># - Output format: json</span>
+</code></pre></div></p>
+<hr />
+<h3 id="error-3-accessdenied">Error 3: "AccessDenied"</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UnauthorizedOperation&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You are not authorized to perform this operation&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Causa:</strong> Tu usuario no tiene permiso para ver EC2</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Ve a AWS Console → IAM → Users</li>
+<li>Selecciona tu usuario</li>
+<li>"Add permissions" → "AmazonEC2ReadOnlyAccess"</li>
+<li>Espera 5 minutos</li>
+<li>Reintenta</li>
+</ol>
+<hr />
+<h3 id="error-4-invalid-credentials">Error 4: "Invalid credentials"</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;InvalidUserID.Malformed&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid id: &#39;AKIA...&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Causa:</strong> Access Key ID inválida o expirada</p>
+<p><strong>Solución:</strong></p>
+<ol>
+<li>Comprueba que copiaste correctamente la Access Key</li>
+<li>Si expiró, crea una nueva en AWS Console</li>
+<li>Ejecuta <code>aws configure</code> nuevamente</li>
+</ol>
+<hr />
+<h2 id="comandos-utiles-adicionales">COMANDOS ÚTILES ADICIONALES</h2>
+<h3 id="ver-configuracion-actual">Ver configuración actual:</h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure<span class="w"> </span>list
+</code></pre></div>
+<p>Salida:
+<div class="highlight"><pre><span></span><code>      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                &lt;not set&gt;             None    None
+access_key                 AKIA...             config  ~/.aws/credentials
+secret_key                 ****                config  ~/.aws/credentials
+    region                eu-south-2           config  ~/.aws/config
+</code></pre></div></p>
+<hr />
+<h3 id="cambiar-region-por-defecto">Cambiar región por defecto:</h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure<span class="w"> </span><span class="nb">set</span><span class="w"> </span>region<span class="w"> </span>eu-west-1
+</code></pre></div>
+<hr />
+<h3 id="ver-detalles-de-una-vpc-especifica">Ver detalles de una VPC específica:</h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-vpcs<span class="w"> </span>--vpc-ids<span class="w"> </span>vpc-0d5f55429e55f89a2
+</code></pre></div>
+<hr />
+<h3 id="listar-subredes-con-mas-detalles">Listar subredes con más detalles:</h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-subnets<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;Subnets[*].[SubnetId,AvailabilityZone,CidrBlock]&quot;</span>
+</code></pre></div>
+<p>Salida:
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;subnet-12345678&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;eu-south-2a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;10.0.1.0/24&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;subnet-87654321&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;eu-south-2b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;10.0.2.0/24&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div></p>
+<hr />
+<h2 id="cheat-sheet-referencia-rapida">CHEAT SHEET (Referencia rápida)</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalación y verificación</span>
+aws<span class="w"> </span>--version
+aws<span class="w"> </span>configure
+aws<span class="w"> </span>configure<span class="w"> </span>list
+
+<span class="c1"># Identidad y autenticación</span>
+aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+aws<span class="w"> </span>iam<span class="w"> </span>get-user
+
+<span class="c1"># Redes</span>
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-vpcs
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-subnets
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-network-interfaces
+
+<span class="c1"># Instancias</span>
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances<span class="w"> </span>--filters<span class="w"> </span><span class="s2">&quot;Name=instance-state-name,Values=running&quot;</span>
+
+<span class="c1"># Almacenamiento</span>
+aws<span class="w"> </span>s3<span class="w"> </span>ls
+aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://bucket-name
+
+<span class="c1"># Bases de datos</span>
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances
+
+<span class="c1"># Backup</span>
+aws<span class="w"> </span>backup<span class="w"> </span>list-backup-vaults
+
+<span class="c1"># Seguridad</span>
+aws<span class="w"> </span>iam<span class="w"> </span>list-users
+aws<span class="w"> </span>iam<span class="w"> </span>get-role<span class="w"> </span>--role-name<span class="w"> </span>nombre-rol
+</code></pre></div>
+<hr />
+<p><strong>Referencia preparada para Ciclos Formativos - IA y Big Data</strong>
+<strong>Elche, enero 2026</strong></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../actividad2_aws_cli/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Solución actividad 2">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Solución actividad 2
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../otras/presentacion_docente/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Presentación docente">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Presentación docente
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

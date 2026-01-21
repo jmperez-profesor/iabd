@@ -1,0 +1,1816 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/faq_preguntas_alumnos/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - FAQs PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#faqs-preguntas-frecuentes-sobre-la-actividad" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud y AWS - MIGRACIÓN A LA NUBE - CASO AYUNTAMIENTO DE ELCHE - FAQs PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sesion_cloud_aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cloud
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bedrock/sesion1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Bedrock
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesion_cloud_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sesión 1 Cloud y AWS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ejercicios
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ejercicios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio/actividad2_aws_cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución actividad 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio/anexo_ejemplos_salida_aws_cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anexo solución actividad 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Otras
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Otras
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/presentacion_docente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presentación docente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reto_migracion_ayuntamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración ayuntamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/sesion1_cloud_aws_perplexity_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto migración Perplexity mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/actividad_ayuntamiento_elche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Amazon Q
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/actividad_cloud_aws_perplexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Perplexity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/sesion1_cloud_aws_copilot_mejorado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot mejorado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/sesion1_cloud_aws_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto copilot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/sesion1_cloud_aws_gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../otras/sesion1_cloud_aws_proyecto_fenix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto Gemini+NoteBookLM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bedrock
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bedrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bedrock/sesion1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a Amazon Bedrock
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hugging Face
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hugging Face
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gradio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visión por computador
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Textos (NLP)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Textos (NLP)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto1 - Sentimientos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto2 - Clasificacion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Solución Reto3 - Generación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets en Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Actividades
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividad 1 - Datasets de Hugging Face
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="faqs-preguntas-frecuentes-sobre-la-actividad">FAQs - PREGUNTAS FRECUENTES SOBRE LA ACTIVIDAD</h1>
+<h2 id="migracion-a-cloud-aws-caso-ayuntamiento-de-elche">Migración a Cloud AWS - Caso Ayuntamiento de Elche</h2>
+<h3 id="preguntas-generales-sobre-la-actividad">📋 PREGUNTAS GENERALES SOBRE LA ACTIVIDAD</h3>
+<p><strong>1. ¿Cuánto tiempo tenemos exactamente para cada bloque?</strong>
+Los tiempos son orientativos: Bloque 1 (30 min), Bloque 2 (25 min), Bloque 3 (35 min), Bloque 4 (20 min), Bloque 5 (30 min). Podéis ajustar ligeramente si necesitáis más tiempo en algún bloque específico.</p>
+<p><strong>2. ¿Podemos usar internet durante la actividad?</strong>
+Sí, podéis consultar documentación oficial de AWS, calculadoras de precios y recursos proporcionados. No podéis copiar soluciones completas de otros casos.</p>
+<p><strong>3. ¿Qué pasa si nuestro equipo tiene solo 3 personas en lugar de 4?</strong>
+No hay problema. Repartid las tareas de manera equilibrada entre los 3 miembros. La evaluación del trabajo en equipo se adapta al tamaño del grupo.</p>
+<p><strong>4. ¿Es obligatorio usar la plantilla de entrega?</strong>
+Sí, es obligatorio. La plantilla asegura que todos los equipos entreguen la información de manera estructurada y facilita la evaluación.</p>
+<p><strong>5. ¿Podemos entregar el trabajo después de la clase?</strong>
+El documento final debe entregarse al finalizar la sesión. Las presentaciones son obligatorias y se realizan en clase.</p>
+<h3 id="preguntas-sobre-el-caso-de-estudio">🎯 PREGUNTAS SOBRE EL CASO DE ESTUDIO</h3>
+<p><strong>6. ¿El ciberataque al Ayuntamiento de Elche fue real?</strong>
+Sí, ocurrió en agosto de 2025. Podéis buscar información adicional en medios de comunicación para entender mejor el contexto.</p>
+<p><strong>7. ¿Tenemos que proponer una solución exacta o podemos ser creativos?</strong>
+Podéis ser creativos siempre que justifiquéis vuestras decisiones técnicamente. No hay una única solución correcta.</p>
+<p><strong>8. ¿Qué tamaño tiene el Ayuntamiento de Elche aproximadamente?</strong>
+Elche tiene unos 230.000 habitantes. Considerad esto para dimensionar la infraestructura y los recursos necesarios.</p>
+<p><strong>9. ¿Debemos asumir que el ayuntamiento no tenía ninguna medida de seguridad?</strong>
+No asumáis eso. Tenían medidas básicas, pero no fueron suficientes. Vuestra propuesta debe mejorar significativamente la seguridad.</p>
+<p><strong>10. ¿Podemos proponer soluciones híbridas (cloud + on-premise)?</strong>
+Sí, las soluciones híbridas son válidas y a menudo realistas para administraciones públicas. Justificad por qué elegís este enfoque.</p>
+<h3 id="preguntas-sobre-modelos-cloud">☁️ PREGUNTAS SOBRE MODELOS CLOUD</h3>
+<p><strong>11. ¿Cómo diferenciamos entre IaaS, PaaS y SaaS en servicios municipales?</strong>
+IaaS: Infraestructura básica (servidores, redes). PaaS: Plataformas de desarrollo (bases de datos gestionadas). SaaS: Aplicaciones completas (email, office).</p>
+<p><strong>12. ¿Un ayuntamiento puede usar cloud público para datos sensibles?</strong>
+Sí, pero debe cumplir normativas como RGPD y ENS (<a href="https://ens.ccn.cni.es/es/que-es-el-ens">Esquema Nacional de Seguridad</a>). AWS tiene certificaciones de seguridad que lo permiten.</p>
+<p><strong>13. ¿Qué significa "multicloud" en este contexto?</strong>
+Usar servicios de múltiples proveedores cloud (AWS + Azure + Google Cloud) para evitar dependencia de un solo proveedor.</p>
+<p><strong>14. ¿Es mejor cloud privado para un ayuntamiento?</strong>
+Depende del presupuesto y requisitos. Cloud público suele ser más económico y seguro para ayuntamientos medianos.</p>
+<p><strong>15. ¿Podemos recomendar cloud híbrido como solución principal?</strong>
+Sí, es una opción válida. Mantener algunos sistemas críticos on-premise y migrar otros a cloud público.</p>
+<h3 id="preguntas-sobre-arquitectura-aws">🏗️ PREGUNTAS SOBRE ARQUITECTURA AWS</h3>
+<p><strong>16. ¿Qué servicios AWS son imprescindibles para un ayuntamiento?</strong>
+EC2 (servidores), RDS (bases de datos), S3 (almacenamiento), VPC (red privada), IAM (seguridad), CloudFront (web).</p>
+<p><strong>17. ¿Necesitamos diseñar la arquitectura de red completa?</strong>
+Sí, al menos un diagrama básico con VPC, subredes públicas/privadas, y conexiones principales.</p>
+<p><strong>18. ¿Podemos usar servicios serverless como Lambda?</strong>
+Sí, son ideales para funciones específicas como procesamiento de formularios o notificaciones automáticas.</p>
+<p><strong>19. ¿Qué base de datos recomendáis para un ayuntamiento?</strong>
+RDS con MySQL o PostgreSQL para aplicaciones tradicionales. DynamoDB para aplicaciones web modernas con alta escalabilidad.</p>
+<p><strong>20. ¿Es necesario incluir CDN (CloudFront) en la solución?</strong>
+Recomendable para mejorar el rendimiento de la web municipal, especialmente si hay ciudadanos en diferentes ubicaciones.</p>
+<h3 id="preguntas-sobre-seguridad">🔒 PREGUNTAS SOBRE SEGURIDAD</h3>
+<p><strong>21. ¿Qué medidas de seguridad son obligatorias?</strong>
+Cifrado en tránsito y reposo, autenticación multifactor, copias de seguridad automáticas, monitorización de seguridad.</p>
+<p><strong>22. ¿Cómo protegemos contra futuros ransomware?</strong>
+Backups inmutables en S3, segmentación de red, WAF, monitorización con CloudTrail, y plan de recuperación ante desastres.</p>
+<p><strong>23. ¿Qué es IAM y por qué es importante?</strong>
+Identity and Access Management. Controla quién puede acceder a qué recursos. Esencial para seguridad en cualquier arquitectura AWS.</p>
+<p><strong>24. ¿Necesitamos cumplir alguna normativa específica?</strong>
+Sí, RGPD (protección de datos) y ENS (Esquema Nacional de Seguridad) son obligatorios para administraciones públicas españolas.</p>
+<p><strong>25. ¿Qué es AWS Shield y cuándo lo usamos?</strong>
+Protección contra ataques DDoS. Shield Standard es gratuito, Shield Advanced es de pago para protección avanzada.</p>
+<h3 id="preguntas-sobre-costes">💰 PREGUNTAS SOBRE COSTES</h3>
+<p><strong>26. ¿Tenemos que calcular costes exactos?</strong>
+No exactos, pero sí estimaciones realistas usando la calculadora de AWS. Considerad el presupuesto limitado de un ayuntamiento.</p>
+<p><strong>27. ¿Qué servicios de AWS son más caros?</strong>
+Generalmente EC2 con instancias grandes, transferencia de datos, y servicios premium como Shield Advanced o Support Enterprise.</p>
+<p><strong>28. ¿Cómo optimizamos costes en AWS?</strong>
+Instancias reservadas, auto-scaling, S3 Intelligent Tiering, eliminar recursos no utilizados, monitorización de costes.</p>
+<p><strong>29. ¿Es más barato que mantener infraestructura propia?</strong>
+Generalmente sí para organizaciones medianas, especialmente considerando personal, mantenimiento, actualizaciones y seguridad.</p>
+<p><strong>30. ¿Podemos usar servicios gratuitos de AWS?</strong>
+Sí, hay un tier gratuito, pero para un ayuntamiento real necesitaréis servicios de pago para garantizar disponibilidad y soporte.</p>
+<h3 id="preguntas-sobre-migracion">📋 PREGUNTAS SOBRE MIGRACIÓN</h3>
+<p><strong>31. ¿Cuánto tiempo debería durar la migración completa?</strong>
+Entre 6-18 meses dependiendo de la complejidad. Fase 1: 2-3 meses, Fase 2: 3-6 meses, Fase 3: 3-9 meses.</p>
+<p><strong>32. ¿Qué migramos primero?</strong>
+Servicios no críticos (web informativa, backups), luego aplicaciones principales, finalmente sistemas críticos.</p>
+<p><strong>33. ¿Cómo minimizamos el downtime durante la migración?</strong>
+Migración por fases, horarios de baja actividad, sistemas paralelos temporales, rollback plans.</p>
+<p><strong>34. ¿Qué riesgos principales debemos considerar?</strong>
+Pérdida de datos, downtime prolongado, problemas de compatibilidad, resistencia al cambio del personal, sobrecostes.</p>
+<p><strong>35. ¿Necesitamos formar al personal municipal?</strong>
+Sí, es crítico. Incluir formación en AWS básico, nuevos procedimientos, y gestión de la nueva infraestructura.</p>
+<h3 id="preguntas-sobre-evaluacion">📊 PREGUNTAS SOBRE EVALUACIÓN</h3>
+<p><strong>36. ¿Qué valora más el profesor en la solución?</strong>
+Coherencia técnica, justificación de decisiones, viabilidad práctica, y comprensión de conceptos cloud.</p>
+<p><strong>37. ¿Es mejor una solución simple o compleja?</strong>
+Simple pero completa. Mejor pocos servicios bien justificados que muchos sin explicación clara.</p>
+<p><strong>38. ¿Cómo se evalúa el trabajo en equipo?</strong>
+Participación equilibrada, colaboración efectiva, reparto de tareas, y resolución de conflictos internos.</p>
+<p><strong>39. ¿Qué pasa si no terminamos todos los bloques?</strong>
+Priorizad completar bien los bloques 1, 2 y 3. Los bloques 4 y 5 pueden ser más breves si es necesario.</p>
+<p><strong>40. ¿Podemos usar diagramas o solo texto?</strong>
+Los diagramas son muy valorados, especialmente para arquitectura. Usad herramientas simples como draw.io o dibujos a mano.</p>
+<h3 id="preguntas-tecnicas-especificas">🛠️ PREGUNTAS TÉCNICAS ESPECÍFICAS</h3>
+<p><strong>41. ¿Qué es una VPC y por qué la necesitamos?</strong>
+Virtual Private Cloud. Crea una red privada virtual en AWS para aislar y proteger vuestros recursos.</p>
+<p><strong>42. ¿Cuál es la diferencia entre EBS y S3?</strong>
+EBS: almacenamiento de bloques para EC2 (como discos duros). S3: almacenamiento de objetos para archivos y backups.</p>
+<p><strong>43. ¿Qué es RDS Multi-AZ?</strong>
+Replica automática de la base de datos en múltiples zonas de disponibilidad para alta disponibilidad.</p>
+<p><strong>44. ¿Necesitamos Load Balancer para un ayuntamiento?</strong>
+Recomendable para distribuir tráfico y mejorar disponibilidad, especialmente durante picos de demanda ciudadana.</p>
+<p><strong>45. ¿Qué es CloudWatch y para qué sirve?</strong>
+Servicio de monitorización que permite supervisar recursos, crear alertas y analizar logs del sistema.</p>
+<h3 id="preguntas-sobre-presentacion">🎯 PREGUNTAS SOBRE PRESENTACIÓN</h3>
+<p><strong>46. ¿Qué debe incluir nuestra presentación de 5 minutos?</strong>
+Resumen del problema, solución propuesta, servicios AWS clave, beneficios principales, y costes estimados.</p>
+<p><strong>47. ¿Todos los miembros del equipo deben hablar?</strong>
+Recomendable que todos participen, pero podéis organizaros como prefiráis. Lo importante es demostrar trabajo colaborativo.</p>
+<p><strong>48. ¿Podemos usar slides o solo hablar?</strong>
+Podéis usar slides simples, pero no es obligatorio. Un diagrama de arquitectura en papel puede ser suficiente.</p>
+<p><strong>49. ¿Qué preguntas puede hacer el profesor durante la presentación?</strong>
+Justificación de decisiones técnicas, alternativas consideradas, gestión de riesgos, y comprensión de conceptos cloud.</p>
+<p><strong>50. ¿Cómo gestionamos los nervios de la presentación?</strong>
+Preparad un guión básico, repartid las partes, practicad brevemente, y recordad que es una actividad de aprendizaje, no un examen final.</p>
+<hr />
+<h2 id="preguntas-tecnicas-avanzadas-de-cloud">🔧 PREGUNTAS TÉCNICAS AVANZADAS DE CLOUD</h2>
+<p><strong>51. ¿Qué es la elasticidad en cloud computing?</strong>
+Capacidad de escalar recursos automáticamente según demanda. AWS Auto Scaling ajusta instancias EC2 según tráfico web del ayuntamiento.</p>
+<p><strong>52. ¿Cuál es la diferencia entre escalabilidad horizontal y vertical?</strong>
+Vertical: aumentar potencia de una máquina (más CPU/RAM). Horizontal: añadir más máquinas. Cloud favorece escalabilidad horizontal.</p>
+<p><strong>53. ¿Qué son las zonas de disponibilidad (AZ) en AWS?</strong>
+Centros de datos separados físicamente dentro de una región. Usar múltiples AZ garantiza alta disponibilidad ante fallos.</p>
+<p><strong>54. ¿Cómo funciona el modelo de responsabilidad compartida de AWS?</strong>
+AWS protege infraestructura física, vosotros protegéis datos, aplicaciones, configuración de seguridad y accesos.</p>
+<p><strong>55. ¿Qué es edge computing y cómo se relaciona con CloudFront?</strong>
+Procesamiento cerca del usuario final. CloudFront cachea contenido en ubicaciones edge para reducir latencia.</p>
+<p><strong>56. ¿Cuándo usar contenedores (ECS/EKS) vs máquinas virtuales (EC2)?</strong>
+Contenedores para aplicaciones modernas, microservicios, desarrollo ágil. VMs para aplicaciones legacy, mayor aislamiento.</p>
+<p><strong>57. ¿Qué es serverless y cuándo aplicarlo en un ayuntamiento?</strong>
+Ejecutar código sin gestionar servidores. Ideal para formularios web, notificaciones automáticas, procesamiento de documentos.</p>
+<p><strong>58. ¿Cómo garantizar compliance con GDPR en AWS?</strong>
+Cifrado de datos, logs de auditoría, controles de acceso, Data Processing Agreements, herramientas de AWS compliance.</p>
+<p><strong>59. ¿Qué es Infrastructure as Code (IaC) y por qué usarlo?</strong>
+Definir infraestructura mediante código (CloudFormation, Terraform). Permite reproducibilidad, versionado y automatización.</p>
+<p><strong>60. ¿Cuál es la diferencia entre backup y disaster recovery?</strong>
+Backup: copias de datos. Disaster Recovery: plan completo para restaurar operaciones tras incidente mayor.</p>
+<h2 id="preguntas-avanzadas-de-arquitectura">🏗️ PREGUNTAS AVANZADAS DE ARQUITECTURA</h2>
+<p><strong>61. ¿Qué patrones de arquitectura cloud recomendáis para alta disponibilidad?</strong>
+Multi-AZ deployment, load balancing, auto-scaling, circuit breakers, graceful degradation, health checks.</p>
+<p><strong>62. ¿Cómo diseñar una arquitectura tolerante a fallos?</strong>
+Redundancia en múltiples niveles, eliminación de puntos únicos de fallo, timeouts, retries, fallback mechanisms.</p>
+<p><strong>63. ¿Qué es una arquitectura de microservicios y cuándo usarla?</strong>
+Aplicación dividida en servicios pequeños independientes. Útil para equipos grandes, escalabilidad independiente, tecnologías diversas.</p>
+<p><strong>64. ¿Cómo implementar blue-green deployment en AWS?</strong>
+Dos entornos idénticos (blue/green). Desplegar en green, probar, cambiar tráfico. Permite rollback instantáneo.</p>
+<p><strong>65. ¿Qué es API Gateway y por qué lo necesitamos?</strong>
+Punto de entrada único para APIs. Gestiona autenticación, rate limiting, monitorización, transformación de datos.</p>
+<p><strong>66. ¿Cómo diseñar para peak loads (picos de tráfico ciudadano)?</strong>
+Auto Scaling Groups, CloudFront CDN, ElastiCache, SQS para desacoplar, dimensionado basado en métricas históricas.</p>
+<p><strong>67. ¿Qué es event-driven architecture y sus beneficios?</strong>
+Componentes comunican mediante eventos. Desacoplamiento, escalabilidad, procesamiento asíncrono. Usar SNS/SQS/EventBridge.</p>
+<p><strong>68. ¿Cómo implementar CQRS (Command Query Responsibility Segregation)?</strong>
+Separar operaciones de lectura y escritura. Optimizar cada una independientemente. Útil para sistemas con alta carga.</p>
+<p><strong>69. ¿Qué consideraciones hay para arquitecturas multi-tenant?</strong>
+Aislamiento de datos, seguridad por tenant, escalabilidad independiente, personalización, compliance por cliente.</p>
+<p><strong>70. ¿Cómo diseñar APIs RESTful escalables en cloud?</strong>
+Stateless design, caching apropiado, paginación, rate limiting, versionado, documentación OpenAPI, monitorización.</p>
+<h2 id="preguntas-avanzadas-de-redes">🌐 PREGUNTAS AVANZADAS DE REDES</h2>
+<p><strong>71. ¿Cómo configurar subredes públicas y privadas correctamente?</strong>
+Públicas: con Internet Gateway, para load balancers. Privadas: sin acceso directo internet, para bases de datos, con NAT Gateway.</p>
+<p><strong>72. ¿Qué es un NAT Gateway y cuándo usarlo?</strong>
+Permite a instancias en subredes privadas acceder a internet para actualizaciones, sin recibir conexiones entrantes.</p>
+<p><strong>73. ¿Cómo funciona el routing en una VPC?</strong>
+Route tables definen destinos de tráfico. Cada subred asociada a una route table. Rutas más específicas tienen prioridad.</p>
+<p><strong>74. ¿Qué son los Security Groups vs NACLs?</strong>
+Security Groups: firewall a nivel instancia, stateful. NACLs: firewall a nivel subred, stateless. Usar ambos en capas.</p>
+<p><strong>75. ¿Cómo conectar VPC con redes on-premise?</strong>
+VPN Site-to-Site para conexiones cifradas por internet. Direct Connect para conexiones dedicadas de alta velocidad.</p>
+<p><strong>76. ¿Qué es VPC Peering y cuándo usarlo?</strong>
+Conectar dos VPCs para comunicación privada. Útil para separar entornos (prod/dev) manteniendo conectividad.</p>
+<p><strong>77. ¿Cómo implementar network segmentation efectiva?</strong>
+Múltiples subredes por función, Security Groups restrictivos, NACLs como segunda capa, VPC Flow Logs para auditoría.</p>
+<p><strong>78. ¿Qué es AWS Transit Gateway?</strong>
+Hub central para conectar múltiples VPCs y redes on-premise. Simplifica topologías de red complejas.</p>
+<p><strong>79. ¿Cómo optimizar el ancho de banda y reducir costes de transferencia?</strong>
+CloudFront CDN, VPC Endpoints, colocación en misma AZ, compresión, optimización de protocolos.</p>
+<p><strong>80. ¿Qué consideraciones hay para IPv6 en AWS?</strong>
+Soporte dual-stack, mayor espacio de direcciones, consideraciones de seguridad, migración gradual desde IPv4.</p>
+<h2 id="preguntas-avanzadas-de-migracion">🔄 PREGUNTAS AVANZADAS DE MIGRACIÓN</h2>
+<p><strong>81. ¿Qué estrategias de migración cloud existen (6 Rs)?</strong>
+Rehost (lift-and-shift), Replatform, Refactor, Repurchase, Retain, Retire. Elegir según complejidad y beneficios.</p>
+<p><strong>82. ¿Cómo evaluar la readiness de aplicaciones para cloud?</strong>
+Assessment de dependencias, performance, seguridad, compliance, costes, skills del equipo, business case.</p>
+<p><strong>83. ¿Qué es AWS Application Discovery Service?</strong>
+Herramienta para mapear aplicaciones on-premise, dependencias, utilización de recursos, planificar migración.</p>
+<p><strong>84. ¿Cómo migrar bases de datos grandes con mínimo downtime?</strong>
+AWS Database Migration Service (DMS), replicación continua, cambio de DNS, validación de datos, rollback plan.</p>
+<p><strong>85. ¿Qué es el patrón Strangler Fig para migración?</strong>
+Reemplazar gradualmente sistema legacy redirigiendo tráfico a nuevos componentes hasta eliminar el antiguo.</p>
+<p><strong>86. ¿Cómo gestionar datos durante la migración?</strong>
+Data sync tools, validación de integridad, backup completo, testing exhaustivo, plan de rollback de datos.</p>
+<p><strong>87. ¿Qué consideraciones hay para migrar aplicaciones stateful?</strong>
+Persistencia de sesiones, shared storage, clustering, load balancer sticky sessions, database clustering.</p>
+<p><strong>88. ¿Cómo planificar el testing post-migración?</strong>
+Performance testing, security testing, user acceptance testing, disaster recovery testing, monitoring setup.</p>
+<p><strong>89. ¿Qué es cloud-native refactoring?</strong>
+Rediseñar aplicaciones para aprovechar servicios cloud: microservicios, containers, serverless, managed services.</p>
+<p><strong>90. ¿Cómo gestionar el change management durante migración?</strong>
+Comunicación clara, training programs, pilot groups, feedback loops, support durante transición.</p>
+<h2 id="preguntas-avanzadas-de-seguridad">🔐 PREGUNTAS AVANZADAS DE SEGURIDAD</h2>
+<p><strong>91. ¿Cómo implementar Zero Trust architecture en AWS?</strong>
+Verificar siempre, nunca confiar. IAM granular, MFA, network segmentation, encryption everywhere, continuous monitoring.</p>
+<p><strong>92. ¿Qué es AWS WAF y cómo configurarlo para un ayuntamiento?</strong>
+Web Application Firewall. Protege contra OWASP Top 10, SQL injection, XSS, rate limiting, geo-blocking.</p>
+<p><strong>93. ¿Cómo funciona AWS KMS para gestión de claves?</strong>
+Key Management Service. Cifrado centralizado, rotación automática, audit trails, integración con servicios AWS.</p>
+<p><strong>94. ¿Qué son los AWS Config Rules para compliance?</strong>
+Reglas automáticas que evalúan configuraciones AWS contra estándares de compliance, alertas de desviaciones.</p>
+<p><strong>95. ¿Cómo implementar logging y monitoring de seguridad?</strong>
+CloudTrail para API calls, VPC Flow Logs, GuardDuty para threat detection, Security Hub para centralizar.</p>
+<p><strong>96. ¿Qué es AWS Secrets Manager vs Parameter Store?</strong>
+Secrets Manager: rotación automática de credenciales. Parameter Store: configuración de aplicaciones, más económico.</p>
+<p><strong>97. ¿Cómo proteger contra insider threats?</strong>
+Principio de menor privilegio, segregación de funciones, audit logs, approval workflows, background checks.</p>
+<p><strong>98. ¿Qué es AWS Inspector y cuándo usarlo?</strong>
+Evaluación automática de vulnerabilidades en EC2 y container images. Esencial para security posture.</p>
+<p><strong>99. ¿Cómo implementar network security monitoring?</strong>
+VPC Flow Logs, AWS GuardDuty, third-party SIEM, anomaly detection, automated response workflows.</p>
+<p><strong>100. ¿Qué consideraciones hay para data classification y DLP?</strong>
+Clasificar datos por sensibilidad, AWS Macie para discovery, encryption basado en clasificación, access controls granulares.</p>
+<hr />
+<p><strong>💡 Consejo final</strong>: Si tenéis dudas durante la actividad, preguntad al profesor inmediatamente. Es mejor aclarar conceptos sobre la marcha que entregar una solución basada en malentendidos.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
