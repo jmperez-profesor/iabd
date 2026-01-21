@@ -6,11 +6,6 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 # PRESENTACIÓN DOCENTE: CIBERATAQUE AL AYUNTAMIENTO DE ELCHE
 ## Migración segura a AWS para gobernanza municipal
 
-**Curso:** Especialización en Inteligencia Artificial y Big Data  
-**Duración:** 1 hora de clase interactiva  
-**Caso real:** Ciberataque ransomware - Agosto 2025  
-**Modelo:** Presentación con 3 actividades grupales
-
 ---
 
 ## ÍNDICE DE CONTENIDOS
@@ -78,12 +73,14 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 **"AWS protege LA NUBE. TÚ proteges LO QUE PONES EN LA NUBE."**
 
 **AWS es responsable de:**
+
 - ✅ Seguridad física de centros de datos (vigilancia 24/7)
 - ✅ Hardware (servidores, discos, refrigeración)
 - ✅ Infraestructura de red (redundancia)
 - ✅ Cumplimiento de certificaciones (ISO 27001, ENS)
 
 **TÚ eres responsable de:**
+
 - ✅ Configurar bien los permisos (IAM)
 - ✅ Actualizar sistema operativo en tus EC2
 - ✅ Cifrar datos sensibles (padrón, tributos)
@@ -99,11 +96,13 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Computación: EC2 y Lambda
 
 **EC2 (Elastic Compute Cloud)**
+
 - Máquinas virtuales que puedes crear en minutos
 - Ejemplo municipal: Portal web, padrón, tributos
 - Modelo de pago: 24/7 (pagas siempre)
 
 **Lambda**
+
 - Ejecutar código sin gestionar servidores (serverless)
 - Ejemplo municipal: Procesar formularios, enviar notificaciones automáticas
 - Modelo de pago: Solo pagas cuando se ejecuta
@@ -111,17 +110,20 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Almacenamiento y Backup anti-ransomware
 
 **S3 (Simple Storage Service)**
+
 - Almacenar archivos ilimitados
 - Durabilidad: 99,999999999% (once nueves)
 - Ejemplo municipal: Expedientes digitalizados, backups de BBDD
 - Coste: ~0,023€/GB/mes (muy económico)
 
 **Protecciones anti-ransomware en S3:**
+
 - **Versionado:** Guarda todas las versiones de cada archivo. Si se cifra, recuperas versión anterior
 - **Object Lock (WORM):** Hace objetos inmutables por un período. NI SIQUIERA UN ADMIN puede borrar
 - **Glaciar:** Copias antiguas en almacenamiento barato. Siempre recuperables en horas
 
 **AWS Backup**
+
 - Gestión centralizada de copias de seguridad
 - Automatiza backups de EC2, RDS, S3, etc.
 - Un clic para restaurar si hay desastre
@@ -129,6 +131,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Bases de datos y Seguridad
 
 **RDS Multi-AZ (Relational Database Service)**
+
 - Base de datos relacional gestionada (MySQL, PostgreSQL, etc.)
 - AWS se encarga de: Parches, backups automáticos, replicación
 - Ejemplo municipal: Padrón, Tributos, Registro civil
@@ -137,22 +140,27 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
   - Usuario no nota nada
 
 **IAM (Identity and Access Management)**
+
 - Control granular de quién puede hacer qué
 - Principio de mínimo privilegio: Cada usuario solo lo que necesita
 
 **AWS WAF (Web Application Firewall)**
+
 - Protege aplicaciones web de ataques comunes:
   - SQL injection
   - XSS (Cross-Site Scripting)
   - Bots maliciosos
 
 **AWS Shield**
+
 - Protección contra ataques DDoS (denegación de servicio)
 - Evita que un ataque masivo de tráfico tumbe el portal
 
 ---
 
 ## 4. ARQUITECTURA ANTI-RANSOMWARE
+
+![](./img/arq_ayuntamiento_v2.png)
 
 ### 6 Capas de protección
 
@@ -208,12 +216,15 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### FASE A: ANÁLISIS (15 minutos)
 
 **CONTEXTO:**
+
 > El Ayuntamiento de Elche sufrió un ataque de ransomware en agosto 2025. Los sistemas quedaron cifrados. Servicios municipales estuvieron caídos durante semanas. Las copias de seguridad también fueron cifradas porque estaban en el mismo CPD.
 
 **TAREA DEL GRUPO:**
+
 Analizar qué falló en la infraestructura on-premise del ayuntamiento.
 
 **PREGUNTAS GUÍA:**
+
 1. ¿Qué servicios municipales quedaron afectados?
 2. ¿Por qué las copias de seguridad no sirvieron para recuperarse rápidamente?
 3. ¿Qué riesgos tiene tener toda la infraestructura en un único CPD?
@@ -221,18 +232,21 @@ Analizar qué falló en la infraestructura on-premise del ayuntamiento.
 5. ¿Cuál fue el mayor error en la planificación de disaster recovery?
 
 **PRODUCTO ESPERADO:**
+
 - Lista de **3–5 vulnerabilidades** identificadas en el CPD on-premise
 - Conectar cada vulnerabilidad con el impacto real del ataque
 
 ### FASE B: PROPUESTA (20 minutos)
 
 **DECISIÓN CLAVE:**
+
 ¿Qué modelo recomiendan para el Ayuntamiento de Elche?
 - [ ] **Nube pública 100%**: Todo en AWS
 - [ ] **Modelo híbrido**: Parte en AWS, parte en local
 - [ ] **On-premise mejorado**: Quedarse en local pero fortalecer seguridad/backups
 
 **TAREA DEL GRUPO:**
+
 Para cada sistema municipal, decidir dónde va y por qué:
 
 | SISTEMA | ¿NUBE O LOCAL? | JUSTIFICACIÓN TÉCNICA |
@@ -245,6 +259,7 @@ Para cada sistema municipal, decidir dónde va y por qué:
 | Aplicaciones legacy muy antiguas | | |
 
 **PREGUNTAS GUÍA:**
+
 1. ¿Qué pasa si AWS sufre una caída masiva? ¿Cómo os protegéis?
 2. ¿Hay datos que por ley NO pueden salir de España?
 3. ¿AWS tiene región en España?
@@ -252,12 +267,14 @@ Para cada sistema municipal, decidir dónde va y por qué:
 5. ¿Qué modelo permite recuperarse más rápido de otro ransomware?
 
 **PRODUCTO ESPERADO:**
+
 - Tabla de decisión completada
 - Párrafo de justificación (5–8 líneas) explicando vuestra estrategia
 
 ### FASE C: ARQUITECTURA (25 minutos)
 
 **TAREA DEL GRUPO:**
+
 Dibujar un esquema básico de arquitectura en AWS que:
 - ✅ Mantenga el portal ciudadano siempre disponible
 - ✅ Proteja las bases de datos del padrón y tributos
@@ -265,6 +282,7 @@ Dibujar un esquema básico de arquitectura en AWS que:
 - ✅ Permita recuperarse en pocas horas de un desastre
 
 **ELEMENTOS MÍNIMOS QUE DEBEN APARECER:**
+
 - VPC (Virtual Private Cloud)
 - Subredes públicas (para frontales web)
 - Subredes privadas (para BBDD)
@@ -275,6 +293,7 @@ Dibujar un esquema básico de arquitectura en AWS que:
 - Al menos un servicio de seguridad (WAF, Shield, o ambos)
 
 **PREGUNTAS GUÍA:**
+
 1. ¿Dónde ponéis la BBDD, en subred pública o privada? ¿Por qué?
 2. ¿Quién puede acceder a los backups en S3? ¿Cómo evitáis que un atacante con credenciales robadas los borre?
 3. Si cae la zona de disponibilidad principal, ¿qué pasa con vuestra BBDD? ¿Hay downtime?
@@ -282,6 +301,7 @@ Dibujar un esquema básico de arquitectura en AWS que:
 5. ¿Dónde está la VPN que conecta con el CPD local para aplicaciones legacy?
 
 **PRODUCTO ESPERADO:**
+
 Diagrama de arquitectura con:
 - Servicios AWS etiquetados
 - Flechas que muestren flujo de datos
@@ -296,6 +316,7 @@ Diagrama de arquitectura con:
 ### Modelo elegido: Nube híbrida con AWS como nube principal
 
 **Justificación:**
+
 - El ayuntamiento tiene algunas apps legacy que migrar gradualmente
 - Datos sensibles (padrón, tributos) necesitan residencia en España → AWS región eu-south-2
 - Servicios de cara al ciudadano (portal, sede) se benefician de HA en AWS
@@ -314,6 +335,7 @@ Diagrama de arquitectura con:
 | Apps legacy internas | **On-premise** (temporal) | — | Se mantienen localmente mientras se modernizan. Conectadas por VPN |
 
 **VPN Site-to-Site:**
+
 - Conexión cifrada entre CPD local y AWS
 - Permite que apps legacy accedan a BBDD en RDS
 - Plan: migrar progresivamente a AWS
@@ -351,27 +373,32 @@ Diagrama de arquitectura con:
 ## CONCLUSIONES CLAVE
 
 ### 🔴 El problema (On-premise)
+
 - Backups locales + punto único de fallo = desastre
 - Una sola zona de fallo
 - Recuperación lenta (semanas)
 
 ### ☁️ La solución (AWS)
+
 - Nube con diseño anti-ransomware
 - Multi-AZ (replicación automática)
 - Versionado + Object Lock (backups inmutables)
 - IAM + MFA (acceso controlado)
 
 ### 💡 Lección principal
+
 - Los datos deben estar **SEPARADOS geográficamente**
 - Deben estar **PROTEGIDOS** contra borrado/cifrado
 - Debe haber **AUTOMATIZACIÓN** en recuperación ante desastres
 
 ### 🎯 Impacto para el ciudadano
+
 - Sigue usando sede electrónica sin interrupciones
 - Confía en que sus datos están seguros
 - El ayuntamiento opera con continuidad
 
 ### 📈 Futuro
+
 - Una vez en AWS, migrar más servicios
 - Mejorar análisis de datos (IA/BigData)
 - Automatizar procesos administrativos
@@ -392,18 +419,12 @@ Diagrama de arquitectura con:
 | 50–55 min | Puesta en común | 1–2 grupos exponen (2–3 min c/u). Feedback docente. |
 | 55–60 min | Evaluación + Cierre | Explicar rúbrica, debate abierto, conclusiones. |
 
-### Materiales necesarios
-- [ ] Copia de este documento con los apuntes
-- [ ] Acceso a [AWS Pricing Calculator](https://calculator.aws)
-- [ ] Herramienta de dibujo (Miro, draw.io, papel + pizarra, Lucidchart)
-- [ ] Proyector / pantalla compartida
-- [ ] Dispositivos para que los grupos tomen notas
-
 ### Recomendaciones pedagógicas
 
 1. **Humaniza el caso:** Muestra imágenes de Elche, explica cómo afectó al ciudadano
 2. **Conecta con lo local:** Invita a los alumnos a pensar en su ayuntamiento → ¿Qué datos guarda?
 3. **Roles en los grupos:** Asigna:
+
    - Analista de riesgos
    - Arquitecto cloud
    - Responsable de seguridad
@@ -411,6 +432,7 @@ Diagrama de arquitectura con:
 4. **Actividad práctica:** No dejes que sea pasiva. Las 3 fases son interactivas.
 5. **Valida esfuerzo:** Usa la rúbrica. Commenta qué grupo hizo qué bien.
 6. **Extensión:** Si queda tiempo, pregunta:
+
    - ¿Y si el ataque hubiera incluido borrado de datos (no solo cifrado)?
    - ¿Cómo os defendéis contra eso?
 
@@ -420,7 +442,3 @@ Las fuentes oficiales que usarán los alumnos:
 - **Cloud computing / computación en la nube** → Teoría (bloques 2–3)
 - **Amazon Web Services. Servicios, redes, seguridad** → Servicios específicos (bloque 3–4)
 - Enlace: `aitor-medrano.github.io/iabd/cloud/`
-
----
-
-**Documento preparado para docencia en Ciclos Formativos de Grado Superior – Especialización en IA y Big Data.**

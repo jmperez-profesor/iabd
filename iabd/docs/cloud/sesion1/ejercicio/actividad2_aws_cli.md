@@ -8,13 +8,6 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 **Objetivo:** Instalar AWS CLI, autenticarse en AWS y ejecutar comandos para explorar la infraestructura cloud.
 
-**Requisitos previos:**
-
-- Ordenador con acceso a internet
-- Cuenta de AWS activa (si es cuenta de estudiante, validar permisos)
-- Permisos de administrador en el PC
-- Terminal/CMD accesible
-
 ---
 
 ## PARTE 1: INSTALACIÓN DE AWS CLI
