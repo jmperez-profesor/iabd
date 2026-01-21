@@ -143,7 +143,6 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 **RDS Multi-AZ (Relational Database Service)**
 ![image<](./../../images/bases_de_datos.png)
 
-
 - Base de datos relacional gestionada (MySQL, PostgreSQL, etc.)
 - AWS se encarga de: Parches, backups automáticos, replicación
 - Ejemplo municipal: Padrón, Tributos, Registro civil
