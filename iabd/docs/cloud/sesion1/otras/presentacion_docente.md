@@ -138,8 +138,11 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - Un clic para restaurar si hay desastre
 
 ### Bases de datos y Seguridad
+![image<](./../../images/redes_y_seguridad.png)
 
 **RDS Multi-AZ (Relational Database Service)**
+![image<](./../../images/bases_de_datos.png)
+
 
 - Base de datos relacional gestionada (MySQL, PostgreSQL, etc.)
 - AWS se encarga de: Parches, backups automáticos, replicación
@@ -203,7 +206,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
       └─ Logs de todo lo que ocurre
       └─ Alertas si detecta anomalías
 ```
-![image <](./../../images/arq_ayuntamiento_v2.png)
+![image <](./../../images/arq_ayuntamiento_v1.png)
 
 ### Estimación de costes
 
@@ -440,4 +443,4 @@ Las fuentes oficiales que usarán los alumnos:
 
 - **Cloud computing / computación en la nube** → Teoría (bloques 2–3)
 - **Amazon Web Services. Servicios, redes, seguridad** → Servicios específicos (bloque 3–4)
-- Enlace: [aitor-medrano.github.io/iabd/cloud/](`aitor-medrano.github.io/iabd/cloud/`)
+- Enlace: [https://aitor-medrano.github.io/iabd/cloud/aws.html](`https://aitor-medrano.github.io/iabd/cloud/aws.html`)
