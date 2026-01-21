@@ -48,7 +48,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 2. CONCEPTOS CLOUD: ON-PREMISE VS AWS
 
 ### Comparativa fundamental
-![image<](./../../images/ventajas_capex_opex_1.png)
+![image <](./../../images/ventajas_capex_opex_1.png)
 
 | CONCEPTO | ON-PREMISE | CLOUD (AWS) |
 |----------|-----------|-----------|
@@ -60,10 +60,10 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 | **Recuperación DR** | Difícil (tarda semanas) | Rápida (horas/minutos) |
 
 **Analogía clave:** On-premise es tener tu propia central eléctrica. Cloud es enchufarte a la red eléctrica y pagar solo lo que consumes.
-![image alt <](./../../images/ventajas_capex_opex_2.png)
+![image<](./../../images/ventajas_capex_opex_2.png)
 
 ### Modelos de servicio: IaaS, PaaS, SaaS
-![image alt <](./../../images/iaas_paas_saas.png)
+![image<](./../../images/iaas_paas_saas.png)
 
 | MODELO | EJEMPLO AWS | QUÉ TÚ CONTROLAS | VENTAJA |
 |--------|-------------|-----------------|--------|
@@ -74,10 +74,10 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ### Modelo de responsabilidad compartida AWS
 
 **"AWS protege LA NUBE. TÚ proteges LO QUE PONES EN LA NUBE."**
-![image alt <](./../../images/conceptos_fundamentales_de_seguridad.png)
+![image<](./../../images/conceptos_fundamentales_de_seguridad.png)
 
 **Principio de mínimo privilegio**
-![image alt <](./../../images/conceptos_fundamentales_de_IAM.png)
+![image<](./../../images/conceptos_fundamentales_de_IAM.png)
 
 **AWS es responsable de:**
 
@@ -169,7 +169,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 4. ARQUITECTURA ANTI-RANSOMWARE
 
-![](./../../images/arq_ayuntamiento_v2.png)
+![alt<](./../../images/arq_ayuntamiento_v2.png)
 
 ### 6 Capas de protección
 
@@ -201,6 +201,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
       └─ Logs de todo lo que ocurre
       └─ Alertas si detecta anomalías
 ```
+![image <](./../../images/arq_ayuntamiento_v2.png)
 
 ### Estimación de costes
 
