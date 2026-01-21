@@ -160,7 +160,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ## 4. ARQUITECTURA ANTI-RANSOMWARE
 
-![](./images/arq_ayuntamiento_v2.png)
+![](./../../images/arq_ayuntamiento_v2.png)
 
 ### 6 Capas de protección
 

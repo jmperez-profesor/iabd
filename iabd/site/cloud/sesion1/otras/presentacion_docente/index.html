@@ -2184,7 +2184,7 @@
 </ul>
 <hr />
 <h2 id="4-arquitectura-anti-ransomware">4. ARQUITECTURA ANTI-RANSOMWARE</h2>
-<p><img alt="" src="./img/arq_ayuntamiento_v2.png" /></p>
+<p><img alt="" src="./images/arq_ayuntamiento_v2.png" /></p>
 <h3 id="6-capas-de-proteccion">6 Capas de protección</h3>
 <div class="highlight"><pre><span></span><code>1. PROTECCIÓN EN BORDE
    └─ WAF + Shield filtran ataques antes de llegar a tu infraestructura
@@ -2286,10 +2286,12 @@
 </ul>
 <h3 id="fase-b-propuesta-20-minutos">FASE B: PROPUESTA (20 minutos)</h3>
 <p><strong>DECISIÓN CLAVE:</strong></p>
-<p>¿Qué modelo recomiendan para el Ayuntamiento de Elche?
-- [ ] <strong>Nube pública 100%</strong>: Todo en AWS
-- [ ] <strong>Modelo híbrido</strong>: Parte en AWS, parte en local
-- [ ] <strong>On-premise mejorado</strong>: Quedarse en local pero fortalecer seguridad/backups</p>
+<p>¿Qué modelo recomiendan para el Ayuntamiento de Elche?</p>
+<ul>
+<li>[ ] <strong>Nube pública 100%</strong>: Todo en AWS</li>
+<li>[ ] <strong>Modelo híbrido</strong>: Parte en AWS, parte en local</li>
+<li>[ ] <strong>On-premise mejorado</strong>: Quedarse en local pero fortalecer seguridad/backups</li>
+</ul>
 <p><strong>TAREA DEL GRUPO:</strong></p>
 <p>Para cada sistema municipal, decidir dónde va y por qué:</p>
 <table>
@@ -2348,11 +2350,13 @@
 </ul>
 <h3 id="fase-c-arquitectura-25-minutos">FASE C: ARQUITECTURA (25 minutos)</h3>
 <p><strong>TAREA DEL GRUPO:</strong></p>
-<p>Dibujar un esquema básico de arquitectura en AWS que:
-- ✅ Mantenga el portal ciudadano siempre disponible
-- ✅ Proteja las bases de datos del padrón y tributos
-- ✅ Garantice que un ransomware NO pueda cifrar los backups
-- ✅ Permita recuperarse en pocas horas de un desastre</p>
+<p>Dibujar un esquema básico de arquitectura en AWS que:</p>
+<ul>
+<li>✅ Mantenga el portal ciudadano siempre disponible</li>
+<li>✅ Proteja las bases de datos del padrón y tributos</li>
+<li>✅ Garantice que un ransomware NO pueda cifrar los backups</li>
+<li>✅ Permita recuperarse en pocas horas de un desastre</li>
+</ul>
 <p><strong>ELEMENTOS MÍNIMOS QUE DEBEN APARECER:</strong></p>
 <ul>
 <li>VPC (Virtual Private Cloud)</li>
