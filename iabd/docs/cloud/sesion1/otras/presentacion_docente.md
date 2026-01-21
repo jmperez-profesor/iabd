@@ -145,6 +145,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 - AWS se encarga de: Parches, backups automáticos, replicación
 - Ejemplo municipal: Padrón, Tributos, Registro civil
 - Ventaja clave: **Réplica sincronizada en otra Zona de Disponibilidad**
+  
   - Si cae AZ principal → failover automático en segundos
   - Usuario no nota nada
 
@@ -156,6 +157,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 **AWS WAF (Web Application Firewall)**
 
 - Protege aplicaciones web de ataques comunes:
+
   - SQL injection
   - XSS (Cross-Site Scripting)
   - Bots maliciosos
@@ -315,6 +317,7 @@ Dibujar un esquema básico de arquitectura en AWS que:
 **PRODUCTO ESPERADO:**
 
 Diagrama de arquitectura con:
+
 - Servicios AWS etiquetados
 - Flechas que muestren flujo de datos
 - Indicación de dónde está la seguridad (WAF, grupos de seguridad, IAM)
@@ -431,26 +434,10 @@ Diagrama de arquitectura con:
 | 50–55 min | Puesta en común | 1–2 grupos exponen (2–3 min c/u). Feedback docente. |
 | 55–60 min | Evaluación + Cierre | Explicar rúbrica, debate abierto, conclusiones. |
 
-### Recomendaciones pedagógicas
-
-1. **Humaniza el caso:** Muestra imágenes de Elche, explica cómo afectó al ciudadano
-2. **Conecta con lo local:** Invita a los alumnos a pensar en su ayuntamiento → ¿Qué datos guarda?
-3. **Roles en los grupos:** Asigna:
-
-   - Analista de riesgos
-   - Arquitecto cloud
-   - Responsable de seguridad
-   - Responsable de comunicación/costes
-4. **Actividad práctica:** No dejes que sea pasiva. Las 3 fases son interactivas.
-5. **Valida esfuerzo:** Usa la rúbrica. Commenta qué grupo hizo qué bien.
-6. **Extensión:** Si queda tiempo, pregunta:
-
-   - ¿Y si el ataque hubiera incluido borrado de datos (no solo cifrado)?
-   - ¿Cómo os defendéis contra eso?
-
 ### Conexión con apuntes de Aitor Medrano
 
 Las fuentes oficiales que usarán los alumnos:
+
 - **Cloud computing / computación en la nube** → Teoría (bloques 2–3)
 - **Amazon Web Services. Servicios, redes, seguridad** → Servicios específicos (bloque 3–4)
-- Enlace: `aitor-medrano.github.io/iabd/cloud/`
+- Enlace: [aitor-medrano.github.io/iabd/cloud/](`aitor-medrano.github.io/iabd/cloud/`)
