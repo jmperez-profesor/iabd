@@ -48,10 +48,7 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 ## 2. CONCEPTOS CLOUD: ON-PREMISE VS AWS
 
 ### Comparativa fundamental
-<div style="text-align: left;">
-![](./../../images/ventajas_capex_opex_1.png)
-</div>
-
+![image alt <](./../../images/ventajas_capex_opex_1.png)
 
 | CONCEPTO | ON-PREMISE | CLOUD (AWS) |
 |----------|-----------|-----------|
