@@ -73,6 +73,8 @@ nav:
     #  - Reto Gemini+NoteBookLM: cloud/sesion1/otras/sesion1_cloud_aws_proyecto_fenix.md
   - LLMs: 
     - llm/llm1.md
+    - llm/llm2.md
+    - llm/llm3.md
   - Bedrock: 
     - bedrock/sesion1.md
   - Hugging Face:
