@@ -71,6 +71,8 @@ nav:
     #  - Reto copilot: cloud/sesion1/otras/sesion1_cloud_aws_copilot.md
     #  - Reto Gemini: cloud/sesion1/otras/sesion1_cloud_aws_gemini.md
     #  - Reto Gemini+NoteBookLM: cloud/sesion1/otras/sesion1_cloud_aws_proyecto_fenix.md
+  - LLMs: 
+    - llm/llm1.md
   - Bedrock: 
     - bedrock/sesion1.md
   - Hugging Face:
