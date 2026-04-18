@@ -2031,6 +2031,8 @@
 <p>Esta sesión complementa LLM02 con un <strong>laboratorio práctico de parámetros y diseño de prompts</strong>, usando el mismo entorno Python/Flask y la misma API de Mistral que hemos configurado en las sesiones anteriores.</p>
 <p>El enfoque está pensado para <strong>hacer en clase</strong>, en ejercicios cortos, sin pedir memorias ni documentos extensos.</p>
 <hr />
+<p>Imagen:
+<img alt="" src="../images/ganchos_virales_10.png" /></p>
 <h2 id="1-objetivos-de-la-sesion-25">1. Objetivos de la sesión 2.5</h2>
 <p>Al finalizar esta sesión, el alumnado será capaz de:</p>
 <ul>
@@ -2045,8 +2047,12 @@
 <ul>
 <li>Python y un entorno virtual configurado.</li>
 <li>Clave de API de Mistral en la variable <code>MISTRAL_API_KEY</code>.</li>
-<li>Proyecto Flask básico (similar al de la práctica “Crear una webapp con Flask”):</li>
-<li><code>app.py</code></li>
+<li>
+<p>Proyecto Flask básico (similar al de la práctica “Crear una webapp con Flask”):</p>
+</li>
+<li>
+<p><code>app.py</code></p>
+</li>
 <li><code>utilities.py</code></li>
 <li><code>.env</code></li>
 <li><code>templates/home.html</code></li>
@@ -2105,13 +2111,21 @@
 <h3 id="33-tareas-del-alumnado">3.3. Tareas del alumnado</h3>
 <ol>
 <li>Ejecutar <code>python temp_demo.py</code>.</li>
-<li>Comparar las 4 salidas:</li>
-<li>código con temperatura baja,</li>
+<li>
+<p>Comparar las 4 salidas:</p>
+</li>
+<li>
+<p>código con temperatura baja,</p>
+</li>
 <li>código con temperatura alta,</li>
 <li>posts con temperatura baja,</li>
 <li>posts con temperatura alta.</li>
-<li>Comentar en voz alta:</li>
-<li>¿Qué configuración usarías para un ayudante de código?</li>
+<li>
+<p>Comentar en voz alta:</p>
+</li>
+<li>
+<p>¿Qué configuración usarías para un ayudante de código?</p>
+</li>
 <li>¿Qué configuración usarías para generar ideas de posts?</li>
 </ol>
 <hr />
@@ -2147,8 +2161,12 @@
 <ol>
 <li>Ejecutar <code>python top_p_demo.py</code>.</li>
 <li>Observar las diferencias entre <code>top_p=0.2</code>, <code>0.5</code> y <code>0.95</code>.</li>
-<li>Comentar brevemente (en voz alta):</li>
-<li>¿Con qué valor el texto parece más conservador?</li>
+<li>
+<p>Comentar brevemente (en voz alta):</p>
+</li>
+<li>
+<p>¿Con qué valor el texto parece más conservador?</p>
+</li>
 <li>¿Con cuál salen ideas más “locas” o inesperadas?</li>
 </ol>
 <hr />
@@ -2178,8 +2196,12 @@ Responde con este formato:
 <h3 id="53-ejercicio-en-clase">5.3. Ejercicio en clase</h3>
 <ol>
 <li>Probar los tres prompts con la misma configuración de parámetros.</li>
-<li>Comparar:</li>
-<li>claridad,</li>
+<li>
+<p>Comparar:</p>
+</li>
+<li>
+<p>claridad,</p>
+</li>
 <li>adecuación al público,</li>
 <li>organización de la respuesta.</li>
 <li>Extender el ejercicio cambiando solo el perfil del destinatario (FP, junior, profesor) y ver cómo adaptarías el prompt.</li>
@@ -2329,8 +2351,12 @@ Ahora convertimos esa app en una pequeña “<strong>Flask LLM Studio</strong>�
 <p>En clase, los alumnos deben:</p>
 <ol>
 <li>Lanzar la webapp con <code>python app.py</code>.</li>
-<li>Probar el mismo prompt en:</li>
-<li>modo <code>code_helper</code>,</li>
+<li>
+<p>Probar el mismo prompt en:</p>
+</li>
+<li>
+<p>modo <code>code_helper</code>,</p>
+</li>
 <li>modo <code>social_post</code>.</li>
 <li>Observar cómo cambian el tono y el estilo.</li>
 <li>Usar el modo <code>free_play</code> para experimentar con distintas combinaciones de temperatura y top‑p (idealmente, cambiando solo uno cada vez).</li>
