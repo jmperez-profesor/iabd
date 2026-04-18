@@ -946,6 +946,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ReAct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#react-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReAct: ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-consulta-a-un-agente-pidiendo-informacion-actual-donde-la-informacion-no-esta-actualizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de consulta a un agente pidiendo información actual donde la información no está actualizada:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -992,6 +1020,111 @@
     <span class="md-ellipsis">
       
         3.3. Entradas (Entries)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crear-un-agente-a-traves-de-mistra-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crear un agente a través de Mistra AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos previos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-iniciar-un-nuevo-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Iniciar un nuevo agente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-escribir-las-instrucciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Escribir las instrucciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-habilitar-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Habilitar herramientas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-anadir-una-base-de-conocimientos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4: Añadir una base de conocimientos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-prueba-y-comparte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5: Prueba y comparte
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar
       
     </span>
   </a>
@@ -2170,6 +2303,8 @@
 <p><img alt="Agente IA obstáculos" src="../images/agenteia_obstaculos.png" /></p>
 <h2 id="agentes-llm">Agentes LLM</h2>
 <p>Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de <strong>extender los LLMs permitiéndoles interactuar con herramientas y entornos externos</strong>.</p>
+<p><img alt="Arquitectura interna de un Agente LLM" src="../images/agente_arquitectura2.png" /></p>
+<p><strong>Arquitectura interna de un Agente LLM:</strong></p>
 <p><img alt="Arquitectura interna de un Agente LLM" src="../images/agente_arquitectura.png" /></p>
 <p>Tienen tres componentes:</p>
 <ul>
@@ -2222,7 +2357,11 @@ Observation:<span class="w"> </span>...
 </code></pre></div>
 Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop):</p>
 <p><img alt="Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop)." src="../images/ejemplo_razonamientos.png" /></p>
-<p><img alt="" src="../images/agente_running.gif" /></p>
+<p>ACTIVAR IMAGEN GIF <a href="../images/agente_running.gif"></a></p>
+<h4 id="react-ejemplo">ReAct: ejemplo</h4>
+<p><img alt="" src="../images/ejemplo_react.png" /></p>
+<h4 id="ejemplo-de-consulta-a-un-agente-pidiendo-informacion-actual-donde-la-informacion-no-esta-actualizada">Ejemplo de consulta a un agente pidiendo información actual donde la información no está actualizada:</h4>
+<p><img alt="" src="../images/agente_mistral_error.png" /></p>
 <h2 id="3-conceptos-clave-en-mistral-ai">3. Conceptos clave en Mistral AI</h2>
 <h3 id="31-modelo-vs-agente">3.1. Modelo vs. Agente</h3>
 <ul>
@@ -2262,6 +2401,107 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 <li>crear una conversación inicial con una lista de entradas,</li>
 <li>añadir nuevas entradas,</li>
 <li>recuperar el estado de la conversación.</li>
+</ul>
+<hr />
+<h2 id="4-crear-un-agente-a-traves-de-mistra-ai">4. Crear un agente a través de Mistra AI</h2>
+<p>En Mistral AI disponemos de una API de Agentes y chats (conversaciones) la cual permite a los desarrolladores crear dichos agentes, aprovechando múltiples funciones como:</p>
+<ul>
+<li>Múltiples modelos multimodales, tanto de <strong>texto como de visión</strong>.</li>
+<li>Estado persistente entre conversaciones.</li>
+<li>Capacidad para mantener conversaciones con modelos base, un solo agente y múltiples agentes.</li>
+<li>Herramientas de conexión integradas para la <strong>ejecución de código, búsqueda web , generación de imágenes y biblioteca de documentos</strong> listas para usar.</li>
+<li>Capacidad de transferencia de información para utilizar diferentes agentes como parte de un flujo de trabajo, lo que permite a los agentes llamar a otros agentes.</li>
+<li>También se admiten las funciones compatibles a través de nuestro punto final de finalización de chat, tales como:<ul>
+<li><strong>Resultados estructurados</strong></li>
+<li><strong>Comprensión del documento</strong></li>
+<li><strong>Uso de herramientas</strong></li>
+<li><strong>Citas</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="41">4.1</h2>
+<p>Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos.</p>
+<ul>
+<li>Escribe un mensaje del sistema para definir el comportamiento del agente.</li>
+<li>Adjunte documentos como fuente de conocimiento.</li>
+<li>Habilitar herramientas como la búsqueda web, el intérprete de código y Canvas.</li>
+<li>Comparte el agente con tu equipo.</li>
+</ul>
+<h4 id="requisitos-previos">Requisitos previos</h4>
+<ul>
+<li>Una cuenta de Le Chat (plan gratuito, Pro o para equipos).</li>
+<li>Opcionalmente, un documento para usar como fuente de conocimiento (PDF, TXT, DOCX).</li>
+</ul>
+<h3 id="paso-1-iniciar-un-nuevo-agente">Paso 1: Iniciar un nuevo agente</h3>
+<ol>
+<li>En la barra lateral de Le Chat, hacemos clic Agentes</li>
+<li>Hacer clic Crear agente</li>
+<li>Dale un nombre a tu agente: por ejemplo, <strong>Meeting Summarizer</strong></li>
+<li>Elige un modelo. Mistral Medium es una buena opción predeterminada.</li>
+</ol>
+<h3 id="paso-2-escribir-las-instrucciones">Paso 2: Escribir las instrucciones</h3>
+<p>Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.</p>
+<ol>
+<li>En el campo <strong>Instrucciones</strong>, escribimos un mensaje del sistema. Por ejemplo:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
+1. Resumen ejecutivo de un párrafo
+2. Una lista con viñetas de elementos de acción con sus respectivos responsables.
+3. Una lista de preguntas abiertas
+Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
+</code></pre></div>
+<ol>
+<li>Establecer la <strong>Temperatura</strong>: usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.</li>
+</ol>
+<p>Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.</p>
+<h3 id="paso-3-habilitar-herramientas">Paso 3: Habilitar herramientas</h3>
+<p>Las herramientas amplían las capacidades del agente más allá de la generación de texto.</p>
+<ol>
+<li>
+<p>Desplázate hasta Herramientas y activa las funciones que necesites:</p>
+<ul>
+<li><strong>Navegación web</strong>: buscar información actualizada en internet.</li>
+<li><strong>Intérprete de código</strong>: ejecuta código Python para cálculos, gráficos y análisis de datos.</li>
+<li><strong>Canvas</strong>: crea y edita documentos, presentaciones o código de forma interactiva.</li>
+</ul>
+</li>
+<li>
+<p>Para generar un resumen de reuniones, <strong>Canvas</strong> resulta útil, ya que permite al agente crear un documento de resumen editable.</p>
+</li>
+</ol>
+<h3 id="paso-4-anadir-una-base-de-conocimientos">Paso 4: Añadir una base de conocimientos</h3>
+<p>Adjunte los documentos para que el agente pueda consultarlos al responder las preguntas.</p>
+<ol>
+<li>
+<p>Desplázate a Conocimiento y haga clic Agregar biblioteca</p>
+</li>
+<li>
+<p>Sube un documento: por ejemplo, una plantilla para reuniones de empresa o una guía de estilo.</p>
+</li>
+<li>
+<p>El agente recupera las secciones relevantes de este documento durante las conversaciones.</p>
+</li>
+</ol>
+<p>Opcional, pero útil cuando el agente necesita contexto específico del dominio, como políticas de la empresa, documentación del producto o guías internas.</p>
+<h3 id="paso-5-prueba-y-comparte">Paso 5: Prueba y comparte</h3>
+<ol>
+<li>Hacer clic en Ahorrar para crear el agente.</li>
+<li>Inicie una conversación con su agente: copie y pegue algunas notas de la reunión y verifique que el resultado coincida con sus instrucciones.</li>
+<li>Para compartir con tu equipo:<ul>
+<li>Haz clic en el menú de tres puntos del agente.</li>
+<li>Seleccionar Compartir</li>
+<li>Seleccione los miembros del equipo o copie el enlace para compartir.</li>
+</ul>
+</li>
+</ol>
+<p>Los miembros del equipo pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.</p>
+<h3 id="verificar">Verificar</h3>
+<p>Su agente está funcionando correctamente si:</p>
+<ul>
+<li>Sigue el formato de instrucciones de forma consistente en diferentes entradas.</li>
+<li>Las herramientas habilitadas (búsqueda web, lienzo) se activan cuando son relevantes.</li>
+<li>Se hace referencia al contenido de la base de conocimientos cuando se formulan preguntas relacionadas.</li>
+<li>Los miembros del equipo compartido pueden acceder y utilizar el agente.</li>
 </ul>
 <hr />
 <h2 id="4-escenario-de-trabajo-tutor-ia-de-apoyo-al-modulo">4. Escenario de trabajo: “Tutor IA de apoyo al módulo”</h2>
