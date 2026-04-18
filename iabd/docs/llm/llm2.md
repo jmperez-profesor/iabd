@@ -199,7 +199,7 @@ Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones
 
 ### Paso 1: Iniciar un nuevo agente
 
-**1.** En la página principal hacemos clic en "Agentes" 
+**1.-**  En la página principal hacemos clic en "Agentes" 
 
 ![](./images/agente_mistral_paso1a.png)
 
@@ -207,11 +207,11 @@ También podemos bajando al apartado de **"Crear un agente"**:
 
 ![](./images/agente_mistral_paso1b.png)
 
-**2.** Le damos el nombre al agente, por ejemplo de **Meeting Summarizer**. Añadimos una pequeña descripción para saber qué hace el agente (útil por si tenemos un listado de agentes bastante grande).
+**2.-** Le damos el nombre al agente, por ejemplo de **Meeting Summarizer**. Añadimos una pequeña descripción para saber qué hace el agente (útil por si tenemos un listado de agentes bastante grande).
 
 ![](./images/agente_mistral_paso1c.png)
 
-3.- Después de crear el agente, veremos el idenficador único para poder utilizar como API en aplicaciones externas y el código en Python, Typescript o descargar vía cURL:
+**3.-** Después de crear el agente, veremos el idenficador único para poder utilizar como API en aplicaciones externas y el código en Python, Typescript o descargar vía cURL:
 
 ![](./images/agente_mistral_paso1d.png)
 
