@@ -219,12 +219,12 @@ Más adelante usaremos el agente en modo API junto a una aplicación.
 
 ### Paso 2: Elegir el modelo, temperatura y las instrucciones
 
-1. Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.
+**1.-** Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.
 
 ![](./images/agente_mistral_paso2a.png)
 
 
-2. Establecer la **Temperatura, max_tokens y top_p**: 
+**2.-** Establecer la **Temperatura, max_tokens y top_p**: 
 
 ![](./images/agente_mistral_paso2b.png)
 
@@ -240,7 +240,6 @@ Más adelante usaremos el agente en modo API junto a una aplicación.
 
 Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.
 
-
 #### Ventana de contexto (Context window)
 
 | Modelo | Max context length | 
@@ -255,7 +254,8 @@ Las instrucciones determinan el comportamiento del agente en cada conversación.
 - Las solicitudes que superan el período de tiempo permitido por el modelo generan un `400 Bad Request error`.
 - El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable `max_tokens`.
 
-3. En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
+
+**3.-** En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
 
 ```
 Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
@@ -265,39 +265,98 @@ Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reuni
 Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
 ```
 
-Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.
+Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Lo ideal sería probar con algunos ejemplos de conversaciones y perfeccionar el proceso.
 
-### Paso 3: Habilitar herramientas
+### Capacidades (herramientas)
 
-Las herramientas amplían las capacidades del agente más allá de la generación de texto.
+Las capacidades (herramientas) mejoran al agente más allá de la generación de texto.
 
-1. Desplázate hasta Herramientas y activa las funciones que necesites:
-    - **Navegación web**: buscar información actualizada en internet.
-    - **Intérprete de código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
-    - **Canvas**: crea y edita documentos, presentaciones o código de forma interactiva.
+![](./images/agente_mistral_paso3a.png)
 
-2. Para generar un resumen de reuniones, **Canvas** resulta útil, ya que permite al agente crear un documento de resumen editable.
+![](./images/agente_mistral_paso3b.png)
 
-### Paso 4: Añadir una base de conocimientos
+![](./images/agente_mistral_paso3c.png)
 
-Adjunte los documentos para que el agente pueda consultarlos al responder las preguntas.
+Desplázate hasta **Capacidades (tools)** y activa las funciones que necesites:
+    - **Código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
+    - **Imagen**: permite que el modelo genere imágenes.
+    - **Búsqueda**: buscar información actualizada en internet.
+    - **Búsqueda Premium**: buscar información actualizada y verificada en internet.
 
-1. Desplázate a Conocimiento y haga clic Agregar biblioteca
+Por ahora no vamos a utilizar ninguna herramienta (capacidad). 
 
-2. Sube un documento: por ejemplo, una plantilla para reuniones de empresa o una guía de estilo.
+### Funciones propias 
 
-3. El agente recupera las secciones relevantes de este documento durante las conversaciones.
+Podemos definir funciones personalizadas las cuales el modelo puede llamar a interactuar con APIs externas o realizar tareas específicas.
 
-Opcional, pero útil cuando el agente necesita contexto específico del dominio, como políticas de la empresa, documentación del producto o guías internas.
+![](./images/agente_mistral_paso4a.png)
 
-### Paso 5: Prueba y comparte
+Ejemplo de función get_weather. Ojo debemos seguir el formato de respuesta aunque se puede modificar.
 
-1. Hacer clic en Ahorrar para crear el agente.
-2. Inicie una conversación con su agente: copie y pegue algunas notas de la reunión y verifique que el resultado coincida con sus instrucciones.
-3. Para compartir con tu equipo:
-    - Haz clic en el menú de tres puntos del agente.
-    - Seleccionar Compartir
-    - Seleccione los miembros del equipo o copie el enlace para compartir.
+![](./images/agente_mistral_paso4b.png)
+
+### Paso 5: Probar y compartir en "Le Chat"
+
+**1.-** Podemos probar iniciando una conversación directamente con el agente: copiar y pegar este ejemplo de una reunión ficticia y vericamos que el resultado coincida con las instrucciones especificadas:
+
+```text
+Reunión mensual de marketing – VivaCloud
+Fecha: 15 de abril de 2026
+Hora: 10:00–11:30
+Asistentes:
+- Laura Gómez (Directora de Marketing)
+- Marcos Pérez (Performance Marketing)
+- Ana Ruiz (Content & Social Media)
+- Diego Martín (Product Marketing)
+- Carla López (CRM & Email Marketing)
+- Sergio Díaz (Data Analyst, invitado)
+
+Laura: Buenos días a todos. El objetivo de hoy es revisar resultados del primer trimestre, definir el foco del Q2 y acordar las campañas clave. Me gustaría que empezáramos por una foto general de performance y luego bajamos a contenido, producto y CRM.
+
+Sergio: Perfecto, empiezo yo. A nivel global, en el Q1 hemos aumentado un 18% los registros de prueba frente al Q4, pero el coste por lead (CPL) ha subido un 12%. El canal que mejor se ha comportado es paid search, sobre todo en campañas de marca y long tail. Social de pago ha generado mucho tráfico pero con tasa de conversión bastante baja.
+
+Laura: ¿Tenemos identificado por qué social convierte tan poco?
+
+Sergio: Principalmente porque la segmentación ha sido demasiado amplia y los mensajes no están alineados con las páginas de destino. Vemos muchos clics curiosos, pero la gente se cae en la landing porque no entiende bien la propuesta de valor.
+
+Marcos: Sí, ahí asumo la parte de responsabilidad. Hemos ido demasiado agresivos en alcance con creatividades muy generales. Para Q2 propongo reducir audiencias, centrarnos en dos o tres segmentos clave y alinear mejor mensajes con las landings.
+
+Laura: Bien. Quiero que en Q2 prioricemos calidad de lead sobre volumen. Prefiero un crecimiento más moderado pero con mejor conversión a cliente. Marcos, luego te pido un plan concreto, pero sigamos con la visión general.
+
+Carla: Por la parte de CRM, hemos enviado tres grandes campañas de email nurture para los leads de prueba: una serie de onboarding, una serie de casos de éxito y un reengagement para cuentas inactivas. La tasa de apertura media está en torno al 38%, pero la tasa de clic ha bajado en la última serie.
+
+Laura: ¿Alguna hipótesis?
+
+Carla: Creo que hemos mezclado demasiado contenido de producto con mensajes comerciales directos. Cuando el email es muy “vendedor”, la gente hace menos clic. Funcionan mejor los correos que llevan a un contenido útil, como guías y checklists, y desde ahí plantean el CTA de demo o upgrade.
+
+Ana: Esto se ve también en social. Los posts que son pura promo no se comparten nada; los que son educativos, con tips o plantillas, generan bastante más interacción.
+
+Laura: Ok, entonces mensaje para todos: en Q2 reforzamos contenido educativo y de valor en todos los canales, y el empuje comercial lo dejamos como siguiente paso, no como gancho inicial.
+```
+
+Copiar el texto en el chat y probar el funcionamiento:
+![](./images/agente_mistral_paso5a.png)
+
+Parte del resultado: 
+
+![](./images/agente_mistral_paso5b.png)
+
+**Podemos comprobar como que no funciona para datos actualizados:**
+
+![](./images/agente_mistral_paso5c.png)
+
+**3.-** Para compartir con la organización:
+
+Hacemos clic en el menú de tres puntos del agente.
+
+![](./images/agente_mistral_paso5d.png)
+
+
+Seleccionamos **"Implementar en Le Chat"**
+
+
+![](./images/agente_mistral_paso5e.png)
+
 
 Los miembros del equipo pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.
 
