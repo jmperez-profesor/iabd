@@ -46,7 +46,15 @@ Los agentes IA son entidades artificiales que pueden percibir y actuar de forma 
 
 Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de **extender los LLMs permitiéndoles interactuar con herramientas y entornos externos**.
 
+![Arquitectura interna de un Agente LLM](./images/agente_arquitectura2.png)
+
+
+**Arquitectura interna de un Agente LLM:**
+
 ![Arquitectura interna de un Agente LLM](./images/agente_arquitectura.png)
+
+
+
 
 Tienen tres componentes:
 
@@ -105,7 +113,16 @@ Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento 
 
 ![Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop).](./images/ejemplo_razonamientos.png)
 
-![](./images/agente_running.gif)
+ACTIVAR IMAGEN GIF [](./images/agente_running.gif)
+
+
+#### ReAct: ejemplo
+
+![](./images/ejemplo_react.png)
+
+#### Ejemplo de consulta a un agente pidiendo información actual donde la información no está actualizada:
+
+![](./images/agente_mistral_error.png)
 
 ## 3. Conceptos clave en Mistral AI
 
@@ -149,6 +166,111 @@ El API de Mistral permite:
 - recuperar el estado de la conversación.
 
 ---
+
+## 4. Crear un agente a través de Mistra AI
+
+En Mistral AI disponemos de una API de Agentes y chats (conversaciones) la cual permite a los desarrolladores crear dichos agentes, aprovechando múltiples funciones como:
+
+- Múltiples modelos multimodales, tanto de **texto como de visión**.
+- Estado persistente entre conversaciones.
+- Capacidad para mantener conversaciones con modelos base, un solo agente y múltiples agentes.
+- Herramientas de conexión integradas para la **ejecución de código, búsqueda web , generación de imágenes y biblioteca de documentos** listas para usar.
+- Capacidad de transferencia de información para utilizar diferentes agentes como parte de un flujo de trabajo, lo que permite a los agentes llamar a otros agentes.
+- También se admiten las funciones compatibles a través de nuestro punto final de finalización de chat, tales como:
+    - **Resultados estructurados**
+    - **Comprensión del documento**
+    - **Uso de herramientas**
+    - **Citas**
+
+
+## 4.1 
+
+Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos.
+
+- Escribe un mensaje del sistema para definir el comportamiento del agente.
+- Adjunte documentos como fuente de conocimiento.
+- Habilitar herramientas como la búsqueda web, el intérprete de código y Canvas.
+- Comparte el agente con tu equipo.
+
+#### Requisitos previos
+
+- Una cuenta de Le Chat (plan gratuito, Pro o para equipos).
+- Opcionalmente, un documento para usar como fuente de conocimiento (PDF, TXT, DOCX).
+
+### Paso 1: Iniciar un nuevo agente
+
+1. En la barra lateral de Le Chat, hacemos clic Agentes
+2. Hacer clic Crear agente
+3. Dale un nombre a tu agente: por ejemplo, **Meeting Summarizer**
+4. Elige un modelo. Mistral Medium es una buena opción predeterminada.
+
+
+### Paso 2: Escribir las instrucciones
+
+Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.
+
+1. En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
+
+```
+Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
+1. Resumen ejecutivo de un párrafo
+2. Una lista con viñetas de elementos de acción con sus respectivos responsables.
+3. Una lista de preguntas abiertas
+Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
+```
+
+2. Establecer la **Temperatura**: usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.
+
+Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.
+
+### Paso 3: Habilitar herramientas
+
+Las herramientas amplían las capacidades del agente más allá de la generación de texto.
+
+1. Desplázate hasta Herramientas y activa las funciones que necesites:
+    - **Navegación web**: buscar información actualizada en internet.
+    - **Intérprete de código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
+    - **Canvas**: crea y edita documentos, presentaciones o código de forma interactiva.
+
+2. Para generar un resumen de reuniones, **Canvas** resulta útil, ya que permite al agente crear un documento de resumen editable.
+
+### Paso 4: Añadir una base de conocimientos
+
+Adjunte los documentos para que el agente pueda consultarlos al responder las preguntas.
+
+1. Desplázate a Conocimiento y haga clic Agregar biblioteca
+
+2. Sube un documento: por ejemplo, una plantilla para reuniones de empresa o una guía de estilo.
+
+3. El agente recupera las secciones relevantes de este documento durante las conversaciones.
+
+Opcional, pero útil cuando el agente necesita contexto específico del dominio, como políticas de la empresa, documentación del producto o guías internas.
+
+### Paso 5: Prueba y comparte
+
+1. Hacer clic en Ahorrar para crear el agente.
+2. Inicie una conversación con su agente: copie y pegue algunas notas de la reunión y verifique que el resultado coincida con sus instrucciones.
+3. Para compartir con tu equipo:
+    - Haz clic en el menú de tres puntos del agente.
+    - Seleccionar Compartir
+    - Seleccione los miembros del equipo o copie el enlace para compartir.
+
+Los miembros del equipo pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.
+
+### Verificar
+
+Su agente está funcionando correctamente si:
+
+- Sigue el formato de instrucciones de forma consistente en diferentes entradas.
+- Las herramientas habilitadas (búsqueda web, lienzo) se activan cuando son relevantes.
+- Se hace referencia al contenido de la base de conocimientos cuando se formulan preguntas relacionadas.
+- Los miembros del equipo compartido pueden acceder y utilizar el agente.
+
+
+---
+
+
+
 
 ## 4. Escenario de trabajo: “Tutor IA de apoyo al módulo”
 
