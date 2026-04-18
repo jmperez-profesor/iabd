@@ -6,31 +6,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
       
       
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm1/">
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/cloud/sesion1/otras/sesion1_cloud_aws_proyecto_fenix/">
+      
+        <link rel="prev" href="../../cloud/sesion1/otras/presentacion_docente/">
       
       
+        <link rel="next" href="../../bedrock/sesion1/">
       
       
         
       
       
-      <link rel="icon" href="../../../../images/favicon.png">
+      <link rel="icon" href="../../images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Cloud y AWS - Proyecto Actividad Práctica "Proyecto Fénix Ilicitano" (Gemini pro + notebookLM) - Inteligencia Artificial y Big Data</title>
+        <title>Llm1 - Inteligencia Artificial y Big Data</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#actividad-proyecto-fenix-ilicitano-migracion-a-aws-gemini-pro-notebooklm" class="md-skip">
+        <a href="#sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -92,7 +94,7 @@
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
     <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
       
-  <img src="../../../../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cloud y AWS - Proyecto Actividad Práctica "Proyecto Fénix Ilicitano" (Gemini pro + notebookLM)
+              Llm1
             
           </span>
         </div>
@@ -208,7 +210,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -229,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../sesion_cloud_aws/" class="md-tabs__link">
+        <a href="../../cloud/sesion1/sesion_cloud_aws/" class="md-tabs__link">
           
   
   
@@ -247,11 +249,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../llm/llm1/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -273,7 +277,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../bedrock/sesion1/" class="md-tabs__link">
+        <a href="../../bedrock/sesion1/" class="md-tabs__link">
           
   
   
@@ -295,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../hf/" class="md-tabs__link">
+        <a href="../../hf/" class="md-tabs__link">
           
   
   
@@ -317,7 +321,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../Datasets/Datasets/" class="md-tabs__link">
+        <a href="../../Datasets/Datasets/" class="md-tabs__link">
           
   
   
@@ -357,7 +361,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
       
-  <img src="../../../../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     Inteligencia Artificial y Big Data
@@ -372,7 +376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -459,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sesion_cloud_aws/" class="md-nav__link">
+      <a href="../../cloud/sesion1/sesion_cloud_aws/" class="md-nav__link">
         
   
   
@@ -545,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ejercicio/actividad2_aws_cli/" class="md-nav__link">
+      <a href="../../cloud/sesion1/ejercicio/actividad2_aws_cli/" class="md-nav__link">
         
   
   
@@ -573,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ejercicio/anexo_ejemplos_salida_aws_cli/" class="md-nav__link">
+      <a href="../../cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli/" class="md-nav__link">
         
   
   
@@ -665,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../presentacion_docente/" class="md-nav__link">
+      <a href="../../cloud/sesion1/otras/presentacion_docente/" class="md-nav__link">
         
   
   
@@ -705,8 +709,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -716,19 +722,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -746,7 +753,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -761,10 +768,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../llm/llm1/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Llm1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -780,6 +814,413 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#idea-central" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea central
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo-didactico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo didáctico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1: Chatbot simple con un modelo fundacional como Mistral
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fase 1: Chatbot simple con un modelo fundacional como Mistral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-construimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué construimos?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-aprendemos-aqui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué aprendemos aquí?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idea-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-2-aplicacion-agentica-con-smolagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2: Aplicación agéntica con smolagents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fase 2: Aplicación agéntica con smolagents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-cambia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué cambia?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-evolucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de evolución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-aprendemos-aqui_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué aprendemos aquí?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ventajas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idea-clave_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3: Aplicación avanzada con RAG y agentes usando LangChain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fase 3: Aplicación avanzada con RAG y agentes usando LangChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-problema-aparece-ahora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué problema aparece ahora?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es RAG?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-usar-langchain-aqui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué usar LangChain aquí?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-evolucion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de evolución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-aprendemos-aqui_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué aprendemos aquí?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ventajas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idea-clave_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativa-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparativa global
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-mismo-ejemplo-evolucionando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El mismo ejemplo evolucionando
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="El mismo ejemplo evolucionando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-1-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versión 1 – Chatbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-2-agente-con-smolagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versión 2 – Agente con smolagents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-3-rag-agentes-con-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versión 3 – RAG + agentes con LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mensaje-docente-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mensaje docente clave
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preguntas-para-reflexionar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preguntas para reflexionar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-breve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad breve
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -855,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../bedrock/sesion1/" class="md-nav__link">
+      <a href="../../bedrock/sesion1/" class="md-nav__link">
         
   
   
@@ -919,7 +1360,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../hf/" class="md-nav__link ">
+            <a href="../../hf/" class="md-nav__link ">
               
   
   
@@ -963,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/Ejemplo_gradio/" class="md-nav__link">
+      <a href="../../hf/Ejemplo_gradio/" class="md-nav__link">
         
   
   
@@ -1049,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/Tasks_vc/" class="md-nav__link">
+      <a href="../../hf/Tasks_vc/" class="md-nav__link">
         
   
   
@@ -1145,7 +1586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/01_intro/" class="md-nav__link">
+      <a href="../../hf/nlp/01_intro/" class="md-nav__link">
         
   
   
@@ -1173,7 +1614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+      <a href="../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
         
   
   
@@ -1201,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+      <a href="../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
         
   
   
@@ -1229,7 +1670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+      <a href="../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
         
   
   
@@ -1257,7 +1698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+      <a href="../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
         
   
   
@@ -1285,7 +1726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+      <a href="../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
         
   
   
@@ -1313,7 +1754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+      <a href="../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
         
   
   
@@ -1357,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hf/Referencias/" class="md-nav__link">
+      <a href="../../hf/Referencias/" class="md-nav__link">
         
   
   
@@ -1452,7 +1893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Datasets/Datasets/" class="md-nav__link">
+      <a href="../../Datasets/Datasets/" class="md-nav__link">
         
   
   
@@ -1480,7 +1921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Datasets/datasets_aitor/" class="md-nav__link">
+      <a href="../../Datasets/datasets_aitor/" class="md-nav__link">
         
   
   
@@ -1564,7 +2005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Datasets/Actividad1/" class="md-nav__link">
+      <a href="../../Datasets/Actividad1/" class="md-nav__link">
         
   
   
@@ -1617,315 +2058,291 @@
 
 
 
-<h1 id="actividad-proyecto-fenix-ilicitano-migracion-a-aws-gemini-pro-notebooklm">Actividad: Proyecto Fénix Ilicitano - Migración a AWS (Gemini pro + NoteBookLM)</h1>
-<p>Este documento contiene la planificación completa para una sesión de 2 horas sobre arquitectura Cloud y AWS, basada en un escenario real de recuperación de desastres.</p>
 <hr />
-<h2 id="1-planificacion-de-la-sesion-2-horas">📅 1. Planificación de la Sesión (2 Horas)</h2>
+<p>title: Evolución de una aplicación LLM: de chatbot a agentes y RAG
+description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. </p>
+<hr />
+<h1 id="sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag">Sesión 1 – Evolución de una aplicación LLM: de chatbot a agentes y RAG</h1>
+<h2 id="idea-central">Idea central</h2>
+<p>Vamos a estudiar una evolución muy habitual en aplicaciones basadas en modelos de lenguaje:</p>
 <ol>
-<li><strong>Introducción y Contexto (15 min):</strong> Presentación del caso real del ciberataque y formación de equipos (3-4 personas).</li>
-<li><strong>Fase de Diseño y Debate (60 min):</strong> Los alumnos, usando los apuntes y la hoja de trucos, diseñan la arquitectura.</li>
-<li><strong>Fase de Defensa "Pitch" (30 min):</strong> Cada grupo tiene 5 minutos para "vender" su solución al CIO del Ayuntamiento (el profesor).</li>
-<li><strong>Feedback y Cierre (15 min):</strong> Análisis de las propuestas y conclusiones.</li>
+<li>Primero construimos un <strong>chatbot básico</strong> con un modelo fundacional como <strong>Mistral</strong>.</li>
+<li>Después evolucionamos hacia una <strong>aplicación agéntica</strong> con <strong>smolagents</strong>.</li>
+<li>Finalmente llegamos a una aplicación más avanzada con <strong>RAG + agentes</strong> usando <strong>LangChain</strong>.</li>
+</ol>
+<p>La idea no es añadir complejidad por añadirla, sino entender que <strong>cada nueva arquitectura resuelve una limitación real de la anterior</strong>.</p>
+<hr />
+<h2 id="objetivo-didactico">Objetivo didáctico</h2>
+<p>Al finalizar esta sesión, deberías ser capaz de:</p>
+<ul>
+<li>Explicar por qué se empieza normalmente por una aplicación sencilla con un LLM.</li>
+<li>Entender qué aporta una arquitectura basada en agentes.</li>
+<li>Comprender por qué RAG aparece cuando necesitamos trabajar con documentación propia o conocimiento externo.</li>
+<li>Comparar ventajas e inconvenientes de cada fase.</li>
+</ul>
+<hr />
+<h2 id="fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral">Fase 1: Chatbot simple con un modelo fundacional como Mistral</h2>
+<h3 id="que-construimos">¿Qué construimos?</h3>
+<p>La primera versión de nuestra aplicación es un <strong>chatbot</strong> que recibe mensajes del usuario y responde usando un modelo fundacional como <strong>Mistral</strong>.</p>
+<p>Ejemplo de uso:</p>
+<ul>
+<li>El usuario pregunta: <em>"¿Qué es un token en un LLM?"</em></li>
+<li>El chatbot responde generando texto a partir del prompt recibido.</li>
+</ul>
+<h3 id="que-aprendemos-aqui">¿Qué aprendemos aquí?</h3>
+<p>Esta fase es ideal para aprender lo esencial:</p>
+<ul>
+<li>Qué es un prompt.</li>
+<li>Qué es un <strong>system prompt</strong>.</li>
+<li>Cómo se envían mensajes a un modelo.</li>
+<li>Cómo se recibe una respuesta.</li>
+<li>Qué limitaciones tiene un LLM cuando solo “conversa”.</li>
+</ul>
+<h3 id="ventajas">Ventajas</h3>
+<ul>
+<li>Es la forma más simple de empezar.</li>
+<li>Requiere poco código.</li>
+<li>Permite ver resultados muy rápido.</li>
+<li>Sirve para introducir conceptos clave como:</li>
+<li>prompt,</li>
+<li>system prompt,</li>
+<li>contexto,</li>
+<li>temperatura,</li>
+<li>longitud de salida.</li>
+</ul>
+<h3 id="desventajas">Desventajas</h3>
+<ul>
+<li>El modelo <strong>solo responde</strong>: no actúa sobre herramientas ni consulta fuentes externas.</li>
+<li>Puede <strong>alucinar</strong> o inventarse información.</li>
+<li>No sabe nada de nuestros documentos propios si no se los pasamos en el prompt.</li>
+<li>El alumnado puede pensar erróneamente que “usar IA generativa” es solo hacer chatbots.</li>
+</ul>
+<h3 id="idea-clave">Idea clave</h3>
+<blockquote>
+<p>Un chatbot con un modelo fundacional es un excelente punto de partida, pero no suele ser suficiente para construir una aplicación útil y robusta en un entorno real.</p>
+</blockquote>
+<hr />
+<h2 id="fase-2-aplicacion-agentica-con-smolagents">Fase 2: Aplicación agéntica con smolagents</h2>
+<h3 id="que-cambia">¿Qué cambia?</h3>
+<p>Ahora dejamos de pensar en el modelo como un simple generador de texto y pasamos a verlo como un <strong>agente</strong>.</p>
+<p>Un agente no solo responde: también puede</p>
+<ul>
+<li>decidir,</li>
+<li>planificar,</li>
+<li>usar herramientas,</li>
+<li>ejecutar acciones,</li>
+<li>encadenar pasos.</li>
+</ul>
+<p>Con <strong>smolagents</strong> podemos construir agentes de forma bastante ligera.</p>
+<h3 id="ejemplo-de-evolucion">Ejemplo de evolución</h3>
+<p>Antes:</p>
+<ul>
+<li>El chatbot respondía:<br />
+<em>"Creo que tienes estos documentos..."</em></li>
+</ul>
+<p>Ahora:</p>
+<ul>
+<li>El agente puede llamar a una tool como <code>listar_documentos()</code>.</li>
+<li>Puede leer una función.</li>
+<li>Puede decidir usar una herramienta antes de responder.</li>
+</ul>
+<h3 id="que-aprendemos-aqui_1">¿Qué aprendemos aquí?</h3>
+<ul>
+<li>Qué es una <strong>tool</strong>.</li>
+<li>Qué es un <strong>agente</strong>.</li>
+<li>Qué diferencia hay entre “responder” y “actuar”.</li>
+<li>Cómo delegar pequeñas tareas al modelo.</li>
+</ul>
+<h3 id="ventajas_1">Ventajas</h3>
+<ul>
+<li>Introduce una arquitectura mucho más útil.</li>
+<li>Permite automatizar acciones.</li>
+<li>Hace visibles conceptos fundamentales de IA aplicada:</li>
+<li>decisión,</li>
+<li>planificación,</li>
+<li>observación,</li>
+<li>ejecución.</li>
+<li>smolagents es muy adecuado para aprender porque tiene una curva de entrada relativamente baja.</li>
+</ul>
+<h3 id="desventajas_1">Desventajas</h3>
+<ul>
+<li>Añade complejidad mental y técnica.</li>
+<li>Puede parecer “magia” si no entendemos bien cómo decide el agente.</li>
+<li>Si la aplicación crece mucho, podemos necesitar una arquitectura más completa y modular.</li>
+</ul>
+<h3 id="idea-clave_1">Idea clave</h3>
+<blockquote>
+<p>Un agente es más potente que un chatbot porque no solo habla: también puede actuar usando herramientas.</p>
+</blockquote>
+<hr />
+<h2 id="fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain">Fase 3: Aplicación avanzada con RAG y agentes usando LangChain</h2>
+<h3 id="que-problema-aparece-ahora">¿Qué problema aparece ahora?</h3>
+<p>Aunque tengamos agentes, sigue existiendo una limitación importante:</p>
+<ul>
+<li>el modelo no tiene acceso fiable a nuestros apuntes,</li>
+<li>no conoce documentos privados,</li>
+<li>no puede responder bien sobre contenidos específicos del curso si no se los damos explícitamente.</li>
+</ul>
+<p>Aquí aparece <strong>RAG</strong>.</p>
+<h3 id="que-es-rag">¿Qué es RAG?</h3>
+<p><strong>RAG</strong> significa <strong>Retrieval-Augmented Generation</strong>.</p>
+<p>La idea es:</p>
+<ol>
+<li>Recuperar fragmentos relevantes de documentación.</li>
+<li>Pasarlos al modelo como contexto.</li>
+<li>Generar una respuesta apoyada en esas fuentes.</li>
+</ol>
+<h3 id="por-que-usar-langchain-aqui">¿Por qué usar LangChain aquí?</h3>
+<p>Porque LangChain proporciona piezas muy útiles para construir esta arquitectura:</p>
+<ul>
+<li>carga de documentos,</li>
+<li>fragmentación,</li>
+<li>embeddings,</li>
+<li>recuperación,</li>
+<li>cadenas de generación,</li>
+<li>integración con agentes.</li>
+</ul>
+<h3 id="ejemplo-de-evolucion_1">Ejemplo de evolución</h3>
+<p>Antes:</p>
+<ul>
+<li>El agente intentaba responder “de memoria”.</li>
+</ul>
+<p>Ahora:</p>
+<ul>
+<li>El sistema busca en apuntes o documentos del curso.</li>
+<li>Recupera los fragmentos más relevantes.</li>
+<li>Responde usando ese contexto.</li>
+</ul>
+<h3 id="que-aprendemos-aqui_2">¿Qué aprendemos aquí?</h3>
+<ul>
+<li>Qué problema resuelve RAG.</li>
+<li>Cómo conectar documentos y modelos.</li>
+<li>Cómo construir una aplicación más robusta y útil.</li>
+<li>Cómo integrar agentes con recuperación de información.</li>
+</ul>
+<h3 id="ventajas_2">Ventajas</h3>
+<ul>
+<li>Reduce alucinaciones.</li>
+<li>Permite trabajar con conocimiento propio.</li>
+<li>Mejora la precisión.</li>
+<li>Hace la arquitectura más profesional y reutilizable.</li>
+<li>Encaja muy bien en aplicaciones reales de empresa y educación.</li>
+</ul>
+<h3 id="desventajas_2">Desventajas</h3>
+<ul>
+<li>Es la fase más compleja.</li>
+<li>Requiere más componentes.</li>
+<li>Necesita más diseño, pruebas y depuración.</li>
+<li>Si no se entiende primero el problema, puede parecer una receta técnica sin sentido.</li>
+</ul>
+<h3 id="idea-clave_2">Idea clave</h3>
+<blockquote>
+<p>RAG no sustituye al LLM: lo complementa con acceso a conocimiento externo relevante.</p>
+</blockquote>
+<hr />
+<h2 id="comparativa-global">Comparativa global</h2>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Qué hace</th>
+<th>Ventajas</th>
+<th>Limitaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chatbot con Mistral</td>
+<td>Conversa con el usuario</td>
+<td>Simple, rápido, ideal para empezar</td>
+<td>No usa tools ni documentos externos</td>
+</tr>
+<tr>
+<td>Agente con smolagents</td>
+<td>Usa herramientas y toma decisiones</td>
+<td>Más útil y flexible</td>
+<td>Más complejidad y depuración</td>
+</tr>
+<tr>
+<td>RAG + agentes con LangChain</td>
+<td>Recupera información y responde con contexto</td>
+<td>Más robusto, más realista, más profesional</td>
+<td>Arquitectura más compleja</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="el-mismo-ejemplo-evolucionando">El mismo ejemplo evolucionando</h2>
+<p>Vamos a imaginar siempre el mismo caso: un <strong>Asistente técnico del módulo</strong>.</p>
+<h3 id="version-1-chatbot">Versión 1 – Chatbot</h3>
+<ul>
+<li>Responde dudas generales.</li>
+<li>Usa solo el modelo Mistral.</li>
+<li>No consulta apuntes ni herramientas.</li>
+</ul>
+<h3 id="version-2-agente-con-smolagents">Versión 2 – Agente con smolagents</h3>
+<ul>
+<li>Puede usar tools.</li>
+<li>Por ejemplo:</li>
+<li>listar documentos,</li>
+<li>leer un resumen,</li>
+<li>consultar un dato auxiliar.</li>
+</ul>
+<h3 id="version-3-rag-agentes-con-langchain">Versión 3 – RAG + agentes con LangChain</h3>
+<ul>
+<li>Busca en una colección de apuntes o documentación.</li>
+<li>Recupera fragmentos relevantes.</li>
+<li>Construye una respuesta fundamentada en esos documentos.</li>
+<li>Puede incluir además un agente coordinador que decida cuándo usar RAG.</li>
+</ul>
+<hr />
+<h2 id="mensaje-docente-clave">Mensaje docente clave</h2>
+<p>La evolución correcta no es:</p>
+<blockquote>
+<p>“Como existe una tecnología más compleja, la usamos desde el principio.”</p>
+</blockquote>
+<p>La evolución correcta es:</p>
+<blockquote>
+<p>“Primero resolvemos el problema con la solución más simple posible; después añadimos nuevas capas cuando aparece una limitación real.”</p>
+</blockquote>
+<hr />
+<h2 id="preguntas-para-reflexionar">Preguntas para reflexionar</h2>
+<ol>
+<li>¿Qué puede hacer un agente que no puede hacer un chatbot simple?</li>
+<li>¿Por qué un modelo fundacional no basta cuando queremos trabajar con apuntes del curso?</li>
+<li>¿Qué aporta RAG frente a pedirle al modelo que responda “de memoria”?</li>
+<li>¿Qué inconvenientes tiene introducir demasiada complejidad demasiado pronto?</li>
 </ol>
 <hr />
-<h2 id="2-enunciado-para-el-alumnado">📝 2. Enunciado para el Alumnado</h2>
-<h3 id="contexto">Contexto</h3>
-<p>El Ayuntamiento de Elche ha sufrido un ciberataque de <em>ransomware</em> que ha encriptado servidores locales, paralizando la atención al ciudadano y la gestión interna. El equipo de gobierno ha decidido que mantener toda la infraestructura <em>on-premise</em> (en sus propias instalaciones) es un riesgo inasumible.</p>
-<h3 id="vuestro-rol">Vuestro Rol</h3>
-<p>Sois un equipo de <strong>Arquitectos de Soluciones Cloud</strong> de una consultora tecnológica. El Ayuntamiento os ha contratado de urgencia.</p>
-<h3 id="el-desafio">El Desafío</h3>
-<p>Debéis diseñar una propuesta de migración a la nube de <strong>Amazon Web Services (AWS)</strong> para restaurar los servicios críticos y prevenir futuros desastres. No es necesario migrar <em>todo</em> (puede ser una arquitectura híbrida), pero sí lo más crítico.</p>
-<h3 id="requisitos-del-cliente">Requisitos del Cliente</h3>
+<h2 id="actividad-breve">Actividad breve</h2>
+<p>En grupos de 2 o 3 personas:</p>
 <ol>
-<li><strong>Alta Disponibilidad y Tolerancia a Fallos:</strong> El sistema no puede volver a caerse por completo si falla un servidor físico.</li>
-<li><strong>Seguridad:</strong> Necesitan blindaje contra ataques DDoS y una gestión estricta de quién accede a qué.</li>
-<li><strong>Almacenamiento Seguro:</strong> Hay terabytes de documentos históricos y expedientes que deben guardarse con una durabilidad extrema, y copias de seguridad que no se tocan a menudo pero deben ser baratas.</li>
-<li><strong>Costes:</strong> El interventor del ayuntamiento quiere dejar de invertir en hardware que se queda obsoleto (CapEx) y pasar a un modelo de pago por uso (OpEx).</li>
-</ol>
-<h3 id="entregable-pizarra-diapositiva">Entregable (Pizarra / Diapositiva)</h3>
-<ol>
-<li><strong>Diagrama de Arquitectura:</strong> ¿Qué servicios de AWS usaréis? (Nombrad servicios específicos: EC2, S3, VPC, RDS, etc.).</li>
-<li><strong>Estrategia de Red:</strong> ¿Cómo se conectará el Ayuntamiento a la nube de forma segura?</li>
-<li><strong>Modelo de Responsabilidad:</strong> Explicad al Alcalde de qué será responsable él y de qué AWS en vuestra solución.</li>
-<li><strong>Selección de Región:</strong> ¿Dónde alojaréis los datos y por qué?</li>
+<li>Pensad en una aplicación educativa basada en IA.</li>
+<li>Describid cómo sería en estas tres versiones:</li>
+<li>chatbot simple,</li>
+<li>agente con tools,</li>
+<li>sistema con RAG y agentes.</li>
+<li>Indicad:</li>
+<li>qué problema resuelve cada versión,</li>
+<li>qué nueva capacidad aporta,</li>
+<li>qué complejidad añade.</li>
 </ol>
 <hr />
-<h2 id="3-rubrica-de-evaluacion">📊 3. Rúbrica de Evaluación</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Criterio</th>
-<th style="text-align: left;">Excelente (25 pts)</th>
-<th style="text-align: left;">Satisfactorio (15 pts)</th>
-<th style="text-align: left;">Mejorable (5 pts)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Selección de Servicios</strong></td>
-<td style="text-align: left;">Elige la combinación óptima (ej. EC2/Lambda + RDS/DynamoDB) justificando carga de trabajo.</td>
-<td style="text-align: left;">Elige servicios correctos sin justificar claramente por qué esos y no otros.</td>
-<td style="text-align: left;">Confunde servicios (ej. usa S3 para BBDD relacionales).</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Almacenamiento y Backup</strong></td>
-<td style="text-align: left;">Diferencia claramente entre almacenamiento "caliente" (S3) y archivado barato (Glacier).</td>
-<td style="text-align: left;">Usa S3 para todo sin distinguir clases de almacenamiento ni costes.</td>
-<td style="text-align: left;">No propone una solución clara de respaldo.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Seguridad y Redes</strong></td>
-<td style="text-align: left;">Diseña VPC, subredes, define IAM y menciona protección DDoS (Shield/WAF).</td>
-<td style="text-align: left;">Menciona seguridad general sin especificar herramientas como IAM.</td>
-<td style="text-align: left;">Ignora la configuración de red (VPC) o control de accesos.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Argumentación Cloud</strong></td>
-<td style="text-align: left;">Argumenta sólidamente usando CapEx/OpEx, escalabilidad y tolerancia a fallos.</td>
-<td style="text-align: left;">Menciona ventajas genéricas sin terminología técnica.</td>
-<td style="text-align: left;">No logra convencer de por qué migrar es mejor que <em>on-premise</em>.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="4-soluciones-posibles-guia-para-el-docente">💡 4. Soluciones Posibles (Guía para el Docente)</h2>
-<h3 id="solucion-a-arquitectura-hibrida-conservadora">Solución A: Arquitectura Híbrida (Conservadora)</h3>
+<h2 id="cierre">Cierre</h2>
+<p>La evolución que vamos a seguir en esta unidad será:</p>
+<p><strong>chatbot básico → agente con tools → sistema con RAG y agentes</strong></p>
+<p>porque refleja muy bien cómo se diseñan aplicaciones LLM reales:</p>
 <ul>
-<li><strong>Conexión:</strong> VPN o AWS Direct Connect.</li>
-<li><strong>Datos:</strong> S3 para expedientes activos, Glacier para históricos (ahorro de costes).</li>
-<li><strong>Web:</strong> EC2 con Auto Scaling para la web pública.</li>
-<li><strong>Justificación:</strong> Mantiene datos sensibles bajo control legal estricto pero usa la nube para disponibilidad pública y backups.</li>
+<li>primero entendemos el modelo,</li>
+<li>luego aprendemos a darle capacidad de actuar,</li>
+<li>y finalmente lo conectamos con conocimiento útil y arquitectura modular.</li>
 </ul>
-<h3 id="solucion-b-modernizacion-cloud-native-innovadora">Solución B: Modernización "Cloud Native" (Innovadora)</h3>
-<ul>
-<li><strong>Cómputo:</strong> AWS Lambda (Serverless) para trámites (pago por ejecución, no por servidor encendido).</li>
-<li><strong>Datos:</strong> Amazon RDS para el padrón (gestión automatizada de parches).</li>
-<li><strong>Resiliencia:</strong> Despliegue en Región España (eu-south-2) usando 2 Zonas de Disponibilidad (Multi-AZ).</li>
-<li><strong>Seguridad:</strong> AWS CloudTrail para auditoría forense y AWS Shield para DDoS.</li>
-</ul>
-<hr />
-<h2 id="5-hoja-de-trucos-arquitectos-cloud-aws">📄 5. Hoja de Trucos: Arquitectos Cloud AWS</h2>
-<p><em>Material de apoyo para el alumnado durante la sesión.</em></p>
-<h3 id="servicios-de-almacenamiento">Servicios de Almacenamiento</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Servicio</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Descripción y Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Amazon S3</strong></td>
-<td style="text-align: left;">Objetos</td>
-<td style="text-align: left;">Almacenamiento escalable, durabilidad del 99,99...%. [cite_start]Ideal para Data Lakes y backups[cite: 10, 11].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>S3 Glacier</strong></td>
-<td style="text-align: left;">Archivo</td>
-<td style="text-align: left;">[cite_start]Almacenamiento de muy bajo coste para datos de larga duración y poco acceso[cite: 12].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Amazon EBS</strong></td>
-<td style="text-align: left;">Bloques</td>
-<td style="text-align: left;">[cite_start]Discos duros virtuales de alto rendimiento para conectar a instancias EC2[cite: 14].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Amazon EFS</strong></td>
-<td style="text-align: left;">Archivos</td>
-<td style="text-align: left;">[cite_start]Sistema de archivos NFS elástico para compartir entre servidores[cite: 17, 18].</td>
-</tr>
-</tbody>
-</table>
-<h3 id="servicios-de-computo">Servicios de Cómputo</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Servicio</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Descripción y Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Amazon EC2</strong></td>
-<td style="text-align: left;">IaaS</td>
-<td style="text-align: left;">Máquinas virtuales. Control total del SO. [cite_start]Ideal para servidores tradicionales[cite: 21].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>AWS Lambda</strong></td>
-<td style="text-align: left;">Serverless</td>
-<td style="text-align: left;">Ejecuta código sin servidores. [cite_start]Solo se paga por tiempo de ejecución[cite: 24, 26].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Elastic Beanstalk</strong></td>
-<td style="text-align: left;">PaaS</td>
-<td style="text-align: left;">[cite_start]Despliegue de apps web (Java, PHP) sin gestionar infraestructura[cite: 23].</td>
-</tr>
-</tbody>
-</table>
-<h3 id="bases-de-datos">Bases de Datos</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Servicio</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Descripción y Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Amazon RDS</strong></td>
-<td style="text-align: left;">Relacional</td>
-<td style="text-align: left;">MySQL/PostgreSQL gestionado. [cite_start]Backups y parches automáticos[cite: 33].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>DynamoDB</strong></td>
-<td style="text-align: left;">NoSQL</td>
-<td style="text-align: left;">[cite_start]Base de datos clave-valor de rendimiento en milisegundos[cite: 36].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Redshift</strong></td>
-<td style="text-align: left;">Analytics</td>
-<td style="text-align: left;">[cite_start]Datawarehouse para consultas complejas sobre Big Data[cite: 37].</td>
-</tr>
-</tbody>
-</table>
-<h3 id="redes-y-seguridad">Redes y Seguridad</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Servicio</th>
-<th style="text-align: left;">Descripción</th>
-<th style="text-align: left;">Importancia para el Ayuntamiento</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Amazon VPC</strong></td>
-<td style="text-align: left;">[cite_start]Red privada virtual aislada lógicamente[cite: 40].</td>
-<td style="text-align: left;">[cite_start]<strong>Obligatorio</strong> para aislar los servidores del acceso público[cite: 81].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>AWS VPN</strong></td>
-<td style="text-align: left;">[cite_start]Túnel seguro[cite: 47].</td>
-<td style="text-align: left;">[cite_start]Conecta la oficina física con la nube[cite: 47].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>IAM</strong></td>
-<td style="text-align: left;">[cite_start]Gestión de Identidad[cite: 48].</td>
-<td style="text-align: left;">[cite_start]Define quién puede acceder a qué (Usuarios, Grupos, Roles)[cite: 136].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>AWS Shield</strong></td>
-<td style="text-align: left;">[cite_start]Protección DDoS[cite: 56].</td>
-<td style="text-align: left;">[cite_start]Protege la web de ataques de denegación de servicio[cite: 56].</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>CloudTrail</strong></td>
-<td style="text-align: left;">[cite_start]Auditoría[cite: 62].</td>
-<td style="text-align: left;">[cite_start]Registra "quién hizo qué" (seguridad forense)[cite: 63].</td>
-</tr>
-</tbody>
-</table>
-<h3 id="conceptos-clave-para-el-pitch">Conceptos Clave para el Pitch</h3>
-<ul>
-<li>[cite_start]<strong>CapEx vs OpEx:</strong> Cambiar la inversión inicial en hardware (CapEx) por gasto operativo variable según consumo (OpEx)[cite: 237, 239].</li>
-<li><strong>Regiones y AZ:</strong> Una <strong>Región</strong> (ej. España) tiene varias <strong>Zonas de Disponibilidad (AZ)</strong> aisladas físicamente. [cite_start]Usar 2+ AZ garantiza que si un edificio falla, el servicio sigue[cite: 343, 357].</li>
-<li>[cite_start]<strong>Responsabilidad Compartida:</strong> AWS protege la "nube" (hardware, datacenters); el Ayuntamiento protege lo que está "en la nube" (datos, cifrado, accesos)[cite: 118, 123].</li>
-</ul>
-<h1 id="hoja-de-trucos-aws-conceptos-y-servicios-clave">🛡️ Hoja de Trucos AWS: Conceptos y Servicios Clave</h1>
-<p>Este recurso resume los pilares fundamentales de Cloud Computing y los servicios esenciales de Amazon Web Services (AWS) necesarios para el diseño de arquitecturas seguras y escalables.</p>
-<hr />
-<h2 id="conceptos-fundamentales-de-cloud-computing">☁️ Conceptos Fundamentales de Cloud Computing</h2>
-<h3 id="modelos-de-servicio">Modelos de Servicio</h3>
-<ul>
-<li><strong>IaaS (Infraestructura como Servicio):</strong> Control total sobre el hardware virtual (servidores, red). Ejemplo: <strong>Amazon EC2</strong>.</li>
-<li><strong>PaaS (Plataforma como Servicio):</strong> Te centras en el código; la plataforma gestiona el hardware y el SO. Ejemplo: <strong>AWS Elastic Beanstalk</strong>.</li>
-<li><strong>SaaS (Software como Servicio):</strong> Producto terminado gestionado por el proveedor. Ejemplo: <strong>Dropbox</strong> o <strong>Gmail</strong>.</li>
-</ul>
-<h3 id="ventajas-financieras">Ventajas Financieras</h3>
-<ul>
-<li><strong>CapEx (Capital Expenditure):</strong> Inversión previa en hardware físico. Es un gasto fijo y arriesgado.</li>
-<li><strong>OpEx (Operational Expenditure):</strong> Gasto operativo basado en el pago por uso. Permite ahorrar costes y ganar agilidad.</li>
-</ul>
-<hr />
-<h2 id="almacenamiento-storage">📂 Almacenamiento (Storage)</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Servicio</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Uso Recomendado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Amazon S3</strong></td>
-<td style="text-align: left;">Objetos</td>
-<td style="text-align: left;">Almacenamiento masivo de archivos (imágenes, documentos, backups). Alta durabilidad.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>S3 Glacier</strong></td>
-<td style="text-align: left;">Archivo</td>
-<td style="text-align: left;">Almacenamiento a muy bajo coste para datos que se consultan raramente (archivo histórico).</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Amazon EBS</strong></td>
-<td style="text-align: left;">Bloques</td>
-<td style="text-align: left;">El "disco duro" para instancias EC2. Ideal para bases de datos instaladas a mano.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Amazon EFS</strong></td>
-<td style="text-align: left;">Archivos</td>
-<td style="text-align: left;">Sistema de archivos compartido que puede ser montado por varios servidores a la vez.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="computacion-compute">⚡ Computación (Compute)</h2>
-<ul>
-<li><strong>Amazon EC2:</strong> Servidores virtuales con control total sobre el sistema operativo.</li>
-<li><strong>AWS Lambda (Serverless):</strong> Ejecución de código por eventos sin gestionar servidores. Solo pagas por los milisegundos de ejecución.</li>
-<li><strong>Elastic Beanstalk:</strong> Herramienta para desplegar y escalar aplicaciones web automáticamente (soporta Java, .NET, PHP, Python, etc.).</li>
-</ul>
-<hr />
-<h2 id="bases-de-datos-databases">📊 Bases de Datos (Databases)</h2>
-<ul>
-<li><strong>Amazon RDS:</strong> Bases de datos relacionales gestionadas (MySQL, PostgreSQL, SQL Server). AWS se encarga de los parches y backups.</li>
-<li><strong>Amazon DynamoDB:</strong> Base de datos NoSQL clave-valor de baja latencia para aplicaciones a gran escala.</li>
-<li><strong>Amazon Redshift:</strong> Almacén de datos (Data Warehouse) para análisis de Big Data y BI.</li>
-</ul>
-<hr />
-<h2 id="redes-y-seguridad_1">🔐 Redes y Seguridad</h2>
-<h3 id="infraestructura-global">Infraestructura Global</h3>
-<ul>
-<li><strong>Región:</strong> Área geográfica física (ej. España). Contiene varias Zonas de Disponibilidad.</li>
-<li><strong>Zona de Disponibilidad (AZ):</strong> Uno o más centros de datos discretos. Diseñar para "Multi-AZ" garantiza alta disponibilidad.</li>
-</ul>
-<h3 id="seguridad-de-red">Seguridad de Red</h3>
-<ul>
-<li><strong>Amazon VPC:</strong> Tu red privada aislada en la nube. Tú controlas las IPs y subredes.</li>
-<li><strong>IAM (Identity &amp; Access Management):</strong> Gestión de usuarios y permisos. Principio de "mínimo privilegio".</li>
-<li><strong>AWS WAF &amp; Shield:</strong> Cortafuegos de aplicaciones web y protección contra ataques de denegación de servicio (DDoS).</li>
-<li><strong>CloudTrail:</strong> Registro de auditoría. Permite saber qué usuario hizo qué acción en la consola o API.</li>
-</ul>
-<hr />
-<h2 id="modelo-de-responsabilidad-compartida">🤝 Modelo de Responsabilidad Compartida</h2>
-<ol>
-<li><strong>AWS es responsable de la seguridad "DE" la nube:</strong> Hardware, centros de datos, red global, software de virtualización.</li>
-<li><strong>El Cliente es responsable de la seguridad "EN" la nube:</strong> Configuración de firewalls, gestión de identidades (IAM), cifrado de datos y actualizaciones del Sistema Operativo.</li>
-</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -1953,6 +2370,44 @@
         <footer class="md-footer">
   
     
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../cloud/sesion1/otras/presentacion_docente/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Presentación docente">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Presentación docente
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../bedrock/sesion1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción a Amazon Bedrock">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Introducción a Amazon Bedrock
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1979,10 +2434,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
