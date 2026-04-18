@@ -12,6 +12,9 @@ El enfoque está pensado para **hacer en clase**, en ejercicios cortos, sin pedi
 
 ---
 
+Imagen:
+![](./images/ganchos_virales_10.png)
+
 ## 1. Objetivos de la sesión 2.5
 
 Al finalizar esta sesión, el alumnado será capaz de:
@@ -30,6 +33,7 @@ El alumnado debe tener:
 - Python y un entorno virtual configurado.
 - Clave de API de Mistral en la variable `MISTRAL_API_KEY`.
 - Proyecto Flask básico (similar al de la práctica “Crear una webapp con Flask”):
+
   - `app.py`
   - `utilities.py`
   - `.env`
@@ -97,11 +101,13 @@ if __name__ == "__main__":
 
 1. Ejecutar `python temp_demo.py`.
 2. Comparar las 4 salidas:
+
    - código con temperatura baja,
    - código con temperatura alta,
    - posts con temperatura baja,
    - posts con temperatura alta.
 3. Comentar en voz alta:
+
    - ¿Qué configuración usarías para un ayudante de código?
    - ¿Qué configuración usarías para generar ideas de posts?
 
@@ -147,6 +153,7 @@ if __name__ == "__main__":
 1. Ejecutar `python top_p_demo.py`.
 2. Observar las diferencias entre `top_p=0.2`, `0.5` y `0.95`.
 3. Comentar brevemente (en voz alta):
+
    - ¿Con qué valor el texto parece más conservador?
    - ¿Con cuál salen ideas más “locas” o inesperadas?
 
@@ -193,6 +200,7 @@ Responde con este formato:
 
 1. Probar los tres prompts con la misma configuración de parámetros.
 2. Comparar:
+
    - claridad,
    - adecuación al público,
    - organización de la respuesta.
@@ -360,6 +368,7 @@ En clase, los alumnos deben:
 
 1. Lanzar la webapp con `python app.py`.
 2. Probar el mismo prompt en:
+
    - modo `code_helper`,
    - modo `social_post`.
 3. Observar cómo cambian el tono y el estilo.

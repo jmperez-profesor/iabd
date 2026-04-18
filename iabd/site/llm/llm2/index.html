@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm1/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm2/">
       
       
-        <link rel="prev" href="../../cloud/sesion1/otras/presentacion_docente/">
+        <link rel="prev" href="../llm1/">
       
       
-        <link rel="next" href="../llm2/">
+        <link rel="next" href="../llm3/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG) - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 2 - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag" class="md-skip">
+        <a href="#sesion-2-creacion-de-un-agente-en-mistral-ai" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+              Sesión 2
             
           </span>
         </div>
@@ -257,7 +257,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../llm1/" class="md-tabs__link">
           
   
   
@@ -774,6 +774,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -793,7 +821,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+    Sesión 2
   
 
     
@@ -811,7 +839,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+    Sesión 2
   
 
     
@@ -837,10 +865,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#idea-central" class="md-nav__link">
+  <a href="#1-contexto-de-la-sesion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Idea central
+        1. Contexto de la sesión
       
     </span>
   </a>
@@ -848,10 +876,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objetivo-didactico" class="md-nav__link">
+  <a href="#2-objetivos-de-la-sesion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo didáctico
+        2. Objetivos de la sesión
       
     </span>
   </a>
@@ -859,22 +887,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral" class="md-nav__link">
+  <a href="#3-conceptos-clave-en-mistral-ai" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 1: Chatbot simple con un modelo fundacional como Mistral
+        3. Conceptos clave en Mistral AI
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Fase 1: Chatbot simple con un modelo fundacional como Mistral">
+    <nav class="md-nav" aria-label="3. Conceptos clave en Mistral AI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-construimos" class="md-nav__link">
+  <a href="#31-modelo-vs-agente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Qué construimos?
+        3.1. Modelo vs. Agente
       
     </span>
   </a>
@@ -882,10 +910,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui" class="md-nav__link">
+  <a href="#32-conversacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Qué aprendemos aquí?
+        3.2. Conversación
       
     </span>
   </a>
@@ -893,32 +921,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ventajas" class="md-nav__link">
+  <a href="#33-entradas-entries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
+        3.3. Entradas (Entries)
       
     </span>
   </a>
@@ -931,77 +937,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fase-2-aplicacion-agentica-con-smolagents" class="md-nav__link">
+  <a href="#4-escenario-de-trabajo-tutor-ia-de-apoyo-al-modulo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 2: Aplicación agéntica con smolagents
+        4. Escenario de trabajo: “Tutor IA de apoyo al módulo”
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Fase 2: Aplicación agéntica con smolagents">
+    <nav class="md-nav" aria-label="4. Escenario de trabajo: “Tutor IA de apoyo al módulo”">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-cambia" class="md-nav__link">
+  <a href="#41-comportamiento-deseado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Qué cambia?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-evolucion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo de evolución
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué aprendemos aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
+        4.1. Comportamiento deseado
       
     </span>
   </a>
@@ -1014,22 +965,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain" class="md-nav__link">
+  <a href="#5-parte-1-creacion-del-agente-en-la-plataforma-de-mistral" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 3: Aplicación avanzada con RAG y agentes usando LangChain
+        5. Parte 1 – Creación del agente en la plataforma de Mistral
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Fase 3: Aplicación avanzada con RAG y agentes usando LangChain">
+    <nav class="md-nav" aria-label="5. Parte 1 – Creación del agente en la plataforma de Mistral">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-problema-aparece-ahora" class="md-nav__link">
+  <a href="#51-pasos-generales-orientativos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Qué problema aparece ahora?
+        5.1. Pasos generales (orientativos)
       
     </span>
   </a>
@@ -1037,76 +988,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#que-es-rag" class="md-nav__link">
+  <a href="#52-instrucciones-sugeridas-para-el-agente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Qué es RAG?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#por-que-usar-langchain-aqui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Por qué usar LangChain aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-evolucion_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo de evolución
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué aprendemos aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
+        5.2. Instrucciones sugeridas para el agente
       
     </span>
   </a>
@@ -1119,33 +1004,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#comparativa-global" class="md-nav__link">
+  <a href="#6-parte-2-preparacion-del-entorno-python" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comparativa global
+        6. Parte 2 – Preparación del entorno Python
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#el-mismo-ejemplo-evolucionando" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        El mismo ejemplo evolucionando
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="El mismo ejemplo evolucionando">
+    <nav class="md-nav" aria-label="6. Parte 2 – Preparación del entorno Python">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#version-1-chatbot" class="md-nav__link">
+  <a href="#61-requisitos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Versión 1 – Chatbot
+        6.1. Requisitos
       
     </span>
   </a>
@@ -1153,21 +1027,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#version-2-agente-con-smolagents" class="md-nav__link">
+  <a href="#62-variables-de-entorno-necesarias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Versión 2 – Agente con smolagents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-3-rag-agentes-con-langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versión 3 – RAG + agentes con LangChain
+        6.2. Variables de entorno necesarias
       
     </span>
   </a>
@@ -1180,10 +1043,149 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mensaje-docente-clave" class="md-nav__link">
+  <a href="#7-parte-3-primer-script-invocar-al-agente-desde-python" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mensaje docente clave
+        7. Parte 3 – Primer script: invocar al agente desde Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Parte 3 – Primer script: invocar al agente desde Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-que-hace-este-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Qué hace este script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-actividades-practicas-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Actividades prácticas de la sesión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Actividades prácticas de la sesión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actividad-1-comprobacion-de-variables-y-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 1 – Comprobación de variables y conexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-2-cambiar-la-pregunta-y-observar-el-comportamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 2 – Cambiar la pregunta y observar el comportamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-3-simular-una-conversacion-con-varias-preguntas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 3 – Simular una conversación con varias preguntas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-4-detectar-errores-y-sus-causas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 4 – Detectar errores y sus causas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-comparacion-con-la-sesion-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Comparación con la sesión 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Comparación con la sesión 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-sesion-1-llm01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Sesión 1 (LLM01)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-sesion-2-llm02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Sesión 2 (LLM02)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-preguntas-de-reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Preguntas de reflexión
       
     </span>
   </a>
@@ -1191,32 +1193,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preguntas-para-reflexionar" class="md-nav__link">
+  <a href="#11-relacion-con-sesiones-futuras" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preguntas para reflexionar
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actividad-breve" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Actividad breve
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cierre" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cierre
+        11. Relación con sesiones futuras
       
     </span>
   </a>
@@ -1227,34 +1207,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../llm2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 2
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2120,281 +2072,345 @@
 
 
 
-<h1 id="sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag">Sesión 1 – Evolución de una aplicación LLM: de chatbot a agentes y RAG</h1>
-<h2 id="idea-central">Idea central</h2>
-<p>Vamos a estudiar una evolución muy habitual en aplicaciones basadas en modelos de lenguaje:</p>
+<h1 id="sesion-2-creacion-de-un-agente-en-mistral-ai">Sesión 2  - Creación de un agente en Mistral AI</h1>
+<h2 id="1-contexto-de-la-sesion">1. Contexto de la sesión</h2>
+<p>En la sesión anterior (LLM01) vimos:</p>
+<ul>
+<li>Qué es un LLM y cómo funciona a alto nivel.</li>
+<li>Conceptos de <strong>tokens</strong>, <strong>ventana de contexto</strong>, <strong>system prompt</strong> y <strong>alucinaciones</strong>.</li>
+<li>Un primer ejemplo de interacción tipo chatbot.</li>
+</ul>
+<p>En esta sesión damos un paso más: vamos a crear y utilizar un <strong>agente</strong> en Mistral AI, apoyándonos en la API de Agents y Conversations.</p>
+<p>La idea clave es pasar de <strong>“hablar con un modelo”</strong> a <strong>“definir un asistente con rol, memoria y comportamiento propios”</strong>.</p>
+<hr />
+<h2 id="2-objetivos-de-la-sesion">2. Objetivos de la sesión</h2>
+<p>Al finalizar esta sesión, el alumnado será capaz de:</p>
+<ul>
+<li>Explicar la diferencia entre <strong>modelo</strong>, <strong>agente</strong> y <strong>conversación</strong> en Mistral AI.</li>
+<li>Crear un agente básico en la plataforma de Mistral con instrucciones adaptadas al curso.</li>
+<li>Invocar ese agente desde Python usando el cliente oficial de Mistral.</li>
+<li>Observar cómo cambia la experiencia frente a un simple chatbot directo sobre el modelo.</li>
+</ul>
+<hr />
+<h2 id="3-conceptos-clave-en-mistral-ai">3. Conceptos clave en Mistral AI</h2>
+<h3 id="31-modelo-vs-agente">3.1. Modelo vs. Agente</h3>
+<ul>
+<li><strong>Modelo</strong>: red neuronal entrenada para completar texto, traducir, razonar, etc.  </li>
+<li>
+<p><strong>Agente</strong> (en Mistral AI): configuración reutilizable que envuelve un modelo y añade:</p>
+</li>
+<li>
+<p>Instrucciones (system prompt persistente).</p>
+</li>
+<li>Parámetros (temperatura, estilo, etc.).</li>
+<li>Opcionalmente, tools o integraciones adicionales.</li>
+</ul>
+<p>Trabajar directamente con el modelo es suficiente para un <strong>chatbot simple</strong>, pero repetir siempre las mismas instrucciones y parámetros en cada llamada no es práctico.<br />
+Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla.</p>
+<h3 id="32-conversacion">3.2. Conversación</h3>
+<p>En Mistral, una <strong>conversación</strong> (Conversation) es la entidad que:</p>
+<ul>
+<li>mantiene el historial de mensajes,</li>
+<li>guarda el contexto,</li>
+<li>y representa el diálogo entre usuario y asistente.</li>
+</ul>
+<p>Características:</p>
+<ul>
+<li>Las conversaciones se pueden iniciar <strong>a partir de un agente</strong> (usando <code>agent_id</code>) o directamente con un modelo.</li>
+<li>Cada mensaje nuevo se añade como una entrada (entry) en la conversación.</li>
+</ul>
+<h3 id="33-entradas-entries">3.3. Entradas (Entries)</h3>
+<p>Una <strong>entrada</strong> representa una acción dentro de la conversación:</p>
+<ul>
+<li>mensajes del usuario,</li>
+<li>respuestas del asistente,</li>
+<li>o actualizaciones generadas por otras operaciones.</li>
+</ul>
+<p>El API de Mistral permite:</p>
+<ul>
+<li>crear una conversación inicial con una lista de entradas,</li>
+<li>añadir nuevas entradas,</li>
+<li>recuperar el estado de la conversación.</li>
+</ul>
+<hr />
+<h2 id="4-escenario-de-trabajo-tutor-ia-de-apoyo-al-modulo">4. Escenario de trabajo: “Tutor IA de apoyo al módulo”</h2>
+<p>En toda la sesión trabajaremos con el mismo caso práctico:</p>
+<blockquote>
+<p>Un agente llamado <strong>TutorFP-IA</strong>, cuyo objetivo es ayudar a estudiantes de ciclos formativos de informática a entender conceptos de IA y Big Data.</p>
+</blockquote>
+<h3 id="41-comportamiento-deseado">4.1. Comportamiento deseado</h3>
+<p>El agente:</p>
+<ul>
+<li>Responde siempre en castellano.</li>
+<li>Explica conceptos de forma clara, con ejemplos sencillos.</li>
+<li>Adapta el nivel al de estudiantes de FP de grado superior.</li>
+<li>Pide aclaraciones si la pregunta no está bien definida.</li>
+<li>No se inventa normativa ni datos críticos (lo indica cuando no sabe algo).</li>
+</ul>
+<hr />
+<h2 id="5-parte-1-creacion-del-agente-en-la-plataforma-de-mistral">5. Parte 1 – Creación del agente en la plataforma de Mistral</h2>
+<blockquote>
+<p>Nota: esta parte se realiza en la interfaz web de Mistral AI con la cuenta configurada por el profesor.</p>
+</blockquote>
+<h3 id="51-pasos-generales-orientativos">5.1. Pasos generales (orientativos)</h3>
 <ol>
-<li>Primero construimos un <strong>chatbot básico</strong> con un modelo fundacional como <strong>Mistral</strong>.</li>
-<li>Después evolucionamos hacia una <strong>aplicación agéntica</strong> con <strong>smolagents</strong>.</li>
-<li>Finalmente llegamos a una aplicación más avanzada con <strong>RAG + agentes</strong> usando <strong>LangChain</strong>.</li>
+<li>Accede a la consola web de Mistral AI e inicia sesión.  </li>
+<li>Ve a la sección de <strong>Agents</strong> (Agentes).  </li>
+<li>
+<p>Crea un nuevo agente:</p>
+</li>
+<li>
+<p>Nombre: <code>TutorFP-IA</code>.</p>
+</li>
+<li>Descripción: Asistente didáctico para estudiantes de FP de informática.</li>
+<li>Idioma por defecto: Español.</li>
+<li>
+<p>Rol/instrucciones: ver sección siguiente.</p>
+</li>
+<li>
+<p>Guarda el agente y copia su <strong>Agent ID</strong>.  </p>
+</li>
+<li>Este identificador será necesario para usar el agente desde Python.</li>
 </ol>
-<p>La idea no es añadir complejidad por añadirla, sino entender que <strong>cada nueva arquitectura resuelve una limitación real de la anterior</strong>.</p>
+<h3 id="52-instrucciones-sugeridas-para-el-agente">5.2. Instrucciones sugeridas para el agente</h3>
+<p>Puedes adaptar este texto a tus necesidades:</p>
+<div class="highlight"><pre><span></span><code>Eres TutorFP-IA, un asistente de Inteligencia Artificial para estudiantes de ciclos formativos de grado superior de informática.
+
+Tu comportamiento debe seguir estas reglas:
+
+- Respondes SIEMPRE en castellano.
+- Explicas los conceptos de forma clara, con ejemplos sencillos, adecuados a estudiantes de FP.
+- Si la pregunta es ambigua o faltan datos importantes, primero pides aclaraciones.
+- Cuando hables de normativa, leyes u otros datos sensibles, indicas siempre que deben verificarse con fuentes oficiales.
+- Si no sabes algo, lo dices de forma explícita en lugar de inventar la respuesta.
+- Puedes usar enumeraciones y listas para organizar tus explicaciones, pero intenta no ser excesivamente largo.
+</code></pre></div>
 <hr />
-<h2 id="objetivo-didactico">Objetivo didáctico</h2>
-<p>Al finalizar esta sesión, deberías ser capaz de:</p>
+<h2 id="6-parte-2-preparacion-del-entorno-python">6. Parte 2 – Preparación del entorno Python</h2>
+<blockquote>
+<p>Esta parte se realiza en local, en el entorno de desarrollo del alumno.</p>
+</blockquote>
+<h3 id="61-requisitos">6.1. Requisitos</h3>
 <ul>
-<li>Explicar por qué se empieza normalmente por una aplicación sencilla con un LLM.</li>
-<li>Entender qué aporta una arquitectura basada en agentes.</li>
-<li>Comprender por qué RAG aparece cuando necesitamos trabajar con documentación propia o conocimiento externo.</li>
-<li>Comparar ventajas e inconvenientes de cada fase.</li>
+<li>Python 3.10 o superior.</li>
+<li>Entorno virtual creado para el proyecto.</li>
+<li>Paquete oficial de Mistral AI instalado:</li>
 </ul>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mistralai
+</code></pre></div>
+<h3 id="62-variables-de-entorno-necesarias">6.2. Variables de entorno necesarias</h3>
+<p>Define al menos estas dos variables:</p>
+<ul>
+<li><code>MISTRAL_API_KEY</code>: tu clave de API de Mistral AI.</li>
+<li><code>MISTRAL_AGENT_ID</code>: el <code>agent_id</code> del agente <code>TutorFP-IA</code>.</li>
+</ul>
+<p>En Linux/macOS (ejemplo):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">MISTRAL_API_KEY</span><span class="o">=</span><span class="s2">&quot;TU_CLAVE_REAL&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MISTRAL_AGENT_ID</span><span class="o">=</span><span class="s2">&quot;ag_xxx...&quot;</span>
+</code></pre></div>
+<p>En Windows (PowerShell):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$env:MISTRAL_API_KEY</span><span class="p">=</span><span class="s2">&quot;TU_CLAVE_REAL&quot;</span>
+<span class="nv">$env:MISTRAL_AGENT_ID</span><span class="p">=</span><span class="s2">&quot;ag_xxx...&quot;</span>
+</code></pre></div>
 <hr />
-<h2 id="fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral">Fase 1: Chatbot simple con un modelo fundacional como Mistral</h2>
-<h3 id="que-construimos">¿Qué construimos?</h3>
-<p>La primera versión de nuestra aplicación es un <strong>chatbot</strong> que recibe mensajes del usuario y responde usando un modelo fundacional como <strong>Mistral</strong>.</p>
-<p>Ejemplo de uso:</p>
+<h2 id="7-parte-3-primer-script-invocar-al-agente-desde-python">7. Parte 3 – Primer script: invocar al agente desde Python</h2>
+<p>Crea un archivo, por ejemplo <code>llm02_agente_mistral.py</code>, con el siguiente contenido base:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">agent_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_AGENT_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falta la variable de entorno MISTRAL_API_KEY&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">agent_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falta la variable de entorno MISTRAL_AGENT_ID&quot;</span><span class="p">)</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+    <span class="c1"># Primer mensaje del usuario</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hola, ¿puedes explicarme qué es un token en un LLM con un ejemplo sencillo?&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">conversations</span><span class="o">.</span><span class="n">start</span><span class="p">(</span>
+        <span class="n">agent_id</span><span class="o">=</span><span class="n">agent_id</span><span class="p">,</span>
+        <span class="n">agent_version</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== RESPUESTA DEL AGENTE ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="71-que-hace-este-script">7.1. Qué hace este script</h3>
+<ol>
+<li>Lee las variables de entorno <code>MISTRAL_API_KEY</code> y <code>MISTRAL_AGENT_ID</code>.  </li>
+<li>Crea un cliente <code>Mistral</code> con la API key.  </li>
+<li>Construye una lista de <code>inputs</code> con un mensaje de usuario.  </li>
+<li>Llama a <code>client.beta.conversations.start(...)</code> para iniciar una conversación con el agente <code>TutorFP-IA</code>.  </li>
+<li>Imprime el objeto de respuesta (que incluye información de la conversación y del mensaje generado).</li>
+</ol>
+<h3 id="72-ejecucion">7.2. Ejecución</h3>
+<p>Desde el terminal:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>llm02_agente_mistral.py
+</code></pre></div>
+<hr />
+<h2 id="8-actividades-practicas-de-la-sesion">8. Actividades prácticas de la sesión</h2>
+<h3 id="actividad-1-comprobacion-de-variables-y-conexion">Actividad 1 – Comprobación de variables y conexión</h3>
+<ol>
+<li>
+<p>Modifica el script para que, antes de crear el cliente, imprima:</p>
+</li>
+<li>
+<p>si <code>MISTRAL_API_KEY</code> está cargada,  </p>
+</li>
+<li>
+<p>si <code>MISTRAL_AGENT_ID</code> está cargado.</p>
+</li>
+<li>
+<p>Ejecuta el script y verifica que ambas están correctamente definidas.</p>
+</li>
+</ol>
+<p>Fragmento de ayuda:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;API key cargada:&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">api_key</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Agent ID cargado:&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">agent_id</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Agent ID:&quot;</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">)</span>
+</code></pre></div>
+<ol>
+<li>Si alguna no está cargada, corrige la configuración de tu entorno.</li>
+</ol>
+<hr />
+<h3 id="actividad-2-cambiar-la-pregunta-y-observar-el-comportamiento">Actividad 2 – Cambiar la pregunta y observar el comportamiento</h3>
+<ol>
+<li>
+<p>Modifica el contenido del mensaje de usuario:</p>
+</li>
+<li>
+<p>Pregunta 1:<br />
+<code>¿Qué es la Inteligencia Artificial?</code></p>
+</li>
+<li>Pregunta 2:<br />
+<code>Explícame qué es el overfitting con un ejemplo en clasificación.</code></li>
+<li>
+<p>Pregunta 3:<br />
+<code>Compara brevemente un árbol de decisión y una red neuronal.</code></p>
+</li>
+<li>
+<p>Observa si el agente:</p>
+</li>
+<li>
+<p>responde en castellano,  </p>
+</li>
+<li>adapta el nivel,  </li>
+<li>
+<p>pide aclaraciones si la pregunta es ambigua.</p>
+</li>
+<li>
+<p>Comenta (en un pequeño <code>.md</code> o como comentario en el código):</p>
+</li>
+<li>
+<p>¿En qué se nota que el agente tiene instrucciones específicas?  </p>
+</li>
+<li>¿Qué diferencia aprecias respecto a un simple modelo sin agent?</li>
+</ol>
+<hr />
+<h3 id="actividad-3-simular-una-conversacion-con-varias-preguntas">Actividad 3 – Simular una conversación con varias preguntas</h3>
+<p>Aunque la API de Conversations permite mantener el estado de una conversación en la plataforma, en esta sesión haremos una simulación simple de intercambio.</p>
+<ol>
+<li>Dentro de <code>main()</code>, sustituye el bloque de mensaje único por un bucle:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tú: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;salir&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;quit&quot;</span><span class="p">}:</span>
+        <span class="k">break</span>
+
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_input</span><span class="p">}]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">conversations</span><span class="o">.</span><span class="n">start</span><span class="p">(</span>
+        <span class="n">agent_id</span><span class="o">=</span><span class="n">agent_id</span><span class="p">,</span>
+        <span class="n">agent_version</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Agente:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<ol>
+<li>Haz varias preguntas seguidas relacionadas entre sí (por ejemplo, todas sobre LLMs).  </li>
+<li>
+<p>Discute en clase:</p>
+</li>
+<li>
+<p>¿Qué parte de la memoria se está gestionando aquí manualmente?  </p>
+</li>
+<li>¿Qué crees que permitiría hacer una gestión más robusta de conversaciones persistentes?</li>
+</ol>
+<hr />
+<h3 id="actividad-4-detectar-errores-y-sus-causas">Actividad 4 – Detectar errores y sus causas</h3>
+<p>Durante la sesión pueden aparecer errores como:</p>
 <ul>
-<li>El usuario pregunta: <em>"¿Qué es un token en un LLM?"</em></li>
-<li>El chatbot responde generando texto a partir del prompt recibido.</li>
+<li><code>Unauthorized (401)</code>: problemas con la API key (ausente, incorrecta, con espacios, etc.).  </li>
+<li>Errores de <code>agent_id</code>: agente inexistente o mal copiado.  </li>
+<li>Timeouts o problemas de red.</li>
 </ul>
-<h3 id="que-aprendemos-aqui">¿Qué aprendemos aquí?</h3>
-<p>Esta fase es ideal para aprender lo esencial:</p>
+<p>Tarea:</p>
+<ol>
+<li>Simula uno de estos errores (por ejemplo, cambiando un carácter del <code>agent_id</code>).  </li>
+<li>Observa el mensaje de error.  </li>
+<li>
+<p>Escribe una breve nota explicando:</p>
+</li>
+<li>
+<p>qué crees que significa,  </p>
+</li>
+<li>cómo lo has resuelto.</li>
+</ol>
+<hr />
+<h2 id="9-comparacion-con-la-sesion-1">9. Comparación con la sesión 1</h2>
+<p>Es importante que el alumnado vea claramente el salto respecto a la primera sesión.</p>
+<h3 id="91-sesion-1-llm01">9.1. Sesión 1 (LLM01)</h3>
 <ul>
-<li>Qué es un prompt.</li>
-<li>Qué es un <strong>system prompt</strong>.</li>
-<li>Cómo se envían mensajes a un modelo.</li>
-<li>Cómo se recibe una respuesta.</li>
-<li>Qué limitaciones tiene un LLM cuando solo “conversa”.</li>
-</ul>
-<h3 id="ventajas">Ventajas</h3>
-<ul>
-<li>Es la forma más simple de empezar.</li>
-<li>Requiere poco código.</li>
-<li>Permite ver resultados muy rápido.</li>
-<li>Sirve para introducir conceptos clave como:</li>
-<li>prompt,</li>
-<li>system prompt,</li>
+<li>Interacción directa con un <strong>modelo</strong>.</li>
+<li>System prompt definido en el código o en el entorno, pero no centralizado en un agente.</li>
+<li>Foco en:</li>
+<li>tokens,</li>
 <li>contexto,</li>
-<li>temperatura,</li>
-<li>longitud de salida.</li>
+<li>prompts.</li>
 </ul>
-<h3 id="desventajas">Desventajas</h3>
+<h3 id="92-sesion-2-llm02">9.2. Sesión 2 (LLM02)</h3>
 <ul>
-<li>El modelo <strong>solo responde</strong>: no actúa sobre herramientas ni consulta fuentes externas.</li>
-<li>Puede <strong>alucinar</strong> o inventarse información.</li>
-<li>No sabe nada de nuestros documentos propios si no se los pasamos en el prompt.</li>
-<li>El alumnado puede pensar erróneamente que “usar IA generativa” es solo hacer chatbots.</li>
+<li>Interacción a través de un <strong>agente</strong> de Mistral.</li>
+<li>System prompt e instrucciones encapsulados en el agente.</li>
+<li>Foco en:</li>
+<li>diferencia entre modelo y agente,</li>
+<li>uso de la API de Agents &amp; Conversations,</li>
+<li>ventajas de centralizar configuración y rol.</li>
 </ul>
-<h3 id="idea-clave">Idea clave</h3>
-<blockquote>
-<p>Un chatbot con un modelo fundacional es un excelente punto de partida, pero no suele ser suficiente para construir una aplicación útil y robusta en un entorno real.</p>
-</blockquote>
 <hr />
-<h2 id="fase-2-aplicacion-agentica-con-smolagents">Fase 2: Aplicación agéntica con smolagents</h2>
-<h3 id="que-cambia">¿Qué cambia?</h3>
-<p>Ahora dejamos de pensar en el modelo como un simple generador de texto y pasamos a verlo como un <strong>agente</strong>.</p>
-<p>Un agente no solo responde: también puede</p>
-<ul>
-<li>decidir,</li>
-<li>planificar,</li>
-<li>usar herramientas,</li>
-<li>ejecutar acciones,</li>
-<li>encadenar pasos.</li>
-</ul>
-<p>Con <strong>smolagents</strong> podemos construir agentes de forma bastante ligera.</p>
-<h3 id="ejemplo-de-evolucion">Ejemplo de evolución</h3>
-<p>Antes:</p>
-<ul>
-<li>El chatbot respondía:<br />
-<em>"Creo que tienes estos documentos..."</em></li>
-</ul>
-<p>Ahora:</p>
-<ul>
-<li>El agente puede llamar a una tool como <code>listar_documentos()</code>.</li>
-<li>Puede leer una función.</li>
-<li>Puede decidir usar una herramienta antes de responder.</li>
-</ul>
-<h3 id="que-aprendemos-aqui_1">¿Qué aprendemos aquí?</h3>
-<ul>
-<li>Qué es una <strong>tool</strong>.</li>
-<li>Qué es un <strong>agente</strong>.</li>
-<li>Qué diferencia hay entre “responder” y “actuar”.</li>
-<li>Cómo delegar pequeñas tareas al modelo.</li>
-</ul>
-<h3 id="ventajas_1">Ventajas</h3>
-<ul>
-<li>Introduce una arquitectura mucho más útil.</li>
-<li>Permite automatizar acciones.</li>
-<li>Hace visibles conceptos fundamentales de IA aplicada:</li>
-<li>decisión,</li>
-<li>planificación,</li>
-<li>observación,</li>
-<li>ejecución.</li>
-<li>smolagents es muy adecuado para aprender porque tiene una curva de entrada relativamente baja.</li>
-</ul>
-<h3 id="desventajas_1">Desventajas</h3>
-<ul>
-<li>Añade complejidad mental y técnica.</li>
-<li>Puede parecer “magia” si no entendemos bien cómo decide el agente.</li>
-<li>Si la aplicación crece mucho, podemos necesitar una arquitectura más completa y modular.</li>
-</ul>
-<h3 id="idea-clave_1">Idea clave</h3>
-<blockquote>
-<p>Un agente es más potente que un chatbot porque no solo habla: también puede actuar usando herramientas.</p>
-</blockquote>
-<hr />
-<h2 id="fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain">Fase 3: Aplicación avanzada con RAG y agentes usando LangChain</h2>
-<h3 id="que-problema-aparece-ahora">¿Qué problema aparece ahora?</h3>
-<p>Aunque tengamos agentes, sigue existiendo una limitación importante:</p>
-<ul>
-<li>el modelo no tiene acceso fiable a nuestros apuntes,</li>
-<li>no conoce documentos privados,</li>
-<li>no puede responder bien sobre contenidos específicos del curso si no se los damos explícitamente.</li>
-</ul>
-<p>Aquí aparece <strong>RAG</strong>.</p>
-<h3 id="que-es-rag">¿Qué es RAG?</h3>
-<p><strong>RAG</strong> significa <strong>Retrieval-Augmented Generation</strong>.</p>
-<p>La idea es:</p>
+<h2 id="10-preguntas-de-reflexion">10. Preguntas de reflexión</h2>
+<p>Puedes proponer estas preguntas para cierre de sesión (por escrito o discusión):</p>
 <ol>
-<li>Recuperar fragmentos relevantes de documentación.</li>
-<li>Pasarlos al modelo como contexto.</li>
-<li>Generar una respuesta apoyada en esas fuentes.</li>
-</ol>
-<h3 id="por-que-usar-langchain-aqui">¿Por qué usar LangChain aquí?</h3>
-<p>Porque LangChain proporciona piezas muy útiles para construir esta arquitectura:</p>
-<ul>
-<li>carga de documentos,</li>
-<li>fragmentación,</li>
-<li>embeddings,</li>
-<li>recuperación,</li>
-<li>cadenas de generación,</li>
-<li>integración con agentes.</li>
-</ul>
-<h3 id="ejemplo-de-evolucion_1">Ejemplo de evolución</h3>
-<p>Antes:</p>
-<ul>
-<li>El agente intentaba responder “de memoria”.</li>
-</ul>
-<p>Ahora:</p>
-<ul>
-<li>El sistema busca en apuntes o documentos del curso.</li>
-<li>Recupera los fragmentos más relevantes.</li>
-<li>Responde usando ese contexto.</li>
-</ul>
-<h3 id="que-aprendemos-aqui_2">¿Qué aprendemos aquí?</h3>
-<ul>
-<li>Qué problema resuelve RAG.</li>
-<li>Cómo conectar documentos y modelos.</li>
-<li>Cómo construir una aplicación más robusta y útil.</li>
-<li>Cómo integrar agentes con recuperación de información.</li>
-</ul>
-<h3 id="ventajas_2">Ventajas</h3>
-<ul>
-<li>Reduce alucinaciones.</li>
-<li>Permite trabajar con conocimiento propio.</li>
-<li>Mejora la precisión.</li>
-<li>Hace la arquitectura más profesional y reutilizable.</li>
-<li>Encaja muy bien en aplicaciones reales de empresa y educación.</li>
-</ul>
-<h3 id="desventajas_2">Desventajas</h3>
-<ul>
-<li>Es la fase más compleja.</li>
-<li>Requiere más componentes.</li>
-<li>Necesita más diseño, pruebas y depuración.</li>
-<li>Si no se entiende primero el problema, puede parecer una receta técnica sin sentido.</li>
-</ul>
-<h3 id="idea-clave_2">Idea clave</h3>
-<blockquote>
-<p>RAG no sustituye al LLM: lo complementa con acceso a conocimiento externo relevante.</p>
-</blockquote>
-<hr />
-<h2 id="comparativa-global">Comparativa global</h2>
-<table>
-<thead>
-<tr>
-<th>Fase</th>
-<th>Qué hace</th>
-<th>Ventajas</th>
-<th>Limitaciones</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Chatbot con Mistral</td>
-<td>Conversa con el usuario</td>
-<td>Simple, rápido, ideal para empezar</td>
-<td>No usa tools ni documentos externos</td>
-</tr>
-<tr>
-<td>Agente con smolagents</td>
-<td>Usa herramientas y toma decisiones</td>
-<td>Más útil y flexible</td>
-<td>Más complejidad y depuración</td>
-</tr>
-<tr>
-<td>RAG + agentes con LangChain</td>
-<td>Recupera información y responde con contexto</td>
-<td>Más robusto, más realista, más profesional</td>
-<td>Arquitectura más compleja</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="el-mismo-ejemplo-evolucionando">El mismo ejemplo evolucionando</h2>
-<p>Vamos a imaginar siempre el mismo caso: un <strong>Asistente técnico del módulo</strong>.</p>
-<h3 id="version-1-chatbot">Versión 1 – Chatbot</h3>
-<ul>
-<li>Responde dudas generales.</li>
-<li>Usa solo el modelo Mistral.</li>
-<li>No consulta apuntes ni herramientas.</li>
-</ul>
-<h3 id="version-2-agente-con-smolagents">Versión 2 – Agente con smolagents</h3>
-<ul>
-<li>Puede usar tools.</li>
-<li>Por ejemplo:</li>
-<li>listar documentos,</li>
-<li>leer un resumen,</li>
-<li>consultar un dato auxiliar.</li>
-</ul>
-<h3 id="version-3-rag-agentes-con-langchain">Versión 3 – RAG + agentes con LangChain</h3>
-<ul>
-<li>Busca en una colección de apuntes o documentación.</li>
-<li>Recupera fragmentos relevantes.</li>
-<li>Construye una respuesta fundamentada en esos documentos.</li>
-<li>Puede incluir además un agente coordinador que decida cuándo usar RAG.</li>
-</ul>
-<hr />
-<h2 id="mensaje-docente-clave">Mensaje docente clave</h2>
-<p>La evolución correcta no es:</p>
-<blockquote>
-<p>“Como existe una tecnología más compleja, la usamos desde el principio.”</p>
-</blockquote>
-<p>La evolución correcta es:</p>
-<blockquote>
-<p>“Primero resolvemos el problema con la solución más simple posible; después añadimos nuevas capas cuando aparece una limitación real.”</p>
-</blockquote>
-<hr />
-<h2 id="preguntas-para-reflexionar">Preguntas para reflexionar</h2>
-<ol>
-<li>¿Qué puede hacer un agente que no puede hacer un chatbot simple?</li>
-<li>¿Por qué un modelo fundacional no basta cuando queremos trabajar con apuntes del curso?</li>
-<li>¿Qué aporta RAG frente a pedirle al modelo que responda “de memoria”?</li>
-<li>¿Qué inconvenientes tiene introducir demasiada complejidad demasiado pronto?</li>
+<li>¿Qué ventaja tiene definir un agente frente a llamar directamente a un modelo?</li>
+<li>¿Qué elementos del comportamiento del agente has podido controlar desde sus instrucciones?</li>
+<li>¿En qué tipo de proyectos te parece especialmente útil trabajar con agentes?</li>
+<li>¿Qué limitaciones sigue teniendo el sistema actual que crees que se pueden mejorar con herramientas (tools) o RAG en sesiones posteriores?</li>
 </ol>
 <hr />
-<h2 id="actividad-breve">Actividad breve</h2>
-<p>En grupos de 2 o 3 personas:</p>
-<ol>
-<li>Pensad en una aplicación educativa basada en IA.</li>
-<li>Describid cómo sería en estas tres versiones:</li>
-<li>chatbot simple,</li>
-<li>agente con tools,</li>
-<li>sistema con RAG y agentes.</li>
-<li>Indicad:</li>
-<li>qué problema resuelve cada versión,</li>
-<li>qué nueva capacidad aporta,</li>
-<li>qué complejidad añade.</li>
-</ol>
-<hr />
-<h2 id="cierre">Cierre</h2>
-<p>La evolución que vamos a seguir en esta unidad será:</p>
-<p><strong>chatbot básico → agente con tools → sistema con RAG y agentes</strong></p>
-<p>porque refleja muy bien cómo se diseñan aplicaciones LLM reales:</p>
+<h2 id="11-relacion-con-sesiones-futuras">11. Relación con sesiones futuras</h2>
+<p>Lo que has aprendido en LLM02 servirá como base para:</p>
 <ul>
-<li>primero entendemos el modelo,</li>
-<li>luego aprendemos a darle capacidad de actuar,</li>
-<li>y finalmente lo conectamos con conocimiento útil y arquitectura modular.</li>
+<li>Comparar en próximas sesiones este enfoque con <strong>frameworks de agentes en código</strong> (smolagents).</li>
+<li>Entender cómo un agente puede usar <strong>tools</strong> para realizar acciones externas.</li>
+<li>Introducir <strong>RAG</strong> y agentes con <strong>LangChain</strong> para trabajar con documentación propia del módulo.</li>
 </ul>
+<p>En resumen, en esta sesión has dado el primer paso hacia aplicaciones LLM más estructuradas, donde el modelo ya no es solo “el que responde”, sino parte de un <strong>agente</strong> con rol y memoria definidos.</p>
 
 
 
@@ -2435,7 +2451,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../../cloud/sesion1/otras/presentacion_docente/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Presentación docente">
+          <a href="../llm1/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2445,20 +2461,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Presentación docente
+                Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../llm2/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Sesión 2">
+          <a href="../llm3/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Sesión 3">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Sesión 2
+                Sesión 3
               </div>
             </div>
             <div class="md-footer__button md-icon">
