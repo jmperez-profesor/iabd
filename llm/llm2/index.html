@@ -2173,29 +2173,19 @@
 <p><img alt="Arquitectura interna de un Agente LLM" src="../images/agente_arquitectura.png" /></p>
 <p>Tienen tres componentes:</p>
 <ul>
-<li>
-<p><strong>Planificación</strong>.</p>
+<li><strong>Planificación</strong>:<ul>
+<li><strong>Subobjetivos y descomposición</strong>: El agente divide las tareas grandes en subobjetivos más pequeños y manejables, lo que permite una gestión eficiente de tareas complejas.</li>
+<li><strong>Reflexión y perfeccionamiento</strong>: El agente puede autocriticarse y reflexionar sobre sus acciones pasadas, aprender de sus errores y perfeccionarlos para los pasos futuros, mejorando así la calidad de los resultados finales.</li>
+</ul>
 </li>
-<li>
-<p><strong>Subobjetivos y descomposición</strong>: El agente divide las tareas grandes en subobjetivos más pequeños y manejables, lo que permite una gestión eficiente de tareas complejas.</p>
+<li><strong>Memoria</strong>:<ul>
+<li><strong>Memoria a corto plazo</strong>: utiliza la memoria a corto plazo del modelo para aprender.</li>
+<li><strong>Memoria a largo plazo</strong>: Esto proporciona al agente la capacidad de retener y recordar información (infinita) durante períodos prolongados, a menudo aprovechando un almacenamiento vectorial externo y una recuperación rápida (RAG).</li>
+</ul>
 </li>
-<li>
-<p><strong>Reflexión y perfeccionamiento</strong>: El agente puede autocriticarse y reflexionar sobre sus acciones pasadas, aprender de sus errores y perfeccionarlos para los pasos futuros, mejorando así la calidad de los resultados finales.</p>
-</li>
-<li>
-<p><strong>Memoria</strong></p>
-</li>
-<li>
-<p><strong>Memoria a corto plazo</strong>: utiliza la memoria a corto plazo del modelo para aprender.</p>
-</li>
-<li>
-<p><strong>Memoria a largo plazo</strong>: Esto proporciona al agente la capacidad de retener y recordar información (infinita) durante períodos prolongados, a menudo aprovechando un almacenamiento vectorial externo y una recuperación rápida (RAG).</p>
-</li>
-<li>
-<p><strong>Percepción y acción (uso de herramientas - tools)</strong>: </p>
-</li>
-<li>
-<p>El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más.</p>
+<li><strong>Percepción y acción (uso de herramientas - tools)</strong>: <ul>
+<li>El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más.</li>
+</ul>
 </li>
 </ul>
 <p><img alt="Agente LLM" src="../images/agente_llm.png" /></p>
