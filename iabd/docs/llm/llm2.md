@@ -30,6 +30,40 @@ Al finalizar esta sesión, el alumnado será capaz de:
 
 ---
 
+## Agentes IA
+
+Los agentes IA son entidades artificiales que pueden percibir y actuar de forma autónoma sobre el entorno circundante para lograr objetivos específicos.
+
+- Los *agentes IA* no es algo nuevo
+- Los antiguos agentes funcionaban con reinforcement learning (aprendizaje por refuerzo)
+- Agentes poco flexibles, estados y acciones predefinidas
+
+**Ejemplo**: Un agente que aprende a moverse en una cuadrícula para alcanzar un objetivo evitando obstáculos.
+
+![Agente IA obstáculos](./images/agenteia_obstaculos.png)
+
+## Agentes LLM
+
+Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de extender los LLMs permitiéndoles interactuar con herramientas y entornos externos.
+
+Tienen tres componentes:
+- **Plan**: define la estrategia que sigue el agente para alcanzar un objetivo, descomponiendo una tarea compleja en subtareas manejables.
+
+- **Memoria**: permite al agente mantener contexto, aprender de interacciones previas y evitar razonamientos redundantes.
+
+- **Percepción y acción**: este componente conecta el razonamiento del LLM con el entorno. Usualmente a través de herramientas **(tools)** que interactúan con el entorno.
+
+![Agente LLM](./images/agente_llm.png)
+
+##### Un ejemplo es el agente de GitHub Copilot:
+
+- Usa un LLM como motor principal (se puede seleccionar el LLM).
+- Percibe el contexto: ficheros del proyecto actual e incluso puede estar conectado con herramientas externas.
+- Actúa sugiriendo líneas, funciones completas o tests.
+
+![Agente LLM](./images/copilot.png)
+
+
 ## 3. Conceptos clave en Mistral AI
 
 ### 3.1. Modelo vs. Agente
