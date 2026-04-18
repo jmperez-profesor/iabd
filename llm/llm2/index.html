@@ -2477,7 +2477,11 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 <ul>
 <li><strong>Temperatura</strong>: Usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.</li>
 <li><strong><code>max_tokens</code></strong>: Recuento de tokens incluye tanto los tokens de entrada como los de salida. </li>
-<li><strong><code>top_p</code></strong>: </li>
+<li><strong><code>top_p</code></strong>: sirve para controlar la diversidad, creatividad y aleatoriedad de las respuestas generadas.<ul>
+<li><strong><code>top_p</code> bajo (ej. 0.1 - 0.3)</strong>: El modelo solo considerará el conjunto mínimo de palabras altamente probables (respuestas directas, precisas y más coherentes, ideales para tareas técnicas, resumen de datos o respuestas fácticas)</li>
+<li><strong><code>top_p</code> alto (ej. 0.8 - 1.0)</strong>: El modelo considera un conjunto mucho más amplio de palabras, incluyendo opciones menos probables (aumenta la creatividad, variabilidad y diversidad en el texto, ideal para escritura creativa o lluvia de ideas)</li>
+</ul>
+</li>
 </ul>
 <p><img alt="" src="../images/agente_mistral_paso2c.png" /></p>
 <p>Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.</p>
@@ -2517,7 +2521,7 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 </tbody>
 </table>
 <ul>
-<li>Las solicitudes que superan el período de tiempo permitido por el modelo generan un <code>400 Bad Requesterror</code>.</li>
+<li>Las solicitudes que superan el período de tiempo permitido por el modelo generan un <code>400 Bad Request error</code>.</li>
 <li>
 <p>El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable <code>max_tokens</code>.</p>
 </li>
