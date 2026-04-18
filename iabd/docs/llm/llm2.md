@@ -357,8 +357,18 @@ Seleccionamos **"Implementar en Le Chat"**
 
 ![](./images/agente_mistral_paso5e.png)
 
+Accedemos a Le Chat para probar el agente:
 
-Los miembros del equipo pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.
+![](./images/agente_mistral_paso5f.png)
+
+![](./images/agente_mistral_paso5g.png)
+
+Los miembros de la organización pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.
+
+Hacemos una prueba subiendo un pdf de una reunión de marketing de una empresa ficticia:
+
+![](./images/agente_mistral_paso5h.png)
+
 
 ### Verificar
 
