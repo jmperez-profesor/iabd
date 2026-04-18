@@ -887,6 +887,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#agentes-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes IA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentes-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes LLM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agentes LLM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#un-ejemplo-es-el-agente-de-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un ejemplo es el agente de GitHub Copilot:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#3-conceptos-clave-en-mistral-ai" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2092,6 +2131,35 @@
 <li>Observar cómo cambia la experiencia frente a un simple chatbot directo sobre el modelo.</li>
 </ul>
 <hr />
+<h2 id="agentes-ia">Agentes IA</h2>
+<p>Los agentes IA son entidades artificiales que pueden percibir y actuar de forma autónoma sobre el entorno circundante para lograr objetivos específicos.</p>
+<ul>
+<li>Los <em>agentes IA</em> no es algo nuevo</li>
+<li>Los antiguos agentes funcionaban con reinforcement learning (aprendizaje por refuerzo)</li>
+<li>Agentes poco flexibles, estados y acciones predefinidas</li>
+</ul>
+<p><strong>Ejemplo</strong>: Un agente que aprende a moverse en una cuadrícula para alcanzar un objetivo evitando obstáculos.</p>
+<p><img alt="Agente IA obstáculos" src="../images/agenteia_obstaculos.png" /></p>
+<h2 id="agentes-llm">Agentes LLM</h2>
+<p>Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de extender los LLMs permitiéndoles interactuar con herramientas y entornos externos.</p>
+<p>Tienen tres componentes:
+- <strong>Plan</strong>: define la estrategia que sigue el agente para alcanzar un objetivo, descomponiendo una tarea compleja en subtareas manejables.</p>
+<ul>
+<li>
+<p><strong>Memoria</strong>: permite al agente mantener contexto, aprender de interacciones previas y evitar razonamientos redundantes.</p>
+</li>
+<li>
+<p><strong>Percepción y acción</strong>: este componente conecta el razonamiento del LLM con el entorno. Usualmente a través de herramientas <strong>(tools)</strong> que interactúan con el entorno.</p>
+</li>
+</ul>
+<p><img alt="Agente LLM" src="../images/agente_llm.png" /></p>
+<h5 id="un-ejemplo-es-el-agente-de-github-copilot">Un ejemplo es el agente de GitHub Copilot:</h5>
+<ul>
+<li>Usa un LLM como motor principal (se puede seleccionar el LLM).</li>
+<li>Percibe el contexto: ficheros del proyecto actual e incluso puede estar conectado con herramientas externas.</li>
+<li>Actúa sugiriendo líneas, funciones completas o tests.</li>
+</ul>
+<p><img alt="Agente LLM" src="../images/copilot.png" /></p>
 <h2 id="3-conceptos-clave-en-mistral-ai">3. Conceptos clave en Mistral AI</h2>
 <h3 id="31-modelo-vs-agente">3.1. Modelo vs. Agente</h3>
 <ul>
