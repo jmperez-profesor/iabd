@@ -1105,10 +1105,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paso-3-habilitar-herramientas" class="md-nav__link">
+  <a href="#capacidades-herramientas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 3: Habilitar herramientas
+        Capacidades (herramientas)
       
     </span>
   </a>
@@ -1116,10 +1116,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paso-4-anadir-una-base-de-conocimientos" class="md-nav__link">
+  <a href="#funciones-propias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 4: Añadir una base de conocimientos
+        Funciones propias
       
     </span>
   </a>
@@ -1127,10 +1127,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paso-5-prueba-y-comparte" class="md-nav__link">
+  <a href="#paso-5-probar-y-compartir-en-le-chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 5: Prueba y comparte
+        Paso 5: Probar y compartir en "Le Chat"
       
     </span>
   </a>
@@ -2460,13 +2460,9 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 <p><img alt="" src="../images/agente_mistral_paso1d.png" /></p>
 <p>Más adelante usaremos el agente en modo API junto a una aplicación.</p>
 <h3 id="paso-2-elegir-el-modelo-temperatura-y-las-instrucciones">Paso 2: Elegir el modelo, temperatura y las instrucciones</h3>
-<ol>
-<li>Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.</li>
-</ol>
+<p><strong>1.-</strong> Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.</p>
 <p><img alt="" src="../images/agente_mistral_paso2a.png" /></p>
-<ol>
-<li>Establecer la <strong>Temperatura, max_tokens y top_p</strong>: </li>
-</ol>
+<p><strong>2.-</strong> Establecer la <strong>Temperatura, max_tokens y top_p</strong>: </p>
 <p><img alt="" src="../images/agente_mistral_paso2b.png" /></p>
 <ul>
 <li><strong>Temperatura</strong>: Usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.</li>
@@ -2516,60 +2512,78 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 </table>
 <ul>
 <li>Las solicitudes que superan el período de tiempo permitido por el modelo generan un <code>400 Bad Request error</code>.</li>
-<li>
-<p>El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable <code>max_tokens</code>.</p>
-</li>
-<li>
-<p>En el campo <strong>Instrucciones</strong>, escribimos un mensaje del sistema. Por ejemplo:</p>
-</li>
+<li>El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable <code>max_tokens</code>.</li>
 </ul>
+<p><strong>3.-</strong> En el campo <strong>Instrucciones</strong>, escribimos un mensaje del sistema. Por ejemplo:</p>
 <div class="highlight"><pre><span></span><code>Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
 1. Resumen ejecutivo de un párrafo
 2. Una lista con viñetas de elementos de acción con sus respectivos responsables.
 3. Una lista de preguntas abiertas
 Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
 </code></pre></div>
-<p>Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.</p>
-<h3 id="paso-3-habilitar-herramientas">Paso 3: Habilitar herramientas</h3>
-<p>Las herramientas amplían las capacidades del agente más allá de la generación de texto.</p>
-<ol>
-<li>
-<p>Desplázate hasta Herramientas y activa las funciones que necesites:</p>
-<ul>
-<li><strong>Navegación web</strong>: buscar información actualizada en internet.</li>
-<li><strong>Intérprete de código</strong>: ejecuta código Python para cálculos, gráficos y análisis de datos.</li>
-<li><strong>Canvas</strong>: crea y edita documentos, presentaciones o código de forma interactiva.</li>
-</ul>
-</li>
-<li>
-<p>Para generar un resumen de reuniones, <strong>Canvas</strong> resulta útil, ya que permite al agente crear un documento de resumen editable.</p>
-</li>
-</ol>
-<h3 id="paso-4-anadir-una-base-de-conocimientos">Paso 4: Añadir una base de conocimientos</h3>
-<p>Adjunte los documentos para que el agente pueda consultarlos al responder las preguntas.</p>
-<ol>
-<li>
-<p>Desplázate a Conocimiento y haga clic Agregar biblioteca</p>
-</li>
-<li>
-<p>Sube un documento: por ejemplo, una plantilla para reuniones de empresa o una guía de estilo.</p>
-</li>
-<li>
-<p>El agente recupera las secciones relevantes de este documento durante las conversaciones.</p>
-</li>
-</ol>
-<p>Opcional, pero útil cuando el agente necesita contexto específico del dominio, como políticas de la empresa, documentación del producto o guías internas.</p>
-<h3 id="paso-5-prueba-y-comparte">Paso 5: Prueba y comparte</h3>
-<ol>
-<li>Hacer clic en Ahorrar para crear el agente.</li>
-<li>Inicie una conversación con su agente: copie y pegue algunas notas de la reunión y verifique que el resultado coincida con sus instrucciones.</li>
-<li>Para compartir con tu equipo:<ul>
-<li>Haz clic en el menú de tres puntos del agente.</li>
-<li>Seleccionar Compartir</li>
-<li>Seleccione los miembros del equipo o copie el enlace para compartir.</li>
-</ul>
-</li>
-</ol>
+<p>Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Lo ideal sería probar con algunos ejemplos de conversaciones y perfeccionar el proceso.</p>
+<h3 id="capacidades-herramientas">Capacidades (herramientas)</h3>
+<p>Las capacidades (herramientas) mejoran al agente más allá de la generación de texto.</p>
+<p><img alt="" src="../images/agente_mistral_paso3a.png" /></p>
+<p><img alt="" src="../images/agente_mistral_paso3b.png" /></p>
+<p><img alt="" src="../images/agente_mistral_paso3c.png" /></p>
+<p>Desplázate hasta <strong>Capacidades (tools)</strong> y activa las funciones que necesites:
+    - <strong>Código</strong>: ejecuta código Python para cálculos, gráficos y análisis de datos.
+    - <strong>Imagen</strong>: permite que el modelo genere imágenes.
+    - <strong>Búsqueda</strong>: buscar información actualizada en internet.
+    - <strong>Búsqueda Premium</strong>: buscar información actualizada y verificada en internet.</p>
+<p>Por ahora no vamos a utilizar ninguna herramienta (capacidad). </p>
+<h3 id="funciones-propias">Funciones propias</h3>
+<p>Podemos definir funciones personalizadas las cuales el modelo puede llamar a interactuar con APIs externas o realizar tareas específicas.</p>
+<p><img alt="" src="../images/agente_mistral_paso4a.png" /></p>
+<p>Ejemplo de función get_weather. Ojo debemos seguir el formato de respuesta aunque se puede modificar.</p>
+<p><img alt="" src="../images/agente_mistral_paso4b.png" /></p>
+<h3 id="paso-5-probar-y-compartir-en-le-chat">Paso 5: Probar y compartir en "Le Chat"</h3>
+<p><strong>1.-</strong> Podemos probar iniciando una conversación directamente con el agente: copiar y pegar este ejemplo de una reunión ficticia y vericamos que el resultado coincida con las instrucciones especificadas:</p>
+<div class="highlight"><pre><span></span><code>Reunión mensual de marketing – VivaCloud
+Fecha: 15 de abril de 2026
+Hora: 10:00–11:30
+Asistentes:
+- Laura Gómez (Directora de Marketing)
+- Marcos Pérez (Performance Marketing)
+- Ana Ruiz (Content &amp; Social Media)
+- Diego Martín (Product Marketing)
+- Carla López (CRM &amp; Email Marketing)
+- Sergio Díaz (Data Analyst, invitado)
+
+Laura: Buenos días a todos. El objetivo de hoy es revisar resultados del primer trimestre, definir el foco del Q2 y acordar las campañas clave. Me gustaría que empezáramos por una foto general de performance y luego bajamos a contenido, producto y CRM.
+
+Sergio: Perfecto, empiezo yo. A nivel global, en el Q1 hemos aumentado un 18% los registros de prueba frente al Q4, pero el coste por lead (CPL) ha subido un 12%. El canal que mejor se ha comportado es paid search, sobre todo en campañas de marca y long tail. Social de pago ha generado mucho tráfico pero con tasa de conversión bastante baja.
+
+Laura: ¿Tenemos identificado por qué social convierte tan poco?
+
+Sergio: Principalmente porque la segmentación ha sido demasiado amplia y los mensajes no están alineados con las páginas de destino. Vemos muchos clics curiosos, pero la gente se cae en la landing porque no entiende bien la propuesta de valor.
+
+Marcos: Sí, ahí asumo la parte de responsabilidad. Hemos ido demasiado agresivos en alcance con creatividades muy generales. Para Q2 propongo reducir audiencias, centrarnos en dos o tres segmentos clave y alinear mejor mensajes con las landings.
+
+Laura: Bien. Quiero que en Q2 prioricemos calidad de lead sobre volumen. Prefiero un crecimiento más moderado pero con mejor conversión a cliente. Marcos, luego te pido un plan concreto, pero sigamos con la visión general.
+
+Carla: Por la parte de CRM, hemos enviado tres grandes campañas de email nurture para los leads de prueba: una serie de onboarding, una serie de casos de éxito y un reengagement para cuentas inactivas. La tasa de apertura media está en torno al 38%, pero la tasa de clic ha bajado en la última serie.
+
+Laura: ¿Alguna hipótesis?
+
+Carla: Creo que hemos mezclado demasiado contenido de producto con mensajes comerciales directos. Cuando el email es muy “vendedor”, la gente hace menos clic. Funcionan mejor los correos que llevan a un contenido útil, como guías y checklists, y desde ahí plantean el CTA de demo o upgrade.
+
+Ana: Esto se ve también en social. Los posts que son pura promo no se comparten nada; los que son educativos, con tips o plantillas, generan bastante más interacción.
+
+Laura: Ok, entonces mensaje para todos: en Q2 reforzamos contenido educativo y de valor en todos los canales, y el empuje comercial lo dejamos como siguiente paso, no como gancho inicial.
+</code></pre></div>
+<p>Copiar el texto en el chat y probar el funcionamiento:
+<img alt="" src="../images/agente_mistral_paso5a.png" /></p>
+<p>Parte del resultado: </p>
+<p><img alt="" src="../images/agente_mistral_paso5b.png" /></p>
+<p><strong>Podemos comprobar como que no funciona para datos actualizados:</strong></p>
+<p><img alt="" src="../images/agente_mistral_paso5c.png" /></p>
+<p><strong>3.-</strong> Para compartir con la organización:</p>
+<p>Hacemos clic en el menú de tres puntos del agente.</p>
+<p><img alt="" src="../images/agente_mistral_paso5d.png" /></p>
+<p>Seleccionamos <strong>"Implementar en Le Chat"</strong></p>
+<p><img alt="" src="../images/agente_mistral_paso5e.png" /></p>
 <p>Los miembros del equipo pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.</p>
 <h3 id="verificar">Verificar</h3>
 <p>Su agente está funcionando correctamente si:</p>
