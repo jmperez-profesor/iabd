@@ -199,17 +199,60 @@ Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones
 
 ### Paso 1: Iniciar un nuevo agente
 
-1. En la barra lateral de Le Chat, hacemos clic Agentes
-2. Hacer clic Crear agente
-3. Dale un nombre a tu agente: por ejemplo, **Meeting Summarizer**
-4. Elige un modelo. Mistral Medium es una buena opción predeterminada.
+1. En la página principal hacemos clic en "Agentes" 
+
+![](./images/agente_mistral_paso1a.png)
+
+También podemos bajando al apartado de **"Crear un agente"**:
+
+![](./images/agente_mistral_paso1b.png)
+
+2. La damos el nombre al agente, por ejemplo de **Meeting Summarizer**. Añadimos una pequeña descripción para saber qué hace el agente (útil por si tenemos un listado de agentes bastante grande).
+
+![](./images/agente_mistral_paso1c.png)
+
+3. Después de crear el agente, veremos el idenficador único para poder utilizar como API en aplicaciones externas y el código en Python, Typescript o descargar vía cURL:
+
+![](./images/agente_mistral_paso1d.png)
+
+Más adelante usaremos el agente en modo API junto a una aplicación.
+
+### Paso 2: Elegir el modelo, temperatura y las instrucciones
+
+1. Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.
+
+![](./images/agente_mistral_paso2a.png)
 
 
-### Paso 2: Escribir las instrucciones
+2. Establecer la **Temperatura, max_tokens y top_p**: 
+
+![](./images/agente_mistral_paso2b.png)
+
+- **Temperatura**: Usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.
+- **`max_tokens`**: Recuento de tokens incluye tanto los tokens de entrada como los de salida. 
+- **`top_p`**: 
+
+![](./images/agente_mistral_paso2c.png)
+
 
 Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.
 
-1. En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
+
+#### Ventana de contexto (Context window)
+
+| Modelo | Max context length | 
+|--------|--------------------|
+| **Mistral Small** | 32,768 tokens | 
+| **Mistral Medium** | 32,768 tokens | 
+| **Mistral Large** | 131,072 tokens | 
+| **Codestral** | 32,768 tokens | 
+| **Ministral 3B / 8B** | 131,072 tokens | 
+| **Pixtral Large** | 131,0728 tokens | 
+
+- Las solicitudes que superan el período de tiempo permitido por el modelo generan un `400 Bad Requesterror`.
+- El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable `max_tokens`.
+
+3. En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
 
 ```
 Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
@@ -219,7 +262,7 @@ Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reuni
 Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
 ```
 
-2. Establecer la **Temperatura**: usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.
+
 
 Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.
 
