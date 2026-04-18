@@ -44,16 +44,32 @@ Los agentes IA son entidades artificiales que pueden percibir y actuar de forma 
 
 ## Agentes LLM
 
-Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de extender los LLMs permitiéndoles interactuar con herramientas y entornos externos.
+Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de **extender los LLMs permitiéndoles interactuar con herramientas y entornos externos**.
+
+![Arquitectura interna de un Agente LLM](./images/agente_arquitectura.png)
 
 Tienen tres componentes:
-- **Plan**: define la estrategia que sigue el agente para alcanzar un objetivo, descomponiendo una tarea compleja en subtareas manejables.
 
-- **Memoria**: permite al agente mantener contexto, aprender de interacciones previas y evitar razonamientos redundantes.
+- **Planificación**.
 
-- **Percepción y acción**: este componente conecta el razonamiento del LLM con el entorno. Usualmente a través de herramientas **(tools)** que interactúan con el entorno.
+  - **Subobjetivos y descomposición**: El agente divide las tareas grandes en subobjetivos más pequeños y manejables, lo que permite una gestión eficiente de tareas complejas.
+  - **Reflexión y perfeccionamiento**: El agente puede autocriticarse y reflexionar sobre sus acciones pasadas, aprender de sus errores y perfeccionarlos para los pasos futuros, mejorando así la calidad de los resultados finales.
+
+- **Memoria**
+
+  - **Memoria a corto plazo**: utiliza la memoria a corto plazo del modelo para aprender.
+  - **Memoria a largo plazo**: Esto proporciona al agente la capacidad de retener y recordar información (infinita) durante períodos prolongados, a menudo aprovechando un almacenamiento vectorial externo y una recuperación rápida (RAG).
+
+
+- **Percepción y acción (uso de herramientas - tools)**: 
+
+  - El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más.
 
 ![Agente LLM](./images/agente_llm.png)
+
+**Descripción general de un sistema de agente autónomo basado en LLM:**
+
+![Descripción general de un sistema de agente autónomo basado en LLM](./images/agentes_llm_overview.png)
 
 ##### Un ejemplo es el agente de GitHub Copilot:
 
@@ -63,6 +79,39 @@ Tienen tres componentes:
 
 ![Agente LLM](./images/copilot.png)
 
+
+## Patrones *agénticos*
+
+Los patrones agénticos organizan cómo interactúan esos tres componentes (plan,
+memoria y percepción/acción).
+
+Vamos a ver los más usados:
+
+- **ReAct (Reason and Action)**: el LLM genera trazas de thought, action y observation
+- **CodeAct**: es como ReAct, pero las acciones son llamadas programáticas a APIs (smolagents)
+- **Planning first**: primero se genera un plan completo explícito y se ejecuta poco a poco
+
+### ReAct
+
+ReAct es una estrategia muy sencilla e intuitiva. Dada una user request, el sistema sigue un bucle que genera:
+
+- **Thought**: razonamiento interno
+- **Action**: llamada a una herramienta
+- **Observation**: resultado devuelto por la herramienta hasta que la respuesta final es obtenida.
+
+La plantilla de indicaciones de ReAct incorpora pasos explícitos para que LLM piense, con un formato aproximado como:
+
+```bash
+Thought: ...
+Action: ...
+Observation: ...
+... (Repeated many times)
+```
+Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop):
+
+![Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop).](./images/ejemplo_razonamientos.png)
+
+![](./images/agente_running.gif)
 
 ## 3. Conceptos clave en Mistral AI
 
