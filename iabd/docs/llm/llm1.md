@@ -1,5 +1,5 @@
 ---
-title: Evolución de una aplicación LLM: de chatbot a agentes y RAG
+title: Evolución de una aplicación LLM (de chatbot a agentes y RAG)
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
