@@ -55,11 +55,11 @@ Esta fase es ideal para aprender lo esencial:
 - Requiere poco código.
 - Permite ver resultados muy rápido.
 - Sirve para introducir conceptos clave como:
-  - prompt,
-  - system prompt,
-  - contexto,
-  - temperatura,
-  - longitud de salida.
+    - prompt,
+    - system prompt,
+    - contexto,
+    - temperatura,
+    - longitud de salida.
 
 ### Desventajas
 
@@ -115,10 +115,10 @@ Ahora:
 - Introduce una arquitectura mucho más útil.
 - Permite automatizar acciones.
 - Hace visibles conceptos fundamentales de IA aplicada:
-  - decisión,
-  - planificación,
-  - observación,
-  - ejecución.
+    - decisión,
+    - planificación,
+    - observación,
+    - ejecución.
 - smolagents es muy adecuado para aprender porque tiene una curva de entrada relativamente baja.
 
 ### Desventajas
@@ -240,45 +240,6 @@ Vamos a imaginar siempre el mismo caso: un **Asistente técnico del módulo**.
 - Recupera fragmentos relevantes.
 - Construye una respuesta fundamentada en esos documentos.
 - Puede incluir además un agente coordinador que decida cuándo usar RAG.
-
----
-
-## Mensaje docente clave
-
-La evolución correcta no es:
-
-> “Como existe una tecnología más compleja, la usamos desde el principio.”
-
-La evolución correcta es:
-
-> “Primero resolvemos el problema con la solución más simple posible; después añadimos nuevas capas cuando aparece una limitación real.”
-
----
-
-## Preguntas para reflexionar
-
-1. ¿Qué puede hacer un agente que no puede hacer un chatbot simple?
-2. ¿Por qué un modelo fundacional no basta cuando queremos trabajar con apuntes del curso?
-3. ¿Qué aporta RAG frente a pedirle al modelo que responda “de memoria”?
-4. ¿Qué inconvenientes tiene introducir demasiada complejidad demasiado pronto?
-
----
-
-## Actividad breve
-
-En grupos de 2 o 3 personas:
-
-1. Pensad en una aplicación educativa basada en IA.
-2. Describid cómo sería en estas tres versiones:
-   - chatbot simple,
-   - agente con tools,
-   - sistema con RAG y agentes.
-3. Indicad:
-   - qué problema resuelve cada versión,
-   - qué nueva capacidad aporta,
-   - qué complejidad añade.
-
----
 
 ## Cierre
 
