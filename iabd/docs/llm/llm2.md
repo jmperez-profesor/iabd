@@ -230,7 +230,10 @@ Más adelante usaremos el agente en modo API junto a una aplicación.
 
 - **Temperatura**: Usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.
 - **`max_tokens`**: Recuento de tokens incluye tanto los tokens de entrada como los de salida. 
-- **`top_p`**: 
+- **`top_p`**: sirve para controlar la diversidad, creatividad y aleatoriedad de las respuestas generadas.
+    - **`top_p` bajo (ej. 0.1 - 0.3)**: El modelo solo considerará el conjunto mínimo de palabras altamente probables (respuestas directas, precisas y más coherentes, ideales para tareas técnicas, resumen de datos o respuestas fácticas)
+    - **`top_p` alto (ej. 0.8 - 1.0)**: El modelo considera un conjunto mucho más amplio de palabras, incluyendo opciones menos probables (aumenta la creatividad, variabilidad y diversidad en el texto, ideal para escritura creativa o lluvia de ideas)
+
 
 ![](./images/agente_mistral_paso2c.png)
 
@@ -249,7 +252,7 @@ Las instrucciones determinan el comportamiento del agente en cada conversación.
 | **Ministral 3B / 8B** | 131,072 tokens | 
 | **Pixtral Large** | 131,0728 tokens | 
 
-- Las solicitudes que superan el período de tiempo permitido por el modelo generan un `400 Bad Requesterror`.
+- Las solicitudes que superan el período de tiempo permitido por el modelo generan un `400 Bad Request error`.
 - El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable `max_tokens`.
 
 3. En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
@@ -261,8 +264,6 @@ Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reuni
 3. Una lista de preguntas abiertas
 Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
 ```
-
-
 
 Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.
 
