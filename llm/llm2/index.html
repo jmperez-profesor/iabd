@@ -1077,13 +1077,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paso-2-escribir-las-instrucciones" class="md-nav__link">
+  <a href="#paso-2-elegir-el-modelo-temperatura-y-las-instrucciones" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 2: Escribir las instrucciones
+        Paso 2: Elegir el modelo, temperatura y las instrucciones
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Paso 2: Elegir el modelo, temperatura y las instrucciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventana-de-contexto-context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventana de contexto (Context window)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2434,25 +2451,86 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 </ul>
 <h3 id="paso-1-iniciar-un-nuevo-agente">Paso 1: Iniciar un nuevo agente</h3>
 <ol>
-<li>En la barra lateral de Le Chat, hacemos clic Agentes</li>
-<li>Hacer clic Crear agente</li>
-<li>Dale un nombre a tu agente: por ejemplo, <strong>Meeting Summarizer</strong></li>
-<li>Elige un modelo. Mistral Medium es una buena opción predeterminada.</li>
+<li>En la página principal hacemos clic en "Agentes" </li>
 </ol>
-<h3 id="paso-2-escribir-las-instrucciones">Paso 2: Escribir las instrucciones</h3>
-<p>Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.</p>
+<p><img alt="" src="../images/agente_mistral_paso1a.png" /></p>
+<p>También podemos bajando al apartado de <strong>"Crear un agente"</strong>:</p>
+<p><img alt="" src="../images/agente_mistral_paso1b.png" /></p>
 <ol>
-<li>En el campo <strong>Instrucciones</strong>, escribimos un mensaje del sistema. Por ejemplo:</li>
+<li>La damos el nombre al agente, por ejemplo de <strong>Meeting Summarizer</strong>. Añadimos una pequeña descripción para saber qué hace el agente (útil por si tenemos un listado de agentes bastante grande).</li>
 </ol>
+<p><img alt="" src="../images/agente_mistral_paso1c.png" /></p>
+<ol>
+<li>Después de crear el agente, veremos el idenficador único para poder utilizar como API en aplicaciones externas y el código en Python, Typescript o descargar vía cURL:</li>
+</ol>
+<p><img alt="" src="../images/agente_mistral_paso1d.png" /></p>
+<p>Más adelante usaremos el agente en modo API junto a una aplicación.</p>
+<h3 id="paso-2-elegir-el-modelo-temperatura-y-las-instrucciones">Paso 2: Elegir el modelo, temperatura y las instrucciones</h3>
+<ol>
+<li>Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.</li>
+</ol>
+<p><img alt="" src="../images/agente_mistral_paso2a.png" /></p>
+<ol>
+<li>Establecer la <strong>Temperatura, max_tokens y top_p</strong>: </li>
+</ol>
+<p><img alt="" src="../images/agente_mistral_paso2b.png" /></p>
+<ul>
+<li><strong>Temperatura</strong>: Usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.</li>
+<li><strong><code>max_tokens</code></strong>: Recuento de tokens incluye tanto los tokens de entrada como los de salida. </li>
+<li><strong><code>top_p</code></strong>: </li>
+</ul>
+<p><img alt="" src="../images/agente_mistral_paso2c.png" /></p>
+<p>Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.</p>
+<h4 id="ventana-de-contexto-context-window">Ventana de contexto (Context window)</h4>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Max context length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mistral Small</strong></td>
+<td>32,768 tokens</td>
+</tr>
+<tr>
+<td><strong>Mistral Medium</strong></td>
+<td>32,768 tokens</td>
+</tr>
+<tr>
+<td><strong>Mistral Large</strong></td>
+<td>131,072 tokens</td>
+</tr>
+<tr>
+<td><strong>Codestral</strong></td>
+<td>32,768 tokens</td>
+</tr>
+<tr>
+<td><strong>Ministral 3B / 8B</strong></td>
+<td>131,072 tokens</td>
+</tr>
+<tr>
+<td><strong>Pixtral Large</strong></td>
+<td>131,0728 tokens</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Las solicitudes que superan el período de tiempo permitido por el modelo generan un <code>400 Bad Requesterror</code>.</li>
+<li>
+<p>El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable <code>max_tokens</code>.</p>
+</li>
+<li>
+<p>En el campo <strong>Instrucciones</strong>, escribimos un mensaje del sistema. Por ejemplo:</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code>Eres el encargado de resumir las reuniones. Cuando recibas las notas de la reunión o la transcripción, debes elaborar lo siguiente:
 1. Resumen ejecutivo de un párrafo
 2. Una lista con viñetas de elementos de acción con sus respectivos responsables.
 3. Una lista de preguntas abiertas
 Mantén un tono profesional y conciso. No añadas información que no esté presente en la fuente original.
 </code></pre></div>
-<ol>
-<li>Establecer la <strong>Temperatura</strong>: usaremos 0.2 para obtener resultados consistentes y deterministas o 0.7 para respuestas más creativas.</li>
-</ol>
 <p>Unas buenas instrucciones definen qué debe hacer el agente, el formato de salida y qué debe evitar. Prueba con algunos ejemplos de conversaciones y perfecciona el proceso.</p>
 <h3 id="paso-3-habilitar-herramientas">Paso 3: Habilitar herramientas</h3>
 <p>Las herramientas amplían las capacidades del agente más allá de la generación de texto.</p>
