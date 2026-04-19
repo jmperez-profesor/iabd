@@ -278,6 +278,7 @@ Las capacidades (herramientas) mejoran al agente más allá de la generación de
 ![](./images/agente_mistral_paso3c.png)
 
 Desplázate hasta **Capacidades (tools)** y activa las funciones que necesites:
+
     - **Código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
     - **Imagen**: permite que el modelo genere imágenes.
     - **Búsqueda**: buscar información actualizada en internet.
@@ -341,7 +342,7 @@ Parte del resultado:
 
 ![](./images/agente_mistral_paso5b.png)
 
-**Podemos comprobar como que no funciona para datos actualizados:**
+**Podemos comprobar como no funciona para datos actualizados:**
 
 ![](./images/agente_mistral_paso5c.png)
 
@@ -369,21 +370,11 @@ Hacemos una prueba subiendo un pdf de una reunión de marketing de una empresa f
 
 ![](./images/agente_mistral_paso5h.png)
 
-
-### Verificar
-
-Su agente está funcionando correctamente si:
-
-- Sigue el formato de instrucciones de forma consistente en diferentes entradas.
-- Las herramientas habilitadas (búsqueda web, lienzo) se activan cuando son relevantes.
-- Se hace referencia al contenido de la base de conocimientos cuando se formulan preguntas relacionadas.
-- Los miembros del equipo compartido pueden acceder y utilizar el agente.
+**Ejemplo de respuesta del agente a un dato que sí tiene en su base de conocimientos:**
+![](./images/agente_mistral_paso6.png)
 
 
 ---
-
-
-
 
 ## 4. Escenario de trabajo: “Tutor IA de apoyo al módulo”
 

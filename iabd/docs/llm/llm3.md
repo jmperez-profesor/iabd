@@ -12,9 +12,6 @@ El enfoque está pensado para **hacer en clase**, en ejercicios cortos, sin pedi
 
 ---
 
-Imagen:
-![](./images/ganchos_virales_10.png)
-
 ## 1. Objetivos de la sesión 2.5
 
 Al finalizar esta sesión, el alumnado será capaz de:
