@@ -1043,15 +1043,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
+  <a href="#41-personalizar-un-agente-a-traves-de-mistral-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1
+        4.1 Personalizar un Agente a través de Mistral Studio
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.1">
+    <nav class="md-nav" aria-label="4.1 Personalizar un Agente a través de Mistral Studio">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2374,12 +2374,12 @@ Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento 
 <li><strong>Modelo</strong>: red neuronal entrenada para completar texto, traducir, razonar, etc.  </li>
 <li>
 <p><strong>Agente</strong> (en Mistral AI): configuración reutilizable que envuelve un modelo y añade:</p>
-</li>
-<li>
-<p>Instrucciones (system prompt persistente).</p>
-</li>
+<ul>
+<li>Instrucciones (system prompt persistente).</li>
 <li>Parámetros (temperatura, estilo, etc.).</li>
 <li>Opcionalmente, tools o integraciones adicionales.</li>
+</ul>
+</li>
 </ul>
 <p>Trabajar directamente con el modelo es suficiente para un <strong>chatbot simple</strong>, pero repetir siempre las mismas instrucciones y parámetros en cada llamada no es práctico.<br />
 Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla.</p>
@@ -2415,7 +2415,7 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 <li>Múltiples modelos multimodales, tanto de <strong>texto como de visión</strong>.</li>
 <li>Estado persistente entre conversaciones.</li>
 <li>Capacidad para mantener conversaciones con modelos base, un solo agente y múltiples agentes.</li>
-<li>Herramientas de conexión integradas para la <strong>ejecución de código, búsqueda web , generación de imágenes y biblioteca de documentos</strong> listas para usar.</li>
+<li>Herramientas de conexión integradas para la <strong>ejecución de código, búsqueda web, generación de imágenes y biblioteca de documentos</strong> listas para usar.</li>
 <li>Capacidad de transferencia de información para utilizar diferentes agentes como parte de un flujo de trabajo, lo que permite a los agentes llamar a otros agentes.</li>
 <li>También se admiten las funciones compatibles a través de nuestro punto final de finalización de chat, tales como:<ul>
 <li><strong>Resultados estructurados</strong></li>
@@ -2425,13 +2425,13 @@ Un <strong>agente</strong> permite centralizar esa configuración y reutilizarla
 </ul>
 </li>
 </ul>
-<h2 id="41">4.1</h2>
-<p>Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos.</p>
+<h2 id="41-personalizar-un-agente-a-traves-de-mistral-studio">4.1 Personalizar un Agente a través de Mistral Studio</h2>
+<p>Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos. Debemos:</p>
 <ul>
-<li>Escribe un mensaje del sistema para definir el comportamiento del agente.</li>
-<li>Adjunte documentos como fuente de conocimiento.</li>
+<li>Escribir un mensaje del sistema para definir el comportamiento del agente.</li>
+<li>Adjuntar documentos como fuente de conocimiento.</li>
 <li>Habilitar herramientas como la búsqueda web, el intérprete de código y Canvas.</li>
-<li>Comparte el agente con tu equipo.</li>
+<li>Habilitar en Le Chat el agente.</li>
 </ul>
 <h4 id="requisitos-previos">Requisitos previos</h4>
 <ul>
