@@ -372,174 +372,232 @@ Hacemos una prueba subiendo un pdf de una reunión de marketing de una empresa f
 
 ---
 
-## Actividad: Crear dos Agentes en el playground de Mistral AI
+## 4. Escenario de trabajo: “Tutor IA de apoyo al módulo”
 
-En esta actividad, usando el playground de Mistral AI Studio, vas crear **dos agentes distintos**, los probarás con varias preguntas y analizarás cómo cambian sus respuestas según:
+En toda la sesión trabajaremos con el mismo caso práctico:
 
-- el **rol** y las **instrucciones** del agente,
-- el tipo de tarea (técnica vs creativa),
-- y pequeños ajustes de parámetros de generación. 
+> Un agente llamado **TutorFP-IA**, cuyo objetivo es ayudar a estudiantes de ciclos formativos de informática a entender conceptos de IA y Big Data.
 
-### Objetivos
+### 4.1. Comportamiento deseado
 
-- Crear y configurar dos agentes sencillos en el playground de Mistral
-- Diferenciar el comportamiento de un agente técnico y uno creativo
-- Explicar, con tus palabras, cómo afectan las instrucciones y la temperatura a las respuestas.
+El agente:
+
+- Responde siempre en castellano.
+- Explica conceptos de forma clara, con ejemplos sencillos.
+- Adapta el nivel al de estudiantes de FP de grado superior.
+- Pide aclaraciones si la pregunta no está bien definida.
+- No se inventa normativa ni datos críticos (lo indica cuando no sabe algo).
 
 ---
 
-## 1. Agente A – Tutor técnico de Flask
+## 5. Parte 1 – Creación del agente en la plataforma de Mistral
 
-### 1.1. Crea el agente
+> Nota: esta parte se realiza en la interfaz web de Mistral AI con la cuenta configurada por el profesor.
 
-Crea un agente con las siguientes características:
+### 5.1. Pasos generales (orientativos)
 
-- Nombre sugerido: `TutorFlask-FP`.
-- Rol: ayudante de programación especializado en Flask para alumnado de FP superior.
+1. Accede a la consola web de Mistral AI e inicia sesión.  
+2. Ve a la sección de **Agents** (Agentes).  
+3. Crea un nuevo agente:
 
-Instrucciones orientativas (puedes adaptarlas ligeramente, pero mantén la idea):
+   - Nombre: `TutorFP-IA`.
+   - Descripción: Asistente didáctico para estudiantes de FP de informática.
+   - Idioma por defecto: Español.
+   - Rol/instrucciones: ver sección siguiente.
+
+4. Guarda el agente y copia su **Agent ID**.  
+   - Este identificador será necesario para usar el agente desde Python.
+
+### 5.2. Instrucciones sugeridas para el agente
+
+Puedes adaptar este texto a tus necesidades:
 
 ```text
-Eres un ayudante de programación especializado en Flask para estudiantes de FP superior.
+Eres TutorFP-IA, un asistente de Inteligencia Artificial para estudiantes de ciclos formativos de grado superior de informática.
 
-- Respondes siempre en castellano.
-- Explicas los conceptos de forma clara, precisa y breve.
-- Si el usuario pega código, explicas qué hace y señalas posibles errores.
-- Si la pregunta no está clara, pides aclaración antes de responder.
-- No inventas funciones ni comportamiento del código.
-- Cuando expliques algo, intenta incluir un ejemplo sencillo.
+Tu comportamiento debe seguir estas reglas:
+
+- Respondes SIEMPRE en castellano.
+- Explicas los conceptos de forma clara, con ejemplos sencillos, adecuados a estudiantes de FP.
+- Si la pregunta es ambigua o faltan datos importantes, primero pides aclaraciones.
+- Cuando hables de normativa, leyes u otros datos sensibles, indicas siempre que deben verificarse con fuentes oficiales.
+- Si no sabes algo, lo dices de forma explícita en lugar de inventar la respuesta.
+- Puedes usar enumeraciones y listas para organizar tus explicaciones, pero intenta no ser excesivamente largo.
 ```
 
 ---
 
-## 2. Agente B – Generador creativo de ideas
+## 6. Parte 2 – Preparación del entorno Python
 
-### 2.1. Crea el agente
+> Esta parte se realiza en local, en el entorno de desarrollo del alumno.
 
-Crea un segundo agente con estas características:
+### 6.1. Requisitos
 
-- Nombre sugerido: `CreativoRedes-FP`.
-- Rol: generador de ideas y textos breves para redes sociales relacionadas con programación / proyectos de clase.
+- Python 3.10 o superior.
+- Entorno virtual creado para el proyecto.
+- Paquete oficial de Mistral AI instalado:
 
-Instrucciones orientativas:
+```bash
+pip install mistralai
+```
 
-```text
-Eres un generador creativo de ideas para redes sociales y contenidos breves.
+### 6.2. Variables de entorno necesarias
 
-- Respondes siempre en castellano.
-- Tu tono es cercano, dinámico y original.
-- Si el usuario pide ideas, generas varias opciones distintas.
-- Si el usuario pide un texto breve, intentas que sea atractivo y fácil de leer.
-- Puedes ser creativo, pero mantienes claridad.
-- Evitas respuestas demasiado técnicas salvo que el usuario lo pida.
+Define al menos estas dos variables:
+
+- `MISTRAL_API_KEY`: tu clave de API de Mistral AI.
+- `MISTRAL_AGENT_ID`: el `agent_id` del agente `TutorFP-IA`.
+
+En Linux/macOS (ejemplo):
+
+```bash
+export MISTRAL_API_KEY="TU_CLAVE_REAL"
+export MISTRAL_AGENT_ID="ag_xxx..."
+```
+
+En Windows (PowerShell):
+
+```powershell
+$env:MISTRAL_API_KEY="TU_CLAVE_REAL"
+$env:MISTRAL_AGENT_ID="ag_xxx..."
 ```
 
 ---
 
-## 3. Pruebas obligatorias (en el playground)
+## 7. Parte 3 – Primer script: invocar al agente desde Python
 
-Realiza las siguientes pruebas usando el playground y anotando brevemente tus observaciones.
+Crea un archivo, por ejemplo `llm02_agente_mistral.py`, con el siguiente contenido base:
 
-### 3.1. Prueba técnica
+```python
+import os
+from mistralai import Mistral
 
-En **ambos agentes**, usa este prompt:
+def main():
+    api_key = os.getenv("MISTRAL_API_KEY", "").strip()
+    agent_id = os.getenv("MISTRAL_AGENT_ID", "").strip()
 
-```text
-Explícame qué hace este código Flask:
+    if not api_key:
+        raise ValueError("Falta la variable de entorno MISTRAL_API_KEY")
 
-@app.route('/')
-def home():
-    return 'Hola mundo'
+    if not agent_id:
+        raise ValueError("Falta la variable de entorno MISTRAL_AGENT_ID")
+
+    client = Mistral(api_key=api_key)
+
+    # Primer mensaje del usuario
+    inputs = [
+        {
+            "role": "user",
+            "content": "Hola, ¿puedes explicarme qué es un token en un LLM con un ejemplo sencillo?"
+        }
+    ]
+
+    response = client.beta.conversations.start(
+        agent_id=agent_id,
+        agent_version=0,
+        inputs=inputs,
+    )
+
+    print("=== RESPUESTA DEL AGENTE ===")
+    print(response)
+
+if __name__ == "__main__":
+    main()
 ```
 
-Preguntas:
+### 7.1. Qué hace este script
 
-- ¿Qué agente responde de forma más clara y precisa?
-- ¿Alguno introduce información irrelevante o poco útil?
+1. Lee las variables de entorno `MISTRAL_API_KEY` y `MISTRAL_AGENT_ID`.  
+2. Crea un cliente `Mistral` con la API key.  
+3. Construye una lista de `inputs` con un mensaje de usuario.  
+4. Llama a `client.beta.conversations.start(...)` para iniciar una conversación con el agente `TutorFP-IA`.  
+5. Imprime el objeto de respuesta (que incluye información de la conversación y del mensaje generado).
+
+### 7.2. Ejecución
+
+Desde el terminal:
+
+```bash
+python llm02_agente_mistral.py
+```
 
 ---
 
-### 3.2. Prueba creativa
+## 8. Actividades prácticas de la sesión
 
-En **ambos agentes**, usa este prompt:
+### Actividad 1 – Comprobación de variables y conexión
 
-```text
-Genera 5 ideas de publicaciones para redes sociales para promocionar una miniwebapp hecha con Flask por estudiantes.
+1. Modifica el script para que, antes de crear el cliente, imprima:
+
+   - si `MISTRAL_API_KEY` está cargada,  
+   - si `MISTRAL_AGENT_ID` está cargado.
+
+2. Ejecuta el script y verifica que ambas están correctamente definidas.
+
+Fragmento de ayuda:
+
+```python
+print("API key cargada:", bool(api_key))
+print("Agent ID cargado:", bool(agent_id))
+print("Agent ID:", agent_id)
 ```
 
-Preguntas:
-
-- ¿Qué agente genera ideas más variadas y creativas?
-- ¿Cuál se adapta mejor a un contexto de redes sociales?
+3. Si alguna no está cargada, corrige la configuración de tu entorno.
 
 ---
 
-### 3.3. Prueba ambigua
+### Actividad 2 – Cambiar la pregunta y observar el comportamiento
 
-En **ambos agentes**, usa este prompt:
+1. Modifica el contenido del mensaje de usuario:
 
-```text
-Ayúdame con mi proyecto.
-```
+   - Pregunta 1:  
+     `¿Qué es la Inteligencia Artificial?`
+   - Pregunta 2:  
+     `Explícame qué es el overfitting con un ejemplo en clasificación.`
+   - Pregunta 3:  
+     `Compara brevemente un árbol de decisión y una red neuronal.`
 
-Preguntas:
+2. Observa si el agente:
 
-- ¿Algún agente pide más contexto antes de responder?
-- ¿Cuál gestiona mejor la falta de información?
+   - responde en castellano,  
+   - adapta el nivel,  
+   - pide aclaraciones si la pregunta es ambigua.
 
----
+3. Comenta (en un pequeño `.md` o como comentario en el código):
 
-### 3.4. Prueba de adaptación al nivel
-
-En **ambos agentes**, usa este prompt:
-
-```text
-Explícame Flask como si yo fuera un principiante absoluto.
-```
-
-Preguntas:
-
-- ¿Qué agente adapta mejor el lenguaje a un nivel inicial?
-- ¿Cuál se parece más a cómo te gustaría que te explicaran algo a ti?
+   - ¿En qué se nota que el agente tiene instrucciones específicas?  
+   - ¿Qué diferencia aprecias respecto a un simple modelo sin agent?
 
 ---
 
-## 4. Afinado rápido de temperatura
+### Actividad 3 – Simular una conversación con varias preguntas
 
-El playground permite ajustar la **temperatura**. Realiza el siguiente experimento:
+Aunque la API de Conversations permite mantener el estado de una conversación en la plataforma, en esta sesión haremos una simulación simple de intercambio.
 
-1. En el agente `TutorFlask-FP`, pon una temperatura baja (por ejemplo, 0.2) y repite la **prueba técnica**.  
-2. Sube la temperatura (por ejemplo, 0.8) y repite la misma prueba.  
-3. En el agente `CreativoRedes-FP`, haz lo mismo con la **prueba creativa**.
+1. Dentro de `main()`, sustituye el bloque de mensaje único por un bucle:
 
-Preguntas:
+```python
+while True:
+    user_input = input("\nTú: ")
+    if user_input.lower() in {"salir", "exit", "quit"}:
+        break
 
-- ¿Con temperatura baja el agente técnico responde mejor?
-- ¿Con temperatura alta el agente creativo genera respuestas más variadas?
-- ¿En qué caso la temperatura alta empeora la calidad?
+    inputs = [{"role": "user", "content": user_input}]
 
----
+    response = client.beta.conversations.start(
+        agent_id=agent_id,
+        agent_version=0,
+        inputs=inputs,
+    )
 
-## 5. Micro cambio en las instrucciones
-
-Elige **uno de los dos agentes** y añade una línea a sus instrucciones, por ejemplo:
-
-```text
-Responde siempre en formato de lista numerada.
+    print("\nAgente:", response)
 ```
 
-o
+2. Haz varias preguntas seguidas relacionadas entre sí (por ejemplo, todas sobre LLMs).  
+3. Discute en clase:
 
-```text
-Da una respuesta breve en un máximo de 5 líneas.
-```
-
-Repite una de las pruebas anteriores.
-
-Preguntas:
-
-- ¿Cómo ha cambiado el formato de la respuesta?
-- ¿Ha mejorado la claridad o la ha empeorado?
+   - ¿Qué parte de la memoria se está gestionando aquí manualmente?  
+   - ¿Qué crees que permitiría hacer una gestión más robusta de conversaciones persistentes?
 
 ---
 
