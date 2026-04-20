@@ -21,10 +21,10 @@ Ideas clave:
 - Está pensado para **prototipos rápidos**, demos educativas y herramientas internas.  
 - Se integra bien con otras librerías como **LangChain** o clientes de LLM (por ejemplo, Ollama). 
 - Gestiona por nosotros elementos típicos de una UI de chat:
-  - mensajes,
-  - acciones (botones, etc.),
-  - streaming de respuestas,
-  - persistencia de sesiones. 
+    - mensajes,
+    - acciones (botones, etc.),
+    - streaming de respuestas,
+    - persistencia de sesiones. 
 
 ---
 
@@ -74,6 +74,66 @@ Chainlit proporciona **decoradores** que se ejecutan en distintos momentos de la
 - **`@cl.on_chat_start`**: se lanza al empezar un chat.  
 - **`@cl.on_message`**: se lanza cuando el usuario envía un mensaje.  
 - **`@cl.on_chat_end`**: se lanza al terminar una sesión.  
+
+
+#### Construir con @cl.on_chat_start
+
+Este hook se ejecuta cuando se inicia una nueva sesión de chat. Podemos utilizarlo, por ejemplo, **para saludar al usuario, mostrar un mensaje de bienvenida o inicializar el estado de la sesión**.
+
+```python
+import chainlit as cl
+@cl.on_chat_start
+def on_chat_start():
+    print("A new chat session has started!")
+```
+![](./images/chainlist/on_chat_start.png)
+
+
+#### Construir con @cl.on_message
+Este hook de mensaje se ejecuta cuando el usuario envía un nuevo mensaje. Lo utilizamos para procesar la entrada del usuario, llamar a un LLM o devolver una respuesta.
+
+```python
+import chainlit as cl
+
+@cl.on_message
+async def on_message(msg: cl.Message):
+    print("The user sent:", msg.content)
+    await cl.Message(content=f"You said: {msg.content}").send()
+```
+
+Explicación del código: 
+```python
+@cl.on_message
+async def on_message(msg: cl.Message):
+```
+
+- **`@cl.on_message`** es un **decorador** de hook: le dice a Chainlit que esta función se debe ejecutar cada vez que la interfaz reciba un mensaje nuevo del usuario.
+
+- **`async def`** indica que la función es **asíncrona**, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con await.
+
+- El parámetro **`msg: cl.Message`** es el objeto mensaje que llega desde la UI; tiene atributos como **`content (texto que ha escrito el usuario)`**, **`author`**, **`created_at`**, etc.
+
+```python
+await cl.Message(content=f"You said: {msg.content}").send()
+```
+
+- Aquí creamos un nuevo mensaje de respuesta hacia la UI usando la clase **`cl.Message`**.
+- Le pasamos el texto de respuesta en el parámetro content, usando una **`f-string`** para incluir lo que escribió el usuario:
+    - Si el usuario pone **`“hola”`**, la respuesta será **`“You said: hola”`**.
+
+- **`.send()`** envía ese mensaje a la interfaz de Chainlit, y como es una operación **asíncrona**, necesitas **`await**.
+
+##### Resumen conceptual
+
+Cada vez que el usuario escribe algo en la app Chainlit:
+
+- Chainlit recibe el mensaje y llama automáticamente a tu función decorada con @cl.on_message.
+
+Nuestra función:
+
+- imprime el texto recibido en la terminal (**`print(...)),
+- envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (**`You said: ...).
+
 
 Ejemplo mínimo (idea basada en el tutorial): 
 
