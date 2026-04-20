@@ -1,11 +1,6 @@
 ---
-title: Sesión 4 
+title: Sesión 4 - Chainlit
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
----
-
----
-title: "Chainlit: resumen práctico del tutorial de DataCamp"
-layout: page
 ---
 
 # Chainlit: resumen práctico del tutorial de DataCamp

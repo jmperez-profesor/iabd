@@ -1,388 +1,203 @@
 ---
-title: Sesión 3
+title: Sesión 4 - Chainlit
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
+# Chainlit: resumen práctico del tutorial de DataCamp
 
-# Sesión 3: Laboratorio de temperatura, top‑p, prompts y Flask
+El objetivo es que el alumnado:
 
-Esta sesión complementa LLM02 con un **laboratorio práctico de parámetros y diseño de prompts**, usando el mismo entorno Python/Flask y la misma API de Mistral que hemos configurado en las sesiones anteriores.
-
-El enfoque está pensado para **hacer en clase**, en ejercicios cortos, sin pedir memorias ni documentos extensos.
-
----
-
-## 1. Objetivos de la sesión 2.5
-
-Al finalizar esta sesión, el alumnado será capaz de:
-
-- Ajustar la **temperatura** del modelo y observar su efecto en tareas de programación y de creatividad.
-- Ajustar el parámetro **top-p** manteniendo fija la temperatura, para ver cómo cambia la variabilidad de la salida.
-- Mejorar prompts mediante principios básicos de **ingeniería de prompts** (rol, tarea, restricciones, formato).
-- Integrar varios **modos de comportamiento** en una miniwebapp Flask (perfiles “agénticos”).
+- entienda **qué es Chainlit** y para qué sirve,  
+- pueda **seguir los ejemplos básicos** (chatbot “Sorpréndeme” y bot con Ollama),  
+- sepa **cómo integrarlo** con sus propias aplicaciones LLM. [web:214][web:215]
 
 ---
 
-## 2. Requisitos previos
+## 1. ¿Qué es Chainlit?
 
-El alumnado debe tener:
+Chainlit es un framework de Python, de código abierto, que permite crear **interfaces de chat interactivas** para aplicaciones basadas en modelos de lenguaje, sin necesidad de programar un frontend complejo. [web:214][web:215]
 
-- Python y un entorno virtual configurado.
-- Clave de API de Mistral en la variable `MISTRAL_API_KEY`.
-- Proyecto Flask básico (similar al de la práctica “Crear una webapp con Flask”):
+Ideas clave:
 
-  - `app.py`
-  - `utilities.py`
-  - `.env`
-  - `templates/home.html`
+- Está pensado para **prototipos rápidos**, demos educativas y herramientas internas. [web:214]  
+- Se integra bien con otras librerías como **LangChain** o clientes de LLM (por ejemplo, Ollama). [web:214][web:215]  
+- Gestiona por ti elementos típicos de una UI de chat:
+  - mensajes,
+  - acciones (botones, etc.),
+  - streaming de respuestas,
+  - persistencia de sesiones. [web:214][web:215]
 
 ---
 
-## 3. Práctica 1 – Temperatura: ayudante de código vs generador de posts
+## 2. Instalación y requisitos
 
-### 3.1. Idea
+Según el tutorial, los requisitos básicos son:
 
-Usar el mismo modelo para dos tareas distintas:
+- Python 3.8 o superior.  
+- Instalar Chainlit desde `pip`: [web:214][web:215]
 
-- **Ayudante de código** (respuestas estables y precisas).
-- **Generador de posts para redes sociales** (respuestas creativas y variadas).
+```bash
+pip install chainlit
+```
 
-### 3.2. Código base
+Para el ejemplo con **Ollama + LangChain**, se añaden: [web:214][web:215]
 
-Crea un archivo `temp_demo.py` con:
+```bash
+pip install chainlit langchain langchain-community
+```
+
+---
+
+## 3. Conceptos básicos de Chainlit
+
+El artículo explica que todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. [web:214][web:215]
+
+### 3.1. Hooks del ciclo de vida del chat
+
+Chainlit proporciona decoradores que se ejecutan en distintos momentos de la conversación: [web:214][web:215]
+
+- `@cl.on_chat_start`: se lanza al empezar un chat.  
+- `@cl.on_message`: se lanza cuando el usuario envía un mensaje.  
+- `@cl.on_chat_end`: se lanza al terminar una sesión.  
+
+Ejemplo mínimo (idea basada en el tutorial): [web:214][web:215]
 
 ```python
-from mistralai import Mistral
-import os
+import chainlit as cl
 
-client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+@cl.on_chat_start
+def on_chat_start():
+    print("Nueva sesión de chat iniciada")
 
-def llamar_llm(prompt: str, system_prompt: str, temperature: float):
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": prompt}
-    ]
-
-    resp = client.chat.complete(
-        model="mistral-medium-latest",
-        messages=messages,
-        temperature=temperature
-    )
-
-    print(f"\n--- temperature={temperature} ---\n")
-    print(resp.choices.message.content)
-
-prompt_code = """Explica qué hace este código Flask:
-
-@app.route('/')
-def home():
-    return 'Hola mundo'
-"""
-
-prompt_posts = "Genera 5 ideas de posts para redes sociales para promocionar una miniwebapp hecha con Flask."
-
-system_code = "Eres un ayudante de programación especializado en Flask. Responde con precisión y brevedad en castellano."
-system_social = "Eres un copywriter creativo para redes sociales. Responde en castellano con ideas variadas y atractivas."
-
-if __name__ == "__main__":
-    # Ayudante de código
-    llamar_llm(prompt_code, system_code, 0.1)
-    llamar_llm(prompt_code, system_code, 0.9)
-
-    # Generador de posts
-    llamar_llm(prompt_posts, system_social, 0.1)
-    llamar_llm(prompt_posts, system_social, 0.9)
+@cl.on_message
+async def on_message(message: cl.Message):
+    await cl.Message(content=f"Has dicho: {message.content}").send()
 ```
 
-### 3.3. Tareas del alumnado
+Al ejecutar `chainlit run main.py`, la aplicación abre una UI de chat en el navegador. [web:214][web:215]
 
-1. Ejecutar `python temp_demo.py`.
-2. Comparar las 4 salidas:
+### 3.2. Acciones (`cl.Action`) y callbacks
 
-   - código con temperatura baja,
-   - código con temperatura alta,
-   - posts con temperatura baja,
-   - posts con temperatura alta.
-3. Comentar en voz alta:
+Chainlit permite añadir **botones y acciones** a los mensajes. [web:214][web:215]
 
-   - ¿Qué configuración usarías para un ayudante de código?
-   - ¿Qué configuración usarías para generar ideas de posts?
+- Definimos acciones con `cl.Action`.  
+- Las gestionamos con `@cl.action_callback("nombre")`. [web:214][web:215]
+
+Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. [web:214][web:215]
+
+### 3.3. Streaming de respuestas
+
+El tutorial muestra cómo usar `stream=True` para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. [web:214][web:215]
+
+Idea general:
+
+- llamas al modelo en modo streaming,  
+- vas actualizando el mensaje en pantalla mientras llega la respuesta.
 
 ---
 
-## 4. Práctica 2 – Experimentando con top‑p
+## 4. Configuración con `config.toml`
 
-### 4.1. Idea
+Chainlit utiliza un fichero `config.toml` para activar características sin tocar el código Python. [web:214][web:215]
 
-Mantener la **temperatura fija** y cambiar solo `top_p` para ver cómo afecta al grado de “exploración” en la generación.
+Algunas posibilidades que menciona el tutorial:
 
-### 4.2. Código base
+- **Persistencia del chat**: guardar sesiones para reanudarlas después.  
+- **Carga de ficheros**: permitir que el usuario suba archivos.  
+- **Personalización visual**: nombre del asistente, tema y opciones de UI. [web:214][web:215]
 
-Crea `top_p_demo.py`:
+Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): [web:214][web:215]
 
-```python
-from mistralai import Mistral
-import os
+```toml
+[persistence]
+enabled = true
 
-client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
-
-prompt = "Escribe una descripción breve y atractiva de una webapp Flask que usa un agente LLM como tutor de programación."
-system_prompt = "Eres un asistente que redacta textos claros en castellano."
-
-if __name__ == "__main__":
-    for p in [0.2, 0.5, 0.95]:
-        resp = client.chat.complete(
-            model="mistral-medium-latest",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7,
-            top_p=p
-        )
-
-        print(f"\n=== top_p={p} ===\n")
-        print(resp.choices.message.content)
+[UI]
+name = "Assistant"
 ```
-
-### 4.3. Tareas del alumnado
-
-1. Ejecutar `python top_p_demo.py`.
-2. Observar las diferencias entre `top_p=0.2`, `0.5` y `0.95`.
-3. Comentar brevemente (en voz alta):
-
-   - ¿Con qué valor el texto parece más conservador?
-   - ¿Con cuál salen ideas más “locas” o inesperadas?
 
 ---
 
-## 5. Práctica 3 – Mini ingeniería de prompts
+## 5. Primer ejemplo: chatbot “Sorpréndeme” estático
 
-### 5.1. Idea
+El primer ejemplo del tutorial es un bot muy simple que **no usa ningún modelo LLM**, solo botones y lógica fija. [web:214][web:215]
 
-Mostrar que cambiar el **prompt** (rol, público, formato) puede tener tanto impacto como cambiar los parámetros de muestreo.
+Idea (sin copiar el código literal): [web:214][web:215]
 
-### 5.2. Prompts de ejemplo
+1. En `@cl.on_chat_start` se muestran botones con opciones de “sorpresa”.  
+2. Cada botón dispara un `@cl.action_callback` distinto.  
+3. El bot responde con un mensaje predefinido según el botón.  
 
-Usa una temperatura fija, por ejemplo `temperature=0.3`, y ve cambiando el `system` prompt.
+Esto sirve para entender:
 
-#### Prompt 1 – genérico
-
-```text
-Explícame Flask.
-```
-
-#### Prompt 2 – adaptado a estudiantes de FP
-
-```text
-Actúa como profesor de informática para estudiantes de FP superior.
-Explica qué es Flask en un máximo de 5 frases.
-Responde en castellano y pon un ejemplo sencillo.
-```
-
-#### Prompt 3 – con formato estructurado
-
-```text
-Actúa como un ayudante de programación especializado en Flask.
-Tu usuario es un estudiante de FP superior.
-Explica qué hace Flask y para qué se usa.
-Responde con este formato:
-1. Definición
-2. Para qué sirve
-3. Ejemplo mínimo
-4. Error común de principiante
-```
-
-### 5.3. Ejercicio en clase
-
-1. Probar los tres prompts con la misma configuración de parámetros.
-2. Comparar:
-
-   - claridad,
-   - adecuación al público,
-   - organización de la respuesta.
-3. Extender el ejercicio cambiando solo el perfil del destinatario (FP, junior, profesor) y ver cómo adaptarías el prompt.
+- cómo crear botones,
+- cómo reaccionar a las acciones del usuario,
+- cómo enviar mensajes desde callbacks. [web:214][web:215]
 
 ---
 
-## 6. Práctica 4 – Integrar modos “agénticos” en la webapp Flask
+## 6. Segundo ejemplo: bot “Sorpréndeme” con Ollama
 
-En el PDF previo ya hemos creado una webapp Flask que llama a Mistral desde un módulo de utilidades.  
-Ahora convertimos esa app en una pequeña “**Flask LLM Studio**” con varios modos de uso.
+El segundo ejemplo conecta Chainlit con **Ollama** utilizando **LangChain**. [web:214][web:215]
 
-### 6.1. Idea general
+La estructura general, según el tutorial, es:
 
-La webapp ofrecerá tres modos:
+1. Definir un LLM de LangChain que use Ollama, por ejemplo:
 
-- `code_helper`: ayudante de programación (baja temperatura).
-- `social_post`: generador de posts para redes sociales (alta temperatura).
-- `free_play`: modo libre en el que el alumno puede tocar temperatura y top‑p.
+   ```python
+   from langchain_community.llms import Ollama
 
-### 6.2. utilities.py
+   llm = Ollama(model="mistral", temperature=0.7)
+   ```
 
-Ejemplo de módulo de utilidades:
+   [web:214][web:215]
 
-```python
-import os
-from mistralai import Mistral
-from dotenv import load_dotenv
+2. Crear un flujo en `@cl.on_message` que:
+   - recibe el mensaje del usuario,
+   - llama al LLM,
+   - envía la respuesta en Chainlit (posiblemente en streaming). [web:214][web:215]
 
-load_dotenv()
+3. Opcionalmente, combinarlo con botones (`cl.Action`) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). [web:214][web:215]
 
-client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+Este ejemplo muestra cómo:
 
-AGENTS = {
-    "code_helper": {
-        "system_prompt": (
-            "Eres un ayudante de programación experto en Flask. "
-            "Explicas código de forma clara, precisa y breve para estudiantes de FP superior."
-        ),
-        "temperature": 0.2,
-        "top_p": 1.0
-    },
-    "social_post": {
-        "system_prompt": (
-            "Eres un generador de contenido creativo para redes sociales. "
-            "Escribe textos atractivos, variados y en castellano."
-        ),
-        "temperature": 0.8,
-        "top_p": 1.0
-    },
-    "free_play": {
-        "system_prompt": "Eres un asistente general. Responde de forma útil y clara en castellano.",
-        "temperature": 0.5,
-        "top_p": 1.0
-    }
-}
-
-def generar_respuesta(modo, prompt_usuario, temperature=None, top_p=None):
-    config = AGENTS.get(modo, AGENTS["code_helper"])
-
-    temp = config["temperature"] if temperature is None else float(temperature)
-    p = config["top_p"] if top_p is None else float(top_p)
-
-    response = client.chat.complete(
-        model="mistral-medium-latest",
-        messages=[
-            {"role": "system", "content": config["system_prompt"]},
-            {"role": "user", "content": prompt_usuario}
-        ],
-        temperature=temp,
-        top_p=p
-    )
-
-    return response.choices.message.content
-```
-
-### 6.3. app.py
-
-Ejemplo de backend Flask:
-
-```python
-from flask import Flask, render_template, request
-from utilities import generar_respuesta
-
-app = Flask(__name__)
-
-@app.route("/", methods=["GET"])
-def home():
-    return render_template("home.html")
-
-@app.route("/generar", methods=["POST"])
-def generar():
-    prompt = request.form.get("prompt", "")
-    modo = request.form.get("modo", "code_helper")
-    temperature = request.form.get("temperature", "").strip()
-    top_p = request.form.get("top_p", "").strip()
-
-    temperature = None if temperature == "" else float(temperature)
-    top_p = None if top_p == "" else float(top_p)
-
-    salida = generar_respuesta(modo, prompt, temperature, top_p)
-
-    return render_template(
-        "home.html",
-        salida=salida,
-        prompt=prompt,
-        modo=modo,
-        temperature=temperature if temperature is not None else "",
-        top_p=top_p if top_p is not None else ""
-    )
-
-if __name__ == "__main__":
-    app.run(debug=True)
-```
-
-### 6.4. home.html (plantilla básica)
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask LLM Studio</title>
-</head>
-<body>
-    <h1>Flask LLM Studio</h1>
-
-    <form action="/generar" method="post">
-        <label for="modo">Modo:</label>
-        <select name="modo" id="modo">
-            <option value="code_helper">Ayudante de código</option>
-            <option value="social_post">Generador de posts</option>
-            <option value="free_play">Experimento libre</option>
-        </select>
-
-        <br><br>
-
-        <label for="prompt">Prompt:</label><br>
-        <textarea name="prompt" id="prompt" rows="10" cols="80">{{ prompt or '' }}</textarea>
-
-        <br><br>
-
-        <label for="temperature">Temperature:</label>
-        <input type="number" step="0.1" min="0" max="1.5" name="temperature" id="temperature" value="{{ temperature or '' }}">
-
-        <label for="top_p">Top-p:</label>
-        <input type="number" step="0.05" min="0" max="1" name="top_p" id="top_p" value="{{ top_p or '' }}">
-
-        <br><br>
-        <button type="submit">Generar</button>
-    </form>
-
-    {% if salida %}
-        <hr>
-        <h2>Salida</h2>
-        <pre>{{ salida }}</pre>
-    {% endif %}
-</body>
-</html>
-```
-
-### 6.5. Tareas del alumnado en esta práctica
-
-En clase, los alumnos deben:
-
-1. Lanzar la webapp con `python app.py`.
-2. Probar el mismo prompt en:
-
-   - modo `code_helper`,
-   - modo `social_post`.
-3. Observar cómo cambian el tono y el estilo.
-4. Usar el modo `free_play` para experimentar con distintas combinaciones de temperatura y top‑p (idealmente, cambiando solo uno cada vez).
+- usar Chainlit como **front-end de chat**,
+- mientras la lógica de IA vive en LangChain y Ollama. [web:214][web:215]
 
 ---
 
-## 7. Cierre de la sesión 2.5
+## 7. Casos de uso recomendados
 
-Para cerrar la sesión (5 minutos), plantea estas preguntas en formato debate rápido:
+El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: [web:214][web:215][web:216]
 
-- ¿Qué modo os ha resultado más útil para entender código?
-- ¿Qué ha cambiado más la respuesta: el prompt o los parámetros de muestreo?
-- ¿Os parece que estos “modos” ya se parecen a distintos agentes especializados dentro de una misma aplicación?
+- **Prototipos de aplicaciones LLM**: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  
+- **Herramientas internas**: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  
+- **Demos educativas**: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  
+- **Conexión con APIs y herramientas externas**: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  
 
-La idea que queremos que se lleven es que una aplicación LLM **no es solo un prompt suelto**:
-- combina un modelo,
-- parámetros de muestreo,
-- diseño de prompts,
-- y una interfaz (en este caso Flask) que expone distintos comportamientos “agénticos” para tareas concretas.
+---
+
+## 8. Cómo usar este resumen en clase
+
+Sugerencias para integrarlo en tus materiales:
+
+- Usarlo como **apunte previo** antes de mandarles al tutorial completo.  
+- Montar en directo un “Sorpréndeme” básico en clase siguiendo la estructura descrita.  
+- Plantear como práctica:
+  - que el alumnado modifique el ejemplo estático para añadir nuevos botones,
+  - o que conecte un modelo diferente en la demo con Ollama.
+
+---
+
+## 9. Enlaces útiles
+
+- Tutorial original en español:  
+  [https://www.datacamp.com/es/tutorial/chainlit](https://www.datacamp.com/es/tutorial/chainlit) [web:214]
+
+- Versión en inglés (contenido equivalente):  
+  [https://www.datacamp.com/tutorial/chainlit](https://www.datacamp.com/tutorial/chainlit) [web:215]
+
+- Otros tutoriales de IA generativa en DataCamp:  
+  [https://www.datacamp.com/es/tutorial/category/generative-ai](https://www.datacamp.com/es/tutorial/category/generative-ai) [web:216]
+
+---
