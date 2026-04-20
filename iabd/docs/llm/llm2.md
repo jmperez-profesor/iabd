@@ -87,8 +87,8 @@ memoria y percepción/acción).
 
 Vamos a ver los más usados:
 
-- **ReAct (Reason and Action)**: el LLM genera trazas de thought, action y observation
-- **CodeAct**: es como ReAct, pero las acciones son llamadas programáticas a APIs (smolagents)
+- **ReAct (Reason and Action)**: el LLM genera trazas de **thought, action y observation**
+- **CodeAct**: es como ReAct, pero las acciones son **llamadas programáticas a APIs**. Como funciones de Python (smolagents)
 - **Planning first**: primero se genera un plan completo explícito y se ejecuta poco a poco
 
 ### ReAct
