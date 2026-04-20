@@ -359,7 +359,9 @@ Accedemos a Le Chat para probar el agente:
 
 Los miembros de la organización pueden usar el agente desde su propia barra lateral de Le Chat sin necesidad de ver ni modificar las instrucciones.
 
-Hacemos una prueba subiendo un pdf de una reunión de marketing de una empresa ficticia:
+###### Resumir una reunión en un fichero 
+
+Hacemos una prueba subiendo un [pdf de una reunión de marketing](https://aules.edu.gva.es/fp/mod/resource/view.php?id=10190988) de una empresa ficticia:
 
 ![](./images/agente_mistral_paso5h.png)
 
