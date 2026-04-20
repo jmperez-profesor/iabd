@@ -19,12 +19,10 @@ La idea clave es pasar de **“hablar con un modelo”** a **“definir un asist
 
 ---
 
-## 2. Objetivos de la sesión
-
-Al finalizar esta sesión, el alumnado será capaz de:
+## 2. Objetivos
 
 - Explicar la diferencia entre **modelo**, **agente** y **conversación** en Mistral AI.
-- Crear un agente básico en la plataforma de Mistral con instrucciones adaptadas al curso.
+- Crear un agente básico en la plataforma de Mistral con instrucciones.
 - Invocar ese agente desde Python usando el cliente oficial de Mistral.
 - Observar cómo cambia la experiencia frente a un simple chatbot directo sobre el modelo.
 
@@ -107,7 +105,7 @@ Action: ...
 Observation: ...
 ... (Repeated many times)
 ```
-Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop):
+Ejemplo de trayectoria de razonamiento para una tarea:
 
 ![Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop).](./images/ejemplo_razonamientos.png)
 
@@ -367,7 +365,6 @@ Hacemos una prueba subiendo un [pdf de una reunión de marketing](https://aules.
 
 **Ejemplo de respuesta del agente a un dato que sí tiene en su base de conocimientos:**
 ![](./images/agente_mistral_paso6.png)
-
 
 ---
 
