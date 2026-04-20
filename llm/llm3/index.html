@@ -27,7 +27,7 @@
     
     
       
-        <title>Sesión 4 - Chainlit - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 3 - Chainlit - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chainlit-resumen-practico-del-tutorial-de-datacamp" class="md-skip">
+        <a href="#chainlit-framework-de-python-para-crear-interfaces-de-chat-interactivas" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 4 - Chainlit
+              Sesión 3 - Chainlit
             
           </span>
         </div>
@@ -849,7 +849,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 4 - Chainlit
+    Sesión 3 - Chainlit
   
 
     
@@ -867,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 4 - Chainlit
+    Sesión 3 - Chainlit
   
 
     
@@ -897,6 +897,17 @@
     <span class="md-ellipsis">
       
         1. ¿Qué es Chainlit?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-de-chainlit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes de Chainlit
       
     </span>
   </a>
@@ -1002,28 +1013,6 @@
     <span class="md-ellipsis">
       
         7. Casos de uso recomendados
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-como-usar-este-resumen-en-clase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Cómo usar este resumen en clase
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-enlaces-utiles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. Enlaces útiles
       
     </span>
   </a>
@@ -1871,49 +1860,70 @@
 
 
 
-<h1 id="chainlit-resumen-practico-del-tutorial-de-datacamp">Chainlit: resumen práctico del tutorial de DataCamp</h1>
-<p>El objetivo es que el alumnado:</p>
-<ul>
-<li>entienda <strong>qué es Chainlit</strong> y para qué sirve,  </li>
-<li>pueda <strong>seguir los ejemplos básicos</strong> (chatbot “Sorpréndeme” y bot con Ollama),  </li>
-<li>sepa <strong>cómo integrarlo</strong> con sus propias aplicaciones LLM. [web:214][web:215]</li>
-</ul>
-<hr />
+<h1 id="chainlit-framework-de-python-para-crear-interfaces-de-chat-interactivas">Chainlit: framework de Python para crear <strong>interfaces de chat interactivas</strong></h1>
 <h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
-<p>Chainlit es un framework de Python, de código abierto, que permite crear <strong>interfaces de chat interactivas</strong> para aplicaciones basadas en modelos de lenguaje, sin necesidad de programar un frontend complejo. [web:214][web:215]</p>
+<p>Chainlit nos ayuda a crear frontends para chatbots de IA, herramientas y flujos de trabajo LLM. Abstrae la complejidad del front-end y nos permite centrarnos en la lógica de Python, a la vez que proporciona soporte para añadir botones, controles deslizantes, soporte para subir archivos o incluso conectarte a herramientas que utilicen el <strong>protocolo de contexto de modelo (MCP)</strong>. </p>
+<p>Chainlit es ideal para:</p>
+<ul>
+<li>Prototipos de aplicaciones basadas en LLM</li>
+<li>Crear herramientas internas</li>
+<li>Construir demostraciones educativas</li>
+<li>Conectar tus modelos a herramientas o API externas</li>
+</ul>
 <p>Ideas clave:</p>
 <ul>
-<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas. [web:214]  </li>
-<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). [web:214][web:215]  </li>
-<li>Gestiona por ti elementos típicos de una UI de chat:</li>
+<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas.  </li>
+<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). </li>
+<li>Gestiona por nosotros elementos típicos de una UI de chat:</li>
 <li>mensajes,</li>
 <li>acciones (botones, etc.),</li>
 <li>streaming de respuestas,</li>
-<li>persistencia de sesiones. [web:214][web:215]</li>
+<li>persistencia de sesiones. </li>
 </ul>
 <hr />
+<h2 id="componentes-de-chainlit">Componentes de Chainlit</h2>
+<p>Todas las aplicaciones de Chainlit se basan en unas pocas características esenciales:</p>
+<ol>
+<li>
+<p><strong>Hooks del ciclo de vida del chat</strong>: permiten controlar lo que ocurre en las distintas fases de un chat. Por ejemplo:</p>
+<ul>
+<li><strong><code>@cl.on_chat_start</code></strong> se ejecuta cuando se inicia un chat.</li>
+<li><strong><code>@cl.on_message</code></strong> se ejecuta cuando el usuario envía un mensaje.</li>
+<li><strong><code>@cl.on_chat_end</code></strong> se ejecuta cuando finaliza el chat.</li>
+</ul>
+</li>
+<li>
+<p><strong>Acciones del IU</strong>: Chainlit permite añadir botones con <strong><code>cl.Action</code></strong> y manejarlos con <strong><code>@cl.action_callback</code></strong>. Son perfectas para crear interfaces de usuario limpias e interactivas sin necesidad de que el usuario introduzca texto.</p>
+</li>
+<li>
+<p><strong>Transmisión de mensajes</strong>: Con los <strong>LLM que admiten la transmisión de tokens</strong>, podemos transmitir respuestas en tiempo real utilizando <strong><code>stream=True</code></strong>, haciendo que nuestra aplicación parezca más dinámica y receptiva.</p>
+</li>
+<li>
+<p><strong>Configuración con <code>config.toml</code></strong>: Este archivo permite activar funciones como la persistencia del chat, la carga de archivos, la personalización del tema y los ajustes de usabilidad, todo ello sin modificar tu código Python.</p>
+</li>
+</ol>
 <h2 id="2-instalacion-y-requisitos">2. Instalación y requisitos</h2>
-<p>Según el tutorial, los requisitos básicos son:</p>
+<p>Requisitos básicos son:</p>
 <ul>
 <li>Python 3.8 o superior.  </li>
-<li>Instalar Chainlit desde <code>pip</code>: [web:214][web:215]</li>
+<li>Instalar Chainlit desde <code>pip</code>: </li>
 </ul>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit
 </code></pre></div>
-<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: [web:214][web:215]</p>
+<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: </p>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit<span class="w"> </span>langchain<span class="w"> </span>langchain-community
 </code></pre></div>
 <hr />
 <h2 id="3-conceptos-basicos-de-chainlit">3. Conceptos básicos de Chainlit</h2>
-<p>El artículo explica que todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. [web:214][web:215]</p>
+<p>Todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. </p>
 <h3 id="31-hooks-del-ciclo-de-vida-del-chat">3.1. Hooks del ciclo de vida del chat</h3>
-<p>Chainlit proporciona decoradores que se ejecutan en distintos momentos de la conversación: [web:214][web:215]</p>
+<p>Chainlit proporciona <strong>decoradores</strong> que se ejecutan en distintos momentos de la conversación: </p>
 <ul>
-<li><code>@cl.on_chat_start</code>: se lanza al empezar un chat.  </li>
-<li><code>@cl.on_message</code>: se lanza cuando el usuario envía un mensaje.  </li>
-<li><code>@cl.on_chat_end</code>: se lanza al terminar una sesión.  </li>
+<li><strong><code>@cl.on_chat_start</code></strong>: se lanza al empezar un chat.  </li>
+<li><strong><code>@cl.on_message</code></strong>: se lanza cuando el usuario envía un mensaje.  </li>
+<li><strong><code>@cl.on_chat_end</code></strong>: se lanza al terminar una sesión.  </li>
 </ul>
-<p>Ejemplo mínimo (idea basada en el tutorial): [web:214][web:215]</p>
+<p>Ejemplo mínimo (idea basada en el tutorial): </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
@@ -1924,16 +1934,16 @@
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Has dicho: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 </code></pre></div>
-<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. [web:214][web:215]</p>
+<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. </p>
 <h3 id="32-acciones-claction-y-callbacks">3.2. Acciones (<code>cl.Action</code>) y callbacks</h3>
-<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. [web:214][web:215]</p>
+<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. </p>
 <ul>
 <li>Definimos acciones con <code>cl.Action</code>.  </li>
-<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. [web:214][web:215]</li>
+<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. </li>
 </ul>
-<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. [web:214][web:215]</p>
+<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. </p>
 <h3 id="33-streaming-de-respuestas">3.3. Streaming de respuestas</h3>
-<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. [web:214][web:215]</p>
+<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. </p>
 <p>Idea general:</p>
 <ul>
 <li>llamas al modelo en modo streaming,  </li>
@@ -1941,14 +1951,14 @@
 </ul>
 <hr />
 <h2 id="4-configuracion-con-configtoml">4. Configuración con <code>config.toml</code></h2>
-<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. [web:214][web:215]</p>
+<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. </p>
 <p>Algunas posibilidades que menciona el tutorial:</p>
 <ul>
 <li><strong>Persistencia del chat</strong>: guardar sesiones para reanudarlas después.  </li>
 <li><strong>Carga de ficheros</strong>: permitir que el usuario suba archivos.  </li>
-<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. [web:214][web:215]</li>
+<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. </li>
 </ul>
-<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): [web:214][web:215]</p>
+<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): </p>
 <div class="highlight"><pre><span></span><code><span class="k">[persistence]</span>
 <span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 
@@ -1957,8 +1967,8 @@
 </code></pre></div>
 <hr />
 <h2 id="5-primer-ejemplo-chatbot-sorprendeme-estatico">5. Primer ejemplo: chatbot “Sorpréndeme” estático</h2>
-<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. [web:214][web:215]</p>
-<p>Idea (sin copiar el código literal): [web:214][web:215]</p>
+<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. </p>
+<p>Idea (sin copiar el código literal): </p>
 <ol>
 <li>En <code>@cl.on_chat_start</code> se muestran botones con opciones de “sorpresa”.  </li>
 <li>Cada botón dispara un <code>@cl.action_callback</code> distinto.  </li>
@@ -1968,11 +1978,11 @@
 <ul>
 <li>cómo crear botones,</li>
 <li>cómo reaccionar a las acciones del usuario,</li>
-<li>cómo enviar mensajes desde callbacks. [web:214][web:215]</li>
+<li>cómo enviar mensajes desde callbacks. </li>
 </ul>
 <hr />
 <h2 id="6-segundo-ejemplo-bot-sorprendeme-con-ollama">6. Segundo ejemplo: bot “Sorpréndeme” con Ollama</h2>
-<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. [web:214][web:215]</p>
+<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. </p>
 <p>La estructura general, según el tutorial, es:</p>
 <ol>
 <li>Definir un LLM de LangChain que use Ollama, por ejemplo:</li>
@@ -1981,57 +1991,30 @@
 
 <span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 </code></pre></div>
-<p>[web:214][web:215]</p>
 <ol>
 <li>Crear un flujo en <code>@cl.on_message</code> que:</li>
 <li>recibe el mensaje del usuario,</li>
 <li>llama al LLM,</li>
 <li>
-<p>envía la respuesta en Chainlit (posiblemente en streaming). [web:214][web:215]</p>
+<p>envía la respuesta en Chainlit (posiblemente en streaming).</p>
 </li>
 <li>
-<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). [web:214][web:215]</p>
+<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). </p>
 </li>
 </ol>
 <p>Este ejemplo muestra cómo:</p>
 <ul>
 <li>usar Chainlit como <strong>front-end de chat</strong>,</li>
-<li>mientras la lógica de IA vive en LangChain y Ollama. [web:214][web:215]</li>
+<li>mientras la lógica de IA vive en LangChain y Ollama. </li>
 </ul>
 <hr />
 <h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
-<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: [web:214][web:215][web:216]</p>
+<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: </p>
 <ul>
 <li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
 <li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
 <li><strong>Demos educativas</strong>: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  </li>
 <li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
-</ul>
-<hr />
-<h2 id="8-como-usar-este-resumen-en-clase">8. Cómo usar este resumen en clase</h2>
-<p>Sugerencias para integrarlo en tus materiales:</p>
-<ul>
-<li>Usarlo como <strong>apunte previo</strong> antes de mandarles al tutorial completo.  </li>
-<li>Montar en directo un “Sorpréndeme” básico en clase siguiendo la estructura descrita.  </li>
-<li>Plantear como práctica:</li>
-<li>que el alumnado modifique el ejemplo estático para añadir nuevos botones,</li>
-<li>o que conecte un modelo diferente en la demo con Ollama.</li>
-</ul>
-<hr />
-<h2 id="9-enlaces-utiles">9. Enlaces útiles</h2>
-<ul>
-<li>
-<p>Tutorial original en español:<br />
-<a href="https://www.datacamp.com/es/tutorial/chainlit">https://www.datacamp.com/es/tutorial/chainlit</a> [web:214]</p>
-</li>
-<li>
-<p>Versión en inglés (contenido equivalente):<br />
-<a href="https://www.datacamp.com/tutorial/chainlit">https://www.datacamp.com/tutorial/chainlit</a> [web:215]</p>
-</li>
-<li>
-<p>Otros tutoriales de IA generativa en DataCamp:<br />
-<a href="https://www.datacamp.com/es/tutorial/category/generative-ai">https://www.datacamp.com/es/tutorial/category/generative-ai</a> [web:216]</p>
-</li>
 </ul>
 <hr />
 
