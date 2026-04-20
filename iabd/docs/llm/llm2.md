@@ -46,15 +46,13 @@ Los agentes IA son entidades artificiales que pueden percibir y actuar de forma 
 
 Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de **extender los LLMs permitiéndoles interactuar con herramientas y entornos externos**.
 
-![Arquitectura interna de un Agente LLM](./images/agente_arquitectura2.png)
+![Agente + LLM](./images/agente_y_llm.png)
 
+![Arquitectura interna de un Agente LLM](./images/agente_arquitectura2.png)
 
 **Arquitectura interna de un Agente LLM:**
 
 ![Arquitectura interna de un Agente LLM](./images/agente_arquitectura.png)
-
-
-
 
 Tienen tres componentes:
 
@@ -65,7 +63,7 @@ Tienen tres componentes:
     - **Memoria a corto plazo**: utiliza la memoria a corto plazo del modelo para aprender.
     - **Memoria a largo plazo**: Esto proporciona al agente la capacidad de retener y recordar información (infinita) durante períodos prolongados, a menudo aprovechando un almacenamiento vectorial externo y una recuperación rápida (RAG).
 - **Percepción y acción (uso de herramientas - tools)**: 
-    - El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más.
+    - El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo **información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más**.
 
 ![Agente LLM](./images/agente_llm.png)
 
@@ -95,7 +93,7 @@ Vamos a ver los más usados:
 
 ### ReAct
 
-ReAct es una estrategia muy sencilla e intuitiva. Dada una user request, el sistema sigue un bucle que genera:
+ReAct es una estrategia muy sencilla e intuitiva. Dada una ***user request***, el sistema sigue un bucle que genera:
 
 - **Thought**: razonamiento interno
 - **Action**: llamada a una herramienta
@@ -113,8 +111,7 @@ Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento 
 
 ![Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop).](./images/ejemplo_razonamientos.png)
 
-ACTIVAR IMAGEN GIF [](./images/agente_running.gif)
-
+![](./images/agente_running.gif)
 
 #### ReAct: ejemplo
 
