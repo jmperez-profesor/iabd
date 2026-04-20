@@ -13,9 +13,12 @@ En la sesión anterior (LLM01) vimos:
 - Conceptos de **tokens**, **ventana de contexto**, **system prompt** y **alucinaciones**.
 - Un primer ejemplo de interacción tipo chatbot.
 
-En esta sesión damos un paso más: vamos a crear y utilizar un **agente** en Mistral AI, apoyándonos en la API de Agents y Conversations.
+En esta sesión damos un paso más: vamos a crear y utilizar un **agente** en Mistral AI, apoyándonos en la API de **Agents** y **Conversations**.
 
 La idea clave es pasar de **“hablar con un modelo”** a **“definir un asistente con rol, memoria y comportamiento propios”**.
+
+**Noticia (2023)**: La empresa virtual ChatDev, una plataforma basada en agentes de inteligencia artificial creada por investigadores, desarrolló un juego de Gomoku (cinco en raya) funcional en aproximadamente siete minutos. 
+Fuente: [https://www.xataka.com/robotica-e-ia/alguien-monto-empresa-donde-todos-cargos-eran-ia-creo-su-primer-software-siete-minutos-euro](https://www.xataka.com/robotica-e-ia/alguien-monto-empresa-donde-todos-cargos-eran-ia-creo-su-primer-software-siete-minutos-euro)
 
 ---
 
