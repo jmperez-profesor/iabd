@@ -131,9 +131,9 @@ ACTIVAR IMAGEN GIF [](./images/agente_running.gif)
 - **Modelo**: red neuronal entrenada para completar texto, traducir, razonar, etc.  
 - **Agente** (en Mistral AI): configuración reutilizable que envuelve un modelo y añade:
 
-  - Instrucciones (system prompt persistente).
-  - Parámetros (temperatura, estilo, etc.).
-  - Opcionalmente, tools o integraciones adicionales.
+    - Instrucciones (system prompt persistente).
+    - Parámetros (temperatura, estilo, etc.).
+    - Opcionalmente, tools o integraciones adicionales.
 
 Trabajar directamente con el modelo es suficiente para un **chatbot simple**, pero repetir siempre las mismas instrucciones y parámetros en cada llamada no es práctico.  
 Un **agente** permite centralizar esa configuración y reutilizarla.
@@ -174,7 +174,7 @@ En Mistral AI disponemos de una API de Agentes y chats (conversaciones) la cual 
 - Múltiples modelos multimodales, tanto de **texto como de visión**.
 - Estado persistente entre conversaciones.
 - Capacidad para mantener conversaciones con modelos base, un solo agente y múltiples agentes.
-- Herramientas de conexión integradas para la **ejecución de código, búsqueda web , generación de imágenes y biblioteca de documentos** listas para usar.
+- Herramientas de conexión integradas para la **ejecución de código, búsqueda web, generación de imágenes y biblioteca de documentos** listas para usar.
 - Capacidad de transferencia de información para utilizar diferentes agentes como parte de un flujo de trabajo, lo que permite a los agentes llamar a otros agentes.
 - También se admiten las funciones compatibles a través de nuestro punto final de finalización de chat, tales como:
     - **Resultados estructurados**
@@ -183,14 +183,14 @@ En Mistral AI disponemos de una API de Agentes y chats (conversaciones) la cual 
     - **Citas**
 
 
-## 4.1 
+## 4.1 Personalizar un Agente a través de Mistral Studio
 
-Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos.
+Vamos a crear un agente personalizado en (Le chat) con sus propias instrucciones, herramientas y base de conocimientos. Debemos:
 
-- Escribe un mensaje del sistema para definir el comportamiento del agente.
-- Adjunte documentos como fuente de conocimiento.
+- Escribir un mensaje del sistema para definir el comportamiento del agente.
+- Adjuntar documentos como fuente de conocimiento.
 - Habilitar herramientas como la búsqueda web, el intérprete de código y Canvas.
-- Comparte el agente con tu equipo.
+- Habilitar en Le Chat el agente.
 
 #### Requisitos previos
 
@@ -234,9 +234,7 @@ Más adelante usaremos el agente en modo API junto a una aplicación.
     - **`top_p` bajo (ej. 0.1 - 0.3)**: El modelo solo considerará el conjunto mínimo de palabras altamente probables (respuestas directas, precisas y más coherentes, ideales para tareas técnicas, resumen de datos o respuestas fácticas)
     - **`top_p` alto (ej. 0.8 - 1.0)**: El modelo considera un conjunto mucho más amplio de palabras, incluyendo opciones menos probables (aumenta la creatividad, variabilidad y diversidad en el texto, ideal para escritura creativa o lluvia de ideas)
 
-
 ![](./images/agente_mistral_paso2c.png)
-
 
 Las instrucciones determinan el comportamiento del agente en cada conversación. Debemos ser específicos sobre la tarea, el formato y el tono.
 
@@ -253,7 +251,6 @@ Las instrucciones determinan el comportamiento del agente en cada conversación.
 
 - Las solicitudes que superan el período de tiempo permitido por el modelo generan un `400 Bad Request error`.
 - El recuento de tokens incluye tanto los tokens de entrada como los de salida. Debemos planificar adecuadamente la variable `max_tokens`.
-
 
 **3.-** En el campo **Instrucciones**, escribimos un mensaje del sistema. Por ejemplo:
 
