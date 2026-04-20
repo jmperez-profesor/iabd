@@ -2209,6 +2209,7 @@
 <p><img alt="Agente IA obstáculos" src="../images/agenteia_obstaculos.png" /></p>
 <h2 id="agentes-llm">Agentes LLM</h2>
 <p>Son agentes que usan LLMs como el cerebro. Se puede ver como una forma de <strong>extender los LLMs permitiéndoles interactuar con herramientas y entornos externos</strong>.</p>
+<p><img alt="Agente + LLM" src="../images/agente_y_llm.png" /></p>
 <p><img alt="Arquitectura interna de un Agente LLM" src="../images/agente_arquitectura2.png" /></p>
 <p><strong>Arquitectura interna de un Agente LLM:</strong></p>
 <p><img alt="Arquitectura interna de un Agente LLM" src="../images/agente_arquitectura.png" /></p>
@@ -2225,7 +2226,7 @@
 </ul>
 </li>
 <li><strong>Percepción y acción (uso de herramientas - tools)</strong>: <ul>
-<li>El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más.</li>
+<li>El agente aprende a llamar a API externas para obtener información adicional que falta en los pesos del modelo (que a menudo son difíciles de cambiar después del preentrenamiento), incluyendo <strong>información actual, capacidad de ejecución de código, acceso a fuentes de información propietarias y más</strong>.</li>
 </ul>
 </li>
 </ul>
@@ -2249,7 +2250,7 @@ memoria y percepción/acción).</p>
 <li><strong>Planning first</strong>: primero se genera un plan completo explícito y se ejecuta poco a poco</li>
 </ul>
 <h3 id="react">ReAct</h3>
-<p>ReAct es una estrategia muy sencilla e intuitiva. Dada una user request, el sistema sigue un bucle que genera:</p>
+<p>ReAct es una estrategia muy sencilla e intuitiva. Dada una <strong><em>user request</em></strong>, el sistema sigue un bucle que genera:</p>
 <ul>
 <li><strong>Thought</strong>: razonamiento interno</li>
 <li><strong>Action</strong>: llamada a una herramienta</li>
@@ -2263,7 +2264,7 @@ Observation:<span class="w"> </span>...
 </code></pre></div>
 Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop):</p>
 <p><img alt="Ejemplos de trayectorias de razonamiento para tareas intensivas en conocimiento (por ejemplo, HotpotQA, FEVER) y tareas de toma de decisiones (por ejemplo, AlfWorld Env, WebShop)." src="../images/ejemplo_razonamientos.png" /></p>
-<p>ACTIVAR IMAGEN GIF <a href="../images/agente_running.gif"></a></p>
+<p><img alt="" src="../images/agente_running.gif" /></p>
 <h4 id="react-ejemplo">ReAct: ejemplo</h4>
 <p><img alt="" src="../images/ejemplo_react.png" /></p>
 <h4 id="ejemplo-de-consulta-a-un-agente-pidiendo-informacion-actual-donde-la-informacion-no-esta-actualizada">Ejemplo de consulta a un agente pidiendo información actual donde la información no está actualizada:</h4>
