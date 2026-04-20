@@ -27,7 +27,7 @@
     
     
       
-        <title>Sesión 3 - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 4 - Chainlit - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sesion-3-laboratorio-de-temperatura-topp-prompts-y-flask" class="md-skip">
+        <a href="#chainlit-resumen-practico-del-tutorial-de-datacamp" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 3
+              Sesión 4 - Chainlit
             
           </span>
         </div>
@@ -849,7 +849,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 3
+    Sesión 4 - Chainlit
   
 
     
@@ -867,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 3
+    Sesión 4 - Chainlit
   
 
     
@@ -893,10 +893,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-objetivos-de-la-sesion-25" class="md-nav__link">
+  <a href="#1-que-es-chainlit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Objetivos de la sesión 2.5
+        1. ¿Qué es Chainlit?
       
     </span>
   </a>
@@ -904,10 +904,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-requisitos-previos" class="md-nav__link">
+  <a href="#2-instalacion-y-requisitos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Requisitos previos
+        2. Instalación y requisitos
       
     </span>
   </a>
@@ -915,22 +915,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-practica-1-temperatura-ayudante-de-codigo-vs-generador-de-posts" class="md-nav__link">
+  <a href="#3-conceptos-basicos-de-chainlit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Práctica 1 – Temperatura: ayudante de código vs generador de posts
+        3. Conceptos básicos de Chainlit
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Práctica 1 – Temperatura: ayudante de código vs generador de posts">
+    <nav class="md-nav" aria-label="3. Conceptos básicos de Chainlit">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-idea" class="md-nav__link">
+  <a href="#31-hooks-del-ciclo-de-vida-del-chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1. Idea
+        3.1. Hooks del ciclo de vida del chat
       
     </span>
   </a>
@@ -938,10 +938,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-codigo-base" class="md-nav__link">
+  <a href="#32-acciones-claction-y-callbacks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2. Código base
+        3.2. Acciones (cl.Action) y callbacks
       
     </span>
   </a>
@@ -949,10 +949,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-tareas-del-alumnado" class="md-nav__link">
+  <a href="#33-streaming-de-respuestas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3. Tareas del alumnado
+        3.3. Streaming de respuestas
       
     </span>
   </a>
@@ -965,221 +965,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-practica-2-experimentando-con-topp" class="md-nav__link">
+  <a href="#4-configuracion-con-configtoml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Práctica 2 – Experimentando con top‑p
+        4. Configuración con config.toml
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="4. Práctica 2 – Experimentando con top‑p">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-idea" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1. Idea
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-codigo-base" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2. Código base
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-tareas-del-alumnado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.3. Tareas del alumnado
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-practica-3-mini-ingenieria-de-prompts" class="md-nav__link">
+  <a href="#5-primer-ejemplo-chatbot-sorprendeme-estatico" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Práctica 3 – Mini ingeniería de prompts
+        5. Primer ejemplo: chatbot “Sorpréndeme” estático
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="5. Práctica 3 – Mini ingeniería de prompts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-idea" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.1. Idea
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-prompts-de-ejemplo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.2. Prompts de ejemplo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5.2. Prompts de ejemplo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prompt-1-generico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prompt 1 – genérico
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-2-adaptado-a-estudiantes-de-fp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prompt 2 – adaptado a estudiantes de FP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prompt-3-con-formato-estructurado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prompt 3 – con formato estructurado
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-ejercicio-en-clase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.3. Ejercicio en clase
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-practica-4-integrar-modos-agenticos-en-la-webapp-flask" class="md-nav__link">
+  <a href="#6-segundo-ejemplo-bot-sorprendeme-con-ollama" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Práctica 4 – Integrar modos “agénticos” en la webapp Flask
+        6. Segundo ejemplo: bot “Sorpréndeme” con Ollama
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="6. Práctica 4 – Integrar modos “agénticos” en la webapp Flask">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#61-idea-general" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.1. Idea general
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#62-utilitiespy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.2. utilities.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#63-apppy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.3. app.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#64-homehtml-plantilla-basica" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.4. home.html (plantilla básica)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#65-tareas-del-alumnado-en-esta-practica" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.5. Tareas del alumnado en esta práctica
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-cierre-de-la-sesion-25" class="md-nav__link">
+  <a href="#7-casos-de-uso-recomendados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Cierre de la sesión 2.5
+        7. Casos de uso recomendados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-como-usar-este-resumen-en-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cómo usar este resumen en clase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-enlaces-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Enlaces útiles
       
     </span>
   </a>
@@ -2027,351 +1871,169 @@
 
 
 
-<h1 id="sesion-3-laboratorio-de-temperatura-topp-prompts-y-flask">Sesión 3: Laboratorio de temperatura, top‑p, prompts y Flask</h1>
-<p>Esta sesión complementa LLM02 con un <strong>laboratorio práctico de parámetros y diseño de prompts</strong>, usando el mismo entorno Python/Flask y la misma API de Mistral que hemos configurado en las sesiones anteriores.</p>
-<p>El enfoque está pensado para <strong>hacer en clase</strong>, en ejercicios cortos, sin pedir memorias ni documentos extensos.</p>
-<hr />
-<h2 id="1-objetivos-de-la-sesion-25">1. Objetivos de la sesión 2.5</h2>
-<p>Al finalizar esta sesión, el alumnado será capaz de:</p>
+<h1 id="chainlit-resumen-practico-del-tutorial-de-datacamp">Chainlit: resumen práctico del tutorial de DataCamp</h1>
+<p>El objetivo es que el alumnado:</p>
 <ul>
-<li>Ajustar la <strong>temperatura</strong> del modelo y observar su efecto en tareas de programación y de creatividad.</li>
-<li>Ajustar el parámetro <strong>top-p</strong> manteniendo fija la temperatura, para ver cómo cambia la variabilidad de la salida.</li>
-<li>Mejorar prompts mediante principios básicos de <strong>ingeniería de prompts</strong> (rol, tarea, restricciones, formato).</li>
-<li>Integrar varios <strong>modos de comportamiento</strong> en una miniwebapp Flask (perfiles “agénticos”).</li>
+<li>entienda <strong>qué es Chainlit</strong> y para qué sirve,  </li>
+<li>pueda <strong>seguir los ejemplos básicos</strong> (chatbot “Sorpréndeme” y bot con Ollama),  </li>
+<li>sepa <strong>cómo integrarlo</strong> con sus propias aplicaciones LLM. [web:214][web:215]</li>
 </ul>
 <hr />
-<h2 id="2-requisitos-previos">2. Requisitos previos</h2>
-<p>El alumnado debe tener:</p>
+<h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
+<p>Chainlit es un framework de Python, de código abierto, que permite crear <strong>interfaces de chat interactivas</strong> para aplicaciones basadas en modelos de lenguaje, sin necesidad de programar un frontend complejo. [web:214][web:215]</p>
+<p>Ideas clave:</p>
 <ul>
-<li>Python y un entorno virtual configurado.</li>
-<li>Clave de API de Mistral en la variable <code>MISTRAL_API_KEY</code>.</li>
-<li>
-<p>Proyecto Flask básico (similar al de la práctica “Crear una webapp con Flask”):</p>
-</li>
-<li>
-<p><code>app.py</code></p>
-</li>
-<li><code>utilities.py</code></li>
-<li><code>.env</code></li>
-<li><code>templates/home.html</code></li>
+<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas. [web:214]  </li>
+<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). [web:214][web:215]  </li>
+<li>Gestiona por ti elementos típicos de una UI de chat:</li>
+<li>mensajes,</li>
+<li>acciones (botones, etc.),</li>
+<li>streaming de respuestas,</li>
+<li>persistencia de sesiones. [web:214][web:215]</li>
 </ul>
 <hr />
-<h2 id="3-practica-1-temperatura-ayudante-de-codigo-vs-generador-de-posts">3. Práctica 1 – Temperatura: ayudante de código vs generador de posts</h2>
-<h3 id="31-idea">3.1. Idea</h3>
-<p>Usar el mismo modelo para dos tareas distintas:</p>
+<h2 id="2-instalacion-y-requisitos">2. Instalación y requisitos</h2>
+<p>Según el tutorial, los requisitos básicos son:</p>
 <ul>
-<li><strong>Ayudante de código</strong> (respuestas estables y precisas).</li>
-<li><strong>Generador de posts para redes sociales</strong> (respuestas creativas y variadas).</li>
+<li>Python 3.8 o superior.  </li>
+<li>Instalar Chainlit desde <code>pip</code>: [web:214][web:215]</li>
 </ul>
-<h3 id="32-codigo-base">3.2. Código base</h3>
-<p>Crea un archivo <code>temp_demo.py</code> con:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">llamar_llm</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
-    <span class="p">]</span>
-
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
-        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
-        <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span>
-    <span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- temperature=</span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s2"> ---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-
-<span class="n">prompt_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Explica qué hace este código Flask:</span>
-
-<span class="s2">@app.route(&#39;/&#39;)</span>
-<span class="s2">def home():</span>
-<span class="s2">    return &#39;Hola mundo&#39;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">prompt_posts</span> <span class="o">=</span> <span class="s2">&quot;Genera 5 ideas de posts para redes sociales para promocionar una miniwebapp hecha con Flask.&quot;</span>
-
-<span class="n">system_code</span> <span class="o">=</span> <span class="s2">&quot;Eres un ayudante de programación especializado en Flask. Responde con precisión y brevedad en castellano.&quot;</span>
-<span class="n">system_social</span> <span class="o">=</span> <span class="s2">&quot;Eres un copywriter creativo para redes sociales. Responde en castellano con ideas variadas y atractivas.&quot;</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1"># Ayudante de código</span>
-    <span class="n">llamar_llm</span><span class="p">(</span><span class="n">prompt_code</span><span class="p">,</span> <span class="n">system_code</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">llamar_llm</span><span class="p">(</span><span class="n">prompt_code</span><span class="p">,</span> <span class="n">system_code</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
-
-    <span class="c1"># Generador de posts</span>
-    <span class="n">llamar_llm</span><span class="p">(</span><span class="n">prompt_posts</span><span class="p">,</span> <span class="n">system_social</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">llamar_llm</span><span class="p">(</span><span class="n">prompt_posts</span><span class="p">,</span> <span class="n">system_social</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit
 </code></pre></div>
-<h3 id="33-tareas-del-alumnado">3.3. Tareas del alumnado</h3>
+<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit<span class="w"> </span>langchain<span class="w"> </span>langchain-community
+</code></pre></div>
+<hr />
+<h2 id="3-conceptos-basicos-de-chainlit">3. Conceptos básicos de Chainlit</h2>
+<p>El artículo explica que todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. [web:214][web:215]</p>
+<h3 id="31-hooks-del-ciclo-de-vida-del-chat">3.1. Hooks del ciclo de vida del chat</h3>
+<p>Chainlit proporciona decoradores que se ejecutan en distintos momentos de la conversación: [web:214][web:215]</p>
+<ul>
+<li><code>@cl.on_chat_start</code>: se lanza al empezar un chat.  </li>
+<li><code>@cl.on_message</code>: se lanza cuando el usuario envía un mensaje.  </li>
+<li><code>@cl.on_chat_end</code>: se lanza al terminar una sesión.  </li>
+</ul>
+<p>Ejemplo mínimo (idea basada en el tutorial): [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nueva sesión de chat iniciada&quot;</span><span class="p">)</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Has dicho: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. [web:214][web:215]</p>
+<h3 id="32-acciones-claction-y-callbacks">3.2. Acciones (<code>cl.Action</code>) y callbacks</h3>
+<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. [web:214][web:215]</p>
+<ul>
+<li>Definimos acciones con <code>cl.Action</code>.  </li>
+<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. [web:214][web:215]</li>
+</ul>
+<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. [web:214][web:215]</p>
+<h3 id="33-streaming-de-respuestas">3.3. Streaming de respuestas</h3>
+<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. [web:214][web:215]</p>
+<p>Idea general:</p>
+<ul>
+<li>llamas al modelo en modo streaming,  </li>
+<li>vas actualizando el mensaje en pantalla mientras llega la respuesta.</li>
+</ul>
+<hr />
+<h2 id="4-configuracion-con-configtoml">4. Configuración con <code>config.toml</code></h2>
+<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. [web:214][web:215]</p>
+<p>Algunas posibilidades que menciona el tutorial:</p>
+<ul>
+<li><strong>Persistencia del chat</strong>: guardar sesiones para reanudarlas después.  </li>
+<li><strong>Carga de ficheros</strong>: permitir que el usuario suba archivos.  </li>
+<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. [web:214][web:215]</li>
+</ul>
+<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code><span class="k">[persistence]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+
+<span class="k">[UI]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="5-primer-ejemplo-chatbot-sorprendeme-estatico">5. Primer ejemplo: chatbot “Sorpréndeme” estático</h2>
+<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. [web:214][web:215]</p>
+<p>Idea (sin copiar el código literal): [web:214][web:215]</p>
 <ol>
-<li>Ejecutar <code>python temp_demo.py</code>.</li>
-<li>
-<p>Comparar las 4 salidas:</p>
-</li>
-<li>
-<p>código con temperatura baja,</p>
-</li>
-<li>código con temperatura alta,</li>
-<li>posts con temperatura baja,</li>
-<li>posts con temperatura alta.</li>
-<li>
-<p>Comentar en voz alta:</p>
-</li>
-<li>
-<p>¿Qué configuración usarías para un ayudante de código?</p>
-</li>
-<li>¿Qué configuración usarías para generar ideas de posts?</li>
+<li>En <code>@cl.on_chat_start</code> se muestran botones con opciones de “sorpresa”.  </li>
+<li>Cada botón dispara un <code>@cl.action_callback</code> distinto.  </li>
+<li>El bot responde con un mensaje predefinido según el botón.  </li>
 </ol>
-<hr />
-<h2 id="4-practica-2-experimentando-con-topp">4. Práctica 2 – Experimentando con top‑p</h2>
-<h3 id="41-idea">4.1. Idea</h3>
-<p>Mantener la <strong>temperatura fija</strong> y cambiar solo <code>top_p</code> para ver cómo afecta al grado de “exploración” en la generación.</p>
-<h3 id="42-codigo-base">4.2. Código base</h3>
-<p>Crea <code>top_p_demo.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Escribe una descripción breve y atractiva de una webapp Flask que usa un agente LLM como tutor de programación.&quot;</span>
-<span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;Eres un asistente que redacta textos claros en castellano.&quot;</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">]:</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">},</span>
-                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
-            <span class="p">],</span>
-            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-            <span class="n">top_p</span><span class="o">=</span><span class="n">p</span>
-        <span class="p">)</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== top_p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="43-tareas-del-alumnado">4.3. Tareas del alumnado</h3>
-<ol>
-<li>Ejecutar <code>python top_p_demo.py</code>.</li>
-<li>Observar las diferencias entre <code>top_p=0.2</code>, <code>0.5</code> y <code>0.95</code>.</li>
-<li>
-<p>Comentar brevemente (en voz alta):</p>
-</li>
-<li>
-<p>¿Con qué valor el texto parece más conservador?</p>
-</li>
-<li>¿Con cuál salen ideas más “locas” o inesperadas?</li>
-</ol>
-<hr />
-<h2 id="5-practica-3-mini-ingenieria-de-prompts">5. Práctica 3 – Mini ingeniería de prompts</h2>
-<h3 id="51-idea">5.1. Idea</h3>
-<p>Mostrar que cambiar el <strong>prompt</strong> (rol, público, formato) puede tener tanto impacto como cambiar los parámetros de muestreo.</p>
-<h3 id="52-prompts-de-ejemplo">5.2. Prompts de ejemplo</h3>
-<p>Usa una temperatura fija, por ejemplo <code>temperature=0.3</code>, y ve cambiando el <code>system</code> prompt.</p>
-<h4 id="prompt-1-generico">Prompt 1 – genérico</h4>
-<div class="highlight"><pre><span></span><code>Explícame Flask.
-</code></pre></div>
-<h4 id="prompt-2-adaptado-a-estudiantes-de-fp">Prompt 2 – adaptado a estudiantes de FP</h4>
-<div class="highlight"><pre><span></span><code>Actúa como profesor de informática para estudiantes de FP superior.
-Explica qué es Flask en un máximo de 5 frases.
-Responde en castellano y pon un ejemplo sencillo.
-</code></pre></div>
-<h4 id="prompt-3-con-formato-estructurado">Prompt 3 – con formato estructurado</h4>
-<div class="highlight"><pre><span></span><code>Actúa como un ayudante de programación especializado en Flask.
-Tu usuario es un estudiante de FP superior.
-Explica qué hace Flask y para qué se usa.
-Responde con este formato:
-1. Definición
-2. Para qué sirve
-3. Ejemplo mínimo
-4. Error común de principiante
-</code></pre></div>
-<h3 id="53-ejercicio-en-clase">5.3. Ejercicio en clase</h3>
-<ol>
-<li>Probar los tres prompts con la misma configuración de parámetros.</li>
-<li>
-<p>Comparar:</p>
-</li>
-<li>
-<p>claridad,</p>
-</li>
-<li>adecuación al público,</li>
-<li>organización de la respuesta.</li>
-<li>Extender el ejercicio cambiando solo el perfil del destinatario (FP, junior, profesor) y ver cómo adaptarías el prompt.</li>
-</ol>
-<hr />
-<h2 id="6-practica-4-integrar-modos-agenticos-en-la-webapp-flask">6. Práctica 4 – Integrar modos “agénticos” en la webapp Flask</h2>
-<p>En el PDF previo ya hemos creado una webapp Flask que llama a Mistral desde un módulo de utilidades.<br />
-Ahora convertimos esa app en una pequeña “<strong>Flask LLM Studio</strong>” con varios modos de uso.</p>
-<h3 id="61-idea-general">6.1. Idea general</h3>
-<p>La webapp ofrecerá tres modos:</p>
+<p>Esto sirve para entender:</p>
 <ul>
-<li><code>code_helper</code>: ayudante de programación (baja temperatura).</li>
-<li><code>social_post</code>: generador de posts para redes sociales (alta temperatura).</li>
-<li><code>free_play</code>: modo libre en el que el alumno puede tocar temperatura y top‑p.</li>
+<li>cómo crear botones,</li>
+<li>cómo reaccionar a las acciones del usuario,</li>
+<li>cómo enviar mensajes desde callbacks. [web:214][web:215]</li>
 </ul>
-<h3 id="62-utilitiespy">6.2. utilities.py</h3>
-<p>Ejemplo de módulo de utilidades:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-<span class="n">AGENTS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;code_helper&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;system_prompt&quot;</span><span class="p">:</span> <span class="p">(</span>
-            <span class="s2">&quot;Eres un ayudante de programación experto en Flask. &quot;</span>
-            <span class="s2">&quot;Explicas código de forma clara, precisa y breve para estudiantes de FP superior.&quot;</span>
-        <span class="p">),</span>
-        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;social_post&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;system_prompt&quot;</span><span class="p">:</span> <span class="p">(</span>
-            <span class="s2">&quot;Eres un generador de contenido creativo para redes sociales. &quot;</span>
-            <span class="s2">&quot;Escribe textos atractivos, variados y en castellano.&quot;</span>
-        <span class="p">),</span>
-        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
-        <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;free_play&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;system_prompt&quot;</span><span class="p">:</span> <span class="s2">&quot;Eres un asistente general. Responde de forma útil y clara en castellano.&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">generar_respuesta</span><span class="p">(</span><span class="n">modo</span><span class="p">,</span> <span class="n">prompt_usuario</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top_p</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">AGENTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">modo</span><span class="p">,</span> <span class="n">AGENTS</span><span class="p">[</span><span class="s2">&quot;code_helper&quot;</span><span class="p">])</span>
-
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">temperature</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;top_p&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">top_p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">top_p</span><span class="p">)</span>
-
-    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
-        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;system_prompt&quot;</span><span class="p">]},</span>
-            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt_usuario</span><span class="p">}</span>
-        <span class="p">],</span>
-        <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
-        <span class="n">top_p</span><span class="o">=</span><span class="n">p</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
-</code></pre></div>
-<h3 id="63-apppy">6.3. app.py</h3>
-<p>Ejemplo de backend Flask:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">generar_respuesta</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">home</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/generar&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">generar</span><span class="p">():</span>
-    <span class="n">prompt</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prompt&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">modo</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;modo&quot;</span><span class="p">,</span> <span class="s2">&quot;code_helper&quot;</span><span class="p">)</span>
-    <span class="n">temperature</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">top_p</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;top_p&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-    <span class="n">temperature</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">temperature</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
-    <span class="n">top_p</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">top_p</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">top_p</span><span class="p">)</span>
-
-    <span class="n">salida</span> <span class="o">=</span> <span class="n">generar_respuesta</span><span class="p">(</span><span class="n">modo</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span>
-        <span class="s2">&quot;home.html&quot;</span><span class="p">,</span>
-        <span class="n">salida</span><span class="o">=</span><span class="n">salida</span><span class="p">,</span>
-        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
-        <span class="n">modo</span><span class="o">=</span><span class="n">modo</span><span class="p">,</span>
-        <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span> <span class="k">if</span> <span class="n">temperature</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">top_p</span><span class="o">=</span><span class="n">top_p</span> <span class="k">if</span> <span class="n">top_p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="64-homehtml-plantilla-basica">6.4. home.html (plantilla básica)</h3>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Flask LLM Studio<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Flask LLM Studio<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/generar&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;modo&quot;</span><span class="p">&gt;</span>Modo:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;modo&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;modo&quot;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;code_helper&quot;</span><span class="p">&gt;</span>Ayudante de código<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;social_post&quot;</span><span class="p">&gt;</span>Generador de posts<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;free_play&quot;</span><span class="p">&gt;</span>Experimento libre<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;prompt&quot;</span><span class="p">&gt;</span>Prompt:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;prompt&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;prompt&quot;</span> <span class="na">rows</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">cols</span><span class="o">=</span><span class="s">&quot;80&quot;</span><span class="p">&gt;</span>{{ prompt or &#39;&#39; }}<span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;temperature&quot;</span><span class="p">&gt;</span>Temperature:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;0.1&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;1.5&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;temperature&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;temperature&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{ temperature or &#39;&#39; }}&quot;</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;top_p&quot;</span><span class="p">&gt;</span>Top-p:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;0.05&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;top_p&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;top_p&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{ top_p or &#39;&#39; }}&quot;</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Generar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-
-    {% if salida %}
-        <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Salida<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>{{ salida }}<span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-    {% endif %}
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div>
-<h3 id="65-tareas-del-alumnado-en-esta-practica">6.5. Tareas del alumnado en esta práctica</h3>
-<p>En clase, los alumnos deben:</p>
-<ol>
-<li>Lanzar la webapp con <code>python app.py</code>.</li>
-<li>
-<p>Probar el mismo prompt en:</p>
-</li>
-<li>
-<p>modo <code>code_helper</code>,</p>
-</li>
-<li>modo <code>social_post</code>.</li>
-<li>Observar cómo cambian el tono y el estilo.</li>
-<li>Usar el modo <code>free_play</code> para experimentar con distintas combinaciones de temperatura y top‑p (idealmente, cambiando solo uno cada vez).</li>
-</ol>
 <hr />
-<h2 id="7-cierre-de-la-sesion-25">7. Cierre de la sesión 2.5</h2>
-<p>Para cerrar la sesión (5 minutos), plantea estas preguntas en formato debate rápido:</p>
+<h2 id="6-segundo-ejemplo-bot-sorprendeme-con-ollama">6. Segundo ejemplo: bot “Sorpréndeme” con Ollama</h2>
+<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. [web:214][web:215]</p>
+<p>La estructura general, según el tutorial, es:</p>
+<ol>
+<li>Definir un LLM de LangChain que use Ollama, por ejemplo:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</code></pre></div>
+<p>[web:214][web:215]</p>
+<ol>
+<li>Crear un flujo en <code>@cl.on_message</code> que:</li>
+<li>recibe el mensaje del usuario,</li>
+<li>llama al LLM,</li>
+<li>
+<p>envía la respuesta en Chainlit (posiblemente en streaming). [web:214][web:215]</p>
+</li>
+<li>
+<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). [web:214][web:215]</p>
+</li>
+</ol>
+<p>Este ejemplo muestra cómo:</p>
 <ul>
-<li>¿Qué modo os ha resultado más útil para entender código?</li>
-<li>¿Qué ha cambiado más la respuesta: el prompt o los parámetros de muestreo?</li>
-<li>¿Os parece que estos “modos” ya se parecen a distintos agentes especializados dentro de una misma aplicación?</li>
+<li>usar Chainlit como <strong>front-end de chat</strong>,</li>
+<li>mientras la lógica de IA vive en LangChain y Ollama. [web:214][web:215]</li>
 </ul>
-<p>La idea que queremos que se lleven es que una aplicación LLM <strong>no es solo un prompt suelto</strong>:
-- combina un modelo,
-- parámetros de muestreo,
-- diseño de prompts,
-- y una interfaz (en este caso Flask) que expone distintos comportamientos “agénticos” para tareas concretas.</p>
+<hr />
+<h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
+<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: [web:214][web:215][web:216]</p>
+<ul>
+<li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
+<li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
+<li><strong>Demos educativas</strong>: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  </li>
+<li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
+</ul>
+<hr />
+<h2 id="8-como-usar-este-resumen-en-clase">8. Cómo usar este resumen en clase</h2>
+<p>Sugerencias para integrarlo en tus materiales:</p>
+<ul>
+<li>Usarlo como <strong>apunte previo</strong> antes de mandarles al tutorial completo.  </li>
+<li>Montar en directo un “Sorpréndeme” básico en clase siguiendo la estructura descrita.  </li>
+<li>Plantear como práctica:</li>
+<li>que el alumnado modifique el ejemplo estático para añadir nuevos botones,</li>
+<li>o que conecte un modelo diferente en la demo con Ollama.</li>
+</ul>
+<hr />
+<h2 id="9-enlaces-utiles">9. Enlaces útiles</h2>
+<ul>
+<li>
+<p>Tutorial original en español:<br />
+<a href="https://www.datacamp.com/es/tutorial/chainlit">https://www.datacamp.com/es/tutorial/chainlit</a> [web:214]</p>
+</li>
+<li>
+<p>Versión en inglés (contenido equivalente):<br />
+<a href="https://www.datacamp.com/tutorial/chainlit">https://www.datacamp.com/tutorial/chainlit</a> [web:215]</p>
+</li>
+<li>
+<p>Otros tutoriales de IA generativa en DataCamp:<br />
+<a href="https://www.datacamp.com/es/tutorial/category/generative-ai">https://www.datacamp.com/es/tutorial/category/generative-ai</a> [web:216]</p>
+</li>
+</ul>
+<hr />
 
 
 
