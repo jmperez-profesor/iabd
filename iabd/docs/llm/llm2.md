@@ -275,11 +275,10 @@ Las capacidades (herramientas) mejoran al agente más allá de la generación de
 ![](./images/agente_mistral_paso3c.png)
 
 Desplázate hasta **Capacidades (tools)** y activa las funciones que necesites:
-
-    - **Código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
-    - **Imagen**: permite que el modelo genere imágenes.
-    - **Búsqueda**: buscar información actualizada en internet.
-    - **Búsqueda Premium**: buscar información actualizada y verificada en internet.
+- **Código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
+- **Imagen**: permite que el modelo genere imágenes.
+- **Búsqueda**: buscar información actualizada en internet.
+- **Búsqueda Premium**: buscar información actualizada y verificada en internet.
 
 Por ahora no vamos a utilizar ninguna herramienta (capacidad). 
 
@@ -289,7 +288,7 @@ Podemos definir funciones personalizadas las cuales el modelo puede llamar a int
 
 ![](./images/agente_mistral_paso4a.png)
 
-Ejemplo de función get_weather. Ojo debemos seguir el formato de respuesta aunque se puede modificar.
+Ejemplo de función **`get_weather`**. Ojo debemos seguir el formato de respuesta aunque se puede modificar.
 
 ![](./images/agente_mistral_paso4b.png)
 
