@@ -1013,35 +1013,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transmisión de mensajes">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-chainlit-configtoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de Chainlit (config.toml)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de Chainlit (config.toml)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#resumen-conceptual" class="md-nav__link">
+  <a href="#persistencia" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resumen conceptual
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-acciones-claction-y-callbacks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2. Acciones (cl.Action) y callbacks
+        Persistencia
       
     </span>
   </a>
@@ -1049,10 +1039,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-streaming-de-respuestas" class="md-nav__link">
+  <a href="#carga-de-archivos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3. Streaming de respuestas
+        Carga de archivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#personalizacion-de-la-iu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Personalización de la IU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ajustes-de-usabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ajustes de usabilidad
       
     </span>
   </a>
@@ -1063,12 +1075,22 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#4-configuracion-con-configtoml" class="md-nav__link">
+  <a href="#4-primer-ejemplo-chatbot-sorprendeme-estatico-sin-llm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Configuración con config.toml
+        4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)
       
     </span>
   </a>
@@ -1076,10 +1098,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-primer-ejemplo-chatbot-sorprendeme-estatico" class="md-nav__link">
+  <a href="#5-proyecto-bot-sorprendeme-powered-by-ollama" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Primer ejemplo: chatbot “Sorpréndeme” estático
+        5. Proyecto: Bot Sorpréndeme Powered by Ollama
       
     </span>
   </a>
@@ -1087,10 +1109,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-segundo-ejemplo-bot-sorprendeme-con-ollama" class="md-nav__link">
+  <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Segundo ejemplo: bot “Sorpréndeme” con Ollama
+        Conclusión
       
     </span>
   </a>
@@ -2142,102 +2164,176 @@ Cuando el usuario envía un mensaje, Chainlit simula una tarea con <strong><code
 <li>A medida que el modelo genera resultados, transmite cada <strong>fragmento (chunk)</strong> a la interfaz de usuario en tiempo real.</li>
 <li>El parámetro <strong><code>stream=True</code></strong> garantiza que cada trozo aparezca de forma incremental en lugar de esperar a la respuesta completa.</li>
 </ul>
-<p><strong>Nota</strong>: Esto funciona mejor con los modelos que admiten streaming.</p>
-<h5 id="resumen-conceptual">Resumen conceptual</h5>
-<p>Cada vez que el usuario escribe algo en la app de Chainlit:</p>
-<ul>
-<li>Chainlit recibe el mensaje y llama automáticamente a tu función decorada con <strong><code>@cl.on_message</code></strong>.</li>
-</ul>
-<p>Nuestra función:</p>
-<ul>
-<li>imprime el texto recibido en la terminal (<strong><code>print(...)</code></strong>),</li>
-<li>envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (<strong><code>You said: ...</code></strong>).</li>
-</ul>
-<p>Ejemplo mínimo: </p>
+<p><strong>Nota</strong>: Esto funciona mejor con los modelos que admiten <strong>streaming</strong>.</p>
+<h4 id="configuracion-de-chainlit-configtoml">Configuración de Chainlit (config.toml)</h4>
+<p>Para desbloquear potentes funciones como la <strong>persistencia del chat</strong>, <strong>la subida de archivos</strong>, la <strong>tematización</strong> y mucho más, podemos personalizar nuestra aplicación Chainlit utilizando el archivo <strong><code>config.toml</code></strong>. Este archivo reside en la raíz del directorio de nuestro proyecto (en la carpeta <strong><code>.chainlit</code></strong> ) y nos permite ajustar el comportamiento en tiempo de ejecución sin modificar el código.</p>
+<h5 id="persistencia">Persistencia</h5>
+<p>Este parámetro permite a Chainlit persistir el historial de chat y el estado de la sesión. Activa el <em>hook</em> <strong><code>@cl.on_chat_resume</code></strong>, por lo que es ideal para aplicaciones en las que los usuarios pueden desconectarse y volver más tarde.</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>persistence<span class="o">]</span>
+<span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<h5 id="carga-de-archivos">Carga de archivos</h5>
+<p>Este ajuste permite a los usuarios subir archivos en la interfaz del chat. Podemos restringir los tipos y tamaños de archivo permitidos para garantizar la seguridad y el rendimiento.</p>
+<p><div class="highlight"><pre><span></span><code><span class="o">[</span>features.spontaneous_file_upload<span class="o">]</span>
+<span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="nv">accept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;*/*&quot;</span><span class="o">]</span><span class="w"> </span>
+<span class="nv">max_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="nv">max_size_mb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span>
+</code></pre></div>
+Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">speci</span><span class="kc">f</span><span class="err">ic</span><span class="w"> </span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="kc">t</span><span class="err">ypes</span><span class="p">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/pdf&quot;</span><span class="p">]</span>
+<span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="kc">f</span><span class="err">iles</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">cer</span><span class="kc">ta</span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w">    </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image/*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;audio/*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;video/*&quot;</span><span class="p">]</span>
+<span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">speci</span><span class="kc">f</span><span class="err">ic</span><span class="w"> </span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">ex</span><span class="kc">tens</span><span class="err">io</span><span class="kc">ns</span><span class="p">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w">    </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;application/octet-stream&quot;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.xyz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.pdb&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Esto permite adaptar las cargas para <strong>casos de uso de seguridad, rendimiento o específicos del dominio</strong>.</p>
+<h5 id="personalizacion-de-la-iu">Personalización de la IU</h5>
+<p>Esta personalización cambia el nombre del asistente en el parámetro de la IU y activa la <strong>Cadena de Pensamiento (CoT)</strong>(dar las instrucciones adecuadas para facilitar al modelo la realización de tareas complejas que requieran razonamiento o resolución de problemas) en el modo de representación, que es útil para razonar paso a paso o depurar.</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="err">UI</span><span class="p">]</span>
+<span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
+<span class="err">co</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;full&quot;</span>
+</code></pre></div>
+<h5 id="ajustes-de-usabilidad">Ajustes de usabilidad</h5>
+<p>Mejoran la experiencia del usuario desplazando automáticamente los mensajes nuevos a la vista y permitiendo la edición de mensajes.</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="kc">features</span><span class="p">]</span>
+<span class="err">user_message_au</span><span class="kc">t</span><span class="err">oscroll</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="err">edi</span><span class="kc">t</span><span class="err">_message</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+<p>Los ajustes de usabilidad anteriores permiten al usuario activar las funciones de desplazamiento automático y edición de mensajes dentro de la interfaz de usuario.</p>
+<h2 id="4-primer-ejemplo-chatbot-sorprendeme-estatico-sin-llm">4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)</h2>
+<p>Ahora que conocemos los componentes básicos de Chainlit, vamos a crear una sencilla aplicación basada en una interfaz de usuario que utilice botones para mostrar datos divertidos predefinidos o mensajes de motivación para programadores.</p>
+<p><strong>bot_surprise_sin_llm.py</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">FUN_FACTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;💡 ¿Sabías que Chainlit admite la subida de archivos y temas personalizados?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;💡 ¡Puedes añadir botones, controles deslizantes e imágenes directamente en la interfaz de usuario de tu chatbot!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;💡 ¡Chainlit admite la ejecución de herramientas en tiempo real con LangChain y LLM!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;💡 ¡Puedes personalizar el aspecto de tu chatbot con solo un archivo CSS!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!</span>
+<span class="p">]</span>
+<span class="n">SURPRISES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;🎉 ¡Sorpresa! ¡Lo estás haciendo genial!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;🚀 ¡Sigue así, estás haciendo un progreso increíble!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;🌟 Dato curioso: alguien ahí fuera acaba de sonreír gracias a ti. ¿Por qué no hacer que sean dos?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;👏 ¡Bravo! ¡Acabas de desbloquear +10 XP de desarrollador imaginario!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;💪 Recuerda: ¡incluso los errores temen tus habilidades de depuración!&quot;</span>
+<span class="p">]</span>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nueva sesión de chat iniciada&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;🎁 Sorpréndeme&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;gift&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;surprise&quot;</span><span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fact_button&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;💡 ¿Los sabías?&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;lightbulb&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;fact&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Elige una acción:&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">actions</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Has dicho: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. </p>
-<h3 id="32-acciones-claction-y-callbacks">3.2. Acciones (<code>cl.Action</code>) y callbacks</h3>
-<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. </p>
-<ul>
-<li>Definimos acciones con <code>cl.Action</code>.  </li>
-<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. </li>
-</ul>
-<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. </p>
-<h3 id="33-streaming-de-respuestas">3.3. Streaming de respuestas</h3>
-<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. </p>
-<p>Idea general:</p>
-<ul>
-<li>llamas al modelo en modo streaming,  </li>
-<li>vas actualizando el mensaje en pantalla mientras llega la respuesta.</li>
-</ul>
-<hr />
-<h2 id="4-configuracion-con-configtoml">4. Configuración con <code>config.toml</code></h2>
-<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. </p>
-<p>Algunas posibilidades que menciona el tutorial:</p>
-<ul>
-<li><strong>Persistencia del chat</strong>: guardar sesiones para reanudarlas después.  </li>
-<li><strong>Carga de ficheros</strong>: permitir que el usuario suba archivos.  </li>
-<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. </li>
-</ul>
-<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): </p>
-<div class="highlight"><pre><span></span><code><span class="k">[persistence]</span>
-<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_surprise</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="n">suprise</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SUPRISES</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">suprise</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 
-<span class="k">[UI]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
+<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;fact_button&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_fact</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="n">fact</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">FUN_FACTS</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 </code></pre></div>
-<hr />
-<h2 id="5-primer-ejemplo-chatbot-sorprendeme-estatico">5. Primer ejemplo: chatbot “Sorpréndeme” estático</h2>
-<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. </p>
-<p>Idea (sin copiar el código literal): </p>
-<ol>
-<li>En <code>@cl.on_chat_start</code> se muestran botones con opciones de “sorpresa”.  </li>
-<li>Cada botón dispara un <code>@cl.action_callback</code> distinto.  </li>
-<li>El bot responde con un mensaje predefinido según el botón.  </li>
-</ol>
-<p>Esto sirve para entender:</p>
+<p>El código anterior define dos listas: <strong><code>"FUN_FACTS"</code></strong> para consejos interesantes de Chainlit y <strong><code>"SUPRISES"</code></strong> para mensajes motivadores.</p>
 <ul>
-<li>cómo crear botones,</li>
-<li>cómo reaccionar a las acciones del usuario,</li>
-<li>cómo enviar mensajes desde callbacks. </li>
+<li>Cuando se inicia un nuevo chat, se muestran dos botones: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando <strong><code>cl.Action</code></strong></li>
+<li>Al hacer clic en <strong>"Sorpréndeme"</strong> se activa <strong><code>@cl.action_callback("surprise_button")</code></strong>, el cual envía un mensaje sorpresa aleatorio.</li>
+<li>Al hacer clic en <strong>"¿Lo sabías?"</strong> se activa <strong><code>@cl.action_callback("fact_button")</code></strong>, que envía un hecho divertido aleatorio.</li>
 </ul>
-<hr />
-<h2 id="6-segundo-ejemplo-bot-sorprendeme-con-ollama">6. Segundo ejemplo: bot “Sorpréndeme” con Ollama</h2>
-<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. </p>
-<p>La estructura general, según el tutorial, es:</p>
-<ol>
-<li>Definir un LLM de LangChain que use Ollama, por ejemplo:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+<p>Esto crea un chatbot sencillo e interactivo mediante botones que no requiere LLM y es perfecto para aprender cómo funcionan las acciones y las llamadas de retorno de Chainlit.</p>
+<p>Para ejecutar esta aplicación, simplemente ejecuta el siguiente comando en el terminal:</p>
+<div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>main.py
+</code></pre></div>
+<p>Veremos botones interactivos en la interfaz de usuario que activan datos o mensajes divertidos.</p>
+<p><img alt="Sorpréndeme Bot (sin LLM)" src="../images/chainlist/bot_sorpresa_sin_llm.png" /></p>
+<h2 id="5-proyecto-bot-sorprendeme-powered-by-ollama">5. Proyecto: Bot Sorpréndeme Powered by Ollama</h2>
+<p>Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># Usamos cualquier modelo local ligero</span>
+
+<span class="c1"># Reusable action buttons</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_action_buttons</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;🎁 Sorpréndeme&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;gift&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;surprise&quot;</span><span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fact_button&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;💡 ¿Los sabías?&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;lightbulb&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;fact&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Elige una acción a continuación para ver algo divertido:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_surprise</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Envía un mensaje sorpresa breve y motivador a un desarrollador. ¡Hazlo divertido!&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">surprise</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">surprise</span> <span class="o">=</span> <span class="s2">&quot;🎉 ¡Sorpresa! ¡Lo estás haciendo genial!&quot;</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">surprise</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>  
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;fact_button&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_fact</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Dame un dato divertido y útil sobre los LLM o Chainlit.&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fact</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">fact</span> <span class="o">=</span> <span class="s2">&quot;💡 ¿Sabías que puedes añadir controles deslizantes y botones a Chainlit con tan solo unas pocas líneas de código?&quot;</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>  
 </code></pre></div>
-<ol>
-<li>Crear un flujo en <code>@cl.on_message</code> que:</li>
-<li>recibe el mensaje del usuario,</li>
-<li>llama al LLM,</li>
-<li>
-<p>envía la respuesta en Chainlit (posiblemente en streaming).</p>
-</li>
-<li>
-<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). </p>
-</li>
-</ol>
-<p>Este ejemplo muestra cómo:</p>
+Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mistral) para generar dinámicamente respuestas basadas en las interacciones del usuario.</p>
 <ul>
-<li>usar Chainlit como <strong>front-end de chat</strong>,</li>
-<li>mientras la lógica de IA vive en LangChain y Ollama. </li>
+<li>Define dos botones <strong><code>cl.Action</code></strong>: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando una función reutilizable get_action_buttons().</li>
+<li>Al inicializar el chat (<strong><code>@cl.on_chat_start</code></strong>) envía un mensaje con estos botones interactivos.</li>
+<li>Cuando el usuario pulsa el botón <strong>"Sorpréndeme"</strong>, el gestor <strong><code>@cl.action_callback</code></strong> envía un mensaje al LLM solicitando un mensaje breve y edificante de los programadores. La respuesta se limpia con la función <strong><code>.strip()</code></strong> y se devuelve al chat.</li>
+<li>Del mismo modo, al hacer clic en <strong>"¿Sabías que...?"</strong> se invoca el LLM con una pregunta que solicita un dato informativo sobre Chainlit o los LLM.</li>
+<li>Si el LLM falla, se devuelven respuestas estáticas de emergencia.</li>
+<li>Después de cada interacción, los botones se reenvían para mantener el bucle conversacional.</li>
 </ul>
-<hr />
+<p>Esto demuestra cómo <strong>combinar <code>Chainlit UI</code> con la generación de contenidos basada en LLM</strong>, ofreciendo una base modular y extensible para aplicaciones de chat locales potenciadas por IA.</p>
+<p>Ejecuta el siguiente comando en el terminal:</p>
+<div class="highlight"><pre><span></span><code>ollama<span class="w"> </span>run<span class="w"> </span>mistral
+chainlit<span class="w"> </span>run<span class="w"> </span>main.py
+</code></pre></div>
+<p>Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.</p>
+<p><img alt="Bot Sorprendeme impulsado por Ollama" src="../images/chainlist/bot_sorpresa_ollama.png" /></p>
+<h2 id="conclusion">Conclusión</h2>
 <h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
 <p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: </p>
 <ul>
