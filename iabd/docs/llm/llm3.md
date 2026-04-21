@@ -231,130 +231,220 @@ async def on_message(message: cl.Message):
 - A medida que el modelo genera resultados, transmite cada **fragmento (chunk)** a la interfaz de usuario en tiempo real.
 - El parámetro **`stream=True`** garantiza que cada trozo aparezca de forma incremental en lugar de esperar a la respuesta completa.
 
-**Nota**: Esto funciona mejor con los modelos que admiten streaming.
+**Nota**: Esto funciona mejor con los modelos que admiten **streaming**.
 
 
+#### Configuración de Chainlit (config.toml)
+
+Para desbloquear potentes funciones como la **persistencia del chat**, **la subida de archivos**, la **tematización** y mucho más, podemos personalizar nuestra aplicación Chainlit utilizando el archivo **`config.toml`**. Este archivo reside en la raíz del directorio de nuestro proyecto (en la carpeta **`.chainlit`** ) y nos permite ajustar el comportamiento en tiempo de ejecución sin modificar el código.
+
+##### Persistencia
+Este parámetro permite a Chainlit persistir el historial de chat y el estado de la sesión. Activa el *hook* **`@cl.on_chat_resume`**, por lo que es ideal para aplicaciones en las que los usuarios pueden desconectarse y volver más tarde.
+
+```bash
+[persistence]
+enabled = true
+```
+
+##### Carga de archivos
+
+Este ajuste permite a los usuarios subir archivos en la interfaz del chat. Podemos restringir los tipos y tamaños de archivo permitidos para garantizar la seguridad y el rendimiento.
+
+```bash
+[features.spontaneous_file_upload]
+enabled = true
+accept = ["*/*"] 
+max_files = 5
+max_size_mb = 500
+```
+Ejemplos de algunos tipos de archivos que acepta Chainlit.
+
+```json
+# 1. For specific file types:
+    # accept = ["image/jpeg", "image/png", "application/pdf"]
+# 2. For all files of a certain type:
+    #    accept = ["image/*", "audio/*", "video/*"]
+# 3. For specific file extensions:
+    #    accept = { "application/octet-stream" = [".xyz", ".pdb"] }
+```
+
+Esto permite adaptar las cargas para **casos de uso de seguridad, rendimiento o específicos del dominio**.
+
+##### Personalización de la IU
+
+Esta personalización cambia el nombre del asistente en el parámetro de la IU y activa la **Cadena de Pensamiento (CoT)**(dar las instrucciones adecuadas para facilitar al modelo la realización de tareas complejas que requieran razonamiento o resolución de problemas) en el modo de representación, que es útil para razonar paso a paso o depurar.
+
+```json
+[UI]
+name = "Assistant"
+cot = "full"
+```
+
+##### Ajustes de usabilidad
+Mejoran la experiencia del usuario desplazando automáticamente los mensajes nuevos a la vista y permitiendo la edición de mensajes.
+
+```json
+[features]
+user_message_autoscroll = true
+edit_message = true
+```
+
+Los ajustes de usabilidad anteriores permiten al usuario activar las funciones de desplazamiento automático y edición de mensajes dentro de la interfaz de usuario.
 
 
+## 4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)
 
+Ahora que conocemos los componentes básicos de Chainlit, vamos a crear una sencilla aplicación basada en una interfaz de usuario que utilice botones para mostrar datos divertidos predefinidos o mensajes de motivación para programadores.
 
-
-##### Resumen conceptual
-
-Cada vez que el usuario escribe algo en la app de Chainlit:
-
-- Chainlit recibe el mensaje y llama automáticamente a tu función decorada con **`@cl.on_message`**.
-
-Nuestra función:
-
-- imprime el texto recibido en la terminal (**`print(...)`**),
-- envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (**`You said: ...`**).
-
-
-Ejemplo mínimo: 
+**bot_surprise_sin_llm.py**
 
 ```python
 import chainlit as cl
+import random
+
+FUN_FACTS = [
+    "💡 ¿Sabías que Chainlit admite la subida de archivos y temas personalizados?",
+    "💡 ¡Puedes añadir botones, controles deslizantes e imágenes directamente en la interfaz de usuario de tu chatbot!",
+    "💡 ¡Chainlit admite la ejecución de herramientas en tiempo real con LangChain y LLM!",
+    "💡 ¡Puedes personalizar el aspecto de tu chatbot con solo un archivo CSS!",
+    "💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!
+]
+SURPRISES = [
+    "🎉 ¡Sorpresa! ¡Lo estás haciendo genial!",
+    "🚀 ¡Sigue así, estás haciendo un progreso increíble!",
+    "🌟 Dato curioso: alguien ahí fuera acaba de sonreír gracias a ti. ¿Por qué no hacer que sean dos?",
+    "👏 ¡Bravo! ¡Acabas de desbloquear +10 XP de desarrollador imaginario!",
+    "💪 Recuerda: ¡incluso los errores temen tus habilidades de depuración!"
+]
 
 @cl.on_chat_start
-def on_chat_start():
-    print("Nueva sesión de chat iniciada")
+async def start():
+    actions = [
+        cl.Action(
+            name="surprise_button",
+            label="🎁 Sorpréndeme",
+            icon="gift",
+            payload={"value": "surprise"}
+        ),
+        cl.Action(
+            name="fact_button",
+            label="💡 ¿Los sabías?",
+            icon="lightbulb",
+            payload={"value": "fact"}
+        )
+    ]
+    await cl.Message(content="Elige una acción:", actions=actions).send()
 
-@cl.on_message
-async def on_message(message: cl.Message):
-    await cl.Message(content=f"Has dicho: {message.content}").send()
+@cl.action_callback("surprise_button")
+async def on_surprise(action: cl.Action):
+    suprise = random.choice(SUPRISES)
+    await cl.Message(content=suprise).send()
+
+@cl.action_callback("fact_button")
+async def on_fact(action: cl.Action):
+    fact = random.choice(FUN_FACTS)
+    await cl.Message(content=fact).send()
 ```
 
-Al ejecutar `chainlit run main.py`, la aplicación abre una UI de chat en el navegador. 
+El código anterior define dos listas: **`"FUN_FACTS"`** para consejos interesantes de Chainlit y **`"SUPRISES"`** para mensajes motivadores.
 
-### 3.2. Acciones (`cl.Action`) y callbacks
+- Cuando se inicia un nuevo chat, se muestran dos botones: **"Sorpréndeme"** y **"¿Lo sabías?"** utilizando **`cl.Action`**
+- Al hacer clic en **"Sorpréndeme"** se activa **`@cl.action_callback("surprise_button")`**, el cual envía un mensaje sorpresa aleatorio.
+- Al hacer clic en **"¿Lo sabías?"** se activa **`@cl.action_callback("fact_button")`**, que envía un hecho divertido aleatorio.
 
-Chainlit permite añadir **botones y acciones** a los mensajes. 
+Esto crea un chatbot sencillo e interactivo mediante botones que no requiere LLM y es perfecto para aprender cómo funcionan las acciones y las llamadas de retorno de Chainlit.
 
-- Definimos acciones con `cl.Action`.  
-- Las gestionamos con `@cl.action_callback("nombre")`. 
+Para ejecutar esta aplicación, simplemente ejecuta el siguiente comando en el terminal:
 
-Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. 
-
-### 3.3. Streaming de respuestas
-
-El tutorial muestra cómo usar `stream=True` para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. 
-
-Idea general:
-
-- llamas al modelo en modo streaming,  
-- vas actualizando el mensaje en pantalla mientras llega la respuesta.
-
----
-
-## 4. Configuración con `config.toml`
-
-Chainlit utiliza un fichero `config.toml` para activar características sin tocar el código Python. 
-
-Algunas posibilidades que menciona el tutorial:
-
-- **Persistencia del chat**: guardar sesiones para reanudarlas después.  
-- **Carga de ficheros**: permitir que el usuario suba archivos.  
-- **Personalización visual**: nombre del asistente, tema y opciones de UI. 
-
-Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): 
-
-```toml
-[persistence]
-enabled = true
-
-[UI]
-name = "Assistant"
+```bash
+chainlit run main.py
 ```
 
----
+Veremos botones interactivos en la interfaz de usuario que activan datos o mensajes divertidos.
 
-## 5. Primer ejemplo: chatbot “Sorpréndeme” estático
+![Sorpréndeme Bot (sin LLM)](./images/chainlist/bot_sorpresa_sin_llm.png)
 
-El primer ejemplo del tutorial es un bot muy simple que **no usa ningún modelo LLM**, solo botones y lógica fija. 
 
-Idea (sin copiar el código literal): 
+## 5. Proyecto: Bot Sorpréndeme Powered by Ollama
 
-1. En `@cl.on_chat_start` se muestran botones con opciones de “sorpresa”.  
-2. Cada botón dispara un `@cl.action_callback` distinto.  
-3. El bot responde con un mensaje predefinido según el botón.  
+Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.
 
-Esto sirve para entender:
+```python
+import chainlit as cl
+from langchain_community.llms import Ollama
+import random
 
-- cómo crear botones,
-- cómo reaccionar a las acciones del usuario,
-- cómo enviar mensajes desde callbacks. 
+llm = Ollama(model="mistral", temperature=0.7)  # Usamos cualquier modelo local ligero
 
----
+# Reusable action buttons
+def get_action_buttons():
+    return [
+        cl.Action(
+            name="surprise_button",
+            label="🎁 Sorpréndeme",
+            icon="gift",
+            payload={"value": "surprise"}
+        ),
+        cl.Action(
+            name="fact_button",
+            label="💡 ¿Los sabías?",
+            icon="lightbulb",
+            payload={"value": "fact"}
+        )
+    ]
 
-## 6. Segundo ejemplo: bot “Sorpréndeme” con Ollama
+@cl.on_chat_start
+async def start():
+    await cl.Message(content="Elige una acción a continuación para ver algo divertido:").send()
+    await cl.Message(content="", actions=get_action_buttons()).send()
 
-El segundo ejemplo conecta Chainlit con **Ollama** utilizando **LangChain**. 
+@cl.action_callback("surprise_button")
+async def on_surprise(action: cl.Action):
+    prompt = "Envía un mensaje sorpresa breve y motivador a un desarrollador. ¡Hazlo divertido!"
 
-La estructura general, según el tutorial, es:
+    try:
+        surprise = llm.invoke(prompt).strip()
+    except Exception:
+        surprise = "🎉 ¡Sorpresa! ¡Lo estás haciendo genial!"
+    
+    await cl.Message(content=surprise).send()
+    await cl.Message(content="", actions=get_action_buttons()).send()  
 
-1. Definir un LLM de LangChain que use Ollama, por ejemplo:
+@cl.action_callback("fact_button")
+async def on_fact(action: cl.Action):
+    prompt = "Dame un dato divertido y útil sobre los LLM o Chainlit."
+    
+    try:
+        fact = llm.invoke(prompt).strip()
+    except Exception:
+        fact = "💡 ¿Sabías que puedes añadir controles deslizantes y botones a Chainlit con tan solo unas pocas líneas de código?"
+    
+    await cl.Message(content=fact).send()
+    await cl.Message(content="", actions=get_action_buttons()).send()  
+```
+Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mistral) para generar dinámicamente respuestas basadas en las interacciones del usuario.
 
-   ```python
-   from langchain_community.llms import Ollama
+- Define dos botones **`cl.Action`**: **"Sorpréndeme"** y **"¿Lo sabías?"** utilizando una función reutilizable get_action_buttons().
+- Al inicializar el chat (**`@cl.on_chat_start`**) envía un mensaje con estos botones interactivos.
+- Cuando el usuario pulsa el botón **"Sorpréndeme"**, el gestor **`@cl.action_callback`** envía un mensaje al LLM solicitando un mensaje breve y edificante de los programadores. La respuesta se limpia con la función **`.strip()`** y se devuelve al chat.
+- Del mismo modo, al hacer clic en **"¿Sabías que...?"** se invoca el LLM con una pregunta que solicita un dato informativo sobre Chainlit o los LLM.
+- Si el LLM falla, se devuelven respuestas estáticas de emergencia.
+- Después de cada interacción, los botones se reenvían para mantener el bucle conversacional.
 
-   llm = Ollama(model="mistral", temperature=0.7)
-   ```
+Esto demuestra cómo **combinar `Chainlit UI` con la generación de contenidos basada en LLM**, ofreciendo una base modular y extensible para aplicaciones de chat locales potenciadas por IA.
 
-  
+Ejecuta el siguiente comando en el terminal:
 
-2. Crear un flujo en `@cl.on_message` que:
-   - recibe el mensaje del usuario,
-   - llama al LLM,
-   - envía la respuesta en Chainlit (posiblemente en streaming).
+```bash
+ollama run mistral
+chainlit run main.py
+```
 
-3. Opcionalmente, combinarlo con botones (`cl.Action`) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). 
+Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.
 
-Este ejemplo muestra cómo:
+![Bot Sorprendeme impulsado por Ollama](./images/chainlist/bot_sorpresa_ollama.png)
 
-- usar Chainlit como **front-end de chat**,
-- mientras la lógica de IA vive en LangChain y Ollama. 
-
+Conclusión
 ---
 
 ## 7. Casos de uso recomendados
