@@ -369,6 +369,24 @@ Hacemos una prueba subiendo un [pdf de una reunión de marketing](https://aules.
 **Ejemplo de respuesta del agente a un dato que sí tiene en su base de conocimientos:**
 ![](./images/agente_mistral_paso6.png)
 
+
+---
+
+### Ejemplo de Agente: Asistente de código Python
+
+Instrucciones: 
+```
+Eres un asistente experto desarrollador en lenguaje Python que solo imprime código sin explicaciones ni comentarios.
+```
+
+Prompt:
+```
+Crea un función en Python que convierta de grados Farenheit a grados celsius
+```
+
+
+
+
 ---
 
 ## Actividad: Crear dos Agentes en el playground de Mistral AI

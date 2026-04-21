@@ -76,20 +76,21 @@ Chainlit proporciona **decoradores** que se ejecutan en distintos momentos de la
 - **`@cl.on_chat_end`**: se lanza al terminar una sesión.  
 
 
-#### Construir con @cl.on_chat_start
+#### Construir con **`@cl.on_chat_start`**
 
 Este hook se ejecuta cuando se inicia una nueva sesión de chat. Podemos utilizarlo, por ejemplo, **para saludar al usuario, mostrar un mensaje de bienvenida o inicializar el estado de la sesión**.
 
 ```python
 import chainlit as cl
+
 @cl.on_chat_start
 def on_chat_start():
     print("A new chat session has started!")
 ```
 ![](./images/chainlist/on_chat_start.png)
 
+#### Construir con `@cl.on_message`
 
-#### Construir con @cl.on_message
 Este hook de mensaje se ejecuta cuando el usuario envía un nuevo mensaje. Lo utilizamos para procesar la entrada del usuario, llamar a un LLM o devolver una respuesta.
 
 ```python
@@ -101,6 +102,8 @@ async def on_message(msg: cl.Message):
     await cl.Message(content=f"You said: {msg.content}").send()
 ```
 
+![](./images/chainlist/on_message.png)
+
 Explicación del código: 
 ```python
 @cl.on_message
@@ -109,33 +112,146 @@ async def on_message(msg: cl.Message):
 
 - **`@cl.on_message`** es un **decorador** de hook: le dice a Chainlit que esta función se debe ejecutar cada vez que la interfaz reciba un mensaje nuevo del usuario.
 
-- **`async def`** indica que la función es **asíncrona**, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con await.
+- **`async def`** indica que la función es **asíncrona**, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con **`await`**.
 
-- El parámetro **`msg: cl.Message`** es el objeto mensaje que llega desde la UI; tiene atributos como **`content (texto que ha escrito el usuario)`**, **`author`**, **`created_at`**, etc.
+- El parámetro **`msg: cl.Message`** es el objeto **mensaje** que llega desde la UI; tiene atributos como **`content (texto que ha escrito el usuario)`**, **`author`**, **`created_at`**, etc.
 
 ```python
 await cl.Message(content=f"You said: {msg.content}").send()
 ```
 
 - Aquí creamos un nuevo mensaje de respuesta hacia la UI usando la clase **`cl.Message`**.
-- Le pasamos el texto de respuesta en el parámetro content, usando una **`f-string`** para incluir lo que escribió el usuario:
+- Le pasamos el texto de respuesta en el parámetro `content`, usando una **`f-string`** para incluir lo que escribió el usuario:
     - Si el usuario pone **`“hola”`**, la respuesta será **`“You said: hola”`**.
 
-- **`.send()`** envía ese mensaje a la interfaz de Chainlit, y como es una operación **asíncrona**, necesitas **`await**.
+- **`.send()`** envía ese mensaje a la interfaz de Chainlit, y como es una operación **asíncrona**, necesitas **`await`**.
+
+#### Construyendo con `@cl.on_stop`
+
+El gancho **`on_stop`** se ejecuta cuando el usuario pulsa el botón de parada (⏹) durante una tarea en ejecución. Sirve para cancelar operaciones de larga duración o limpiar sesiones interrumpidas.
+
+```python
+import chainlit as cl
+import asyncio
+
+@cl.on_chat_start
+async def start():
+    await cl.Message("Type anything and I'll pretend to work on it.").send()
+
+@cl.on_message
+async def on_message(msg: cl.Message):
+    await cl.Message("Working on it... you can press Stop").send()
+    try:
+        # Simulamos una tarea larga de 10 segundos
+        await asyncio.sleep(10)
+        await cl.Message("Task complete!").send()
+    except asyncio.CancelledError:
+        print("Task was interrupted!")
+        # Opcional, tan solo para los logs del servidor
+        raise
+
+@cl.on_stop
+async def on_stop():
+    print("The user clicked Stop!")
+```
+Cuando el usuario envía un mensaje, Chainlit simula una tarea con **`asyncio.sleep(10)`**. Si el usuario pulsa el botón de parada (⏹), la tarea se cancela y se activa **`@cl.on_stop`** para registrar la interrupción.
+
+![](./images/chainlist/on_chat_stop.png)
+
+#### Construir con **`@cl.on_chat_end`**
+
+Este hook se activa cuando finaliza la sesión, ya sea porque el usuario actualiza, cierra la pestaña o inicia una nueva sesión. **Suele utilizarse para registrar desconexiones o guardar el estado**.
+
+```python
+import chainlit as cl
+
+@cl.on_chat_start
+async def on_chat_start():
+    await cl.Message("Welcome! Feel free to leave anytime").send()
+
+@cl.on_chat_end
+async def on_chat_end():
+    print("The user disconnected!")
+```
+
+Una vez abierto el **`localhost`**, podmeos trabajar con él. Cuando cerremos la pestaña o la ventana de localhost, el terminal mostrará lo siguiente:
+
+![on_chat_end() chainlit output](./images/chainlist/on_chat_end.png)
+
+#### Acciones de IU (botones)
+
+Chainlit nos permite añadir botones interactivos directamente en la interfaz de nuestro chatbot. Cada botón se define como una acción y se conecta a una **función de llamada de retorno de Python**. Podemos enviar botones como parte de un **Mensaje** utilizando el argumento **acciones**:
+
+```python
+import chainlit as cl
+
+@cl.on_chat_start
+async def start():
+    actions = [
+        cl.Action(
+            name="hello", #nombre del callback
+            label="👋 Say Hello",
+            icon="smile",
+            payload={"value": "hi"}
+        )
+    ]
+    await cl.Message("Click a button!", actions=actions).send()
+```
+
+Así es como podemeos gestionar la pulsación de un botón:
+
+```python
+@cl.action_callback("hello")
+async def on_hello(action: cl.Action):
+    await cl.Message("Hello there! 👋").send()
+```
+
+El decorador **`@cl.action_callback("hello")`** indica a Chainlit que escuche los clics en un botón con el nombre **`"hola"`**. Cuando se pulsa, envía un mensaje amistoso al usuario en la interfaz de chat.
+
+![@cl.action_callback chainlit salida](./images/chainlist/callback_hello.png)
+
+**Consejo**: podemos personalizar la carga útil con cualquier dato que quieras enviar al servidor.
+
+#### Transmisión de mensajes 
+
+**Chainlit** admite la transmisión en tiempo real de las respuestas LLM. Esto significa que podemos enviar contenido al usuario de forma incremental a medida que se genera.
+
+```python
+@cl.on_message
+async def on_message(message: cl.Message):
+    await cl.Message(content="Pensando...").send()
+    async for chunk in llm.astream(message.content):
+        await cl.Message(content=chunk, author="LLM", stream=True).send()
+```
+
+**Vamos a desglosarlo:**
+
+- En primer lugar, muestra inmediatamente un mensaje "Pensando..." para que el usuario sepa que la aplicación está funcionando.
+- Después, envía el mensaje del usuario a un **LLM compatible con streaming**.
+- A medida que el modelo genera resultados, transmite cada **fragmento (chunk)** a la interfaz de usuario en tiempo real.
+- El parámetro **`stream=True`** garantiza que cada trozo aparezca de forma incremental en lugar de esperar a la respuesta completa.
+
+**Nota**: Esto funciona mejor con los modelos que admiten streaming.
+
+
+
+
+
+
 
 ##### Resumen conceptual
 
-Cada vez que el usuario escribe algo en la app Chainlit:
+Cada vez que el usuario escribe algo en la app de Chainlit:
 
-- Chainlit recibe el mensaje y llama automáticamente a tu función decorada con @cl.on_message.
+- Chainlit recibe el mensaje y llama automáticamente a tu función decorada con **`@cl.on_message`**.
 
 Nuestra función:
 
-- imprime el texto recibido en la terminal (**`print(...)),
-- envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (**`You said: ...).
+- imprime el texto recibido en la terminal (**`print(...)`**),
+- envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (**`You said: ...`**).
 
 
-Ejemplo mínimo (idea basada en el tutorial): 
+Ejemplo mínimo: 
 
 ```python
 import chainlit as cl
