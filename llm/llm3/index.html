@@ -969,7 +969,51 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Construir con @cl.on_message">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#construyendo-con-clon_stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Construyendo con @cl.on_stop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#construir-con-clon_chat_end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Construir con @cl.on_chat_end
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acciones-de-iu-botones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acciones de IU (botones)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transmision-de-mensajes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transmisión de mensajes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transmisión de mensajes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1970,15 +2014,16 @@
 <li><strong><code>@cl.on_message</code></strong>: se lanza cuando el usuario envía un mensaje.  </li>
 <li><strong><code>@cl.on_chat_end</code></strong>: se lanza al terminar una sesión.  </li>
 </ul>
-<h4 id="construir-con-clon_chat_start">Construir con @cl.on_chat_start</h4>
+<h4 id="construir-con-clon_chat_start">Construir con <strong><code>@cl.on_chat_start</code></strong></h4>
 <p>Este hook se ejecuta cuando se inicia una nueva sesión de chat. Podemos utilizarlo, por ejemplo, <strong>para saludar al usuario, mostrar un mensaje de bienvenida o inicializar el estado de la sesión</strong>.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A new chat session has started!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <img alt="" src="../images/chainlist/on_chat_start.png" /></p>
-<h4 id="construir-con-clon_message">Construir con @cl.on_message</h4>
+<h4 id="construir-con-clon_message">Construir con <code>@cl.on_message</code></h4>
 <p>Este hook de mensaje se ejecuta cuando el usuario envía un nuevo mensaje. Lo utilizamos para procesar la entrada del usuario, llamar a un LLM o devolver una respuesta.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
 
@@ -1987,6 +2032,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user sent:&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;You said: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 </code></pre></div>
+<p><img alt="" src="../images/chainlist/on_message.png" /></p>
 <p>Explicación del código: 
 <div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
@@ -1996,10 +2042,10 @@
 <p><strong><code>@cl.on_message</code></strong> es un <strong>decorador</strong> de hook: le dice a Chainlit que esta función se debe ejecutar cada vez que la interfaz reciba un mensaje nuevo del usuario.</p>
 </li>
 <li>
-<p><strong><code>async def</code></strong> indica que la función es <strong>asíncrona</strong>, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con await.</p>
+<p><strong><code>async def</code></strong> indica que la función es <strong>asíncrona</strong>, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con <strong><code>await</code></strong>.</p>
 </li>
 <li>
-<p>El parámetro <strong><code>msg: cl.Message</code></strong> es el objeto mensaje que llega desde la UI; tiene atributos como <strong><code>content (texto que ha escrito el usuario)</code></strong>, <strong><code>author</code></strong>, <strong><code>created_at</code></strong>, etc.</p>
+<p>El parámetro <strong><code>msg: cl.Message</code></strong> es el objeto <strong>mensaje</strong> que llega desde la UI; tiene atributos como <strong><code>content (texto que ha escrito el usuario)</code></strong>, <strong><code>author</code></strong>, <strong><code>created_at</code></strong>, etc.</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;You said: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
@@ -2007,26 +2053,107 @@
 <ul>
 <li>Aquí creamos un nuevo mensaje de respuesta hacia la UI usando la clase <strong><code>cl.Message</code></strong>.</li>
 <li>
-<p>Le pasamos el texto de respuesta en el parámetro content, usando una <strong><code>f-string</code></strong> para incluir lo que escribió el usuario:</p>
+<p>Le pasamos el texto de respuesta en el parámetro <code>content</code>, usando una <strong><code>f-string</code></strong> para incluir lo que escribió el usuario:</p>
 <ul>
 <li>Si el usuario pone <strong><code>“hola”</code></strong>, la respuesta será <strong><code>“You said: hola”</code></strong>.</li>
 </ul>
 </li>
 <li>
-<p><strong><code>.send()</code></strong> envía ese mensaje a la interfaz de Chainlit, y como es una operación <strong>asíncrona</strong>, necesitas <strong>`await</strong>.</p>
+<p><strong><code>.send()</code></strong> envía ese mensaje a la interfaz de Chainlit, y como es una operación <strong>asíncrona</strong>, necesitas <strong><code>await</code></strong>.</p>
 </li>
 </ul>
-<h5 id="resumen-conceptual">Resumen conceptual</h5>
-<p>Cada vez que el usuario escribe algo en la app Chainlit:</p>
+<h4 id="construyendo-con-clon_stop">Construyendo con <code>@cl.on_stop</code></h4>
+<p>El gancho <strong><code>on_stop</code></strong> se ejecuta cuando el usuario pulsa el botón de parada (⏹) durante una tarea en ejecución. Sirve para cancelar operaciones de larga duración o limpiar sesiones interrumpidas.</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Type anything and I&#39;ll pretend to work on it.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Working on it... you can press Stop&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Simulamos una tarea larga de 10 segundos</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Task complete!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task was interrupted!&quot;</span><span class="p">)</span>
+        <span class="c1"># Opcional, tan solo para los logs del servidor</span>
+        <span class="k">raise</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_stop</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_stop</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user clicked Stop!&quot;</span><span class="p">)</span>
+</code></pre></div>
+Cuando el usuario envía un mensaje, Chainlit simula una tarea con <strong><code>asyncio.sleep(10)</code></strong>. Si el usuario pulsa el botón de parada (⏹), la tarea se cancela y se activa <strong><code>@cl.on_stop</code></strong> para registrar la interrupción.</p>
+<p><img alt="" src="../images/chainlist/on_chat_stop.png" /></p>
+<h4 id="construir-con-clon_chat_end">Construir con <strong><code>@cl.on_chat_end</code></strong></h4>
+<p>Este hook se activa cuando finaliza la sesión, ya sea porque el usuario actualiza, cierra la pestaña o inicia una nueva sesión. <strong>Suele utilizarse para registrar desconexiones o guardar el estado</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Welcome! Feel free to leave anytime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_end</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_end</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user disconnected!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Una vez abierto el <strong><code>localhost</code></strong>, podmeos trabajar con él. Cuando cerremos la pestaña o la ventana de localhost, el terminal mostrará lo siguiente:</p>
+<p><img alt="on_chat_end() chainlit output" src="../images/chainlist/on_chat_end.png" /></p>
+<h4 id="acciones-de-iu-botones">Acciones de IU (botones)</h4>
+<p>Chainlit nos permite añadir botones interactivos directamente en la interfaz de nuestro chatbot. Cada botón se define como una acción y se conecta a una <strong>función de llamada de retorno de Python</strong>. Podemos enviar botones como parte de un <strong>Mensaje</strong> utilizando el argumento <strong>acciones</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="c1">#nombre del callback</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;👋 Say Hello&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;smile&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;hi&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Click a button!&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">actions</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p>Así es como podemeos gestionar la pulsación de un botón:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_hello</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Hello there! 👋&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p>El decorador <strong><code>@cl.action_callback("hello")</code></strong> indica a Chainlit que escuche los clics en un botón con el nombre <strong><code>"hola"</code></strong>. Cuando se pulsa, envía un mensaje amistoso al usuario en la interfaz de chat.</p>
+<p><img alt="@cl.action_callback chainlit salida" src="../images/chainlist/callback_hello.png" /></p>
+<p><strong>Consejo</strong>: podemos personalizar la carga útil con cualquier dato que quieras enviar al servidor.</p>
+<h4 id="transmision-de-mensajes">Transmisión de mensajes</h4>
+<p><strong>Chainlit</strong> admite la transmisión en tiempo real de las respuestas LLM. Esto significa que podemos enviar contenido al usuario de forma incremental a medida que se genera.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Pensando...&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">llm</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
+        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">chunk</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s2">&quot;LLM&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Vamos a desglosarlo:</strong></p>
 <ul>
-<li>Chainlit recibe el mensaje y llama automáticamente a tu función decorada con @cl.on_message.</li>
+<li>En primer lugar, muestra inmediatamente un mensaje "Pensando..." para que el usuario sepa que la aplicación está funcionando.</li>
+<li>Después, envía el mensaje del usuario a un <strong>LLM compatible con streaming</strong>.</li>
+<li>A medida que el modelo genera resultados, transmite cada <strong>fragmento (chunk)</strong> a la interfaz de usuario en tiempo real.</li>
+<li>El parámetro <strong><code>stream=True</code></strong> garantiza que cada trozo aparezca de forma incremental en lugar de esperar a la respuesta completa.</li>
+</ul>
+<p><strong>Nota</strong>: Esto funciona mejor con los modelos que admiten streaming.</p>
+<h5 id="resumen-conceptual">Resumen conceptual</h5>
+<p>Cada vez que el usuario escribe algo en la app de Chainlit:</p>
+<ul>
+<li>Chainlit recibe el mensaje y llama automáticamente a tu función decorada con <strong><code>@cl.on_message</code></strong>.</li>
 </ul>
 <p>Nuestra función:</p>
 <ul>
-<li>imprime el texto recibido en la terminal (**`print(...)),</li>
-<li>envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (**`You said: ...).</li>
+<li>imprime el texto recibido en la terminal (<strong><code>print(...)</code></strong>),</li>
+<li>envía un nuevo mensaje de vuelta al usuario repitiendo lo que dijo (<strong><code>You said: ...</code></strong>).</li>
 </ul>
-<p>Ejemplo mínimo (idea basada en el tutorial): </p>
+<p>Ejemplo mínimo: </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
