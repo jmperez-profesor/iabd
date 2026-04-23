@@ -218,7 +218,7 @@ Más adelante usaremos el agente en modo API junto a una aplicación.
 ### Paso 2: Elegir el modelo, temperatura y las instrucciones
 
 **1.-** Por defecto, Mistra IA Studio elige el modelo "Mistral Medium". Es una buena opción predeterminada.
-
+Desplázate hasta Capacidades (tools) y activa las funciones que necesites: - Código: ejecuta código Python para cálculos, gráficos y análisis de datos. - Imagen: permite que el modelo genere imágenes. - Búsqueda: buscar información actualizada en internet. - Búsqueda Premium: buscar información actualizada y verificada en internet.
 ![](./images/agente_mistral_paso2a.png)
 
 
@@ -273,6 +273,7 @@ Las capacidades (herramientas) mejoran al agente más allá de la generación de
 ![](./images/agente_mistral_paso3c.png)
 
 Desplázate hasta **Capacidades (tools)** y activa las funciones que necesites:
+
 - **Código**: ejecuta código Python para cálculos, gráficos y análisis de datos.
 - **Imagen**: permite que el modelo genere imágenes.
 - **Búsqueda**: buscar información actualizada en internet.
