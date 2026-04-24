@@ -457,3 +457,139 @@ El tutorial sugiere varios escenarios donde Chainlit encaja muy bien:
 - **Conexión con APIs y herramientas externas**: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  
 
 ---
+
+## Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias
+
+### Contexto
+
+En la sesión anterior (LLM2) creaste en **Mistral Studio AI** dos agentes en el playground:
+
+- **Agente A – Tutor técnico de Flask**  
+- **Agente B – Generador creativo de ideas**
+
+Aquella actividad se centraba en definir bien el **rol**, las **instrucciones** y el **tono** de cada agente, pero **sin usar herramientas (tools)** ni funciones propias del agente.
+
+En esta sesión (LLM3) vamos a dar un paso más: vas a construir una **aplicación propia** en Python usando **Chainlit** como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo **funciones personalizadas** que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. 
+
+---
+
+### Objetivo de la actividad
+
+Construir una aplicación llamada, por ejemplo, `llm3-chainlit-agentes`, que:
+
+- use **Chainlit** como interfaz de chat, 
+- se conecte a **Mistral AI** desde Python, 
+- implemente **dos agentes lógicos** (A y B) con instrucciones distintas,  
+- y añada **funciones personalizadas (tools)** que el modelo pueda invocar mediante *function calling*, para tareas como obtener el tiempo, la hora o el precio de una acción. 
+
+---
+
+### Definición de los agentes
+
+Puedes mantener los nombres originales, pero se recomienda actualizar ligeramente el rol del agente A para encajarlo mejor con el uso de tools:
+
+- **Agente A – Planificador práctico / consultor técnico**  
+  - Ayuda a planificar tareas, proyectos o pequeñas “rutas” (por ejemplo, un mini plan de estudio, una ruta de viaje sencillo, etc.).  
+  - Se centrará más en **información factual y estructurada** y en usar tools como `get_time` o `get_weather`.  
+
+- **Agente B – Generador creativo de ideas**  
+  - Genera ideas de contenido, propuestas creativas, textos breves o variaciones de un mismo concepto.  
+  - Puede apoyarse en `get_stock_price` u otras tools si quieres que genere ideas de contenido financiero/tecnológico.  
+
+Las instrucciones (prompt del agente) de A y B pueden reutilizar y adaptar lo que ya definiste en Mistral Studio, ajustando ahora las descripciones para mencionar que el agente **puede llamar a funciones auxiliares cuando lo considere útil**.
+
+---
+
+### Funciones personalizadas (tools)
+
+Debes implementar al menos **tres funciones propias** en Python que el modelo pueda usar como herramientas. Algunas funciones recomendadas son:
+
+- `get_weather(location, date_range)`  
+  - Devuelve un tiempo simulado o consultado vía API (puede ser una respuesta inventada pero coherente, o una llamada real a una API de clima si quieres). 
+- `get_time(city_or_timezone)`  
+  - Devuelve la hora local de una ciudad o zona horaria.  
+- `get_stock_price(symbol)`  
+  - Devuelve el precio simulado de una acción (o real, si integras una API sencilla). 
+
+Puedes añadir otras funciones si te interesa, siempre que:
+
+- tengan parámetros bien definidos,  
+- devuelvan datos estructurados,  
+- y sean razonablemente útiles para alguno de los dos agentes. 
+
+El patrón a seguir es similar al del que hemos visto en el apartado **Mistral + Chainlit**, donde se definen tools como `get_home_town` y `get_current_weather` con un decorador `@cl.step(type="tool")` y un bloque `tools = [...]` con el esquema JSON que se pasa al modelo. 
+
+---
+
+### Requisitos mínimos de la aplicación
+
+Tu aplicación deberá cumplir, como mínimo, los siguientes puntos:
+
+1. **Interfaz en Chainlit**  
+   - La app se ejecuta con `chainlit run app.py`.  
+   - Al abrirla en el navegador puedes escribir mensajes y recibir respuestas. 
+
+2. **Selección de agente**  
+   - Debes poder elegir si hablas con el **Agente A** o con el **Agente B**.  
+   - Esto puede hacerse de varias formas:
+     - mediante un comando inicial (`/agenteA` o `/agenteB`),  
+     - mediante un selector en el arranque,  
+     - o detectando el modo por el primer mensaje.  
+
+3. **Uso de Mistral con tools**  
+   - El código debe llamar a la API de Mistral con una lista de `tools` (funciones) definidas en JSON, siguiendo el modelo de *function calling*. [web:231][web:298][web:301]  
+   - Cuando el modelo decida usar una tool, tu backend debe:
+     - leer el `tool_call` devuelto,  
+     - ejecutar la función Python correspondiente,  
+     - y devolver el resultado al modelo para que este construya la respuesta final.  
+
+4. **Integración de las funciones personalizadas**  
+   - Las funciones `get_weather`, `get_time`, `get_stock_price` (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. [web:231][web:329][web:330]  
+   - El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando `@cl.step(type="tool")`). [web:231]
+
+5. **Demostraciones de uso**  
+   - Debes probar la app con varios ejemplos, de forma que:
+     - en algunos casos el agente responda sin tools,  
+     - y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. [web:231][web:298]
+
+---
+
+### Pasos guiados (recomendados)
+
+1. **Paso 1: App Chainlit mínima**  
+   - Crea un `app.py` que use Chainlit y un modelo de Mistral, sin tools.  
+   - Comprueba que puedes enviar y recibir mensajes. [web:268][web:166]  
+
+2. **Paso 2: Añadir un solo tool sencillo**  
+   - Implementa `get_time` como función Python.  
+   - Define el tool JSON y pásalo al modelo.  
+   - Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. [web:231][web:298][web:301]  
+
+3. **Paso 3: Añadir `get_weather` y `get_stock_price`**  
+   - Implementa estas funciones y añádelas a la lista de tools. [web:231][web:329][web:330]  
+   - Diseña prompts donde tenga sentido usarlas (tiempo en una ciudad, precio de una acción, etc.).  
+
+4. **Paso 4: Instrucciones de los agentes A y B**  
+   - Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo. [web:323][web:325]  
+   - Ajusta el rol de A hacia algo más práctico/planificador, y deja B como creativo.  
+
+5. **Paso 5: Selector de agente**  
+   - Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). [web:268][web:166]  
+   - Asegúrate de que las tools se comportan de forma coherente con cada agente (el A usará más `get_time`/`get_weather`, el B quizá use `get_stock_price` para ideas financieras, etc.).  
+
+---
+
+### Entrega mínima (para esta actividad)
+
+Para la actividad asociada a esta sesión se pedirá, como mínimo:
+
+- El fichero `app.py` (o equivalente) con la integración de Chainlit + Mistral + tools.  
+- Un breve `README.md` (o texto en la entrega) que explique:
+  - cómo arrancar la app,  
+  - qué hace el agente A,  
+  - qué hace el agente B,  
+  - qué funciones personalizadas se han implementado,  
+  - y cómo probarlas (ejemplos de prompts). 
+
+En sesiones posteriores se podrá ampliar esta base para incluir **RAG** y otras capacidades más avanzadas, pero en esta actividad el foco está en **migrar los agentes del playground a una app propia y darles herramientas mediante function calling**. 
+
