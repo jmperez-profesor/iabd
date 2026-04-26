@@ -5,9 +5,9 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # Chainlit: framework de Python para crear **interfaces de chat interactivas**
 
-![](./images/chainlist/overview.mp4)
-
 ## 1. ¿Qué es Chainlit?
+
+![](./images/chainlist/overview.gif)
 
 Chainlit nos ayuda a crear frontends para chatbots de IA, herramientas y flujos de trabajo LLM. Abstrae la complejidad del front-end y nos permite centrarnos en la lógica de Python, a la vez que proporciona soporte para añadir botones, controles deslizantes, soporte para subir archivos o incluso conectarte a herramientas que utilicen el **protocolo de contexto de modelo (MCP)**. 
 
