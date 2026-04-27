@@ -507,8 +507,10 @@ Ahora tenemos un asistente de IA local y en directo que genera mensajes automati
 
 ![Activar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer](./images/chainlist/meeting_summarizer_mistralai.png)
 
-
 ## Actividad guiada: Crear un agente con herramientas personalizadas
+
+![](./images/chainlist/agente_temperatura.png)
+
 
 En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.
 
@@ -1065,6 +1067,12 @@ Puede explicarse en seis pasos:
 6. Mistral genera la respuesta final y Chainlit la muestra en pantalla.
 
 ### Otro ejemplo de la documentación de Chainlit 
+
+A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas **`get_current_weather`** y **`get_home_town`** externa para obtener información y mostrar un resultado.
+
+![](./images/chainlist/agente_napoleon.png)
+
+**Fuente**: documentación de Mistral
 
 ```python
 import os

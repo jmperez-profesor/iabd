@@ -1159,15 +1159,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#actividad-guiada-crea-un-agente-con-herramientas" class="md-nav__link">
+  <a href="#actividad-guiada-crear-un-agente-con-herramientas-personalizadas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Actividad guiada: Crea un agente con herramientas
+        Actividad guiada: Crear un agente con herramientas personalizadas
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Actividad guiada: Crea un agente con herramientas">
+    <nav class="md-nav" aria-label="Actividad guiada: Crear un agente con herramientas personalizadas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2730,7 +2730,7 @@ Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
 <p><img alt="Sorpréndeme Bot (sin LLM)" src="../images/chainlist/bot_sorpresa_sin_llm.png" /></p>
 <h2 id="5-proyecto-bot-sorprendeme-powered-by-ollama">5. Proyecto: Bot Sorpréndeme Powered by Ollama</h2>
 <p>Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.</p>
-<p><strong>bot_surprise_ollama</strong></p>
+<p><strong>bot_surprise_ollama.py</strong></p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">OllamaLLM</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
@@ -2793,7 +2793,7 @@ Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
 </code></pre></div>
 Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mistral) para generar dinámicamente respuestas basadas en las interacciones del usuario.</p>
 <ul>
-<li>Define dos botones <strong><code>cl.Action</code></strong>: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando una función reutilizable get_action_buttons().</li>
+<li>Define dos botones <strong><code>cl.Action</code></strong>: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando una función reutilizable <strong><code>get_action_buttons()</code></strong>.</li>
 <li>Al inicializar el chat (<strong><code>@cl.on_chat_start</code></strong>) envía un mensaje con estos botones interactivos.</li>
 <li>Cuando el usuario pulsa el botón <strong>"Sorpréndeme"</strong>, el gestor <strong><code>@cl.action_callback</code></strong> envía un mensaje al LLM solicitando un mensaje breve y edificante de los programadores. La respuesta se limpia con la función <strong><code>.strip()</code></strong> y se devuelve al chat.</li>
 <li>Del mismo modo, al hacer clic en <strong>"¿Sabías que...?"</strong> se invoca el LLM con una pregunta que solicita un dato informativo sobre Chainlit o los LLM.</li>
@@ -2819,7 +2819,7 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <h2 id="probar-funciones-propias-en-mistral-studio">Probar funciones propias en Mistral Studio</h2>
 <h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
 <p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlist/meeting_summarizer_mistralai.png" /></p>
-<h2 id="actividad-guiada-crea-un-agente-con-herramientas">Actividad guiada: Crea un agente con herramientas</h2>
+<h2 id="actividad-guiada-crear-un-agente-con-herramientas-personalizadas">Actividad guiada: Crear un agente con herramientas personalizadas</h2>
 <p>En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.</p>
 <ul>
 <li>Definir un esquema de herramienta que describa su función.</li>
