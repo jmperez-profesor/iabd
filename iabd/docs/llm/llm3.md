@@ -343,7 +343,7 @@ FUN_FACTS = [
     "💡 ¡Puedes añadir botones, controles deslizantes e imágenes directamente en la interfaz de usuario de tu chatbot!",
     "💡 ¡Chainlit admite la ejecución de herramientas en tiempo real con LangChain y LLM!",
     "💡 ¡Puedes personalizar el aspecto de tu chatbot con solo un archivo CSS!",
-    "💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!
+    "💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!"
 ]
 SURPRISES = [
     "🎉 ¡Sorpresa! ¡Lo estás haciendo genial!",
@@ -373,7 +373,7 @@ async def start():
 
 @cl.action_callback("surprise_button")
 async def on_surprise(action: cl.Action):
-    suprise = random.choice(SUPRISES)
+    suprise = random.choice(SURPRISES)
     await cl.Message(content=suprise).send()
 
 @cl.action_callback("fact_button")
@@ -412,15 +412,12 @@ import chainlit as cl
 from langchain_ollama import OllamaLLM
 import random
 
-llm = OllamaLLM(model="mistral", temperature=0.7)  # Usamos cualquier modelo local ligero
-
-'''OLLAMA DEL SERVIDOR DE CLASE
+#OLLAMA DEL SERVIDOR DE CLASE
 llm = OllamaLLM(
     model="qwen3.5:9b",
     base_url="http://192.168.1.80:11434",
     temperature=0.7
 )
-'''
 
 # Reusable action buttons
 def get_action_buttons():
@@ -482,8 +479,7 @@ Esto demuestra cómo **combinar `Chainlit UI` con la generación de contenidos b
 Ejecuta el siguiente comando en el terminal:
 
 ```bash
-ollama run mistral
-chainlit run main.py
+chainlit run bot_surprise_ollama.py
 ```
 
 Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.
