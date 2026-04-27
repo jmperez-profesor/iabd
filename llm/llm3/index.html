@@ -2678,7 +2678,7 @@ Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
     <span class="s2">&quot;💡 ¡Puedes añadir botones, controles deslizantes e imágenes directamente en la interfaz de usuario de tu chatbot!&quot;</span><span class="p">,</span>
     <span class="s2">&quot;💡 ¡Chainlit admite la ejecución de herramientas en tiempo real con LangChain y LLM!&quot;</span><span class="p">,</span>
     <span class="s2">&quot;💡 ¡Puedes personalizar el aspecto de tu chatbot con solo un archivo CSS!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!</span>
+    <span class="s2">&quot;💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!&quot;</span>
 <span class="p">]</span>
 <span class="n">SURPRISES</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;🎉 ¡Sorpresa! ¡Lo estás haciendo genial!&quot;</span><span class="p">,</span>
@@ -2708,7 +2708,7 @@ Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_surprise</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="n">suprise</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SUPRISES</span><span class="p">)</span>
+    <span class="n">suprise</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SURPRISES</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">suprise</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;fact_button&quot;</span><span class="p">)</span>
@@ -2735,15 +2735,12 @@ Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">OllamaLLM</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OllamaLLM</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># Usamos cualquier modelo local ligero</span>
-
-<span class="sd">&#39;&#39;&#39;OLLAMA DEL SERVIDOR DE CLASE</span>
-<span class="sd">llm = OllamaLLM(</span>
-<span class="sd">    model=&quot;qwen3.5:9b&quot;,</span>
-<span class="sd">    base_url=&quot;http://192.168.1.80:11434&quot;,</span>
-<span class="sd">    temperature=0.7</span>
-<span class="sd">)</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#OLLAMA DEL SERVIDOR DE CLASE</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OllamaLLM</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen3.5:9b&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://192.168.1.80:11434&quot;</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="p">)</span>
 
 <span class="c1"># Reusable action buttons</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_action_buttons</span><span class="p">():</span>
@@ -2802,8 +2799,7 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
 </ul>
 <p>Esto demuestra cómo <strong>combinar <code>Chainlit UI</code> con la generación de contenidos basada en LLM</strong>, ofreciendo una base modular y extensible para aplicaciones de chat locales potenciadas por IA.</p>
 <p>Ejecuta el siguiente comando en el terminal:</p>
-<div class="highlight"><pre><span></span><code>ollama<span class="w"> </span>run<span class="w"> </span>mistral
-chainlit<span class="w"> </span>run<span class="w"> </span>main.py
+<div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>bot_surprise_ollama.py
 </code></pre></div>
 <p>Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.</p>
 <p><img alt="Bot Sorprendeme impulsado por Ollama" src="../images/chainlist/bot_sorpresa_ollama.png" /></p>
