@@ -2826,11 +2826,14 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
 <p>Este patrón funciona con cualquier fuente de datos: API, bases de datos o servicios internos.</p>
 <h3 id="paso-1-definir-la-funcion">Paso 1: Definir la función</h3>
 <p>Definir la función que el modelo va a llamar. Este ejemplo crea una <code>get_weather</code> herramienta que acepta el nombre de una ciudad.</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mistralai
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mistralai<span class="w"> </span>dotenv
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">])</span>
 
