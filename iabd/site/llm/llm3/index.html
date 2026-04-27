@@ -2820,6 +2820,7 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
 <p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlist/meeting_summarizer_mistralai.png" /></p>
 <h2 id="actividad-guiada-crear-un-agente-con-herramientas-personalizadas">Actividad guiada: Crear un agente con herramientas personalizadas</h2>
+<p><img alt="" src="../images/chainlist/agente_temperatura.png" /></p>
 <p>En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.</p>
 <ul>
 <li>Definir un esquema de herramienta que describa su función.</li>
@@ -3311,6 +3312,9 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li>Mistral genera la respuesta final y Chainlit la muestra en pantalla.</li>
 </ol>
 <h3 id="otro-ejemplo-de-la-documentacion-de-chainlit">Otro ejemplo de la documentación de Chainlit</h3>
+<p>A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas <strong><code>get_current_weather</code></strong> y <strong><code>get_home_town</code></strong> externa para obtener información y mostrar un resultado.</p>
+<p><img alt="" src="../images/chainlist/agente_napoleon.png" /></p>
+<p><strong>Fuente</strong>: documentación de Mistral</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
