@@ -521,7 +521,7 @@ Este patrón funciona con cualquier fuente de datos: API, bases de datos o servi
 Definir la función que el modelo va a llamar. Este ejemplo crea una `get_weather` herramienta que acepta el nombre de una ciudad.
 
 ```bash
-pip install mistralai
+pip install mistralai dotenv
 ```
 
 
@@ -529,6 +529,9 @@ pip install mistralai
 import json
 import os
 from mistralai.client import Mistral
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
 
