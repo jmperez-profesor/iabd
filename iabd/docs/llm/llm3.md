@@ -414,7 +414,7 @@ import random
 
 #OLLAMA DEL SERVIDOR DE CLASE
 llm = OllamaLLM(
-    model="qwen3.5:9b",
+    model="phi4-mini-reasoning:3.8b",
     base_url="http://192.168.1.80:11434",
     temperature=0.7
 )
