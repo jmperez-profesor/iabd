@@ -393,7 +393,7 @@ Esto crea un chatbot sencillo e interactivo mediante botones que no requiere LLM
 Para ejecutar esta aplicación, simplemente ejecuta el siguiente comando en el terminal:
 
 ```bash
-chainlit run main.py
+chainlit run bot_surprise_sin_llmain.py
 ```
 
 Veremos botones interactivos en la interfaz de usuario que activan datos o mensajes divertidos.
@@ -405,12 +405,22 @@ Veremos botones interactivos en la interfaz de usuario que activan datos o mensa
 
 Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.
 
+**bot_surprise_ollama**
+
 ```python
 import chainlit as cl
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 import random
 
-llm = Ollama(model="mistral", temperature=0.7)  # Usamos cualquier modelo local ligero
+llm = OllamaLLM(model="mistral", temperature=0.7)  # Usamos cualquier modelo local ligero
+
+'''OLLAMA DEL SERVIDOR DE CLASE
+llm = OllamaLLM(
+    model="qwen3.5:9b",
+    base_url="http://192.168.1.80:11434",
+    temperature=0.7
+)
+'''
 
 # Reusable action buttons
 def get_action_buttons():
