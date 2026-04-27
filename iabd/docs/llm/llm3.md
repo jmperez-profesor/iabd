@@ -405,7 +405,7 @@ Veremos botones interactivos en la interfaz de usuario que activan datos o mensa
 
 Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.
 
-**bot_surprise_ollama**
+**bot_surprise_ollama.py**
 
 ```python
 import chainlit as cl
@@ -470,7 +470,7 @@ async def on_fact(action: cl.Action):
 ```
 Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mistral) para generar dinámicamente respuestas basadas en las interacciones del usuario.
 
-- Define dos botones **`cl.Action`**: **"Sorpréndeme"** y **"¿Lo sabías?"** utilizando una función reutilizable get_action_buttons().
+- Define dos botones **`cl.Action`**: **"Sorpréndeme"** y **"¿Lo sabías?"** utilizando una función reutilizable **`get_action_buttons()`**.
 - Al inicializar el chat (**`@cl.on_chat_start`**) envía un mensaje con estos botones interactivos.
 - Cuando el usuario pulsa el botón **"Sorpréndeme"**, el gestor **`@cl.action_callback`** envía un mensaje al LLM solicitando un mensaje breve y edificante de los programadores. La respuesta se limpia con la función **`.strip()`** y se devuelve al chat.
 - Del mismo modo, al hacer clic en **"¿Sabías que...?"** se invoca el LLM con una pregunta que solicita un dato informativo sobre Chainlit o los LLM.
@@ -508,7 +508,7 @@ Ahora tenemos un asistente de IA local y en directo que genera mensajes automati
 ![Activar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer](./images/chainlist/meeting_summarizer_mistralai.png)
 
 
-## Actividad guiada: Crea un agente con herramientas
+## Actividad guiada: Crear un agente con herramientas personalizadas
 
 En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.
 
