@@ -27,7 +27,7 @@
     
     
       
-        <title>Sesión 3 - Chainlit - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 3 - Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas) - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 3 - Chainlit
+              Sesión 3 - Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
             
           </span>
         </div>
@@ -849,7 +849,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 3 - Chainlit
+    Sesión 3 - Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
   
 
     
@@ -867,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 3 - Chainlit
+    Sesión 3 - Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
   
 
     
@@ -1109,10 +1109,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
+  <a href="#6-casos-de-uso-recomendados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusión
+        6. Casos de uso recomendados
       
     </span>
   </a>
@@ -1120,13 +1120,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-casos-de-uso-recomendados" class="md-nav__link">
+  <a href="#probar-funciones-propias-en-mistral-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Casos de uso recomendados
+        Probar funciones propias en Mistral Studio
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Probar funciones propias en Mistral Studio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2068,7 +2085,7 @@
 <h1 id="chainlit-framework-de-python-para-crear-interfaces-de-chat-interactivas">Chainlit: framework de Python para crear <strong>interfaces de chat interactivas</strong></h1>
 <h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
 <p><img alt="" src="../images/chainlist/overview.gif" /></p>
-<p>Chainlit nos ayuda a crear frontends para chatbots de IA, herramientas y flujos de trabajo LLM. Abstrae la complejidad del front-end y nos permite centrarnos en la lógica de Python, a la vez que proporciona soporte para añadir botones, controles deslizantes, soporte para subir archivos o incluso conectarte a herramientas que utilicen el <strong>protocolo de contexto de modelo (MCP)</strong>. </p>
+<p>Chainlit nos ayuda a crear frontends para chatbots de IA, herramientas y flujos de trabajo LLM. Abstrae la complejidad del front-end y nos permite centrarnos en la lógica de Python, a la vez que proporciona soporte para añadir botones, controles deslizantes, soporte para subir archivos o incluso conectarnos a herramientas que utilicen el <strong>protocolo de contexto de modelo (MCP)</strong>. </p>
 <p>Chainlit es ideal para:</p>
 <ul>
 <li>Prototipos de aplicaciones basadas en LLM</li>
@@ -2180,7 +2197,7 @@
 </li>
 </ul>
 <h4 id="construyendo-con-clon_stop">Construyendo con <code>@cl.on_stop</code></h4>
-<p>El gancho <strong><code>on_stop</code></strong> se ejecuta cuando el usuario pulsa el botón de parada (⏹) durante una tarea en ejecución. Sirve para cancelar operaciones de larga duración o limpiar sesiones interrumpidas.</p>
+<p>El hook <strong><code>on_stop</code></strong> se ejecuta cuando el usuario pulsa el botón de parada (⏹) durante una tarea en ejecución. Sirve para cancelar operaciones de larga duración o limpiar sesiones interrumpidas.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
@@ -2218,7 +2235,7 @@ Cuando el usuario envía un mensaje, Chainlit simula una tarea con <strong><code
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_end</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user disconnected!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Una vez abierto el <strong><code>localhost</code></strong>, podmeos trabajar con él. Cuando cerremos la pestaña o la ventana de localhost, el terminal mostrará lo siguiente:</p>
+<p>Una vez abierto el <strong><code>localhost</code></strong>, podemos trabajar con él. Cuando cerremos la pestaña o la ventana de localhost, el terminal mostrará lo siguiente:</p>
 <p><img alt="on_chat_end() chainlit output" src="../images/chainlist/on_chat_end.png" /></p>
 <h4 id="acciones-de-iu-botones">Acciones de IU (botones)</h4>
 <p>Chainlit nos permite añadir botones interactivos directamente en la interfaz de nuestro chatbot. Cada botón se define como una acción y se conecta a una <strong>función de llamada de retorno de Python</strong>. Podemos enviar botones como parte de un <strong>Mensaje</strong> utilizando el argumento <strong>acciones</strong>:</p>
@@ -2428,9 +2445,8 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 </code></pre></div>
 <p>Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.</p>
 <p><img alt="Bot Sorprendeme impulsado por Ollama" src="../images/chainlist/bot_sorpresa_ollama.png" /></p>
-<h2 id="conclusion">Conclusión</h2>
-<h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
-<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: </p>
+<hr />
+<h2 id="6-casos-de-uso-recomendados">6. Casos de uso recomendados</h2>
 <ul>
 <li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
 <li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
@@ -2438,6 +2454,9 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
 </ul>
 <hr />
+<h2 id="probar-funciones-propias-en-mistral-studio">Probar funciones propias en Mistral Studio</h2>
+<h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
+<p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlist/meeting_summarizer_mistralai.png" /></p>
 <h2 id="actividad-migrar-agentes-de-mistral-studio-a-una-app-chainlit-con-funciones-propias">Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias</h2>
 <h3 id="contexto">Contexto</h3>
 <p>En la sesión anterior (LLM2) creaste en <strong>Mistral Studio AI</strong> dos agentes en el playground:</p>
@@ -2446,7 +2465,7 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li><strong>Agente B – Generador creativo de ideas</strong></li>
 </ul>
 <p>Aquella actividad se centraba en definir bien el <strong>rol</strong>, las <strong>instrucciones</strong> y el <strong>tono</strong> de cada agente, pero <strong>sin usar herramientas (tools)</strong> ni funciones propias del agente.</p>
-<p>En esta sesión (LLM3) vamos a dar un paso más: vas a construir una <strong>aplicación propia</strong> en Python usando <strong>Chainlit</strong> como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo <strong>funciones personalizadas</strong> que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. </p>
+<p>En esta sesión vamos a dar un paso más: vas a construir una <strong>aplicación propia</strong> en Python usando <strong>Chainlit</strong> como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo <strong>funciones personalizadas</strong> que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. </p>
 <hr />
 <h3 id="objetivo-de-la-actividad">Objetivo de la actividad</h3>
 <p>Construir una aplicación llamada, por ejemplo, <code>llm3-chainlit-agentes</code>, que:</p>
@@ -2514,7 +2533,7 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li>
 <p><strong>Uso de Mistral con tools</strong>  </p>
 </li>
-<li>El código debe llamar a la API de Mistral con una lista de <code>tools</code> (funciones) definidas en JSON, siguiendo el modelo de <em>function calling</em>. [web:231][web:298][web:301]  </li>
+<li>El código debe llamar a la API de Mistral con una lista de <code>tools</code> (funciones) definidas en JSON, siguiendo el modelo de <em>function calling</em>. </li>
 <li>
 <p>Cuando el modelo decida usar una tool, tu backend debe:</p>
 <ul>
@@ -2526,16 +2545,16 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li>
 <p><strong>Integración de las funciones personalizadas</strong>  </p>
 </li>
-<li>Las funciones <code>get_weather</code>, <code>get_time</code>, <code>get_stock_price</code> (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. [web:231][web:329][web:330]  </li>
+<li>Las funciones <code>get_weather</code>, <code>get_time</code>, <code>get_stock_price</code> (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. </li>
 <li>
-<p>El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando <code>@cl.step(type="tool")</code>). [web:231]</p>
+<p>El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando <code>@cl.step(type="tool")</code>).</p>
 </li>
 <li>
 <p><strong>Demostraciones de uso</strong>  </p>
 </li>
 <li>Debes probar la app con varios ejemplos, de forma que:<ul>
 <li>en algunos casos el agente responda sin tools,  </li>
-<li>y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. [web:231][web:298]</li>
+<li>y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. </li>
 </ul>
 </li>
 </ol>
@@ -2545,7 +2564,7 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li><strong>Paso 1: App Chainlit mínima</strong>  </li>
 <li>Crea un <code>app.py</code> que use Chainlit y un modelo de Mistral, sin tools.  </li>
 <li>
-<p>Comprueba que puedes enviar y recibir mensajes. [web:268][web:166]  </p>
+<p>Comprueba que puedes enviar y recibir mensajes.   </p>
 </li>
 <li>
 <p><strong>Paso 2: Añadir un solo tool sencillo</strong>  </p>
@@ -2553,26 +2572,26 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <li>Implementa <code>get_time</code> como función Python.  </li>
 <li>Define el tool JSON y pásalo al modelo.  </li>
 <li>
-<p>Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. [web:231][web:298][web:301]  </p>
+<p>Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. </p>
 </li>
 <li>
 <p><strong>Paso 3: Añadir <code>get_weather</code> y <code>get_stock_price</code></strong>  </p>
 </li>
-<li>Implementa estas funciones y añádelas a la lista de tools. [web:231][web:329][web:330]  </li>
+<li>Implementa estas funciones y añádelas a la lista de tools. </li>
 <li>
 <p>Diseña prompts donde tenga sentido usarlas (tiempo en una ciudad, precio de una acción, etc.).  </p>
 </li>
 <li>
 <p><strong>Paso 4: Instrucciones de los agentes A y B</strong>  </p>
 </li>
-<li>Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo. [web:323][web:325]  </li>
+<li>Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo.   </li>
 <li>
 <p>Ajusta el rol de A hacia algo más práctico/planificador, y deja B como creativo.  </p>
 </li>
 <li>
 <p><strong>Paso 5: Selector de agente</strong>  </p>
 </li>
-<li>Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). [web:268][web:166]  </li>
+<li>Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). </li>
 <li>Asegúrate de que las tools se comportan de forma coherente con cada agente (el A usará más <code>get_time</code>/<code>get_weather</code>, el B quizá use <code>get_stock_price</code> para ideas financieras, etc.).  </li>
 </ol>
 <hr />
