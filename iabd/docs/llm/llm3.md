@@ -528,7 +528,7 @@ pip install mistralai
 ```python
 import json
 import os
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
 
