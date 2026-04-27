@@ -464,6 +464,111 @@ Ahora tenemos un asistente de IA local y en directo que genera mensajes automati
 ![Activar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer](./images/chainlist/meeting_summarizer_mistralai.png)
 
 
+## Actividad guiada: Crea un agente con herramientas
+
+En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.
+
+* Definir un esquema de herramienta que describa su función.
+* Enviar un mensaje que active una llamada a la herramienta
+* Ejecutar la función localmente y devuelve el resultado al modelo.
+
+Este patrón funciona con cualquier fuente de datos: API, bases de datos o servicios internos.
+
+### Paso 1: Definir la función
+
+Definir la función que el modelo va a llamar. Este ejemplo crea una `get_weather` herramienta que acepta el nombre de una ciudad.
+
+```python
+import json
+import os
+from mistralai import Mistral
+
+client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+
+# Definir el esquema de la herramienta.
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Obtiene la temperatura actual de una ciudad dada.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "Nombre de la ciudad, e.g. 'Madrid'."
+                    }
+                },
+                "required": ["city"]
+            }
+        }
+    }
+]
+```
+### Paso 2: Enviar una solicitud con la herramienta
+
+Hacer al modelo una pregunta que requiera la herramienta. El modelo devuelve una respuesta de tipo `tool_calls` en lugar de una respuesta de texto.
+
+
+```python
+messages = [
+    {"role": "user", "content": "¿Qué tiempo hace en Madrid hoy?"}
+]
+
+response = client.chat.complete(
+    model="mistral-medium-latest",
+    messages=messages,
+    tools=tools,
+)
+
+tool_call = response.choices[0].message.tool_calls[0]
+print(f"El modelo va a invocar a: {tool_call.function.name}")
+print(f"Con los argumentos: {tool_call.function.arguments}")
+```
+
+### Paso 3: Ejecutar la función y devolver el resultado.
+
+Ejecutar la función con los argumentos del modelo y, a continuación, devolver el resultado para que el modelo pueda generar una respuesta en lenguaje natural.
+
+```python
+# Simular la función (reemplazar con una llamada a la API real)
+def get_weather(city: str) -> dict:
+    return {"city": city, "temperature": "27°C", "condition": "Soleado"}
+
+# Ejecutar la llamada a la herramienta
+args = json.loads(tool_call.function.arguments)
+result = get_weather(**args)
+
+# Devuelve el resultado al modelo
+messages.append(response.choices[0].message)
+messages.append({
+    "role": "tool",
+    "name": tool_call.function.name,
+    "content": json.dumps(result),
+    "tool_call_id": tool_call.id,
+})
+
+final_response = client.chat.complete(
+    model="mistral-medium-latest",
+    messages=messages,
+    tools=tools,
+)
+
+print(final_response.choices[0].message.content)
+# "Hoy hace 25ºC en Madrid y está soleado."
+```
+
+
+#### Paso 4: Verificar
+
+Una ejecución exitosa imprime una respuesta en lenguaje natural que incluye el valor de retorno de la herramienta. El modelo:
+
+* Detectó que la solicitud requería datos externos.
+* tool_calls Se generó una solicitud estructurada
+* Incorporó el resultado de nuestra función en una respuesta conversacional.
+
+Debemos configurar la opción `tool_choice: "any"` para forzar al modelo a llamar siempre a una herramienta, o podemos utilizar `tool_choice: "auto"` (opción predeterminada) para dejar que el modelo decida.
 
 
 ## Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias
