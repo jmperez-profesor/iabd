@@ -520,6 +520,11 @@ Este patrón funciona con cualquier fuente de datos: API, bases de datos o servi
 
 Definir la función que el modelo va a llamar. Este ejemplo crea una `get_weather` herramienta que acepta el nombre de una ciudad.
 
+```bash
+pip install mistralai
+```
+
+
 ```python
 import json
 import os
