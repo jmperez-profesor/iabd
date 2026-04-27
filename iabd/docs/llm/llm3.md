@@ -61,7 +61,9 @@ pip install chainlit
 Para el ejemplo con **Ollama + LangChain**, se añaden: 
 
 ```bash
-pip install chainlit langchain langchain-community
+#pip install chainlit langchain langchain-community
+pip install chainlit langchain-ollama
+
 ```
 
 ---
