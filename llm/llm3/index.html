@@ -1148,6 +1148,73 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#actividad-guiada-crea-un-agente-con-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad guiada: Crea un agente con herramientas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actividad guiada: Crea un agente con herramientas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-definir-la-funcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Definir la función
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-enviar-una-solicitud-con-la-herramienta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Enviar una solicitud con la herramienta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-ejecutar-la-funcion-y-devolver-el-resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Ejecutar la función y devolver el resultado.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3: Ejecutar la función y devolver el resultado.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-verificar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4: Verificar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actividad-migrar-agentes-de-mistral-studio-a-una-app-chainlit-con-funciones-propias" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2457,6 +2524,95 @@ chainlit<span class="w"> </span>run<span class="w"> </span>main.py
 <h2 id="probar-funciones-propias-en-mistral-studio">Probar funciones propias en Mistral Studio</h2>
 <h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
 <p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlist/meeting_summarizer_mistralai.png" /></p>
+<h2 id="actividad-guiada-crea-un-agente-con-herramientas">Actividad guiada: Crea un agente con herramientas</h2>
+<p>En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.</p>
+<ul>
+<li>Definir un esquema de herramienta que describa su función.</li>
+<li>Enviar un mensaje que active una llamada a la herramienta</li>
+<li>Ejecutar la función localmente y devuelve el resultado al modelo.</li>
+</ul>
+<p>Este patrón funciona con cualquier fuente de datos: API, bases de datos o servicios internos.</p>
+<h3 id="paso-1-definir-la-funcion">Paso 1: Definir la función</h3>
+<p>Definir la función que el modelo va a llamar. Este ejemplo crea una <code>get_weather</code> herramienta que acepta el nombre de una ciudad.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">])</span>
+
+<span class="c1"># Definir el esquema de la herramienta.</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Obtiene la temperatura actual de una ciudad dada.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Nombre de la ciudad, e.g. &#39;Madrid&#39;.&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="paso-2-enviar-una-solicitud-con-la-herramienta">Paso 2: Enviar una solicitud con la herramienta</h3>
+<p>Hacer al modelo una pregunta que requiera la herramienta. El modelo devuelve una respuesta de tipo <code>tool_calls</code> en lugar de una respuesta de texto.</p>
+<div class="highlight"><pre><span></span><code><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;¿Qué tiempo hace en Madrid hoy?&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">tool_call</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El modelo va a invocar a: </span><span class="si">{</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Con los argumentos: </span><span class="si">{</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="paso-3-ejecutar-la-funcion-y-devolver-el-resultado">Paso 3: Ejecutar la función y devolver el resultado.</h3>
+<p>Ejecutar la función con los argumentos del modelo y, a continuación, devolver el resultado para que el modelo pueda generar una respuesta en lenguaje natural.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Simular la función (reemplazar con una llamada a la API real)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span> <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;27°C&quot;</span><span class="p">,</span> <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Soleado&quot;</span><span class="p">}</span>
+
+<span class="c1"># Ejecutar la llamada a la herramienta</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+
+<span class="c1"># Devuelve el resultado al modelo</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">),</span>
+    <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">final_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">final_response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="c1"># &quot;Hoy hace 25ºC en Madrid y está soleado.&quot;</span>
+</code></pre></div>
+<h4 id="paso-4-verificar">Paso 4: Verificar</h4>
+<p>Una ejecución exitosa imprime una respuesta en lenguaje natural que incluye el valor de retorno de la herramienta. El modelo:</p>
+<ul>
+<li>Detectó que la solicitud requería datos externos.</li>
+<li>tool_calls Se generó una solicitud estructurada</li>
+<li>Incorporó el resultado de nuestra función en una respuesta conversacional.</li>
+</ul>
+<p>Debemos configurar la opción <code>tool_choice: "any"</code> para forzar al modelo a llamar siempre a una herramienta, o podemos utilizar <code>tool_choice: "auto"</code> (opción predeterminada) para dejar que el modelo decida.</p>
 <h2 id="actividad-migrar-agentes-de-mistral-studio-a-una-app-chainlit-con-funciones-propias">Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias</h2>
 <h3 id="contexto">Contexto</h3>
 <p>En la sesión anterior (LLM2) creaste en <strong>Mistral Studio AI</strong> dos agentes en el playground:</p>
