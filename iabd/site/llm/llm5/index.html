@@ -2662,23 +2662,22 @@
 <p><strong>Comprobamos que funciona correctamente:</strong></p>
 <p><img alt="Ejemplo de uso de la herramienta (tool) get_weather" src="../images/chainlit/ejemplo_uso_get_weather_api.png" /></p>
 <h2 id="actividad-guiada-chainlitagente-con-herramientas-personalizadas">Actividad guiada: Chainlit+agente con herramientas personalizadas</h2>
-<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. </p>
-<p>El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real get_weather() para consultar el tiempo de una ciudad. </p>
-<p>Vemos: </p>
+<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real <strong><code>get_weather()</code></strong> para consultar el tiempo de una ciudad. </p>
+<p>Veremos: </p>
 <ul>
-<li>Eventos de Chainlit</li>
+<li>Eventos de chainlit</li>
 <li>Persistencia de estado por sesión</li>
-<li>Arquitectura de tool calling con un LLM.</li>
+<li>Arquitectura de <code>**tool calling</code>** con un LLM.</li>
 </ul>
 <h3 id="paso-1-idea-de-arquitectura-chainlit-gestiona-la-interfaz-mistral-decide-si-necesita-una-tool-y-python-ejecuta-la-tool-real">Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real.</h3>
-<p>Código de referencia para explicar el flujo:</p>
+<p>Flujo de trabajo:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Chainlit recibe el mensaje</span>
 <span class="c1"># Mistral decide si responde o llama a una tool</span>
 <span class="c1"># Python ejecuta la tool</span>
 <span class="c1"># Mistral redacta la respuesta final</span>
 </code></pre></div>
-<p>**¿Quién ejecuta realmente get_weather: el modelo o nuestro backend? **</p>
-<p>La respuesta correcta es: el backend en Python.</p>
+<p><strong>¿Quién ejecuta realmente <code>get_weather()</code>: el modelo o nuestro backend?</strong></p>
+<p>La respuesta correcta es: el <strong>backend en Python</strong>.</p>
 <h3 id="paso-2-pue-preparen-el-entorno-y-el-bloque-inicial-de-configuracion">Paso 2 - Pue preparen el entorno y el bloque inicial de configuración.</h3>
 <p>Primero se carga la clave, luego se crea el cliente y finalmente se define el prompt del sistema. Esto da contexto antes de entrar en los callbacks de Chainlit.</p>
 <p><strong>NOTA</strong>: Se ha añadido una nueva variable de configuración llamada MODEL para no hardcodear el modelo seleccionado.</p>
