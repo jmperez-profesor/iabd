@@ -1156,7 +1156,7 @@
   <a href="#paso-11-llamada-al-modelo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 11 - llamada al modelo.
+        Paso 11 - llamada al modelo
       
     </span>
   </a>
@@ -1189,7 +1189,7 @@
   <a href="#paso-15-salida-temprana-cuando-no-hay-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 15 - Salida temprana cuando no hay tools.
+        Paso 15 - Salida temprana cuando no hay tools
       
     </span>
   </a>
@@ -2891,7 +2891,8 @@ Puntos clave:</p>
 ​* El primer mensaje del historial es el <strong><code>system prompt</code></strong>, que actúa como contexto permanente de la conversación.</li>
 </ul>
 <h3 id="paso-8-clon_message">Paso 8 <code>**@cl.on_message</code>**</h3>
-<p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools<code>** si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback</code>** como el punto de entrada principal para mensajes de la UI.
+<p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta <strong><code>tools</code></strong> si hace falta y finalmente devuelve la respuesta al chat. 
+Chainlit documenta este <strong><code>callback</code></strong> como el punto de entrada principal para mensajes de la <strong>UI</strong>.
 ​
 <div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
@@ -2901,8 +2902,8 @@ Puntos clave:</p>
 <li>Recuperar historial.</li>
 <li>Añadir mensaje usuario.</li>
 <li>Llamar al modelo.</li>
-<li>¿Pide tool?</li>
-<li>Si sí, ejecutar tool y volver al paso 3.</li>
+<li>¿Pide <strong><code>tool</code></strong>?</li>
+<li>Si sí, ejecutar <strong><code>tool</code></strong> y volver al paso 3.</li>
 <li>Si no, enviar respuesta final.</li>
 </ol>
 <h3 id="paso-9-memoria-conversacional">Paso 9 - Memoria conversacional</h3>
@@ -2914,15 +2915,15 @@ Puntos clave:</p>
 </code></pre></div>
 Explicación:</p>
 <ul>
-<li><code>messages</code>** es la historia completa.</li>
+<li><strong><code>`messages</code></strong> es la historia completa.</li>
 <li>Sin este historial, cada pregunta sería aislada.</li>
-<li><code>final_answer</code>** guardará la respuesta final que se enviará al usuario.</li>
+<li><strong><code>`final_answer</code></strong> guardará la respuesta final que se enviará al usuario.</li>
 </ul>
 <h3 id="paso-10-bucle-controlado-de-hasta-5-iteraciones">Paso 10 - Bucle controlado de hasta 5 iteraciones</h3>
-<p>La documentación de Mistral contempla cadenas sucesivas de <code>function calling</code>**, por eso tiene sentido iterar.
-​</p>
+<p>La documentación de Mistral contempla cadenas sucesivas de <strong><code>function calling</code></strong>, por eso tiene sentido iterar.
+​
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-</code></pre></div>
+</code></pre></div></p>
 <p>Ojo, este for:</p>
 <ul>
 <li>no es para repetir siempre cinco veces,</li>
@@ -2930,8 +2931,7 @@ Explicación:</p>
 <li>con un límite que evita <strong>bucles infinitos</strong>.
 ​</li>
 </ul>
-<h3 id="paso-11-llamada-al-modelo">Paso 11 - llamada al modelo.</h3>
-<p>Es uno de los puntos donde más dudas suelen aparecer.</p>
+<h3 id="paso-11-llamada-al-modelo">Paso 11 - llamada al modelo</h3>
 <p><div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
     <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
@@ -2951,7 +2951,7 @@ Explicación:</p>
 <p><strong><code>tool_choice="auto"</code></strong> deja que el modelo decida si necesita una tool o no.</p>
 </li>
 </ul>
-<p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar get_weather`**.
+<p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar <strong><code>get_weather</code></strong>.
 ​</p>
 <h3 id="paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial">Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.</h3>
 <p>​
@@ -2998,7 +2998,7 @@ Después se añade el mensaje del asistente al historial:</p>
 <p><div class="highlight"><pre><span></span><code><span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assistant_payload</span><span class="p">)</span>
 </code></pre></div>
 Ojo, el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las <strong><code>tools</code></strong>.</p>
-<h3 id="paso-15-salida-temprana-cuando-no-hay-tools">Paso 15 - Salida temprana cuando no hay tools.</h3>
+<h3 id="paso-15-salida-temprana-cuando-no-hay-tools">Paso 15 - Salida temprana cuando no hay <code>tools</code></h3>
 <p>​
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">tool_calls</span><span class="p">:</span>
     <span class="n">final_answer</span> <span class="o">=</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;No tengo respuesta.&quot;</span>
@@ -3018,6 +3018,7 @@ Esto significa: “el modelo ya ha terminado; no necesita ninguna herramienta ex
             <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invocando a la tool: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2"> con los argumentos: </span><span class="si">{</span><span class="n">function_args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">tool_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
 </code></pre></div>
 Explicación:</p>
