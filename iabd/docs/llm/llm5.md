@@ -291,19 +291,17 @@ def get_weather(city: str) -> dict:
 
 ## Actividad guiada: Chainlit+agente con herramientas personalizadas
 
-Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. 
+Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real **`get_weather()`** para consultar el tiempo de una ciudad. 
 
-El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real get_weather() para consultar el tiempo de una ciudad. 
+Veremos: 
 
-Vemos: 
-
-* Eventos de Chainlit
+* Eventos de chainlit
 * Persistencia de estado por sesión
-* Arquitectura de tool calling con un LLM.
+* Arquitectura de `**tool calling`** con un LLM.
 
 ### Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real. 
 
-Código de referencia para explicar el flujo:
+Flujo de trabajo:
 
 ```python
 # Chainlit recibe el mensaje
@@ -312,9 +310,9 @@ Código de referencia para explicar el flujo:
 # Mistral redacta la respuesta final
 ```
 
-**¿Quién ejecuta realmente get_weather: el modelo o nuestro backend? **
+**¿Quién ejecuta realmente `get_weather()`: el modelo o nuestro backend?**
 
-La respuesta correcta es: el backend en Python.
+La respuesta correcta es: el **backend en Python**.
 
 ### Paso 2 - Pue preparen el entorno y el bloque inicial de configuración. 
 
