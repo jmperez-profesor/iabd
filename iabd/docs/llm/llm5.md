@@ -1670,7 +1670,7 @@ Ejemplo claro de **`function calling`** con múltiples herramientas y de cómo i
 
 # Actividad de ampliación: agente con Chainlit, Mistral y tools encadenadas
 
-Esta actividad de ampliación parte de un ejemplo funcional con Chainlit y Mistral en el que el agente puede consultar el tiempo y averiguar el pueblo natal de una persona mediante tools. Chainlit permite gestionar la interfaz con callbacks como `@cl.on_message`, acciones y elementos visuales, mientras que Mistral soporta *function calling* para que el modelo solicite herramientas externas cuando las necesita. [1][2][3][4]
+Esta actividad de ampliación parte de un ejemplo funcional con Chainlit y Mistral en el que el agente puede consultar el tiempo y averiguar el pueblo natal de una persona mediante tools. Chainlit permite gestionar la interfaz con callbacks como **`@cl.on_message`**, acciones y elementos visuales, mientras que Mistral soporta *function calling* para que el modelo solicite herramientas externas cuando las necesita. 
 
 ## Título de la práctica
 
