@@ -546,7 +546,8 @@ Puntos clave:
 
 ### Paso 8 `**@cl.on_message`**
 
-Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools`** si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback`** como el punto de entrada principal para mensajes de la UI.
+Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta **`tools`** si hace falta y finalmente devuelve la respuesta al chat. 
+Chainlit documenta este **`callback`** como el punto de entrada principal para mensajes de la **UI**.
 ​
 ```python
 @cl.on_message
@@ -558,8 +559,8 @@ Esquema:
 1. Recuperar historial.
 2. Añadir mensaje usuario.
 3. Llamar al modelo.
-4. ¿Pide tool?
-5. Si sí, ejecutar tool y volver al paso 3.
+4. ¿Pide **`tool`**?
+5. Si sí, ejecutar **`tool`** y volver al paso 3.
 6. Si no, enviar respuesta final.
 
 ### Paso 9 - Memoria conversacional
@@ -574,15 +575,14 @@ final_answer = None
 ```
 Explicación:
 
-* `messages`** es la historia completa.
+* **``messages`** es la historia completa.
 * Sin este historial, cada pregunta sería aislada.
-* `final_answer`** guardará la respuesta final que se enviará al usuario.
+* **``final_answer`** guardará la respuesta final que se enviará al usuario.
 
 ### Paso 10 - Bucle controlado de hasta 5 iteraciones
 
-La documentación de Mistral contempla cadenas sucesivas de `function calling`**, por eso tiene sentido iterar.
+La documentación de Mistral contempla cadenas sucesivas de **`function calling`**, por eso tiene sentido iterar.
 ​
-
 ```python
 for _ in range(5):
 ```
@@ -593,9 +593,7 @@ Ojo, este for:
 * sino para permitir varias rondas de **“modelo -> tool -> modelo”**,
 * con un límite que evita **bucles infinitos**.
 ​
-### Paso 11 - llamada al modelo. 
-
-Es uno de los puntos donde más dudas suelen aparecer.
+### Paso 11 - llamada al modelo
 
 ```python
 response = await client.chat.complete_async(
@@ -613,7 +611,7 @@ Explicación:
 
 * **`tool_choice="auto"`** deja que el modelo decida si necesita una tool o no.
 
-**¿Qué pasaría si quitamos tools=TOOLS?** El modelo ya no sabría que puede usar get_weather`**.
+**¿Qué pasaría si quitamos tools=TOOLS?** El modelo ya no sabría que puede usar **`get_weather`**.
 ​
 ### Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
 ​
@@ -667,7 +665,7 @@ messages.append(assistant_payload)
 ```
 Ojo, el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las **`tools`**.
 
-### Paso 15 - Salida temprana cuando no hay tools.
+### Paso 15 - Salida temprana cuando no hay `tools`
 ​
 ```python
 if not tool_calls:
@@ -691,6 +689,7 @@ for tool_call in tool_calls:
             ensure_ascii=False
         )
     else:
+        print(f"Invocando a la tool: {function_name} con los argumentos: {function_args}")
         tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
 ```
 Explicación:

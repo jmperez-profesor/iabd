@@ -1123,7 +1123,106 @@
   <a href="#paso-8-clon_message" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 8 @cl.on_message
+        Paso 8 **@cl.on_message**
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-9-memoria-conversacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 9 - Memoria conversacional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-10-bucle-controlado-de-hasta-5-iteraciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 10 - Bucle controlado de hasta 5 iteraciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-11-llamada-al-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 11 - llamada al modelo.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-14-anadir-las-tool-calls-al-historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 14 - Añadir las tool calls al historial.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-15-salida-temprana-cuando-no-hay-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 15 - Salida temprana cuando no hay tools.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-16-ejecucion-real-de-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 16 - Ejecución real de tools.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-17-como-se-devuelve-el-resultado-de-la-tool-al-historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 17 - ¿Cómo se devuelve el resultado de la tool`** al historial?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-18-cierra-con-el-guardado-del-historial-y-el-envio-del-mensaje-final-al-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 18 - Cierra con el guardado del historial y el envío del mensaje final al usuario.
       
     </span>
   </a>
@@ -2676,7 +2775,7 @@ Explicación:</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="paso-5-tool-real-get_weather">Paso 5: tool real get_weather()</h3>
+<h3 id="paso-5-tool-real-get_weather">Paso 5: tool real <strong><code>get_weather()</code></strong></h3>
 <p>Este es el bloque más importante del lado backend porque muestra que una tool puede encadenar dos APIs: una para geocodificación y otra para tiempo actual. 
 Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permite que Chainlit muestre visualmente la ejecución de la herramienta.</p>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">)</span>
@@ -2761,7 +2860,7 @@ Aspectos a remarcar:</p>
 ​* Se controlan errores para que el agente no se rompa ante fallos de red</li>
 </ul>
 <h3 id="paso-6-available_tools">Paso 6 - AVAILABLE_TOOLS</h3>
-<p>Es un detalle pequeño, pero muy importante conceptualmente: aquí se hace el puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.</p>
+<p>Variable que hace de puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.</p>
 <div class="highlight"><pre><span></span><code><span class="n">AVAILABLE_TOOLS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;get_weather&quot;</span><span class="p">:</span> <span class="n">get_weather</span>
 <span class="p">}</span>
@@ -2789,37 +2888,25 @@ Porque el modelo solo devuelve texto estructurado; el backend necesita resolver 
 Puntos clave:</p>
 <ul>
 <li><strong><code>cl.user_session</code></strong> guarda datos por sesión de usuario, no globalmente.
-​* El primer mensaje del historial es el system prompt, que actúa como contexto permanente de la conversación.</li>
+​* El primer mensaje del historial es el <strong><code>system prompt</code></strong>, que actúa como contexto permanente de la conversación.</li>
 </ul>
-<h3 id="paso-8-clon_message">Paso 8 @cl.on_message</h3>
-<p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback como el punto de entrada principal para mensajes de la UI.
-​</p>
+<h3 id="paso-8-clon_message">Paso 8 <code>**@cl.on_message</code>**</h3>
+<p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools<code>** si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback</code>** como el punto de entrada principal para mensajes de la UI.
+​
 <div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-</code></pre></div>
+</code></pre></div></p>
 <p>Esquema:</p>
 <ol>
-<li>
-<p>Recuperar historial.</p>
-</li>
-<li>
-<p>Añadir mensaje usuario.</p>
-</li>
-<li>
-<p>Llamar al modelo.</p>
-</li>
-<li>
-<p>¿Pide tool?</p>
-</li>
-<li>
-<p>Si sí, ejecutar tool y volver al paso 3.</p>
-</li>
-<li>
-<p>Si no, enviar respuesta final.</p>
-</li>
+<li>Recuperar historial.</li>
+<li>Añadir mensaje usuario.</li>
+<li>Llamar al modelo.</li>
+<li>¿Pide tool?</li>
+<li>Si sí, ejecutar tool y volver al paso 3.</li>
+<li>Si no, enviar respuesta final.</li>
 </ol>
-<p>Paso 9
-Explica el bloque inicial de recuperación de sesión y añadido del mensaje del usuario. Esta parte conecta con el concepto de memoria conversacional.</p>
+<h3 id="paso-9-memoria-conversacional">Paso 9 - Memoria conversacional</h3>
+<p>Explica el bloque inicial de recuperación de sesión y añadido del mensaje del usuario. Esta parte conecta con el concepto de memoria conversacional.</p>
 <p><div class="highlight"><pre><span></span><code><span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
 <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
 
@@ -2827,123 +2914,148 @@ Explica el bloque inicial de recuperación de sesión y añadido del mensaje del
 </code></pre></div>
 Explicación:</p>
 <ul>
-<li><code>messages</code> es la historia completa.</li>
+<li><code>messages</code>** es la historia completa.</li>
 <li>Sin este historial, cada pregunta sería aislada.</li>
-<li><code>final_answer</code> guardará la respuesta final que se enviará al usuario.</li>
+<li><code>final_answer</code>** guardará la respuesta final que se enviará al usuario.</li>
 </ul>
-<p>Paso 10
-Explica el bucle controlado de hasta cinco iteraciones. La documentación de Mistral contempla cadenas sucesivas de function calling, por eso tiene sentido iterar.
+<h3 id="paso-10-bucle-controlado-de-hasta-5-iteraciones">Paso 10 - Bucle controlado de hasta 5 iteraciones</h3>
+<p>La documentación de Mistral contempla cadenas sucesivas de <code>function calling</code>**, por eso tiene sentido iterar.
 ​</p>
-<p>python
-for _ in range(5):
-Insiste en que este for:</p>
-<p>no es para repetir siempre cinco veces,</p>
-<p>sino para permitir varias rondas de “modelo -&gt; tool -&gt; modelo”,</p>
-<p>con un límite que evita loops infinitos.
-​</p>
-<p>Paso 11
-Muestra la llamada al modelo. Es uno de los puntos donde más dudas suelen aparecer.</p>
-<p>python
-response = await client.chat.complete_async(
-    model=MODEL,
-    messages=messages,
-    tools=TOOLS,
-    tool_choice="auto",
-)
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+</code></pre></div>
+<p>Ojo, este for:</p>
+<ul>
+<li>no es para repetir siempre cinco veces,</li>
+<li>sino para permitir varias rondas de <strong>“modelo -&gt; tool -&gt; modelo”</strong>,</li>
+<li>con un límite que evita <strong>bucles infinitos</strong>.
+​</li>
+</ul>
+<h3 id="paso-11-llamada-al-modelo">Paso 11 - llamada al modelo.</h3>
+<p>Es uno de los puntos donde más dudas suelen aparecer.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+    <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 Explicación:</p>
-<p>messages da contexto.</p>
-<p>tools=TOOLS informa al modelo de qué herramientas existen.</p>
-<p>tool_choice="auto" deja que el modelo decida si necesita una tool o no.</p>
-<p>Pregunta para clase: ¿Qué pasaría si quitamos tools=TOOLS? El modelo ya no sabría que puede usar get_weather.
+<ul>
+<li>
+<p><strong><code>messages</code></strong> da contexto.</p>
+</li>
+<li>
+<p><strong><code>tools=TOOLS</code></strong> informa al modelo de qué herramientas existen.</p>
+</li>
+<li>
+<p><strong><code>tool_choice="auto"</code></strong> deja que el modelo decida si necesita una tool o no.</p>
+</li>
+</ul>
+<p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar get_weather`**.
 ​</p>
-<p>Paso 12
-Enseña cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
-​</p>
-<p>python
-assistant_message = response.choices[0].message</p>
-<p>assistant_payload = {
-    "role": "assistant",
-    "content": assistant_message.content or ""
-}
-Aquí puedes remarcar que el mensaje del asistente puede venir:</p>
+<h3 id="paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial">Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.</h3>
+<p>​
+<div class="highlight"><pre><span></span><code><span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+
+<span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Ojo, <strong>el mensaje del asistente puede venir</strong>:</p>
+<ul>
+<li>
 <p>con texto normal,</p>
-<p>con tool_calls,</p>
+</li>
+<li>
+<p>con <strong><code>tool_calls</code></strong>,</p>
+</li>
+<li>
 <p>o con ambas cosas.</p>
-<p>Paso 13
-Explica la detección de tool_calls. Este es el corazón del patrón.</p>
-<p>python
-tool_calls = getattr(assistant_message, "tool_calls", None)
-Si hay tool_calls, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay tool_calls, ya tenemos respuesta final.
+</li>
+</ul>
+<p>Paso 13 - Detección de <strong><code>tool_calls</code></strong>. Este es el corazón del patrón.</p>
+<div class="highlight"><pre><span></span><code><span class="n">tool_calls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">assistant_message</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Si hay <strong><code>tool_calls</code></strong>, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay <strong><code>tool_calls</code></strong>, ya tenemos respuesta final.
 ​</p>
-<p>Paso 14
-Muestra el bloque que añade las tool calls al historial. Esto es importante porque el historial debe reflejar también lo que el asistente pidió hacer.</p>
-<p>python
-if tool_calls:
-    assistant_payload["tool_calls"] = [
-        {
-            "id": tool_call.id,
-            "type": "function",
-            "function": {
-                "name": tool_call.function.name,
-                "arguments": tool_call.function.arguments,
-            },
-        }
-        for tool_call in tool_calls
-    ]
+<h3 id="paso-14-anadir-las-tool-calls-al-historial">Paso 14 - Añadir las <strong><code>tool calls</code></strong> al historial.</h3>
+<p>Esto es importante porque el historial debe reflejar también lo que el asistente pidió hacer.</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">assistant_payload</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span>
+    <span class="p">]</span>
+</code></pre></div>
 Después se añade el mensaje del asistente al historial:</p>
-<p>python
-messages.append(assistant_payload)
-Punto didáctico: el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las tools.</p>
-<p>Paso 15
-Explica la salida temprana cuando no hay tools.
-​</p>
-<p>python
-if not tool_calls:
-    final_answer = assistant_message.content or "No tengo respuesta."
-    break
+<p><div class="highlight"><pre><span></span><code><span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assistant_payload</span><span class="p">)</span>
+</code></pre></div>
+Ojo, el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las <strong><code>tools</code></strong>.</p>
+<h3 id="paso-15-salida-temprana-cuando-no-hay-tools">Paso 15 - Salida temprana cuando no hay tools.</h3>
+<p>​
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;No tengo respuesta.&quot;</span>
+    <span class="k">break</span>
+</code></pre></div>
 Esto significa: “el modelo ya ha terminado; no necesita ninguna herramienta externa”. En ese caso se guarda la respuesta y se rompe el bucle.
 ​</p>
-<p>Paso 16
-Ahora presenta la ejecución real de tools. Aquí el alumnado ve la diferencia entre “el modelo propone” y “el backend ejecuta”.</p>
-<p>python
-for tool_call in tool_calls:
-    function_name = tool_call.function.name
-    function_args = json.loads(tool_call.function.arguments)</p>
-<div class="highlight"><pre><span></span><code>if function_name not in AVAILABLE_TOOLS:
-    tool_result = json.dumps(
-        {&quot;error&quot;: f&quot;Herramienta no implementada: {function_name}&quot;},
-        ensure_ascii=False
-    )
-else:
-    tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
+<h3 id="paso-16-ejecucion-real-de-tools">Paso 16 - Ejecución real de <strong><code>tools</code></strong>.</h3>
+<p>Aquí el alumnado ve la diferencia entre “el modelo propone” y “el backend ejecuta”.</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">:</span>
+        <span class="n">tool_result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Herramienta no implementada: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tool_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
 </code></pre></div>
-<p>Explicación:</p>
-<p>function_name es el nombre generado por el modelo.</p>
-<p>function_args transforma el JSON en un diccionario Python.</p>
-<p>AVAILABLE_TOOLS actúa como tabla de resolución segura.</p>
-<p>Paso 17
-Explica cómo se devuelve el resultado de la tool al historial.</p>
-<p>python
-messages.append(
-    {
-        "role": "tool",
-        "name": function_name,
-        "tool_call_id": tool_call.id,
-        "content": tool_result,
-    }
-)
-Este bloque es clave porque en la siguiente iteración el modelo leerá ese resultado y podrá producir una respuesta final como “En Elche hay 18°C y cielo parcialmente nuboso”.</p>
-<p>Paso 18
-Cierra con el guardado del historial y el envío del mensaje final al usuario.</p>
-<p>python
-cl.user_session.set("messages", messages)</p>
-<p>await cl.Message(
-    content=final_answer or "No he podido generar una respuesta final."
-).send()
 Explicación:</p>
-<p>set("messages", messages) persiste la conversación en la sesión actual.
-​</p>
-<p>cl.Message(...).send() muestra la salida en la interfaz.</p>
+<ul>
+<li>
+<p><strong><code>function_name</code></strong> es el nombre generado por el modelo.</p>
+</li>
+<li>
+<p><strong><code>function_args</code></strong> transforma el <strong>JSON</strong> en un diccionario Python.</p>
+</li>
+<li>
+<p><strong><code>AVAILABLE_TOOLS</code></strong> actúa como tabla de resolución segura.</p>
+</li>
+</ul>
+<h3 id="paso-17-como-se-devuelve-el-resultado-de-la-tool-al-historial">Paso 17 - ¿Cómo se devuelve el resultado de la tool`** al historial?</h3>
+<p><div class="highlight"><pre><span></span><code><span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+        <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">tool_result</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+En la siguiente iteración el modelo leerá ese resultado y podrá producir una respuesta final como “En Elche hay 18°C y cielo parcialmente nuboso”.</p>
+<h3 id="paso-18-cierra-con-el-guardado-del-historial-y-el-envio-del-mensaje-final-al-usuario">Paso 18 - Cierra con el guardado del historial y el envío del mensaje final al usuario.</h3>
+<div class="highlight"><pre><span></span><code><span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span>
+
+<span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+    <span class="n">content</span><span class="o">=</span><span class="n">final_answer</span> <span class="ow">or</span> <span class="s2">&quot;No he podido generar una respuesta final.&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Explicación:</strong></p>
+<ul>
+<li><strong><code>set("messages", messages)</code></strong> persiste la conversación en la sesión actual.
+​</li>
+<li><strong><code>cl.Message(...).send()</code></strong> muestra la salida en la interfaz.</li>
+</ul>
 <p><strong>Solución completa:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
