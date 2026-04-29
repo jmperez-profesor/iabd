@@ -418,7 +418,7 @@ def weather_code_to_text(code: int | None) -> str:
     return code_map.get(code, f"Código meteorológico {code}")
 ```
 
-### Paso 5: tool real get_weather()
+### Paso 5: tool real **`get_weather()`**
 
 Este es el bloque más importante del lado backend porque muestra que una tool puede encadenar dos APIs: una para geocodificación y otra para tiempo actual. 
 Además, el decorador **`@cl.step(type="tool")`** permite que Chainlit muestre visualmente la ejecución de la herramienta.
@@ -505,10 +505,9 @@ Aspectos a remarcar:
 * **`@cl.step(type="tool")`** permite ver la tool como paso intermedio en Chainlit.
 ​* Se controlan errores para que el agente no se rompa ante fallos de red
 
-
 ### Paso 6 - AVAILABLE_TOOLS
 
-Es un detalle pequeño, pero muy importante conceptualmente: aquí se hace el puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.
+Variable que hace de puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.
 
 ```python
 AVAILABLE_TOOLS = {
@@ -543,13 +542,12 @@ async def on_chat_start():
 Puntos clave:
 
 * **`cl.user_session`** guarda datos por sesión de usuario, no globalmente.
-​* El primer mensaje del historial es el system prompt, que actúa como contexto permanente de la conversación.
+​* El primer mensaje del historial es el **`system prompt`**, que actúa como contexto permanente de la conversación.
 
-### Paso 8 @cl.on_message
+### Paso 8 `**@cl.on_message`**
 
-Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback como el punto de entrada principal para mensajes de la UI.
+Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools`** si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback`** como el punto de entrada principal para mensajes de la UI.
 ​
-
 ```python
 @cl.on_message
 async def on_message(message: cl.Message):
@@ -558,18 +556,14 @@ async def on_message(message: cl.Message):
 Esquema:
 
 1. Recuperar historial.
-
 2. Añadir mensaje usuario.
-
 3. Llamar al modelo.
-
 4. ¿Pide tool?
-
 5. Si sí, ejecutar tool y volver al paso 3.
-
 6. Si no, enviar respuesta final.
 
-Paso 9
+### Paso 9 - Memoria conversacional
+
 Explica el bloque inicial de recuperación de sesión y añadido del mensaje del usuario. Esta parte conecta con el concepto de memoria conversacional.
 
 ```python
@@ -580,77 +574,79 @@ final_answer = None
 ```
 Explicación:
 
-* `messages` es la historia completa.
+* `messages`** es la historia completa.
 * Sin este historial, cada pregunta sería aislada.
-* `final_answer` guardará la respuesta final que se enviará al usuario.
+* `final_answer`** guardará la respuesta final que se enviará al usuario.
 
-Paso 10
-Explica el bucle controlado de hasta cinco iteraciones. La documentación de Mistral contempla cadenas sucesivas de function calling, por eso tiene sentido iterar.
+### Paso 10 - Bucle controlado de hasta 5 iteraciones
+
+La documentación de Mistral contempla cadenas sucesivas de `function calling`**, por eso tiene sentido iterar.
 ​
 
-python
+```python
 for _ in range(5):
-Insiste en que este for:
+```
 
-no es para repetir siempre cinco veces,
+Ojo, este for:
 
-sino para permitir varias rondas de “modelo -> tool -> modelo”,
-
-con un límite que evita loops infinitos.
+* no es para repetir siempre cinco veces,
+* sino para permitir varias rondas de **“modelo -> tool -> modelo”**,
+* con un límite que evita **bucles infinitos**.
 ​
+### Paso 11 - llamada al modelo. 
 
-Paso 11
-Muestra la llamada al modelo. Es uno de los puntos donde más dudas suelen aparecer.
+Es uno de los puntos donde más dudas suelen aparecer.
 
-python
+```python
 response = await client.chat.complete_async(
     model=MODEL,
     messages=messages,
     tools=TOOLS,
     tool_choice="auto",
 )
+```
 Explicación:
 
-messages da contexto.
+* **`messages`** da contexto.
 
-tools=TOOLS informa al modelo de qué herramientas existen.
+* **`tools=TOOLS`** informa al modelo de qué herramientas existen.
 
-tool_choice="auto" deja que el modelo decida si necesita una tool o no.
+* **`tool_choice="auto"`** deja que el modelo decida si necesita una tool o no.
 
-Pregunta para clase: ¿Qué pasaría si quitamos tools=TOOLS? El modelo ya no sabría que puede usar get_weather.
+**¿Qué pasaría si quitamos tools=TOOLS?** El modelo ya no sabría que puede usar get_weather`**.
 ​
-
-Paso 12
-Enseña cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
+### Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
 ​
-
-python
+```python
 assistant_message = response.choices[0].message
 
 assistant_payload = {
     "role": "assistant",
     "content": assistant_message.content or ""
 }
-Aquí puedes remarcar que el mensaje del asistente puede venir:
+```
 
-con texto normal,
+Ojo, **el mensaje del asistente puede venir**:
 
-con tool_calls,
+* con texto normal,
 
-o con ambas cosas.
+* con **`tool_calls`**,
 
-Paso 13
-Explica la detección de tool_calls. Este es el corazón del patrón.
+* o con ambas cosas.
 
-python
+Paso 13 - Detección de **`tool_calls`**. Este es el corazón del patrón.
+
+```python
 tool_calls = getattr(assistant_message, "tool_calls", None)
-Si hay tool_calls, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay tool_calls, ya tenemos respuesta final.
+```
+
+Si hay **`tool_calls`**, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay **`tool_calls`**, ya tenemos respuesta final.
 ​
+### Paso 14 - Añadir las **`tool calls`** al historial. 
 
-Paso 14
-Muestra el bloque que añade las tool calls al historial. Esto es importante porque el historial debe reflejar también lo que el asistente pidió hacer.
+Esto es importante porque el historial debe reflejar también lo que el asistente pidió hacer.
 
-python
+```python
 if tool_calls:
     assistant_payload["tool_calls"] = [
         {
@@ -663,27 +659,28 @@ if tool_calls:
         }
         for tool_call in tool_calls
     ]
+```
 Después se añade el mensaje del asistente al historial:
 
-python
+```python
 messages.append(assistant_payload)
-Punto didáctico: el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las tools.
+```
+Ojo, el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las **`tools`**.
 
-Paso 15
-Explica la salida temprana cuando no hay tools.
+### Paso 15 - Salida temprana cuando no hay tools.
 ​
-
-python
+```python
 if not tool_calls:
     final_answer = assistant_message.content or "No tengo respuesta."
     break
+```
 Esto significa: “el modelo ya ha terminado; no necesita ninguna herramienta externa”. En ese caso se guarda la respuesta y se rompe el bucle.
 ​
+### Paso 16 - Ejecución real de **`tools`**. 
 
-Paso 16
-Ahora presenta la ejecución real de tools. Aquí el alumnado ve la diferencia entre “el modelo propone” y “el backend ejecuta”.
+Aquí el alumnado ve la diferencia entre “el modelo propone” y “el backend ejecuta”.
 
-python
+```python
 for tool_call in tool_calls:
     function_name = tool_call.function.name
     function_args = json.loads(tool_call.function.arguments)
@@ -695,18 +692,18 @@ for tool_call in tool_calls:
         )
     else:
         tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
+```
 Explicación:
 
-function_name es el nombre generado por el modelo.
+* **`function_name`** es el nombre generado por el modelo.
 
-function_args transforma el JSON en un diccionario Python.
+* **`function_args`** transforma el **JSON** en un diccionario Python.
 
-AVAILABLE_TOOLS actúa como tabla de resolución segura.
+* **`AVAILABLE_TOOLS`** actúa como tabla de resolución segura.
 
-Paso 17
-Explica cómo se devuelve el resultado de la tool al historial.
+### Paso 17 - ¿Cómo se devuelve el resultado de la tool`** al historial?
 
-python
+```python
 messages.append(
     {
         "role": "tool",
@@ -715,23 +712,24 @@ messages.append(
         "content": tool_result,
     }
 )
-Este bloque es clave porque en la siguiente iteración el modelo leerá ese resultado y podrá producir una respuesta final como “En Elche hay 18°C y cielo parcialmente nuboso”.
+```
+En la siguiente iteración el modelo leerá ese resultado y podrá producir una respuesta final como “En Elche hay 18°C y cielo parcialmente nuboso”.
 
-Paso 18
-Cierra con el guardado del historial y el envío del mensaje final al usuario.
+### Paso 18 - Cierra con el guardado del historial y el envío del mensaje final al usuario.
 
-python
+```python
 cl.user_session.set("messages", messages)
 
 await cl.Message(
     content=final_answer or "No he podido generar una respuesta final."
 ).send()
-Explicación:
+```
 
-set("messages", messages) persiste la conversación en la sesión actual.
+**Explicación:**
+
+* **`set("messages", messages)`** persiste la conversación en la sesión actual.
 ​
-
-cl.Message(...).send() muestra la salida en la interfaz.
+* **`cl.Message(...).send()`** muestra la salida en la interfaz.
 
 
 

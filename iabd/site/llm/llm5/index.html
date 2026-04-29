@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm4/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm5/">
       
       
-        <link rel="prev" href="../llm3/">
+        <link rel="prev" href="../llm4/">
       
       
-        <link rel="next" href="../llm5/">
+        <link rel="next" href="../../bedrock/sesion1/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas) - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas) - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chainlit-framework-de-python-para-crear-interfaces-de-chat-interactivas" class="md-skip">
+        <a href="#probar-funciones-propias-en-mistral-studio" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+              Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
             
           </span>
         </div>
@@ -832,6 +832,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -841,8 +869,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -851,7 +877,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+    Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
   
 
     
@@ -869,7 +895,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+    Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
   
 
     
@@ -885,252 +911,12 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-que-es-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. ¿Qué es Chainlit?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#componentes-de-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Componentes de Chainlit
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-instalacion-y-requisitos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Instalación y requisitos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-conceptos-basicos-de-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Conceptos básicos de Chainlit
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Conceptos básicos de Chainlit">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-hooks-del-ciclo-de-vida-del-chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1. Hooks del ciclo de vida del chat
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3.1. Hooks del ciclo de vida del chat">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_chat_start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_chat_start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_message" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_message
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construyendo-con-clon_stop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construyendo con @cl.on_stop
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_chat_end" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_chat_end
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pasos-con-clstep" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pasos con @cl.step
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#acciones-de-iu-botones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Acciones de IU (botones)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transmision-de-mensajes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transmisión de mensajes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuracion-de-chainlit-configtoml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuración de Chainlit (config.toml)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuración de Chainlit (config.toml)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#persistencia" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Persistencia
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-de-archivos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Carga de archivos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#personalizacion-de-la-iu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Personalización de la IU
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ajustes-de-usabilidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ajustes de usabilidad
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-primer-ejemplo-chatbot-sorprendeme-estatico-sin-llm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-proyecto-bot-sorprendeme-powered-by-ollama" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Proyecto: Bot Sorpréndeme Powered by Ollama
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-casos-de-uso-recomendados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Casos de uso recomendados
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#probar-funciones-propias-en-mistral-studio" class="md-nav__link">
@@ -1249,6 +1035,100 @@
   
     <nav class="md-nav" aria-label="Actividad guiada: Chainlit+agente con herramientas personalizadas">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-idea-de-arquitectura-chainlit-gestiona-la-interfaz-mistral-decide-si-necesita-una-tool-y-python-ejecuta-la-tool-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-pue-preparen-el-entorno-y-el-bloque-inicial-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2 - Pue preparen el entorno y el bloque inicial de configuración.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-funcion-funcion-auxiliar-weather_code_to_text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4: Función función auxiliar weather_code_to_text()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-tool-real-get_weather" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5: tool real get_weather()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-available_tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6 - AVAILABLE_TOOLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7-clon_chat_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 7 @cl.on_chat_start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-8-clon_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 8 @cl.on_message
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#documentacion-paso-a-paso-de-on_message-en-chainlit-con-mistral" class="md-nav__link">
@@ -1590,34 +1470,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../llm5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2455,410 +2307,8 @@
 
 
 
-<h1 id="chainlit-framework-de-python-para-crear-interfaces-de-chat-interactivas">Chainlit: framework de Python para crear <strong>interfaces de chat interactivas</strong></h1>
-<h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
-<p><img alt="" src="../images/chainlit/overview.gif" /></p>
-<p>Chainlit nos ayuda a crear frontends para chatbots de IA, herramientas y flujos de trabajo LLM. Abstrae la complejidad del front-end y nos permite centrarnos en la lógica de Python, a la vez que proporciona soporte para añadir botones, controles deslizantes, soporte para subir archivos o incluso conectarnos a herramientas que utilicen el <strong>protocolo de contexto de modelo (MCP)</strong>. </p>
-<p>Chainlit es ideal para:</p>
-<ul>
-<li>Prototipos de aplicaciones basadas en LLM</li>
-<li>Crear herramientas internas</li>
-<li>Construir demostraciones educativas</li>
-<li>Conectar tus modelos a herramientas o API externas</li>
-</ul>
-<p>Ideas clave:</p>
-<ul>
-<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas.  </li>
-<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). </li>
-<li>Gestiona por nosotros elementos típicos de una UI de chat:<ul>
-<li>mensajes,</li>
-<li>acciones (botones, etc.),</li>
-<li>streaming de respuestas,</li>
-<li>persistencia de sesiones. </li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="componentes-de-chainlit">Componentes de Chainlit</h2>
-<p>Todas las aplicaciones de Chainlit se basan en unas pocas características esenciales:</p>
-<ol>
-<li>
-<p><strong>Hooks del ciclo de vida del chat</strong>: permiten controlar lo que ocurre en las distintas fases de un chat. Por ejemplo:</p>
-<ul>
-<li><strong><code>@cl.on_chat_start</code></strong> se ejecuta cuando se inicia un chat.</li>
-<li><strong><code>@cl.on_message</code></strong> se ejecuta cuando el usuario envía un mensaje.</li>
-<li><strong><code>@cl.on_chat_end</code></strong> se ejecuta cuando finaliza el chat.</li>
-<li><strong><code>@cl.step</code></strong> los asistentes basados ​​en LLM realizan varios pasos para procesar la solicitud del usuario, formando una cadena de pensamiento. A diferencia de un mensaje, un step tiene un tipo, una entrada/salida y un inicio/fin.</li>
-</ul>
-</li>
-<li>
-<p><strong>Acciones del IU</strong>: Chainlit permite añadir botones con <strong><code>cl.Action</code></strong> y manejarlos con <strong><code>@cl.action_callback</code></strong>. Son perfectas para crear interfaces de usuario limpias e interactivas sin necesidad de que el usuario introduzca texto.</p>
-</li>
-<li>
-<p><strong>Transmisión de mensajes</strong>: Con los <strong>LLM que admiten la transmisión de tokens</strong>, podemos transmitir respuestas en tiempo real utilizando <strong><code>stream=True</code></strong>, haciendo que nuestra aplicación parezca más dinámica y receptiva.</p>
-</li>
-<li>
-<p><strong>Configuración con <code>config.toml</code></strong>: Este archivo permite activar funciones como la persistencia del chat, la carga de archivos, la personalización del tema y los ajustes de usabilidad, todo ello sin modificar tu código Python.</p>
-</li>
-</ol>
-<h2 id="2-instalacion-y-requisitos">2. Instalación y requisitos</h2>
-<p>Requisitos básicos son:</p>
-<ul>
-<li>Python 3.8 o superior.  </li>
-<li>Instalar Chainlit desde <code>pip</code>: </li>
-</ul>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit
-</code></pre></div>
-<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: </p>
-<div class="highlight"><pre><span></span><code><span class="c1">#pip install chainlit langchain langchain-community</span>
-pip<span class="w"> </span>install<span class="w"> </span>chainlit<span class="w"> </span>langchain-ollama
-</code></pre></div>
-<hr />
-<h2 id="3-conceptos-basicos-de-chainlit">3. Conceptos básicos de Chainlit</h2>
-<p>Todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. </p>
-<h3 id="31-hooks-del-ciclo-de-vida-del-chat">3.1. Hooks del ciclo de vida del chat</h3>
-<p>Chainlit proporciona <strong>decoradores</strong> que se ejecutan en distintos momentos de la conversación: </p>
-<ul>
-<li><strong><code>@cl.on_chat_start</code></strong>: se lanza al empezar un chat.  </li>
-<li><strong><code>@cl.on_message</code></strong>: se lanza cuando el usuario envía un mensaje.  </li>
-<li><strong><code>@cl.on_chat_end</code></strong>: se lanza al terminar una sesión.  </li>
-</ul>
-<h4 id="construir-con-clon_chat_start">Construir con <strong><code>@cl.on_chat_start</code></strong></h4>
-<p>Este hook se ejecuta cuando se inicia una nueva sesión de chat. Podemos utilizarlo, por ejemplo, <strong>para saludar al usuario, mostrar un mensaje de bienvenida o inicializar el estado de la sesión</strong>.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+  <h1>Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)</h1>
 
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A new chat session has started!&quot;</span><span class="p">)</span>
-</code></pre></div>
-<img alt="" src="../images/chainlit/on_chat_start.png" /></p>
-<h4 id="construir-con-clon_message">Construir con <code>@cl.on_message</code></h4>
-<p>Este hook de mensaje se ejecuta cuando el usuario envía un nuevo mensaje. Lo utilizamos para procesar la entrada del usuario, llamar a un LLM o devolver una respuesta.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user sent:&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;You said: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p><img alt="" src="../images/chainlit/on_message.png" /></p>
-<p>Explicación del código: 
-<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-</code></pre></div></p>
-<ul>
-<li>
-<p><strong><code>@cl.on_message</code></strong> es un <strong>decorador</strong> de hook: le dice a Chainlit que esta función se debe ejecutar cada vez que la interfaz reciba un mensaje nuevo del usuario.</p>
-</li>
-<li>
-<p><strong><code>async def</code></strong> indica que la función es <strong>asíncrona</strong>, porque dentro va a hacer operaciones de E/S (enviar mensajes de vuelta) que Chainlit gestiona con <strong><code>await</code></strong>.</p>
-</li>
-<li>
-<p>El parámetro <strong><code>msg: cl.Message</code></strong> es el objeto <strong>mensaje</strong> que llega desde la UI; tiene atributos como <strong><code>content (texto que ha escrito el usuario)</code></strong>, <strong><code>author</code></strong>, <strong><code>created_at</code></strong>, etc.</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;You said: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<ul>
-<li>Aquí creamos un nuevo mensaje de respuesta hacia la UI usando la clase <strong><code>cl.Message</code></strong>.</li>
-<li>
-<p>Le pasamos el texto de respuesta en el parámetro <code>content</code>, usando una <strong><code>f-string</code></strong> para incluir lo que escribió el usuario:</p>
-<ul>
-<li>Si el usuario pone <strong><code>“hola”</code></strong>, la respuesta será <strong><code>“You said: hola”</code></strong>.</li>
-</ul>
-</li>
-<li>
-<p><strong><code>.send()</code></strong> envía ese mensaje a la interfaz de Chainlit, y como es una operación <strong>asíncrona</strong>, necesitas <strong><code>await</code></strong>.</p>
-</li>
-</ul>
-<h4 id="construyendo-con-clon_stop">Construyendo con <code>@cl.on_stop</code></h4>
-<p>El hook <strong><code>on_stop</code></strong> se ejecuta cuando el usuario pulsa el botón de parada (⏹) durante una tarea en ejecución. Sirve para cancelar operaciones de larga duración o limpiar sesiones interrumpidas.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Type anything and I&#39;ll pretend to work on it.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Working on it... you can press Stop&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Simulamos una tarea larga de 10 segundos</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Task complete!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task was interrupted!&quot;</span><span class="p">)</span>
-        <span class="c1"># Opcional, tan solo para los logs del servidor</span>
-        <span class="k">raise</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_stop</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_stop</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user clicked Stop!&quot;</span><span class="p">)</span>
-</code></pre></div>
-Cuando el usuario envía un mensaje, Chainlit simula una tarea con <strong><code>asyncio.sleep(10)</code></strong>. Si el usuario pulsa el botón de parada (⏹), la tarea se cancela y se activa <strong><code>@cl.on_stop</code></strong> para registrar la interrupción.</p>
-<p><img alt="" src="../images/chainlit/on_chat_stop.png" /></p>
-<h4 id="construir-con-clon_chat_end">Construir con <strong><code>@cl.on_chat_end</code></strong></h4>
-<p>Este hook se activa cuando finaliza la sesión, ya sea porque el usuario actualiza, cierra la pestaña o inicia una nueva sesión. <strong>Suele utilizarse para registrar desconexiones o guardar el estado</strong>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Welcome! Feel free to leave anytime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_end</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_end</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The user disconnected!&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>Una vez abierto el <strong><code>localhost</code></strong>, podemos trabajar con él. Cuando cerremos la pestaña o la ventana de localhost, el terminal mostrará lo siguiente:</p>
-<p><img alt="on_chat_end() chainlit output" src="../images/chainlit/on_chat_end.png" /></p>
-<h4 id="pasos-con-clstep">Pasos con <strong><code>@cl.step</code></strong></h4>
-<p>Los asistentes basados ​​en LLM realizan varios pasos para procesar la solicitud del usuario, formando una cadena de pensamiento. A diferencia de los Message, un paso tiene un tipo, una entrada/salida y un inicio/fin.</p>
-<p>Dependiendo de la configuración de <code>config.ui.cot</code>, se puede mostrar toda la cadena de pensamiento completa, ocultarla o mostrar solo las llamadas a la herramienta.
-​
-<strong>Un ejemplo sencillo de cómo llamar a una herramienta.</strong></p>
-<p>Veamos un ejemplo sencillo de una cadena de pensamiento que toma el mensaje de un usuario, lo procesa y envía una respuesta.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">tool</span><span class="p">():</span>
-    <span class="c1"># Simulate a running task</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="s2">&quot;Response from the tool!&quot;</span>
-
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="c1"># Call the tool</span>
-    <span class="n">tool_res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">tool</span><span class="p">()</span>
-
-    <span class="c1"># Send the final answer.</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;This is the final answer&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<img alt="" src="../images/chainlit/on_step.png" /></p>
-<h4 id="acciones-de-iu-botones">Acciones de IU (botones)</h4>
-<p>Chainlit nos permite añadir botones interactivos directamente en la interfaz de nuestro chatbot. Cada botón se define como una acción y se conecta a una <strong>función de llamada de retorno de Python</strong>. Podemos enviar botones como parte de un <strong>Mensaje</strong> utilizando el argumento <strong>acciones</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="c1">#nombre del callback</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;👋 Say Hello&quot;</span><span class="p">,</span>
-            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;smile&quot;</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;hi&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Click a button!&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">actions</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p>Así es como podemeos gestionar la pulsación de un botón:</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_hello</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Hello there! 👋&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p>El decorador <strong><code>@cl.action_callback("hello")</code></strong> indica a Chainlit que escuche los clics en un botón con el nombre <strong><code>"hola"</code></strong>. Cuando se pulsa, envía un mensaje amistoso al usuario en la interfaz de chat.</p>
-<p><img alt="@cl.action_callback chainlit salida" src="../images/chainlit/callback_hello.png" /></p>
-<p><strong>Consejo</strong>: podemos personalizar la carga útil con cualquier dato que quieras enviar al servidor.</p>
-<h4 id="transmision-de-mensajes">Transmisión de mensajes</h4>
-<p><strong>Chainlit</strong> admite la transmisión en tiempo real de las respuestas LLM. Esto significa que podemos enviar contenido al usuario de forma incremental a medida que se genera.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Pensando...&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">llm</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
-        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">chunk</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s2">&quot;LLM&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p><strong>Vamos a desglosarlo:</strong></p>
-<ul>
-<li>En primer lugar, muestra inmediatamente un mensaje "Pensando..." para que el usuario sepa que la aplicación está funcionando.</li>
-<li>Después, envía el mensaje del usuario a un <strong>LLM compatible con streaming</strong>.</li>
-<li>A medida que el modelo genera resultados, transmite cada <strong>fragmento (chunk)</strong> a la interfaz de usuario en tiempo real.</li>
-<li>El parámetro <strong><code>stream=True</code></strong> garantiza que cada trozo aparezca de forma incremental en lugar de esperar a la respuesta completa.</li>
-</ul>
-<p><strong>Nota</strong>: Esto funciona mejor con los modelos que admiten <strong>streaming</strong>.</p>
-<h4 id="configuracion-de-chainlit-configtoml">Configuración de Chainlit (config.toml)</h4>
-<p>Para desbloquear potentes funciones como la <strong>persistencia del chat</strong>, <strong>la subida de archivos</strong>, la <strong>tematización</strong> y mucho más, podemos personalizar nuestra aplicación Chainlit utilizando el archivo <strong><code>config.toml</code></strong>. Este archivo reside en la raíz del directorio de nuestro proyecto (en la carpeta <strong><code>.chainlit</code></strong> ) y nos permite ajustar el comportamiento en tiempo de ejecución sin modificar el código.</p>
-<h5 id="persistencia">Persistencia</h5>
-<p>Este parámetro permite a Chainlit persistir el historial de chat y el estado de la sesión. Activa el <em>hook</em> <strong><code>@cl.on_chat_resume</code></strong>, por lo que es ideal para aplicaciones en las que los usuarios pueden desconectarse y volver más tarde.</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>persistence<span class="o">]</span>
-<span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-</code></pre></div>
-<h5 id="carga-de-archivos">Carga de archivos</h5>
-<p>Este ajuste permite a los usuarios subir archivos en la interfaz del chat. Podemos restringir los tipos y tamaños de archivo permitidos para garantizar la seguridad y el rendimiento.</p>
-<p><div class="highlight"><pre><span></span><code><span class="o">[</span>features.spontaneous_file_upload<span class="o">]</span>
-<span class="nv">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-<span class="nv">accept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;*/*&quot;</span><span class="o">]</span><span class="w"> </span>
-<span class="nv">max_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<span class="nv">max_size_mb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span>
-</code></pre></div>
-Ejemplos de algunos tipos de archivos que acepta Chainlit.</p>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">speci</span><span class="kc">f</span><span class="err">ic</span><span class="w"> </span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="kc">t</span><span class="err">ypes</span><span class="p">:</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;application/pdf&quot;</span><span class="p">]</span>
-<span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="kc">f</span><span class="err">iles</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">cer</span><span class="kc">ta</span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">ype</span><span class="p">:</span>
-<span class="w">    </span><span class="err">#</span><span class="w">    </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;image/*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;audio/*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;video/*&quot;</span><span class="p">]</span>
-<span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="err">For</span><span class="w"> </span><span class="err">speci</span><span class="kc">f</span><span class="err">ic</span><span class="w"> </span><span class="kc">f</span><span class="err">ile</span><span class="w"> </span><span class="err">ex</span><span class="kc">tens</span><span class="err">io</span><span class="kc">ns</span><span class="p">:</span>
-<span class="w">    </span><span class="err">#</span><span class="w">    </span><span class="err">accep</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;application/octet-stream&quot;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.xyz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.pdb&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div>
-<p>Esto permite adaptar las cargas para <strong>casos de uso de seguridad, rendimiento o específicos del dominio</strong>.</p>
-<h5 id="personalizacion-de-la-iu">Personalización de la IU</h5>
-<p>Esta personalización cambia el nombre del asistente en el parámetro de la IU y activa la <strong>Cadena de Pensamiento (CoT)</strong>(dar las instrucciones adecuadas para facilitar al modelo la realización de tareas complejas que requieran razonamiento o resolución de problemas) en el modo de representación, que es útil para razonar paso a paso o depurar.</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="err">UI</span><span class="p">]</span>
-<span class="kc">na</span><span class="err">me</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
-<span class="err">co</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;full&quot;</span>
-</code></pre></div>
-<h5 id="ajustes-de-usabilidad">Ajustes de usabilidad</h5>
-<p>Mejoran la experiencia del usuario desplazando automáticamente los mensajes nuevos a la vista y permitiendo la edición de mensajes.</p>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="kc">features</span><span class="p">]</span>
-<span class="err">user_message_au</span><span class="kc">t</span><span class="err">oscroll</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="err">edi</span><span class="kc">t</span><span class="err">_message</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">true</span>
-</code></pre></div>
-<p>Los ajustes de usabilidad anteriores permiten al usuario activar las funciones de desplazamiento automático y edición de mensajes dentro de la interfaz de usuario.</p>
-<h2 id="4-primer-ejemplo-chatbot-sorprendeme-estatico-sin-llm">4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)</h2>
-<p>Ahora que conocemos los componentes básicos de Chainlit, vamos a crear una sencilla aplicación basada en una interfaz de usuario que utilice botones para mostrar datos divertidos predefinidos o mensajes de motivación para programadores.</p>
-<p><strong>bot_surprise_sin_llm.py</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-
-<span class="n">FUN_FACTS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;💡 ¿Sabías que Chainlit admite la subida de archivos y temas personalizados?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💡 ¡Puedes añadir botones, controles deslizantes e imágenes directamente en la interfaz de usuario de tu chatbot!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💡 ¡Chainlit admite la ejecución de herramientas en tiempo real con LangChain y LLM!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💡 ¡Puedes personalizar el aspecto de tu chatbot con solo un archivo CSS!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💡 ¡Chainlit te permite conectarte a herramientas utilizando el Protocolo de Contexto de Modelo (MCP)!&quot;</span>
-<span class="p">]</span>
-<span class="n">SURPRISES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;🎉 ¡Sorpresa! ¡Lo estás haciendo genial!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;🚀 ¡Sigue así, estás haciendo un progreso increíble!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;🌟 Dato curioso: alguien ahí fuera acaba de sonreír gracias a ti. ¿Por qué no hacer que sean dos?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;👏 ¡Bravo! ¡Acabas de desbloquear +10 XP de desarrollador imaginario!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;💪 Recuerda: ¡incluso los errores temen tus habilidades de depuración!&quot;</span>
-<span class="p">]</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;🎁 Sorpréndeme&quot;</span><span class="p">,</span>
-            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;gift&quot;</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;surprise&quot;</span><span class="p">}</span>
-        <span class="p">),</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fact_button&quot;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;💡 ¿Los sabías?&quot;</span><span class="p">,</span>
-            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;lightbulb&quot;</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;fact&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Elige una acción:&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">actions</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_surprise</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="n">suprise</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">SURPRISES</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">suprise</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;fact_button&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_fact</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="n">fact</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">FUN_FACTS</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p>El código anterior define dos listas: <strong><code>"FUN_FACTS"</code></strong> para consejos interesantes de Chainlit y <strong><code>"SUPRISES"</code></strong> para mensajes motivadores.</p>
-<ul>
-<li>Cuando se inicia un nuevo chat, se muestran dos botones: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando <strong><code>cl.Action</code></strong></li>
-<li>Al hacer clic en <strong>"Sorpréndeme"</strong> se activa <strong><code>@cl.action_callback("surprise_button")</code></strong>, el cual envía un mensaje sorpresa aleatorio.</li>
-<li>Al hacer clic en <strong>"¿Lo sabías?"</strong> se activa <strong><code>@cl.action_callback("fact_button")</code></strong>, que envía un hecho divertido aleatorio.</li>
-</ul>
-<p>Esto crea un chatbot sencillo e interactivo mediante botones que no requiere LLM y es perfecto para aprender cómo funcionan las acciones y las llamadas de retorno de Chainlit.</p>
-<p>Para ejecutar esta aplicación, simplemente ejecuta el siguiente comando en el terminal:</p>
-<div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>bot_surprise_sin_llmain.py
-</code></pre></div>
-<p>Veremos botones interactivos en la interfaz de usuario que activan datos o mensajes divertidos.</p>
-<p><img alt="Sorpréndeme Bot (sin LLM)" src="../images/chainlit/bot_sorpresa_sin_llm.png" /></p>
-<h2 id="5-proyecto-bot-sorprendeme-powered-by-ollama">5. Proyecto: Bot Sorpréndeme Powered by Ollama</h2>
-<p>Ahora, vamos a automatizar este proceso y a generar los mensajes de sorpresa y de hecho utilizando un LLM local a través de Ollama.</p>
-<p><strong>bot_surprise_ollama.py</strong></p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">OllamaLLM</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-
-<span class="c1">#OLLAMA DEL SERVIDOR DE CLASE</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OllamaLLM</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;phi4-mini-reasoning:3.8b&quot;</span><span class="p">,</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://192.168.1.80:11434&quot;</span><span class="p">,</span>
-    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
-<span class="p">)</span>
-
-<span class="c1"># Reusable action buttons</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_action_buttons</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">[</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;🎁 Sorpréndeme&quot;</span><span class="p">,</span>
-            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;gift&quot;</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;surprise&quot;</span><span class="p">}</span>
-        <span class="p">),</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fact_button&quot;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;💡 ¿Los sabías?&quot;</span><span class="p">,</span>
-            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;lightbulb&quot;</span><span class="p">,</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;fact&quot;</span><span class="p">}</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Elige una acción a continuación para ver algo divertido:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;surprise_button&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_surprise</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Envía un mensaje sorpresa breve y motivador a un desarrollador. ¡Hazlo divertido!&quot;</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">surprise</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">surprise</span> <span class="o">=</span> <span class="s2">&quot;🎉 ¡Sorpresa! ¡Lo estás haciendo genial!&quot;</span>
-
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">surprise</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>  
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">action_callback</span><span class="p">(</span><span class="s2">&quot;fact_button&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_fact</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Action</span><span class="p">):</span>
-    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Dame un dato divertido y útil sobre los LLM o Chainlit.&quot;</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">fact</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">fact</span> <span class="o">=</span> <span class="s2">&quot;💡 ¿Sabías que puedes añadir controles deslizantes y botones a Chainlit con tan solo unas pocas líneas de código?&quot;</span>
-
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="n">get_action_buttons</span><span class="p">())</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>  
-</code></pre></div>
-Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mistral) para generar dinámicamente respuestas basadas en las interacciones del usuario.</p>
-<ul>
-<li>Define dos botones <strong><code>cl.Action</code></strong>: <strong>"Sorpréndeme"</strong> y <strong>"¿Lo sabías?"</strong> utilizando una función reutilizable <strong><code>get_action_buttons()</code></strong>.</li>
-<li>Al inicializar el chat (<strong><code>@cl.on_chat_start</code></strong>) envía un mensaje con estos botones interactivos.</li>
-<li>Cuando el usuario pulsa el botón <strong>"Sorpréndeme"</strong>, el gestor <strong><code>@cl.action_callback</code></strong> envía un mensaje al LLM solicitando un mensaje breve y edificante de los programadores. La respuesta se limpia con la función <strong><code>.strip()</code></strong> y se devuelve al chat.</li>
-<li>Del mismo modo, al hacer clic en <strong>"¿Sabías que...?"</strong> se invoca el LLM con una pregunta que solicita un dato informativo sobre Chainlit o los LLM.</li>
-<li>Si el LLM falla, se devuelven respuestas estáticas de emergencia.</li>
-<li>Después de cada interacción, los botones se reenvían para mantener el bucle conversacional.</li>
-</ul>
-<p>Esto demuestra cómo <strong>combinar <code>Chainlit UI</code> con la generación de contenidos basada en LLM</strong>, ofreciendo una base modular y extensible para aplicaciones de chat locales potenciadas por IA.</p>
-<p>Ejecuta el siguiente comando en el terminal:</p>
-<div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>bot_surprise_ollama.py
-</code></pre></div>
-<p>Ahora tenemos un asistente de IA local y en directo que genera mensajes automatizados.</p>
-<p><img alt="Bot Sorprendeme impulsado por Ollama" src="../images/chainlit/bot_sorpresa_ollama.png" /></p>
-<hr />
-<h2 id="6-casos-de-uso-recomendados">6. Casos de uso recomendados</h2>
-<ul>
-<li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
-<li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
-<li><strong>Demos educativas</strong>: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  </li>
-<li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
-</ul>
-<hr />
 <h2 id="probar-funciones-propias-en-mistral-studio">Probar funciones propias en Mistral Studio</h2>
 <h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
 <p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlit/meeting_summarizer_mistralai.png" /></p>
@@ -3113,6 +2563,625 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
 <p><strong>Comprobamos que funciona correctamente:</strong></p>
 <p><img alt="Ejemplo de uso de la herramienta (tool) get_weather" src="../images/chainlit/ejemplo_uso_get_weather_api.png" /></p>
 <h2 id="actividad-guiada-chainlitagente-con-herramientas-personalizadas">Actividad guiada: Chainlit+agente con herramientas personalizadas</h2>
+<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. </p>
+<p>El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real get_weather() para consultar el tiempo de una ciudad. </p>
+<p>Vemos: </p>
+<ul>
+<li>Eventos de Chainlit</li>
+<li>Persistencia de estado por sesión</li>
+<li>Arquitectura de tool calling con un LLM.</li>
+</ul>
+<h3 id="paso-1-idea-de-arquitectura-chainlit-gestiona-la-interfaz-mistral-decide-si-necesita-una-tool-y-python-ejecuta-la-tool-real">Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real.</h3>
+<p>Código de referencia para explicar el flujo:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Chainlit recibe el mensaje</span>
+<span class="c1"># Mistral decide si responde o llama a una tool</span>
+<span class="c1"># Python ejecuta la tool</span>
+<span class="c1"># Mistral redacta la respuesta final</span>
+</code></pre></div>
+<p>**¿Quién ejecuta realmente get_weather: el modelo o nuestro backend? **</p>
+<p>La respuesta correcta es: el backend en Python.</p>
+<h3 id="paso-2-pue-preparen-el-entorno-y-el-bloque-inicial-de-configuracion">Paso 2 - Pue preparen el entorno y el bloque inicial de configuración.</h3>
+<p>Primero se carga la clave, luego se crea el cliente y finalmente se define el prompt del sistema. Esto da contexto antes de entrar en los callbacks de Chainlit.</p>
+<p><strong>NOTA</strong>: Se ha añadido una nueva variable de configuración llamada MODEL para no hardcodear el modelo seleccionado.</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">)</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_MODEL&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">API_KEY</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falta la variable de entorno MISTRAL_API_KEY&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">)</span>
+</code></pre></div>
+Explicación:</p>
+<ul>
+<li>
+<p>load_dotenv() carga las variables del .env.</p>
+</li>
+<li>
+<p>API_KEY y MODEL parametrizan la aplicación.</p>
+</li>
+<li>
+<p>Mistral(...) crea el cliente con el que se llamará a la API.
+​</p>
+</li>
+</ul>
+<h3 id="paso-3">Paso 3</h3>
+<p>Introducimos el <strong><code>SYSTEM_PROMPT</code></strong> y la definición de <strong><code>TOOLS</code></strong>. La variable <code>tool</code> no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.</p>
+<div class="highlight"><pre><span></span><code><span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Eres un asistente útil y conciso.</span>
+<span class="s2">Si el usuario pregunta por el tiempo o la meteorología de una ciudad,</span>
+<span class="s2">usa la herramienta get_weather.</span>
+<span class="s2">Responde en español.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="n">TOOLS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Obtiene el tiempo actual de una ciudad&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Nombre de la ciudad, por ejemplo Elche, Madrid o Paris&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><strong>IMPORTANTE</strong>: no confundir la lista TOOLS con la función real <strong><code>get_weather()</code></strong>. Conviene insistir en que:</p>
+<ul>
+<li>TOOLS es la descripción para el modelo.</li>
+<li><code>get_weather()</code> es la implementación real en Python.</li>
+</ul>
+<h4 id="paso-4-funcion-funcion-auxiliar-weather_code_to_text">Paso 4: Función función auxiliar weather_code_to_text()</h4>
+<p>Buena práctica: separar la transformación de datos de la lógica principal del agente. Así el código queda más limpio y además es más fácil de testear.
+​
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">weather_code_to_text</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">code_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Despejado&quot;</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Mayormente despejado&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Parcialmente nuboso&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Cubierto&quot;</span><span class="p">,</span>
+        <span class="mi">45</span><span class="p">:</span> <span class="s2">&quot;Niebla&quot;</span><span class="p">,</span>
+        <span class="mi">48</span><span class="p">:</span> <span class="s2">&quot;Niebla con escarcha&quot;</span><span class="p">,</span>
+        <span class="mi">51</span><span class="p">:</span> <span class="s2">&quot;Llovizna ligera&quot;</span><span class="p">,</span>
+        <span class="mi">53</span><span class="p">:</span> <span class="s2">&quot;Llovizna moderada&quot;</span><span class="p">,</span>
+        <span class="mi">55</span><span class="p">:</span> <span class="s2">&quot;Llovizna intensa&quot;</span><span class="p">,</span>
+        <span class="mi">61</span><span class="p">:</span> <span class="s2">&quot;Lluvia ligera&quot;</span><span class="p">,</span>
+        <span class="mi">63</span><span class="p">:</span> <span class="s2">&quot;Lluvia moderada&quot;</span><span class="p">,</span>
+        <span class="mi">65</span><span class="p">:</span> <span class="s2">&quot;Lluvia intensa&quot;</span><span class="p">,</span>
+        <span class="mi">71</span><span class="p">:</span> <span class="s2">&quot;Nieve ligera&quot;</span><span class="p">,</span>
+        <span class="mi">73</span><span class="p">:</span> <span class="s2">&quot;Nieve moderada&quot;</span><span class="p">,</span>
+        <span class="mi">75</span><span class="p">:</span> <span class="s2">&quot;Nieve intensa&quot;</span><span class="p">,</span>
+        <span class="mi">80</span><span class="p">:</span> <span class="s2">&quot;Chubascos ligeros&quot;</span><span class="p">,</span>
+        <span class="mi">81</span><span class="p">:</span> <span class="s2">&quot;Chubascos moderados&quot;</span><span class="p">,</span>
+        <span class="mi">82</span><span class="p">:</span> <span class="s2">&quot;Chubascos fuertes&quot;</span><span class="p">,</span>
+        <span class="mi">95</span><span class="p">:</span> <span class="s2">&quot;Tormenta&quot;</span><span class="p">,</span>
+        <span class="mi">96</span><span class="p">:</span> <span class="s2">&quot;Tormenta con granizo ligero&quot;</span><span class="p">,</span>
+        <span class="mi">99</span><span class="p">:</span> <span class="s2">&quot;Tormenta con granizo fuerte&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="paso-5-tool-real-get_weather">Paso 5: tool real get_weather()</h3>
+<p>Este es el bloque más importante del lado backend porque muestra que una tool puede encadenar dos APIs: una para geocodificación y otra para tiempo actual. 
+Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permite que Chainlit muestre visualmente la ejecución de la herramienta.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">geo_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;https://geocoding-api.open-meteo.com/v1/search&quot;</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;es&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span>
+            <span class="p">},</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">geo_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">geo_data</span> <span class="o">=</span> <span class="n">geo_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;No se encontró la ciudad &#39;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+                <span class="p">},</span>
+                <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+
+        <span class="n">place</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">latitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span>
+        <span class="n">longitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
+
+        <span class="n">weather_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;https://api.open-meteo.com/v1/forecast&quot;</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+                <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+                <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="s2">&quot;temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;timezone&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span>
+            <span class="p">},</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">weather_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">current</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;current&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">place</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_c&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_2m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;humidity&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;relative_humidity_2m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;wind_kmh&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;wind_speed_10m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="n">weather_code_to_text</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weather_code&quot;</span><span class="p">)),</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error consultando la API meteorológica: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span>
+            <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error inesperado: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span>
+            <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+</code></pre></div>
+Aspectos a remarcar:</p>
+<ul>
+<li>La tool devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como <strong><code>content</code></strong>.</li>
+<li><strong><code>@cl.step(type="tool")</code></strong> permite ver la tool como paso intermedio en Chainlit.
+​* Se controlan errores para que el agente no se rompa ante fallos de red</li>
+</ul>
+<h3 id="paso-6-available_tools">Paso 6 - AVAILABLE_TOOLS</h3>
+<p>Es un detalle pequeño, pero muy importante conceptualmente: aquí se hace el puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.</p>
+<div class="highlight"><pre><span></span><code><span class="n">AVAILABLE_TOOLS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;get_weather&quot;</span><span class="p">:</span> <span class="n">get_weather</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>¿Por qué no ejecutamos directamente <code>tool_call.function.name</code> como si fuera una función?</strong>
+Porque el modelo solo devuelve texto estructurado; el backend necesita resolver ese nombre en una función segura y conocida.</p>
+<h3 id="paso-7-clon_chat_start">Paso 7 @cl.on_chat_start</h3>
+<p>Chainlit lo usa para reaccionar al inicio de una nueva sesión de chat. Aquí se inicializa el historial y se envía el mensaje de bienvenida.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
+    <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">,</span>
+        <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT</span><span class="p">}]</span>
+    <span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Hola, soy tu asistente con Mistral + Chainlit.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Puedes preguntarme cosas generales o algo como:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- ¿Qué tiempo hace en Elche?</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Dime la temperatura actual en Valencia</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+Puntos clave:</p>
+<ul>
+<li><strong><code>cl.user_session</code></strong> guarda datos por sesión de usuario, no globalmente.
+​* El primer mensaje del historial es el system prompt, que actúa como contexto permanente de la conversación.</li>
+</ul>
+<h3 id="paso-8-clon_message">Paso 8 @cl.on_message</h3>
+<p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta tools si hace falta y finalmente devuelve la respuesta al chat. Chainlit documenta este callback como el punto de entrada principal para mensajes de la UI.
+​</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+</code></pre></div>
+<p>Esquema:</p>
+<ol>
+<li>
+<p>Recuperar historial.</p>
+</li>
+<li>
+<p>Añadir mensaje usuario.</p>
+</li>
+<li>
+<p>Llamar al modelo.</p>
+</li>
+<li>
+<p>¿Pide tool?</p>
+</li>
+<li>
+<p>Si sí, ejecutar tool y volver al paso 3.</p>
+</li>
+<li>
+<p>Si no, enviar respuesta final.</p>
+</li>
+</ol>
+<p>Paso 9
+Explica el bloque inicial de recuperación de sesión y añadido del mensaje del usuario. Esta parte conecta con el concepto de memoria conversacional.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+
+<span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+Explicación:</p>
+<ul>
+<li><code>messages</code> es la historia completa.</li>
+<li>Sin este historial, cada pregunta sería aislada.</li>
+<li><code>final_answer</code> guardará la respuesta final que se enviará al usuario.</li>
+</ul>
+<p>Paso 10
+Explica el bucle controlado de hasta cinco iteraciones. La documentación de Mistral contempla cadenas sucesivas de function calling, por eso tiene sentido iterar.
+​</p>
+<p>python
+for _ in range(5):
+Insiste en que este for:</p>
+<p>no es para repetir siempre cinco veces,</p>
+<p>sino para permitir varias rondas de “modelo -&gt; tool -&gt; modelo”,</p>
+<p>con un límite que evita loops infinitos.
+​</p>
+<p>Paso 11
+Muestra la llamada al modelo. Es uno de los puntos donde más dudas suelen aparecer.</p>
+<p>python
+response = await client.chat.complete_async(
+    model=MODEL,
+    messages=messages,
+    tools=TOOLS,
+    tool_choice="auto",
+)
+Explicación:</p>
+<p>messages da contexto.</p>
+<p>tools=TOOLS informa al modelo de qué herramientas existen.</p>
+<p>tool_choice="auto" deja que el modelo decida si necesita una tool o no.</p>
+<p>Pregunta para clase: ¿Qué pasaría si quitamos tools=TOOLS? El modelo ya no sabría que puede usar get_weather.
+​</p>
+<p>Paso 12
+Enseña cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
+​</p>
+<p>python
+assistant_message = response.choices[0].message</p>
+<p>assistant_payload = {
+    "role": "assistant",
+    "content": assistant_message.content or ""
+}
+Aquí puedes remarcar que el mensaje del asistente puede venir:</p>
+<p>con texto normal,</p>
+<p>con tool_calls,</p>
+<p>o con ambas cosas.</p>
+<p>Paso 13
+Explica la detección de tool_calls. Este es el corazón del patrón.</p>
+<p>python
+tool_calls = getattr(assistant_message, "tool_calls", None)
+Si hay tool_calls, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay tool_calls, ya tenemos respuesta final.
+​</p>
+<p>Paso 14
+Muestra el bloque que añade las tool calls al historial. Esto es importante porque el historial debe reflejar también lo que el asistente pidió hacer.</p>
+<p>python
+if tool_calls:
+    assistant_payload["tool_calls"] = [
+        {
+            "id": tool_call.id,
+            "type": "function",
+            "function": {
+                "name": tool_call.function.name,
+                "arguments": tool_call.function.arguments,
+            },
+        }
+        for tool_call in tool_calls
+    ]
+Después se añade el mensaje del asistente al historial:</p>
+<p>python
+messages.append(assistant_payload)
+Punto didáctico: el historial no guarda solo lo que dice el usuario, sino también lo que dice el asistente y lo que devuelven las tools.</p>
+<p>Paso 15
+Explica la salida temprana cuando no hay tools.
+​</p>
+<p>python
+if not tool_calls:
+    final_answer = assistant_message.content or "No tengo respuesta."
+    break
+Esto significa: “el modelo ya ha terminado; no necesita ninguna herramienta externa”. En ese caso se guarda la respuesta y se rompe el bucle.
+​</p>
+<p>Paso 16
+Ahora presenta la ejecución real de tools. Aquí el alumnado ve la diferencia entre “el modelo propone” y “el backend ejecuta”.</p>
+<p>python
+for tool_call in tool_calls:
+    function_name = tool_call.function.name
+    function_args = json.loads(tool_call.function.arguments)</p>
+<div class="highlight"><pre><span></span><code>if function_name not in AVAILABLE_TOOLS:
+    tool_result = json.dumps(
+        {&quot;error&quot;: f&quot;Herramienta no implementada: {function_name}&quot;},
+        ensure_ascii=False
+    )
+else:
+    tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
+</code></pre></div>
+<p>Explicación:</p>
+<p>function_name es el nombre generado por el modelo.</p>
+<p>function_args transforma el JSON en un diccionario Python.</p>
+<p>AVAILABLE_TOOLS actúa como tabla de resolución segura.</p>
+<p>Paso 17
+Explica cómo se devuelve el resultado de la tool al historial.</p>
+<p>python
+messages.append(
+    {
+        "role": "tool",
+        "name": function_name,
+        "tool_call_id": tool_call.id,
+        "content": tool_result,
+    }
+)
+Este bloque es clave porque en la siguiente iteración el modelo leerá ese resultado y podrá producir una respuesta final como “En Elche hay 18°C y cielo parcialmente nuboso”.</p>
+<p>Paso 18
+Cierra con el guardado del historial y el envío del mensaje final al usuario.</p>
+<p>python
+cl.user_session.set("messages", messages)</p>
+<p>await cl.Message(
+    content=final_answer or "No he podido generar una respuesta final."
+).send()
+Explicación:</p>
+<p>set("messages", messages) persiste la conversación en la sesión actual.
+​</p>
+<p>cl.Message(...).send() muestra la salida en la interfaz.</p>
+<p><strong>Solución completa:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">)</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_MODEL&quot;</span><span class="p">,</span> <span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">API_KEY</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falta la variable de entorno MISTRAL_API_KEY&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">)</span>
+
+<span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Eres un asistente útil y conciso.</span>
+<span class="s2">Si el usuario pregunta por el tiempo o la meteorología de una ciudad,</span>
+<span class="s2">usa la herramienta get_weather.</span>
+<span class="s2">Responde en español.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="n">TOOLS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Obtiene el tiempo actual de una ciudad&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Nombre de la ciudad, por ejemplo Elche, Madrid o Paris&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">weather_code_to_text</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">code_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Despejado&quot;</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Mayormente despejado&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Parcialmente nuboso&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Cubierto&quot;</span><span class="p">,</span>
+        <span class="mi">45</span><span class="p">:</span> <span class="s2">&quot;Niebla&quot;</span><span class="p">,</span>
+        <span class="mi">48</span><span class="p">:</span> <span class="s2">&quot;Niebla con escarcha&quot;</span><span class="p">,</span>
+        <span class="mi">51</span><span class="p">:</span> <span class="s2">&quot;Llovizna ligera&quot;</span><span class="p">,</span>
+        <span class="mi">53</span><span class="p">:</span> <span class="s2">&quot;Llovizna moderada&quot;</span><span class="p">,</span>
+        <span class="mi">55</span><span class="p">:</span> <span class="s2">&quot;Llovizna intensa&quot;</span><span class="p">,</span>
+        <span class="mi">61</span><span class="p">:</span> <span class="s2">&quot;Lluvia ligera&quot;</span><span class="p">,</span>
+        <span class="mi">63</span><span class="p">:</span> <span class="s2">&quot;Lluvia moderada&quot;</span><span class="p">,</span>
+        <span class="mi">65</span><span class="p">:</span> <span class="s2">&quot;Lluvia intensa&quot;</span><span class="p">,</span>
+        <span class="mi">71</span><span class="p">:</span> <span class="s2">&quot;Nieve ligera&quot;</span><span class="p">,</span>
+        <span class="mi">73</span><span class="p">:</span> <span class="s2">&quot;Nieve moderada&quot;</span><span class="p">,</span>
+        <span class="mi">75</span><span class="p">:</span> <span class="s2">&quot;Nieve intensa&quot;</span><span class="p">,</span>
+        <span class="mi">80</span><span class="p">:</span> <span class="s2">&quot;Chubascos ligeros&quot;</span><span class="p">,</span>
+        <span class="mi">81</span><span class="p">:</span> <span class="s2">&quot;Chubascos moderados&quot;</span><span class="p">,</span>
+        <span class="mi">82</span><span class="p">:</span> <span class="s2">&quot;Chubascos fuertes&quot;</span><span class="p">,</span>
+        <span class="mi">95</span><span class="p">:</span> <span class="s2">&quot;Tormenta&quot;</span><span class="p">,</span>
+        <span class="mi">96</span><span class="p">:</span> <span class="s2">&quot;Tormenta con granizo ligero&quot;</span><span class="p">,</span>
+        <span class="mi">99</span><span class="p">:</span> <span class="s2">&quot;Tormenta con granizo fuerte&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">geo_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;https://geocoding-api.open-meteo.com/v1/search&quot;</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;es&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span>
+            <span class="p">},</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">geo_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">geo_data</span> <span class="o">=</span> <span class="n">geo_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;No se encontró la ciudad &#39;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+                <span class="p">},</span>
+                <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+
+        <span class="n">place</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">latitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span>
+        <span class="n">longitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
+
+        <span class="n">weather_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;https://api.open-meteo.com/v1/forecast&quot;</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+                <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+                <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="s2">&quot;temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;timezone&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span>
+            <span class="p">},</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">weather_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">current</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;current&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">place</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+            <span class="s2">&quot;temperature_c&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_2m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;humidity&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;relative_humidity_2m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;wind_kmh&quot;</span><span class="p">:</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;wind_speed_10m&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="n">weather_code_to_text</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weather_code&quot;</span><span class="p">)),</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error consultando la API meteorológica: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span>
+            <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error inesperado: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span>
+            <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+
+<span class="n">AVAILABLE_TOOLS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;get_weather&quot;</span><span class="p">:</span> <span class="n">get_weather</span>
+<span class="p">}</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
+    <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">,</span>
+        <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT</span><span class="p">}]</span>
+    <span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Hola, soy tu asistente con Mistral + Chainlit.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Puedes preguntarme cosas generales o algo como:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- ¿Qué tiempo hace en Elche?</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Dime la temperatura actual en Valencia</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+
+        <span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">tool_calls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">assistant_message</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">assistant_payload</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span>
+            <span class="p">]</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assistant_payload</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">final_answer</span> <span class="o">=</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;No tengo respuesta.&quot;</span>
+            <span class="k">break</span>
+
+        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">:</span>
+                <span class="n">tool_result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Herramienta no implementada: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+                    <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tool_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+
+            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+                    <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">tool_result</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+    <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">final_answer</span> <span class="ow">or</span> <span class="s2">&quot;No he podido generar una respuesta final.&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
 <h3 id="documentacion-paso-a-paso-de-on_message-en-chainlit-con-mistral">Documentación paso a paso de <code>on_message</code> en Chainlit con Mistral</h3>
 <p>Esta función implementa el <strong>bucle principal de conversación</strong> entre Chainlit, el modelo de Mistral y las herramientas externas o <em>tools</em>. Chainlit ejecuta <code>@cl.on_message</code> cada vez que el usuario envía un mensaje desde la interfaz, y Mistral soporta llamadas asíncronas con herramientas mediante <code>chat.complete_async(..., tools=..., tool_choice="auto")</code>. </p>
 <h4 id="funcion-completa">Función completa</h4>
@@ -3716,7 +3785,7 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../llm3/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 3 - Creación de agentes en Mistral AI">
+          <a href="../llm4/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3726,20 +3795,20 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Sesión 3 - Creación de agentes en Mistral AI
+                Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../llm5/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)">
+          <a href="../../bedrock/sesion1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción a Amazon Bedrock">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
+                Introducción a Amazon Bedrock
               </div>
             </div>
             <div class="md-footer__button md-icon">
