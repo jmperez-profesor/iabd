@@ -1668,139 +1668,246 @@ Resumen final
 Ejemplo claro de **`function calling`** con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.
 
 
+# Actividad de ampliación: agente con Chainlit, Mistral y tools encadenadas
 
-## Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias
+Esta actividad de ampliación parte de un ejemplo funcional con Chainlit y Mistral en el que el agente puede consultar el tiempo y averiguar el pueblo natal de una persona mediante tools. Chainlit permite gestionar la interfaz con callbacks como `@cl.on_message`, acciones y elementos visuales, mientras que Mistral soporta *function calling* para que el modelo solicite herramientas externas cuando las necesita. [1][2][3][4]
 
-### Contexto
+## Título de la práctica
 
-En la sesión anterior (LLM2) creaste en **Mistral Studio AI** dos agentes en el playground:
+**Ampliación de un agente conversacional con Mistral: tools múltiples, memoria de sesión e interfaz mejorada en Chainlit**
 
-- **Agente A – Tutor técnico de Flask**  
-- **Agente B – Generador creativo de ideas**
+## Objetivos de aprendizaje
 
-Aquella actividad se centraba en definir bien el **rol**, las **instrucciones** y el **tono** de cada agente, pero **sin usar herramientas (tools)** ni funciones propias del agente.
+- Comprender cómo un modelo de lenguaje puede decidir qué tool necesita para responder.
+- Implementar una nueva herramienta personalizada y registrarla en el agente.
+- Mantener el historial de conversación usando **`cl.user_session`**. 
+- Mejorar la interfaz con botones de acción de Chainlit mediante **`cl.Action`** y **`@cl.action_callback(...)`**. 
+- Diseñar una pequeña ampliación funcional manteniendo una arquitectura clara y reutilizable.
 
-En esta sesión vamos a dar un paso más: vas a construir una **aplicación propia** en Python usando **Chainlit** como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo **funciones personalizadas** que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. 
+## Propuesta de ampliación
 
----
+Se propone ampliar el proyecto en tres direcciones: 
 
-### Objetivo de la actividad
+1. Añadir una nueva tool llamada **`get_country_info(location)`**.
+2. Guardar el historial de conversación usando **`cl.user_session`**.
+3. Incorporar botones de acción en la interfaz con preguntas predefinidas.
 
-Construir una aplicación llamada, por ejemplo, `llm3-chainlit-agentes`, que:
+## Resultado esperado
 
-- use **Chainlit** como interfaz de chat, 
-- se conecte a **Mistral AI** desde Python, 
-- implemente **dos agentes lógicos** (A y B) con instrucciones distintas,  
-- y añada **funciones personalizadas (tools)** que el modelo pueda invocar mediante *function calling*, para tareas como obtener el tiempo, la hora o el precio de una acción. 
+Al final de la práctica, el agente deberá ser capaz de responder preguntas como estas: 
 
----
+- *What’s the weather in Napoleon’s hometown and in which country is it?*
+- *Tell me the hometown, country and weather for Michel-Angelo.*
+- *Compare Napoleon’s hometown and Michel-Angelo’s hometown.*
+- Pulsar un botón para lanzar automáticamente una de esas preguntas desde la interfaz. 
 
-### Definición de los agentes
+## Parte 1: añadir una nueva tool
 
-Puedes mantener los nombres originales, pero se recomienda actualizar ligeramente el rol del agente A para encajarlo mejor con el uso de tools:
+### Objetivo
 
-- **Agente A – Planificador práctico / consultor técnico**  
-  - Ayuda a planificar tareas, proyectos o pequeñas “rutas” (por ejemplo, un mini plan de estudio, una ruta de viaje sencillo, etc.).  
-  - Se centrará más en **información factual y estructurada** y en usar tools como `get_time` o `get_weather`.  
+Crear una tool adicional llamada `get_country_info(location)` que devuelva información básica del país asociado a una ciudad o localización. Esto permitirá que el agente combine información meteorológica y geográfica en una misma respuesta. 
 
-- **Agente B – Generador creativo de ideas**  
-  - Genera ideas de contenido, propuestas creativas, textos breves o variaciones de un mismo concepto.  
-  - Puede apoyarse en `get_stock_price` u otras tools si quieres que genere ideas de contenido financiero/tecnológico.  
+### Implementación sugerida
 
-Las instrucciones (prompt del agente) de A y B pueden reutilizar y adaptar lo que ya definiste en Mistral Studio, ajustando ahora las descripciones para mencionar que el agente **puede llamar a funciones auxiliares cuando lo considere útil**.
+```python
+@cl.step(type="tool", name="get_country_info")
+async def get_country_info(location: str) -> str:
+    if "Ajaccio" in location:
+        return json.dumps({
+            "country": "France",
+            "capital": "Paris",
+            "continent": "Europe"
+        })
+    elif "Caprese" in location:
+        return json.dumps({
+            "country": "Italy",
+            "capital": "Rome",
+            "continent": "Europe"
+        })
+    elif "Paris" in location:
+        return json.dumps({
+            "country": "France",
+            "capital": "Paris",
+            "continent": "Europe"
+        })
+    else:
+        return json.dumps({
+            "country": "Unknown",
+            "capital": "Unknown",
+            "continent": "Unknown"
+        })
+```
 
----
+### Tareas del alumnado
 
-### Funciones personalizadas (tools)
+- Añadir la función al código.  
+- Registrar su definición en la lista **`tools`**.
+- Incluirla en el diccionario **`available_tools`**. 
+- Probar una pregunta que obligue al modelo a usar más de una tool. 
 
-Debes implementar al menos **tres funciones propias** en Python que el modelo pueda usar como herramientas. Algunas funciones recomendadas son:
+### Pregunta de reflexión
 
-- `get_weather(location, date_range)`  
-  - Devuelve un tiempo simulado o consultado vía API (puede ser una respuesta inventada pero coherente, o una llamada real a una API de clima si quieres). 
-- `get_time(city_or_timezone)`  
-  - Devuelve la hora local de una ciudad o zona horaria.  
-- `get_stock_price(symbol)`  
-  - Devuelve el precio simulado de una acción (o real, si integras una API sencilla). 
+¿Por qué **`get_country_info()`** debe estar descrita tanto en Python como en la lista **`tools`**? La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa herramienta existe y cómo puede invocarla. 
 
-Puedes añadir otras funciones si te interesa, siempre que:
+## Parte 2: añadir memoria con **`cl.user_session`**
 
-- tengan parámetros bien definidos,  
-- devuelvan datos estructurados,  
-- y sean razonablemente útiles para alguno de los dos agentes. 
+### Objetivo
 
-El patrón a seguir es similar al del que hemos visto en el apartado **Mistral + Chainlit**, donde se definen tools como `get_home_town` y `get_current_weather` con un decorador `@cl.step(type="tool")` y un bloque `tools = [...]` con el esquema JSON que se pasa al modelo. 
+Modificar el ejemplo para que el historial conversacional se mantenga entre mensajes. Chainlit documenta **`cl.user_session`** como el mecanismo para guardar estado asociado a cada sesión de usuario. [5]
 
----
+### Cambio conceptual
 
-### Requisitos mínimos de la aplicación
+En el ejemplo original, **`run_agent()`** parte siempre de un historial nuevo:
 
-Tu aplicación deberá cumplir, como mínimo, los siguientes puntos:
+```python
+messages = [{"role": "user", "content": f"{user_query}"}]
+```
 
-1. **Interfaz en Chainlit**  
-   - La app se ejecuta con `chainlit run app.py`.  
-   - Al abrirla en el navegador puedes escribir mensajes y recibir respuestas. 
+Eso impide que el asistente recuerde el contexto anterior. La ampliación consiste en cambiar este comportamiento por uno basado en sesión. 
 
-2. **Selección de agente**  
-   - Debes poder elegir si hablas con el **Agente A** o con el **Agente B**.  
-   - Esto puede hacerse de varias formas:
-     - mediante un comando inicial (`/agenteA` o `/agenteB`),  
-     - mediante un selector en el arranque,  
-     - o detectando el modo por el primer mensaje.  
+### Implementación orientativa
 
-3. **Uso de Mistral con tools**  
-   - El código debe llamar a la API de Mistral con una lista de `tools` (funciones) definidas en JSON, siguiendo el modelo de *function calling*. 
-   - Cuando el modelo decida usar una tool, tu backend debe:
-     - leer el `tool_call` devuelto,  
-     - ejecutar la función Python correspondiente,  
-     - y devolver el resultado al modelo para que este construya la respuesta final.  
+```python
+@cl.on_chat_start
+async def on_chat_start():
+    cl.user_session.set("messages", [])
 
-4. **Integración de las funciones personalizadas**  
-   - Las funciones `get_weather`, `get_time`, `get_stock_price` (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. 
-   - El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando `@cl.step(type="tool")`).
 
-5. **Demostraciones de uso**  
-   - Debes probar la app con varios ejemplos, de forma que:
-     - en algunos casos el agente responda sin tools,  
-     - y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. 
+@cl.step(type="run")
+async def run_agent(user_query: str):
+    messages = cl.user_session.get("messages", [])
+    messages.append({"role": "user", "content": user_query})
 
----
+    number_iterations = 0
+    answer_message_content = None
 
-### Pasos guiados (recomendados)
+    while number_iterations < 5:
+        completion = mai_client.chat.complete(
+            model=MODEL,
+            messages=messages,
+            tool_choice="auto",
+            tools=tools,
+        )
+        message = completion.choices[0].message
+        messages.append(message)
+        answer_message_content = message.content
 
-1. **Paso 1: App Chainlit mínima**  
-   - Crea un `app.py` que use Chainlit y un modelo de Mistral, sin tools.  
-   - Comprueba que puedes enviar y recibir mensajes.   
+        if not message.tool_calls:
+            break
 
-2. **Paso 2: Añadir un solo tool sencillo**  
-   - Implementa `get_time` como función Python.  
-   - Define el tool JSON y pásalo al modelo.  
-   - Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. 
+        tool_results = await run_multiple(message.tool_calls)
+        messages.extend(tool_results)
+        number_iterations += 1
 
-3. **Paso 3: Añadir `get_weather` y `get_stock_price`**  
-   - Implementa estas funciones y añádelas a la lista de tools. 
-   - Diseña prompts donde tenga sentido usarlas (tiempo en una ciudad, precio de una acción, etc.).  
+    cl.user_session.set("messages", messages)
+    return answer_message_content
+```
 
-4. **Paso 4: Instrucciones de los agentes A y B**  
-   - Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo.   
-   - Ajusta el rol de A hacia algo más práctico/planificador, y deja B como creativo.  
+### Tareas del alumnado
 
-5. **Paso 5: Selector de agente**  
-   - Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). 
-   - Asegúrate de que las tools se comportan de forma coherente con cada agente (el A usará más `get_time`/`get_weather`, el B quizá use `get_stock_price` para ideas financieras, etc.).  
+- Añadir **`@cl.on_chat_start`** para inicializar la sesión. 
+- Modificar `run_agent()` para leer y escribir en `cl.user_session`. 
+- Probar una conversación de dos turnos, por ejemplo:  
+  1. *What’s the weather in Napoleon’s hometown?*  
+  2. *And in Michel’s hometown?*  
+- Comprobar si el bot entiende la continuidad. 
 
----
+### Pregunta de reflexión
 
-### Entrega mínima (para esta actividad)
+¿Qué diferencia hay entre una variable global de Python y `cl.user_session`? La idea es que **`cl.user_session`** mantiene datos por usuario/sesión, mientras que una global podría mezclar conversaciones de usuarios distintos. 
 
-Para la actividad asociada a esta sesión se pedirá, como mínimo:
+## Parte 3: añadir botones con **`cl.Action`**
 
-- El fichero `app.py` (o equivalente) con la integración de Chainlit + Mistral + tools.  
-- Un breve `README.md` (o texto en la entrega) que explique:
-  - cómo arrancar la app,  
-  - qué hace el agente A,  
-  - qué hace el agente B,  
-  - qué funciones personalizadas se han implementado,  
-  - y cómo probarlas (ejemplos de prompts). 
+### Objetivo
 
-En sesiones posteriores se podrá ampliar esta base para incluir **RAG** y otras capacidades más avanzadas, pero en esta actividad el foco está en **migrar los agentes del playground a una app propia y darles herramientas mediante function calling**. 
+Incorporar una interfaz más guiada en Chainlit mediante botones que lancen preguntas predefinidas. Chainlit soporta acciones interactivas con **`cl.Action`** y **`@cl.action_callback(...)`**. 
+
+### Implementación sugerida
+
+```python
+def get_action_buttons():
+    return [
+        cl.Action(
+            name="napoleon_button",
+            label="Napoleón",
+            payload={"prompt": "What's the weather in Napoleon's hometown?"}
+        ),
+        cl.Action(
+            name="michel_button",
+            label="Michel-Angelo",
+            payload={"prompt": "What's the weather in Michel-Angelo's hometown?"}
+        ),
+        cl.Action(
+            name="compare_button",
+            label="Comparar",
+            payload={"prompt": "Compare Napoleon's hometown and Michel-Angelo's hometown."}
+        )
+    ]
+```
+
+Y un callback de ejemplo:
+
+```python
+@cl.action_callback("napoleon_button")
+async def on_napoleon(action: cl.Action):
+    prompt = action.payload.get("prompt", "What's the weather in Napoleon's hometown?")
+    answer = await run_agent(prompt)
+    await cl.Message(content=answer, actions=get_action_buttons()).send()
+```
+
+### Tareas del alumnado
+
+- Crear al menos tres botones de acción. 
+- Asociar cada botón a un callback. 
+- Reutilizar **`run_agent(...)`** en lugar de duplicar lógica del agente. 
+- Mostrar los botones al inicio o después de cada respuesta. 
+
+### Pregunta de reflexión
+
+¿Por qué es mejor reutilizar **`run_agent()`** dentro de un **`action_callback`** que escribir una lógica distinta en cada callback? Porque así toda la lógica de conversación y uso de tools queda centralizada y es más mantenible. 
+
+## Parte 4: reto opcional de interfaz visual
+
+### Objetivo
+
+Mostrar el resultado usando algún elemento adicional de Chainlit, no solo texto plano. Chainlit soporta distintos elementos visuales y de contenido además de mensajes básicos. 
+
+### Ideas posibles
+
+- Añadir una tabla resumen con ciudad, país y temperatura. 
+- Mostrar una imagen o icono meteorológico según la previsión. 
+- Devolver una comparación formateada cuando se consulten dos ciudades.
+
+## Secuencia de trabajo recomendada
+
+1. Revisar el código base y explicar su arquitectura. 
+2. Implementar **`get_country_info(location)`**.  
+3. Registrar la nueva tool en **`tools`** y **`available_tools`**.
+4. Añadir memoria con **`cl.user_session`**.
+5. Incorporar botones con **`cl.Action`**. 
+6. Probar preguntas simples, compuestas y comparativas. 
+7. Realizar el reto visual opcional si queda tiempo. 
+
+## Entregables
+
+El alumnado debe entregar: 
+
+- Un fichero Python funcional con la ampliación implementada.
+- Capturas de pantalla del agente funcionando en Chainlit.
+- Una breve explicación escrita de los cambios realizados.
+- Respuestas a las preguntas de reflexión.
+
+## Criterios de evaluación
+
+| Criterio | Descripción | Puntuación orientativa |
+|---------|-------------|------------------------|
+| Nueva tool | La tool **`get_country_info()`** está bien implementada e integrada | 3 puntos |
+| Memoria de sesión | El agente usa correctamente **`cl.user_session`** | 2 puntos |
+| Interfaz | Se añaden botones o elementos de Chainlit funcionales | 2 puntos |
+| Integración | El agente combina correctamente varias tools | 2 puntos |
+| Claridad técnica | El código es limpio y la explicación es correcta | 1 punto |
+
+## Extensión opcional para alumnado avanzado
+
+Como reto extra, se puede sustituir la tool **`get_current_weather()`** simulada por una llamada real a una API meteorológica como Open-Meteo. Así el proyecto dejaría de usar datos simulados y pasaría a consultar información real. Esto añade dificultad técnica, pero también acerca mucho más la práctica a un caso de uso profesional.
 
