@@ -3,7 +3,7 @@ title: Sesión 3 - Creación de agentes en Mistral AI
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# Sesión 2  - Creación de un agente en Mistral AI
+# Sesión 3  - Creación de un agente en Mistral AI
 
 ## 1. Contexto de la sesión
 
