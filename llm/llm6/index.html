@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm1/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm6/">
       
       
-        <link rel="prev" href="../../cloud/sesion1/otras/presentacion_docente/">
-      
-      
-        <link rel="next" href="../llm2/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG) - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 4 - Chainlit - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag" class="md-skip">
+        <a href="#chainlit-resumen-practico-del-tutorial-de-datacamp" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -113,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+              Sesión 4 - Chainlit
             
           </span>
         </div>
@@ -251,13 +247,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../llm2/" class="md-tabs__link">
           
   
   
@@ -711,10 +705,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -728,20 +720,19 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -759,7 +750,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -769,435 +760,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#idea-central" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea central
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#objetivo-didactico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo didáctico
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fase 1: Chatbot simple con un modelo fundacional como Mistral
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Fase 1: Chatbot simple con un modelo fundacional como Mistral">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#que-construimos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué construimos?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué aprendemos aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fase-2-aplicacion-agentica-con-smolagents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fase 2: Aplicación agéntica con smolagents
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Fase 2: Aplicación agéntica con smolagents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#que-cambia" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué cambia?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-evolucion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo de evolución
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué aprendemos aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fase 3: Aplicación avanzada con RAG y agentes usando LangChain
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Fase 3: Aplicación avanzada con RAG y agentes usando LangChain">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#que-problema-aparece-ahora" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué problema aparece ahora?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-es-rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué es RAG?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#por-que-usar-langchain-aqui" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Por qué usar LangChain aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-evolucion_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo de evolución
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-aprendemos-aqui_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Qué aprendemos aquí?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Desventajas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#idea-clave_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Idea clave
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparativa-global" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Comparativa global
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#el-mismo-ejemplo-evolucionando" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        El mismo ejemplo evolucionando
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="El mismo ejemplo evolucionando">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version-1-chatbot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versión 1 – Chatbot
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-2-agente-con-smolagents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versión 2 – Agente con smolagents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-3-rag-agentes-con-langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versión 3 – RAG + agentes con LangChain
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cierre" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cierre
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
             
               
                 
@@ -1213,7 +775,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 2
+    Sesión 1 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
   
 
     
@@ -1241,7 +803,35 @@
   <span class="md-ellipsis">
     
   
-    Sesión 3 - Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+    Sesión 3 - Creación de agentes en Mistral AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
   
 
     
@@ -2087,252 +1677,172 @@
 
 
 
-<h1 id="sesion-1-evolucion-de-una-aplicacion-llm-de-chatbot-a-agentes-y-rag">Sesión 1 – Evolución de una aplicación LLM: de chatbot a agentes y RAG</h1>
-<h2 id="idea-central">Idea central</h2>
-<p>Vamos a estudiar una evolución muy habitual en aplicaciones basadas en modelos de lenguaje:</p>
+<h1 id="chainlit-resumen-practico-del-tutorial-de-datacamp">Chainlit: resumen práctico del tutorial de DataCamp</h1>
+<p>El objetivo es que el alumnado:</p>
+<ul>
+<li>entienda <strong>qué es Chainlit</strong> y para qué sirve,  </li>
+<li>pueda <strong>seguir los ejemplos básicos</strong> (chatbot “Sorpréndeme” y bot con Ollama),  </li>
+<li>sepa <strong>cómo integrarlo</strong> con sus propias aplicaciones LLM. [web:214][web:215]</li>
+</ul>
+<hr />
+<h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
+<p>Chainlit es un framework de Python, de código abierto, que permite crear <strong>interfaces de chat interactivas</strong> para aplicaciones basadas en modelos de lenguaje, sin necesidad de programar un frontend complejo. [web:214][web:215]</p>
+<p>Ideas clave:</p>
+<ul>
+<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas. [web:214]  </li>
+<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). [web:214][web:215]  </li>
+<li>Gestiona por ti elementos típicos de una UI de chat:</li>
+<li>mensajes,</li>
+<li>acciones (botones, etc.),</li>
+<li>streaming de respuestas,</li>
+<li>persistencia de sesiones. [web:214][web:215]</li>
+</ul>
+<hr />
+<h2 id="2-instalacion-y-requisitos">2. Instalación y requisitos</h2>
+<p>Según el tutorial, los requisitos básicos son:</p>
+<ul>
+<li>Python 3.8 o superior.  </li>
+<li>Instalar Chainlit desde <code>pip</code>: [web:214][web:215]</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit
+</code></pre></div>
+<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit<span class="w"> </span>langchain<span class="w"> </span>langchain-community
+</code></pre></div>
+<hr />
+<h2 id="3-conceptos-basicos-de-chainlit">3. Conceptos básicos de Chainlit</h2>
+<p>El artículo explica que todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. [web:214][web:215]</p>
+<h3 id="31-hooks-del-ciclo-de-vida-del-chat">3.1. Hooks del ciclo de vida del chat</h3>
+<p>Chainlit proporciona decoradores que se ejecutan en distintos momentos de la conversación: [web:214][web:215]</p>
+<ul>
+<li><code>@cl.on_chat_start</code>: se lanza al empezar un chat.  </li>
+<li><code>@cl.on_message</code>: se lanza cuando el usuario envía un mensaje.  </li>
+<li><code>@cl.on_chat_end</code>: se lanza al terminar una sesión.  </li>
+</ul>
+<p>Ejemplo mínimo (idea basada en el tutorial): [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nueva sesión de chat iniciada&quot;</span><span class="p">)</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Has dicho: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. [web:214][web:215]</p>
+<h3 id="32-acciones-claction-y-callbacks">3.2. Acciones (<code>cl.Action</code>) y callbacks</h3>
+<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. [web:214][web:215]</p>
+<ul>
+<li>Definimos acciones con <code>cl.Action</code>.  </li>
+<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. [web:214][web:215]</li>
+</ul>
+<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. [web:214][web:215]</p>
+<h3 id="33-streaming-de-respuestas">3.3. Streaming de respuestas</h3>
+<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. [web:214][web:215]</p>
+<p>Idea general:</p>
+<ul>
+<li>llamas al modelo en modo streaming,  </li>
+<li>vas actualizando el mensaje en pantalla mientras llega la respuesta.</li>
+</ul>
+<hr />
+<h2 id="4-configuracion-con-configtoml">4. Configuración con <code>config.toml</code></h2>
+<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. [web:214][web:215]</p>
+<p>Algunas posibilidades que menciona el tutorial:</p>
+<ul>
+<li><strong>Persistencia del chat</strong>: guardar sesiones para reanudarlas después.  </li>
+<li><strong>Carga de ficheros</strong>: permitir que el usuario suba archivos.  </li>
+<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. [web:214][web:215]</li>
+</ul>
+<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): [web:214][web:215]</p>
+<div class="highlight"><pre><span></span><code><span class="k">[persistence]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+
+<span class="k">[UI]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="5-primer-ejemplo-chatbot-sorprendeme-estatico">5. Primer ejemplo: chatbot “Sorpréndeme” estático</h2>
+<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. [web:214][web:215]</p>
+<p>Idea (sin copiar el código literal): [web:214][web:215]</p>
 <ol>
-<li>Primero construimos un <strong>chatbot básico</strong> con un modelo fundacional como <strong>Mistral</strong>.</li>
-<li>Después evolucionamos hacia una <strong>aplicación agéntica</strong> con <strong>smolagents</strong>.</li>
-<li>Finalmente llegamos a una aplicación más avanzada con <strong>RAG + agentes</strong> usando <strong>LangChain</strong>.</li>
+<li>En <code>@cl.on_chat_start</code> se muestran botones con opciones de “sorpresa”.  </li>
+<li>Cada botón dispara un <code>@cl.action_callback</code> distinto.  </li>
+<li>El bot responde con un mensaje predefinido según el botón.  </li>
 </ol>
-<p>La idea no es añadir complejidad por añadirla, sino entender que <strong>cada nueva arquitectura resuelve una limitación real de la anterior</strong>.</p>
-<hr />
-<h2 id="objetivo-didactico">Objetivo didáctico</h2>
-<p>Al finalizar esta sesión, deberías ser capaz de:</p>
+<p>Esto sirve para entender:</p>
 <ul>
-<li>Explicar por qué se empieza normalmente por una aplicación sencilla con un LLM.</li>
-<li>Entender qué aporta una arquitectura basada en agentes.</li>
-<li>Comprender por qué RAG aparece cuando necesitamos trabajar con documentación propia o conocimiento externo.</li>
-<li>Comparar ventajas e inconvenientes de cada fase.</li>
+<li>cómo crear botones,</li>
+<li>cómo reaccionar a las acciones del usuario,</li>
+<li>cómo enviar mensajes desde callbacks. [web:214][web:215]</li>
 </ul>
 <hr />
-<h2 id="fase-1-chatbot-simple-con-un-modelo-fundacional-como-mistral">Fase 1: Chatbot simple con un modelo fundacional como Mistral</h2>
-<h3 id="que-construimos">¿Qué construimos?</h3>
-<p>La primera versión de nuestra aplicación es un <strong>chatbot</strong> que recibe mensajes del usuario y responde usando un modelo fundacional como <strong>Mistral</strong>.</p>
-<p>Ejemplo de uso:</p>
+<h2 id="6-segundo-ejemplo-bot-sorprendeme-con-ollama">6. Segundo ejemplo: bot “Sorpréndeme” con Ollama</h2>
+<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. [web:214][web:215]</p>
+<p>La estructura general, según el tutorial, es:</p>
+<ol>
+<li>Definir un LLM de LangChain que use Ollama, por ejemplo:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</code></pre></div>
+<p>[web:214][web:215]</p>
+<ol>
+<li>Crear un flujo en <code>@cl.on_message</code> que:</li>
+<li>recibe el mensaje del usuario,</li>
+<li>llama al LLM,</li>
+<li>
+<p>envía la respuesta en Chainlit (posiblemente en streaming). [web:214][web:215]</p>
+</li>
+<li>
+<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). [web:214][web:215]</p>
+</li>
+</ol>
+<p>Este ejemplo muestra cómo:</p>
 <ul>
-<li>El usuario pregunta: <em>"¿Qué es un token en un LLM?"</em></li>
-<li>El chatbot responde generando texto a partir del prompt recibido.</li>
+<li>usar Chainlit como <strong>front-end de chat</strong>,</li>
+<li>mientras la lógica de IA vive en LangChain y Ollama. [web:214][web:215]</li>
 </ul>
-<h3 id="que-aprendemos-aqui">¿Qué aprendemos aquí?</h3>
-<p>Esta fase es ideal para aprender lo esencial:</p>
+<hr />
+<h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
+<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: [web:214][web:215][web:216]</p>
 <ul>
-<li>Qué es un prompt.</li>
-<li>Qué es un <strong>system prompt</strong>.</li>
-<li>Cómo se envían mensajes a un modelo.</li>
-<li>Cómo se recibe una respuesta.</li>
-<li>Qué limitaciones tiene un LLM cuando solo “conversa”.</li>
+<li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
+<li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
+<li><strong>Demos educativas</strong>: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  </li>
+<li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
 </ul>
-<h3 id="ventajas">Ventajas</h3>
+<hr />
+<h2 id="8-como-usar-este-resumen-en-clase">8. Cómo usar este resumen en clase</h2>
+<p>Sugerencias para integrarlo en tus materiales:</p>
 <ul>
-<li>Es la forma más simple de empezar.</li>
-<li>Requiere poco código.</li>
-<li>Permite ver resultados muy rápido.</li>
-<li>Sirve para introducir conceptos clave como:<ul>
-<li>prompt,</li>
-<li>system prompt,</li>
-<li>contexto,</li>
-<li>temperatura,</li>
-<li>longitud de salida.</li>
+<li>Usarlo como <strong>apunte previo</strong> antes de mandarles al tutorial completo.  </li>
+<li>Montar en directo un “Sorpréndeme” básico en clase siguiendo la estructura descrita.  </li>
+<li>Plantear como práctica:</li>
+<li>que el alumnado modifique el ejemplo estático para añadir nuevos botones,</li>
+<li>o que conecte un modelo diferente en la demo con Ollama.</li>
 </ul>
+<hr />
+<h2 id="9-enlaces-utiles">9. Enlaces útiles</h2>
+<ul>
+<li>
+<p>Tutorial original en español:<br />
+<a href="https://www.datacamp.com/es/tutorial/chainlit">https://www.datacamp.com/es/tutorial/chainlit</a> [web:214]</p>
+</li>
+<li>
+<p>Versión en inglés (contenido equivalente):<br />
+<a href="https://www.datacamp.com/tutorial/chainlit">https://www.datacamp.com/tutorial/chainlit</a> [web:215]</p>
+</li>
+<li>
+<p>Otros tutoriales de IA generativa en DataCamp:<br />
+<a href="https://www.datacamp.com/es/tutorial/category/generative-ai">https://www.datacamp.com/es/tutorial/category/generative-ai</a> [web:216]</p>
 </li>
 </ul>
-<h3 id="desventajas">Desventajas</h3>
-<ul>
-<li>El modelo <strong>solo responde</strong>: no actúa sobre herramientas ni consulta fuentes externas.</li>
-<li>Puede <strong>alucinar</strong> o inventarse información.</li>
-<li>No sabe nada de nuestros documentos propios si no se los pasamos en el prompt.</li>
-<li>El alumnado puede pensar erróneamente que “usar IA generativa” es solo hacer chatbots.</li>
-</ul>
-<h3 id="idea-clave">Idea clave</h3>
+<hr />
 <blockquote>
-<p>Un chatbot con un modelo fundacional es un excelente punto de partida, pero no suele ser suficiente para construir una aplicación útil y robusta en un entorno real.</p>
+<p>Nota: este documento es un <strong>resumen original</strong> basado en el tutorial de DataCamp. No reproduce literalmente su contenido, por lo que, para detalles completos y código exacto, se recomienda consultar el artículo original. [web:214][web:215]</p>
 </blockquote>
-<hr />
-<h2 id="fase-2-aplicacion-agentica-con-smolagents">Fase 2: Aplicación agéntica con smolagents</h2>
-<h3 id="que-cambia">¿Qué cambia?</h3>
-<p>Ahora dejamos de pensar en el modelo como un simple generador de texto y pasamos a verlo como un <strong>agente</strong>.</p>
-<p>Un agente no solo responde: también puede</p>
-<ul>
-<li>decidir,</li>
-<li>planificar,</li>
-<li>usar herramientas,</li>
-<li>ejecutar acciones,</li>
-<li>encadenar pasos.</li>
-</ul>
-<p>Con <strong>smolagents</strong> podemos construir agentes de forma bastante ligera.</p>
-<h3 id="ejemplo-de-evolucion">Ejemplo de evolución</h3>
-<p>Antes:</p>
-<ul>
-<li>El chatbot respondía:<br />
-<em>"Creo que tienes estos documentos..."</em></li>
-</ul>
-<p>Ahora:</p>
-<ul>
-<li>El agente puede llamar a una tool como <code>listar_documentos()</code>.</li>
-<li>Puede leer una función.</li>
-<li>Puede decidir usar una herramienta antes de responder.</li>
-</ul>
-<h3 id="que-aprendemos-aqui_1">¿Qué aprendemos aquí?</h3>
-<ul>
-<li>Qué es una <strong>tool</strong>.</li>
-<li>Qué es un <strong>agente</strong>.</li>
-<li>Qué diferencia hay entre “responder” y “actuar”.</li>
-<li>Cómo delegar pequeñas tareas al modelo.</li>
-</ul>
-<h3 id="ventajas_1">Ventajas</h3>
-<ul>
-<li>Introduce una arquitectura mucho más útil.</li>
-<li>Permite automatizar acciones.</li>
-<li>Hace visibles conceptos fundamentales de IA aplicada:<ul>
-<li>decisión,</li>
-<li>planificación,</li>
-<li>observación,</li>
-<li>ejecución.</li>
-</ul>
-</li>
-<li>smolagents es muy adecuado para aprender porque tiene una curva de entrada relativamente baja.</li>
-</ul>
-<h3 id="desventajas_1">Desventajas</h3>
-<ul>
-<li>Añade complejidad mental y técnica.</li>
-<li>Puede parecer “magia” si no entendemos bien cómo decide el agente.</li>
-<li>Si la aplicación crece mucho, podemos necesitar una arquitectura más completa y modular.</li>
-</ul>
-<h3 id="idea-clave_1">Idea clave</h3>
-<blockquote>
-<p>Un agente es más potente que un chatbot porque no solo habla: también puede actuar usando herramientas.</p>
-</blockquote>
-<hr />
-<h2 id="fase-3-aplicacion-avanzada-con-rag-y-agentes-usando-langchain">Fase 3: Aplicación avanzada con RAG y agentes usando LangChain</h2>
-<h3 id="que-problema-aparece-ahora">¿Qué problema aparece ahora?</h3>
-<p>Aunque tengamos agentes, sigue existiendo una limitación importante:</p>
-<ul>
-<li>el modelo no tiene acceso fiable a nuestros apuntes,</li>
-<li>no conoce documentos privados,</li>
-<li>no puede responder bien sobre contenidos específicos del curso si no se los damos explícitamente.</li>
-</ul>
-<p>Aquí aparece <strong>RAG</strong>.</p>
-<h3 id="que-es-rag">¿Qué es RAG?</h3>
-<p><strong>RAG</strong> significa <strong>Retrieval-Augmented Generation</strong>.</p>
-<p>La idea es:</p>
-<ol>
-<li>Recuperar fragmentos relevantes de documentación.</li>
-<li>Pasarlos al modelo como contexto.</li>
-<li>Generar una respuesta apoyada en esas fuentes.</li>
-</ol>
-<h3 id="por-que-usar-langchain-aqui">¿Por qué usar LangChain aquí?</h3>
-<p>Porque LangChain proporciona piezas muy útiles para construir esta arquitectura:</p>
-<ul>
-<li>carga de documentos,</li>
-<li>fragmentación,</li>
-<li>embeddings,</li>
-<li>recuperación,</li>
-<li>cadenas de generación,</li>
-<li>integración con agentes.</li>
-</ul>
-<h3 id="ejemplo-de-evolucion_1">Ejemplo de evolución</h3>
-<p>Antes:</p>
-<ul>
-<li>El agente intentaba responder “de memoria”.</li>
-</ul>
-<p>Ahora:</p>
-<ul>
-<li>El sistema busca en apuntes o documentos del curso.</li>
-<li>Recupera los fragmentos más relevantes.</li>
-<li>Responde usando ese contexto.</li>
-</ul>
-<h3 id="que-aprendemos-aqui_2">¿Qué aprendemos aquí?</h3>
-<ul>
-<li>Qué problema resuelve RAG.</li>
-<li>Cómo conectar documentos y modelos.</li>
-<li>Cómo construir una aplicación más robusta y útil.</li>
-<li>Cómo integrar agentes con recuperación de información.</li>
-</ul>
-<h3 id="ventajas_2">Ventajas</h3>
-<ul>
-<li>Reduce alucinaciones.</li>
-<li>Permite trabajar con conocimiento propio.</li>
-<li>Mejora la precisión.</li>
-<li>Hace la arquitectura más profesional y reutilizable.</li>
-<li>Encaja muy bien en aplicaciones reales de empresa y educación.</li>
-</ul>
-<h3 id="desventajas_2">Desventajas</h3>
-<ul>
-<li>Es la fase más compleja.</li>
-<li>Requiere más componentes.</li>
-<li>Necesita más diseño, pruebas y depuración.</li>
-<li>Si no se entiende primero el problema, puede parecer una receta técnica sin sentido.</li>
-</ul>
-<h3 id="idea-clave_2">Idea clave</h3>
-<blockquote>
-<p>RAG no sustituye al LLM: lo complementa con acceso a conocimiento externo relevante.</p>
-</blockquote>
-<hr />
-<h2 id="comparativa-global">Comparativa global</h2>
-<table>
-<thead>
-<tr>
-<th>Fase</th>
-<th>Qué hace</th>
-<th>Ventajas</th>
-<th>Limitaciones</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Chatbot con Mistral</td>
-<td>Conversa con el usuario</td>
-<td>Simple, rápido, ideal para empezar</td>
-<td>No usa tools ni documentos externos</td>
-</tr>
-<tr>
-<td>Agente con smolagents</td>
-<td>Usa herramientas y toma decisiones</td>
-<td>Más útil y flexible</td>
-<td>Más complejidad y depuración</td>
-</tr>
-<tr>
-<td>RAG + agentes con LangChain</td>
-<td>Recupera información y responde con contexto</td>
-<td>Más robusto, más realista, más profesional</td>
-<td>Arquitectura más compleja</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="el-mismo-ejemplo-evolucionando">El mismo ejemplo evolucionando</h2>
-<p>Vamos a imaginar siempre el mismo caso: un <strong>Asistente técnico del módulo</strong>.</p>
-<h3 id="version-1-chatbot">Versión 1 – Chatbot</h3>
-<ul>
-<li>Responde dudas generales.</li>
-<li>Usa solo el modelo Mistral.</li>
-<li>No consulta apuntes ni herramientas.</li>
-</ul>
-<h3 id="version-2-agente-con-smolagents">Versión 2 – Agente con smolagents</h3>
-<ul>
-<li>Puede usar tools.</li>
-<li>Por ejemplo:</li>
-<li>listar documentos,</li>
-<li>leer un resumen,</li>
-<li>consultar un dato auxiliar.</li>
-</ul>
-<h3 id="version-3-rag-agentes-con-langchain">Versión 3 – RAG + agentes con LangChain</h3>
-<ul>
-<li>Busca en una colección de apuntes o documentación.</li>
-<li>Recupera fragmentos relevantes.</li>
-<li>Construye una respuesta fundamentada en esos documentos.</li>
-<li>Puede incluir además un agente coordinador que decida cuándo usar RAG.</li>
-</ul>
-<h2 id="cierre">Cierre</h2>
-<p>La evolución que vamos a seguir en esta unidad será:</p>
-<p><strong>chatbot básico → agente con tools → sistema con RAG y agentes</strong></p>
-<p>porque refleja muy bien cómo se diseñan aplicaciones LLM reales:</p>
-<ul>
-<li>primero entendemos el modelo,</li>
-<li>luego aprendemos a darle capacidad de actuar,</li>
-<li>y finalmente lo conectamos con conocimiento útil y arquitectura modular.</li>
-</ul>
 
 
 
@@ -2368,44 +1878,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
-        
-          
-          <a href="../../cloud/sesion1/otras/presentacion_docente/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Presentación docente">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              <div class="md-ellipsis">
-                Presentación docente
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../llm2/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Sesión 2">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              <div class="md-ellipsis">
-                Sesión 2
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
