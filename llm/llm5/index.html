@@ -3162,18 +3162,18 @@
 Explicación:</p>
 <ul>
 <li>
-<p>load_dotenv() carga las variables del .env.</p>
+<p><strong><code>load_dotenv()</code></strong> carga las variables del .env.</p>
 </li>
 <li>
-<p>API_KEY y MODEL parametrizan la aplicación.</p>
+<p><strong><code>API_KEY</code></strong> y <strong><code>MODEL</code></strong> parametrizan la aplicación.</p>
 </li>
 <li>
-<p>Mistral(...) crea el cliente con el que se llamará a la API.
+<p><strong><code>Mistral(...)</code></strong> crea el cliente con el que se llamará a la API.
 ​</p>
 </li>
 </ul>
 <h3 id="paso-3">Paso 3</h3>
-<p>Introducimos el <strong><code>SYSTEM_PROMPT</code></strong> y la definición de <strong><code>TOOLS</code></strong>. La variable <code>tool</code> no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.</p>
+<p>Introducimos la variabel <strong><code>SYSTEM_PROMPT</code></strong> y la definición de <strong><code>TOOLS</code></strong>. La variable <code>tool</code> no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.</p>
 <div class="highlight"><pre><span></span><code><span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Eres un asistente útil y conciso.</span>
 <span class="s2">Si el usuario pregunta por el tiempo o la meteorología de una ciudad,</span>
@@ -3204,7 +3204,7 @@ Explicación:</p>
 <p><strong>IMPORTANTE</strong>: no confundir la lista TOOLS con la función real <strong><code>get_weather()</code></strong>. </p>
 <p>Conviene insistir en que:</p>
 <ul>
-<li>TOOLS es la descripción para el modelo.</li>
+<li><strong><code>TOOLS</code></strong> es la descripción para el modelo.</li>
 <li><strong><code>get_weather()</code></strong> es la implementación real en Python.</li>
 </ul>
 <h4 id="paso-4-funcion-funcion-auxiliar-weather_code_to_text">Paso 4: Función función auxiliar weather_code_to_text()</h4>
