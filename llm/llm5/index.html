@@ -3173,7 +3173,7 @@ Explicación:</p>
 </li>
 </ul>
 <h3 id="paso-3">Paso 3</h3>
-<p>Introducimos la variabel <strong><code>SYSTEM_PROMPT</code></strong> y la definición de <strong><code>TOOLS</code></strong>. La variable <code>tool</code> no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.</p>
+<p>Introducimos la variable <strong><code>SYSTEM_PROMPT</code></strong> y la definición de <strong><code>TOOLS</code></strong>. La variable <code>tool</code> no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.</p>
 <div class="highlight"><pre><span></span><code><span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Eres un asistente útil y conciso.</span>
 <span class="s2">Si el usuario pregunta por el tiempo o la meteorología de una ciudad,</span>
@@ -3237,8 +3237,8 @@ Explicación:</p>
     <span class="k">return</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="paso-5-tool-real-get_weather">Paso 5: tool real <strong><code>get_weather()</code></strong></h3>
-<p>Este es el bloque más importante del lado backend porque muestra que una <strong><code>tool</code></strong> puede <strong>encadenar dos APIs</strong>: una para geocodificación y otra para tiempo actual. 
-Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permite que Chainlit muestre visualmente la ejecución de la herramienta.</p>
+<p>Este es el bloque más importante del lado del backend porque muestra que una <strong><code>tool</code></strong> puede <strong>encadenar dos APIs</strong>: una para geocodificación y otra para obtener el tiempo actual. 
+Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permite que <strong>Chainlit muestre visualmente la ejecución de la herramienta</strong>.</p>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
@@ -3316,9 +3316,9 @@ Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permit
 </code></pre></div>
 Aspectos a remarcar:</p>
 <ul>
-<li>La <strong><code>tool</code></strong> devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como <strong><code>content</code></strong>.</li>
-<li><strong><code>@cl.step(type="tool")</code></strong> permite ver la tool como paso intermedio en Chainlit.
-​* Se controlan errores para que el agente no se rompa ante fallos de red</li>
+<li>La <strong><code>tool</code></strong> devuelve texto JSON, no un dicccionario Python sin serializar. Eso es así porque luego se añade al historial como <strong><code>content</code></strong>.</li>
+<li><strong><code>@cl.step(type="tool")</code></strong> permite ver la tool como paso intermedio en Chainlit.</li>
+<li>Se controlan errores para que el agente no se rompa ante fallos de red</li>
 </ul>
 <h3 id="paso-6-available_tools">Paso 6 - <code>AVAILABLE_TOOLS</code></h3>
 <p>Variable que hace de puente entre el nombre que el modelo genera y la función Python que realmente se ejecutará.</p>
