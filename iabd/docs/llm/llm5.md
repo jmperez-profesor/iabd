@@ -670,7 +670,7 @@ Porque el modelo solo devuelve texto estructurado; el backend necesita resolver 
 
 ### Paso 7 `@cl.on_chat_start`
 
-Chainlit lo usa para reaccionar al inicio de una nueva sesión de chat. Aquí se inicializa el historial y se envía el mensaje de bienvenida.
+Chainlit lo usa para *reaccionar* al inicio de una nueva sesión de chat. Aquí se inicializa el historial y se envía el mensaje de bienvenida.
 
 ```python
 @cl.on_chat_start
@@ -692,9 +692,9 @@ async def on_chat_start():
 Puntos clave:
 
 * **`cl.user_session`** guarda datos por sesión de usuario, no globalmente.
-​* El primer mensaje del historial es el **`system prompt`**, que actúa como contexto permanente de la conversación.
+* El primer mensaje del historial es el **`system prompt`**, que actúa como contexto permanente de la conversación.
 
-### Paso 8 `**@cl.on_message`**
+### Paso 8 **`@cl.on_message`**
 
 Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta **`tools`** si hace falta y finalmente devuelve la respuesta al chat. 
 Chainlit documenta este **`callback`** como el punto de entrada principal para mensajes de la **UI**.
