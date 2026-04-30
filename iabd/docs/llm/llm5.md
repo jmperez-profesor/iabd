@@ -490,15 +490,15 @@ client = Mistral(api_key=API_KEY)
 ```
 Explicación:
 
-* load_dotenv() carga las variables del .env.
+* **`load_dotenv()`** carga las variables del .env.
 
-* API_KEY y MODEL parametrizan la aplicación.
+* **`API_KEY`** y **`MODEL`** parametrizan la aplicación.
 
-* Mistral(...) crea el cliente con el que se llamará a la API.
+* **`Mistral(...)`** crea el cliente con el que se llamará a la API.
 ​
 ### Paso 3
 
-Introducimos el **`SYSTEM_PROMPT`** y la definición de **`TOOLS`**. La variable `tool` no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.
+Introducimos la variabel **`SYSTEM_PROMPT`** y la definición de **`TOOLS`**. La variable `tool` no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.
 
 ```python
 SYSTEM_PROMPT = """
@@ -533,7 +533,7 @@ TOOLS = [
 
 Conviene insistir en que:
 
-* TOOLS es la descripción para el modelo.
+* **`TOOLS`** es la descripción para el modelo.
 * **`get_weather()`** es la implementación real en Python.
 
 #### Paso 4: Función función auxiliar weather_code_to_text()
