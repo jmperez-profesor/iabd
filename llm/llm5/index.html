@@ -3380,10 +3380,10 @@ Chainlit documenta este <strong><code>callback</code></strong> como el punto de 
 </ol>
 <h3 id="paso-9-memoria-conversacional">Paso 9 - Memoria conversacional</h3>
 <p>Explica el bloque inicial de recuperación de sesión y añadido del mensaje del usuario. Esta parte conecta con el concepto de memoria conversacional.</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
-<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+<p><div class="highlight"><pre><span></span><code>    <span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
 
-<span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
 Explicación:</p>
 <ul>
@@ -3394,7 +3394,7 @@ Explicación:</p>
 <h3 id="paso-10-bucle-controlado-de-hasta-5-iteraciones">Paso 10 - Bucle controlado de hasta 5 iteraciones</h3>
 <p>La documentación de Mistral contempla <strong>cadenas sucesivas</strong> de <strong><code>function calling</code></strong>, por eso tiene sentido iterar.
 ​
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
 </code></pre></div></p>
 <p>Ojo, este for:</p>
 <ul>
@@ -3404,12 +3404,12 @@ Explicación:</p>
 ​</li>
 </ul>
 <h3 id="paso-11-llamada-al-modelo">Paso 11 - llamada al modelo</h3>
-<p><div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
-    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
-    <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
-    <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<p><div class="highlight"><pre><span></span><code>        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 </code></pre></div>
 Explicación:</p>
 <ul>
@@ -3426,12 +3426,13 @@ Explicación:</p>
 <p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar <strong><code>get_weather</code></strong>.
 ​</p>
 <h3 id="paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial">Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.</h3>
-<div class="highlight"><pre><span></span><code><span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
-
-<span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>        <span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+        <span class="c1"># Construir el payload del mensaje del asistente, </span>
+        <span class="c1"># incluyendo las llamadas a herramientas si las hay</span>
+        <span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
 </code></pre></div>
 <p>Ojo, <strong>el mensaje del asistente puede venir</strong>:</p>
 <ul>
