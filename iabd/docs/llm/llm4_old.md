@@ -783,3 +783,603 @@ def get_weather(city: str) -> dict:
 **Comprobamos que funciona correctamente:**
 
 ![Ejemplo de uso de la herramienta (tool) get_weather](./images/chainlit/ejemplo_uso_get_weather_api.png)
+
+## Actividad guiada: Chainlit+agente con herramientas personalizadas
+
+
+
+### Documentación paso a paso de `on_message` en Chainlit con Mistral
+
+Esta función implementa el **bucle principal de conversación** entre Chainlit, el modelo de Mistral y las herramientas externas o *tools*. Chainlit ejecuta `@cl.on_message` cada vez que el usuario envía un mensaje desde la interfaz, y Mistral soporta llamadas asíncronas con herramientas mediante `chat.complete_async(..., tools=..., tool_choice="auto")`. 
+
+#### Función completa
+
+```python
+@cl.on_message
+async def on_message(message: cl.Message):
+    messages = cl.user_session.get("messages", [])
+    messages.append({"role": "user", "content": message.content})
+
+    final_answer = None
+
+    for _ in range(5):
+        response = await client.chat.complete_async(
+            model=MODEL,
+            messages=messages,
+            tools=TOOLS,
+            tool_choice="auto",
+        )
+
+        assistant_message = response.choices[0].message
+
+        assistant_payload = {
+            "role": "assistant",
+            "content": assistant_message.content or ""
+        }
+
+        tool_calls = getattr(assistant_message, "tool_calls", None)
+
+        if tool_calls:
+            assistant_payload["tool_calls"] = [
+                {
+                    "id": tool_call.id,
+                    "type": "function",
+                    "function": {
+                        "name": tool_call.function.name,
+                        "arguments": tool_call.function.arguments,
+                    },
+                }
+                for tool_call in tool_calls
+            ]
+
+        messages.append(assistant_payload)
+
+        if not tool_calls:
+            final_answer = assistant_message.content or "No tengo respuesta."
+            break
+
+        for tool_call in tool_calls:
+            function_name = tool_call.function.name
+            function_args = json.loads(tool_call.function.arguments)
+
+            if function_name not in AVAILABLE_TOOLS:
+                tool_result = json.dumps(
+                    {"error": f"Herramienta no implementada: {function_name}"},
+                    ensure_ascii=False
+                )
+            else:
+                tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
+
+            messages.append(
+                {
+                    "role": "tool",
+                    "name": function_name,
+                    "tool_call_id": tool_call.id,
+                    "content": tool_result,
+                }
+            )
+
+    cl.user_session.set("messages", messages)
+
+    await cl.Message(
+        content=final_answer or "No he podido generar una respuesta final."
+    ).send()
+```
+
+#### 1. Decorador y firma
+
+```python
+@cl.on_message
+async def on_message(message: cl.Message):
+```
+
+- `@cl.on_message` indica a Chainlit que esta función debe ejecutarse cada vez que el usuario envía un mensaje desde la interfaz. 
+- La palabra clave `async` convierte la función en asíncrona, lo que permite hacer llamadas HTTP o a APIs sin bloquear la aplicación. 
+- El parámetro `message: cl.Message` representa el mensaje recibido y su contenido textual está disponible en `message.content`. 
+
+#### 2. Recuperar el historial y añadir el nuevo mensaje
+
+```python
+messages = cl.user_session.get("messages", [])
+messages.append({"role": "user", "content": message.content})
+```
+
+- `cl.user_session.get("messages", [])` recupera el historial guardado para ese usuario y devuelve una lista vacía si todavía no existe. Chainlit documenta `user_session` precisamente para mantener estado por conversación. 
+- Después se añade el nuevo mensaje del usuario al historial con el formato esperado por las APIs de chat: un diccionario con `role` y `content`. 
+- Gracias a esto, el modelo recibe contexto acumulado y no solo el último mensaje aislado. 
+
+#### 3. Preparar la variable de respuesta final
+
+```python
+final_answer = None
+```
+
+- Esta variable se usa para almacenar la respuesta final que se mostrará al usuario al terminar el proceso. 
+- Se inicializa con `None` porque todavía no se sabe si el modelo responderá directamente o si antes necesitará llamar a una herramienta.
+
+#### 4. Bucle de iteración controlado
+
+```python
+for _ in range(5):
+```
+
+- Este bucle permite repetir el ciclo de **modelo -> tool -> modelo** varias veces. 
+- El límite de 5 iteraciones actúa como medida de seguridad para evitar bucles infinitos si el modelo sigue solicitando tools sin cerrar la respuesta.
+
+#### 5. Llamada al modelo de Mistral
+
+```python
+response = await client.chat.complete_async(
+    model=MODEL,
+    messages=messages,
+    tools=TOOLS,
+    tool_choice="auto",
+)
+```
+
+- `client.chat.complete_async(...)` realiza una llamada asíncrona al modelo de Mistral. El cliente Python oficial documenta este patrón para chat completions. 
+- `model=MODEL` indica el nombre del modelo que se quiere usar. 
+- `messages=messages` envía el historial completo al modelo. 
+- `tools=TOOLS` registra las herramientas que el modelo puede invocar. 
+- `tool_choice="auto"` deja que el modelo decida si necesita o no usar una herramienta. 
+
+#### 6. Extraer el mensaje del asistente
+
+```python
+assistant_message = response.choices[0].message
+```
+
+- La API devuelve una lista de posibles respuestas en `choices`, y aquí se toma la primera.
+- `assistant_message` contiene el mensaje generado por el asistente, incluyendo tanto texto natural como posibles `tool_calls`. 
+
+#### 7. Crear la estructura base del mensaje del asistente
+
+```python
+assistant_payload = {
+    "role": "assistant",
+    "content": assistant_message.content or ""
+}
+```
+
+- Se construye un diccionario que representa el mensaje del asistente dentro del historial.
+- `role` vale `"assistant"` porque ese mensaje proviene del modelo. 
+- `assistant_message.content or ""` evita problemas si el contenido viene vacío porque el modelo solo ha devuelto llamadas a herramientas. 
+
+#### 8. Comprobar si el modelo ha pedido herramientas
+
+```python
+tool_calls = getattr(assistant_message, "tool_calls", None)
+```
+
+- `getattr(...)` intenta leer el atributo `tool_calls` y devuelve `None` si no existe. 
+- Si el modelo necesita información externa, `tool_calls` contendrá una lista de llamadas a herramientas con nombre y argumentos. 
+
+#### 9. Guardar las tool calls en el historial
+
+```python
+if tool_calls:
+    assistant_payload["tool_calls"] = [
+        {
+            "id": tool_call.id,
+            "type": "function",
+            "function": {
+                "name": tool_call.function.name,
+                "arguments": tool_call.function.arguments,
+            },
+        }
+        for tool_call in tool_calls
+    ]
+```
+
+- Si existen llamadas a tools, se añaden al mensaje del asistente para que el historial refleje exactamente lo que el modelo ha pedido hacer.
+- Cada llamada incluye un `id`, el tipo `function`, el nombre de la herramienta y los argumentos serializados en JSON.
+- Ese `id` es importante porque luego se utilizará para vincular la respuesta de la tool con la llamada original.
+
+#### 10. Añadir el mensaje del asistente al historial
+
+```python
+messages.append(assistant_payload)
+```
+
+- En este punto el historial ya incluye la intervención del asistente, tanto si es una respuesta normal como si es una petición de tools. 
+- Mantener este historial consistente es clave para que el siguiente turno del modelo entienda lo que ya ha ocurrido en la conversación. 
+
+#### 11. Salida temprana si no hay tools
+
+```python
+if not tool_calls:
+    final_answer = assistant_message.content or "No tengo respuesta."
+    break
+```
+
+- Si `tool_calls` está vacío o es `None`, significa que el modelo ya ha generado una respuesta final y no necesita herramientas adicionales. 
+- Esa respuesta se guarda en `final_answer` y se interrumpe el bucle con `break`. 
+- Este es el caso más simple: usuario pregunta, modelo responde directamente. 
+
+#### 12. Recorrer cada llamada a herramienta
+
+```python
+for tool_call in tool_calls:
+    function_name = tool_call.function.name
+    function_args = json.loads(tool_call.function.arguments)
+```
+
+- Si el modelo ha pedido tools, se recorre cada llamada en un bucle.
+- `function_name` extrae el nombre de la herramienta solicitada. 
+- `tool_call.function.arguments` llega como texto JSON y `json.loads(...)` lo convierte en un diccionario Python listo para usar. 
+
+#### 13. Verificar si la herramienta existe y ejecutarla
+
+```python
+if function_name not in AVAILABLE_TOOLS:
+    tool_result = json.dumps(
+        {"error": f"Herramienta no implementada: {function_name}"},
+        ensure_ascii=False
+    )
+else:
+    tool_result = await AVAILABLE_TOOLS[function_name](**function_args)
+```
+
+- `AVAILABLE_TOOLS` es un diccionario que relaciona nombres de herramientas con funciones Python reales. 
+- Si la herramienta pedida por el modelo no existe, se genera una respuesta de error en JSON. 
+- Si la herramienta sí existe, se ejecuta con `await`, pasando los argumentos con `**function_args`. 
+- Esta es la parte donde el backend realmente ejecuta lógica externa; el modelo solo decide qué función quiere usar, pero no la ejecuta por sí mismo.
+
+#### 14. Guardar el resultado de la tool en el historial
+
+```python
+messages.append(
+    {
+        "role": "tool",
+        "name": function_name,
+        "tool_call_id": tool_call.id,
+        "content": tool_result,
+    }
+)
+```
+
+- El resultado de la herramienta se añade al historial como un mensaje con `role: "tool"`. 
+- `tool_call_id` enlaza este resultado con la llamada original hecha por el modelo. 
+- En la siguiente iteración del bucle, Mistral verá este resultado y podrá generar una respuesta final basada en esos datos. 
+
+#### 15. Guardar el historial actualizado en la sesión
+
+```python
+cl.user_session.set("messages", messages)
+```
+
+- Cuando termina el bucle, el historial completo se guarda otra vez en la sesión del usuario.
+- Esto permite que la conversación continúe en mensajes posteriores manteniendo todo el contexto previo. 
+
+#### 16. Enviar la respuesta final a Chainlit
+
+```python
+await cl.Message(
+    content=final_answer or "No he podido generar una respuesta final."
+).send()
+```
+
+- Se construye un mensaje de salida para la interfaz de Chainlit y se envía con `.send()`. 
+- Si `final_answer` tiene contenido, eso es lo que verá el usuario. Si no, se muestra un mensaje de error controlado. 
+
+#### Resumen conceptual
+
+Esta función implementa el siguiente flujo de trabajo: Chainlit recibe el mensaje del usuario, recupera el historial, consulta a Mistral, detecta si el modelo quiere usar herramientas, ejecuta esas herramientas en Python, añade los resultados al historial y vuelve a consultar al modelo hasta obtener una respuesta final. Ese patrón corresponde al flujo estándar de *tool calling* documentado por Mistral y puede integrarse de forma natural en los hooks de Chainlit. 
+
+#### Esquema mental
+
+Puede explicarse en seis pasos: 
+
+1. Chainlit recibe un mensaje del usuario.
+2. Se añade ese mensaje al historial de conversación.
+3. Se pregunta a Mistral si puede responder o si necesita una tool.
+4. Si pide una tool, el backend ejecuta la función Python correspondiente.
+5. El resultado de la tool se devuelve al historial como `role="tool"`.
+6. Mistral genera la respuesta final y Chainlit la muestra en pantalla.
+
+### Otro ejemplo de la documentación de Chainlit 
+
+A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas **`get_current_weather`** y **`get_home_town`** externa para obtener información y mostrar un resultado.
+
+![](./images/chainlit/agente_napoleon.png)
+
+**Fuente**: documentación de Mistral
+
+```python
+import os
+import json
+import asyncio
+import chainlit as cl
+from dotenv import load_dotenv
+
+from mistralai.client import Mistral
+
+load_dotenv()
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+@cl.step(type="tool", name="get_current_weather")
+async def get_current_weather(location):
+    # Make an actual API call! To open-meteo.com for instance.
+    return json.dumps(
+        {
+            "location": location,
+            "temperature": "29",
+            "unit": "celsius",
+            "forecast": ["sunny"],
+        }
+    )
+
+
+@cl.step(type="tool", name="get_home_town")
+async def get_home_town(person: str) -> str:
+    """Get the hometown of a person"""
+    if "Napoleon" in person:
+        return "Ajaccio, Corsica"
+    elif "Michel" in person:
+        return "Caprese, Italy"
+    else:
+        return "Paris, France"
+
+
+"""
+JSON tool definitions provided to the LLM.
+"""
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_home_town",
+            "description": "Get the home town of a specific person",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "type": "string",
+                        "description": "The name of a person (first and last names) to identify.",
+                    }
+                },
+                "required": ["person"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                },
+                "required": ["location"],
+            },
+        },
+    },
+]
+
+
+async def run_multiple(tool_calls):
+    """
+    Execute multiple tool calls asynchronously.
+    """
+    available_tools = {
+        "get_current_weather": get_current_weather,
+        "get_home_town": get_home_town,
+    }
+
+    async def run_single(tool_call):
+        function_name = tool_call.function.name
+        function_to_call = available_tools[function_name]
+        function_args = json.loads(tool_call.function.arguments)
+
+        function_response = await function_to_call(**function_args)
+        return {
+            "tool_call_id": tool_call.id,
+            "role": "tool",
+            "name": function_name,
+            "content": function_response,
+        }
+
+    # Run tool calls in parallel.
+    tool_results = await asyncio.gather(
+        *(run_single(tool_call) for tool_call in tool_calls)
+    )
+    return tool_results
+
+
+@cl.step(type="run", tags=["to_score"])
+async def run_agent(user_query: str):
+    messages = [{"role": "user", "content": f"{user_query}"}]
+
+    number_iterations = 0
+    answer_message_content = None
+
+    while number_iterations < 5:
+        completion = mai_client.chat.complete(
+            model="mistral-large-latest",
+            messages=messages,
+            tool_choice="auto",
+            tools=tools,
+        )
+        message = completion.choices[0].message
+        messages.append(message)
+        answer_message_content = message.content
+
+        if not message.tool_calls:
+            break
+
+        tool_results = await run_multiple(message.tool_calls)
+        messages.extend(tool_results)
+
+        number_iterations += 1
+
+    return answer_message_content
+
+
+@cl.set_starters
+async def set_starters():
+    return [
+        cl.Starter(
+            label="What's the weather in Napoleon's hometown",
+            message="What's the weather in Napoleon's hometown?",
+        ),
+        cl.Starter(
+            label="What's the weather in Paris, TX?",
+            message="What's the weather in Paris, TX?",
+        ),
+        cl.Starter(
+            label="What's the weather in Michel-Angelo's hometown?",
+            message="What's the weather in Michel-Angelo's hometown?",
+        ),
+    ]
+
+@cl.on_message
+async def main(message: cl.Message):
+    """
+    Main message handler for incoming user messages.
+    """
+    answer_message = await run_agent(message.content)
+    await cl.Message(content=answer_message).send()
+```
+
+
+## Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias
+
+### Contexto
+
+En la sesión anterior (LLM2) creaste en **Mistral Studio AI** dos agentes en el playground:
+
+- **Agente A – Tutor técnico de Flask**  
+- **Agente B – Generador creativo de ideas**
+
+Aquella actividad se centraba en definir bien el **rol**, las **instrucciones** y el **tono** de cada agente, pero **sin usar herramientas (tools)** ni funciones propias del agente.
+
+En esta sesión vamos a dar un paso más: vas a construir una **aplicación propia** en Python usando **Chainlit** como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo **funciones personalizadas** que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. 
+
+---
+
+### Objetivo de la actividad
+
+Construir una aplicación llamada, por ejemplo, `llm3-chainlit-agentes`, que:
+
+- use **Chainlit** como interfaz de chat, 
+- se conecte a **Mistral AI** desde Python, 
+- implemente **dos agentes lógicos** (A y B) con instrucciones distintas,  
+- y añada **funciones personalizadas (tools)** que el modelo pueda invocar mediante *function calling*, para tareas como obtener el tiempo, la hora o el precio de una acción. 
+
+---
+
+### Definición de los agentes
+
+Puedes mantener los nombres originales, pero se recomienda actualizar ligeramente el rol del agente A para encajarlo mejor con el uso de tools:
+
+- **Agente A – Planificador práctico / consultor técnico**  
+  - Ayuda a planificar tareas, proyectos o pequeñas “rutas” (por ejemplo, un mini plan de estudio, una ruta de viaje sencillo, etc.).  
+  - Se centrará más en **información factual y estructurada** y en usar tools como `get_time` o `get_weather`.  
+
+- **Agente B – Generador creativo de ideas**  
+  - Genera ideas de contenido, propuestas creativas, textos breves o variaciones de un mismo concepto.  
+  - Puede apoyarse en `get_stock_price` u otras tools si quieres que genere ideas de contenido financiero/tecnológico.  
+
+Las instrucciones (prompt del agente) de A y B pueden reutilizar y adaptar lo que ya definiste en Mistral Studio, ajustando ahora las descripciones para mencionar que el agente **puede llamar a funciones auxiliares cuando lo considere útil**.
+
+---
+
+### Funciones personalizadas (tools)
+
+Debes implementar al menos **tres funciones propias** en Python que el modelo pueda usar como herramientas. Algunas funciones recomendadas son:
+
+- `get_weather(location, date_range)`  
+  - Devuelve un tiempo simulado o consultado vía API (puede ser una respuesta inventada pero coherente, o una llamada real a una API de clima si quieres). 
+- `get_time(city_or_timezone)`  
+  - Devuelve la hora local de una ciudad o zona horaria.  
+- `get_stock_price(symbol)`  
+  - Devuelve el precio simulado de una acción (o real, si integras una API sencilla). 
+
+Puedes añadir otras funciones si te interesa, siempre que:
+
+- tengan parámetros bien definidos,  
+- devuelvan datos estructurados,  
+- y sean razonablemente útiles para alguno de los dos agentes. 
+
+El patrón a seguir es similar al del que hemos visto en el apartado **Mistral + Chainlit**, donde se definen tools como `get_home_town` y `get_current_weather` con un decorador `@cl.step(type="tool")` y un bloque `tools = [...]` con el esquema JSON que se pasa al modelo. 
+
+---
+
+### Requisitos mínimos de la aplicación
+
+Tu aplicación deberá cumplir, como mínimo, los siguientes puntos:
+
+1. **Interfaz en Chainlit**  
+   - La app se ejecuta con `chainlit run app.py`.  
+   - Al abrirla en el navegador puedes escribir mensajes y recibir respuestas. 
+
+2. **Selección de agente**  
+   - Debes poder elegir si hablas con el **Agente A** o con el **Agente B**.  
+   - Esto puede hacerse de varias formas:
+     - mediante un comando inicial (`/agenteA` o `/agenteB`),  
+     - mediante un selector en el arranque,  
+     - o detectando el modo por el primer mensaje.  
+
+3. **Uso de Mistral con tools**  
+   - El código debe llamar a la API de Mistral con una lista de `tools` (funciones) definidas en JSON, siguiendo el modelo de *function calling*. 
+   - Cuando el modelo decida usar una tool, tu backend debe:
+     - leer el `tool_call` devuelto,  
+     - ejecutar la función Python correspondiente,  
+     - y devolver el resultado al modelo para que este construya la respuesta final.  
+
+4. **Integración de las funciones personalizadas**  
+   - Las funciones `get_weather`, `get_time`, `get_stock_price` (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. 
+   - El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando `@cl.step(type="tool")`).
+
+5. **Demostraciones de uso**  
+   - Debes probar la app con varios ejemplos, de forma que:
+     - en algunos casos el agente responda sin tools,  
+     - y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. 
+
+---
+
+### Pasos guiados (recomendados)
+
+1. **Paso 1: App Chainlit mínima**  
+   - Crea un `app.py` que use Chainlit y un modelo de Mistral, sin tools.  
+   - Comprueba que puedes enviar y recibir mensajes.   
+
+2. **Paso 2: Añadir un solo tool sencillo**  
+   - Implementa `get_time` como función Python.  
+   - Define el tool JSON y pásalo al modelo.  
+   - Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. 
+
+3. **Paso 3: Añadir `get_weather` y `get_stock_price`**  
+   - Implementa estas funciones y añádelas a la lista de tools. 
+   - Diseña prompts donde tenga sentido usarlas (tiempo en una ciudad, precio de una acción, etc.).  
+
+4. **Paso 4: Instrucciones de los agentes A y B**  
+   - Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo.   
+   - Ajusta el rol de A hacia algo más práctico/planificador, y deja B como creativo.  
+
+5. **Paso 5: Selector de agente**  
+   - Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). 
+   - Asegúrate de que las tools se comportan de forma coherente con cada agente (el A usará más `get_time`/`get_weather`, el B quizá use `get_stock_price` para ideas financieras, etc.).  
+
+---
+
+### Entrega mínima (para esta actividad)
+
+Para la actividad asociada a esta sesión se pedirá, como mínimo:
+
+- El fichero `app.py` (o equivalente) con la integración de Chainlit + Mistral + tools.  
+- Un breve `README.md` (o texto en la entrega) que explique:
+  - cómo arrancar la app,  
+  - qué hace el agente A,  
+  - qué hace el agente B,  
+  - qué funciones personalizadas se han implementado,  
+  - y cómo probarlas (ejemplos de prompts). 
+
+En sesiones posteriores se podrá ampliar esta base para incluir **RAG** y otras capacidades más avanzadas, pero en esta actividad el foco está en **migrar los agentes del playground a una app propia y darles herramientas mediante function calling**. 
+
