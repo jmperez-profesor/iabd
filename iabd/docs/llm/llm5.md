@@ -731,7 +731,7 @@ Explicación:
 
 ### Paso 10 - Bucle controlado de hasta 5 iteraciones
 
-La documentación de Mistral contempla cadenas sucesivas de **`function calling`**, por eso tiene sentido iterar.
+La documentación de Mistral contempla **cadenas sucesivas** de **`function calling`**, por eso tiene sentido iterar.
 ​
 ```python
 for _ in range(5):
@@ -740,7 +740,7 @@ for _ in range(5):
 Ojo, este for:
 
 * no es para repetir siempre cinco veces,
-* sino para permitir varias rondas de **“modelo -> tool -> modelo”**,
+* sino para permitir varias rondas de **“`modelo -> tool -> modelo`”**,
 * con un límite que evita **bucles infinitos**.
 ​
 ### Paso 11 - llamada al modelo
@@ -765,7 +765,7 @@ Explicación:
 ​
 ### Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
 
-​```python
+```python
 assistant_message = response.choices[0].message
 
 assistant_payload = {
