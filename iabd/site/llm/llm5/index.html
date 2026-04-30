@@ -3128,7 +3128,7 @@
 <ul>
 <li>Eventos de chainlit</li>
 <li>Persistencia de estado por sesión</li>
-<li>Arquitectura de <code>**tool calling</code>** con un LLM.</li>
+<li>Arquitectura de <strong><code>tool calling</code></strong> con un LLM.</li>
 </ul>
 <h3 id="paso-1-idea-de-arquitectura-chainlit-gestiona-la-interfaz-mistral-decide-si-necesita-una-tool-y-python-ejecuta-la-tool-real">Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real.</h3>
 <p>Flujo de trabajo:</p>
@@ -3205,7 +3205,7 @@ Explicación:</p>
 <p>Conviene insistir en que:</p>
 <ul>
 <li>TOOLS es la descripción para el modelo.</li>
-<li><code>get_weather()</code> es la implementación real en Python.</li>
+<li><strong><code>get_weather()</code></strong> es la implementación real en Python.</li>
 </ul>
 <h4 id="paso-4-funcion-funcion-auxiliar-weather_code_to_text">Paso 4: Función función auxiliar weather_code_to_text()</h4>
 <p>Buena práctica: separar la transformación de datos de la lógica principal del agente. Así el código queda más limpio y además es más fácil de testear.
