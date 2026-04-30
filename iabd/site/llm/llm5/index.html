@@ -1242,17 +1242,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#resumen-conceptual" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resumen conceptual
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#esquema-mental" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3569,8 +3558,6 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
         <span class="n">content</span><span class="o">=</span><span class="n">final_answer</span> <span class="ow">or</span> <span class="s2">&quot;No he podido generar una respuesta final.&quot;</span>
     <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 </code></pre></div>
-<h4 id="resumen-conceptual">Resumen conceptual</h4>
-<p>Esta función implementa el siguiente flujo de trabajo: Chainlit recibe el mensaje del usuario, recupera el historial, consulta a Mistral, detecta si el modelo quiere usar herramientas, ejecuta esas herramientas en Python, añade los resultados al historial y vuelve a consultar al modelo hasta obtener una respuesta final. Ese patrón corresponde al flujo estándar de <em>tool calling</em> documentado por Mistral y puede integrarse de forma natural en los hooks de Chainlit. </p>
 <h4 id="esquema-mental">Esquema mental</h4>
 <p>Puede explicarse en seis pasos: </p>
 <ol>
