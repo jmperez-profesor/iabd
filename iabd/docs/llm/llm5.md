@@ -447,7 +447,7 @@ Veremos:
 
 * Eventos de chainlit
 * Persistencia de estado por sesión
-* Arquitectura de `**tool calling`** con un LLM.
+* Arquitectura de **`tool calling`** con un LLM.
 
 ### Paso 1- Idea de arquitectura : Chainlit gestiona la interfaz, Mistral decide si necesita una tool y Python ejecuta la tool real. 
 
@@ -534,7 +534,7 @@ TOOLS = [
 Conviene insistir en que:
 
 * TOOLS es la descripción para el modelo.
-* `get_weather()` es la implementación real en Python.
+* **`get_weather()`** es la implementación real en Python.
 
 #### Paso 4: Función función auxiliar weather_code_to_text()
 

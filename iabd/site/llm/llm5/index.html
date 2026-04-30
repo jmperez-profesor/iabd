@@ -1048,10 +1048,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paso-2-pue-preparen-el-entorno-y-el-bloque-inicial-de-configuracion" class="md-nav__link">
+  <a href="#paso-2-preparar-el-entorno-y-el-bloque-inicial-de-configuracion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 2 - Pue preparen el entorno y el bloque inicial de configuración.
+        Paso 2 - Preparar el entorno y el bloque inicial de configuración.
       
     </span>
   </a>
@@ -2975,8 +2975,155 @@
 </code></pre></div>
 <p><strong>Comprobamos que funciona correctamente:</strong></p>
 <p><img alt="Ejemplo de uso de la herramienta (tool) get_weather" src="../images/chainlit/ejemplo_uso_get_weather_api.png" /></p>
+<p><strong>Código completo:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">])</span>
+
+<span class="c1"># Definir el esquema de la herramienta.</span>
+<span class="c1"># ¿Por qué get_country_info() debe estar descrita tanto en Python como en la lista tools? </span>
+<span class="c1"># La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa </span>
+<span class="c1"># herramienta existe y cómo puede invocarla. </span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Obtiene la temperatura actual de una ciudad dada.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Nombre de la ciudad, e.g. &#39;Madrid&#39;.&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Eres un asistente útil. Usa la herramienta get_weather cuando el usuario pregunte por el tiempo.&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;¿Qué tiempo hace en Madrid?&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">tool_call</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El modelo va a invocar a: </span><span class="si">{</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Con los argumentos: </span><span class="si">{</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="c1"># 1) Geocodificación</span>
+    <span class="n">geo_url</span> <span class="o">=</span> <span class="s2">&quot;https://geocoding-api.open-meteo.com/v1/search&quot;</span>
+    <span class="n">geo_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">geo_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;es&quot;</span><span class="p">,</span> <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">},</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">geo_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">geo_data</span> <span class="o">=</span> <span class="n">geo_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+            <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;No se encontró la ciudad &#39;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+        <span class="p">}</span>
+
+    <span class="n">place</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">latitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span>
+    <span class="n">longitude</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
+    <span class="n">resolved_name</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">place</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2) Tiempo actual</span>
+    <span class="n">weather_url</span> <span class="o">=</span> <span class="s2">&quot;https://api.open-meteo.com/v1/forecast&quot;</span>
+    <span class="n">weather_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">weather_url</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+            <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span><span class="p">,</span>
+            <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="s2">&quot;temperature_2m,weather_code&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;timezone&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span>
+        <span class="p">},</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span>
+    <span class="p">)</span>
+    <span class="n">weather_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="n">current</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;current&quot;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_2m&quot;</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weather_code&quot;</span><span class="p">)</span>
+
+    <span class="n">code_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Despejado&quot;</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Mayormente despejado&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Parcialmente nuboso&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Cubierto&quot;</span><span class="p">,</span>
+        <span class="mi">45</span><span class="p">:</span> <span class="s2">&quot;Niebla&quot;</span><span class="p">,</span>
+        <span class="mi">48</span><span class="p">:</span> <span class="s2">&quot;Niebla con escarcha&quot;</span><span class="p">,</span>
+        <span class="mi">51</span><span class="p">:</span> <span class="s2">&quot;Llovizna ligera&quot;</span><span class="p">,</span>
+        <span class="mi">53</span><span class="p">:</span> <span class="s2">&quot;Llovizna moderada&quot;</span><span class="p">,</span>
+        <span class="mi">55</span><span class="p">:</span> <span class="s2">&quot;Llovizna densa&quot;</span><span class="p">,</span>
+        <span class="mi">61</span><span class="p">:</span> <span class="s2">&quot;Lluvia ligera&quot;</span><span class="p">,</span>
+        <span class="mi">63</span><span class="p">:</span> <span class="s2">&quot;Lluvia moderada&quot;</span><span class="p">,</span>
+        <span class="mi">65</span><span class="p">:</span> <span class="s2">&quot;Lluvia intensa&quot;</span><span class="p">,</span>
+        <span class="mi">71</span><span class="p">:</span> <span class="s2">&quot;Nieve ligera&quot;</span><span class="p">,</span>
+        <span class="mi">73</span><span class="p">:</span> <span class="s2">&quot;Nieve moderada&quot;</span><span class="p">,</span>
+        <span class="mi">75</span><span class="p">:</span> <span class="s2">&quot;Nieve intensa&quot;</span><span class="p">,</span>
+        <span class="mi">80</span><span class="p">:</span> <span class="s2">&quot;Chubascos ligeros&quot;</span><span class="p">,</span>
+        <span class="mi">81</span><span class="p">:</span> <span class="s2">&quot;Chubascos moderados&quot;</span><span class="p">,</span>
+        <span class="mi">82</span><span class="p">:</span> <span class="s2">&quot;Chubascos violentos&quot;</span><span class="p">,</span>
+        <span class="mi">95</span><span class="p">:</span> <span class="s2">&quot;Tormenta&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">resolved_name</span><span class="p">,</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span>
+        <span class="s2">&quot;temperature_c&quot;</span><span class="p">:</span> <span class="n">temp</span><span class="p">,</span>
+        <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">latitude</span><span class="p">,</span>
+        <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">longitude</span>
+    <span class="p">}</span>
+
+<span class="c1"># Ejecutar la llamada a la herramienta</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">get_weather</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+
+<span class="c1"># Devuelve el resultado al modelo</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">),</span>
+    <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">final_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-latest&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">final_response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="actividad-guiada-chainlitagente-con-herramientas-personalizadas">Actividad guiada: Chainlit+agente con herramientas personalizadas</h2>
-<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real <strong><code>get_weather()</code></strong> para consultar el tiempo de una ciudad. </p>
+<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una <strong>tool real</strong>, por ejemplo, <strong><code>get_weather()</code></strong> para consultar el tiempo de una ciudad. </p>
 <p>Veremos: </p>
 <ul>
 <li>Eventos de chainlit</li>
@@ -2992,7 +3139,7 @@
 </code></pre></div>
 <p><strong>¿Quién ejecuta realmente <code>get_weather()</code>: el modelo o nuestro backend?</strong></p>
 <p>La respuesta correcta es: el <strong>backend en Python</strong>.</p>
-<h3 id="paso-2-pue-preparen-el-entorno-y-el-bloque-inicial-de-configuracion">Paso 2 - Pue preparen el entorno y el bloque inicial de configuración.</h3>
+<h3 id="paso-2-preparar-el-entorno-y-el-bloque-inicial-de-configuracion">Paso 2 - Preparar el entorno y el bloque inicial de configuración.</h3>
 <p>Primero se carga la clave, luego se crea el cliente y finalmente se define el prompt del sistema. Esto da contexto antes de entrar en los callbacks de Chainlit.</p>
 <p><strong>NOTA</strong>: Se ha añadido una nueva variable de configuración llamada MODEL para no hardcodear el modelo seleccionado.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -3054,7 +3201,8 @@ Explicación:</p>
     <span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<p><strong>IMPORTANTE</strong>: no confundir la lista TOOLS con la función real <strong><code>get_weather()</code></strong>. Conviene insistir en que:</p>
+<p><strong>IMPORTANTE</strong>: no confundir la lista TOOLS con la función real <strong><code>get_weather()</code></strong>. </p>
+<p>Conviene insistir en que:</p>
 <ul>
 <li>TOOLS es la descripción para el modelo.</li>
 <li><code>get_weather()</code> es la implementación real en Python.</li>
@@ -3089,7 +3237,7 @@ Explicación:</p>
     <span class="k">return</span> <span class="n">code_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Código meteorológico </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="paso-5-tool-real-get_weather">Paso 5: tool real <strong><code>get_weather()</code></strong></h3>
-<p>Este es el bloque más importante del lado backend porque muestra que una tool puede encadenar dos APIs: una para geocodificación y otra para tiempo actual. 
+<p>Este es el bloque más importante del lado backend porque muestra que una <strong><code>tool</code></strong> puede <strong>encadenar dos APIs</strong>: una para geocodificación y otra para tiempo actual. 
 Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permite que Chainlit muestre visualmente la ejecución de la herramienta.</p>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_weather&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -3168,7 +3316,7 @@ Además, el decorador <strong><code>@cl.step(type="tool")</code></strong> permit
 </code></pre></div>
 Aspectos a remarcar:</p>
 <ul>
-<li>La tool devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como <strong><code>content</code></strong>.</li>
+<li>La <strong><code>tool</code></strong> devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como <strong><code>content</code></strong>.</li>
 <li><strong><code>@cl.step(type="tool")</code></strong> permite ver la tool como paso intermedio en Chainlit.
 ​* Se controlan errores para que el agente no se rompa ante fallos de red</li>
 </ul>
