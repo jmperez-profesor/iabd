@@ -725,9 +725,9 @@ final_answer = None
 ```
 Explicación:
 
-* **``messages`** es la historia completa.
+* **`messages`** es la historia completa.
 * Sin este historial, cada pregunta sería aislada.
-* **``final_answer`** guardará la respuesta final que se enviará al usuario.
+* **`final_answer`** guardará la respuesta final que se enviará al usuario.
 
 ### Paso 10 - Bucle controlado de hasta 5 iteraciones
 

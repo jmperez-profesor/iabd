@@ -1123,7 +1123,7 @@
   <a href="#paso-8-clon_message" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paso 8 **@cl.on_message**
+        Paso 8 @cl.on_message
       
     </span>
   </a>
@@ -3329,7 +3329,7 @@ Aspectos a remarcar:</p>
 <p><strong>¿Por qué no ejecutamos directamente <code>tool_call.function.name</code> como si fuera una función?</strong>
 Porque el modelo solo devuelve texto estructurado; el backend necesita resolver ese nombre en una función segura y conocida.</p>
 <h3 id="paso-7-clon_chat_start">Paso 7 <code>@cl.on_chat_start</code></h3>
-<p>Chainlit lo usa para reaccionar al inicio de una nueva sesión de chat. Aquí se inicializa el historial y se envía el mensaje de bienvenida.</p>
+<p>Chainlit lo usa para <em>reaccionar</em> al inicio de una nueva sesión de chat. Aquí se inicializa el historial y se envía el mensaje de bienvenida.</p>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
     <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
@@ -3348,10 +3348,10 @@ Porque el modelo solo devuelve texto estructurado; el backend necesita resolver 
 </code></pre></div>
 Puntos clave:</p>
 <ul>
-<li><strong><code>cl.user_session</code></strong> guarda datos por sesión de usuario, no globalmente.
-​* El primer mensaje del historial es el <strong><code>system prompt</code></strong>, que actúa como contexto permanente de la conversación.</li>
+<li><strong><code>cl.user_session</code></strong> guarda datos por sesión de usuario, no globalmente.</li>
+<li>El primer mensaje del historial es el <strong><code>system prompt</code></strong>, que actúa como contexto permanente de la conversación.</li>
 </ul>
-<h3 id="paso-8-clon_message">Paso 8 <code>**@cl.on_message</code>**</h3>
+<h3 id="paso-8-clon_message">Paso 8 <strong><code>@cl.on_message</code></strong></h3>
 <p>Recibe el mensaje del usuario, lo añade al historial, consulta al modelo, ejecuta <strong><code>tools</code></strong> si hace falta y finalmente devuelve la respuesta al chat. 
 Chainlit documenta este <strong><code>callback</code></strong> como el punto de entrada principal para mensajes de la <strong>UI</strong>.
 ​
