@@ -498,7 +498,7 @@ Explicación:
 ​
 ### Paso 3
 
-Introducimos la variabel **`SYSTEM_PROMPT`** y la definición de **`TOOLS`**. La variable `tool` no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.
+Introducimos la variable **`SYSTEM_PROMPT`** y la definición de **`TOOLS`**. La variable `tool` no es solo una función Python, sino también una descripción estructurada que el modelo puede leer para saber cuándo usarla y con qué argumentos.
 
 ```python
 SYSTEM_PROMPT = """
@@ -570,8 +570,8 @@ def weather_code_to_text(code: int | None) -> str:
 
 ### Paso 5: tool real **`get_weather()`**
 
-Este es el bloque más importante del lado backend porque muestra que una **`tool`** puede **encadenar dos APIs**: una para geocodificación y otra para tiempo actual. 
-Además, el decorador **`@cl.step(type="tool")`** permite que Chainlit muestre visualmente la ejecución de la herramienta.
+Este es el bloque más importante del lado del backend porque muestra que una **`tool`** puede **encadenar dos APIs**: una para geocodificación y otra para obtener el tiempo actual. 
+Además, el decorador **`@cl.step(type="tool")`** permite que **Chainlit muestre visualmente la ejecución de la herramienta**.
 
 ```python
 @cl.step(type="tool", name="get_weather")
@@ -651,9 +651,9 @@ async def get_weather(city: str) -> str:
 ```
 Aspectos a remarcar:
 
-* La **`tool`** devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como **`content`**.
+* La **`tool`** devuelve texto JSON, no un dicccionario Python sin serializar. Eso es así porque luego se añade al historial como **`content`**.
 * **`@cl.step(type="tool")`** permite ver la tool como paso intermedio en Chainlit.
-​* Se controlan errores para que el agente no se rompa ante fallos de red
+* Se controlan errores para que el agente no se rompa ante fallos de red
 
 ### Paso 6 - `AVAILABLE_TOOLS`
 
