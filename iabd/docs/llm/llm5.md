@@ -1123,10 +1123,6 @@ async def on_message(message: cl.Message):
 
 ```
 
-#### Resumen conceptual
-
-Esta función implementa el siguiente flujo de trabajo: Chainlit recibe el mensaje del usuario, recupera el historial, consulta a Mistral, detecta si el modelo quiere usar herramientas, ejecuta esas herramientas en Python, añade los resultados al historial y vuelve a consultar al modelo hasta obtener una respuesta final. Ese patrón corresponde al flujo estándar de *tool calling* documentado por Mistral y puede integrarse de forma natural en los hooks de Chainlit. 
-
 #### Esquema mental
 
 Puede explicarse en seis pasos: 
