@@ -786,8 +786,6 @@ def get_weather(city: str) -> dict:
 
 ## Actividad guiada: Chainlit+agente con herramientas personalizadas
 
-
-
 ### Documentación paso a paso de `on_message` en Chainlit con Mistral
 
 Esta función implementa el **bucle principal de conversación** entre Chainlit, el modelo de Mistral y las herramientas externas o *tools*. Chainlit ejecuta `@cl.on_message` cada vez que el usuario envía un mensaje desde la interfaz, y Mistral soporta llamadas asíncronas con herramientas mediante `chat.complete_async(..., tools=..., tool_choice="auto")`. 

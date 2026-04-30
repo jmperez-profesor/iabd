@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm4/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm4_old/">
       
       
-        <link rel="prev" href="../llm3/">
-      
-      
-        <link rel="next" href="../llm5/">
       
       
         
@@ -251,12 +247,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../llm2/" class="md-tabs__link">
           
   
@@ -711,10 +705,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -730,20 +722,19 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -761,7 +752,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -832,37 +823,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../llm4/" class="md-nav__link">
         
   
   
@@ -878,370 +842,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-que-es-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. ¿Qué es Chainlit?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#componentes-de-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Componentes de Chainlit
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-instalacion-y-requisitos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Instalación y requisitos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-conceptos-basicos-de-chainlit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Conceptos básicos de Chainlit
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Conceptos básicos de Chainlit">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-hooks-del-ciclo-de-vida-del-chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1. Hooks del ciclo de vida del chat
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3.1. Hooks del ciclo de vida del chat">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_chat_start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_chat_start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_message" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_message
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construyendo-con-clon_stop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construyendo con @cl.on_stop
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#construir-con-clon_chat_end" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Construir con @cl.on_chat_end
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pasos-con-clstep" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pasos con @cl.step
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#acciones-de-iu-botones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Acciones de IU (botones)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#transmision-de-mensajes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transmisión de mensajes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuracion-de-chainlit-configtoml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuración de Chainlit (config.toml)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuración de Chainlit (config.toml)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#persistencia" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Persistencia
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-de-archivos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Carga de archivos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#personalizacion-de-la-iu" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Personalización de la IU
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ajustes-de-usabilidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ajustes de usabilidad
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-primer-ejemplo-chatbot-sorprendeme-estatico-sin-llm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Primer ejemplo: chatbot “Sorpréndeme” estático (sin LLM)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-proyecto-bot-sorprendeme-powered-by-ollama" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Proyecto: Bot Sorpréndeme Powered by Ollama
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-casos-de-uso-recomendados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Casos de uso recomendados
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#probar-funciones-propias-en-mistral-studio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Probar funciones propias en Mistral Studio
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Probar funciones propias en Mistral Studio">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actividad-guiada-crear-un-agente-con-herramientas-personalizadas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Actividad guiada: Crear un agente con herramientas personalizadas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Actividad guiada: Crear un agente con herramientas personalizadas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#paso-1-definir-la-funcion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Paso 1: Definir la función
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#paso-2-enviar-una-solicitud-con-la-herramienta" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Paso 2: Enviar una solicitud con la herramienta
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#paso-3-ejecutar-la-funcion-y-devolver-el-resultado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Paso 3: Ejecutar la función y devolver el resultado.
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Paso 3: Ejecutar la función y devolver el resultado.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#paso-4-verificar" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Paso 4: Verificar
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#paso-5-anadir-una-llamada-a-una-api-que-devuelve-el-tiempo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Paso 5: Añadir una llamada a una API que devuelve el tiempo
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2764,6 +2364,570 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
 </code></pre></div>
 <p><strong>Comprobamos que funciona correctamente:</strong></p>
 <p><img alt="Ejemplo de uso de la herramienta (tool) get_weather" src="../images/chainlit/ejemplo_uso_get_weather_api.png" /></p>
+<h2 id="actividad-guiada-chainlitagente-con-herramientas-personalizadas">Actividad guiada: Chainlit+agente con herramientas personalizadas</h2>
+<h3 id="documentacion-paso-a-paso-de-on_message-en-chainlit-con-mistral">Documentación paso a paso de <code>on_message</code> en Chainlit con Mistral</h3>
+<p>Esta función implementa el <strong>bucle principal de conversación</strong> entre Chainlit, el modelo de Mistral y las herramientas externas o <em>tools</em>. Chainlit ejecuta <code>@cl.on_message</code> cada vez que el usuario envía un mensaje desde la interfaz, y Mistral soporta llamadas asíncronas con herramientas mediante <code>chat.complete_async(..., tools=..., tool_choice="auto")</code>. </p>
+<h4 id="funcion-completa">Función completa</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+
+        <span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">tool_calls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">assistant_message</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">assistant_payload</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span>
+            <span class="p">]</span>
+
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assistant_payload</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">final_answer</span> <span class="o">=</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;No tengo respuesta.&quot;</span>
+            <span class="k">break</span>
+
+        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">:</span>
+                <span class="n">tool_result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Herramienta no implementada: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+                    <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tool_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+
+            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+                    <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">tool_result</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+    <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">final_answer</span> <span class="ow">or</span> <span class="s2">&quot;No he podido generar una respuesta final.&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="1-decorador-y-firma">1. Decorador y firma</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+</code></pre></div>
+<ul>
+<li><code>@cl.on_message</code> indica a Chainlit que esta función debe ejecutarse cada vez que el usuario envía un mensaje desde la interfaz. </li>
+<li>La palabra clave <code>async</code> convierte la función en asíncrona, lo que permite hacer llamadas HTTP o a APIs sin bloquear la aplicación. </li>
+<li>El parámetro <code>message: cl.Message</code> representa el mensaje recibido y su contenido textual está disponible en <code>message.content</code>. </li>
+</ul>
+<h4 id="2-recuperar-el-historial-y-anadir-el-nuevo-mensaje">2. Recuperar el historial y añadir el nuevo mensaje</h4>
+<div class="highlight"><pre><span></span><code><span class="n">messages</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+</code></pre></div>
+<ul>
+<li><code>cl.user_session.get("messages", [])</code> recupera el historial guardado para ese usuario y devuelve una lista vacía si todavía no existe. Chainlit documenta <code>user_session</code> precisamente para mantener estado por conversación. </li>
+<li>Después se añade el nuevo mensaje del usuario al historial con el formato esperado por las APIs de chat: un diccionario con <code>role</code> y <code>content</code>. </li>
+<li>Gracias a esto, el modelo recibe contexto acumulado y no solo el último mensaje aislado. </li>
+</ul>
+<h4 id="3-preparar-la-variable-de-respuesta-final">3. Preparar la variable de respuesta final</h4>
+<div class="highlight"><pre><span></span><code><span class="n">final_answer</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<ul>
+<li>Esta variable se usa para almacenar la respuesta final que se mostrará al usuario al terminar el proceso. </li>
+<li>Se inicializa con <code>None</code> porque todavía no se sabe si el modelo responderá directamente o si antes necesitará llamar a una herramienta.</li>
+</ul>
+<h4 id="4-bucle-de-iteracion-controlado">4. Bucle de iteración controlado</h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+</code></pre></div>
+<ul>
+<li>Este bucle permite repetir el ciclo de <strong>modelo -&gt; tool -&gt; modelo</strong> varias veces. </li>
+<li>El límite de 5 iteraciones actúa como medida de seguridad para evitar bucles infinitos si el modelo sigue solicitando tools sin cerrar la respuesta.</li>
+</ul>
+<h4 id="5-llamada-al-modelo-de-mistral">5. Llamada al modelo de Mistral</h4>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete_async</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+    <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><code>client.chat.complete_async(...)</code> realiza una llamada asíncrona al modelo de Mistral. El cliente Python oficial documenta este patrón para chat completions. </li>
+<li><code>model=MODEL</code> indica el nombre del modelo que se quiere usar. </li>
+<li><code>messages=messages</code> envía el historial completo al modelo. </li>
+<li><code>tools=TOOLS</code> registra las herramientas que el modelo puede invocar. </li>
+<li><code>tool_choice="auto"</code> deja que el modelo decida si necesita o no usar una herramienta. </li>
+</ul>
+<h4 id="6-extraer-el-mensaje-del-asistente">6. Extraer el mensaje del asistente</h4>
+<div class="highlight"><pre><span></span><code><span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</code></pre></div>
+<ul>
+<li>La API devuelve una lista de posibles respuestas en <code>choices</code>, y aquí se toma la primera.</li>
+<li><code>assistant_message</code> contiene el mensaje generado por el asistente, incluyendo tanto texto natural como posibles <code>tool_calls</code>. </li>
+</ul>
+<h4 id="7-crear-la-estructura-base-del-mensaje-del-asistente">7. Crear la estructura base del mensaje del asistente</h4>
+<div class="highlight"><pre><span></span><code><span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Se construye un diccionario que representa el mensaje del asistente dentro del historial.</li>
+<li><code>role</code> vale <code>"assistant"</code> porque ese mensaje proviene del modelo. </li>
+<li><code>assistant_message.content or ""</code> evita problemas si el contenido viene vacío porque el modelo solo ha devuelto llamadas a herramientas. </li>
+</ul>
+<h4 id="8-comprobar-si-el-modelo-ha-pedido-herramientas">8. Comprobar si el modelo ha pedido herramientas</h4>
+<div class="highlight"><pre><span></span><code><span class="n">tool_calls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">assistant_message</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><code>getattr(...)</code> intenta leer el atributo <code>tool_calls</code> y devuelve <code>None</code> si no existe. </li>
+<li>Si el modelo necesita información externa, <code>tool_calls</code> contendrá una lista de llamadas a herramientas con nombre y argumentos. </li>
+</ul>
+<h4 id="9-guardar-las-tool-calls-en-el-historial">9. Guardar las tool calls en el historial</h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">assistant_payload</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span>
+    <span class="p">]</span>
+</code></pre></div>
+<ul>
+<li>Si existen llamadas a tools, se añaden al mensaje del asistente para que el historial refleje exactamente lo que el modelo ha pedido hacer.</li>
+<li>Cada llamada incluye un <code>id</code>, el tipo <code>function</code>, el nombre de la herramienta y los argumentos serializados en JSON.</li>
+<li>Ese <code>id</code> es importante porque luego se utilizará para vincular la respuesta de la tool con la llamada original.</li>
+</ul>
+<h4 id="10-anadir-el-mensaje-del-asistente-al-historial">10. Añadir el mensaje del asistente al historial</h4>
+<div class="highlight"><pre><span></span><code><span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assistant_payload</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>En este punto el historial ya incluye la intervención del asistente, tanto si es una respuesta normal como si es una petición de tools. </li>
+<li>Mantener este historial consistente es clave para que el siguiente turno del modelo entienda lo que ya ha ocurrido en la conversación. </li>
+</ul>
+<h4 id="11-salida-temprana-si-no-hay-tools">11. Salida temprana si no hay tools</h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">final_answer</span> <span class="o">=</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;No tengo respuesta.&quot;</span>
+    <span class="k">break</span>
+</code></pre></div>
+<ul>
+<li>Si <code>tool_calls</code> está vacío o es <code>None</code>, significa que el modelo ya ha generado una respuesta final y no necesita herramientas adicionales. </li>
+<li>Esa respuesta se guarda en <code>final_answer</code> y se interrumpe el bucle con <code>break</code>. </li>
+<li>Este es el caso más simple: usuario pregunta, modelo responde directamente. </li>
+</ul>
+<h4 id="12-recorrer-cada-llamada-a-herramienta">12. Recorrer cada llamada a herramienta</h4>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Si el modelo ha pedido tools, se recorre cada llamada en un bucle.</li>
+<li><code>function_name</code> extrae el nombre de la herramienta solicitada. </li>
+<li><code>tool_call.function.arguments</code> llega como texto JSON y <code>json.loads(...)</code> lo convierte en un diccionario Python listo para usar. </li>
+</ul>
+<h4 id="13-verificar-si-la-herramienta-existe-y-ejecutarla">13. Verificar si la herramienta existe y ejecutarla</h4>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">:</span>
+    <span class="n">tool_result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Herramienta no implementada: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+        <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">tool_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AVAILABLE_TOOLS</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><code>AVAILABLE_TOOLS</code> es un diccionario que relaciona nombres de herramientas con funciones Python reales. </li>
+<li>Si la herramienta pedida por el modelo no existe, se genera una respuesta de error en JSON. </li>
+<li>Si la herramienta sí existe, se ejecuta con <code>await</code>, pasando los argumentos con <code>**function_args</code>. </li>
+<li>Esta es la parte donde el backend realmente ejecuta lógica externa; el modelo solo decide qué función quiere usar, pero no la ejecuta por sí mismo.</li>
+</ul>
+<h4 id="14-guardar-el-resultado-de-la-tool-en-el-historial">14. Guardar el resultado de la tool en el historial</h4>
+<div class="highlight"><pre><span></span><code><span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+        <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">tool_result</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>El resultado de la herramienta se añade al historial como un mensaje con <code>role: "tool"</code>. </li>
+<li><code>tool_call_id</code> enlaza este resultado con la llamada original hecha por el modelo. </li>
+<li>En la siguiente iteración del bucle, Mistral verá este resultado y podrá generar una respuesta final basada en esos datos. </li>
+</ul>
+<h4 id="15-guardar-el-historial-actualizado-en-la-sesion">15. Guardar el historial actualizado en la sesión</h4>
+<div class="highlight"><pre><span></span><code><span class="n">cl</span><span class="o">.</span><span class="n">user_session</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>Cuando termina el bucle, el historial completo se guarda otra vez en la sesión del usuario.</li>
+<li>Esto permite que la conversación continúe en mensajes posteriores manteniendo todo el contexto previo. </li>
+</ul>
+<h4 id="16-enviar-la-respuesta-final-a-chainlit">16. Enviar la respuesta final a Chainlit</h4>
+<div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span>
+    <span class="n">content</span><span class="o">=</span><span class="n">final_answer</span> <span class="ow">or</span> <span class="s2">&quot;No he podido generar una respuesta final.&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<ul>
+<li>Se construye un mensaje de salida para la interfaz de Chainlit y se envía con <code>.send()</code>. </li>
+<li>Si <code>final_answer</code> tiene contenido, eso es lo que verá el usuario. Si no, se muestra un mensaje de error controlado. </li>
+</ul>
+<h4 id="resumen-conceptual">Resumen conceptual</h4>
+<p>Esta función implementa el siguiente flujo de trabajo: Chainlit recibe el mensaje del usuario, recupera el historial, consulta a Mistral, detecta si el modelo quiere usar herramientas, ejecuta esas herramientas en Python, añade los resultados al historial y vuelve a consultar al modelo hasta obtener una respuesta final. Ese patrón corresponde al flujo estándar de <em>tool calling</em> documentado por Mistral y puede integrarse de forma natural en los hooks de Chainlit. </p>
+<h4 id="esquema-mental">Esquema mental</h4>
+<p>Puede explicarse en seis pasos: </p>
+<ol>
+<li>Chainlit recibe un mensaje del usuario.</li>
+<li>Se añade ese mensaje al historial de conversación.</li>
+<li>Se pregunta a Mistral si puede responder o si necesita una tool.</li>
+<li>Si pide una tool, el backend ejecuta la función Python correspondiente.</li>
+<li>El resultado de la tool se devuelve al historial como <code>role="tool"</code>.</li>
+<li>Mistral genera la respuesta final y Chainlit la muestra en pantalla.</li>
+</ol>
+<h3 id="otro-ejemplo-de-la-documentacion-de-chainlit">Otro ejemplo de la documentación de Chainlit</h3>
+<p>A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas <strong><code>get_current_weather</code></strong> y <strong><code>get_home_town</code></strong> externa para obtener información y mostrar un resultado.</p>
+<p><img alt="" src="../images/chainlit/agente_napoleon.png" /></p>
+<p><strong>Fuente</strong>: documentación de Mistral</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_current_weather&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_weather</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
+    <span class="c1"># Make an actual API call! To open-meteo.com for instance.</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;29&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;celsius&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;forecast&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sunny&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_home_town&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_home_town</span><span class="p">(</span><span class="n">person</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the hometown of a person&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;Napoleon&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Ajaccio, Corsica&quot;</span>
+    <span class="k">elif</span> <span class="s2">&quot;Michel&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Caprese, Italy&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Paris, France&quot;</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">JSON tool definitions provided to the LLM.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_home_town&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the home town of a specific person&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The name of a person (first and last names) to identify.&quot;</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;person&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_current_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the current weather in a given location&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The city and state, e.g. San Francisco, CA&quot;</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple</span><span class="p">(</span><span class="n">tool_calls</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute multiple tool calls asynchronously.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">available_tools</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;get_current_weather&quot;</span><span class="p">:</span> <span class="n">get_current_weather</span><span class="p">,</span>
+        <span class="s2">&quot;get_home_town&quot;</span><span class="p">:</span> <span class="n">get_home_town</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">):</span>
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_tools</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+        <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+        <span class="n">function_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">function_response</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="c1"># Run tool calls in parallel.</span>
+    <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">(</span><span class="n">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">tool_results</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;to_score&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_agent</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}]</span>
+
+    <span class="n">number_iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">answer_message_content</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">while</span> <span class="n">number_iterations</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="n">mai_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-large-latest&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">answer_message_content</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_multiple</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tool_results</span><span class="p">)</span>
+
+        <span class="n">number_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">answer_message_content</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">set_starters</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_starters</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main message handler for incoming user messages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">answer_message</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">answer_message</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="actividad-migrar-agentes-de-mistral-studio-a-una-app-chainlit-con-funciones-propias">Actividad: Migrar agentes de Mistral Studio a una app Chainlit con funciones propias</h2>
+<h3 id="contexto">Contexto</h3>
+<p>En la sesión anterior (LLM2) creaste en <strong>Mistral Studio AI</strong> dos agentes en el playground:</p>
+<ul>
+<li><strong>Agente A – Tutor técnico de Flask</strong>  </li>
+<li><strong>Agente B – Generador creativo de ideas</strong></li>
+</ul>
+<p>Aquella actividad se centraba en definir bien el <strong>rol</strong>, las <strong>instrucciones</strong> y el <strong>tono</strong> de cada agente, pero <strong>sin usar herramientas (tools)</strong> ni funciones propias del agente.</p>
+<p>En esta sesión vamos a dar un paso más: vas a construir una <strong>aplicación propia</strong> en Python usando <strong>Chainlit</strong> como interfaz de chat, reutilizando la idea de los dos agentes, pero añadiendo <strong>funciones personalizadas</strong> que el modelo pueda llamar cuando lo necesite, siguiendo el patrón de integración oficial entre Chainlit y Mistral. </p>
+<hr />
+<h3 id="objetivo-de-la-actividad">Objetivo de la actividad</h3>
+<p>Construir una aplicación llamada, por ejemplo, <code>llm3-chainlit-agentes</code>, que:</p>
+<ul>
+<li>use <strong>Chainlit</strong> como interfaz de chat, </li>
+<li>se conecte a <strong>Mistral AI</strong> desde Python, </li>
+<li>implemente <strong>dos agentes lógicos</strong> (A y B) con instrucciones distintas,  </li>
+<li>y añada <strong>funciones personalizadas (tools)</strong> que el modelo pueda invocar mediante <em>function calling</em>, para tareas como obtener el tiempo, la hora o el precio de una acción. </li>
+</ul>
+<hr />
+<h3 id="definicion-de-los-agentes">Definición de los agentes</h3>
+<p>Puedes mantener los nombres originales, pero se recomienda actualizar ligeramente el rol del agente A para encajarlo mejor con el uso de tools:</p>
+<ul>
+<li><strong>Agente A – Planificador práctico / consultor técnico</strong>  </li>
+<li>Ayuda a planificar tareas, proyectos o pequeñas “rutas” (por ejemplo, un mini plan de estudio, una ruta de viaje sencillo, etc.).  </li>
+<li>
+<p>Se centrará más en <strong>información factual y estructurada</strong> y en usar tools como <code>get_time</code> o <code>get_weather</code>.  </p>
+</li>
+<li>
+<p><strong>Agente B – Generador creativo de ideas</strong>  </p>
+</li>
+<li>Genera ideas de contenido, propuestas creativas, textos breves o variaciones de un mismo concepto.  </li>
+<li>Puede apoyarse en <code>get_stock_price</code> u otras tools si quieres que genere ideas de contenido financiero/tecnológico.  </li>
+</ul>
+<p>Las instrucciones (prompt del agente) de A y B pueden reutilizar y adaptar lo que ya definiste en Mistral Studio, ajustando ahora las descripciones para mencionar que el agente <strong>puede llamar a funciones auxiliares cuando lo considere útil</strong>.</p>
+<hr />
+<h3 id="funciones-personalizadas-tools">Funciones personalizadas (tools)</h3>
+<p>Debes implementar al menos <strong>tres funciones propias</strong> en Python que el modelo pueda usar como herramientas. Algunas funciones recomendadas son:</p>
+<ul>
+<li><code>get_weather(location, date_range)</code>  </li>
+<li>Devuelve un tiempo simulado o consultado vía API (puede ser una respuesta inventada pero coherente, o una llamada real a una API de clima si quieres). </li>
+<li><code>get_time(city_or_timezone)</code>  </li>
+<li>Devuelve la hora local de una ciudad o zona horaria.  </li>
+<li><code>get_stock_price(symbol)</code>  </li>
+<li>Devuelve el precio simulado de una acción (o real, si integras una API sencilla). </li>
+</ul>
+<p>Puedes añadir otras funciones si te interesa, siempre que:</p>
+<ul>
+<li>tengan parámetros bien definidos,  </li>
+<li>devuelvan datos estructurados,  </li>
+<li>y sean razonablemente útiles para alguno de los dos agentes. </li>
+</ul>
+<p>El patrón a seguir es similar al del que hemos visto en el apartado <strong>Mistral + Chainlit</strong>, donde se definen tools como <code>get_home_town</code> y <code>get_current_weather</code> con un decorador <code>@cl.step(type="tool")</code> y un bloque <code>tools = [...]</code> con el esquema JSON que se pasa al modelo. </p>
+<hr />
+<h3 id="requisitos-minimos-de-la-aplicacion">Requisitos mínimos de la aplicación</h3>
+<p>Tu aplicación deberá cumplir, como mínimo, los siguientes puntos:</p>
+<ol>
+<li><strong>Interfaz en Chainlit</strong>  </li>
+<li>La app se ejecuta con <code>chainlit run app.py</code>.  </li>
+<li>
+<p>Al abrirla en el navegador puedes escribir mensajes y recibir respuestas. </p>
+</li>
+<li>
+<p><strong>Selección de agente</strong>  </p>
+</li>
+<li>Debes poder elegir si hablas con el <strong>Agente A</strong> o con el <strong>Agente B</strong>.  </li>
+<li>
+<p>Esto puede hacerse de varias formas:</p>
+<ul>
+<li>mediante un comando inicial (<code>/agenteA</code> o <code>/agenteB</code>),  </li>
+<li>mediante un selector en el arranque,  </li>
+<li>o detectando el modo por el primer mensaje.  </li>
+</ul>
+</li>
+<li>
+<p><strong>Uso de Mistral con tools</strong>  </p>
+</li>
+<li>El código debe llamar a la API de Mistral con una lista de <code>tools</code> (funciones) definidas en JSON, siguiendo el modelo de <em>function calling</em>. </li>
+<li>
+<p>Cuando el modelo decida usar una tool, tu backend debe:</p>
+<ul>
+<li>leer el <code>tool_call</code> devuelto,  </li>
+<li>ejecutar la función Python correspondiente,  </li>
+<li>y devolver el resultado al modelo para que este construya la respuesta final.  </li>
+</ul>
+</li>
+<li>
+<p><strong>Integración de las funciones personalizadas</strong>  </p>
+</li>
+<li>Las funciones <code>get_weather</code>, <code>get_time</code>, <code>get_stock_price</code> (u otras que definas) deben estar realmente implementadas en el código y ser invocadas por el agente. </li>
+<li>
+<p>El comportamiento debe ser observable en la conversación (por ejemplo, Chainlit puede mostrar un paso tipo “tool” cuando se ejecuta la función, usando <code>@cl.step(type="tool")</code>).</p>
+</li>
+<li>
+<p><strong>Demostraciones de uso</strong>  </p>
+</li>
+<li>Debes probar la app con varios ejemplos, de forma que:<ul>
+<li>en algunos casos el agente responda sin tools,  </li>
+<li>y en otros casos el agente necesite llamar a una o varias tools para completar la respuesta. </li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="pasos-guiados-recomendados">Pasos guiados (recomendados)</h3>
+<ol>
+<li><strong>Paso 1: App Chainlit mínima</strong>  </li>
+<li>Crea un <code>app.py</code> que use Chainlit y un modelo de Mistral, sin tools.  </li>
+<li>
+<p>Comprueba que puedes enviar y recibir mensajes.   </p>
+</li>
+<li>
+<p><strong>Paso 2: Añadir un solo tool sencillo</strong>  </p>
+</li>
+<li>Implementa <code>get_time</code> como función Python.  </li>
+<li>Define el tool JSON y pásalo al modelo.  </li>
+<li>
+<p>Comprueba, con algún prompt tipo “¿Qué hora es en Londres?”, que el modelo decide llamar a la función. </p>
+</li>
+<li>
+<p><strong>Paso 3: Añadir <code>get_weather</code> y <code>get_stock_price</code></strong>  </p>
+</li>
+<li>Implementa estas funciones y añádelas a la lista de tools. </li>
+<li>
+<p>Diseña prompts donde tenga sentido usarlas (tiempo en una ciudad, precio de una acción, etc.).  </p>
+</li>
+<li>
+<p><strong>Paso 4: Instrucciones de los agentes A y B</strong>  </p>
+</li>
+<li>Adapta en el código los prompts de sistema / instrucciones que ya diseñaste en Mistral Studio para el Tutor Flask y el Generador creativo.   </li>
+<li>
+<p>Ajusta el rol de A hacia algo más práctico/planificador, y deja B como creativo.  </p>
+</li>
+<li>
+<p><strong>Paso 5: Selector de agente</strong>  </p>
+</li>
+<li>Añade un mecanismo sencillo para indicar con qué agente hablas (por ejemplo, guardando una variable en la sesión de usuario de Chainlit). </li>
+<li>Asegúrate de que las tools se comportan de forma coherente con cada agente (el A usará más <code>get_time</code>/<code>get_weather</code>, el B quizá use <code>get_stock_price</code> para ideas financieras, etc.).  </li>
+</ol>
+<hr />
+<h3 id="entrega-minima-para-esta-actividad">Entrega mínima (para esta actividad)</h3>
+<p>Para la actividad asociada a esta sesión se pedirá, como mínimo:</p>
+<ul>
+<li>El fichero <code>app.py</code> (o equivalente) con la integración de Chainlit + Mistral + tools.  </li>
+<li>Un breve <code>README.md</code> (o texto en la entrega) que explique:</li>
+<li>cómo arrancar la app,  </li>
+<li>qué hace el agente A,  </li>
+<li>qué hace el agente B,  </li>
+<li>qué funciones personalizadas se han implementado,  </li>
+<li>y cómo probarlas (ejemplos de prompts). </li>
+</ul>
+<p>En sesiones posteriores se podrá ampliar esta base para incluir <strong>RAG</strong> y otras capacidades más avanzadas, pero en esta actividad el foco está en <strong>migrar los agentes del playground a una app propia y darles herramientas mediante function calling</strong>. </p>
 
 
 
@@ -2799,44 +2963,6 @@ Esta app de Chainlit integra un LLM local (a través de Ollama con el modelo Mis
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
-        
-          
-          <a href="../llm3/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 3 - Creación de agentes en Mistral AI">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              <div class="md-ellipsis">
-                Sesión 3 - Creación de agentes en Mistral AI
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../llm5/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              <div class="md-ellipsis">
-                Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
