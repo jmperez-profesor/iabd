@@ -734,7 +734,7 @@ Explicación:
 La documentación de Mistral contempla **cadenas sucesivas** de **`function calling`**, por eso tiene sentido iterar.
 ​
 ```python
-    for _ in range(5):
+for _ in range(5):
 ```
 
 Ojo, este for:
@@ -746,12 +746,12 @@ Ojo, este for:
 ### Paso 11 - llamada al modelo
 
 ```python
-        response = await client.chat.complete_async(
-            model=MODEL,
-            messages=messages,
-            tools=TOOLS,
-            tool_choice="auto",
-        )
+response = await client.chat.complete_async(
+    model=MODEL,
+    messages=messages,
+    tools=TOOLS,
+    tool_choice="auto",
+)
 ```
 Explicación:
 
@@ -766,13 +766,13 @@ Explicación:
 ### Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
 
 ```python
-        assistant_message = response.choices[0].message
-        # Construir el payload del mensaje del asistente, 
-        # incluyendo las llamadas a herramientas si las hay
-        assistant_payload = {
-            "role": "assistant",
-            "content": assistant_message.content or ""
-        }
+assistant_message = response.choices[0].message
+# Construir el payload del mensaje del asistente, 
+# incluyendo las llamadas a herramientas si las hay
+assistant_payload = {
+    "role": "assistant",
+    "content": assistant_message.content or ""
+}
 ```
 
 Ojo, **el mensaje del asistente puede venir**:
