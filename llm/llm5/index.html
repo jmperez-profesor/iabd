@@ -1175,6 +1175,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#paso-13-deteccion-de-tool_calls-este-es-el-corazon-del-patron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 13 - Detección de tool_calls. Este es el corazón del patrón.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#paso-14-anadir-las-tool-calls-al-historial" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3381,14 +3392,14 @@ Explicación:</p>
 <li><strong><code>final_answer</code></strong> guardará la respuesta final que se enviará al usuario.</li>
 </ul>
 <h3 id="paso-10-bucle-controlado-de-hasta-5-iteraciones">Paso 10 - Bucle controlado de hasta 5 iteraciones</h3>
-<p>La documentación de Mistral contempla cadenas sucesivas de <strong><code>function calling</code></strong>, por eso tiene sentido iterar.
+<p>La documentación de Mistral contempla <strong>cadenas sucesivas</strong> de <strong><code>function calling</code></strong>, por eso tiene sentido iterar.
 ​
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
 </code></pre></div></p>
 <p>Ojo, este for:</p>
 <ul>
 <li>no es para repetir siempre cinco veces,</li>
-<li>sino para permitir varias rondas de <strong>“modelo -&gt; tool -&gt; modelo”</strong>,</li>
+<li>sino para permitir varias rondas de <strong>“<code>modelo -&gt; tool -&gt; modelo</code>”</strong>,</li>
 <li>con un límite que evita <strong>bucles infinitos</strong>.
 ​</li>
 </ul>
@@ -3415,25 +3426,28 @@ Explicación:</p>
 <p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar <strong><code>get_weather</code></strong>.
 ​</p>
 <h3 id="paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial">Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.</h3>
-<p>​```python
-assistant_message = response.choices[0].message</p>
-<p>assistant_payload = {
-    "role": "assistant",
-    "content": assistant_message.content or ""
-}
-<div class="highlight"><pre><span></span><code>Ojo, **el mensaje del asistente puede venir**:
+<div class="highlight"><pre><span></span><code><span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
 
-* con texto normal,
-
-* con **`tool_calls`**,
-
-* o con ambas cosas.
-
-### Paso 13 - Detección de **`tool_calls`**. Este es el corazón del patrón.
-
-```python
-tool_calls = getattr(assistant_message, &quot;tool_calls&quot;, None)
-</code></pre></div></p>
+<span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">assistant_message</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Ojo, <strong>el mensaje del asistente puede venir</strong>:</p>
+<ul>
+<li>
+<p>con texto normal,</p>
+</li>
+<li>
+<p>con <strong><code>tool_calls</code></strong>,</p>
+</li>
+<li>
+<p>o con ambas cosas.</p>
+</li>
+</ul>
+<h3 id="paso-13-deteccion-de-tool_calls-este-es-el-corazon-del-patron">Paso 13 - Detección de <strong><code>tool_calls</code></strong>. Este es el corazón del patrón.</h3>
+<div class="highlight"><pre><span></span><code><span class="n">tool_calls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">assistant_message</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
 <p>Si hay <strong><code>tool_calls</code></strong>, el modelo está pidiendo que el backend haga algo antes de seguir. Si no hay <strong><code>tool_calls</code></strong>, ya tenemos respuesta final.
 ​</p>
 <h3 id="paso-14-anadir-las-tool-calls-al-historial">Paso 14 - Añadir las <strong><code>tool calls</code></strong> al historial.</h3>
