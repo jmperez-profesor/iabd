@@ -289,9 +289,159 @@ def get_weather(city: str) -> dict:
 
 ![Ejemplo de uso de la herramienta (tool) get_weather](./images/chainlit/ejemplo_uso_get_weather_api.png)
 
+**Código completo:**
+
+```python
+import requests
+import json
+import os
+from mistralai.client import Mistral
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+
+# Definir el esquema de la herramienta.
+# ¿Por qué get_country_info() debe estar descrita tanto en Python como en la lista tools? 
+# La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa 
+# herramienta existe y cómo puede invocarla. 
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Obtiene la temperatura actual de una ciudad dada.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "Nombre de la ciudad, e.g. 'Madrid'."
+                    }
+                },
+                "required": ["city"]
+            }
+        }
+    }
+]
+
+messages = [
+    {
+        "role": "system",
+        "content": "Eres un asistente útil. Usa la herramienta get_weather cuando el usuario pregunte por el tiempo."
+    },
+    {
+        "role": "user",
+        "content": "¿Qué tiempo hace en Madrid?"
+    }
+]
+
+response = client.chat.complete(
+    model="mistral-medium-latest",
+    messages=messages,
+    tools=tools,
+)
+
+tool_call = response.choices[0].message.tool_calls[0]
+print(f"El modelo va a invocar a: {tool_call.function.name}")
+print(f"Con los argumentos: {tool_call.function.arguments}")
+
+def get_weather(city: str) -> dict:
+    # 1) Geocodificación
+    geo_url = "https://geocoding-api.open-meteo.com/v1/search"
+    geo_resp = requests.get(geo_url, params={"name": city, "count": 1, "language": "es", "format": "json"}, timeout=20)
+    geo_resp.raise_for_status()
+    geo_data = geo_resp.json()
+
+    results = geo_data.get("results", [])
+    if not results:
+        return {
+            "city": city,
+            "error": f"No se encontró la ciudad '{city}'."
+        }
+
+    place = results[0]
+    latitude = place["latitude"]
+    longitude = place["longitude"]
+    resolved_name = place["name"]
+    country = place.get("country", "")
+
+    # 2) Tiempo actual
+    weather_url = "https://api.open-meteo.com/v1/forecast"
+    weather_resp = requests.get(
+        weather_url,
+        params={
+            "latitude": latitude,
+            "longitude": longitude,
+            "current": "temperature_2m,weather_code",
+            "timezone": "auto"
+        },
+        timeout=20
+    )
+    weather_resp.raise_for_status()
+    weather_data = weather_resp.json()
+
+    current = weather_data.get("current", {})
+    temp = current.get("temperature_2m")
+    code = current.get("weather_code")
+
+    code_map = {
+        0: "Despejado",
+        1: "Mayormente despejado",
+        2: "Parcialmente nuboso",
+        3: "Cubierto",
+        45: "Niebla",
+        48: "Niebla con escarcha",
+        51: "Llovizna ligera",
+        53: "Llovizna moderada",
+        55: "Llovizna densa",
+        61: "Lluvia ligera",
+        63: "Lluvia moderada",
+        65: "Lluvia intensa",
+        71: "Nieve ligera",
+        73: "Nieve moderada",
+        75: "Nieve intensa",
+        80: "Chubascos ligeros",
+        81: "Chubascos moderados",
+        82: "Chubascos violentos",
+        95: "Tormenta"
+    }
+
+    return {
+        "city": resolved_name,
+        "country": country,
+        "temperature_c": temp,
+        "condition": code_map.get(code, f"Código meteorológico {code}"),
+        "latitude": latitude,
+        "longitude": longitude
+    }
+
+# Ejecutar la llamada a la herramienta
+args = json.loads(tool_call.function.arguments)
+result = get_weather(**args)
+
+# Devuelve el resultado al modelo
+messages.append(response.choices[0].message)
+messages.append({
+    "role": "tool",
+    "name": tool_call.function.name,
+    "content": json.dumps(result),
+    "tool_call_id": tool_call.id,
+})
+
+final_response = client.chat.complete(
+    model="mistral-medium-latest",
+    messages=messages,
+    tools=tools,
+)
+
+print(final_response.choices[0].message.content)
+```
+
 ## Actividad guiada: Chainlit+agente con herramientas personalizadas
 
-Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una tool real **`get_weather()`** para consultar el tiempo de una ciudad. 
+Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una **tool real**, por ejemplo, **`get_weather()`** para consultar el tiempo de una ciudad. 
 
 Veremos: 
 
@@ -314,7 +464,7 @@ Flujo de trabajo:
 
 La respuesta correcta es: el **backend en Python**.
 
-### Paso 2 - Pue preparen el entorno y el bloque inicial de configuración. 
+### Paso 2 - Preparar el entorno y el bloque inicial de configuración. 
 
 Primero se carga la clave, luego se crea el cliente y finalmente se define el prompt del sistema. Esto da contexto antes de entrar en los callbacks de Chainlit.
 
@@ -379,7 +529,9 @@ TOOLS = [
 ]
 ```
 
-**IMPORTANTE**: no confundir la lista TOOLS con la función real **`get_weather()`**. Conviene insistir en que:
+**IMPORTANTE**: no confundir la lista TOOLS con la función real **`get_weather()`**. 
+
+Conviene insistir en que:
 
 * TOOLS es la descripción para el modelo.
 * `get_weather()` es la implementación real en Python.
@@ -418,7 +570,7 @@ def weather_code_to_text(code: int | None) -> str:
 
 ### Paso 5: tool real **`get_weather()`**
 
-Este es el bloque más importante del lado backend porque muestra que una tool puede encadenar dos APIs: una para geocodificación y otra para tiempo actual. 
+Este es el bloque más importante del lado backend porque muestra que una **`tool`** puede **encadenar dos APIs**: una para geocodificación y otra para tiempo actual. 
 Además, el decorador **`@cl.step(type="tool")`** permite que Chainlit muestre visualmente la ejecución de la herramienta.
 
 ```python
@@ -499,7 +651,7 @@ async def get_weather(city: str) -> str:
 ```
 Aspectos a remarcar:
 
-* La tool devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como **`content`**.
+* La **`tool`** devuelve texto JSON, no un dict Python sin serializar, porque luego se añade al historial como **`content`**.
 * **`@cl.step(type="tool")`** permite ver la tool como paso intermedio en Chainlit.
 ​* Se controlan errores para que el agente no se rompa ante fallos de red
 
