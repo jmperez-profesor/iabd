@@ -31,9 +31,9 @@ Los agentes de recuperación permiten a los modelos acceder a bases de conocimie
 
 Orquestar múltiples agentes de manera efectiva es crucial para construir sistemas multi-agente potentes. Al combinar agentes con diferentes capacidades—como un agente de búsqueda web con un agente de ejecución de código—puedes crear soluciones más sofisticadas. 
 
-### 7️⃣ [Agentes de Visión y Navegador](./vision_agents)
+### 7️⃣ [Agentes de Visión y Navegador]
 
-Los agentes de visión extienden las capacidades tradicionales de los agentes al incorporar **Modelos de Visión-Lenguaje (VLMs)**, permitiéndoles procesar e interpretar información visual. Veremos cómo diseñar e integrar agentes potenciados por VLM, desbloqueando funcionalidades avanzadas como razonamiento basado en imágenes, análisis de datos visuales e interacciones multimodales. También usaremos agentes de visión para construir un agente de navegador que pueda navegar por la web y extraer información de ella.
+Los agentes de visión extienden las capacidades tradicionales de los agentes al incorporar **Modelos de Visión-Lenguaje (VLMs)**, permitiéndoles procesar e interpretar información visual. Es posible diseñar e integrar agentes potenciados por VLM, desbloqueando funcionalidades avanzadas como razonamiento basado en imágenes, análisis de datos visuales e interacciones multimodales. También se pueden usar agentes de visión para construir un agente de navegador que pueda navegar por la web y extraer información de ella.
 
 # ¿Por qué usar smolagents?
 
