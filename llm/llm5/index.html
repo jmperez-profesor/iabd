@@ -1447,10 +1447,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pregunta-de-reflexion" class="md-nav__link">
+  <a href="#pregunta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pregunta de reflexión
+        Pregunta
       
     </span>
   </a>
@@ -1519,10 +1519,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pregunta-de-reflexion_1" class="md-nav__link">
+  <a href="#pregunta_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pregunta de reflexión
+        Pregunta
       
     </span>
   </a>
@@ -1580,7 +1580,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pregunta-de-reflexion_2" class="md-nav__link">
+  <a href="#pregunta-de-reflexion" class="md-nav__link">
     <span class="md-ellipsis">
       
         Pregunta de reflexión
@@ -4066,7 +4066,7 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 <li>Incluirla en el diccionario <strong><code>available_tools</code></strong>. </li>
 <li>Probar una pregunta que obligue al modelo a usar más de una tool. </li>
 </ul>
-<h3 id="pregunta-de-reflexion">Pregunta de reflexión</h3>
+<h3 id="pregunta">Pregunta</h3>
 <p>¿Por qué <strong><code>get_country_info()</code></strong> debe estar descrita tanto en Python como en la lista <strong><code>tools</code></strong>? La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa herramienta existe y cómo puede invocarla. </p>
 <h2 id="parte-2-anadir-memoria-con-cluser_session">Parte 2: añadir memoria con <strong><code>cl.user_session</code></strong></h2>
 <h3 id="objetivo_1">Objetivo</h3>
@@ -4115,13 +4115,15 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 <ul>
 <li>Añadir <strong><code>@cl.on_chat_start</code></strong> para inicializar la sesión. </li>
 <li>Modificar <code>run_agent()</code> para leer y escribir en <code>cl.user_session</code>. </li>
-<li>Probar una conversación de dos turnos, por ejemplo:  </li>
+<li>Probar una conversación de dos turnos, por ejemplo:  <ol>
 <li><em>What’s the weather in Napoleon’s hometown?</em>  </li>
 <li><em>And in Michel’s hometown?</em>  </li>
+</ol>
+</li>
 <li>Comprobar si el bot entiende la continuidad. </li>
 </ul>
-<h3 id="pregunta-de-reflexion_1">Pregunta de reflexión</h3>
-<p>¿Qué diferencia hay entre una variable global de Python y <code>cl.user_session</code>? La idea es que <strong><code>cl.user_session</code></strong> mantiene datos por usuario/sesión, mientras que una global podría mezclar conversaciones de usuarios distintos. </p>
+<h3 id="pregunta_1">Pregunta</h3>
+<p><strong>¿Qué diferencia hay entre una variable global de Python y **<code>cl.user_session</code></strong>?** La idea es que <strong><code>cl.user_session</code></strong> mantiene datos por <strong>usuario/sesión</strong>, mientras que una global podría mezclar conversaciones de usuarios distintos. </p>
 <h2 id="parte-3-anadir-botones-con-claction">Parte 3: añadir botones con <strong><code>cl.Action</code></strong></h2>
 <h3 id="objetivo_2">Objetivo</h3>
 <p>Incorporar una interfaz más guiada en Chainlit mediante botones que lancen preguntas predefinidas. Chainlit soporta acciones interactivas con <strong><code>cl.Action</code></strong> y <strong><code>@cl.action_callback(...)</code></strong>. </p>
@@ -4159,7 +4161,7 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 <li>Reutilizar <strong><code>run_agent(...)</code></strong> en lugar de duplicar lógica del agente. </li>
 <li>Mostrar los botones al inicio o después de cada respuesta. </li>
 </ul>
-<h3 id="pregunta-de-reflexion_2">Pregunta de reflexión</h3>
+<h3 id="pregunta-de-reflexion">Pregunta de reflexión</h3>
 <p>¿Por qué es mejor reutilizar <strong><code>run_agent()</code></strong> dentro de un <strong><code>action_callback</code></strong> que escribir una lógica distinta en cada callback? Porque así toda la lógica de conversación y uso de tools queda centralizada y es más mantenible. </p>
 <h2 id="parte-4-reto-opcional-de-interfaz-visual">Parte 4: reto opcional de interfaz visual</h2>
 <h3 id="objetivo_3">Objetivo</h3>
