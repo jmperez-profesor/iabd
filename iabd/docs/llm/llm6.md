@@ -141,22 +141,37 @@ Si aún no has instalado `smolagents`, puedes hacerlo ejecutando el siguiente co
 ```bash
 pip install smolagents -U
 ```
+También debemos iniciar sesión en el ***Hugging Face Hub*** para tener acceso a la API de Inferencia *`Serverless`*.
 
-También iniciemos sesión en el Hugging Face Hub para tener acceso a la API de Inferencia Serverless.
-
+**login_hf.py**
 ```python
 from huggingface_hub import login
 
 login()
 ```
 
-### Seleccionando una Lista de Reproducción para la Fiesta Usando `smolagents`
+Prueba sencilla de funcionamiento:
+
+```python
+from huggingface_hub import InferenceClient
+
+client = InferenceClient(model="google/gemma-7b") # O el modelo que prefieras
+response = client.text_generation("Hola, ¿cómo estás?")
+print(response)
+
+```
+### Seleccionando una lista de reproducción para la fiesta usando `smolagents`
 
 ¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡`smolagents` nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.
 
-Para el modelo, confiaremos en `InferenceClientModel`, que proporciona acceso a la [API de Inferencia Serverless](https://huggingface.co/docs/api-inference/index) de Hugging Face. El modelo predeterminado es `"Qwen/Qwen2.5-Coder-32B-Instruct"`, que es eficiente y está disponible para inferencia rápida, pero puedes seleccionar cualquier modelo compatible del Hub.
+Para el modelo, confiaremos en **`InferenceClientModel`**, que proporciona acceso a la [API de Inferencia Serverless](https://huggingface.co/docs/api-inference/index) de Hugging Face. El modelo predeterminado es `"Qwen/Qwen2.5-Coder-32B-Instruct"`, que es eficiente y está disponible para inferencia rápida, pero puedes seleccionar cualquier modelo compatible del Hub.
 
-Ejecutar un agente es bastante sencillo:
+Para poder utilizar la herrameinta (tool) **`DuckDuckGoSearchTool`** (herramienta que utiliza **DuckDuckGo** para realizar búsquedas. Permite a los agentes aprovechar su motor de búsqueda para recuperar información y además no requiere una clave API) necesitamos instalar la librería ddgs (DuckDuckGoSearch):
+
+```bash
+pip install ddgs
+```
+Un vez instalado, ejecutar un agente es bastante sencillo:
 
 ```python
 from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
@@ -166,7 +181,7 @@ agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=InferenceClientModel())
 agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión de los Wayne.")
 ```
 
-Cuando ejecutes este ejemplo, la salida **mostrará un seguimiento de los pasos del flujo de trabajo siendo ejecutados**. También imprimirá el código Python correspondiente con el mensaje:
+Cuando ejecutamos este ejemplo, la salida **mostrará un seguimiento de los pasos del flujo de trabajo siendo ejecutados**. También imprimirá el código Python correspondiente con el mensaje:
 
 ```python
  ─ Ejecutando código analizado: ──────────────────────────────────────────────────────────────────────────────────── 
@@ -174,14 +189,18 @@ Cuando ejecutes este ejemplo, la salida **mostrará un seguimiento de los pasos 
   print(results)                                                                                                   
  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
 ```
+**Ejecución del paso 1 del *Agente Alfred***
+![Agente Alfred Paso 1](./images/06/agente_alfred_paso1.png)
+**Ejecución del paso 2 del *Agente Alfred***
+![Agente Alfred Paso 2](./images/06/agente_alfred_paso2.png)
 
-¡Después de algunos pasos, verás la lista de reproducción generada que Alfred puede usar para la fiesta! 🎵
+¡Después de algunos pasos, veremos la lista de reproducción generada que Alfred puede usar para la fiesta! 🎵
 
-### Usando una Herramienta Personalizada para Preparar el Menú
+### Usando una herramienta personalizada para preparar el menú
 
 Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar `smolagents` para hacerlo. Aquí, usamos el decorador `@tool` para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.
 
-Como puedes ver en el ejemplo a continuación, crearemos una herramienta usando el decorador `@tool` y la incluiremos en la lista de `tools`.
+Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador `@tool` y la incluiremos en la lista de `tools`.
 
 ```python
 from smolagents import CodeAgent, tool, InferenceClientModel
@@ -214,7 +233,7 @@ El agente se ejecutará durante algunos pasos hasta encontrar la respuesta.
 
 ¡El menú está listo! 🥗
 
-### Usando Importaciones de Python Dentro del Agente
+### Usando importaciones (imports) de Python dentro del agente
 
 Tenemos la lista de reproducción y el menú listos, pero necesitamos verificar un detalle más crucial: ¡el tiempo de preparación!
 
@@ -250,7 +269,7 @@ agent.run(
 Estos ejemplos son solo el comienzo de lo que puedes hacer con agentes de código, y ya estamos empezando a ver su utilidad para preparar la fiesta.
 Puedes aprender más sobre cómo construir agentes de código en la [documentación de smolagents](https://huggingface.co/docs/smolagents).
 
-En resumen, `smolagents` se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en sandbox para seguridad. Soporta modelos de lenguaje tanto locales como basados en API, haciéndolo adaptable a varios entornos de desarrollo.
+En resumen, **`smolagents`** se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en un **sandbox para seguridad**. Soporta modelos de lenguaje tanto locales como basados en API, haciéndolo adaptable a varios entornos de desarrollo.
 
 ### Compartiendo Nuestro Agente Preparador de Fiestas Personalizado en el Hub
 
@@ -360,18 +379,11 @@ agent.run("Dame la mejor lista de reproducción para una fiesta en la mansión d
 
 Como puedes ver, hemos creado un `CodeAgent` con varias herramientas que mejoran la funcionalidad del agente, ¡convirtiéndolo en el mejor planificador de fiestas listo para compartir con la comunidad! 🎉
 
-Ahora, es tu turno: ¡construye tu propio agente y compártelo con la comunidad usando el conocimiento que acabamos de aprender! 🕵️‍♂️💡
-
-> [!TIP]
-> Si deseas compartir tu proyecto de agente, entonces crea un space y etiqueta a [agents-course](https://huggingface.co/agents-course) en el Hugging Face Hub. ¡Nos encantaría ver lo que has creado!
-
-### Inspeccionando Nuestro Agente Preparador de Fiestas con OpenTelemetry y Langfuse 📡
+### Inspeccionando nuestro agente preparador de fiestas con OpenTelemetry y Langfuse 📡
 
 A medida que Alfred perfecciona el Agente Preparador de Fiestas, se está cansando de depurar sus ejecuciones. Los agentes, por naturaleza, son impredecibles y difíciles de inspeccionar. Pero como su objetivo es construir el mejor Agente Preparador de Fiestas y desplegarlo en producción, necesita una trazabilidad robusta para monitoreo y análisis futuros.
 
 ¡Una vez más, `smolagents` viene al rescate! Adopta el estándar [OpenTelemetry](https://opentelemetry.io/) para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de [Langfuse](https://langfuse.com/) y el `SmolagentsInstrumentor`, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.
-
-¡Configurarlo es sencillo!
 
 Primero, necesitamos instalar las dependencias necesarias:
 
@@ -381,7 +393,7 @@ pip install opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrume
 
 A continuación, Alfred ya ha creado una cuenta en Langfuse y tiene sus claves API listas. Si aún no lo has hecho, puedes registrarte en Langfuse Cloud [aquí](https://cloud.langfuse.com/) o explorar [alternativas](https://huggingface.co/docs/smolagents/tutorials/inspect_runs).
 
-Una vez que tengas tus claves API, deben configurarse correctamente de la siguiente manera:
+Una vez que tengamos nuestras claves API, deben configurarse correctamente de la siguiente manera:
 
 ```python
 import os
