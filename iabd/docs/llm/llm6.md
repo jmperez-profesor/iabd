@@ -47,11 +47,11 @@ Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para
 - **Simplicidad:** Mínima complejidad de código y abstracciones, para hacer que el framework sea fácil de entender, adoptar y extender
 - **Soporte flexible para LLM:** Funciona con cualquier LLM a través de la integración con herramientas de Hugging Face y APIs externas
 - **Enfoque centrado en el código:** Soporte de primera clase para Agentes de Código que escriben sus acciones directamente en código, eliminando la necesidad de análisis y simplificando la llamada a herramientas
-- **Integración con HF Hub:** Integración perfecta con Hugging Face Hub, permitiendo el uso de Espacios Gradio como herramientas
+- **Integración con HF Hub:** Integración perfecta con Hugging Face Hub, permitiendo el uso de **Espacios Gradio** como herramientas
 
 ### ¿Cuándo usar smolagents?
 
-smolagents es ideal cuando:
+`smolagents` es ideal cuando:
 - Necesitas una **solución ligera y mínima.**
 - Quieres **experimentar rápidamente** sin configuraciones complejas.
 - La **lógica de tu aplicación es sencilla.**
