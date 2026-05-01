@@ -134,9 +134,6 @@ Al final de cada paso, si el agente incluye alguna llamada a función (en `agent
 
 ## Veamos Algunos Ejemplos
 
-> [!TIP]
-> Puedes seguir el código en este notebook que puedes ejecutar usando Google Colab.
-
 Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un `CodeAgent` de múltiples pasos.
 
 Si aún no has instalado `smolagents`, puedes hacerlo ejecutando el siguiente comando:
