@@ -41,7 +41,7 @@ Los agentes de visión extienden las capacidades tradicionales de los agentes al
 
 `smolagents` es un framework simple pero potente para construir agentes de IA. Proporciona a los LLMs la _capacidad de acción_ para interactuar con el mundo real, como buscar o generar imágenes.
 
-Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar **'pensamientos'** basados en **'observaciones'** para realizar **'acciones'**. 
+Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar **pensamientos** basados en **observaciones** para realizar **acciones**. 
 
 ### Ventajas clave de `smolagents`
 - **Simplicidad:** Mínima complejidad de código y abstracciones, para hacer que el framework sea fácil de entender, adoptar y extender
@@ -73,7 +73,6 @@ Cada [`MultiStepAgent`](https://huggingface.co/docs/smolagents/main/en/reference
 
 Además de usar **[CodeAgent](https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.CodeAgent)** como el tipo principal de agente, smolagents también soporta **[ToolCallingAgent](https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.ToolCallingAgent)**, que escribe llamadas a herramientas en JSON.
 
-> [!TIP]
 > En smolagents, las herramientas se definen usando el decorador @tool que envuelve una función de Python o la clase Tool.
 
 ### Integración de Modelos en `smolagents`
@@ -87,17 +86,14 @@ Además de usar **[CodeAgent](https://huggingface.co/docs/smolagents/main/en/ref
 
 Esta flexibilidad asegura que los desarrolladores puedan elegir el modelo y servicio más adecuados para sus casos de uso específicos, y permite una fácil experimentación.
 
-# Construcción de Agentes que Usan Código
+# Construcción de agentes que usan código
 
 Los agentes de código son el tipo de agente predeterminado en `smolagents`. Generan llamadas a herramientas en Python para realizar acciones, logrando representaciones de acciones que son eficientes, expresivas y precisas.
 
-Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. `smolagents` proporciona un marco ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.
+Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. `smolagents` proporciona un framework ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.
 
 ![Acciones de Código vs JSON](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png)
 Gráfico del artículo [Executable Code Actions Elicit Better LLM Agents](https://huggingface.co/papers/2402.01030)
-
-> [!TIP]
-> Si quieres aprender más sobre por qué los agentes de código son efectivos, consulta esta guía de la documentación de smolagents.
 
 ## ¿Por qué Agentes de Código?
 
@@ -112,7 +108,7 @@ Escribir acciones en código en lugar de JSON ofrece varias ventajas clave:
 * **Generalidad**: Expresar cualquier tarea computacionalmente posible
 * **Natural para LLMs**: Código de alta calidad ya está presente en los datos de entrenamiento de LLMs
 
-## ¿Cómo Funciona un Agente de Código?
+## ¿Cómo funciona un agente de código?
 
 ![De https://huggingface.co/docs/smolagents/conceptual_guides/react](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/smolagents/codeagent_docs.png)
 
