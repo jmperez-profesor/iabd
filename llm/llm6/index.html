@@ -956,7 +956,7 @@
   <a href="#1-por-que-usar-smolagents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1️⃣ [Por qué usar smolagents]
+        1️⃣ Por qué usar smolagents
       
     </span>
   </a>
@@ -967,7 +967,7 @@
   <a href="#2-agentes-de-codigo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2️⃣ [Agentes de Código]
+        2️⃣ Agentes de Código
       
     </span>
   </a>
@@ -978,7 +978,7 @@
   <a href="#3-agentes-de-llamada-a-herramientas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3️⃣ [Agentes de Llamada a Herramientas]
+        3️⃣ Agentes de Llamada a Herramientas
       
     </span>
   </a>
@@ -989,7 +989,7 @@
   <a href="#4-herramientas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4️⃣ [Herramientas]
+        4️⃣ Herramientas
       
     </span>
   </a>
@@ -1000,7 +1000,7 @@
   <a href="#5-agentes-de-recuperacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5️⃣ [Agentes de Recuperación]
+        5️⃣ Agentes de Recuperación
       
     </span>
   </a>
@@ -1011,7 +1011,7 @@
   <a href="#6-sistemas-multi-agente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6️⃣ [Sistemas Multi-Agente]
+        6️⃣ Sistemas Multi-Agente
       
     </span>
   </a>
@@ -1022,7 +1022,7 @@
   <a href="#7-agentes-de-vision-y-navegador" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7️⃣ [Agentes de Visión y Navegador]
+        7️⃣ Agentes de Visión y Navegador
       
     </span>
   </a>
@@ -1872,19 +1872,19 @@
 
 <h1 id="smolagents-y-orquestacion-multiagente-con-chainlit">Smolagents y orquestación multiagente con Chainlit</h1>
 <p><img alt="" src="../images/agente_running.gif" /></p>
-<h3 id="1-por-que-usar-smolagents">1️⃣ [Por qué usar smolagents]</h3>
-<p><code>smolagents</code> es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen <code>LlamaIndex</code> y <code>LangGraph</code>, que también se cubren en otros módulos de este curso. <code>smolagents</code> ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. Exploraremos las ventajas y desventajas de usar <code>smolagents</code>, ayudándote a tomar una decisión informada basada en los requisitos de tu proyecto.</p>
-<h3 id="2-agentes-de-codigo">2️⃣ [Agentes de Código]</h3>
+<h3 id="1-por-que-usar-smolagents">1️⃣ Por qué usar smolagents</h3>
+<p><code>smolagents</code> es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen <code>LlamaIndex</code> y <code>LangGraph</code>. <code>smolagents</code> ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. </p>
+<h3 id="2-agentes-de-codigo">2️⃣ Agentes de Código</h3>
 <p>Los <code>CodeAgents</code> (Agentes de Código) son el tipo principal de agente en <code>smolagents</code>. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. </p>
-<h3 id="3-agentes-de-llamada-a-herramientas">3️⃣ [Agentes de Llamada a Herramientas]</h3>
+<h3 id="3-agentes-de-llamada-a-herramientas">3️⃣ Agentes de Llamada a Herramientas</h3>
 <p>Los <code>ToolCallingAgents</code> (Agentes de Llamada a Herramientas) son el segundo tipo de agente soportado por <code>smolagents</code>. A diferencia de los <code>CodeAgents</code>, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. </p>
-<h3 id="4-herramientas">4️⃣ [Herramientas]</h3>
-<p>Como vimos en la Unidad 1, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Este módulo cubre cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase <code>Tool</code> o el decorador <code>@tool</code>. </p>
-<h3 id="5-agentes-de-recuperacion">5️⃣ [Agentes de Recuperación]</h3>
+<h3 id="4-herramientas">4️⃣ Herramientas</h3>
+<p>Como vimos en otras sesiones, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase <code>Tool</code> o el decorador <code>@tool</code>. </p>
+<h3 id="5-agentes-de-recuperacion">5️⃣ Agentes de Recuperación</h3>
 <p>Los agentes de recuperación permiten a los modelos acceder a bases de conocimiento, haciendo posible buscar, sintetizar y recuperar información de múltiples fuentes. Aprovechan los almacenes vectoriales para una recuperación eficiente e implementan patrones de <strong>Generación Aumentada por Recuperación (RAG)</strong>. Estos agentes son particularmente útiles para integrar la búsqueda web con bases de conocimiento personalizadas mientras mantienen el contexto de la conversación a través de sistemas de memoria. Este módulo explora estrategias de implementación, incluyendo mecanismos de respaldo para una recuperación de información robusta.</p>
-<h3 id="6-sistemas-multi-agente">6️⃣ [Sistemas Multi-Agente]</h3>
+<h3 id="6-sistemas-multi-agente">6️⃣ Sistemas Multi-Agente</h3>
 <p>Orquestar múltiples agentes de manera efectiva es crucial para construir sistemas multi-agente potentes. Al combinar agentes con diferentes capacidades—como un agente de búsqueda web con un agente de ejecución de código—puedes crear soluciones más sofisticadas. </p>
-<h3 id="7-agentes-de-vision-y-navegador">7️⃣ [Agentes de Visión y Navegador]</h3>
+<h3 id="7-agentes-de-vision-y-navegador">7️⃣ Agentes de Visión y Navegador</h3>
 <p>Los agentes de visión extienden las capacidades tradicionales de los agentes al incorporar <strong>Modelos de Visión-Lenguaje (VLMs)</strong>, permitiéndoles procesar e interpretar información visual. Es posible diseñar e integrar agentes potenciados por VLM, desbloqueando funcionalidades avanzadas como razonamiento basado en imágenes, análisis de datos visuales e interacciones multimodales. También se pueden usar agentes de visión para construir un agente de navegador que pueda navegar por la web y extraer información de ella.</p>
 <h1 id="por-que-usar-smolagents">¿Por qué usar smolagents?</h1>
 <h2 id="que-es-smolagents">¿Qué es <code>smolagents</code>?</h2>
