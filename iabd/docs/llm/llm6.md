@@ -7,31 +7,31 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ![](./images/agente_running.gif)
 
-### 1️⃣ [Por qué usar smolagents]
+### 1️⃣ Por qué usar smolagents
 
-`smolagents` es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen `LlamaIndex` y `LangGraph`, que también se cubren en otros módulos de este curso. `smolagents` ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. Exploraremos las ventajas y desventajas de usar `smolagents`, ayudándote a tomar una decisión informada basada en los requisitos de tu proyecto.
+`smolagents` es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen `LlamaIndex` y `LangGraph`. `smolagents` ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. 
 
-### 2️⃣ [Agentes de Código]
+### 2️⃣ Agentes de Código
 
 Los `CodeAgents` (Agentes de Código) son el tipo principal de agente en `smolagents`. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. 
 
-### 3️⃣ [Agentes de Llamada a Herramientas]
+### 3️⃣ Agentes de Llamada a Herramientas
 
 Los `ToolCallingAgents` (Agentes de Llamada a Herramientas) son el segundo tipo de agente soportado por `smolagents`. A diferencia de los `CodeAgents`, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. 
 
-### 4️⃣ [Herramientas]
+### 4️⃣ Herramientas
 
-Como vimos en la Unidad 1, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Este módulo cubre cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase `Tool` o el decorador `@tool`. 
+Como vimos en otras sesiones, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase `Tool` o el decorador `@tool`. 
 
-### 5️⃣ [Agentes de Recuperación]
+### 5️⃣ Agentes de Recuperación
 
 Los agentes de recuperación permiten a los modelos acceder a bases de conocimiento, haciendo posible buscar, sintetizar y recuperar información de múltiples fuentes. Aprovechan los almacenes vectoriales para una recuperación eficiente e implementan patrones de **Generación Aumentada por Recuperación (RAG)**. Estos agentes son particularmente útiles para integrar la búsqueda web con bases de conocimiento personalizadas mientras mantienen el contexto de la conversación a través de sistemas de memoria. Este módulo explora estrategias de implementación, incluyendo mecanismos de respaldo para una recuperación de información robusta.
 
-### 6️⃣ [Sistemas Multi-Agente]
+### 6️⃣ Sistemas Multi-Agente
 
 Orquestar múltiples agentes de manera efectiva es crucial para construir sistemas multi-agente potentes. Al combinar agentes con diferentes capacidades—como un agente de búsqueda web con un agente de ejecución de código—puedes crear soluciones más sofisticadas. 
 
-### 7️⃣ [Agentes de Visión y Navegador]
+### 7️⃣ Agentes de Visión y Navegador
 
 Los agentes de visión extienden las capacidades tradicionales de los agentes al incorporar **Modelos de Visión-Lenguaje (VLMs)**, permitiéndoles procesar e interpretar información visual. Es posible diseñar e integrar agentes potenciados por VLM, desbloqueando funcionalidades avanzadas como razonamiento basado en imágenes, análisis de datos visuales e interacciones multimodales. También se pueden usar agentes de visión para construir un agente de navegador que pueda navegar por la web y extraer información de ella.
 
