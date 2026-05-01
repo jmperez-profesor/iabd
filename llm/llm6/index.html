@@ -1889,7 +1889,7 @@
 <h1 id="por-que-usar-smolagents">¿Por qué usar smolagents?</h1>
 <h2 id="que-es-smolagents">¿Qué es <code>smolagents</code>?</h2>
 <p><code>smolagents</code> es un framework simple pero potente para construir agentes de IA. Proporciona a los LLMs la <em>capacidad de acción</em> para interactuar con el mundo real, como buscar o generar imágenes.</p>
-<p>Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar <strong>'pensamientos'</strong> basados en <strong>'observaciones'</strong> para realizar <strong>'acciones'</strong>. </p>
+<p>Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar <strong>pensamientos</strong> basados en <strong>observaciones</strong> para realizar <strong>acciones</strong>. </p>
 <h3 id="ventajas-clave-de-smolagents">Ventajas clave de <code>smolagents</code></h3>
 <ul>
 <li><strong>Simplicidad:</strong> Mínima complejidad de código y abstracciones, para hacer que el framework sea fácil de entender, adoptar y extender</li>
@@ -1913,8 +1913,7 @@
 - Una llamada a herramienta y ejecución</p>
 <p>Además de usar <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.CodeAgent">CodeAgent</a></strong> como el tipo principal de agente, smolagents también soporta <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.ToolCallingAgent">ToolCallingAgent</a></strong>, que escribe llamadas a herramientas en JSON.</p>
 <blockquote>
-<p>[!TIP]
-En smolagents, las herramientas se definen usando el decorador @tool que envuelve una función de Python o la clase Tool.</p>
+<p>En smolagents, las herramientas se definen usando el decorador @tool que envuelve una función de Python o la clase Tool.</p>
 </blockquote>
 <h3 id="integracion-de-modelos-en-smolagents">Integración de Modelos en <code>smolagents</code></h3>
 <p><code>smolagents</code> soporta una integración flexible de LLM, permitiéndote usar cualquier modelo invocable que cumpla con <a href="https://huggingface.co/docs/smolagents/main/en/reference/models">ciertos criterios</a>. El framework proporciona varias clases predefinidas para simplificar las conexiones de modelos:</p>
@@ -1926,15 +1925,11 @@ En smolagents, las herramientas se definen usando el decorador @tool que envuelv
 <li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.AzureOpenAIServerModel">AzureOpenAIServerModel</a>:</strong> Soporta la integración con cualquier despliegue de Azure OpenAI.</li>
 </ul>
 <p>Esta flexibilidad asegura que los desarrolladores puedan elegir el modelo y servicio más adecuados para sus casos de uso específicos, y permite una fácil experimentación.</p>
-<h1 id="construccion-de-agentes-que-usan-codigo">Construcción de Agentes que Usan Código</h1>
+<h1 id="construccion-de-agentes-que-usan-codigo">Construcción de agentes que usan código</h1>
 <p>Los agentes de código son el tipo de agente predeterminado en <code>smolagents</code>. Generan llamadas a herramientas en Python para realizar acciones, logrando representaciones de acciones que son eficientes, expresivas y precisas.</p>
-<p>Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. <code>smolagents</code> proporciona un marco ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.</p>
+<p>Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. <code>smolagents</code> proporciona un framework ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.</p>
 <p><img alt="Acciones de Código vs JSON" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png" />
 Gráfico del artículo <a href="https://huggingface.co/papers/2402.01030">Executable Code Actions Elicit Better LLM Agents</a></p>
-<blockquote>
-<p>[!TIP]
-Si quieres aprender más sobre por qué los agentes de código son efectivos, consulta esta guía de la documentación de smolagents.</p>
-</blockquote>
 <h2 id="por-que-agentes-de-codigo">¿Por qué Agentes de Código?</h2>
 <p>En un proceso de agente de múltiples pasos, el LLM escribe y ejecuta acciones, típicamente involucrando llamadas a herramientas externas. Los enfoques tradicionales utilizan un formato JSON para especificar nombres de herramientas y argumentos como cadenas de texto, <strong>que el sistema debe analizar para determinar qué herramienta ejecutar</strong>.</p>
 <p>Sin embargo, la investigación muestra que <strong>los LLMs que llaman a herramientas funcionan más efectivamente con código directamente</strong>. Este es un principio fundamental de <code>smolagents</code>, como se muestra en el diagrama anterior del artículo <a href="https://huggingface.co/papers/2402.01030">Executable Code Actions Elicit Better LLM Agents</a>.</p>
@@ -1945,7 +1940,7 @@ Si quieres aprender más sobre por qué los agentes de código son efectivos, co
 <li><strong>Generalidad</strong>: Expresar cualquier tarea computacionalmente posible</li>
 <li><strong>Natural para LLMs</strong>: Código de alta calidad ya está presente en los datos de entrenamiento de LLMs</li>
 </ul>
-<h2 id="como-funciona-un-agente-de-codigo">¿Cómo Funciona un Agente de Código?</h2>
+<h2 id="como-funciona-un-agente-de-codigo">¿Cómo funciona un agente de código?</h2>
 <p><img alt="De https://huggingface.co/docs/smolagents/conceptual_guides/react" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/smolagents/codeagent_docs.png" /></p>
 <p>El diagrama anterior ilustra cómo funciona <code>CodeAgent.run()</code>, siguiendo el marco <strong>ReAct</strong> mencionado anteriormente. La abstracción principal para agentes en <code>smolagents</code> es un <code>MultiStepAgent</code>, que sirve como el bloque de construcción central. <code>CodeAgent</code> es un tipo especial de <code>MultiStepAgent</code>, como veremos en un ejemplo a continuación.</p>
 <p>Un <code>CodeAgent</code> realiza acciones a través de un ciclo de pasos, con variables y conocimientos existentes incorporados en el contexto del agente, que se mantiene en un registro de ejecución:</p>
