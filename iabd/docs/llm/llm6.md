@@ -132,11 +132,13 @@ Un `CodeAgent` realiza acciones a través de un ciclo de pasos, con variables y 
 
 Al final de cada paso, si el agente incluye alguna llamada a función (en `agent.step_callback`), estas se ejecutan.
 
-## Veamos Algunos Ejemplos
+## Veamos algunos ejemplos
 
 Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un `CodeAgent` de múltiples pasos.
 
-Si aún no has instalado `smolagents`, puedes hacerlo ejecutando el siguiente comando:
+![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-party.jpg)
+
+Instalamos `smolagents` dede el siguiente comando:
 
 ```bash
 pip install smolagents -U
@@ -163,6 +165,8 @@ print(response)
 ### Seleccionando una lista de reproducción para la fiesta usando `smolagents`
 
 ¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡`smolagents` nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.
+
+![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-playlist.jpg)
 
 Para el modelo, confiaremos en **`InferenceClientModel`**, que proporciona acceso a la [API de Inferencia Serverless](https://huggingface.co/docs/api-inference/index) de Hugging Face. El modelo predeterminado es `"Qwen/Qwen2.5-Coder-32B-Instruct"`, que es eficiente y está disponible para inferencia rápida, pero puedes seleccionar cualquier modelo compatible del Hub.
 
@@ -198,6 +202,8 @@ Cuando ejecutamos este ejemplo, la salida **mostrará un seguimiento de los paso
 
 ### Usando una herramienta personalizada para preparar el menú
 
+![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-menu.jpg)
+
 Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar `smolagents` para hacerlo. Aquí, usamos el decorador `@tool` para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.
 
 Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador `@tool` y la incluiremos en la lista de `tools`.
@@ -231,6 +237,8 @@ agent.run("Prepara un menú formal para la fiesta.")
 
 El agente se ejecutará durante algunos pasos hasta encontrar la respuesta.
 
+![](./images/06/agente_alfred_menu.png)
+
 ¡El menú está listo! 🥗
 
 ### Usando importaciones (imports) de Python dentro del agente
@@ -245,6 +253,12 @@ Para más detalles sobre la ejecución segura de código, consulta la [guía](ht
 
 Al crear el agente, usaremos `additional_authorized_imports` para permitir la importación del módulo `datetime`.
 
+Como en el ejemplo vamos numpy, la instalamos usando pip:
+
+```bash
+pip install numpy
+```
+**Ejemplo de uso de imports en los agentes:**
 ```python
 from smolagents import CodeAgent, InferenceClientModel
 import numpy as np
@@ -266,14 +280,15 @@ agent.run(
 )
 ```
 
-Estos ejemplos son solo el comienzo de lo que puedes hacer con agentes de código, y ya estamos empezando a ver su utilidad para preparar la fiesta.
-Puedes aprender más sobre cómo construir agentes de código en la [documentación de smolagents](https://huggingface.co/docs/smolagents).
+![](./images/06/agente_alfred_imports.png)
+
+Estos ejemplos son solo el comienzo de lo que podemos hacer con agentes de código, y ya estamos empezando a ver su utilidad para preparar la fiesta.
 
 En resumen, **`smolagents`** se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en un **sandbox para seguridad**. Soporta modelos de lenguaje tanto locales como basados en API, haciéndolo adaptable a varios entornos de desarrollo.
 
-### Compartiendo Nuestro Agente Preparador de Fiestas Personalizado en el Hub
+### Compartiendo nuestro agente preparador de fiestas personalizado en el Hub
 
-¿No sería **increíble compartir nuestro propio agente Alfred con la comunidad**? Al hacerlo, cualquiera puede descargar y usar fácilmente el agente directamente desde el Hub, ¡llevando el mejor planificador de fiestas de Gotham a sus manos! ¡Hagámoslo posible! 🎉
+Vamos a crear un spacio en hugging para probar la herramienta de forma remota y haciendo de Gradio 
 
 La biblioteca `smolagents` hace esto posible al permitirte compartir un agente completo con la comunidad y descargar otros para uso inmediato. Es tan simple como lo siguiente:
 
@@ -291,11 +306,9 @@ alfred_agent = agent.from_hub('sergiopaniego/AlfredAgent')
 alfred_agent.run("Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de 'mascarada de villanos'")  
 ```
 
-Lo que también es emocionante es que los agentes compartidos están directamente disponibles como Hugging Face Spaces, permitiéndote interactuar con ellos en tiempo real. Puedes explorar otros agentes [aquí](https://huggingface.co/spaces/davidberenstein1957/smolagents-and-tools).
-
 Por ejemplo, el _AlfredAgent_ está disponible [aquí](https://huggingface.co/spaces/sergiopaniego/AlfredAgent). Puedes probarlo directamente a continuación:
 
-Tal vez te preguntes: ¿cómo construyó Alfred un agente así usando `smolagents`? Al integrar varias herramientas, puede generar un agente de la siguiente manera. No te preocupes por las herramientas por ahora, ya que tendremos una sección dedicada más adelante en esta unidad para explorar eso en detalle:
+Veamos el ejemplo completo:
 
 ```python
 from smolagents import CodeAgent, DuckDuckGoSearchTool, FinalAnswerTool, InferenceClientModel, Tool, tool, VisitWebpageTool
@@ -377,7 +390,7 @@ agent = CodeAgent(
 agent.run("Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de 'mascarada de villanos'")
 ```
 
-Como puedes ver, hemos creado un `CodeAgent` con varias herramientas que mejoran la funcionalidad del agente, ¡convirtiéndolo en el mejor planificador de fiestas listo para compartir con la comunidad! 🎉
+Como podemos ver, hemos creado un `CodeAgent` con varias herramientas que mejoran la funcionalidad del agente, ¡convirtiéndolo en el mejor planificador de fiestas listo para compartir con la comunidad! 🎉
 
 ### Inspeccionando nuestro agente preparador de fiestas con OpenTelemetry y Langfuse 📡
 
