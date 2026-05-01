@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm6/">
       
       
+        <link rel="prev" href="../llm5/">
+      
+      
+        <link rel="next" href="../../bedrock/sesion1/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Sesión 4 - Chainlit - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 6 - Smolagents y orquestación multiagente con Chainlit - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chainlit-resumen-practico-del-tutorial-de-datacamp" class="md-skip">
+        <a href="#smolagents-y-orquestacion-multiagente-con-chainlit" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 4 - Chainlit
+              Sesión 6 - Smolagents y orquestación multiagente con Chainlit
             
           </span>
         </div>
@@ -247,10 +251,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../llm2/" class="md-tabs__link">
           
   
@@ -705,8 +711,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -718,23 +726,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -752,7 +763,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -861,7 +872,7 @@
   <span class="md-ellipsis">
     
   
-    Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
+    Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
   
 
     
@@ -870,6 +881,158 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 6 - Smolagents y orquestación multiagente con Chainlit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 6 - Smolagents y orquestación multiagente con Chainlit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-por-que-usar-smolagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ [Por qué usar smolagents]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agentes-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ [Agentes de Código]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-agentes-de-llamada-a-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ [Agentes de Llamada a Herramientas]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ [Herramientas]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agentes-de-recuperacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ [Agentes de Recuperación]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sistemas-multi-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6️⃣ [Sistemas Multi-Agente]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-agentes-de-vision-y-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7️⃣ Agentes de Visión y Navegador
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1707,172 +1870,338 @@
 
 
 
-<h1 id="chainlit-resumen-practico-del-tutorial-de-datacamp">Chainlit: resumen práctico del tutorial de DataCamp</h1>
-<p>El objetivo es que el alumnado:</p>
+<h1 id="smolagents-y-orquestacion-multiagente-con-chainlit">Smolagents y orquestación multiagente con Chainlit</h1>
+<p><img alt="" src="../images/agente_running.gif" /></p>
+<h3 id="1-por-que-usar-smolagents">1️⃣ [Por qué usar smolagents]</h3>
+<p><code>smolagents</code> es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen <code>LlamaIndex</code> y <code>LangGraph</code>, que también se cubren en otros módulos de este curso. <code>smolagents</code> ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. Exploraremos las ventajas y desventajas de usar <code>smolagents</code>, ayudándote a tomar una decisión informada basada en los requisitos de tu proyecto.</p>
+<h3 id="2-agentes-de-codigo">2️⃣ [Agentes de Código]</h3>
+<p>Los <code>CodeAgents</code> (Agentes de Código) son el tipo principal de agente en <code>smolagents</code>. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. </p>
+<h3 id="3-agentes-de-llamada-a-herramientas">3️⃣ [Agentes de Llamada a Herramientas]</h3>
+<p>Los <code>ToolCallingAgents</code> (Agentes de Llamada a Herramientas) son el segundo tipo de agente soportado por <code>smolagents</code>. A diferencia de los <code>CodeAgents</code>, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. </p>
+<h3 id="4-herramientas">4️⃣ [Herramientas]</h3>
+<p>Como vimos en la Unidad 1, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Este módulo cubre cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase <code>Tool</code> o el decorador <code>@tool</code>. </p>
+<h3 id="5-agentes-de-recuperacion">5️⃣ [Agentes de Recuperación]</h3>
+<p>Los agentes de recuperación permiten a los modelos acceder a bases de conocimiento, haciendo posible buscar, sintetizar y recuperar información de múltiples fuentes. Aprovechan los almacenes vectoriales para una recuperación eficiente e implementan patrones de <strong>Generación Aumentada por Recuperación (RAG)</strong>. Estos agentes son particularmente útiles para integrar la búsqueda web con bases de conocimiento personalizadas mientras mantienen el contexto de la conversación a través de sistemas de memoria. Este módulo explora estrategias de implementación, incluyendo mecanismos de respaldo para una recuperación de información robusta.</p>
+<h3 id="6-sistemas-multi-agente">6️⃣ [Sistemas Multi-Agente]</h3>
+<p>Orquestar múltiples agentes de manera efectiva es crucial para construir sistemas multi-agente potentes. Al combinar agentes con diferentes capacidades—como un agente de búsqueda web con un agente de ejecución de código—puedes crear soluciones más sofisticadas. </p>
+<h3 id="7-agentes-de-vision-y-navegador">7️⃣ <a href="./vision_agents">Agentes de Visión y Navegador</a></h3>
+<p>Los agentes de visión extienden las capacidades tradicionales de los agentes al incorporar <strong>Modelos de Visión-Lenguaje (VLMs)</strong>, permitiéndoles procesar e interpretar información visual. Veremos cómo diseñar e integrar agentes potenciados por VLM, desbloqueando funcionalidades avanzadas como razonamiento basado en imágenes, análisis de datos visuales e interacciones multimodales. También usaremos agentes de visión para construir un agente de navegador que pueda navegar por la web y extraer información de ella.</p>
+<h1 id="por-que-usar-smolagents">¿Por qué usar smolagents?</h1>
+<h2 id="que-es-smolagents">¿Qué es <code>smolagents</code>?</h2>
+<p><code>smolagents</code> es un framework simple pero potente para construir agentes de IA. Proporciona a los LLMs la <em>capacidad de acción</em> para interactuar con el mundo real, como buscar o generar imágenes.</p>
+<p>Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar <strong>'pensamientos'</strong> basados en <strong>'observaciones'</strong> para realizar <strong>'acciones'</strong>. </p>
+<h3 id="ventajas-clave-de-smolagents">Ventajas clave de <code>smolagents</code></h3>
 <ul>
-<li>entienda <strong>qué es Chainlit</strong> y para qué sirve,  </li>
-<li>pueda <strong>seguir los ejemplos básicos</strong> (chatbot “Sorpréndeme” y bot con Ollama),  </li>
-<li>sepa <strong>cómo integrarlo</strong> con sus propias aplicaciones LLM. [web:214][web:215]</li>
+<li><strong>Simplicidad:</strong> Mínima complejidad de código y abstracciones, para hacer que el framework sea fácil de entender, adoptar y extender</li>
+<li><strong>Soporte flexible para LLM:</strong> Funciona con cualquier LLM a través de la integración con herramientas de Hugging Face y APIs externas</li>
+<li><strong>Enfoque centrado en el código:</strong> Soporte de primera clase para Agentes de Código que escriben sus acciones directamente en código, eliminando la necesidad de análisis y simplificando la llamada a herramientas</li>
+<li><strong>Integración con HF Hub:</strong> Integración perfecta con Hugging Face Hub, permitiendo el uso de Espacios Gradio como herramientas</li>
 </ul>
-<hr />
-<h2 id="1-que-es-chainlit">1. ¿Qué es Chainlit?</h2>
-<p>Chainlit es un framework de Python, de código abierto, que permite crear <strong>interfaces de chat interactivas</strong> para aplicaciones basadas en modelos de lenguaje, sin necesidad de programar un frontend complejo. [web:214][web:215]</p>
-<p>Ideas clave:</p>
-<ul>
-<li>Está pensado para <strong>prototipos rápidos</strong>, demos educativas y herramientas internas. [web:214]  </li>
-<li>Se integra bien con otras librerías como <strong>LangChain</strong> o clientes de LLM (por ejemplo, Ollama). [web:214][web:215]  </li>
-<li>Gestiona por ti elementos típicos de una UI de chat:</li>
-<li>mensajes,</li>
-<li>acciones (botones, etc.),</li>
-<li>streaming de respuestas,</li>
-<li>persistencia de sesiones. [web:214][web:215]</li>
-</ul>
-<hr />
-<h2 id="2-instalacion-y-requisitos">2. Instalación y requisitos</h2>
-<p>Según el tutorial, los requisitos básicos son:</p>
-<ul>
-<li>Python 3.8 o superior.  </li>
-<li>Instalar Chainlit desde <code>pip</code>: [web:214][web:215]</li>
-</ul>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit
-</code></pre></div>
-<p>Para el ejemplo con <strong>Ollama + LangChain</strong>, se añaden: [web:214][web:215]</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>chainlit<span class="w"> </span>langchain<span class="w"> </span>langchain-community
-</code></pre></div>
-<hr />
-<h2 id="3-conceptos-basicos-de-chainlit">3. Conceptos básicos de Chainlit</h2>
-<p>El artículo explica que todas las apps de Chainlit se apoyan en unos pocos conceptos fundamentales. [web:214][web:215]</p>
-<h3 id="31-hooks-del-ciclo-de-vida-del-chat">3.1. Hooks del ciclo de vida del chat</h3>
-<p>Chainlit proporciona decoradores que se ejecutan en distintos momentos de la conversación: [web:214][web:215]</p>
-<ul>
-<li><code>@cl.on_chat_start</code>: se lanza al empezar un chat.  </li>
-<li><code>@cl.on_message</code>: se lanza cuando el usuario envía un mensaje.  </li>
-<li><code>@cl.on_chat_end</code>: se lanza al terminar una sesión.  </li>
-</ul>
-<p>Ejemplo mínimo (idea basada en el tutorial): [web:214][web:215]</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_chat_start</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nueva sesión de chat iniciada&quot;</span><span class="p">)</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Has dicho: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
-<p>Al ejecutar <code>chainlit run main.py</code>, la aplicación abre una UI de chat en el navegador. [web:214][web:215]</p>
-<h3 id="32-acciones-claction-y-callbacks">3.2. Acciones (<code>cl.Action</code>) y callbacks</h3>
-<p>Chainlit permite añadir <strong>botones y acciones</strong> a los mensajes. [web:214][web:215]</p>
-<ul>
-<li>Definimos acciones con <code>cl.Action</code>.  </li>
-<li>Las gestionamos con <code>@cl.action_callback("nombre")</code>. [web:214][web:215]</li>
-</ul>
-<p>Esto facilita crear UIs tipo “elige una opción” sin escribir HTML. [web:214][web:215]</p>
-<h3 id="33-streaming-de-respuestas">3.3. Streaming de respuestas</h3>
-<p>El tutorial muestra cómo usar <code>stream=True</code> para enviar la respuesta del modelo poco a poco, dando sensación de chat “en directo”. [web:214][web:215]</p>
-<p>Idea general:</p>
-<ul>
-<li>llamas al modelo en modo streaming,  </li>
-<li>vas actualizando el mensaje en pantalla mientras llega la respuesta.</li>
-</ul>
-<hr />
-<h2 id="4-configuracion-con-configtoml">4. Configuración con <code>config.toml</code></h2>
-<p>Chainlit utiliza un fichero <code>config.toml</code> para activar características sin tocar el código Python. [web:214][web:215]</p>
-<p>Algunas posibilidades que menciona el tutorial:</p>
-<ul>
-<li><strong>Persistencia del chat</strong>: guardar sesiones para reanudarlas después.  </li>
-<li><strong>Carga de ficheros</strong>: permitir que el usuario suba archivos.  </li>
-<li><strong>Personalización visual</strong>: nombre del asistente, tema y opciones de UI. [web:214][web:215]</li>
-</ul>
-<p>Ejemplo de fragmento de configuración (adaptado de la idea del tutorial): [web:214][web:215]</p>
-<div class="highlight"><pre><span></span><code><span class="k">[persistence]</span>
-<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-
-<span class="k">[UI]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Assistant&quot;</span>
-</code></pre></div>
-<hr />
-<h2 id="5-primer-ejemplo-chatbot-sorprendeme-estatico">5. Primer ejemplo: chatbot “Sorpréndeme” estático</h2>
-<p>El primer ejemplo del tutorial es un bot muy simple que <strong>no usa ningún modelo LLM</strong>, solo botones y lógica fija. [web:214][web:215]</p>
-<p>Idea (sin copiar el código literal): [web:214][web:215]</p>
-<ol>
-<li>En <code>@cl.on_chat_start</code> se muestran botones con opciones de “sorpresa”.  </li>
-<li>Cada botón dispara un <code>@cl.action_callback</code> distinto.  </li>
-<li>El bot responde con un mensaje predefinido según el botón.  </li>
-</ol>
-<p>Esto sirve para entender:</p>
-<ul>
-<li>cómo crear botones,</li>
-<li>cómo reaccionar a las acciones del usuario,</li>
-<li>cómo enviar mensajes desde callbacks. [web:214][web:215]</li>
-</ul>
-<hr />
-<h2 id="6-segundo-ejemplo-bot-sorprendeme-con-ollama">6. Segundo ejemplo: bot “Sorpréndeme” con Ollama</h2>
-<p>El segundo ejemplo conecta Chainlit con <strong>Ollama</strong> utilizando <strong>LangChain</strong>. [web:214][web:215]</p>
-<p>La estructura general, según el tutorial, es:</p>
-<ol>
-<li>Definir un LLM de LangChain que use Ollama, por ejemplo:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
-
-<span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-</code></pre></div>
-<p>[web:214][web:215]</p>
-<ol>
-<li>Crear un flujo en <code>@cl.on_message</code> que:</li>
-<li>recibe el mensaje del usuario,</li>
-<li>llama al LLM,</li>
-<li>
-<p>envía la respuesta en Chainlit (posiblemente en streaming). [web:214][web:215]</p>
-</li>
-<li>
-<p>Opcionalmente, combinarlo con botones (<code>cl.Action</code>) para generar diferentes “tipos de sorpresa” (chistes, datos curiosos, etc.). [web:214][web:215]</p>
-</li>
-</ol>
-<p>Este ejemplo muestra cómo:</p>
-<ul>
-<li>usar Chainlit como <strong>front-end de chat</strong>,</li>
-<li>mientras la lógica de IA vive en LangChain y Ollama. [web:214][web:215]</li>
-</ul>
-<hr />
-<h2 id="7-casos-de-uso-recomendados">7. Casos de uso recomendados</h2>
-<p>El tutorial sugiere varios escenarios donde Chainlit encaja muy bien: [web:214][web:215][web:216]</p>
-<ul>
-<li><strong>Prototipos de aplicaciones LLM</strong>: probar ideas de agentes o chatbots sin tener que construir un frontend completo.  </li>
-<li><strong>Herramientas internas</strong>: interfaces de chat para equipos (por ejemplo, asistentes de documentación, bots internos de soporte).  </li>
-<li><strong>Demos educativas</strong>: mostrar cómo funcionan LLMs, LangChain u otras librerías con una UI amigable.  </li>
-<li><strong>Conexión con APIs y herramientas externas</strong>: crear interfaces de chat que llamen a APIs, bases de datos u otros servicios.  </li>
-</ul>
-<hr />
-<h2 id="8-como-usar-este-resumen-en-clase">8. Cómo usar este resumen en clase</h2>
-<p>Sugerencias para integrarlo en tus materiales:</p>
-<ul>
-<li>Usarlo como <strong>apunte previo</strong> antes de mandarles al tutorial completo.  </li>
-<li>Montar en directo un “Sorpréndeme” básico en clase siguiendo la estructura descrita.  </li>
-<li>Plantear como práctica:</li>
-<li>que el alumnado modifique el ejemplo estático para añadir nuevos botones,</li>
-<li>o que conecte un modelo diferente en la demo con Ollama.</li>
-</ul>
-<hr />
-<h2 id="9-enlaces-utiles">9. Enlaces útiles</h2>
-<ul>
-<li>
-<p>Tutorial original en español:<br />
-<a href="https://www.datacamp.com/es/tutorial/chainlit">https://www.datacamp.com/es/tutorial/chainlit</a> [web:214]</p>
-</li>
-<li>
-<p>Versión en inglés (contenido equivalente):<br />
-<a href="https://www.datacamp.com/tutorial/chainlit">https://www.datacamp.com/tutorial/chainlit</a> [web:215]</p>
-</li>
-<li>
-<p>Otros tutoriales de IA generativa en DataCamp:<br />
-<a href="https://www.datacamp.com/es/tutorial/category/generative-ai">https://www.datacamp.com/es/tutorial/category/generative-ai</a> [web:216]</p>
-</li>
-</ul>
-<hr />
+<h3 id="cuando-usar-smolagents">¿Cuándo usar smolagents?</h3>
+<p>smolagents es ideal cuando:
+- Necesitas una <strong>solución ligera y mínima.</strong>
+- Quieres <strong>experimentar rápidamente</strong> sin configuraciones complejas.
+- La <strong>lógica de tu aplicación es sencilla.</strong></p>
+<h3 id="acciones-de-codigo-vs-json">Acciones de Código vs. JSON</h3>
+<p>A diferencia de otros frameworks donde los agentes escriben acciones en JSON, <code>smolagents</code> <strong>se centra en llamadas a herramientas en código</strong>, simplificando el proceso de ejecución. Esto se debe a que no hay necesidad de analizar el JSON para construir código que llame a las herramientas: la salida puede ejecutarse directamente.</p>
+<p>El siguiente diagrama ilustra esta diferencia:</p>
+<p><img alt="Acciones de Código vs. JSON" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png" /></p>
+<h3 id="tipos-de-agentes-en-smolagents">Tipos de Agentes en <code>smolagents</code></h3>
+<p>Los agentes en <code>smolagents</code> operan como <strong>agentes de múltiples pasos</strong>.</p>
+<p>Cada <a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent"><code>MultiStepAgent</code></a> realiza:
+- Un pensamiento
+- Una llamada a herramienta y ejecución</p>
+<p>Además de usar <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.CodeAgent">CodeAgent</a></strong> como el tipo principal de agente, smolagents también soporta <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.ToolCallingAgent">ToolCallingAgent</a></strong>, que escribe llamadas a herramientas en JSON.</p>
 <blockquote>
-<p>Nota: este documento es un <strong>resumen original</strong> basado en el tutorial de DataCamp. No reproduce literalmente su contenido, por lo que, para detalles completos y código exacto, se recomienda consultar el artículo original. [web:214][web:215]</p>
+<p>[!TIP]
+En smolagents, las herramientas se definen usando el decorador @tool que envuelve una función de Python o la clase Tool.</p>
 </blockquote>
+<h3 id="integracion-de-modelos-en-smolagents">Integración de Modelos en <code>smolagents</code></h3>
+<p><code>smolagents</code> soporta una integración flexible de LLM, permitiéndote usar cualquier modelo invocable que cumpla con <a href="https://huggingface.co/docs/smolagents/main/en/reference/models">ciertos criterios</a>. El framework proporciona varias clases predefinidas para simplificar las conexiones de modelos:</p>
+<ul>
+<li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.TransformersModel">TransformersModel</a>:</strong> Implementa un pipeline local de <code>transformers</code> para una integración perfecta.</li>
+<li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.InferenceClientModel">InferenceClientModel</a>:</strong> Soporta llamadas de <a href="https://huggingface.co/docs/huggingface_hub/main/en/guides/inference">inferencia sin servidor</a> a través de la <a href="https://huggingface.co/docs/api-inference/index">infraestructura de Hugging Face</a>, o a través de un número creciente de <a href="https://huggingface.co/docs/huggingface_hub/main/en/guides/inference#supported-providers-and-tasks">proveedores de inferencia de terceros</a>.</li>
+<li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.LiteLLMModel">LiteLLMModel</a>:</strong> Aprovecha <a href="https://www.litellm.ai/">LiteLLM</a> para interacciones ligeras con modelos.</li>
+<li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.OpenAIServerModel">OpenAIServerModel</a>:</strong> Se conecta a cualquier servicio que ofrezca una interfaz de API de OpenAI.</li>
+<li><strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/models#smolagents.AzureOpenAIServerModel">AzureOpenAIServerModel</a>:</strong> Soporta la integración con cualquier despliegue de Azure OpenAI.</li>
+</ul>
+<p>Esta flexibilidad asegura que los desarrolladores puedan elegir el modelo y servicio más adecuados para sus casos de uso específicos, y permite una fácil experimentación.</p>
+<h1 id="construccion-de-agentes-que-usan-codigo">Construcción de Agentes que Usan Código</h1>
+<p>Los agentes de código son el tipo de agente predeterminado en <code>smolagents</code>. Generan llamadas a herramientas en Python para realizar acciones, logrando representaciones de acciones que son eficientes, expresivas y precisas.</p>
+<p>Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. <code>smolagents</code> proporciona un marco ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.</p>
+<p><img alt="Acciones de Código vs JSON" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png" />
+Gráfico del artículo <a href="https://huggingface.co/papers/2402.01030">Executable Code Actions Elicit Better LLM Agents</a></p>
+<blockquote>
+<p>[!TIP]
+Si quieres aprender más sobre por qué los agentes de código son efectivos, consulta esta guía de la documentación de smolagents.</p>
+</blockquote>
+<h2 id="por-que-agentes-de-codigo">¿Por qué Agentes de Código?</h2>
+<p>En un proceso de agente de múltiples pasos, el LLM escribe y ejecuta acciones, típicamente involucrando llamadas a herramientas externas. Los enfoques tradicionales utilizan un formato JSON para especificar nombres de herramientas y argumentos como cadenas de texto, <strong>que el sistema debe analizar para determinar qué herramienta ejecutar</strong>.</p>
+<p>Sin embargo, la investigación muestra que <strong>los LLMs que llaman a herramientas funcionan más efectivamente con código directamente</strong>. Este es un principio fundamental de <code>smolagents</code>, como se muestra en el diagrama anterior del artículo <a href="https://huggingface.co/papers/2402.01030">Executable Code Actions Elicit Better LLM Agents</a>.</p>
+<p>Escribir acciones en código en lugar de JSON ofrece varias ventajas clave:</p>
+<ul>
+<li><strong>Componibilidad</strong>: Combinar y reutilizar acciones fácilmente</li>
+<li><strong>Gestión de Objetos</strong>: Trabajar directamente con estructuras complejas como imágenes</li>
+<li><strong>Generalidad</strong>: Expresar cualquier tarea computacionalmente posible</li>
+<li><strong>Natural para LLMs</strong>: Código de alta calidad ya está presente en los datos de entrenamiento de LLMs</li>
+</ul>
+<h2 id="como-funciona-un-agente-de-codigo">¿Cómo Funciona un Agente de Código?</h2>
+<p><img alt="De https://huggingface.co/docs/smolagents/conceptual_guides/react" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/smolagents/codeagent_docs.png" /></p>
+<p>El diagrama anterior ilustra cómo funciona <code>CodeAgent.run()</code>, siguiendo el marco <strong>ReAct</strong> mencionado anteriormente. La abstracción principal para agentes en <code>smolagents</code> es un <code>MultiStepAgent</code>, que sirve como el bloque de construcción central. <code>CodeAgent</code> es un tipo especial de <code>MultiStepAgent</code>, como veremos en un ejemplo a continuación.</p>
+<p>Un <code>CodeAgent</code> realiza acciones a través de un ciclo de pasos, con variables y conocimientos existentes incorporados en el contexto del agente, que se mantiene en un registro de ejecución:</p>
+<ol>
+<li>
+<p>El prompt del sistema se almacena en un <code>SystemPromptStep</code>, y la consulta del usuario se registra en un <code>TaskStep</code>.</p>
+</li>
+<li>
+<p>Luego, se ejecuta el siguiente bucle while:</p>
+<p>2.1 El método <code>agent.write_memory_to_messages()</code> escribe los registros del agente en una lista de <a href="https://huggingface.co/docs/transformers/en/chat_templating">mensajes de chat</a> legibles por el LLM.</p>
+<p>2.2 Estos mensajes se envían a un <code>Model</code>, que genera una finalización.</p>
+<p>2.3 La finalización se analiza para extraer la acción, que, en nuestro caso, debería ser un fragmento de código ya que estamos trabajando con un <code>CodeAgent</code>.</p>
+<p>2.4 La acción se ejecuta.</p>
+<p>2.5 Los resultados se registran en la memoria en un <code>ActionStep</code>.</p>
+</li>
+</ol>
+<p>Al final de cada paso, si el agente incluye alguna llamada a función (en <code>agent.step_callback</code>), estas se ejecutan.</p>
+<h2 id="veamos-algunos-ejemplos">Veamos Algunos Ejemplos</h2>
+<blockquote>
+<p>[!TIP]
+Puedes seguir el código en este notebook que puedes ejecutar usando Google Colab.</p>
+</blockquote>
+<p>Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un <code>CodeAgent</code> de múltiples pasos.</p>
+<p>Si aún no has instalado <code>smolagents</code>, puedes hacerlo ejecutando el siguiente comando:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>smolagents<span class="w"> </span>-U
+</code></pre></div>
+<p>También iniciemos sesión en el Hugging Face Hub para tener acceso a la API de Inferencia Serverless.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
+
+<span class="n">login</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="seleccionando-una-lista-de-reproduccion-para-la-fiesta-usando-smolagents">Seleccionando una Lista de Reproducción para la Fiesta Usando <code>smolagents</code></h3>
+<p>¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡<code>smolagents</code> nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.</p>
+<p>Para el modelo, confiaremos en <code>InferenceClientModel</code>, que proporciona acceso a la <a href="https://huggingface.co/docs/api-inference/index">API de Inferencia Serverless</a> de Hugging Face. El modelo predeterminado es <code>"Qwen/Qwen2.5-Coder-32B-Instruct"</code>, que es eficiente y está disponible para inferencia rápida, pero puedes seleccionar cualquier modelo compatible del Hub.</p>
+<p>Ejecutar un agente es bastante sencillo:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">DuckDuckGoSearchTool</span><span class="p">()],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">())</span>
+
+<span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Busca las mejores recomendaciones de música para una fiesta en la mansión de los Wayne.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Cuando ejecutes este ejemplo, la salida <strong>mostrará un seguimiento de los pasos del flujo de trabajo siendo ejecutados</strong>. También imprimirá el código Python correspondiente con el mensaje:</p>
+<div class="highlight"><pre><span></span><code> <span class="err">─</span> <span class="n">Ejecutando</span> <span class="n">código</span> <span class="n">analizado</span><span class="p">:</span> <span class="err">────────────────────────────────────────────────────────────────────────────────────</span> 
+  <span class="n">results</span> <span class="o">=</span> <span class="n">web_search</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">&quot;mejor música para una fiesta de Batman&quot;</span><span class="p">)</span>                                                      
+  <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>                                                                                                   
+ <span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> 
+</code></pre></div>
+<p>¡Después de algunos pasos, verás la lista de reproducción generada que Alfred puede usar para la fiesta! 🎵</p>
+<h3 id="usando-una-herramienta-personalizada-para-preparar-el-menu">Usando una Herramienta Personalizada para Preparar el Menú</h3>
+<p>Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar <code>smolagents</code> para hacerlo. Aquí, usamos el decorador <code>@tool</code> para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.</p>
+<p>Como puedes ver en el ejemplo a continuación, crearemos una herramienta usando el decorador <code>@tool</code> y la incluiremos en la lista de <code>tools</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">tool</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="c1"># Herramienta para sugerir un menú basado en la ocasión</span>
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">suggest_menu</span><span class="p">(</span><span class="n">occasion</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sugiere un menú basado en la ocasión.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        occasion: El tipo de ocasión para la fiesta.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;casual&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Pizza, aperitivos y bebidas.&quot;</span>
+    <span class="k">elif</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;formal&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Cena de 3 platos con vino y postre.&quot;</span>
+    <span class="k">elif</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;superhero&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Buffet con comida saludable y de alta energía.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Menú personalizado para el mayordomo.&quot;</span>
+
+<span class="c1"># Alfred, el mayordomo, preparando el menú para la fiesta</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">suggest_menu</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">())</span>
+
+<span class="c1"># Preparando el menú para la fiesta</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Prepara un menú formal para la fiesta.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>El agente se ejecutará durante algunos pasos hasta encontrar la respuesta.</p>
+<p>¡El menú está listo! 🥗</p>
+<h3 id="usando-importaciones-de-python-dentro-del-agente">Usando Importaciones de Python Dentro del Agente</h3>
+<p>Tenemos la lista de reproducción y el menú listos, pero necesitamos verificar un detalle más crucial: ¡el tiempo de preparación!</p>
+<p>Alfred necesita calcular cuándo todo estaría listo si comenzara a preparar ahora, en caso de que necesiten asistencia de otros superhéroes.</p>
+<p><code>smolagents</code> se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en sandbox para seguridad.
+<strong>La ejecución de código tiene medidas de seguridad estrictas</strong> - las importaciones fuera de una lista predefinida segura están bloqueadas por defecto. Sin embargo, puedes autorizar importaciones adicionales pasándolas como cadenas en <code>additional_authorized_imports</code>.
+Para más detalles sobre la ejecución segura de código, consulta la <a href="https://huggingface.co/docs/smolagents/tutorials/secure_code_execution">guía</a> oficial.</p>
+<p>Al crear el agente, usaremos <code>additional_authorized_imports</code> para permitir la importación del módulo <code>datetime</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">(),</span> <span class="n">additional_authorized_imports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">])</span>
+
+<span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Alfred necesita prepararse para la fiesta. Aquí están las tareas:</span>
+<span class="sd">    1. Preparar las bebidas - 30 minutos</span>
+<span class="sd">    2. Decorar la mansión - 60 minutos</span>
+<span class="sd">    3. Configurar el menú - 45 minutos</span>
+<span class="sd">    4. Preparar la música y la lista de reproducción - 45 minutos</span>
+
+<span class="sd">    Si comenzamos ahora mismo, ¿a qué hora estará lista la fiesta?</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Estos ejemplos son solo el comienzo de lo que puedes hacer con agentes de código, y ya estamos empezando a ver su utilidad para preparar la fiesta.
+Puedes aprender más sobre cómo construir agentes de código en la <a href="https://huggingface.co/docs/smolagents">documentación de smolagents</a>.</p>
+<p>En resumen, <code>smolagents</code> se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en sandbox para seguridad. Soporta modelos de lenguaje tanto locales como basados en API, haciéndolo adaptable a varios entornos de desarrollo.</p>
+<h3 id="compartiendo-nuestro-agente-preparador-de-fiestas-personalizado-en-el-hub">Compartiendo Nuestro Agente Preparador de Fiestas Personalizado en el Hub</h3>
+<p>¿No sería <strong>increíble compartir nuestro propio agente Alfred con la comunidad</strong>? Al hacerlo, cualquiera puede descargar y usar fácilmente el agente directamente desde el Hub, ¡llevando el mejor planificador de fiestas de Gotham a sus manos! ¡Hagámoslo posible! 🎉</p>
+<p>La biblioteca <code>smolagents</code> hace esto posible al permitirte compartir un agente completo con la comunidad y descargar otros para uso inmediato. Es tan simple como lo siguiente:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cambia a tu nombre de usuario y nombre de repositorio</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s1">&#39;sergiopaniego/AlfredAgent&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Para descargar el agente nuevamente, usa el código a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cambia a tu nombre de usuario y nombre de repositorio</span>
+<span class="n">alfred_agent</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">from_hub</span><span class="p">(</span><span class="s1">&#39;sergiopaniego/AlfredAgent&#39;</span><span class="p">)</span>
+
+<span class="n">alfred_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de &#39;mascarada de villanos&#39;&quot;</span><span class="p">)</span>  
+</code></pre></div>
+<p>Lo que también es emocionante es que los agentes compartidos están directamente disponibles como Hugging Face Spaces, permitiéndote interactuar con ellos en tiempo real. Puedes explorar otros agentes <a href="https://huggingface.co/spaces/davidberenstein1957/smolagents-and-tools">aquí</a>.</p>
+<p>Por ejemplo, el <em>AlfredAgent</em> está disponible <a href="https://huggingface.co/spaces/sergiopaniego/AlfredAgent">aquí</a>. Puedes probarlo directamente a continuación:</p>
+<p>Tal vez te preguntes: ¿cómo construyó Alfred un agente así usando <code>smolagents</code>? Al integrar varias herramientas, puede generar un agente de la siguiente manera. No te preocupes por las herramientas por ahora, ya que tendremos una sección dedicada más adelante en esta unidad para explorar eso en detalle:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">FinalAnswerTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">Tool</span><span class="p">,</span> <span class="n">tool</span><span class="p">,</span> <span class="n">VisitWebpageTool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">suggest_menu</span><span class="p">(</span><span class="n">occasion</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sugiere un menú basado en la ocasión.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        occasion: El tipo de ocasión para la fiesta.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;casual&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Pizza, aperitivos y bebidas.&quot;</span>
+    <span class="k">elif</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;formal&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Cena de 3 platos con vino y postre.&quot;</span>
+    <span class="k">elif</span> <span class="n">occasion</span> <span class="o">==</span> <span class="s2">&quot;superhero&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Buffet con comida saludable y de alta energía.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Menú personalizado para el mayordomo.&quot;</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">catering_service_tool</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Esta herramienta devuelve el servicio de catering mejor calificado en Ciudad Gótica.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        query: Un término de búsqueda para encontrar servicios de catering.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Lista de ejemplo de servicios de catering y sus calificaciones</span>
+    <span class="n">services</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Gotham Catering Co.&quot;</span><span class="p">:</span> <span class="mf">4.9</span><span class="p">,</span>
+        <span class="s2">&quot;Wayne Manor Catering&quot;</span><span class="p">:</span> <span class="mf">4.8</span><span class="p">,</span>
+        <span class="s2">&quot;Gotham City Events&quot;</span><span class="p">:</span> <span class="mf">4.7</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Encuentra el servicio de catering mejor calificado (simulando filtrado de consulta de búsqueda)</span>
+    <span class="n">best_service</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">services</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">services</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_service</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SuperheroPartyThemeTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;superhero_party_theme_generator&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Esta herramienta sugiere ideas creativas para fiestas temáticas de superhéroes basadas en una categoría.</span>
+<span class="s2">    Devuelve una idea única de tema para la fiesta.&quot;&quot;&quot;</span>
+
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;El tipo de fiesta de superhéroes (por ejemplo, &#39;héroes clásicos&#39;, &#39;mascarada de villanos&#39;, &#39;Gotham futurista&#39;).&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">themes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;classic heroes&quot;</span><span class="p">:</span> <span class="s2">&quot;Gala de la Liga de la Justicia: Los invitados vienen vestidos como sus héroes favoritos de DC con cócteles temáticos como &#39;El Ponche de Kryptonita&#39;.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;villain masquerade&quot;</span><span class="p">:</span> <span class="s2">&quot;Baile de los Pícaros de Gotham: Una mascarada misteriosa donde los invitados se visten como villanos clásicos de Batman.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;futuristic Gotham&quot;</span><span class="p">:</span> <span class="s2">&quot;Noche Neo-Gotham: Una fiesta de estilo cyberpunk inspirada en Batman Beyond, con decoraciones de neón y gadgets futuristas.&quot;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">themes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">category</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s2">&quot;Idea de fiesta temática no encontrada. Prueba con &#39;héroes clásicos&#39;, &#39;mascarada de villanos&#39; o &#39;Gotham futurista&#39;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Alfred, el mayordomo, preparando el menú para la fiesta</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">DuckDuckGoSearchTool</span><span class="p">(),</span> 
+        <span class="n">VisitWebpageTool</span><span class="p">(),</span>
+        <span class="n">suggest_menu</span><span class="p">,</span>
+        <span class="n">catering_service_tool</span><span class="p">,</span>
+        <span class="n">SuperheroPartyThemeTool</span><span class="p">()</span>
+    <span class="p">],</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">(),</span>
+    <span class="n">max_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbosity_level</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de &#39;mascarada de villanos&#39;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Como puedes ver, hemos creado un <code>CodeAgent</code> con varias herramientas que mejoran la funcionalidad del agente, ¡convirtiéndolo en el mejor planificador de fiestas listo para compartir con la comunidad! 🎉</p>
+<p>Ahora, es tu turno: ¡construye tu propio agente y compártelo con la comunidad usando el conocimiento que acabamos de aprender! 🕵️‍♂️💡</p>
+<blockquote>
+<p>[!TIP]
+Si deseas compartir tu proyecto de agente, entonces crea un space y etiqueta a <a href="https://huggingface.co/agents-course">agents-course</a> en el Hugging Face Hub. ¡Nos encantaría ver lo que has creado!</p>
+</blockquote>
+<h3 id="inspeccionando-nuestro-agente-preparador-de-fiestas-con-opentelemetry-y-langfuse">Inspeccionando Nuestro Agente Preparador de Fiestas con OpenTelemetry y Langfuse 📡</h3>
+<p>A medida que Alfred perfecciona el Agente Preparador de Fiestas, se está cansando de depurar sus ejecuciones. Los agentes, por naturaleza, son impredecibles y difíciles de inspeccionar. Pero como su objetivo es construir el mejor Agente Preparador de Fiestas y desplegarlo en producción, necesita una trazabilidad robusta para monitoreo y análisis futuros.</p>
+<p>¡Una vez más, <code>smolagents</code> viene al rescate! Adopta el estándar <a href="https://opentelemetry.io/">OpenTelemetry</a> para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de <a href="https://langfuse.com/">Langfuse</a> y el <code>SmolagentsInstrumentor</code>, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.</p>
+<p>¡Configurarlo es sencillo!</p>
+<p>Primero, necesitamos instalar las dependencias necesarias:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>opentelemetry-sdk<span class="w"> </span>opentelemetry-exporter-otlp<span class="w"> </span>openinference-instrumentation-smolagents
+</code></pre></div>
+<p>A continuación, Alfred ya ha creado una cuenta en Langfuse y tiene sus claves API listas. Si aún no lo has hecho, puedes registrarte en Langfuse Cloud <a href="https://cloud.langfuse.com/">aquí</a> o explorar <a href="https://huggingface.co/docs/smolagents/tutorials/inspect_runs">alternativas</a>.</p>
+<p>Una vez que tengas tus claves API, deben configurarse correctamente de la siguiente manera:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="n">LANGFUSE_PUBLIC_KEY</span><span class="o">=</span><span class="s2">&quot;pk-lf-...&quot;</span>
+<span class="n">LANGFUSE_SECRET_KEY</span><span class="o">=</span><span class="s2">&quot;sk-lf-...&quot;</span>
+<span class="n">LANGFUSE_AUTH</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">LANGFUSE_PUBLIC_KEY</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">LANGFUSE_SECRET_KEY</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OTEL_EXPORTER_OTLP_ENDPOINT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;https://cloud.langfuse.com/api/public/otel&quot;</span> <span class="c1"># Región de datos EU</span>
+<span class="c1"># os.environ[&quot;OTEL_EXPORTER_OTLP_ENDPOINT&quot;] = &quot;https://us.cloud.langfuse.com/api/public/otel&quot; # Región de datos US</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OTEL_EXPORTER_OTLP_HEADERS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Authorization=Basic </span><span class="si">{</span><span class="n">LANGFUSE_AUTH</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Finalmente, Alfred está listo para inicializar el <code>SmolagentsInstrumentor</code> y comenzar a rastrear el rendimiento de su agente.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.sdk.trace</span><span class="w"> </span><span class="kn">import</span> <span class="n">TracerProvider</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">openinference.instrumentation.smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">SmolagentsInstrumentor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.exporter.otlp.proto.http.trace_exporter</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTLPSpanExporter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry.sdk.trace.export</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleSpanProcessor</span>
+
+<span class="n">trace_provider</span> <span class="o">=</span> <span class="n">TracerProvider</span><span class="p">()</span>
+<span class="n">trace_provider</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="n">SimpleSpanProcessor</span><span class="p">(</span><span class="n">OTLPSpanExporter</span><span class="p">()))</span>
+
+<span class="n">SmolagentsInstrumentor</span><span class="p">()</span><span class="o">.</span><span class="n">instrument</span><span class="p">(</span><span class="n">tracer_provider</span><span class="o">=</span><span class="n">trace_provider</span><span class="p">)</span>
+</code></pre></div>
+<p>¡Alfred ahora está conectado 🔌! Las ejecuciones de <code>smolagents</code> se están registrando en Langfuse, dándole visibilidad completa del comportamiento del agente. Con esta configuración, está listo para revisar ejecuciones anteriores y refinar aún más su Agente Preparador de Fiestas.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">())</span>
+<span class="n">alfred_agent</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">from_hub</span><span class="p">(</span><span class="s1">&#39;sergiopaniego/AlfredAgent&#39;</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">alfred_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de &#39;mascarada de villanos&#39;&quot;</span><span class="p">)</span>  
+</code></pre></div>
+<p>Alfred ahora puede acceder a estos registros <a href="https://cloud.langfuse.com/project/cm7bq0abj025rad078ak3luwi/traces/995fc019255528e4f48cf6770b0ce27b?timestamp=2025-02-19T10%3A28%3A36.929Z">aquí</a> para revisarlos y analizarlos.</p>
+<p>Mientras tanto, la <a href="https://open.spotify.com/playlist/0gZMMHjuxMrrybQ7wTMTpw">lista de reproducción sugerida</a> establece el ambiente perfecto para los preparativos de la fiesta. ¿Genial, verdad? 🎶</p>
+<hr />
+<p>Ahora que hemos creado nuestro primer Agente de Código, <strong>aprendamos cómo podemos crear Agentes de Llamada a Herramientas</strong>, el segundo tipo de agente disponible en <code>smolagents</code>.</p>
+<h2 id="recursos">Recursos</h2>
+<ul>
+<li><a href="https://huggingface.co/blog/smolagents">Blog de smolagents</a> - Introducción a smolagents e interacciones de código</li>
+<li><a href="https://huggingface.co/docs/smolagents/tutorials/building_good_agents">smolagents: Construyendo Buenos Agentes</a> - Mejores prácticas para agentes confiables</li>
+<li><a href="https://www.anthropic.com/research/building-effective-agents">Construyendo Agentes Efectivos - Anthropic</a> - Principios de diseño de agentes</li>
+<li><a href="https://huggingface.co/docs/smolagents/tutorials/inspect_runs">Compartiendo ejecuciones con OpenTelemetry</a> - Detalles sobre cómo configurar OpenTelemetry para rastrear tus agentes.</li>
+</ul>
 
 
 
@@ -1908,6 +2237,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../llm5/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../bedrock/sesion1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción a Amazon Bedrock">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Introducción a Amazon Bedrock
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
