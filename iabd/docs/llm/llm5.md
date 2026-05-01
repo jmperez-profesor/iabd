@@ -1681,8 +1681,8 @@ async def run_agent(user_query: str):
 - Añadir **`@cl.on_chat_start`** para inicializar la sesión. 
 - Modificar `run_agent()` para leer y escribir en `cl.user_session`. 
 - Probar una conversación de dos turnos, por ejemplo:  
-    1. *What’s the weather in Napoleon’s hometown?*  
-    2. *And in Michel’s hometown?*  
+        - *What’s the weather in Napoleon’s hometown?*  
+        - *And in Michel’s hometown?*  
 - Comprobar si el bot entiende la continuidad. 
 
 ### Pregunta
