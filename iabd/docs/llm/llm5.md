@@ -1618,7 +1618,7 @@ async def get_country_info(location: str) -> str:
 - Incluirla en el diccionario **`available_tools`**. 
 - Probar una pregunta que obligue al modelo a usar más de una tool. 
 
-### Pregunta de reflexión
+### Pregunta
 
 ¿Por qué **`get_country_info()`** debe estar descrita tanto en Python como en la lista **`tools`**? La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa herramienta existe y cómo puede invocarla. 
 
@@ -1681,13 +1681,13 @@ async def run_agent(user_query: str):
 - Añadir **`@cl.on_chat_start`** para inicializar la sesión. 
 - Modificar `run_agent()` para leer y escribir en `cl.user_session`. 
 - Probar una conversación de dos turnos, por ejemplo:  
-  1. *What’s the weather in Napoleon’s hometown?*  
-  2. *And in Michel’s hometown?*  
+    1. *What’s the weather in Napoleon’s hometown?*  
+    2. *And in Michel’s hometown?*  
 - Comprobar si el bot entiende la continuidad. 
 
-### Pregunta de reflexión
+### Pregunta
 
-¿Qué diferencia hay entre una variable global de Python y `cl.user_session`? La idea es que **`cl.user_session`** mantiene datos por usuario/sesión, mientras que una global podría mezclar conversaciones de usuarios distintos. 
+**¿Qué diferencia hay entre una variable global de Python y **`cl.user_session`**?** La idea es que **`cl.user_session`** mantiene datos por **usuario/sesión**, mientras que una global podría mezclar conversaciones de usuarios distintos. 
 
 ## Parte 3: añadir botones con **`cl.Action`**
 
