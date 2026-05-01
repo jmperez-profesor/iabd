@@ -1,5 +1,5 @@
 ---
-title: Sesión 5- Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
+title: Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
