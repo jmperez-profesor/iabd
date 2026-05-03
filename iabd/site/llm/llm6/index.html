@@ -2630,20 +2630,20 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_cargo_travel_time</span><span class="p">(</span>
     <span class="n">origin_coords</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
     <span class="n">destination_coords</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-    <span class="n">cruising_speed_kmh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">750.0</span><span class="p">,</span>  <span class="c1"># Average speed for cargo planes</span>
+    <span class="n">cruising_speed_kmh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">750.0</span><span class="p">,</span>  <span class="c1"># Velocidad media de los aviones de carga</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate the travel time for a cargo plane between two points on Earth using great-circle distance.</span>
+<span class="sd">    Calcula el tiempo de viaje de un avión de carga entre dos puntos de la Tierra utilizando la distancia ortodrómica.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        origin_coords: Tuple of (latitude, longitude) for the starting point</span>
-<span class="sd">        destination_coords: Tuple of (latitude, longitude) for the destination</span>
-<span class="sd">        cruising_speed_kmh: Optional cruising speed in km/h (defaults to 750 km/h for typical cargo planes)</span>
+<span class="sd">        origin_coords: Tupla de (latitud, longitud) del punto de partida</span>
+<span class="sd">        destination_coords: Tupla de (latitud, longitud) del destino</span>
+<span class="sd">        cruising_speed_kmh: Velocidad de crucero opcional en km/h (el valor predeterminado es 750 km/h para aviones de carga típicos)</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        float: The estimated travel time in hours</span>
+<span class="sd">        float: El tiempo de viaje estimado en horas</span>
 
-<span class="sd">    Example:</span>
+<span class="sd">    Ejemplos:</span>
 <span class="sd">        &gt;&gt;&gt; # Chicago (41.8781° N, 87.6298° W) to Sydney (33.8688° S, 151.2093° E)</span>
 <span class="sd">        &gt;&gt;&gt; result = calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2651,14 +2651,14 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="k">def</span><span class="w"> </span><span class="nf">to_radians</span><span class="p">(</span><span class="n">degrees</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">degrees</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
 
-    <span class="c1"># Extract coordinates</span>
+    <span class="c1"># Extraer coordenadas y convertir a radianes</span>
     <span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">to_radians</span><span class="p">,</span> <span class="n">origin_coords</span><span class="p">)</span>
     <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">to_radians</span><span class="p">,</span> <span class="n">destination_coords</span><span class="p">)</span>
 
-    <span class="c1"># Earth&#39;s radius in kilometers</span>
+    <span class="c1"># Radio de la Tierra en kilómetros</span>
     <span class="n">EARTH_RADIUS_KM</span> <span class="o">=</span> <span class="mf">6371.0</span>
 
-    <span class="c1"># Calculate great-circle distance using the haversine formula</span>
+    <span class="c1"># Calcular la distancia ortodrómica utilizando la fórmula haversina</span>
     <span class="n">dlon</span> <span class="o">=</span> <span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span>
     <span class="n">dlat</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span>
 
@@ -2666,18 +2666,20 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
         <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlat</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlon</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
     <span class="p">)</span>
+    <span class="c1"># Calcular la distancia en kilómetros</span>
     <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="n">EARTH_RADIUS_KM</span> <span class="o">*</span> <span class="n">c</span>
 
-    <span class="c1"># Add 10% to account for non-direct routes and air traffic controls</span>
+    <span class="c1">#  Añadir un 10 % para tener en cuenta las rutas no directas y los controles de tráfico aéreo</span>
     <span class="n">actual_distance</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">*</span> <span class="mf">1.1</span>
 
-    <span class="c1"># Calculate flight time</span>
-    <span class="c1"># Add 1 hour for takeoff and landing procedures</span>
+    <span class="c1"># Calcular el tiempo de vuelo</span>
+    <span class="c1"># Añadir 1 hora para los procedimientos de despegue y aterrizaje    </span>
     <span class="n">flight_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual_distance</span> <span class="o">/</span> <span class="n">cruising_speed_kmh</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span>
 
-    <span class="c1"># Format the results</span>
+    <span class="c1"># Formatear el resultado a dos decimales</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">flight_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
 
 <span class="nb">print</span><span class="p">(</span><span class="n">calculate_cargo_travel_time</span><span class="p">((</span><span class="mf">41.8781</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.6298</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">33.8688</span><span class="p">,</span> <span class="mf">151.2093</span><span class="p">)))</span>
 </code></pre></div>
@@ -2831,7 +2833,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="n">max_steps</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
-<p>Vamos a inspeccionar qué se ve este equipo:</p>
+<p>Vamos a inspeccionar qué se ve en este equipo:</p>
 <div class="highlight"><pre><span></span><code><span class="n">manager_agent</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </code></pre></div>
 <p>Esto generará algo como esto, ayudándonos a entender la estructura y la relación entre agentes y herramientas utilizadas:</p>
