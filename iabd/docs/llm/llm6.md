@@ -994,20 +994,20 @@ from smolagents import tool
 def calculate_cargo_travel_time(
     origin_coords: Tuple[float, float],
     destination_coords: Tuple[float, float],
-    cruising_speed_kmh: Optional[float] = 750.0,  # Average speed for cargo planes
+    cruising_speed_kmh: Optional[float] = 750.0,  # Velocidad media de los aviones de carga
 ) -> float:
     """
-    Calculate the travel time for a cargo plane between two points on Earth using great-circle distance.
+    Calcula el tiempo de viaje de un avión de carga entre dos puntos de la Tierra utilizando la distancia ortodrómica.
 
     Args:
-        origin_coords: Tuple of (latitude, longitude) for the starting point
-        destination_coords: Tuple of (latitude, longitude) for the destination
-        cruising_speed_kmh: Optional cruising speed in km/h (defaults to 750 km/h for typical cargo planes)
+        origin_coords: Tupla de (latitud, longitud) del punto de partida
+        destination_coords: Tupla de (latitud, longitud) del destino
+        cruising_speed_kmh: Velocidad de crucero opcional en km/h (el valor predeterminado es 750 km/h para aviones de carga típicos)
 
     Returns:
-        float: The estimated travel time in hours
+        float: El tiempo de viaje estimado en horas
 
-    Example:
+    Ejemplos:
         >>> # Chicago (41.8781° N, 87.6298° W) to Sydney (33.8688° S, 151.2093° E)
         >>> result = calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093))
     """
@@ -1015,33 +1015,35 @@ def calculate_cargo_travel_time(
     def to_radians(degrees: float) -> float:
         return degrees * (math.pi / 180)
 
-    # Extract coordinates
+    # Extraer coordenadas y convertir a radianes
     lat1, lon1 = map(to_radians, origin_coords)
     lat2, lon2 = map(to_radians, destination_coords)
 
-    # Earth's radius in kilometers
+    # Radio de la Tierra en kilómetros
     EARTH_RADIUS_KM = 6371.0
 
-    # Calculate great-circle distance using the haversine formula
+    # Calcular la distancia ortodrómica utilizando la fórmula haversina
     dlon = lon2 - lon1
     dlat = lat2 - lat1
-
+     
     a = (
         math.sin(dlat / 2) ** 2
         + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
     )
+    # Calcular la distancia en kilómetros
     c = 2 * math.asin(math.sqrt(a))
     distance = EARTH_RADIUS_KM * c
 
-    # Add 10% to account for non-direct routes and air traffic controls
+    #  Añadir un 10 % para tener en cuenta las rutas no directas y los controles de tráfico aéreo
     actual_distance = distance * 1.1
 
-    # Calculate flight time
-    # Add 1 hour for takeoff and landing procedures
+    # Calcular el tiempo de vuelo
+    # Añadir 1 hora para los procedimientos de despegue y aterrizaje    
     flight_time = (actual_distance / cruising_speed_kmh) + 1.0
 
-    # Format the results
+    # Formatear el resultado a dos decimales
     return round(flight_time, 2)
+
 
 print(calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093)))
 ```
@@ -1236,7 +1238,7 @@ manager_agent = CodeAgent(
 )
 ```
 
-Vamos a inspeccionar qué se ve este equipo:
+Vamos a inspeccionar qué se ve en este equipo:
 
 ```python
 manager_agent.visualize()
