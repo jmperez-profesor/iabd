@@ -11,19 +11,19 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 `smolagents` es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen `LlamaIndex` y `LangGraph`. `smolagents` ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. 
 
-### 2️⃣ Agentes de Código
+### 2️⃣ Agentes de código
 
 Los `CodeAgents` (Agentes de Código) son el tipo principal de agente en `smolagents`. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. 
 
-### 3️⃣ Agentes de Llamada a Herramientas
+### 3️⃣ Agentes de llamada a herramientas (tools)
 
 Los `ToolCallingAgents` (Agentes de Llamada a Herramientas) son el segundo tipo de agente soportado por `smolagents`. A diferencia de los `CodeAgents`, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. 
 
-### 4️⃣ Herramientas
+### 4️⃣ Herramientas (tools)
 
-Como vimos en otras sesiones, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase `Tool` o el decorador `@tool`. 
+Como vimos en sesiones anteriores, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase `Tool` o el decorador `@tool`. 
 
-### 5️⃣ Agentes de Recuperación
+### 5️⃣ Agentes de Recuperación (RAG)
 
 Los agentes de recuperación permiten a los modelos acceder a bases de conocimiento, haciendo posible buscar, sintetizar y recuperar información de múltiples fuentes. Aprovechan los almacenes vectoriales para una recuperación eficiente e implementan patrones de **Generación Aumentada por Recuperación (RAG)**. Estos agentes son particularmente útiles para integrar la búsqueda web con bases de conocimiento personalizadas mientras mantienen el contexto de la conversación a través de sistemas de memoria. Este módulo explora estrategias de implementación, incluyendo mecanismos de respaldo para una recuperación de información robusta.
 
@@ -1061,7 +1061,9 @@ import os
 from PIL import Image
 from smolagents import CodeAgent, GoogleSearchTool, InferenceClientModel, VisitWebpageTool
 
-model = InferenceClientModel(model_id="Qwen/Qwen2.5-Coder-32B-Instruct", provider="together")
+model = InferenceClientModel(
+    model_id="Qwen/Qwen2.5-Coder-32B-Instruct", 
+    provider="together")
 ```
 
 Podemos empezar creando un agente simple como base para darnos un informe simple.

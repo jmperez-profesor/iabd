@@ -56,13 +56,13 @@ markdown_extensions:
 
 nav:
   - Introducción: index.md 
-  - Cloud:  
-    - Sesión 1 Cloud y AWS: cloud/sesion1/sesion_cloud_aws.md
-    - Ejercicios:
-      - Solución actividad 2: cloud/sesion1/ejercicio/actividad2_aws_cli.md
-      - Anexo solución actividad 2: cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli.md
-    - Otras:  
-      - Presentación docente: cloud/sesion1/otras/presentacion_docente.md 
+  #- Cloud:  
+  #  - Sesión 1 Cloud y AWS: cloud/sesion1/sesion_cloud_aws.md
+  #  - Ejercicios:
+  #    - Solución actividad 2: cloud/sesion1/ejercicio/actividad2_aws_cli.md
+  #    - Anexo solución actividad 2: cloud/sesion1/ejercicio/anexo_ejemplos_salida_aws_cli.md
+  #  - Otras:  
+  #    - Presentación docente: cloud/sesion1/otras/presentacion_docente.md 
     #  - Reto migración ayuntamiento: cloud/sesion1/reto_migracion_ayuntamiento.md
     #  - Reto migración Perplexity mejorado: cloud/sesion1/otras/sesion1_cloud_aws_perplexity_mejorado.md
     #  - Reto Amazon Q: cloud/sesion1/otras/actividad_ayuntamiento_elche.md
@@ -77,8 +77,9 @@ nav:
     - llm/llm4.md
     - llm/llm5.md
     - llm/llm6.md
-  - Bedrock: 
-    - bedrock/sesion1.md
+    - llm/llm7.md
+  #- Bedrock: 
+  #  - bedrock/sesion1.md
   - Hugging Face:
     - hf/index.md
     - Gradio: hf/Ejemplo_gradio.md
