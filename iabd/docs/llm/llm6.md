@@ -390,7 +390,9 @@ agent = CodeAgent(
 agent.run("Dame la mejor lista de reproducción para una fiesta en la mansión de Wayne. La idea de la fiesta es un tema de 'mascarada de villanos'")
 ```
 
-Como podemos ver, hemos creado un `CodeAgent` con varias herramientas que mejoran la funcionalidad del agente, ¡convirtiéndolo en el mejor planificador de fiestas listo para compartir con la comunidad! 🎉
+Como podemos ver, hemos creado un `CodeAgent` con varias herramientas que mejoran la funcionalidad del agente:
+
+![](./images/06/agente_fiesta_villanos.png)
 
 ### Inspeccionando nuestro agente preparador de fiestas con OpenTelemetry y Langfuse 📡
 
@@ -452,7 +454,334 @@ Mientras tanto, la [lista de reproducción sugerida](https://open.spotify.com/pl
 
 ---
 
-Ahora que hemos creado nuestro primer Agente de Código, **aprendamos cómo podemos crear Agentes de Llamada a Herramientas**, el segundo tipo de agente disponible en `smolagents`.
+
+# Escribiendo acciones como fragmentos de código o estructuras JSON
+
+Los Agentes que invocan a herramientas son el segundo tipo de agente disponible en **`smolagents`**. A diferencia de los **Agentes de Código** que utilizan fragmentos de Python, estos agentes **utilizan las capacidades integradas de invocación a herramientas de los proveedores de LLM** para generar llamadas a herramientas como **estructuras JSON**. Este es el enfoque estándar utilizado por **OpenAI, Anthropic y muchos otros proveedores**.
+
+Veamos un ejemplo. Cuando Alfred quiere buscar servicios de catering e ideas para fiestas, un `CodeAgent` generaría y ejecutaría código Python como este:
+
+```python
+for query in [
+    "Mejores servicios de catering en Ciudad Gótica", 
+    "Ideas de temas de fiesta para superhéroes"
+]:
+    print(web_search(f"Buscar: {query}"))
+```
+
+Un `ToolCallingAgent` en cambio crearía una estructura JSON:
+
+```python
+[
+    {"name": "web_search", "arguments": "Mejores servicios de catering en Ciudad Gótica"},
+    {"name": "web_search", "arguments": "Ideas de temas de fiesta para superhéroes"}
+]
+```
+
+Esta estructura JSON se utiliza luego para ejecutar las llamadas a herramientas.
+
+Aunque `smolagents` se centra principalmente en `CodeAgents` ya que [tienen un mejor rendimiento general](https://huggingface.co/papers/2402.01030), los `ToolCallingAgents` pueden ser efectivos para sistemas simples que no requieren manejo de variables o llamadas a herramientas complejas.
+
+![Acciones de Código vs JSON](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png)  
+
+## ¿Cómo funcionan los Agentes de llamada a herramientas?  
+
+Los Agentes de llamada a herramientas siguen el mismo flujo de trabajo de múltiples pasos que los Agentes de Código. 
+
+La diferencia clave está en **cómo estructuran sus acciones**: en lugar de código ejecutable, **generan objetos JSON que especifican nombres de herramientas y argumentos**. El sistema luego **analiza estas instrucciones** para ejecutar las herramientas apropiadas.
+
+## Ejemplo: Ejecutando un agente de llamada a herramientas  
+
+Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un `ToolCallingAgent` para destacar la diferencia. Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:
+
+```python
+'''
+#CÓDIGO CodeAgente
+from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
+
+agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=InferenceClientModel())
+'''
+#Código ToolCallingAgent
+from smolagents import ToolCallingAgent, DuckDuckGoSearchTool, InferenceClientModel
+
+model = InferenceClientModel(
+    # ejemplo de la documentación, 
+    # pero podemos usar cualquier modelo compatible con Hugging Face Inference API 
+    model_id="meta-llama/Llama-3.3-70B-Instruct", 
+    token="hf_xxx" #o usar HF_TOKEN en entorno
+)
+
+agent = ToolCallingAgent(
+        tools=[DuckDuckGoSearchTool()], 
+        model=model,
+        verbosity_level=2
+)
+
+agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión Wayne.")
+
+```
+
+Cuando veamos el rastro del agente, en lugar de ver `Executing parsed code:`, veremos algo como:
+
+![](./images/06/alfred_json_1.png)
+![](./images/06/alfred_json_2.png)
+![](./images/06/alfred_json_3.png)
+
+El agente genera una llamada a la herramienta de forma estructurada que el sistema procesa para producir la salida, en lugar de ejecutar directamente código como un `CodeAgent`.
+
+Ahora que entendemos ambos tipos de agentes, podemos elegir el adecuado para nuestras necesidades. 
+
+# Herramientas  
+
+Como exploramos anteriormente, los agentes utilizan herramientas para realizar diversas acciones. En `smolagents`, las herramientas son tratadas como **funciones que un LLM pueden llamar dentro de un sistema de agentes**.
+
+Para interactuar con una herramienta, el LLM necesita una **descripción de la interfaz** con estos componentes clave:  
+
+- **Nombre**: Cómo se llama la herramienta
+- **Descripción de la herramienta**: Qué hace la herramienta  
+- **Tipos de entrada y descripciones**: Qué argumentos acepta la herramienta
+- **Tipo de salida**: Qué devuelve la herramienta
+
+Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita varias herramientas para recopilar información - desde buscar servicios de catering hasta encontrar ideas para temas de fiesta. Así es como podría verse la interfaz de una herramienta de búsqueda simple:
+
+- **Nombre:** `web_search`
+- **Descripción de la herramienta:** Busca en la web consultas específicas
+- **Entrada:** `query` (cadena) - El término de búsqueda a consultar
+- **Salida:** Cadena que contiene los resultados de la búsqueda
+
+Al utilizar estas herramientas, Alfred puede tomar decisiones informadas y recopilar toda la información necesaria para planificar la fiesta perfecta.
+
+A continuación, puedes ver una animación que ilustra cómo se gestiona una llamada a una herramienta:
+
+![Pipeline de agente de https://huggingface.co/docs/smolagents/conceptual_guides/react](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/Agent_ManimCE.gif)
+
+## Métodos de creación de herramientas
+
+En `smolagents`, las herramientas pueden definirse de dos maneras:  
+1. **Usando el decorador `@tool`** para herramientas simples basadas en funciones
+2. **Creando una subclase de `Tool`** para funcionalidades más complejas    
+
+### El decorador `@tool`  
+
+El decorador `@tool` es **la forma recomendada para definir herramientas simples**. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla.
+
+Usando este enfoque, definimos una función con:  
+
+- **Un nombre de función claro y descriptivo** que ayuda al LLM a entender su propósito.  
+- **Anotaciones de tipo tanto para entradas como para salidas** para garantizar un uso adecuado.  
+- **Una descripción detallada**, que incluye una sección `Args:` donde cada argumento se describe explícitamente. Estas descripciones proporcionan un contexto valioso para el LLM, por lo que es importante escribirlas cuidadosamente.  
+
+#### Generando una herramienta que recupera el servicio de catering mejor valorado
+
+![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-catering.jpg)
+
+Imaginemos que Alfred ya ha decidido el menú para la fiesta, pero ahora necesita ayuda para preparar comida para un número tan grande de invitados. Para hacerlo, le gustaría contratar un servicio de catering y necesita identificar las opciones mejor valoradas disponibles. Alfred puede aprovechar una herramienta para buscar los mejores servicios de catering en su área.
+
+A continuación se muestra un ejemplo de cómo Alfred puede usar el decorador `@tool` para lograrlo:
+
+```python
+from smolagents import CodeAgent, InferenceClientModel, tool
+
+# Imaginemos que tenemos una función que obtiene los servicios de catering mejor valorados.
+@tool
+def catering_service_tool(query: str) -> str:
+    """
+    Esta herramienta devuelve el servicio de catering mejor valorado en Ciudad Gótica.
+    
+    Args:
+        query: Un término de búsqueda para encontrar servicios de catering.
+    """
+    # Lista de ejemplo de servicios de catering y sus calificaciones
+    services = {
+        "Gotham Catering Co.": 4.9,
+        "Wayne Manor Catering": 4.8,
+        "Gotham City Events": 4.7,
+    }
+    
+    # Encuentra el servicio de catering mejor valorado (simulando el filtrado de consultas de búsqueda)
+    best_service = max(services, key=services.get)
+    
+    return best_service
+
+agent = CodeAgent(tools=[catering_service_tool], model=InferenceClientModel())
+
+# Ejecuta el agente para encontrar el mejor servicio de catering
+result = agent.run(
+    "¿Puedes darme el nombre del servicio de catering mejor valorado en Ciudad Gótica?"
+)
+
+print(result)   # Salida: Gotham Catering Co.
+```
+
+### Definiendo una herramienta como una clase de Python  
+
+Este enfoque implica crear una subclase de [`Tool`](https://huggingface.co/docs/smolagents/v1.8.1/en/reference/tools#smolagents.Tool). Para herramientas complejas, podemos implementar una clase en lugar de una función de Python. La clase envuelve la función con metadatos que ayudan al LLM a entender cómo usarla de manera efectiva. En esta clase, definimos:  
+
+- **`name`**: El nombre de la herramienta.  
+- **`description`**: Una descripción utilizada para completar el prompt del sistema del agente.  
+- **`inputs`**: Un diccionario con claves `type` y `description`, proporcionando información para ayudar al intérprete de Python a procesar las entradas.  
+- **`output_type`**: Especifica el tipo de salida esperado.  
+- **`forward`**: El método que contiene la lógica de inferencia a ejecutar.
+
+A continuación, podemos ver un ejemplo de una herramienta construida usando `Tool` y cómo integrarla dentro de un `CodeAgent`.
+
+#### Generando una herramienta para generar ideas sobre la fiesta temática de superhéroes
+
+La fiesta de Alfred en la mansión es un **evento temático de superhéroes**, pero necesita algunas ideas creativas para hacerla verdaderamente especial. Como anfitrión fantástico, quiere sorprender a los invitados con un tema único.
+
+Para hacer esto, puede usar un agente que genere ideas de fiestas temáticas de superhéroes basadas en una categoría dada. De esta manera, Alfred puede encontrar el tema de fiesta perfecto para impresionar a sus invitados.
+
+```python
+from smolagents import Tool, CodeAgent, InferenceClientModel
+
+class SuperheroPartyThemeTool(Tool):
+    name = "superhero_party_theme_generator"
+    description = """
+    Esta herramienta sugiere ideas creativas para fiestas temáticas de superhéroes basadas en una categoría.
+    Devuelve una idea única de tema para la fiesta."""
+    
+    inputs = {
+        "category": {
+            "type": "string",
+            "description": "El tipo de fiesta de superhéroes (por ejemplo, 'héroes clásicos', 'mascarada de villanos', 'Gotham futurista').",
+        }
+    }
+    
+    output_type = "string"
+
+    def forward(self, category: str):
+        themes = {
+            "classic heroes": "Gala de la Liga de la Justicia: Los invitados vienen vestidos como sus héroes favoritos de DC con cócteles temáticos como 'El Ponche de Kryptonita'.",
+            "villain masquerade": "Baile de los Pícaros de Gotham: Una mascarada misteriosa donde los invitados se visten como villanos clásicos de Batman.",
+            "futuristic Gotham": "Noche Neo-Gotham: Una fiesta de estilo cyberpunk inspirada en Batman Beyond, con decoraciones de neón y gadgets futuristas."
+        }
+        
+        return themes.get(category.lower(), "Idea de fiesta temática no encontrada. Prueba con 'héroes clásicos', 'mascarada de villanos' o 'Gotham futurista'.")
+
+# Instancia la herramienta
+party_theme_tool = SuperheroPartyThemeTool()
+agent = CodeAgent(tools=[party_theme_tool], model=InferenceClientModel())
+
+# Ejecuta el agente para generar una idea de tema para la fiesta
+result = agent.run(
+    "¿Cuál sería una buena idea para una fiesta de superhéroes con el tema 'mascarada de villanos'?"
+)
+
+print(result)  # Salida: "Baile de los Pícaros de Gotham: Una mascarada misteriosa donde los invitados se visten como villanos clásicos de Batman."
+```
+
+Con esta herramienta, ¡Alfred será el mejor anfitrión, impresionando a sus invitados con una fiesta temática de superhéroes que no olvidarán! 🦸‍♂️🦸‍♀️
+
+## Caja de Herramientas Predeterminada  
+
+`smolagents` viene con un conjunto de herramientas preintegradas que pueden inyectarse directamente en tu agente. La [caja de herramientas predeterminada](https://huggingface.co/docs/smolagents/guided_tour?build-a-tool=Decorate+a+function+with+%40tool#default-toolbox) incluye:  
+
+- **`PythonInterpreterTool`**  
+- **`FinalAnswerTool`**  
+- **`UserInputTool`**  
+- **`DuckDuckGoSearchTool`**  
+- **`GoogleSearchTool`**  
+- **`VisitWebpageTool`**  
+
+Alfred podría usar varias herramientas para asegurar una fiesta impecable en la Mansión Wayne:
+
+- Primero, podría usar la `DuckDuckGoSearchTool` para encontrar ideas creativas para fiestas temáticas de superhéroes.
+
+- Para el catering, confiaría en la `GoogleSearchTool` para encontrar los servicios mejor valorados en Gotham.
+
+- Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la `PythonInterpreterTool`.
+
+- Una vez recopilado todo, compilaría el plan usando la `FinalAnswerTool`.
+
+Con estas herramientas, Alfred garantiza que la fiesta sea excepcional e impecable. 🦇💡
+
+## Compartir e importar herramientas
+
+Una de las características más poderosas de **smolagents** es su capacidad para compartir herramientas personalizadas en el Hub e integrar perfectamente herramientas creadas por la comunidad. Esto incluye la conexión con **HF Spaces** y **herramientas de LangChain**, mejorando significativamente la capacidad de Alfred para organizar una fiesta inolvidable en la Mansión Wayne. 🎭
+
+Con estas integraciones, Alfred puede aprovechar herramientas avanzadas de planificación de eventos, ya sea ajustar la iluminación para el ambiente perfecto, seleccionar la lista de reproducción ideal para la fiesta, o coordinar con los mejores servicios de catering de Gotham.
+
+Aquí hay ejemplos que muestran cómo estas funcionalidades pueden elevar la experiencia de la fiesta:
+
+### Compartir una Herramienta en el Hub
+
+¡Compartir tu herramienta personalizada con la comunidad es fácil! Simplemente súbela a tu cuenta de Hugging Face usando el método `push_to_hub()`.
+
+Por ejemplo, Alfred puede compartir su `party_theme_tool` para ayudar a otros a encontrar los mejores servicios de catering en Gotham. Así es cómo hacerlo:
+
+```python
+party_theme_tool.push_to_hub("{tu_nombre_de_usuario}/party_theme_tool", token="")
+```
+
+### Importar una Herramienta desde el Hub
+
+Puedes importar fácilmente herramientas creadas por otros usuarios usando la función `load_tool()`. Por ejemplo, Alfred podría querer generar una imagen promocional para la fiesta usando IA. En lugar de construir una herramienta desde cero, puede aprovechar una predefinida de la comunidad:
+
+```python
+from smolagents import load_tool, CodeAgent, InferenceClientModel
+
+image_generation_tool = load_tool(
+    "m-ric/text-to-image",
+    trust_remote_code=True
+)
+
+agent = CodeAgent(
+    tools=[image_generation_tool],
+    model=InferenceClientModel()
+)
+
+agent.run("Genera una imagen de una lujosa fiesta temática de superhéroes en la Mansión Wayne con superhéroes inventados.")
+```
+
+### Importar un Hugging Face Space como Herramienta
+
+También puedes importar un HF Space como herramienta usando `Tool.from_space()`. Esto abre posibilidades para integrar miles de spaces de la comunidad para tareas desde generación de imágenes hasta análisis de datos.
+
+La herramienta se conectará con el backend Gradio del space usando `gradio_client`, así que asegúrate de instalarlo via `pip` si aún no lo tienes.
+
+Para la fiesta, Alfred puede usar un HF Space existente para la generación de la imagen generada por IA que se usará en el anuncio (en lugar de la herramienta preintegrada que mencionamos antes). ¡Vamos a construirla!
+
+```python
+from smolagents import CodeAgent, InferenceClientModel, Tool
+
+image_generation_tool = Tool.from_space(
+    "black-forest-labs/FLUX.1-schnell",
+    name="image_generator",
+    description="Generar una imagen a partir de un prompt"
+)
+
+model = InferenceClientModel("Qwen/Qwen2.5-Coder-32B-Instruct")
+
+agent = CodeAgent(tools=[image_generation_tool], model=model)
+
+agent.run(
+    "Mejora este prompt, luego genera una imagen del mismo.", 
+    additional_args={'user_prompt': 'Una gran fiesta temática de superhéroes en la Mansión Wayne, con Alfred supervisando una lujosa gala'}
+)
+```
+
+### Importar una herramienta de LangChain
+
+Discutiremos el framework `LangChain` en las próximas secciones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!
+
+Puedes cargar fácilmente herramientas de LangChain usando el método `Tool.from_langchain()`. Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de LangChain para encontrar ideas de entretenimiento de primera categoría.
+
+Al usar `Tool.from_langchain()`, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.
+
+Así es como lo hace:
+
+```python
+from langchain.agents import load_tools
+from smolagents import CodeAgent, InferenceClientModel, Tool
+
+search_tool = Tool.from_langchain(load_tools(["serpapi"])[0])
+
+agent = CodeAgent(tools=[search_tool], model=model)
+
+agent.run("Busca ideas de entretenimiento de lujo para un evento temático de superhéroes, como actuaciones en vivo y experiencias interactivas.")
+```
+
+Con esta configuración, Alfred puede descubrir rápidamente opciones de entretenimiento lujosas, asegurando que los invitados de élite de Gotham tengan una experiencia inolvidable. ¡Esta herramienta le ayuda a organizar el evento temático de superhéroes perfecto para la Mansión Wayne! 🎉
 
 ## Recursos
 
@@ -460,5 +789,9 @@ Ahora que hemos creado nuestro primer Agente de Código, **aprendamos cómo pode
 - [smolagents: Construyendo Buenos Agentes](https://huggingface.co/docs/smolagents/tutorials/building_good_agents) - Mejores prácticas para agentes confiables
 - [Construyendo Agentes Efectivos - Anthropic](https://www.anthropic.com/research/building-effective-agents) - Principios de diseño de agentes
 - [Compartiendo ejecuciones con OpenTelemetry](https://huggingface.co/docs/smolagents/tutorials/inspect_runs) - Detalles sobre cómo configurar OpenTelemetry para rastrear tus agentes.
-
+- [Documentación de ToolCallingAgent](https://huggingface.co/docs/smolagents/v1.8.1/en/reference/agents#smolagents.ToolCallingAgent) - Documentación oficial para ToolCallingAgent
+- [Tutorial de Herramientas](https://huggingface.co/docs/smolagents/tutorials/tools) - Explora este tutorial para aprender a trabajar efectivamente con herramientas.
+- [Documentación de Herramientas](https://huggingface.co/docs/smolagents/v1.8.1/en/reference/tools) - Documentación de referencia completa sobre herramientas.
+- [Tour Guiado de Herramientas](https://huggingface.co/docs/smolagents/v1.8.1/en/guided_tour#tools) - Un tour guiado paso a paso para ayudarte a construir y utilizar herramientas eficientemente.
+- [Construyendo Agentes Efectivos](https://huggingface.co/docs/smolagents/tutorials/building_good_agents) - Una guía detallada sobre mejores prácticas para desarrollar agentes de función personalizados fiables y de alto rendimiento.
 
