@@ -783,6 +783,551 @@ agent.run("Busca ideas de entretenimiento de lujo para un evento temático de su
 
 Con esta configuración, Alfred puede descubrir rápidamente opciones de entretenimiento lujosas, asegurando que los invitados de élite de Gotham tengan una experiencia inolvidable. ¡Esta herramienta le ayuda a organizar el evento temático de superhéroes perfecto para la Mansión Wayne! 🎉
 
+# Construyendo sistemas RAG con Agentes
+
+Los sistemas de **Generación Aumentada por Recuperación (RAG)** combinan las capacidades de recuperación de datos y modelos de generación para proporcionar **respuestas contextualizadas**. Por ejemplo, la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada.
+
+El **RAG con Agentes (Generación Aumentada por Recuperación)** extiende los sistemas RAG tradicionales al **combinar agentes autónomos con recuperación dinámica de conocimiento**.
+
+Mientras que los sistemas **RAG tradicionales** utilizan un LLM para responder consultas basadas en datos recuperados, el ***RAG con agentes* permite un control inteligente tanto de los procesos de recuperación como de generación**, mejorando la eficiencia y precisión.
+
+Los sistemas RAG tradicionales enfrentan limitaciones clave, como **depender de un solo paso de recuperación** y enfocarse en la **similitud semántica directa** con la consulta del usuario, lo que puede pasar por alto información relevante.
+
+El **RAG con agentes** aborda estos problemas permitiendo que el agente formule autónomamente consultas de búsqueda, critique los resultados recuperados y **realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo**.
+
+## Recuperación básica con DuckDuckGo
+
+Vamos a construir un agente simple que pueda buscar en la web usando DuckDuckGo. Este agente recuperará información y sintetizará respuestas para contestar consultas. Con RAG con agentes, el agente de Alfred puede:
+
+* Buscar las últimas tendencias en fiestas de superhéroes
+* Refinar resultados para incluir elementos de lujo
+* Sintetizar información en un plan completo
+
+Así es como el agente de Alfred puede lograr esto:
+
+```python
+from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
+
+# Initialize the search tool
+search_tool = DuckDuckGoSearchTool()
+
+# Initialize the model
+model = InferenceClientModel()
+
+agent = CodeAgent(
+    model=model,
+    tools=[search_tool]
+)
+
+# Example usage
+response = agent.run(
+    "Buscar ideas de fiesta temática de superhéroes de lujo, incluyendo decoración, entretenimiento y catering."
+)
+print(response)
+```
+
+El agente sigue este proceso:
+
+1. **Analiza la Solicitud:** El agente de Alfred identifica los elementos clave de la consulta—planificación de fiesta temática de superhéroes de lujo, con enfoque en decoración, entretenimiento y catering.
+2. **Realiza la Recuperación:** El agente utiliza DuckDuckGo para buscar la información más relevante y actualizada, asegurándose de que se alinee con las preferencias refinadas de Alfred para un evento lujoso.
+3. **Sintetiza la Información:** Después de recopilar los resultados, el agente los procesa en un plan coherente y accionable para Alfred, cubriendo todos los aspectos de la fiesta.
+4. **Almacena para Referencia Futura:** El agente almacena la información recuperada para un fácil acceso al planificar eventos futuros, optimizando la eficiencia en tareas posteriores.
+
+## Herramienta de base de conocimientos personalizada
+
+Para tareas especializadas, una **base de conocimientos personalizada** puede ser invaluable. Vamos a crear una herramienta que consulte una base de datos vectorial de documentación técnica o conocimiento especializado. Utilizando búsqueda semántica, el agente puede encontrar la información más relevante para las necesidades de Alfred.
+
+Una **base de datos vectorial** es simplemente una **colección de documentos con representaciones enriquecidas por modelos de ML especializados**, que permiten la **búsqueda y recuperación rápida de los documentos**.
+
+Este enfoque combina **conocimiento predefinido con búsqueda semántica** para proporcionar soluciones contextualizadas para la planificación de eventos. Con acceso a conocimiento especializado, Alfred puede perfeccionar cada detalle de la fiesta.
+
+En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una base de conocimiento personalizada. Usaremos un recuperador **BM25** para buscar en la base de conocimiento y devolver los mejores resultados, y `RecursiveCharacterTextSplitter` para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.
+
+```python
+from langchain.docstore.document import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from smolagents import Tool
+from langchain_community.retrievers import BM25Retriever
+from smolagents import CodeAgent, InferenceClientModel
+
+class PartyPlanningRetrieverTool(Tool):
+    name = "party_planning_retriever"
+    description = "Utiliza búsqueda semántica para recuperar ideas de planificación de fiestas relevantes para la fiesta temática de superhéroes de Alfred en Wayne Manor."
+    inputs = {
+        "query": {
+            "type": "string",
+            "description": "La consulta a realizar. Esta debe ser una consulta relacionada con la planificación de fiestas o temas de superhéroes.",
+        }
+    }
+    output_type = "string"
+
+    def __init__(self, docs, **kwargs):
+        super().__init__(**kwargs)
+        self.retriever = BM25Retriever.from_documents(
+            docs, k=5  # Devuelve los 5 primeros documentos
+        )
+
+    def forward(self, query: str) -> str:
+        assert isinstance(query, str), "Tu consulta de búsqueda debe ser una cadena"
+
+        docs = self.retriever.invoke(
+            query,
+        )
+        return "\nIdeas recuperadas:\n" + "".join(
+            [
+                f"\n\n===== Idea {str(i)} =====\n" + doc.page_content
+                for i, doc in enumerate(docs)
+            ]
+        )
+
+# Simluar una base de conocimientos sobre una planificacióń sobre fiestas de super héroes
+party_ideas = [
+    {"text": "Una fiesta de disfraces temática de superhéroes con decoración de lujo, incluyendo detalles dorados y cortinas de terciopelo.", "source": "Ideas de fiesta 1"},
+    {"text": "Contrata a un DJ profesional que pueda tocar música temática para superhéroes como Batman y Wonder Woman.", "source": "Ideas de entretenimiento"},
+    {"text": "Para el catering, sirve platos con nombres de superhéroes, como 'El smoothie verde de Hulk' y 'El filete de poder de Iron Man'.", "source": "Ideas de catering"},
+    {"text": "Decora con logotipos icónicos de superhéroes y proyecciones de Gotham y otras ciudades de superhéroes alrededor del lugar.", "source": "Ideas de decoración"},
+    {"text": "Experiencias interactivas con realidad virtual donde los invitados pueden participar en simulaciones de superhéroes o competir en juegos temáticos.", "source": "Ideas de entretenimiento"}
+]
+
+source_docs = [
+    Document(page_content=doc["text"], metadata={"source": doc["source"]})
+    for doc in party_ideas
+]
+
+# Dividir los documentos anteriores en trozos (chunks) más pequeños para que la búsqueda sea más eficiente
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,
+    chunk_overlap=50,
+    add_start_index=True,
+    strip_whitespace=True,
+    separators=["\n\n", "\n", ".", " ", ""],
+)
+docs_processed = text_splitter.split_documents(source_docs)
+
+# Crear una herramienta de recuperación (retriever tool)
+party_planning_retriever = PartyPlanningRetrieverTool(docs_processed)
+
+# Inicializar el agente
+agent = CodeAgent(tools=[party_planning_retriever], model=InferenceClientModel())
+
+# Ejemplo de uso
+response = agent.run(
+    "Encuentra ideas para una fiesta temática de superhéroes de lujo, incluyendo entretenimiento, catering y opciones de decoración."
+)
+
+print(response)
+```
+
+Este agente mejorado puede:
+1. Primero verificar la documentación para obtener información relevante
+2. Combinar ideas de la base de conocimiento
+3. Mantener el contexto de la conversación en memoria
+
+## Capacidades de Recuperación Mejoradas
+
+Al construir sistemas RAG con agentes, el agente puede emplear estrategias sofisticadas como:
+
+1. **Reformulación de Consultas:** En lugar de usar la consulta del usuario en bruto, el agente puede elaborar términos de búsqueda optimizados que coincidan mejor con los documentos objetivo
+2. **Recuperación Multi-Paso:** El agente puede realizar múltiples búsquedas, utilizando los resultados iniciales para informar consultas posteriores
+3. **Integración de Fuentes:** La información puede combinarse de múltiples fuentes como búsqueda web y documentación local
+4. **Validación de Resultados:** El contenido recuperado puede analizarse para determinar su relevancia y precisión antes de incluirlo en las respuestas
+
+Los **sistemas RAG con agentes efectivos** requieren una consideración cuidadosa de varios aspectos clave. El agente **debe seleccionar entre las herramientas disponibles según el tipo de consulta y el contexto**. Los **sistemas de memoria** ayudan a mantener el **historial de conversación y evitar recuperaciones repetitivas**. Tener **estrategias de respaldo** garantiza que el sistema pueda seguir proporcionando valor incluso cuando los métodos de recuperación principales fallan. Además, implementar **pasos de validación ayuda a garantizar la precisión y relevancia de la información recuperada**.
+
+# Sistemas Multi-Agente
+
+Los sistemas multi-agente permiten que **agentes especializados colaboren en tareas complejas**, mejorando la **modularidad, escalabilidad y robustez**. En lugar de depender de un solo agente, las tareas se distribuyen entre agentes con capacidades distintas.
+
+En **smolagents**, diferentes agentes pueden combinarse para generar código Python, llamar a herramientas externas, realizar búsquedas web y más. Al orquestar estos agentes, podemos crear flujos de trabajo potentes.
+
+Una configuración típica podría incluir:
+- Un **Agente Gestor** para la delegación de tareas
+- Un **Agente Intérprete de Código** para la ejecución de código
+- Un **Agente de Búsqueda Web** para la recuperación de información
+
+El diagrama a continuación ilustra una arquitectura multi-agente simple donde un **Agente Gestor** coordina una **Herramienta Intérprete de Código** y un **Agente de Búsqueda Web**, que a su vez utiliza herramientas como `DuckDuckGoSearchTool` y `VisitWebpageTool` para recopilar información relevante.
+
+![Sistema Multi-Agente](https://mermaid.ink/img/pako:eNp1kc1qhTAQRl9FUiQb8wIpdNO76eKubrmFks1oRg3VSYgjpYjv3lFL_2hnMWQOJwn5sqgmelRWleUSKLAtFs09jqhtoWuYUFfFAa6QA9QDTnpzamheuhxn8pt40-6l13UtS0ddhtQXj6dbR4XUGQg6zEYasTF393KjeSDGnDJKNxzj8I_7hLW5IOSmP9CH9hv_NL-d94d4DVNg84p1EnK4qlIj5hGClySWbadT-6OdsrL02MI8sFOOVkciw8zx8kaNspxnrJQE0fXKtjBMMs3JA-MpgOQwftIE9Bzj14w-cMznI_39E9Z3p0uFoA?type=png)
+
+## Sistemas Multi-Agente en Acción
+
+Un sistema multi-agente consiste en múltiples **agentes especializados** trabajando juntos bajo la coordinación de un **Agente Orquestador**. Este enfoque permite flujos de trabajo complejos distribuyendo tareas entre agentes con roles distintos.
+
+Por ejemplo, un **sistema RAG Multi-Agente** puede integrar:
+- Un **Agente Web** para navegar por internet.
+- Un **Agente Recuperador** para obtener información de bases de conocimiento.
+- Un **Agente de Generación de Imágenes** para producir elementos visuales.
+
+Todos estos agentes operan bajo un orquestador que gestiona la delegación de tareas y la interacción.
+
+## Resolviendo una tarea compleja con una jerarquía multi-agente
+
+¡La recepción se acerca! Con tu ayuda, Alfred ya casi ha terminado con los preparativos.
+
+Pero ahora hay un problema: el **Batmóvil ha desaparecido**. Alfred necesita encontrar un reemplazo, y encontrarlo rápidamente.
+
+Afortunadamente, se han realizado algunas biografías cinematográficas sobre la vida de Bruce Wayne, así que tal vez Alfred podría conseguir un automóvil abandonado en uno de los sets de filmación y rediseñarlo según los estándares modernos, lo que ciertamente incluiría una opción de conducción autónoma completa.
+
+Pero esto podría estar en cualquier lugar de las locaciones de filmación alrededor del mundo, que podrían ser numerosas.
+
+Así que Alfred quiere tu ayuda. **¿Podrías construir un agente capaz de resolver esta tarea?**
+
+> 👉 Encuentra todas las locaciones de filmación de Batman en el mundo, calcula el tiempo de transferencia en avión de carga hasta allí, y represéntalas en un mapa, con un color que varíe según el tiempo de transferencia en avión. También representa algunas fábricas de superdeportivos con el mismo tiempo de transferencia en avión.
+
+¡Vamos a construir esto!
+
+Este ejemplo necesita algunos paquetes adicionales, así que vamos a instalarlos primero:
+
+```bash
+pip install 'smolagents[litellm]' matplotlib geopandas shapely kaleido -q
+```
+
+### Primero creamos una herramienta para obtener el tiempo de transferencia del avión de carga.
+
+```python
+import math
+from typing import Optional, Tuple
+
+from smolagents import tool
+
+@tool
+def calculate_cargo_travel_time(
+    origin_coords: Tuple[float, float],
+    destination_coords: Tuple[float, float],
+    cruising_speed_kmh: Optional[float] = 750.0,  # Average speed for cargo planes
+) -> float:
+    """
+    Calculate the travel time for a cargo plane between two points on Earth using great-circle distance.
+
+    Args:
+        origin_coords: Tuple of (latitude, longitude) for the starting point
+        destination_coords: Tuple of (latitude, longitude) for the destination
+        cruising_speed_kmh: Optional cruising speed in km/h (defaults to 750 km/h for typical cargo planes)
+
+    Returns:
+        float: The estimated travel time in hours
+
+    Example:
+        >>> # Chicago (41.8781° N, 87.6298° W) to Sydney (33.8688° S, 151.2093° E)
+        >>> result = calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093))
+    """
+
+    def to_radians(degrees: float) -> float:
+        return degrees * (math.pi / 180)
+
+    # Extract coordinates
+    lat1, lon1 = map(to_radians, origin_coords)
+    lat2, lon2 = map(to_radians, destination_coords)
+
+    # Earth's radius in kilometers
+    EARTH_RADIUS_KM = 6371.0
+
+    # Calculate great-circle distance using the haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    )
+    c = 2 * math.asin(math.sqrt(a))
+    distance = EARTH_RADIUS_KM * c
+
+    # Add 10% to account for non-direct routes and air traffic controls
+    actual_distance = distance * 1.1
+
+    # Calculate flight time
+    # Add 1 hour for takeoff and landing procedures
+    flight_time = (actual_distance / cruising_speed_kmh) + 1.0
+
+    # Format the results
+    return round(flight_time, 2)
+
+print(calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093)))
+```
+
+### Configurando el agente
+
+Para el proveedor de modelos, usamos Together AI, ¡uno de los nuevos [proveedores de inferencia en el Hub](https://huggingface.co/blog/inference-providers)!
+
+La herramienta GoogleSearchTool usa la [API de Serper](https://serper.dev) para buscar en la web, por lo que requiere haber configurado la variable de entorno `SERPAPI_API_KEY` y pasar `provider="serpapi"` o tener `SERPER_API_KEY` y pasar `provider=serper`.
+
+Si no tienes ningún proveedor de Serp API configurado, puedes usar `DuckDuckGoSearchTool` pero ten en cuenta que tiene un límite de tasa.
+
+```python
+import os
+from PIL import Image
+from smolagents import CodeAgent, GoogleSearchTool, InferenceClientModel, VisitWebpageTool
+
+model = InferenceClientModel(model_id="Qwen/Qwen2.5-Coder-32B-Instruct", provider="together")
+```
+
+Podemos empezar creando un agente simple como base para darnos un informe simple.
+
+```python
+task = """Encuentra todas las locaciones de filmación de Batman en el mundo, calcula el tiempo de transferencia en avión de carga hasta aquí (estamos en Gotham, 40.7128° N, 74.0060° W), y devuélvelas a mí como un dataframe de pandas.
+También dame algunas fábricas de superdeportivos con el mismo tiempo de transferencia en avión."""
+```
+
+```python
+agent = CodeAgent(
+    model=model,
+    tools=[GoogleSearchTool("serper"), VisitWebpageTool(), calculate_cargo_travel_time],
+    additional_authorized_imports=["pandas"],
+    max_steps=20,
+)
+```
+
+```python
+result = agent.run(task)
+```
+
+```python
+result
+```
+
+En nuestro caso, genera este output:
+
+```python
+|  | Location                                             | Travel Time to Gotham (hours) |
+|--|------------------------------------------------------|------------------------------|
+| 0  | Necropolis Cemetery, Glasgow, Scotland, UK         | 8.60                         |
+| 1  | St. George's Hall, Liverpool, England, UK         | 8.81                         |
+| 2  | Two Temple Place, London, England, UK             | 9.17                         |
+| 3  | Wollaton Hall, Nottingham, England, UK           | 9.00                         |
+| 4  | Knebworth House, Knebworth, Hertfordshire, UK    | 9.15                         |
+| 5  | Acton Lane Power Station, Acton Lane, Acton, UK  | 9.16                         |
+| 6  | Queensboro Bridge, New York City, USA            | 1.01                         |
+| 7  | Wall Street, New York City, USA                  | 1.00                         |
+| 8  | Mehrangarh Fort, Jodhpur, Rajasthan, India       | 18.34                        |
+| 9  | Turda Gorge, Turda, Romania                      | 11.89                        |
+| 10 | Chicago, USA                                     | 2.68                         |
+| 11 | Hong Kong, China                                 | 19.99                        |
+| 12 | Cardington Studios, Northamptonshire, UK        | 9.10                         |
+| 13 | Warner Bros. Leavesden Studios, Hertfordshire, UK | 9.13                         |
+| 14 | Westwood, Los Angeles, CA, USA                  | 6.79                         |
+| 15 | Woking, UK (McLaren)                             | 9.13                         |
+```
+
+Podríamos mejorar esto un poco agregando algunos pasos de planificación y más instrucciones.
+
+Los pasos de planificación permiten al agente pensar con anticipación y planificar sus próximos pasos, lo que puede ser útil para tareas más complejas.
+
+```python
+agent.planning_interval = 4
+
+detailed_report = agent.run(f"""
+Eres un analista experto. Creas informes exhaustivos después de visitar muchos sitios web.
+No dudes en buscar muchas consultas a la vez en un bucle for.
+Para cada dato que encuentres, visita la URL de origen para confirmar los números.
+
+{task}
+""")
+
+print(detailed_report)
+```
+
+```python
+detailed_report
+```
+
+En nuestro caso, genera este output:
+
+```python
+|  | Location                                         | Travel Time (hours) |
+|--|--------------------------------------------------|---------------------|
+| 0  | Bridge of Sighs, Glasgow Necropolis, Glasgow, UK | 8.6                 |
+| 1  | Wishart Street, Glasgow, Scotland, UK         | 8.6                 |
+```
+
+Gracias a estos cambios rápidos, obtuvimos un informe mucho más conciso proporcionando simplemente una instrucción detallada a nuestro agente y dándole capacidades de planificación.
+
+El contexto de la ventana del modelo se está llenando rápidamente. Así que **si le pedimos a nuestro agente que combine los resultados de una búsqueda detallada con otra, será más lento y rápidamente aumentará los tokens y los costos**.
+
+➡️ Necesitamos mejorar la estructura de nuestro sistema.
+
+### ✌️ Dividiendo la tarea entre dos agentes
+
+Las estructuras multi-agente permiten separar memorias entre diferentes sub-tareas, con dos grandes beneficios:
+- Cada agente está más enfocado en su tarea principal, por lo que es más performante
+- Separar memorias reduce la cantidad de tokens de entrada en cada paso, reduciendo la latencia y el costo.
+
+Vamos a crear un equipo con un agente de búsqueda web dedicado, gestionado por otro agente.
+
+El agente gestor debe tener capacidades de trazado para escribir su informe final: así que vamos a darle acceso a importaciones adicionales, incluyendo `matplotlib`, y `geopandas` + `shapely` para trazado espacial.
+
+```python
+model = InferenceClientModel(
+    "Qwen/Qwen2.5-Coder-32B-Instruct", provider="together", max_tokens=8096
+)
+
+web_agent = CodeAgent(
+    model=model,
+    tools=[
+        GoogleSearchTool(provider="serper"),
+        VisitWebpageTool(),
+        calculate_cargo_travel_time,
+    ],
+    name="web_agent",
+    description="Navega por la web para encontrar información",
+    verbosity_level=0,
+    max_steps=10,
+)
+```
+
+El agente gestor necesitará hacer algo de trabajo mental pesado.
+
+Así que le damos el modelo más fuerte [DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1), y agregamos un `planning_interval` a la mezcla.
+
+```python
+from smolagents.utils import encode_image_base64, make_image_url
+from smolagents import OpenAIServerModel
+
+def check_reasoning_and_plot(final_answer, agent_memory):
+    final_answer
+    multimodal_model = OpenAIServerModel("gpt-4o", max_tokens=8096)
+    filepath = "saved_map.png"
+    assert os.path.exists(filepath), "Asegúrate de guardar el trazado bajo saved_map.png!"
+    image = Image.open(filepath)
+    prompt = (
+        f"Aquí está una tarea dada por el usuario y los pasos del agente: {agent_memory.get_succinct_steps()}. Ahora aquí está el trazado que se hizo."
+        "Por favor, verifica que el proceso de razonamiento y el trazado sean correctos: ¿responden correctamente a la tarea dada?"
+        "Primero enumera razones por las que sí/no, luego escribe tu decisión final: PASS en mayúsculas si es satisfactorio, FAIL si no lo es."
+        "No seas duro: si el trazado resuelve en gran medida la tarea, debe pasar."
+        "Para pasar, un trazado debe hacerse usando px.scatter_map y no cualquier otro método (scatter_map se ve mejor)."
+    )
+    messages = [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": prompt,
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {"url": make_image_url(encode_image_base64(image))},
+                },
+            ],
+        }
+    ]
+    output = multimodal_model(messages).content
+    print("Retroalimentación: ", output)
+    if "FAIL" in output:
+        raise Exception(output)
+    return True
+
+manager_agent = CodeAgent(
+    model=InferenceClientModel("deepseek-ai/DeepSeek-R1", provider="together", max_tokens=8096),
+    tools=[calculate_cargo_travel_time],
+    managed_agents=[web_agent],
+    additional_authorized_imports=[
+        "geopandas",
+        "plotly",
+        "shapely",
+        "json",
+        "pandas",
+        "numpy",
+    ],
+    planning_interval=5,
+    verbosity_level=2,
+    final_answer_checks=[check_reasoning_and_plot],
+    max_steps=15,
+)
+```
+
+Vamos a inspeccionar qué se ve este equipo:
+
+```python
+manager_agent.visualize()
+```
+
+Esto generará algo como esto, ayudándonos a entender la estructura y la relación entre agentes y herramientas utilizadas:
+
+```python
+CodeAgent | deepseek-ai/DeepSeek-R1
+├── ✅ Authorized imports: ['geopandas', 'plotly', 'shapely', 'json', 'pandas', 'numpy']
+├── 🛠️ Tools:
+│   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+│   ┃ Name                        ┃ Description                           ┃ Arguments                             ┃
+│   ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│   │ calculate_cargo_travel_time │ Calculate the travel time for a cargo │ origin_coords (`array`): Tuple of     │
+│   │                             │ plane between two points on Earth     │ (latitude, longitude) for the         │
+│   │                             │ using great-circle distance.          │ starting point                        │
+│   │                             │                                       │ destination_coords (`array`): Tuple   │
+│   │                             │                                       │ of (latitude, longitude) for the      │
+│   │                             │                                       │ destination                           │
+│   │                             │                                       │ cruising_speed_kmh (`number`):        │
+│   │                             │                                       │ Optional cruising speed in km/h       │
+│   │                             │                                       │ (defaults to 750 km/h for typical     │
+│   │                             │                                       │ cargo planes)                         │
+│   │ final_answer                │ Provides a final answer to the given  │ answer (`any`): The final answer to   │
+│   │                             │ problem.                              │ the problem                           │
+│   └─────────────────────────────┴───────────────────────────────────────┴───────────────────────────────────────┘
+└── 🤖 Managed agents:
+    └── web_agent | CodeAgent | Qwen/Qwen2.5-Coder-32B-Instruct
+        ├── ✅ Authorizar imports: []
+        ├── 📝 Description: Navega por la web para encontrar información
+        └── 🛠️ Tools:
+            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+            ┃ Name                        ┃ Description                       ┃ Arguments                         ┃
+            ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+            │ web_search                  │ Performs a google web search for  │ query (`string`): The search      │
+            │                             │ your query then returns a string  │ query to perform.                 │
+            │                             │ of the top search results.        │ filter_year (`integer`):          │
+            │                             │                                   │ Optionally restrict results to a  │
+            │                             │                                   │ certain year                      │
+            │ visit_webpage               │ Visits a webpage at the given url │ url (`string`): The url of the    │
+            │                             │ and reads its content as a        │ webpage to visit.                 │
+            │                             │ markdown string. Use this to      │                                   │
+            │                             │ browse webpages.                  │                                   │
+            │ calculate_cargo_travel_time │ Calculate the travel time for a   │ origin_coords (`array`): Tuple of │
+            │                             │ cargo plane between two points on │ (latitude, longitude) for the     │
+            │                             │ Earth using great-circle          │ starting point                    │
+            │                             │ distance.                         │ destination_coords (`array`):     │
+            │                             │                                   │ Tuple of (latitude, longitude)    │
+            │                             │                                   │ for the destination               │
+            │                             │                                   │ cruising_speed_kmh (`number`):    │
+            │                             │                                   │ Optional cruising speed in km/h   │
+            │                             │                                   │ (defaults to 750 km/h for typical │
+            │                             │                                   │ cargo planes)                     │
+            │ final_answer                │ Provides a final answer to the    │ answer (`any`): The final answer  │
+            │                             │ given problem.                    │ to the problem                    │
+            └─────────────────────────────┴───────────────────────────────────┴───────────────────────────────────┘
+```
+
+```python
+manager_agent.run("""
+Encuentra todas las locaciones de filmación de Batman en el mundo, calcula el tiempo de transferencia en avión de carga hasta aquí (estamos en Gotham, 40.7128° N, 74.0060° W).
+También dame algunas fábricas de superdeportivos con el mismo tiempo de transferencia en avión.
+Necesito al menos 6 puntos en total.
+Representa esto como un mapa espacial del mundo, con las locaciones representadas como puntos de dispersión con un color que depende del tiempo de transferencia, y guárdalo en saved_map.png!
+
+Aquí hay un ejemplo de cómo trazar y devolver un mapa:
+import plotly.express as px
+df = px.data.carshare()
+fig = px.scatter_map(df, lat="centroid_lat", lon="centroid_lon", text="name", color="peak_hour", size=100,
+     color_continuous_scale=px.colors.sequential.Magma, size_max=15, zoom=1)
+fig.show()
+fig.write_image("saved_image.png")
+final_answer(fig)
+
+Nunca intentes procesar cadenas usando código: cuando tengas una cadena para leer, simplemente imprímela y la verás.
+""")
+```
+
+No sé cómo salió en tu ejecución, pero en la mía, el agente gestor dividió hábilmente las tareas dadas al agente web en `1. Buscar locaciones de filmación de Batman`, luego `2. Encontrar fábricas de superdeportivos`, antes de agregar las listas y trazar el mapa.
+
+Vamos a ver qué se ve el mapa inspeccionándolo directamente desde el estado del agente:
+
+```python
+manager_agent.python_executor.state["fig"]
+```
+
+Esto generará el mapa:
+
+![Multiagent system example output map](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/output_map.png)
+
 ## Recursos
 
 - [Blog de smolagents](https://huggingface.co/blog/smolagents) - Introducción a smolagents e interacciones de código
@@ -794,4 +1339,7 @@ Con esta configuración, Alfred puede descubrir rápidamente opciones de entrete
 - [Documentación de Herramientas](https://huggingface.co/docs/smolagents/v1.8.1/en/reference/tools) - Documentación de referencia completa sobre herramientas.
 - [Tour Guiado de Herramientas](https://huggingface.co/docs/smolagents/v1.8.1/en/guided_tour#tools) - Un tour guiado paso a paso para ayudarte a construir y utilizar herramientas eficientemente.
 - [Construyendo Agentes Efectivos](https://huggingface.co/docs/smolagents/tutorials/building_good_agents) - Una guía detallada sobre mejores prácticas para desarrollar agentes de función personalizados fiables y de alto rendimiento.
-
+- [RAG con Agentes: ¡potencia tu RAG con reformulación de consultas y auto-consulta! 🚀](https://huggingface.co/learn/cookbook/agent_rag) - Receta para desarrollar un sistema RAG con Agentes utilizando smolagents.
+- [Sistemas Multi-Agente](https://huggingface.co/docs/smolagents/main/en/examples/multiagents) – Visión general de los sistemas multi-agente.  
+- [¿Qué es Agentic RAG?](https://weaviate.io/blog/what-is-agentic-rag) – Introducción a Agentic RAG.  
+- [Sistema RAG Multi-Agente 🤖🤝🤖 Receta](https://huggingface.co/learn/cookbook/multiagent_rag_system) – Guía paso a paso para construir un sistema RAG multi-agente.  
