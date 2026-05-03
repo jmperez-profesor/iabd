@@ -1,0 +1,2174 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data.">
+      
+      
+      
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm7/">
+      
+      
+        <link rel="prev" href="../llm6/">
+      
+      
+        <link rel="next" href="../../hf/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sesión 7 - Introducción al Caso de Uso para RAG Agéntico - Inteligencia Artificial y Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduccion-al-caso-de-uso-para-rag-agentico" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-header__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inteligencia Artificial y Big Data
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sesión 7 - Introducción al Caso de Uso para RAG Agéntico
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Cambiar a modo normal"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo normal" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introducción
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../llm2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../hf/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hugging Face
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Datasets/Datasets/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Datasets
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://jmperez-profesor.github.io/iabd/" title="Inteligencia Artificial y Big Data" class="md-nav__button md-logo" aria-label="Inteligencia Artificial y Big Data" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Inteligencia Artificial y Big Data
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLMs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLMs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 2 - Evolución de una aplicación LLM (de chatbot a agentes y RAG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 3 - Creación de agentes en Mistral AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 4- Agentes con Chainlit + API de Mistral (herramientas integradas y funciones personalizadas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 6 - Smolagents y orquestación multiagente con Chainlit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 7 - Introducción al Caso de Uso para RAG Agéntico
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 7 - Introducción al Caso de Uso para RAG Agéntico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#una-gala-para-recordar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Una gala para recordar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#los-requisitos-de-la-gala" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Los requisitos de la gala
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../hf/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hugging Face
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hugging Face
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Ejemplo_gradio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Tasks_vc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visión por computador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_2" id="__nav_3_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textos (NLP)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Textos (NLP)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/01_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/02_reto1_sentimientos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reto1 - Sentimientos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/soluciones/reto1_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución Reto1 - Sentimientos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/03_reto2_clasificacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reto2 - Clasificacion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/soluciones/reto2_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución Reto2 - Clasificacion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/04_reto3_generacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reto3 - Generación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/nlp/soluciones/reto3_solucion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solución Reto3 - Generación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hf/Referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Datasets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/Datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets en Hugging Face
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/datasets_aitor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cargando datasets en HuggingFace (apuntes de Aitor Medrano)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Actividades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Datasets/Actividad1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividad 1 - Datasets de Hugging Face
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduccion-al-caso-de-uso-para-rag-agentico">Introducción al Caso de Uso para RAG Agéntico</h1>
+<p>En esta sesión, ayudaremos a Alfred, nuestro amigable agente que está organizando la gala, utilizando RAG Agéntico para crear una herramienta que pueda usarse para responder preguntas sobre los invitados en la gala. </p>
+<h2 id="una-gala-para-recordar">Una gala para recordar</h2>
+<p><strong>Hemos decidido organizar la fiesta más extravagante y opulenta del siglo.</strong> Esto significa banquetes lujosos, bailarines encantadores, DJs de renombre, bebidas exquisitas, un impresionante espectáculo de fuegos artificiales y mucho más.</p>
+<p>Alfred, nuestro amigable agente de vecindario, se está preparando para atender todas tus necesidades para esta fiesta, y <strong>Alfred va a gestionar todo por sí mismo</strong>. Para hacerlo, necesita tener acceso a toda la información sobre la fiesta, incluyendo el menú, los invitados, el horario, pronósticos del clima, ¡y mucho más!</p>
+<p>No solo eso, sino que también necesitas asegurarse de que la fiesta sea un éxito, por lo que <strong>necesitas poder responder cualquier pregunta sobre la fiesta durante la fiesta</strong>, mientras maneja situaciones inesperadas que puedan surgir.</p>
+<p>No puede hacer esto solo, así que debemos asegurarnos de que Alfred tenga acceso a toda la información y herramientas que necesite.</p>
+<p>Primero, vamos a darle una lista de requisitos estrictos para la gala.</p>
+<h2 id="los-requisitos-de-la-gala">Los requisitos de la gala</h2>
+<p>Una persona debidamente educada en la época del <strong>Renacimiento</strong> necesitas tener tres rasgos principales.
+Él o ella necesitaba ser profundo en el <strong>conocimiento de deportes, cultura y ciencia</strong>. Por lo tanto, debemos asegurarnos de que podamos impresionar a nuestros invitados con nuestro conocimiento y proporcionarles una gala verdaderamente inolvidable.
+Sin embargo, para evitar conflictos, hay algunos <strong>temas, como la política y la religión, que deben evitarse en una gala.</strong> Debe ser una fiesta divertida sin conflictos relacionados con creencias e ideales.</p>
+<p>Según la etiqueta, <strong>un buen anfitrión debe conocer los antecedentes de los invitados</strong>, incluyendo sus intereses y esfuerzos. Un buen anfitrión también chismea y comparte historias sobre los invitados entre sí.</p>
+<p>Por último, debemos asegurarnos de tener <strong>algún conocimiento general sobre el clima</strong> para poder encontrar continuamente una actualización en tiempo real que asegure el momento perfecto para lanzar los fuegos artificiales y terminar la gala con broche de oro. 🎆</p>
+<p>Como puedes ver, Alfred necesita mucha información para organizar la gala.
+Afortunadamente, podemos ayudar y preparar a Alfred dándole algo de <strong>entrenamiento en Generación Aumentada por Recuperación (RAG)</strong>.</p>
+<h1 id="generacion-aumentada-por-recuperacion-con-agentes-rag-agentico">Generación Aumentada por Recuperación con Agentes (RAG Agéntico)</h1>
+<p>Los <strong>LLMs están entrenados en enormes volúmenes de datos para aprender conocimiento general</strong>.
+Sin embargo, el modelo de conocimiento del mundo de los LLMs no siempre puede contener información relevante y actualizada.
+<strong>RAG resuelve este problema encontrando y recuperando información relevante de tus datos y enviándola al LLM.</strong></p>
+<p><img alt="RAG" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/llama-index/rag.png" /></p>
+<p>Ahora, debemos pensar en cómo funciona <strong>Alfred</strong>:</p>
+<ol>
+<li>Le hemos pedido a Alfred que ayude a planificar una gala</li>
+<li>Alfred necesita encontrar las últimas noticias e información meteorológica</li>
+<li>Alfred necesita estructurar y buscar la información de los invitados</li>
+</ol>
+<p>Así como Alfred necesita buscar en la información de tu hogar para ser útil, cualquier agente necesita una manera de encontrar y comprender datos relevantes.
+<strong>RAG Agéntico es una forma poderosa de usar agentes para responder preguntas sobre tus datos.</strong> Podemos proporcionar varias herramientas a Alfred para ayudarlo a responder preguntas.
+Sin embargo, en lugar de responder automáticamente a la pregunta basada en documentos, Alfred puede decidir usar cualquier otra herramienta o flujo para responder la pregunta.</p>
+<p><img alt="RAG Agéntico" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/llama-index/agentic-rag.png" /></p>
+<h3 id="construir-nuestro-flujo-de-trabajo-de-rag-agentico">Construir nuestro flujo de trabajo de RAG agéntico</h3>
+<p>Primero, crearemos una <strong>herramienta RAG para recuperar detalles actualizados sobre los invitados</strong>. Luego, <strong>desarrollaremos herramientas para búsqueda web, actualizaciones meteorológicas y estadísticas de descargas de modelos de Hugging Face Hub</strong>. Finalmente, <strong>integraremos todo para dar vida a nuestro agente RAG agéntico</strong>  </p>
+<h1 id="creando-una-herramienta-rag-para-historias-de-invitados">Creando una Herramienta RAG para Historias de Invitados</h1>
+<p>Alfred, nuestro agente de confianza, está preparando la gala más extravagante del siglo. Para asegurar que el evento transcurra sin problemas, Alfred necesita acceso rápido a información actualizada sobre cada invitado. Ayudemos a Alfred creando una herramienta personalizada de Generación Aumentada por Recuperación (RAG), impulsada por nuestro conjunto de datos personalizado.</p>
+<h2 id="por-que-rag-para-una-gala">¿Por qué RAG para una Gala?</h2>
+<p>Imagina a Alfred mezclándose entre los invitados, necesitando recordar detalles específicos sobre cada persona en un instante. Un LLM tradicional podría tener dificultades con esta tarea porque:</p>
+<ol>
+<li>La lista de invitados es específica para tu evento y no está en los datos de entrenamiento del modelo</li>
+<li>La información de los invitados puede cambiar o actualizarse frecuentemente</li>
+<li>Alfred necesita recuperar detalles precisos como direcciones de correo electrónico</li>
+</ol>
+<p>Aquí es donde brilla la <strong>Generación Aumentada por Recuperación (RAG)!</strong> Al combinar un sistema de recuperación con un LLM, Alfred puede acceder a información precisa y actualizada sobre tus invitados bajo demanda.</p>
+<h2 id="configurando-nuestra-aplicacion">Configurando nuestra aplicación</h2>
+<p>Desarrollaremos nuestro agente dentro de un Espacio de HF(HF Space), como un proyecto Python estructurado. Este enfoque nos ayuda a mantener un código limpio y modular, organizando diferentes funcionalidades en archivos separados. Además, esto crea un caso de uso más realista donde desplegaríamos la aplicación para uso público.</p>
+<h3 id="estructura-del-proyecto">Estructura del Proyecto</h3>
+<ul>
+<li><strong><code>tools.py</code></strong> – Proporciona herramientas auxiliares para el agente.  </li>
+<li><strong><code>retriever.py</code></strong> – Implementa funciones de recuperación para apoyar el acceso al conocimiento.  </li>
+<li><strong><code>app.py</code></strong> – Integra todos los componentes en un agente completamente funcional.</li>
+</ul>
+<h2 id="descripcion-general-del-conjunto-de-datos">Descripción general del conjunto de datos</h2>
+<p>Nuestro conjunto de datos <a href="https://huggingface.co/datasets/agents-course/unit3-invitees/"><code>agents-course/unit3-invitees</code></a> contiene los siguientes campos para cada invitado:</p>
+<ul>
+<li><strong>Nombre</strong>: Nombre completo del invitado</li>
+<li><strong>Relación</strong>: Cómo se relaciona el invitado con el anfitrión</li>
+<li><strong>Descripción</strong>: Una breve biografía o hechos interesantes sobre el invitado</li>
+<li><strong>Dirección de Correo Electrónico</strong>: Información de contacto para enviar invitaciones o seguimientos</li>
+</ul>
+<p>A continuación se muestra una vista previa del conjunto de datos:</p>
+<p><img alt="" src="../images/07/agentes_rag_datos_invitados.png" /></p>
+<blockquote>
+<p>[!TIP]
+En un escenario del mundo real, este conjunto de datos podría ampliarse para incluir preferencias dietéticas, intereses de regalos, temas de conversación a evitar y otros detalles útiles para un anfitrión.</p>
+</blockquote>
+<h2 id="construyendo-la-herramienta-de-lista-de-invitados">Construyendo la herramienta de lista de invitados</h2>
+<p>Crearemos una herramienta personalizada que Alfred pueda usar para recuperar rápidamente información de los invitados durante la gala. Dividamos esto en tres pasos manejables:</p>
+<ol>
+<li>Cargar y preparar el conjunto de datos</li>
+<li>Crear la Herramienta de Recuperación</li>
+<li>Integrar la Herramienta con Alfred</li>
+</ol>
+<h3 id="paso-1-cargar-y-preparar-el-conjunto-de-datos">Paso 1: Cargar y Preparar el Conjunto de Datos</h3>
+<p>Primero, necesitamos transformar nuestros datos brutos de invitados en un formato optimizado para la recuperación.</p>
+<p>Usaremos la librería <code>datasets</code> de Hugging Face para cargar el conjunto de datos y convertirlo en una lista de objetos <code>Document</code> del módulo <code>langchain.docstore.document</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datasets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+
+<span class="c1"># Cargar el conjunto de datos</span>
+<span class="n">guest_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;agents-course/unit3-invitees&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convertir entradas del conjunto de datos en objetos Document</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Document</span><span class="p">(</span>
+        <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="sa">f</span><span class="s2">&quot;Name: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;Relation: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;relation&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;Description: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;Email: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">]),</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">guest</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]}</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">guest</span> <span class="ow">in</span> <span class="n">guest_dataset</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>En el código anterior:
+- Cargamos el conjunto de datos
+- Convertimos cada entrada de invitado en un objeto <code>Document</code> con contenido formateado
+- Almacenamos los objetos <code>Document</code> en una lista</p>
+<p>Esto significa que tenemos todos nuestros datos disponibles de manera ordenada para poder comenzar a configurar nuestra recuperación.</p>
+<h3 id="paso-2-crear-la-herramienta-de-recuperacion">Paso 2: Crear la Herramienta de Recuperación</h3>
+<p>Ahora, creemos una herramienta personalizada que Alfred pueda usar para buscar en nuestra información de invitados.</p>
+<p>Usaremos el <code>BM25Retriever</code> del módulo <code>langchain_community.retrievers</code> para crear una herramienta de recuperación.</p>
+<blockquote>
+<p>[!TIP]
+El BM25Retriever es un gran punto de partida para la recuperación, pero para búsquedas semánticas más avanzadas, podrías considerar usar recuperadores basados en embeddings como los de sentence-transformers.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BM25Retriever</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GuestInfoRetrieverTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;guest_info_retriever&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Recupera información detallada sobre los invitados de la gala basada en su nombre o relación.&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;El nombre o relación del invitado sobre el que deseas información.&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">BM25Retriever</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[:</span><span class="mi">3</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;No se encontró información que coincida con la búsqueda.&quot;</span>
+
+<span class="c1"># Inicializar la herramienta</span>
+<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">GuestInfoRetrieverTool</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</code></pre></div>
+<p>Entendamos esta herramienta paso a paso: 
+- El <code>name</code> y la <code>description</code> ayudan al agente a entender cuándo y cómo usar esta herramienta
+- Los <code>inputs</code> definen qué parámetros espera la herramienta (en este caso, una consulta de búsqueda)
+- Estamos usando un <code>BM25Retriever</code>, que es un algoritmo poderoso de recuperación de texto que no requiere embeddings
+- El método <code>forward</code> procesa la consulta y devuelve la información más relevante del invitado</p>
+<h3 id="paso-3-integrar-la-herramienta-con-alfred">Paso 3: Integrar la Herramienta con Alfred</h3>
+<p>Finalmente, juntemos todo creando nuestro agente y equipándolo con nuestra herramienta personalizada:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="c1"># Inicializar el modelo de Hugging Face</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
+
+<span class="c1"># Crear Alfred, nuestro agente de gala, con la herramienta de información de invitados</span>
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo de consulta que Alfred podría recibir durante la gala</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre nuestra invitada llamada &#39;Lady Ada Lovelace&#39;.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Basado en la información que recuperé, Lady Ada Lovelace es una estimada matemática y amiga. Es reconocida por su trabajo pionero en matemáticas e informática, a menudo celebrada como la primera programadora de computadoras debido a su trabajo en la Máquina Analítica de Charles Babbage. Su dirección de correo electrónico es ada.lovelace@example.com.
+</code></pre></div>
+<p>Lo que está sucediendo en este paso final:
+- Inicializamos un modelo de Hugging Face usando la clase <code>InferenceClientModel</code>
+- Creamos nuestro agente (Alfred) como un <code>CodeAgent</code>, que puede ejecutar código Python para resolver problemas
+- Le pedimos a Alfred que recupere información sobre una invitada llamada "Lady Ada Lovelace"</p>
+<h2 id="ejemplo-de-interaccion">Ejemplo de Interacción</h2>
+<p>Durante la gala, una conversación podría fluir así:</p>
+<p><strong>Tú:</strong> "Alfred, ¿quién es ese caballero hablando con el embajador?"</p>
+<p><strong>Alfred:</strong> <em>rápidamente busca en la base de datos de invitados</em> "Ese es el Dr. Nikola Tesla, señor. Es un viejo amigo de sus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo con usted. Solo recuerde que es apasionado por las palomas, así que eso podría ser un buen tema de conversación."</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dr. Nikola Tesla&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viejo amigo de días universitarios&quot;</span><span class="p">,</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;El Dr. Nikola Tesla es un viejo amigo de sus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo con usted. Solo recuerde que es apasionado por las palomas, así que eso podría ser un buen tema de conversación.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nikola.tesla@gmail.com&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="llevandolo-mas-alla">Llevándolo Más Allá</h2>
+<p>Ahora que Alfred puede recuperar información de invitados, considera cómo podrías mejorar este sistema:</p>
+<ol>
+<li><strong>Mejorar el recuperador</strong> para usar un algoritmo más sofisticado como <a href="https://www.sbert.net/">sentence-transformers</a></li>
+<li><strong>Implementar una memoria de conversación</strong> para que Alfred recuerde interacciones previas</li>
+<li><strong>Combinar con búsqueda web</strong> para obtener la información más reciente sobre invitados desconocidos</li>
+<li><strong>Integrar múltiples índices</strong> para obtener información más completa de fuentes verificadas</li>
+</ol>
+<h1 id="construyendo-e-integrando-herramientas-para-nuestro-agente">Construyendo e integrando herramientas para nuestro Agente</h1>
+<p>En esta sección, le daremos a Alfred acceso a la web, permitiéndole encontrar las últimas noticias y actualizaciones globales. 
+Además, tendrá acceso a datos meteorológicos y estadísticas de descargas de modelos de Hugging Face Hub, para que pueda mantener conversaciones relevantes sobre temas actuales.</p>
+<h2 id="dandole-a-nuestro-agente-acceso-a-la-web">Dándole a nuestro Agente acceso a la web</h2>
+<p>Ojo, queremos que Alfred establezca su presencia como un verdadero anfitrión renacentista, con un profundo conocimiento del mundo.</p>
+<p>Para lograrlo, necesitamos asegurarnos de que Alfred tenga acceso a las últimas noticias e información sobre el mundo.</p>
+<p>¡Comencemos creando una herramienta de búsqueda web para Alfred!</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span>
+
+<span class="c1"># Inicializar la herramienta de búsqueda DuckDuckGo</span>
+<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
+
+<span class="c1"># Ejemplo de uso</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">search_tool</span><span class="p">(</span><span class="s2">&quot;¿Quién es el actual Presidente de Francia?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>The current President of France in Emmanuel Macron.
+</code></pre></div>
+<h2 id="creando-una-herramienta-personalizada-para-informacion-meteorologica-para-programar-los-fuegos-artificiales">Creando una herramienta personalizada para información meteorológica para programar los fuegos artificiales</h2>
+<p>La gala perfecta tendría fuegos artificiales bajo un cielo despejado, necesitamos asegurarnos de que los fuegos artificiales no sean cancelados debido al mal tiempo.</p>
+<p>Vamos a crear una herramienta personalizada que pueda usarse para llamar a una API meteorológica externa y obtener la información del clima para una ubicación determinada.</p>
+<blockquote>
+<p>[!TIP]
+Por simplicidad, estamos usando una API meteorológica ficticia para este ejemplo. Si quieres usar una API meteorológica real, podrías implementar una herramienta meteorológica que use la API de OpenWeatherMap, como anteriormente.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">WeatherInfoTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;weather_info&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Obtiene información meteorológica ficticia para una ubicación dada.&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;La ubicación para la que obtener información meteorológica.&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Datos meteorológicos ficticios</span>
+        <span class="n">weather_conditions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Lluvioso&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Despejado&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Ventoso&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
+        <span class="p">]</span>
+        <span class="c1"># Seleccionar aleatoriamente una condición meteorológica</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">weather_conditions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Clima en </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_c&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">°C&quot;</span>
+
+<span class="c1"># Inicializar la herramienta</span>
+<span class="n">weather_info_tool</span> <span class="o">=</span> <span class="n">WeatherInfoTool</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="creando-una-herramienta-de-estadisticas-de-hub-para-influyentes-creadores-de-ia">Creando una herramienta de estadísticas de hub para influyentes creadores de IA</h2>
+<p>Entre los asistentes a la gala están los más destacados creadores de IA. Alfred quiere impresionarlos discutiendo sus modelos, conjuntos de datos y espacios más populares. Crearemos una herramienta para obtener estadísticas de modelos desde Hugging Face Hub basadas en un nombre de usuario.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_models</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HubStatsTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;hub_stats&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Obtiene el modelo más descargado de un autor específico en Hugging Face Hub.&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;El nombre de usuario del autor/organización del modelo para encontrar modelos.&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Listar modelos del autor especificado, ordenados por descargas</span>
+            <span class="n">models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">list_models</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s2">&quot;downloads&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">models</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;El modelo más descargado de </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2"> es </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> con </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">downloads</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> descargas.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;No se encontraron modelos para el autor </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error al obtener modelos para </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Inicializar la herramienta</span>
+<span class="n">hub_stats_tool</span> <span class="o">=</span> <span class="n">HubStatsTool</span><span class="p">()</span>
+
+<span class="c1"># Ejemplo de uso</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hub_stats_tool</span><span class="p">(</span><span class="s2">&quot;facebook&quot;</span><span class="p">))</span> <span class="c1"># Ejemplo: Obtener el modelo más descargado de Facebook</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>The most downloaded model by facebook is facebook/esmfold_v1 with 12,544,550 downloads.
+</code></pre></div>
+<p>Con la <strong>Herramienta de estadísticas de Hub</strong>, Alfred ahora puede impresionar a influyentes creadores de IA discutiendo sus modelos más populares.</p>
+<h2 id="integrando-herramientas-con-alfred">Integrando herramientas con Alfred</h2>
+<p>Ahora que tenemos todas las herramientas, vamos a integrarlas en el agente de Alfred:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="c1"># Inicializar el modelo de Hugging Face</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
+
+<span class="c1"># Crear Alfred con todas las herramientas</span>
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span>
+<span class="p">)</span>
+
+<span class="c1"># Ejemplo de consulta que Alfred podría recibir durante la gala</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿Qué es Facebook y cuál es su modelo más popular?&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada: </p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Facebook es un sitio web de redes sociales donde los usuarios pueden conectarse, compartir información e interactuar con otros. El modelo más descargado de Facebook en Hugging Face Hub es ESMFold_v1.
+</code></pre></div>
+<h1 id="creando-nuestro-agente-para-la-gala">Creando nuestro Agente para la gala</h1>
+<p>Ahora que hemos construido todos los componentes necesarios para Alfred, es momento de unirlos en un agente completo que pueda ayudar a organizar nuestra extravagante gala.</p>
+<p>Vamos a combinar la recuperación de información de invitados, búsqueda web, información meteorológica y herramientas de estadísticas de Hub en un solo agente.</p>
+<h2 id="ensamblando-a-alfred-el-agente-completo">Ensamblando a Alfred: el Agente completo</h2>
+<p>En lugar de reimplementar todas las herramientas que creamos en secciones anteriores, las importaremos desde sus respectivos módulos que guardamos en los archivos <code>tools.py</code> y <code>retriever.py</code>.</p>
+<p>Importemos las bibliotecas y herramientas necesarias de las secciones anteriores:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Importar librerías necesarias</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
+
+<span class="c1"># Importar nuestras herramientas personalizadas desde sus módulos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">WeatherInfoTool</span><span class="p">,</span> <span class="n">HubStatsTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_guest_dataset</span>
+</code></pre></div>
+<p>Ahora, combinemos todas estas herramientas en un solo agente:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar el modelo de Hugging Face</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
+
+<span class="c1"># Inicializar la herramienta de búsqueda web</span>
+<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
+
+<span class="c1"># Inicializar la herramienta del clima</span>
+<span class="n">weather_info_tool</span> <span class="o">=</span> <span class="n">WeatherInfoTool</span><span class="p">()</span>
+
+<span class="c1"># Inicializar la herramienta de estadísticas de Hub</span>
+<span class="n">hub_stats_tool</span> <span class="o">=</span> <span class="n">HubStatsTool</span><span class="p">()</span>
+
+<span class="c1"># Cargar el conjunto de datos de invitados e inicializar la herramienta de información de invitados</span>
+<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">load_guest_dataset</span><span class="p">()</span>
+
+<span class="c1"># Crear a Alfred con todas las herramientas</span>
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">],</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">add_base_tools</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Agregar cualquier herramienta base adicional</span>
+    <span class="n">planning_interval</span><span class="o">=</span><span class="mi">3</span>   <span class="c1"># Habilitar planificación cada 3 pasos</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Importar librerías necesarias</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.agent.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentWorkflow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.huggingface_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceInferenceAPI</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">guest_info_tool</span>
+</code></pre></div>
+<p>Ahora, combinemos todas estas herramientas en un solo agente:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar el modelo de Hugging Face</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">HuggingFaceInferenceAPI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">)</span>
+
+<span class="c1"># Crear Alfred con todas las herramientas</span>
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">AgentWorkflow</span><span class="o">.</span><span class="n">from_tools_or_functions</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Annotated</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnyMessage</span><span class="p">,</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">AIMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">START</span><span class="p">,</span> <span class="n">StateGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools_condition</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEndpoint</span><span class="p">,</span> <span class="n">ChatHuggingFace</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_guest_dataset</span>
+</code></pre></div>
+<p>Ahora, combina todas estas herramientas en un solo agente:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar la herramienta de búsqueda web</span>
+<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
+
+<span class="c1"># Cargar el conjunto de datos de invitados e inicializar la herramienta de información de invitados</span>
+<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">load_guest_dataset</span><span class="p">()</span>
+
+<span class="c1"># Generar la interfaz de chat, incluyendo las herramientas</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">HuggingFaceEndpoint</span><span class="p">(</span>
+    <span class="n">repo_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">huggingfacehub_api_token</span><span class="o">=</span><span class="n">HUGGINGFACEHUB_API_TOKEN</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatHuggingFace</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">]</span>
+<span class="n">chat_with_tools</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+
+<span class="c1"># Generar el AgentState y el grafo del Agente</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">AnyMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">assistant</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">chat_with_tools</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])],</span>
+    <span class="p">}</span>
+
+<span class="c1">## El grafo</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">AgentState</span><span class="p">)</span>
+
+<span class="c1"># Definir nodos: estos hacen el trabajo</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="n">assistant</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">tools</span><span class="p">))</span>
+
+<span class="c1"># Definir bordes: estos determinan cómo se mueve el flujo de control</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;assistant&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span>
+    <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+    <span class="c1"># Si el último mensaje requiere una herramienta, enrutar a herramientas</span>
+    <span class="c1"># De lo contrario, proporcionar una respuesta directa</span>
+    <span class="n">tools_condition</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;assistant&quot;</span><span class="p">)</span>
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</code></pre></div>
+<p>¡Tu agente ahora está listo para usarse!</p>
+<h2 id="usando-a-alfred-ejemplos-de-principio-a-fin">Usando a Alfred: Ejemplos de Principio a Fin</h2>
+<p>Ahora que Alfred está completamente equipado con todas las herramientas necesarias, veamos cómo puede ayudar con varias tareas durante la gala.</p>
+<h3 id="ejemplo-1-encontrando-informacion-de-invitados">Ejemplo 1: Encontrando Información de Invitados</h3>
+<p>Veamos cómo Alfred puede ayudarnos con nuestra información de invitados.</p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Según la información que recuperé, Lady Ada Lovelace es una estimada matemática y amiga. Es reconocida por su trabajo pionero en matemáticas y computación, frecuentemente celebrada como la primera programadora de computadoras debido a su trabajo en el Motor Analítico de Charles Babbage. Su dirección de correo electrónico es ada.lovelace@example.com.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace. ¿Cuál es su historia?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Lady Ada Lovelace fue una matemática y escritora inglesa, mejor conocida por su trabajo en el Motor Analítico de Charles Babbage. Fue la primera en reconocer que la máquina tenía aplicaciones más allá del cálculo puro.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Ada Lovelace, también conocida como Augusta Ada King, Condesa de Lovelace, fue una matemática y escritora inglesa. Nacida el 10 de diciembre de 1815 y fallecida el 27 de noviembre de 1852, es reconocida por su trabajo en el Motor Analítico de Charles Babbage, una computadora mecánica de propósito general. Ada Lovelace es celebrada como una de las primeras programadoras de computadoras porque creó un programa para el Motor Analítico en 1843. Reconoció que la máquina podía usarse para más que simples cálculos, visualizando su potencial de una manera que pocos hicieron en ese momento. Sus contribuciones al campo de la ciencia de la computación sentaron las bases para desarrollos futuros. Un día en octubre, designado como el Día de Ada Lovelace, honra las contribuciones de las mujeres a la ciencia y la tecnología, inspirado en el trabajo pionero de Lovelace.
+</code></pre></div>
+<h3 id="ejemplo-2-verificando-el-clima-para-los-fuegos-artificiales">Ejemplo 2: Verificando el Clima para los Fuegos Artificiales</h3>
+<p>Veamos cómo Alfred puede ayudarnos con el clima.</p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada (variará debido a la aleatoriedad):
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+He revisado el clima en París para ti. Actualmente, está despejado con una temperatura de 25°C. Estas condiciones son perfectas para el espectáculo de fuegos artificiales de esta noche. Los cielos despejados proporcionarán una excelente visibilidad para el espectáculo espectacular, y la temperatura agradable asegurará que los invitados puedan disfrutar del evento al aire libre sin incomodidad.
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El clima en París esta noche es lluvioso con una temperatura de 15°C. Debido a la lluvia, puede que no sea adecuado para un espectáculo de fuegos artificiales.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El clima en París esta noche es lluvioso con una temperatura de 15°C, lo que puede no ser adecuado para tu espectáculo de fuegos artificiales.
+</code></pre></div>
+<h3 id="ejemplo-3-impresionando-a-investigadores-de-ia">Ejemplo 3: Impresionando a Investigadores de IA</h3>
+<p>Veamos cómo Alfred puede ayudarnos a impresionar a los investigadores de IA.</p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más popular de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Google. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más popular de Google en Hugging Face Hub es google/electra-base-discriminator, con 28,546,752 descargas.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más descargado de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
+</code></pre></div>
+<h3 id="ejemplo-4-combinando-multiples-herramientas">Ejemplo 4: Combinando Múltiples Herramientas</h3>
+<p>Veamos cómo Alfred puede ayudarnos a prepararnos para una conversación con el Dr. Nikola Tesla.</p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Necesito hablar con el Dr. Nikola Tesla sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+He reunido información para ayudarte a prepararte para tu conversación con el Dr. Nikola Tesla.
+
+Información del Invitado:
+Nombre: Dr. Nikola Tesla
+Relación: viejo amigo de los días universitarios
+Descripción: El Dr. Nikola Tesla es un viejo amigo de tus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo contigo. Solo recuerda que le apasionan las palomas, así que eso podría ser un buen tema para iniciar la conversación.
+Email: nikola.tesla@gmail.com
+
+Avances Recientes en Energía Inalámbrica:
+Basándome en mi búsqueda web, aquí hay algunos desarrollos recientes en transmisión de energía inalámbrica:
+1. Los investigadores han avanzado en la transmisión de energía inalámbrica de largo alcance utilizando ondas electromagnéticas enfocadas
+2. Varias empresas están desarrollando tecnologías de acoplamiento inductivo resonante para electrónica de consumo
+3. Hay nuevas aplicaciones en la carga de vehículos eléctricos sin conexiones físicas
+
+Iniciadores de Conversación:
+1. &quot;Me encantaría conocer tu nueva patente sobre transmisión de energía inalámbrica. ¿Cómo se compara con tus conceptos originales de nuestros días universitarios?&quot;
+2. &quot;¿Has visto los desarrollos recientes en acoplamiento inductivo resonante para electrónica de consumo? ¿Qué opinas de su enfoque?&quot;
+3. &quot;¿Cómo están tus palomas? Recuerdo tu fascinación por ellas.&quot;
+
+Esto debería darte mucho para discutir con el Dr. Tesla mientras demuestras tu conocimiento de sus intereses y desarrollos recientes en su campo.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Necesito hablar con el Dr. Nikola Tesla sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+Aquí hay algunos avances recientes en energía inalámbrica que podrían serte útiles para tu conversación con el Dr. Nikola Tesla:
+
+1. **Avances y Desafíos en la Transferencia de Energía Inalámbrica**: Este artículo analiza la evolución de la transferencia de energía inalámbrica (WPT) desde los métodos convencionales con cables hasta las aplicaciones modernas, incluidas las estaciones de energía espacial solar. Destaca el enfoque inicial en la tecnología de microondas y la demanda actual de WPT debido al aumento de dispositivos eléctricos.
+
+2. **Avances Recientes en Tecnologías de Transferencia de Energía Inalámbrica para Electrónica Corporal**: Este artículo explora la transferencia de energía inalámbrica (WET) como solución para alimentar dispositivos electrónicos corporales sin necesidad de baterías o cables conductores. Analiza las ventajas y posibles aplicaciones de WET en este contexto.
+
+3. **Transferencia de Energía Inalámbrica y Captación de Energía: Estado Actual y Tendencias Futuras**: Este artículo proporciona una visión general de los avances recientes en métodos de suministro de energía inalámbrica, incluida la captación de energía y la transferencia de energía inalámbrica. Presenta varias aplicaciones prometedoras y analiza las tendencias futuras en el campo.
+
+4. **Transferencia de Energía Inalámbrica: Aplicaciones, Desafíos, Barreras y
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span><span class="s2">&quot;Necesito hablar con el &#39;Dr. Nikola Tesla&#39; sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Basándome en la información proporcionada, aquí hay puntos clave para prepararte para la conversación con el &#39;Dr. Nikola Tesla&#39; sobre avances recientes en energía inalámbrica:
+1. **Transmisión de Energía Inalámbrica (WPT):** Comenta cómo WPT revoluciona la transferencia de energía al eliminar la necesidad de cables y aprovechar mecanismos como el acoplamiento inductivo y resonante.
+2. **Avances en Carga Inalámbrica:** Destaca las mejoras en eficiencia, velocidades de carga más rápidas y el auge de soluciones de carga inalámbrica certificadas Qi/Qi2.
+3. **Innovaciones 5G-Advanced y Protocolo Inalámbrico NearLink:** Menciona estos como desarrollos que mejoran la velocidad, seguridad y eficiencia en redes inalámbricas, que pueden soportar tecnologías avanzadas de energía inalámbrica.
+4. **IA y ML en el Edge:** Habla sobre cómo la inteligencia artificial y el aprendizaje automático dependerán de redes inalámbricas para llevar inteligencia al borde, mejorando la automatización e inteligencia en hogares y edificios inteligentes.
+5. **Avances en Matter, Thread y Seguridad:** Comenta estas innovaciones clave que impulsan la conectividad, eficiencia y seguridad en dispositivos y sistemas IoT.
+6. **Avances en Tecnología de Carga Inalámbrica:** Incluye avances recientes o estudios, como el de la Universidad Nacional de Incheon, para respaldar los avances en carga inalámbrica.
+</code></pre></div>
+<h3 id="ejemplo-3-impresionando-a-investigadores-de-ia_1">Ejemplo 3: Impresionando a Investigadores de IA</h3>
+<p>Veamos cómo Alfred puede ayudarnos a impresionar a los investigadores de IA.</p>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más popular de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Google. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más popular de Google en Hugging Face Hub es google/electra-base-discriminator, con 28,546,752 descargas.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
+El modelo más descargado de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
+</code></pre></div>
+<h2 id="caracteristicas-avanzadas-memoria-de-conversacion">Características Avanzadas: Memoria de Conversación</h2>
+<p>Para hacer que Alfred sea aún más útil durante la gala, podemos habilitar la memoria de conversación para que recuerde interacciones previas:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Crear Alfred con memoria de conversación</span>
+<span class="n">alfred_with_memory</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">],</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">add_base_tools</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">planning_interval</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">memory</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Habilitar memoria de conversación</span>
+<span class="p">)</span>
+
+<span class="c1"># Primera interacción</span>
+<span class="n">response1</span> <span class="o">=</span> <span class="n">alfred_with_memory</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Primera Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span>
+
+<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
+<span class="n">response2</span> <span class="o">=</span> <span class="n">alfred_with_memory</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Segunda Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Context</span>
+
+<span class="n">alfred</span> <span class="o">=</span> <span class="n">AgentWorkflow</span><span class="o">.</span><span class="n">from_tools_or_functions</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span>
+<span class="p">)</span>
+
+<span class="c1"># Recordando el estado</span>
+<span class="n">ctx</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">alfred</span><span class="p">)</span>
+
+<span class="c1"># Primera interacción</span>
+<span class="n">response1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace.&quot;</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Primera Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span>
+
+<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
+<span class="n">response2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Segunda Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Primera interacción</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;. ¿Cuál es su historia y cómo está relacionada conmigo?&quot;</span><span class="p">)]})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">)]})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="conclusion">Conclusión</h2>
+<p>¡Felicitaciones! Has construido exitosamente a Alfred, un agente sofisticado equipado con múltiples herramientas para ayudar a organizar la gala más extravagante del siglo. Alfred ahora puede:</p>
+<ol>
+<li>Recuperar información detallada sobre los invitados</li>
+<li>Verificar las condiciones climáticas para planificar actividades al aire libre</li>
+<li>Proporcionar información sobre influyentes creadores de IA y sus modelos</li>
+<li>Buscar en la web la información más reciente</li>
+<li>Mantener el contexto de la conversación con memoria</li>
+</ol>
+<p>Con estas capacidades, Alfred está listo para asegurar que tu gala sea un éxito rotundo, impresionando a los invitados con atención personalizada e información actualizada.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../llm6/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 6 - Smolagents y orquestación multiagente con Chainlit">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Sesión 6 - Smolagents y orquestación multiagente con Chainlit
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../hf/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "toc.integrate", "navigation.expand", "navigation.top", "navigation.indexes", "content.tabs.link", "content.code.annotate", "content.code.copy", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
