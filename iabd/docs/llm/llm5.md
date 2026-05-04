@@ -1186,7 +1186,9 @@ async def get_home_town(person: str) -> str:
 
 
 """
-JSON tool definitions provided to the LLM.
+La lista tools contiene el contrato JSON de cada función. 
+Esto le indica al modelo qué nombre tiene cada herramienta, 
+para qué sirve y qué argumentos espera.
 """
 tools = [
     {
@@ -1225,10 +1227,14 @@ tools = [
     },
 ]
 
-
+"""
+La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas 
+que el modelo haya pedido. 
+Esto es útil cuando Mistral solicita varias tools en la misma iteración. 
+"""
 async def run_multiple(tool_calls):
     """
-    Execute multiple tool calls asynchronously.
+    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.
     """
     available_tools = {
         "get_current_weather": get_current_weather,
@@ -1248,7 +1254,7 @@ async def run_multiple(tool_calls):
             "content": function_response,
         }
 
-    # Run tool calls in parallel.
+    # Ejecuta varias llamadas de manera concurrente.
     tool_results = await asyncio.gather(
         *(run_single(tool_call) for tool_call in tool_calls)
     )
