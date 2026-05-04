@@ -1152,182 +1152,6 @@ A continuación podemos ver un caso de uso donde un modelo usa dos funciones per
 
 **Fuente**: documentación de Mistral
 
-```python
-import os
-import json
-import asyncio
-import chainlit as cl
-from dotenv import load_dotenv
-
-from mistralai.client import Mistral
-
-load_dotenv()
-
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
-
-@cl.step(type="tool", name="get_current_weather")
-async def get_current_weather(location):
-    # Make an actual API call! To open-meteo.com for instance.
-    return json.dumps(
-        {
-            "location": location,
-            "temperature": "29",
-            "unit": "celsius",
-            "forecast": ["sunny"],
-        }
-    )
-
-
-@cl.step(type="tool", name="get_home_town")
-async def get_home_town(person: str) -> str:
-    """Get the hometown of a person"""
-    if "Napoleon" in person:
-        return "Ajaccio, Corsica"
-    elif "Michel" in person:
-        return "Caprese, Italy"
-    else:
-        return "Paris, France"
-
-
-"""
-La lista tools contiene el contrato JSON de cada función. 
-Esto le indica al modelo qué nombre tiene cada herramienta, 
-para qué sirve y qué argumentos espera.
-"""
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "get_home_town",
-            "description": "Get the home town of a specific person",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "person": {
-                        "type": "string",
-                        "description": "The name of a person (first and last names) to identify.",
-                    }
-                },
-                "required": ["person"],
-            },
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_current_weather",
-            "description": "Get the current weather in a given location",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "location": {
-                        "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA",
-                    },
-                },
-                "required": ["location"],
-            },
-        },
-    },
-]
-
-"""
-La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas 
-que el modelo haya pedido. 
-Esto es útil cuando Mistral solicita varias tools en la misma iteración. 
-"""
-async def run_multiple(tool_calls):
-    """
-    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.
-    """
-    available_tools = {
-        "get_current_weather": get_current_weather,
-        "get_home_town": get_home_town,
-    }
-
-    # Función auxiliar para ejecutar una sola llamada a una herramienta.
-    async def run_single(tool_call):
-        # Extrae el nombre de la función y los argumentos de la llamada a la herramienta.
-        function_name = tool_call.function.name
-        # Obtiene la función correspondiente de available_tools y prepara los argumentos.
-        function_to_call = available_tools[function_name]
-        # Los argumentos vienen como un string JSON, así que los parseamos para obtener un diccionario.
-        function_args = json.loads(tool_call.function.arguments)
-        
-        # Ejecuta la función y obtiene la respuesta.
-        function_response = await function_to_call(**function_args)
-        return {
-            "tool_call_id": tool_call.id,
-            "role": "tool",
-            "name": function_name,
-            "content": function_response,
-        }
-
-    # Ejecuta varias llamadas de manera concurrente.
-    tool_results = await asyncio.gather(
-        *(run_single(tool_call) for tool_call in tool_calls)
-    )
-    return tool_results
-
-"""
-El motor principal del agente
-La función run_agent(...) mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. 
-"""
-@cl.step(type="run", tags=["to_score"])
-async def run_agent(user_query: str):
-    messages = [{"role": "user", "content": f"{user_query}"}]
-
-    number_iterations = 0
-    answer_message_content = None
-
-    while number_iterations < 5:
-        completion = mai_client.chat.complete(
-            model="mistral-large-latest",
-            messages=messages,
-            tool_choice="auto",
-            tools=tools,
-        )
-        message = completion.choices[0].message
-        messages.append(message)
-        answer_message_content = message.content
-
-        if not message.tool_calls:
-            break
-
-        tool_results = await run_multiple(message.tool_calls)
-        messages.extend(tool_results)
-
-        number_iterations += 1
-
-    return answer_message_content
-
-
-@cl.set_starters
-async def set_starters():
-    return [
-        cl.Starter(
-            label="What's the weather in Napoleon's hometown",
-            message="What's the weather in Napoleon's hometown?",
-        ),
-        cl.Starter(
-            label="What's the weather in Paris, TX?",
-            message="What's the weather in Paris, TX?",
-        ),
-        cl.Starter(
-            label="What's the weather in Michel-Angelo's hometown?",
-            message="What's the weather in Michel-Angelo's hometown?",
-        ),
-    ]
-
-@cl.on_message
-async def main(message: cl.Message):
-    """
-    Main message handler for incoming user messages.
-    """
-    answer_message = await run_agent(message.content)
-    await cl.Message(content=answer_message).send()
-```
-
 ## Ejemplo de Chainlit + Mistral con tools de tiempo y “pueblo natal”
 
 Este ejemplo implementa, con Chainlit y Mistral, un **agente conversacional que puede llamar a dos herramientas (*`tools`*)** para responder preguntas sobre el tiempo, incluso cuando el usuario pregunta por el clima en el pueblo natal de alguien.
@@ -1564,6 +1388,183 @@ Resumen final
 
 Ejemplo claro de **`function calling`** con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.
 
+**Código completo**
+
+```python
+import os
+import json
+import asyncio
+import chainlit as cl
+from dotenv import load_dotenv
+
+from mistralai.client import Mistral
+
+load_dotenv()
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+@cl.step(type="tool", name="get_current_weather")
+async def get_current_weather(location):
+    # Make an actual API call! To open-meteo.com for instance.
+    return json.dumps(
+        {
+            "location": location,
+            "temperature": "29",
+            "unit": "celsius",
+            "forecast": ["sunny"],
+        }
+    )
+
+
+@cl.step(type="tool", name="get_home_town")
+async def get_home_town(person: str) -> str:
+    """Get the hometown of a person"""
+    if "Napoleon" in person:
+        return "Ajaccio, Corsica"
+    elif "Michel" in person:
+        return "Caprese, Italy"
+    else:
+        return "Paris, France"
+
+
+"""
+La lista tools contiene el contrato JSON de cada función. 
+Esto le indica al modelo qué nombre tiene cada herramienta, 
+para qué sirve y qué argumentos espera.
+"""
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_home_town",
+            "description": "Get the home town of a specific person",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "type": "string",
+                        "description": "The name of a person (first and last names) to identify.",
+                    }
+                },
+                "required": ["person"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                },
+                "required": ["location"],
+            },
+        },
+    },
+]
+
+"""
+La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas 
+que el modelo haya pedido. 
+Esto es útil cuando Mistral solicita varias tools en la misma iteración. 
+"""
+async def run_multiple(tool_calls):
+    """
+    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.
+    """
+    available_tools = {
+        "get_current_weather": get_current_weather,
+        "get_home_town": get_home_town,
+    }
+
+    # Función auxiliar para ejecutar una sola llamada a una herramienta.
+    async def run_single(tool_call):
+        # Extrae el nombre de la función y los argumentos de la llamada a la herramienta.
+        function_name = tool_call.function.name
+        # Obtiene la función correspondiente de available_tools y prepara los argumentos.
+        function_to_call = available_tools[function_name]
+        # Los argumentos vienen como un string JSON, así que los parseamos para obtener un diccionario.
+        function_args = json.loads(tool_call.function.arguments)
+        
+        # Ejecuta la función y obtiene la respuesta.
+        function_response = await function_to_call(**function_args)
+        return {
+            "tool_call_id": tool_call.id,
+            "role": "tool",
+            "name": function_name,
+            "content": function_response,
+        }
+
+    # Ejecuta varias llamadas de manera concurrente.
+    tool_results = await asyncio.gather(
+        *(run_single(tool_call) for tool_call in tool_calls)
+    )
+    return tool_results
+
+"""
+El motor principal del agente
+La función run_agent(...) mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. 
+"""
+@cl.step(type="run", tags=["to_score"])
+async def run_agent(user_query: str):
+    messages = [{"role": "user", "content": f"{user_query}"}]
+
+    number_iterations = 0
+    answer_message_content = None
+
+    while number_iterations < 5:
+        completion = mai_client.chat.complete(
+            model="mistral-large-latest",
+            messages=messages,
+            tool_choice="auto",
+            tools=tools,
+        )
+        message = completion.choices[0].message
+        messages.append(message)
+        answer_message_content = message.content
+
+        if not message.tool_calls:
+            break
+
+        tool_results = await run_multiple(message.tool_calls)
+        messages.extend(tool_results)
+
+        number_iterations += 1
+
+    return answer_message_content
+
+
+@cl.set_starters
+async def set_starters():
+    return [
+        cl.Starter(
+            label="What's the weather in Napoleon's hometown",
+            message="What's the weather in Napoleon's hometown?",
+        ),
+        cl.Starter(
+            label="What's the weather in Paris, TX?",
+            message="What's the weather in Paris, TX?",
+        ),
+        cl.Starter(
+            label="What's the weather in Michel-Angelo's hometown?",
+            message="What's the weather in Michel-Angelo's hometown?",
+        ),
+    ]
+
+@cl.on_message
+async def main(message: cl.Message):
+    """
+    Main message handler for incoming user messages.
+    """
+    answer_message = await run_agent(message.content)
+    await cl.Message(content=answer_message).send()
+```
 # Actividad guiada: usar `Command` en Chainlit para añadir modos de trabajo al agente
 
 ![](./images/05/ejercicio_agentes_commands.png)
