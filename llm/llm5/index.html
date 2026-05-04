@@ -3254,21 +3254,15 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
 Esta lista es lo que se pasa al modelo en <strong><code>tools=tools</code></strong>.</p>
 <p>Cada tool tiene:</p>
 <ul>
-<li>
-<p><strong><code>name</code></strong>: nombre que el modelo debe usar.</p>
-</li>
-<li>
-<p><strong><code>description</code></strong>: qué hace.</p>
-</li>
-<li>
-<p><strong><code>parameters</code></strong>: esquema JSON de los argumentos esperados (person o location).</p>
-</li>
+<li><strong><code>name</code></strong>: nombre que el modelo debe usar.</li>
+<li><strong><code>description</code></strong>: qué hace.</li>
+<li><strong><code>parameters</code></strong>: esquema JSON de los argumentos esperados (person o location).</li>
 </ul>
 <p>El modelo lee esta “API spec” y decide cuándo llamar a qué función y con qué argumentos.</p>
 <h4 id="ejecucion-de-multiples-tool-calls-en-paralelo">Ejecución de múltiples tool calls en paralelo</h4>
 <div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple</span><span class="p">(</span><span class="n">tool_calls</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Execute multiple tool calls asynchronously.</span>
+<span class="sd">    Ejecutar múltiples herramientas en paralelo asíncronamente.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">available_tools</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;get_current_weather&quot;</span><span class="p">:</span> <span class="n">get_current_weather</span><span class="p">,</span>
@@ -3288,31 +3282,21 @@ Esta lista es lo que se pasa al modelo en <strong><code>tools=tools</code></stro
             <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">function_response</span><span class="p">,</span>
         <span class="p">}</span>
 
-    <span class="c1"># Run tool calls in parallel.</span>
+    <span class="c1"># Ejecutar las llamadas a las tools paralelamente.</span>
     <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
         <span class="o">*</span><span class="p">(</span><span class="n">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">tool_results</span>
 </code></pre></div>
 <ul>
-<li>
-<p><strong><code>tool_calls</code></strong> viene del modelo: lista de llamadas que quiere hacer.</p>
-</li>
-<li>
-<p><strong><code>available_tools</code></strong> mapea nombres a funciones Python reales.</p>
-</li>
+<li><strong><code>tool_calls</code></strong> viene del modelo: lista de llamadas que quiere hacer.</li>
+<li><strong><code>available_tools</code></strong> mapea nombres a funciones Python reales.</li>
 <li>
 <p><strong><code>run_single</code></strong>:</p>
 <ul>
-<li>
-<p>Lee el nombre de la tool y sus argumentos.</p>
-</li>
-<li>
-<p>Ejecuta la función Python correspondiente.</p>
-</li>
-<li>
-<p>Devuelve un mensaje con role: "tool" y el resultado, listo para añadir al historial.</p>
-</li>
+<li>Lee el nombre de la tool y sus argumentos.</li>
+<li>Ejecuta la función Python correspondiente.</li>
+<li>Devuelve un mensaje con role: "tool" y el resultado, listo para añadir al historial.</li>
 </ul>
 </li>
 <li>
@@ -3350,32 +3334,16 @@ Esta lista es lo que se pasa al modelo en <strong><code>tools=tools</code></stro
 </code></pre></div>
 <p>Flujo:</p>
 <ol>
-<li>
-<p>Inicializa el historial con el mensaje del usuario.</p>
-</li>
-<li>
-<p>Bucle (hasta 5 veces):</p>
-<ul>
-<li>
-<p>Llama al modelo con <strong><code>messages</code></strong> y <strong><code>tools</code></strong>.</p>
-</li>
-<li>
-<p>Añade el mensaje del asistente al historial.</p>
-</li>
-<li>
-<p>Guarda el texto de respuesta en <strong><code>answer_message_content</code></strong>.</p>
-</li>
-<li>
-<p>Si no hay <strong><code>tool_calls</code></strong>, sale del bucle (ya hay respuesta final).</p>
-</li>
-<li>
-<p>Si sí hay <strong><code>tool_calls</code></strong>, llama a <strong><code>run_multiple(...)</code></strong> para ejecutar las herramientas pedidas y añade los resultados (role: "tool") al historial.</p>
-</li>
+<li>Inicializa el historial con el mensaje del usuario.</li>
+<li>Bucle (hasta 5 veces):<ul>
+<li>Llama al modelo con <strong><code>messages</code></strong> y <strong><code>tools</code></strong>.</li>
+<li>Añade el mensaje del asistente al historial.</li>
+<li>Guarda el texto de respuesta en <strong><code>answer_message_content</code></strong>.</li>
+<li>Si no hay <strong><code>tool_calls</code></strong>, sale del bucle (ya hay respuesta final).</li>
+<li>Si sí hay <strong><code>tool_calls</code></strong>, llama a <strong><code>run_multiple(...)</code></strong> para ejecutar las herramientas pedidas y añade los resultados (role: "tool") al historial.</li>
 </ul>
 </li>
-<li>
-<p>Devuelve el texto final (<strong><code>answer_message_content</code></strong>) que se enviará al usuario.</p>
-</li>
+<li>Devuelve el texto final (<strong><code>answer_message_content</code></strong>) que se enviará al usuario.</li>
 </ol>
 <p>Ejemplo de cadena de llamadas:</p>
 <ul>
@@ -3398,6 +3366,9 @@ Esta lista es lo que se pasa al modelo en <strong><code>tools=tools</code></stro
 </li>
 </ul>
 <h4 id="starters-en-chainlit">Starters en Chainlit</h4>
+<p>Define <strong>“tarjetas de inicio”</strong> en la UI para que el usuario pueda lanzar ejemplos con un clic.
+<img alt="" src="../images/05/napoleon_starters.png" /></p>
+<p><strong>Ejemplo</strong>
 <div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">set_starters</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_starters</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span>
@@ -3418,18 +3389,11 @@ Esta lista es lo que se pasa al modelo en <strong><code>tools=tools</code></stro
         <span class="p">),</span>
     <span class="p">]</span>
 </code></pre></div>
-<p>Define “tarjetas de inicio” en la UI para que el usuario pueda lanzar ejemplos con un clic.</p>
-<p>Cada starter tiene:</p>
+Cada starter tiene:</p>
 <ul>
-<li>
-<p><strong><code>label</code></strong>: texto del botón.</p>
-</li>
-<li>
-<p><strong><code>message</code></strong>: mensaje que se envía al agente.</p>
-</li>
-<li>
-<p><strong><code>icon</code></strong>: icono mostrado.</p>
-</li>
+<li><strong><code>label</code></strong>: texto del botón.</li>
+<li><strong><code>message</code></strong>: mensaje que se envía al agente.</li>
+<li><strong><code>icon</code></strong>: icono mostrado.</li>
 </ul>
 <h3 id="integracion-con-chainlit-on_message">Integración con Chainlit: <strong><code>on_message</code></strong></h3>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
