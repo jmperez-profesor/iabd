@@ -9,6 +9,12 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 ![Activar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer](./images/chainlit/meeting_summarizer_mistralai.png)
 
+**Ejemplo de uso en Mistral IA de agente razonando y usando herramientas integradas (Patrón ReAct)**
+![Ejemplo de uso en Mistral IA de agente razonando y usando herramientas integradas](./images/05/agente_con_funciones_razonando_paso1.png)
+
+**Patrón ReAct (Reason-Acting)**
+![Patrón ReAct](./images/react_pattern.gif)
+
 ## Actividad guiada: Crear un agente con herramientas personalizadas
 
 ![](./images/chainlit/agente_temperatura.png)
@@ -304,7 +310,7 @@ client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
 
 # Definir el esquema de la herramienta.
 # ¿Por qué get_country_info() debe estar descrita tanto en Python como en la lista tools? 
-# La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa 
+# Eso es así porque una parte define la función real y la otra informa al modelo de que esa 
 # herramienta existe y cómo puede invocarla. 
 tools = [
     {
