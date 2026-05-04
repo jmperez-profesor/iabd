@@ -772,6 +772,7 @@ Explicación:
 ### Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.
 
 ```python
+# Obtener el mensaje del asistente de la respuesta
 assistant_message = response.choices[0].message
 # Construir el payload del mensaje del asistente, 
 # incluyendo las llamadas a herramientas si las hay
@@ -1071,7 +1072,7 @@ async def on_message(message: cl.Message):
             tools=TOOLS,
             tool_choice="auto",
         )
-
+        # Obtener el mensaje del asistente de la respuesta
         assistant_message = response.choices[0].message
 
         assistant_payload = {
