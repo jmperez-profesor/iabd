@@ -1241,11 +1241,16 @@ async def run_multiple(tool_calls):
         "get_home_town": get_home_town,
     }
 
+    # Función auxiliar para ejecutar una sola llamada a una herramienta.
     async def run_single(tool_call):
+        # Extrae el nombre de la función y los argumentos de la llamada a la herramienta.
         function_name = tool_call.function.name
+        # Obtiene la función correspondiente de available_tools y prepara los argumentos.
         function_to_call = available_tools[function_name]
+        # Los argumentos vienen como un string JSON, así que los parseamos para obtener un diccionario.
         function_args = json.loads(tool_call.function.arguments)
-
+        
+        # Ejecuta la función y obtiene la respuesta.
         function_response = await function_to_call(**function_args)
         return {
             "tool_call_id": tool_call.id,
@@ -1260,7 +1265,10 @@ async def run_multiple(tool_calls):
     )
     return tool_results
 
-
+"""
+El motor principal del agente
+La función run_agent(...) mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. 
+"""
 @cl.step(type="run", tags=["to_score"])
 async def run_agent(user_query: str):
     messages = [{"role": "user", "content": f"{user_query}"}]
