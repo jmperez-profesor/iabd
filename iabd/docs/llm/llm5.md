@@ -1201,9 +1201,7 @@ Esta lista es lo que se pasa al modelo en **`tools=tools`**.
 Cada tool tiene:
 
 * **`name`**: nombre que el modelo debe usar.
-
 * **`description`**: qué hace.
-
 * **`parameters`**: esquema JSON de los argumentos esperados (person o location).
 
 El modelo lee esta “API spec” y decide cuándo llamar a qué función y con qué argumentos.
@@ -1213,7 +1211,7 @@ El modelo lee esta “API spec” y decide cuándo llamar a qué función y con 
 ```python
 async def run_multiple(tool_calls):
     """
-    Execute multiple tool calls asynchronously.
+    Ejecutar múltiples herramientas en paralelo asíncronamente.
     """
     available_tools = {
         "get_current_weather": get_current_weather,
@@ -1233,7 +1231,7 @@ async def run_multiple(tool_calls):
             "content": function_response,
         }
 
-    # Run tool calls in parallel.
+    # Ejecutar las llamadas a las tools paralelamente.
     tool_results = await asyncio.gather(
         *(run_single(tool_call) for tool_call in tool_calls)
     )
@@ -1241,15 +1239,10 @@ async def run_multiple(tool_calls):
 ```
 
 * **`tool_calls`** viene del modelo: lista de llamadas que quiere hacer.
-
 * **`available_tools`** mapea nombres a funciones Python reales.
-
 * **`run_single`**:
-
     * Lee el nombre de la tool y sus argumentos.
-
     * Ejecuta la función Python correspondiente.
-
     * Devuelve un mensaje con role: "tool" y el resultado, listo para añadir al historial.
 
 * **`asyncio.gather(...)`** ejecuta todas las **`tool calls`** en paralelo, útil si el modelo pide varias herramientas a la vez.
@@ -1289,19 +1282,12 @@ async def run_agent(user_query: str):
 Flujo:
 
 1. Inicializa el historial con el mensaje del usuario.
-
 2. Bucle (hasta 5 veces):
-
     * Llama al modelo con **`messages`** y **`tools`**.
-
     * Añade el mensaje del asistente al historial.
-
     * Guarda el texto de respuesta en **`answer_message_content`**.
-
     * Si no hay **`tool_calls`**, sale del bucle (ya hay respuesta final).
-
     * Si sí hay **`tool_calls`**, llama a **`run_multiple(...)`** para ejecutar las herramientas pedidas y añade los resultados (role: "tool") al historial.
-
 3. Devuelve el texto final (**`answer_message_content`**) que se enviará al usuario.
 
 Ejemplo de cadena de llamadas:
@@ -1317,6 +1303,11 @@ Ejemplo de cadena de llamadas:
 * Modelo: con esos datos, **genera la respuesta en lenguaje natural**.
 
 #### Starters en Chainlit
+
+Define **“tarjetas de inicio”** en la UI para que el usuario pueda lanzar ejemplos con un clic.
+![](./images/05/napoleon_starters.png)
+
+**Ejemplo**
 ```python
 @cl.set_starters
 async def set_starters():
@@ -1338,15 +1329,10 @@ async def set_starters():
         ),
     ]
 ```
-
-Define “tarjetas de inicio” en la UI para que el usuario pueda lanzar ejemplos con un clic.
-
 Cada starter tiene:
 
 * **`label`**: texto del botón.
-
 * **`message`**: mensaje que se envía al agente.
-
 * **`icon`**: icono mostrado.
 
 ### Integración con Chainlit: **`on_message`**
