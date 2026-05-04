@@ -2143,6 +2143,10 @@
 <h2 id="probar-funciones-propias-en-mistral-studio">Probar funciones propias en Mistral Studio</h2>
 <h3 id="usar-la-herramienta-integrada-busqueda-en-el-agente-meeting-summarizer">Usar la herramienta integrada "búsqueda" en el Agente Meeting Summarizer</h3>
 <p><img alt="Activar la herramienta integrada &quot;búsqueda&quot; en el Agente Meeting Summarizer" src="../images/chainlit/meeting_summarizer_mistralai.png" /></p>
+<p><strong>Ejemplo de uso en Mistral IA de agente razonando y usando herramientas integradas (Patrón ReAct)</strong>
+<img alt="Ejemplo de uso en Mistral IA de agente razonando y usando herramientas integradas" src="../images/05/agente_con_funciones_razonando_paso1.png" /></p>
+<p><strong>Patrón ReAct (Reason-Acting)</strong>
+<img alt="Patrón ReAct" src="../images/react_pattern.gif" /></p>
 <h2 id="actividad-guiada-crear-un-agente-con-herramientas-personalizadas">Actividad guiada: Crear un agente con herramientas personalizadas</h2>
 <p><img alt="" src="../images/chainlit/agente_temperatura.png" /></p>
 <p>En esta actividad vamos a usar modelo de Mistral que acceda a funciones externas y que pueda llamar durante una conversación.</p>
@@ -2406,7 +2410,7 @@
 
 <span class="c1"># Definir el esquema de la herramienta.</span>
 <span class="c1"># ¿Por qué get_country_info() debe estar descrita tanto en Python como en la lista tools? </span>
-<span class="c1"># La respuesta esperada es que una parte define la función real y la otra informa al modelo de que esa </span>
+<span class="c1"># Eso es así porque una parte define la función real y la otra informa al modelo de que esa </span>
 <span class="c1"># herramienta existe y cómo puede invocarla. </span>
 <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
