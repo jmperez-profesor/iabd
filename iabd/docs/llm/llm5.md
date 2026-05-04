@@ -1341,7 +1341,7 @@ Cada starter tiene:
 @cl.on_message
 async def main(message: cl.Message):
     """
-    Main message handler for incoming user messages.
+    Manejador principal de mensajes para los mensajes entrantes de los usuarios.
     """
     answer_message = await run_agent(message.content) #llamar al agente
     await cl.Message(content=answer_message).send()
@@ -1349,14 +1349,10 @@ async def main(message: cl.Message):
 Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el chat:
 
 * Llama a **`run_agent(message.content)`**.
-
 * Espera a que el agente termine todas las llamadas de tools necesarias.
-
 * Envía la respuesta final de vuelta al chat.
 
-Resumen final
-
-* Implementación de agente con Chainlit y Mistral que:
+Resumen - **Implementación de agente con Chainlit y Mistral que**:
 
 * Recibe preguntas del usuario.
 
@@ -1372,7 +1368,7 @@ Resumen final
 
 Ejemplo claro de **`function calling`** con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.
 
-**Código completo**
+**Código completo:**
 
 ```python
 import os
