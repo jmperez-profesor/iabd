@@ -1560,104 +1560,562 @@ Resumen final
 
 Ejemplo claro de **`function calling`** con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.
 
+# Actividad guiada: usar `Command` en Chainlit para añadir modos de trabajo al agente
 
-# Actividad de ampliación: agente con Chainlit, Mistral y tools encadenadas
+![](./images/05/ejercicio_agentes_commands.png)
+
+Esta actividad guiada enseña cómo ampliar una aplicación en Chainlit añadiendo la opción **Command**, de forma que el usuario pueda elegir entre varios modos de interacción desde el cuadro de entrada. Chainlit permite definir comandos con **`cl.context.emitter.set_commands(...)`** y detectar el comando elegido desde **`msg.command`** dentro de **`@cl.on_message`**. 
+
+La idea es transformar una aplicación con un único flujo conversacional en una aplicación con varios modos:
+
+- **Agente**: usa el agente con tools sobre Napoleón, Michel-Angelo, país y tiempo.
+- **Buscar**: realiza una búsqueda en Internet.
+- **Imagen**: genera una imagen a partir de un prompt.
 
 ## Objetivos
 
-- Comprender cómo un modelo de lenguaje puede decidir qué tool necesita para responder.
-- Implementar una nueva herramienta personalizada y registrarla en el agente.
-- Mantener el historial de conversación usando **`cl.user_session`**. 
-- Mejorar la interfaz con botones de acción de Chainlit mediante **`cl.Action`** y **`@cl.action_callback(...)`**. 
-- Diseñar una pequeña ampliación funcional manteniendo una arquitectura clara y reutilizable.
+- Comprender qué son los comandos en Chainlit y para qué sirven. 
+- Crear una lista de comandos y registrarla en **`on_chat_start`**. 
+- Detectar qué comando ha seleccionado el usuario desde **`message.command`**. 
+- Reutilizar la lógica del agente según el modo de trabajo elegido. 
+- Diferenciar entre flujo general del agente, búsqueda externa y generación de imagen. 
 
-## Propuesta de ampliación
+## Qué vamos a construir
 
-Se propone ampliar el proyecto en tres direcciones: 
+La aplicación final tendrá tres caminos posibles de ejecución: 
 
-1. Añadir una nueva tool llamada **`get_country_info(location)`**.
-2. Guardar el historial de conversación usando **`cl.user_session`**.
-3. Incorporar botones de acción en la interfaz con preguntas predefinidas.
+1. Si el usuario elige **Agente**, el mensaje se procesará con el agente conversacional y sus tools. 
+2. Si el usuario elige **Buscar**, el mensaje se tratará como una búsqueda web. 
+3. Si el usuario elige **Imagen**, el mensaje se interpretará como un prompt para generar una imagen. 
 
-## Resultado esperado
+## Paso 1. Preparar el contexto del proyecto
 
-Al final de la práctica, el agente deberá ser capaz de responder preguntas como estas: 
+Partimos de una aplicación en Chainlit que ya dispone de un agente con tools. Ese agente utiliza Mistral para decidir cuándo llamar a funciones como `get_home_town`, `get_current_weather` o `get_country_info`. El objetivo ahora no es cambiar ese núcleo, sino añadir una nueva capa de interacción en la interfaz. 
 
-- *What’s the weather in Napoleon’s hometown and in which country is it?*
-- *Tell me the hometown, country and weather for Michel-Angelo.*
-- *Compare Napoleon’s hometown and Michel-Angelo’s hometown.*
-- Pulsar un botón para lanzar automáticamente una de esas preguntas desde la interfaz. 
+La idea principal es que el usuario no siempre escribirá "mensajes normales", sino que podrá indicar previamente qué quiere hacer con ese mensaje. Eso es precisamente lo que resuelven los **commands**. 
 
-## Parte 1: añadir una nueva tool
+## Paso 2. Importar librerías y crear el cliente
 
-### Objetivo
+El primer paso del código es el habitual: importar librerías, cargar variables de entorno y crear el cliente de Mistral. 
 
-Crear una tool adicional llamada `get_country_info(location)` que devuelva información básica del país asociado a una ciudad o localización. Esto permitirá que el agente combine información meteorológica y geográfica en una misma respuesta. 
+```python
+import os
+import json
+import asyncio
+import requests
+import chainlit as cl
+from dotenv import load_dotenv
+from mistralai.client import Mistral
 
-### Implementación sugerida
+load_dotenv()
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+MODEL = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
+```
+
+### Explicación
+
+- `load_dotenv()` carga las claves del fichero `.env`.  
+- `Mistral(...)` crea el cliente para enviar mensajes al modelo.  
+- `MODEL` define qué modelo de Mistral se va a usar. 
+
+## Paso 3. Definir los comandos de Chainlit
+
+Ahora añadimos a una lista llamada **`commands`**. Cada comando es un diccionario con información que Chainlit usará para mostrarlo en la interfaz del cuadro de texto. La documentación indica que los atributos más habituales son **`id`**, **`icon`**, **`description`**, **`button`** y **`persistent`**. 
+
+```python
+commands = [
+    {
+        "id": "Agente",
+        "icon": "bot",
+        "description": "Usar el agente con tools",
+        "button": True,
+        "persistent": False,
+    },
+    {
+        "id": "Buscar",
+        "icon": "globe",
+        "description": "Buscar en Internet",
+        "button": True,
+        "persistent": False,
+    },
+    {
+        "id": "Imagen",
+        "icon": "image",
+        "description": "Generar una imagen",
+        "button": True,
+        "persistent": False,
+    },
+]
+```
+
+### Explicación para el alumnado
+
+- **`id`**: es el nombre interno del comando. Luego lo compararemos con `message.command`. 
+- **`icon`**: icono que se mostrará en la interfaz. 
+- **`description`**: texto explicativo. 
+- **`button=True`**: hace que Chainlit lo muestre como botón de selección. 
+- **`persistent=False`**: indica que el comando no queda fijado permanentemente para todos los mensajes siguientes. 
+
+## Paso 4. Mantener las tools del agente
+
+El agente seguirá teniendo las mismas tools de antes. En esta actividad se parte de tres funciones: **una para obtener el pueblo natal**, **otra para el tiempo** y otra para **información del país**. Mistral usa la lista **`tools`** para saber qué herramientas puede invocar. 
+
+### Tool: `get_current_weather`
+
+```python
+@cl.step(type="tool", name="get_current_weather")
+async def get_current_weather(location: str) -> str:
+    return json.dumps(
+        {
+            "location": location,
+            "temperature": "29",
+            "unit": "celsius",
+            "forecast": ["sunny"],
+        }
+    )
+```
+
+### Tool: `get_home_town`
+
+```python
+@cl.step(type="tool", name="get_home_town")
+async def get_home_town(person: str) -> str:
+    if "Napoleon" in person:
+        return "Ajaccio, Corsica"
+    elif "Michel" in person:
+        return "Caprese, Italy"
+    else:
+        return "Paris, France"
+```
+
+### Tool: `get_country_info`
 
 ```python
 @cl.step(type="tool", name="get_country_info")
 async def get_country_info(location: str) -> str:
     if "Ajaccio" in location:
-        return json.dumps({
-            "country": "France",
-            "capital": "Paris",
-            "continent": "Europe"
-        })
+        return json.dumps(
+            {"country": "France", "capital": "Paris", "continent": "Europe"}
+        )
     elif "Caprese" in location:
-        return json.dumps({
-            "country": "Italy",
-            "capital": "Rome",
-            "continent": "Europe"
-        })
-    elif "Paris" in location:
-        return json.dumps({
-            "country": "France",
-            "capital": "Paris",
-            "continent": "Europe"
-        })
+        return json.dumps(
+            {"country": "Italy", "capital": "Rome", "continent": "Europe"}
+        )
     else:
-        return json.dumps({
-            "country": "Unknown",
-            "capital": "Unknown",
-            "continent": "Unknown"
-        })
+        return json.dumps(
+            {"country": "Unknown", "capital": "Unknown", "continent": "Unknown"}
+        )
 ```
 
-### Tareas a realizar:
+### Explicación
 
-- Añadir la función al código.  
-- Registrar su definición en la lista **`tools`**.
-- Incluirla en el diccionario **`available_tools`**. 
-- Probar una pregunta que obligue al modelo a usar más de una tool. 
+Estas funciones son **tools** reales de Python, pero además hay que describirlas para el modelo en la variable **`tools`**. Esa doble definición es necesaria porque el modelo necesita saber qué herramientas existen y el backend necesita saber qué funciones ejecutar. 
 
-### Pregunta
+## Paso 5. Describir las tools para Mistral
 
-¿Por qué **`get_country_info()`** debe estar descrita tanto en Python como en la lista **`tools`**? Eso es así porque, por una parte definimos la función real en Python y por otra, informamos al modelo de que esa herramienta existe y cómo puede invocarla. 
-
-## Parte 2: añadir memoria con **`cl.user_session`**
-
-### Objetivo
-
-Modificar el ejemplo para que el historial conversacional se mantenga entre mensajes. Chainlit documenta **`cl.user_session`** como el mecanismo para guardar estado asociado a cada sesión de usuario. [5]
-
-### Cambio conceptual
-
-En el ejemplo original, **`run_agent()`** parte siempre de un historial nuevo:
+La lista **`tools`** contiene el contrato JSON de cada función. Esto le indica al modelo qué nombre tiene cada herramienta, para qué sirve y qué argumentos espera. 
 
 ```python
-messages = [{"role": "user", "content": f"{user_query}"}]
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_home_town",
+            "description": "Get the home town of a specific person",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "person": {"type": "string"}
+                },
+                "required": ["person"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {"type": "string"}
+                },
+                "required": ["location"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_country_info",
+            "description": "Get country information for a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {"type": "string"}
+                },
+                "required": ["location"],
+            },
+        },
+    },
+]
 ```
 
-Eso impide que el asistente recuerde el contexto anterior. La ampliación consiste en cambiar este comportamiento por uno basado en sesión. 
+### Explicación
 
-### Implementación orientativa
+Solo hemos informado al modelo de que existen 3 funciones disponibles. Cuando el modelo las necesite, devolverá **`tool_calls`** con los argumentos correspondientes. 
+
+## Paso 6. Ejecutar varias tool calls
+
+La función **`run_multiple(...)`** se encarga de ejecutar en paralelo todas las herramientas que el modelo haya pedido. Esto es útil cuando Mistral solicita varias **`tools`** en la misma iteración. 
+
+```python
+async def run_multiple(tool_calls):
+    available_tools = {
+        "get_current_weather": get_current_weather,
+        "get_home_town": get_home_town,
+        "get_country_info": get_country_info,
+    }
+
+    async def run_single(tool_call):
+        function_name = tool_call.function.name
+        function_to_call = available_tools[function_name]
+        function_args = json.loads(tool_call.function.arguments)
+
+        function_response = await function_to_call(**function_args)
+        return {
+            "tool_call_id": tool_call.id,
+            "role": "tool",
+            "name": function_name,
+            "content": function_response,
+        }
+
+    return await asyncio.gather(*(run_single(tc) for tc in tool_calls))
+```
+
+### Explicación
+
+- **`available_tools`** relaciona el nombre de la tool con la función Python real. 
+- **`json.loads(...)`** convierte los argumentos del modelo en un diccionario Python. 
+- **`asyncio.gather(...)`** permite ejecutar varias llamadas de manera concurrente. 
+
+## Paso 7. Crear el motor principal del agente
+
+La función **`run_agent(...)`** mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. 
+
+```python
+@cl.step(type="run")
+async def run_agent(user_query: str):
+    messages = cl.user_session.get("messages", [])
+    messages.append({"role": "user", "content": user_query})
+
+    number_iterations = 0
+    answer_message_content = None
+    # El agente puede hacer hasta 5 iteraciones de llamadas a herramientas para llegar a una 
+    # respuesta final
+    while number_iterations < 5:
+        completion = mai_client.chat.complete(
+            model=MODEL,
+            messages=messages,
+            tool_choice="auto",
+            tools=tools,
+        )
+        # Obtener el mensaje de respuesta del asistente y añadirlo al historial de mensajes
+        message = completion.choices[0].message
+        messages.append(message)
+        answer_message_content = message.content
+
+        # Si el mensaje no incluye llamadas a herramientas, se asume que es la respuesta 
+        # final y se termina el proceso
+        if not message.tool_calls:
+            break
+        # Si hay llamadas a herramientas, se ejecutan en paralelo 
+        tool_results = await run_multiple(message.tool_calls)
+        # Se añaden los resultados de las herramientas al historial de mensajes para que el 
+        # modelo los procese en la siguiente iteración
+        messages.extend(tool_results)
+        number_iterations += 1
+
+    cl.user_session.set("messages", messages)
+    return answer_message_content
+```
+
+### Explicación
+
+Esta función no depende de los commands. Es el corazón del agente. Precisamente por eso se puede reutilizar tanto desde mensajes normales como desde botones o comandos. 
+
+## Paso 8. Crear funciones auxiliares para `Buscar` e `Imagen`
+
+Ahora añadimos dos funciones adicionales. En esta actividad se dejan como implementaciones sencillas para que el alumnado entienda primero la arquitectura. Más adelante podrían conectarse a una API de búsqueda real o a generación real de imágenes. 
+
+### Función de búsqueda
+
+```python
+@cl.step(type="tool", name="search_internet")
+async def search_internet(query: str) -> str:
+    # Sustituye esta parte por tu API real de búsqueda
+    # Por ejemplo SerpAPI, Tavily, Brave Search, etc.
+    return f"Resultado simulado de búsqueda para: {query}"
+```
+
+### Función de imagen
+
+```python
+@cl.step(type="tool", name="generate_picture")
+async def generate_picture(prompt: str) -> str:
+    # Opción simple para clase: simular respuesta
+    # Opción avanzada: integrar agente/image_generation de Mistral
+    return f"Imagen generada para el prompt: {prompt}"    
+```
+### Explicación
+
+Estas funciones representan dos nuevos modos de trabajo. No se ejecutan como tools del agente de Mistral, sino como utilidades independientes activadas por un command concreto. 
+
+## Paso 9. Registrar los commands al comenzar el chat
+
+En **`on_chat_start`** se inicializa la sesión y se llama a **`set_commands(commands)`**. Ese es el momento en que Chainlit registra los comandos y los muestra en la interfaz. 
 
 ```python
 @cl.on_chat_start
 async def on_chat_start():
     cl.user_session.set("messages", [])
+
+    await cl.context.emitter.set_commands(commands)
+    await cl.Message(
+        content=
+            "Hola. Puedes usar el chat normal o elegir un comando:\n"
+            "- Agente: usar el agente con tools\n"
+            "- Buscar: buscar en Internet\n"
+            "- Imagen: generar una imagen.\n"
+            "\n"
+            "También puedes elegir una acción de abajo:\n"
+            "- Napoleón: obtener información sobre el pueblo natal, país y tiempo de Napoleón\n"
+            "- Michel-Angelo: obtener información sobre el pueblo natal, país y tiempo de Michel-Angelo\n"
+            "- Comparar: comparar la información de ambos personajes\n"
+        ,
+        actions=get_action_buttons()
+    ).send()
+```
+
+### Explicación
+
+- **`cl.user_session.set(...)`** prepara el historial de la conversación. 
+- **`set_commands(commands)`** hace visibles los comandos en la interfaz del chat. 
+- El mensaje inicial ayuda al usuario a saber qué modos tiene disponibles. 
+
+## Paso 10. Usar `message.command` en `on_message`
+
+![](./images/05/ejercicio_commands.png)
+
+Este es el paso más importante. La documentación de Chainlit indica que el comando seleccionado se puede leer desde **`message.command`**. A partir de ahí, se decide qué función ejecutar. 
+
+```python
+@cl.on_message
+async def main(message: cl.Message):
+    if message.command == "Buscar":
+        result = await search_internet(message.content)
+        await cl.Message(content=result).send()
+        return
+
+    if message.command == "Imagen":
+        result = await generate_picture(message.content)                      
+        await cl.Message(content=result).send()
+        return
+
+    #Ejemplo de uso del agente con tools para cualquier mensaje que no sea un comando específico
+    answer = await run_agent(message.content)
+    await cl.Message(content=answer).send()
+```
+
+### Explicación
+
+- Si el usuario ha seleccionado el comando **Buscar**, el texto se interpreta como una búsqueda web. 
+- Si ha seleccionado **Imagen**, el texto se interpreta como un prompt para imagen. 
+- Si no ha seleccionado esos comandos, se usa el flujo habitual del agente. 
+
+## Código completo de la actividad
+
+```python
+import os
+import json
+import asyncio
+import chainlit as cl
+from dotenv import load_dotenv
+from mistralai.client import Mistral
+
+load_dotenv()
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+MODEL = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
+
+@cl.step(type="tool", name="get_current_weather")
+async def get_current_weather(location: str) -> str:
+    if "Ajaccio" in location:
+        return json.dumps(
+            {
+                "location": location,
+                "temperature": "22",
+                "unit": "celsius",
+                "forecast": ["sunny"],
+            }
+        )
+    elif "Caprese" in location:
+        return json.dumps(
+            {
+                "location": location,
+                "temperature": "19",
+                "unit": "celsius",
+                "forecast": ["partly cloudy"],
+            }
+        )
+    elif "Paris" in location:
+        return json.dumps(
+            {
+                "location": location,
+                "temperature": "17",
+                "unit": "celsius",
+                "forecast": ["cloudy"],
+            }
+        )
+    else:
+        return json.dumps(
+            {
+                "location": location,
+                "temperature": "25",
+                "unit": "celsius",
+                "forecast": ["unknown"],
+            }
+        )
+
+
+@cl.step(type="tool", name="get_home_town")
+async def get_home_town(person: str) -> str:
+    if "Napoleon" in person:
+        return "Ajaccio, Corsica"
+    elif "Michel" in person:
+        return "Caprese, Italy"
+    else:
+        return "Paris, France"
+
+
+@cl.step(type="tool", name="get_country_info")
+async def get_country_info(location: str) -> str:
+    if "Ajaccio" in location:
+        return json.dumps(
+            {
+                "country": "France",
+                "capital": "Paris",
+                "continent": "Europe",
+            }
+        )
+    elif "Caprese" in location:
+        return json.dumps(
+            {
+                "country": "Italy",
+                "capital": "Rome",
+                "continent": "Europe",
+            }
+        )
+    elif "Paris" in location:
+        return json.dumps(
+            {
+                "country": "France",
+                "capital": "Paris",
+                "continent": "Europe",
+            }
+        )
+    else:
+        return json.dumps(
+            {
+                "country": "Unknown",
+                "capital": "Unknown",
+                "continent": "Unknown",
+            }
+        )
+
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_home_town",
+            "description": "Get the home town of a specific person",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "person": {
+                        "type": "string",
+                        "description": "The name of a person (first and last names) to identify.",
+                    }
+                },
+                "required": ["person"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                },
+                "required": ["location"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_country_info",
+            "description": "Get country, capital and continent for a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "A city or location, e.g. Ajaccio, Corsica",
+                    },
+                },
+                "required": ["location"],
+            },
+        },
+    },
+]
+
+
+async def run_multiple(tool_calls):
+    available_tools = {
+        "get_current_weather": get_current_weather,
+        "get_home_town": get_home_town,
+        "get_country_info": get_country_info,
+    }
+    # Función para ejecutar una sola llamada a una herramienta
+    async def run_single(tool_call):
+        function_name = tool_call.function.name
+        function_to_call = available_tools[function_name]
+        function_args = json.loads(tool_call.function.arguments)
+
+        function_response = await function_to_call(**function_args)
+        return {
+            "tool_call_id": tool_call.id,
+            "role": "tool",
+            "name": function_name,
+            "content": function_response,
+        }
+    # Ejecutar todas las llamadas a herramientas en paralelo
+    tool_results = await asyncio.gather(
+        *(run_single(tool_call) for tool_call in tool_calls)
+    )
+    return tool_results
 
 
 @cl.step(type="run")
@@ -1667,7 +2125,8 @@ async def run_agent(user_query: str):
 
     number_iterations = 0
     answer_message_content = None
-
+    # El agente puede hacer hasta 5 iteraciones de llamadas a herramientas para llegar a una 
+    # respuesta final
     while number_iterations < 5:
         completion = mai_client.chat.complete(
             model=MODEL,
@@ -1675,111 +2134,171 @@ async def run_agent(user_query: str):
             tool_choice="auto",
             tools=tools,
         )
+        # Obtener el mensaje de respuesta del asistente y añadirlo al historial de mensajes
         message = completion.choices[0].message
         messages.append(message)
         answer_message_content = message.content
 
+        # Si el mensaje no incluye llamadas a herramientas, se asume que es la respuesta 
+        # final y se termina el proceso
         if not message.tool_calls:
             break
-
+        # Si hay llamadas a herramientas, se ejecutan en paralelo 
         tool_results = await run_multiple(message.tool_calls)
+        # Se añaden los resultados de las herramientas al historial de mensajes para que el 
+        # modelo los procese en la siguiente iteración
         messages.extend(tool_results)
         number_iterations += 1
 
     cl.user_session.set("messages", messages)
     return answer_message_content
-```
 
-### Tareas a realizar
 
-- Añadir **`@cl.on_chat_start`** para inicializar la sesión. 
-- Modificar `run_agent()` para leer y escribir en `cl.user_session`. 
-- Probar una conversación de dos turnos, por ejemplo:  
-        - *What’s the weather in Napoleon’s hometown?*  
-        - *And in Michel’s hometown?*  
-- Comprobar si el bot entiende la continuidad. 
-
-### Pregunta
-
-**¿Qué diferencia hay entre una variable global de Python y **`cl.user_session`**?** La idea es que **`cl.user_session`** mantiene datos por **usuario/sesión**, mientras que una global podría mezclar conversaciones de usuarios distintos. 
-
-## Parte 3: añadir botones con **`cl.Action`**
-
-### Objetivo
-
-Incorporar una interfaz más guiada en Chainlit mediante botones que lancen preguntas predefinidas. Chainlit soporta acciones interactivas con **`cl.Action`** y **`@cl.action_callback(...)`**. 
-
-### Implementación sugerida
-
-```python
 def get_action_buttons():
     return [
         cl.Action(
             name="napoleon_button",
             label="Napoleón",
-            payload={"prompt": "What's the weather in Napoleon's hometown?"}
+            icon="/public/idea.svg",
+            payload={"prompt": "What's the weather in Napoleon's hometown and in which country is it?"},
         ),
         cl.Action(
             name="michel_button",
             label="Michel-Angelo",
-            payload={"prompt": "What's the weather in Michel-Angelo's hometown?"}
+            payload={"prompt": "Tell me the hometown, country and weather for Michel-Angelo."},
         ),
         cl.Action(
             name="compare_button",
             label="Comparar",
-            payload={"prompt": "Compare Napoleon's hometown and Michel-Angelo's hometown."}
-        )
+            payload={"prompt": "Compare Napoleon's hometown and Michel-Angelo's hometown, including country and weather."},
+        ),
     ]
-```
 
-Y un callback de ejemplo:
 
-```python
 @cl.action_callback("napoleon_button")
 async def on_napoleon(action: cl.Action):
-    prompt = action.payload.get("prompt", "What's the weather in Napoleon's hometown?")
+    # Obtener el prompt específico para Napoleón o usar un valor por defecto
+    prompt = action.payload.get(
+        "prompt",
+        "What's the weather in Napoleon's hometown and in which country is it?",
+    )
     answer = await run_agent(prompt)
     await cl.Message(content=answer, actions=get_action_buttons()).send()
+
+
+@cl.action_callback("michel_button")
+async def on_michel(action: cl.Action):
+    # Obtener el prompt específico para Michel-Angelo o usar un valor por defecto
+    prompt = action.payload.get(
+        "prompt",
+        "Tell me the hometown, country and weather for Michel-Angelo.",
+    )
+    answer = await run_agent(prompt)
+    await cl.Message(content=answer, actions=get_action_buttons()).send()
+
+
+@cl.action_callback("compare_button")
+async def on_compare(action: cl.Action):
+    # Obtener el prompt específico para comparar o usar un valor por defecto
+    prompt = action.payload.get(
+        "prompt",
+        "Compare Napoleon's hometown and Michel-Angelo's hometown, including country and weather.",
+    )
+    answer = await run_agent(prompt)
+    await cl.Message(content=answer, actions=get_action_buttons()).send()
+
+@cl.step(type="tool", name="search_internet")
+async def search_internet(query: str) -> str:
+    # Sustituye esta parte por tu API real de búsqueda
+    # Por ejemplo SerpAPI, Tavily, Brave Search, etc.
+    return f"Resultado simulado de búsqueda para: {query}"
+
+@cl.step(type="tool", name="generate_picture")
+async def generate_picture(prompt: str) -> str:
+    # Opción simple para clase: simular respuesta
+    # Opción avanzada: integrar agente/image_generation de Mistral
+    return f"Imagen generada para el prompt: {prompt}"
+
+commands = [
+    {
+        "id": "Agente",
+        "icon": "bot",
+        "description": "Usar el agente con tools",
+        "button": True,
+        "persistent": False,
+    },
+    {
+        "id": "Buscar",
+        "icon": "globe",
+        "description": "Buscar en Internet",
+        "button": True,
+        "persistent": False,
+    },
+    {
+        "id": "Imagen",
+        "icon": "image",
+        "description": "Generar una imagen",
+        "button": True,
+        "persistent": False,
+    },
+]
+
+
+@cl.on_chat_start
+async def on_chat_start():
+    cl.user_session.set("messages", [])
+
+    await cl.context.emitter.set_commands(commands)
+    await cl.Message(
+        content=
+            "Hola. Puedes usar el chat normal o elegir un comando:\n"
+            "- Agente: usar el agente con tools\n"
+            "- Buscar: buscar en Internet\n"
+            "- Imagen: generar una imagen.\n"
+            "\n"
+            "También puedes elegir una acción de abajo:\n"
+            "- Napoleón: obtener información sobre el pueblo natal, país y tiempo de Napoleón\n"
+            "- Michel-Angelo: obtener información sobre el pueblo natal, país y tiempo de Michel-Angelo\n"
+            "- Comparar: comparar la información de ambos personajes\n"
+        ,
+        actions=get_action_buttons()
+    ).send()
+
+@cl.on_message
+async def main(message: cl.Message):
+    if message.command == "Buscar":
+        result = await search_internet(message.content)
+        await cl.Message(content=result).send()
+        return
+
+    if message.command == "Imagen":
+        result = await generate_picture(message.content)                      
+        await cl.Message(content=result).send()
+        return
+
+    #Ejemplo de uso del agente con tools para cualquier mensaje que no sea un comando específico
+    answer = await run_agent(message.content)
+    await cl.Message(content=answer).send()
 ```
 
-### Tareas
+## Pruebas que pueden hacer los alumnos
 
-- Crear al menos tres botones de acción. 
-- Asociar cada botón a un callback. 
-- Reutilizar **`run_agent(...)`** en lugar de duplicar lógica del agente. 
-- Mostrar los botones al inicio o después de cada respuesta. 
+Estas pruebas permiten comprobar que el sistema funciona correctamente: 
 
-### Pregunta de reflexión
+- En modo **Agente**: `What's the weather in Napoleon's hometown and in which country is it?`
+- En modo **Agente**: `Compare Napoleon's hometown and Michel-Angelo's hometown.`
+- En modo **Buscar**: `Latest news about Valencia CF`
+- En modo **Picture**: `A watercolor painting of Ajaccio at sunset`
 
-¿Por qué es mejor reutilizar **`run_agent()`** dentro de un **`action_callback`** que escribir una lógica distinta en cada callback? Porque así toda la lógica de conversación y uso de tools queda centralizada y es más mantenible. 
+## Preguntas de reflexión
 
-## Parte 4: reto opcional de interfaz visual
+- ¿Qué ventaja aporta `Command` frente a dejar todos los mensajes en un único flujo? 
+- ¿Qué diferencia hay entre una tool del agente y una función auxiliar como `search_internet()` usada por un command? 
+- ¿Por qué es útil separar `run_agent(...)` del código de `on_message(...)`? 
+- ¿Qué ocurriría si no leyésemos `message.command`? 
 
-### Objetivo
+## Reto de ampliación
 
-Mostrar el resultado usando algún elemento adicional de Chainlit, no solo texto plano. Chainlit soporta distintos elementos visuales y de contenido además de mensajes básicos. 
+Como ampliación, el alumnado puede sustituir `search_internet()` por una API real de búsqueda o `generate_picture()` por una integración real de generación de imagen. La documentación de Mistral muestra soporte para un agente con herramienta `image_generation`, lo que abre la puerta a una versión más avanzada de esta actividad. 
 
-### Ideas posibles
 
-- Añadir una tabla resumen con ciudad, país y temperatura. 
-- Mostrar una imagen o icono meteorológico según la previsión. 
-- Devolver una comparación formateada cuando se consulten dos ciudades.
-
-## Secuencia de trabajo recomendada
-
-1. Revisar el código base y explicar su arquitectura. 
-2. Implementar **`get_country_info(location)`**.  
-3. Registrar la nueva tool en **`tools`** y **`available_tools`**.
-4. Añadir memoria con **`cl.user_session`**.
-5. Incorporar botones con **`cl.Action`**. 
-6. Probar preguntas simples, compuestas y comparativas. 
-7. Realizar el reto visual opcional. 
-
-## Entregables
-
-Debes entregar: 
-
-- Un fichero Python funcional con la ampliación implementada.
-- Capturas de pantalla del agente funcionando en Chainlit.
-- Una breve explicación escrita de los cambios realizados.
-- Respuestas a las preguntas de reflexión.
