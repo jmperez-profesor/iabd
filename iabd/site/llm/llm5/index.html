@@ -2864,7 +2864,8 @@ Explicación:</p>
 <p><strong>¿Qué pasaría si quitamos tools=TOOLS?</strong> El modelo ya no sabría que puede usar <strong><code>get_weather</code></strong>.
 ​</p>
 <h3 id="paso-12-como-se-extrae-el-mensaje-del-asistente-y-se-prepara-su-estructura-para-el-historial">Paso 12 - Cómo se extrae el mensaje del asistente y se prepara su estructura para el historial.</h3>
-<div class="highlight"><pre><span></span><code><span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Obtener el mensaje del asistente de la respuesta</span>
+<span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
 <span class="c1"># Construir el payload del mensaje del asistente, </span>
 <span class="c1"># incluyendo las llamadas a herramientas si las hay</span>
 <span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -3149,7 +3150,7 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
             <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
             <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
         <span class="p">)</span>
-
+        <span class="c1"># Obtener el mensaje del asistente de la respuesta</span>
         <span class="n">assistant_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
 
         <span class="n">assistant_payload</span> <span class="o">=</span> <span class="p">{</span>

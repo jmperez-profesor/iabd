@@ -1141,6 +1141,9 @@ Puede explicarse en seis pasos:
 5. El resultado de la tool se devuelve al historial como `role="tool"`.
 6. Mistral genera la respuesta final y Chainlit la muestra en pantalla.
 
+**Actividad guiada funcionando:**
+![](./images/05/actividad_guiada_1.png)
+
 ### Otro ejemplo de la documentación de Chainlit: un modelo usa dos funciones personalizadas
 
 A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas **`get_current_weather`** y **`get_home_town`** para obtener información y mostrar un resultado.
