@@ -542,7 +542,7 @@ Conviene insistir en que:
 * **`TOOLS`** es la descripción para el modelo.
 * **`get_weather()`** es la implementación real en Python.
 
-#### Paso 4: Función función auxiliar weather_code_to_text()
+### Paso 4: Función función auxiliar weather_code_to_text()
 
 Buena práctica: separar la transformación de datos de la lógica principal del agente. Así el código queda más limpio y además es más fácil de testear.
 ​
