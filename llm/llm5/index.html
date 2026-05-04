@@ -3199,7 +3199,9 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
 
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">JSON tool definitions provided to the LLM.</span>
+<span class="sd">La lista tools contiene el contrato JSON de cada función. </span>
+<span class="sd">Esto le indica al modelo qué nombre tiene cada herramienta, </span>
+<span class="sd">para qué sirve y qué argumentos espera.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -3238,10 +3240,14 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
     <span class="p">},</span>
 <span class="p">]</span>
 
-
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas </span>
+<span class="sd">que el modelo haya pedido. </span>
+<span class="sd">Esto es útil cuando Mistral solicita varias tools en la misma iteración. </span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple</span><span class="p">(</span><span class="n">tool_calls</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Execute multiple tool calls asynchronously.</span>
+<span class="sd">    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">available_tools</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;get_current_weather&quot;</span><span class="p">:</span> <span class="n">get_current_weather</span><span class="p">,</span>
@@ -3261,7 +3267,7 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
             <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">function_response</span><span class="p">,</span>
         <span class="p">}</span>
 
-    <span class="c1"># Run tool calls in parallel.</span>
+    <span class="c1"># Ejecuta varias llamadas de manera concurrente.</span>
     <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
         <span class="o">*</span><span class="p">(</span><span class="n">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">)</span>
     <span class="p">)</span>
