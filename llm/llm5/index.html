@@ -3399,28 +3399,19 @@ Cada starter tiene:</p>
 <p><div class="highlight"><pre><span></span><code><span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main message handler for incoming user messages.</span>
+<span class="sd">    Manejador principal de mensajes para los mensajes entrantes de los usuarios.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">answer_message</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="c1">#llamar al agente</span>
     <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">answer_message</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 </code></pre></div>
 Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el chat:</p>
 <ul>
-<li>
-<p>Llama a <strong><code>run_agent(message.content)</code></strong>.</p>
-</li>
-<li>
-<p>Espera a que el agente termine todas las llamadas de tools necesarias.</p>
-</li>
-<li>
-<p>Envía la respuesta final de vuelta al chat.</p>
-</li>
+<li>Llama a <strong><code>run_agent(message.content)</code></strong>.</li>
+<li>Espera a que el agente termine todas las llamadas de tools necesarias.</li>
+<li>Envía la respuesta final de vuelta al chat.</li>
 </ul>
-<p>Resumen final</p>
+<p>Resumen - <strong>Implementación de agente con Chainlit y Mistral que</strong>:</p>
 <ul>
-<li>
-<p>Implementación de agente con Chainlit y Mistral que:</p>
-</li>
 <li>
 <p>Recibe preguntas del usuario.</p>
 </li>
@@ -3443,7 +3434,7 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 </li>
 </ul>
 <p>Ejemplo claro de <strong><code>function calling</code></strong> con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.</p>
-<p><strong>Código completo</strong></p>
+<p><strong>Código completo:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
