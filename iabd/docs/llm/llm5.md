@@ -1144,6 +1144,8 @@ Puede explicarse en seis pasos:
 **Actividad guiada funcionando:**
 ![](./images/05/actividad_guiada_1.png)
 
+---
+
 ### Otro ejemplo de la documentación de Chainlit: un modelo usa dos funciones personalizadas
 
 A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas **`get_current_weather`** y **`get_home_town`** para obtener información y mostrar un resultado.
@@ -1152,11 +1154,7 @@ A continuación podemos ver un caso de uso donde un modelo usa dos funciones per
 
 **Fuente**: documentación de Mistral
 
-## Ejemplo de Chainlit + Mistral con tools de tiempo y “pueblo natal”
-
 Este ejemplo implementa, con Chainlit y Mistral, un **agente conversacional que puede llamar a dos herramientas (*`tools`*)** para responder preguntas sobre el tiempo, incluso cuando el usuario pregunta por el clima en el pueblo natal de alguien.
-
----
 
 #### Descripción JSON de las herramientas para Mistral
 

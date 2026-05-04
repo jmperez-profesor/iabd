@@ -3222,180 +3222,6 @@ En la siguiente iteración, el modelo leerá ese resultado y podrá producir una
 <p>A continuación podemos ver un caso de uso donde un modelo usa dos funciones personalizadas <strong><code>get_current_weather</code></strong> y <strong><code>get_home_town</code></strong> para obtener información y mostrar un resultado.</p>
 <p><img alt="" src="../images/chainlit/agente_napoleon.png" /></p>
 <p><strong>Fuente</strong>: documentación de Mistral</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
-
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_current_weather&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_weather</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
-    <span class="c1"># Make an actual API call! To open-meteo.com for instance.</span>
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
-            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;29&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;celsius&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;forecast&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sunny&quot;</span><span class="p">],</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_home_town&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_home_town</span><span class="p">(</span><span class="n">person</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the hometown of a person&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;Napoleon&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Ajaccio, Corsica&quot;</span>
-    <span class="k">elif</span> <span class="s2">&quot;Michel&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Caprese, Italy&quot;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Paris, France&quot;</span>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">La lista tools contiene el contrato JSON de cada función. </span>
-<span class="sd">Esto le indica al modelo qué nombre tiene cada herramienta, </span>
-<span class="sd">para qué sirve y qué argumentos espera.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_home_town&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the home town of a specific person&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The name of a person (first and last names) to identify.&quot;</span><span class="p">,</span>
-                    <span class="p">}</span>
-                <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;person&quot;</span><span class="p">],</span>
-            <span class="p">},</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_current_weather&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the current weather in a given location&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The city and state, e.g. San Francisco, CA&quot;</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
-            <span class="p">},</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
-<span class="p">]</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas </span>
-<span class="sd">que el modelo haya pedido. </span>
-<span class="sd">Esto es útil cuando Mistral solicita varias tools en la misma iteración. </span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple</span><span class="p">(</span><span class="n">tool_calls</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">available_tools</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;get_current_weather&quot;</span><span class="p">:</span> <span class="n">get_current_weather</span><span class="p">,</span>
-        <span class="s2">&quot;get_home_town&quot;</span><span class="p">:</span> <span class="n">get_home_town</span><span class="p">,</span>
-    <span class="p">}</span>
-
-    <span class="c1"># Función auxiliar para ejecutar una sola llamada a una herramienta.</span>
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">):</span>
-        <span class="c1"># Extrae el nombre de la función y los argumentos de la llamada a la herramienta.</span>
-        <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
-        <span class="c1"># Obtiene la función correspondiente de available_tools y prepara los argumentos.</span>
-        <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_tools</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
-        <span class="c1"># Los argumentos vienen como un string JSON, así que los parseamos para obtener un diccionario.</span>
-        <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
-
-        <span class="c1"># Ejecuta la función y obtiene la respuesta.</span>
-        <span class="n">function_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
-            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">function_response</span><span class="p">,</span>
-        <span class="p">}</span>
-
-    <span class="c1"># Ejecuta varias llamadas de manera concurrente.</span>
-    <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
-        <span class="o">*</span><span class="p">(</span><span class="n">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">tool_results</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">El motor principal del agente</span>
-<span class="sd">La función run_agent(...) mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. </span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;to_score&quot;</span><span class="p">])</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_agent</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}]</span>
-
-    <span class="n">number_iterations</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">answer_message_content</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">while</span> <span class="n">number_iterations</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">completion</span> <span class="o">=</span> <span class="n">mai_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-large-latest&quot;</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
-            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-            <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
-        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-        <span class="n">answer_message_content</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
-            <span class="k">break</span>
-
-        <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_multiple</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">)</span>
-        <span class="n">messages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tool_results</span><span class="p">)</span>
-
-        <span class="n">number_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="k">return</span> <span class="n">answer_message_content</span>
-
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">set_starters</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_starters</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">[</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown&quot;</span><span class="p">,</span>
-            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown?&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
-            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
-            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-    <span class="p">]</span>
-
-<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main message handler for incoming user messages.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">answer_message</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">answer_message</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
-</code></pre></div>
 <h2 id="ejemplo-de-chainlit-mistral-con-tools-de-tiempo-y-pueblo-natal">Ejemplo de Chainlit + Mistral con tools de tiempo y “pueblo natal”</h2>
 <p>Este ejemplo implementa, con Chainlit y Mistral, un <strong>agente conversacional que puede llamar a dos herramientas (<em><code>tools</code></em>)</strong> para responder preguntas sobre el tiempo, incluso cuando el usuario pregunta por el clima en el pueblo natal de alguien.</p>
 <hr />
@@ -3665,6 +3491,181 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 </li>
 </ul>
 <p>Ejemplo claro de <strong><code>function calling</code></strong> con múltiples herramientas y de cómo integrarlo en una interfaz de chat con Chainlit.</p>
+<p><strong>Código completo</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_current_weather&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_weather</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
+    <span class="c1"># Make an actual API call! To open-meteo.com for instance.</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">location</span><span class="p">,</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;29&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;celsius&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;forecast&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sunny&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;get_home_town&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_home_town</span><span class="p">(</span><span class="n">person</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the hometown of a person&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;Napoleon&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Ajaccio, Corsica&quot;</span>
+    <span class="k">elif</span> <span class="s2">&quot;Michel&quot;</span> <span class="ow">in</span> <span class="n">person</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Caprese, Italy&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Paris, France&quot;</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">La lista tools contiene el contrato JSON de cada función. </span>
+<span class="sd">Esto le indica al modelo qué nombre tiene cada herramienta, </span>
+<span class="sd">para qué sirve y qué argumentos espera.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_home_town&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the home town of a specific person&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The name of a person (first and last names) to identify.&quot;</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;person&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;get_current_weather&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Get the current weather in a given location&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The city and state, e.g. San Francisco, CA&quot;</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">La función run_multiple(...) se encarga de ejecutar en paralelo todas las herramientas </span>
+<span class="sd">que el modelo haya pedido. </span>
+<span class="sd">Esto es útil cuando Mistral solicita varias tools en la misma iteración. </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_multiple</span><span class="p">(</span><span class="n">tool_calls</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ejecutar múltiples llamadas a herramientas (tools) asíncronamente.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">available_tools</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;get_current_weather&quot;</span><span class="p">:</span> <span class="n">get_current_weather</span><span class="p">,</span>
+        <span class="s2">&quot;get_home_town&quot;</span><span class="p">:</span> <span class="n">get_home_town</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Función auxiliar para ejecutar una sola llamada a una herramienta.</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">):</span>
+        <span class="c1"># Extrae el nombre de la función y los argumentos de la llamada a la herramienta.</span>
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">name</span>
+        <span class="c1"># Obtiene la función correspondiente de available_tools y prepara los argumentos.</span>
+        <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_tools</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+        <span class="c1"># Los argumentos vienen como un string JSON, así que los parseamos para obtener un diccionario.</span>
+        <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+
+        <span class="c1"># Ejecuta la función y obtiene la respuesta.</span>
+        <span class="n">function_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;tool_call_id&quot;</span><span class="p">:</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;tool&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">function_response</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="c1"># Ejecuta varias llamadas de manera concurrente.</span>
+    <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="o">*</span><span class="p">(</span><span class="n">run_single</span><span class="p">(</span><span class="n">tool_call</span><span class="p">)</span> <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">tool_results</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">El motor principal del agente</span>
+<span class="sd">La función run_agent(...) mantiene el flujo habitual del agente: recibe la consulta del usuario, llama al modelo, detecta si quiere usar tools, ejecuta esas tools y devuelve la respuesta final. </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nd">@cl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;to_score&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_agent</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}]</span>
+
+    <span class="n">number_iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">answer_message_content</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">while</span> <span class="n">number_iterations</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="n">mai_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-large-latest&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">answer_message_content</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">tool_results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_multiple</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">)</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tool_results</span><span class="p">)</span>
+
+        <span class="n">number_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">answer_message_content</span>
+
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">set_starters</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_starters</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Napoleon&#39;s hometown?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Paris, TX?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">cl</span><span class="o">.</span><span class="n">Starter</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;What&#39;s the weather in Michel-Angelo&#39;s hometown?&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main message handler for incoming user messages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">answer_message</span> <span class="o">=</span> <span class="k">await</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">answer_message</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
 <h1 id="actividad-guiada-usar-command-en-chainlit-para-anadir-modos-de-trabajo-al-agente">Actividad guiada: usar <code>Command</code> en Chainlit para añadir modos de trabajo al agente</h1>
 <p><img alt="" src="../images/05/ejercicio_agentes_commands.png" /></p>
 <p>Esta actividad guiada enseña cómo ampliar una aplicación en Chainlit añadiendo la opción <strong>Command</strong>, de forma que el usuario pueda elegir entre varios modos de interacción desde el cuadro de entrada. Chainlit permite definir comandos con <strong><code>cl.context.emitter.set_commands(...)</code></strong> y detectar el comando elegido desde <strong><code>msg.command</code></strong> dentro de <strong><code>@cl.on_message</code></strong>. </p>
