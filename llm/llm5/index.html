@@ -1352,17 +1352,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#preguntas-de-reflexion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Preguntas de reflexión
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#reto-de-ampliacion" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2561,7 +2550,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">final_response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="actividad-guiada-chainlitagente-con-herramientas-personalizadas">Actividad guiada: Chainlit+agente con herramientas personalizadas</h2>
-<p>Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una <strong>tool real</strong>, por ejemplo, <strong><code>get_weather()</code></strong> para consultar el tiempo de una ciudad. </p>
+<p>Vamos ahora a integrar el <strong>uso de tools personalizadas con la interfaz de Chainlit</strong>. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una <strong>tool real</strong>, por ejemplo, <strong><code>get_weather()</code></strong> para consultar el tiempo de una ciudad. </p>
 <p>Veremos: </p>
 <ul>
 <li>Eventos de chainlit</li>
@@ -4270,15 +4259,8 @@ Es el manejador de mensajes del usuario. Cuando el usuario escribe algo en el ch
 <ul>
 <li>En modo <strong>Agente</strong>: <code>What's the weather in Napoleon's hometown and in which country is it?</code></li>
 <li>En modo <strong>Agente</strong>: <code>Compare Napoleon's hometown and Michel-Angelo's hometown.</code></li>
-<li>En modo <strong>Buscar</strong>: <code>Latest news about Valencia CF</code></li>
-<li>En modo <strong>Picture</strong>: <code>A watercolor painting of Ajaccio at sunset</code></li>
-</ul>
-<h2 id="preguntas-de-reflexion">Preguntas de reflexión</h2>
-<ul>
-<li>¿Qué ventaja aporta <code>Command</code> frente a dejar todos los mensajes en un único flujo? </li>
-<li>¿Qué diferencia hay entre una tool del agente y una función auxiliar como <code>search_internet()</code> usada por un command? </li>
-<li>¿Por qué es útil separar <code>run_agent(...)</code> del código de <code>on_message(...)</code>? </li>
-<li>¿Qué ocurriría si no leyésemos <code>message.command</code>? </li>
+<li>En modo <strong>Buscar</strong>: <code>Última noticias sobre el Elche CF</code></li>
+<li>En modo <strong>Imagen</strong>: <code>Realiza un cuadro de un atardacer tipo Ajaccio</code></li>
 </ul>
 <h2 id="reto-de-ampliacion">Reto de ampliación</h2>
 <p>Como ampliación, el alumnado puede sustituir <code>search_internet()</code> por una API real de búsqueda o <code>generate_picture()</code> por una integración real de generación de imagen. La documentación de Mistral muestra soporte para un agente con herramienta <code>image_generation</code>, lo que abre la puerta a una versión más avanzada de esta actividad. </p>
