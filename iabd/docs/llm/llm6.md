@@ -54,10 +54,11 @@ Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para
 
 ### ¿Cuándo usar smolagents?
 
-`smolagents` es ideal cuando:
-- Necesitas una **solución ligera y mínima.**
-- Quieres **experimentar rápidamente** sin configuraciones complejas.
-- La **lógica de tu aplicación es sencilla.**
+**`smolagents`** es ideal cuando:
+
+* Necesitas una **solución ligera y mínima.**
+* Quieres **experimentar rápidamente** sin configuraciones complejas.
+* La **lógica de tu aplicación es sencilla.**
 
 ### Acciones de Código vs. JSON
 A diferencia de otros frameworks donde los agentes escriben acciones en JSON, `smolagents` **se centra en llamadas a herramientas en código**, simplificando el proceso de ejecución. Esto se debe a que no hay necesidad de analizar el JSON para construir código que llame a las herramientas: la salida puede ejecutarse directamente.
@@ -70,7 +71,7 @@ El siguiente diagrama ilustra esta diferencia:
 
 Los agentes en **`smolagents`** operan como **agentes de múltiples pasos**.
 
-Cada [`MultiStepAgent`](https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent) realiza:
+Cada **[`MultiStepAgent`](https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent)** realiza:
 - Un pensamiento
 - Una llamada a herramienta y ejecución
 
