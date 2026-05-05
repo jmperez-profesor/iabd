@@ -1457,17 +1457,19 @@
 <li><strong>Integración con HF Hub:</strong> Integración perfecta con Hugging Face Hub, permitiendo el uso de <strong>Espacios Gradio</strong> como herramientas</li>
 </ul>
 <h3 id="cuando-usar-smolagents">¿Cuándo usar smolagents?</h3>
-<p><code>smolagents</code> es ideal cuando:
-- Necesitas una <strong>solución ligera y mínima.</strong>
-- Quieres <strong>experimentar rápidamente</strong> sin configuraciones complejas.
-- La <strong>lógica de tu aplicación es sencilla.</strong></p>
+<p><strong><code>smolagents</code></strong> es ideal cuando:</p>
+<ul>
+<li>Necesitas una <strong>solución ligera y mínima.</strong></li>
+<li>Quieres <strong>experimentar rápidamente</strong> sin configuraciones complejas.</li>
+<li>La <strong>lógica de tu aplicación es sencilla.</strong></li>
+</ul>
 <h3 id="acciones-de-codigo-vs-json">Acciones de Código vs. JSON</h3>
 <p>A diferencia de otros frameworks donde los agentes escriben acciones en JSON, <code>smolagents</code> <strong>se centra en llamadas a herramientas en código</strong>, simplificando el proceso de ejecución. Esto se debe a que no hay necesidad de analizar el JSON para construir código que llame a las herramientas: la salida puede ejecutarse directamente.</p>
 <p>El siguiente diagrama ilustra esta diferencia:</p>
 <p><img alt="Acciones de Código vs. JSON" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png" /></p>
 <h3 id="tipos-de-agentes-en-smolagents">Tipos de Agentes en <code>smolagents</code></h3>
 <p>Los agentes en <strong><code>smolagents</code></strong> operan como <strong>agentes de múltiples pasos</strong>.</p>
-<p>Cada <a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent"><code>MultiStepAgent</code></a> realiza:
+<p>Cada <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent"><code>MultiStepAgent</code></a></strong> realiza:
 - Un pensamiento
 - Una llamada a herramienta y ejecución</p>
 <p>Además de usar <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.CodeAgent">CodeAgent</a></strong> como el tipo principal de agente, smolagents también soporta <strong><a href="https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.ToolCallingAgent">ToolCallingAgent</a></strong>, que escribe llamadas a herramientas en JSON.</p>

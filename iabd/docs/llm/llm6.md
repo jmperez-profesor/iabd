@@ -92,9 +92,9 @@ Esta flexibilidad asegura que los desarrolladores puedan elegir el modelo y serv
 
 # Construcción de agentes que usan código
 
-Los agentes de código son el tipo de agente predeterminado en `smolagents`. Generan llamadas a herramientas en Python para realizar acciones, logrando representaciones de acciones que son eficientes, expresivas y precisas.
+Los agentes de código son el tipo de agente predeterminado en **`smolagents`**. Generan llamadas a herramientas en Python para realizar acciones, logrando representaciones de acciones que son eficientes, expresivas y precisas.
 
-Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. `smolagents` proporciona un framework ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.
+Su enfoque simplificado reduce el número de acciones requeridas, simplifica operaciones complejas y permite la reutilización de funciones de código existentes. **`smolagents`** proporciona un framework ligero para construir agentes de código, implementado en aproximadamente 1,000 líneas de código.
 
 ![Acciones de Código vs JSON](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png)
 Gráfico del artículo [Executable Code Actions Elicit Better LLM Agents](https://huggingface.co/papers/2402.01030)
@@ -103,7 +103,7 @@ Gráfico del artículo [Executable Code Actions Elicit Better LLM Agents](https:
 
 En un proceso de agente de múltiples pasos, el LLM escribe y ejecuta acciones, típicamente involucrando llamadas a herramientas externas. Los enfoques tradicionales utilizan un formato JSON para especificar nombres de herramientas y argumentos como cadenas de texto, **que el sistema debe analizar para determinar qué herramienta ejecutar**.
 
-Sin embargo, la investigación muestra que **los LLMs que llaman a herramientas funcionan más efectivamente con código directamente**. Este es un principio fundamental de `smolagents`, como se muestra en el diagrama anterior del artículo [Executable Code Actions Elicit Better LLM Agents](https://huggingface.co/papers/2402.01030).
+Sin embargo, la investigación muestra que **los LLMs que llaman a herramientas funcionan más efectivamente con código directamente**. Este es un principio fundamental de **`smolagents`**, como se muestra en el diagrama anterior del artículo [Executable Code Actions Elicit Better LLM Agents](https://huggingface.co/papers/2402.01030).
 
 Escribir acciones en código en lugar de JSON ofrece varias ventajas clave:
 
