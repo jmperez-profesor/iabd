@@ -116,25 +116,28 @@ Escribir acciones en código en lugar de JSON ofrece varias ventajas clave:
 
 ![De https://huggingface.co/docs/smolagents/conceptual_guides/react](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/smolagents/codeagent_docs.png)
 
-El diagrama anterior ilustra cómo funciona `CodeAgent.run()`, siguiendo el marco **ReAct** mencionado anteriormente. La abstracción principal para agentes en `smolagents` es un `MultiStepAgent`, que sirve como el bloque de construcción central. `CodeAgent` es un tipo especial de `MultiStepAgent`, como veremos en un ejemplo a continuación.
+El diagrama anterior ilustra cómo funciona **`CodeAgent.run()`**, siguiendo el marco **ReAct** mencionado anteriormente. La abstracción principal para agentes en **`smolagents`** es un **`MultiStepAgent`**, que sirve como el bloque de construcción central. **`CodeAgent`** es un tipo especial de **`MultiStepAgent`**, como veremos en un ejemplo a continuación.
 
-Un `CodeAgent` realiza acciones a través de un ciclo de pasos, con variables y conocimientos existentes incorporados en el contexto del agente, que se mantiene en un registro de ejecución:
+Un **`CodeAgent`** realiza acciones a través de un **ciclo de pasos, con variables y conocimientos existentes** incorporados en el contexto del agente, que se mantiene en un registro de ejecución:
 
-1. El prompt del sistema se almacena en un `SystemPromptStep`, y la consulta del usuario se registra en un `TaskStep`.
+1. El prompt del sistema se almacena en un **`SystemPromptStep`**, y la consulta del usuario se registra en un **`TaskStep`**.
 
 2. Luego, se ejecuta el siguiente bucle while:
 
-    2.1 El método `agent.write_memory_to_messages()` escribe los registros del agente en una lista de [mensajes de chat](https://huggingface.co/docs/transformers/en/chat_templating) legibles por el LLM.
+    2.1 El método **`agent.write_memory_to_messages()`** escribe los registros del agente en una lista de [mensajes de chat](https://huggingface.co/docs/transformers/en/chat_templating) legibles por el LLM.
     
-    2.2 Estos mensajes se envían a un `Model`, que genera una finalización.
+    2.2 Estos mensajes se envían a un **`Model`**, que genera una finalización.
     
-    2.3 La finalización se analiza para extraer la acción, que, en nuestro caso, debería ser un fragmento de código ya que estamos trabajando con un `CodeAgent`.
+    2.3 La finalización se analiza para extraer la acción, que, en nuestro caso, debería ser un fragmento de código ya que estamos trabajando con un **`CodeAgent`**.
     
     2.4 La acción se ejecuta.
     
-    2.5 Los resultados se registran en la memoria en un `ActionStep`.
+    2.5 Los resultados se registran en la memoria en un **`ActionStep`**.
 
-Al final de cada paso, si el agente incluye alguna llamada a función (en `agent.step_callback`), estas se ejecutan.
+Al final de cada paso, si el agente incluye alguna llamada a función (en **`agent.step_callback`**), estas se ejecutan.
+
+**Ejemplo de uso del patrón CodeAgent**
+![](./images/agente_running.gif)
 
 ## Veamos algunos ejemplos
 
@@ -147,7 +150,7 @@ Instalamos `smolagents` dede el siguiente comando:
 ```bash
 pip install smolagents -U
 ```
-También debemos iniciar sesión en el ***Hugging Face Hub*** para tener acceso a la API de Inferencia *`Serverless`*.
+También debemos iniciar sesión en el ***Hugging Face Hub*** para tener acceso a la API de Inferencia **`Serverless`**.
 
 **login_hf.py**
 ```python
@@ -168,7 +171,7 @@ print(response)
 ```
 ### Seleccionando una lista de reproducción para la fiesta usando `smolagents`
 
-¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡`smolagents` nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.
+¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡**`smolagents`** nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.
 
 ![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-playlist.jpg)
 
@@ -208,9 +211,9 @@ Cuando ejecutamos este ejemplo, la salida **mostrará un seguimiento de los paso
 
 ![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-menu.jpg)
 
-Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar `smolagents` para hacerlo. Aquí, usamos el decorador `@tool` para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.
+Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar **`smolagents`** para hacerlo. Aquí, usamos el decorador **`@tool`** para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.
 
-Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador `@tool` y la incluiremos en la lista de `tools`.
+Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador **`@tool`** y la incluiremos en la lista de **`tools`**.
 
 ```python
 from smolagents import CodeAgent, tool, InferenceClientModel
