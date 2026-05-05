@@ -35,7 +35,6 @@ Definir la función que el modelo va a llamar. Este ejemplo crea una `get_weathe
 pip install mistralai dotenv
 ```
 
-
 ```python
 import json
 import os
@@ -447,7 +446,7 @@ print(final_response.choices[0].message.content)
 
 ## Actividad guiada: Chainlit+agente con herramientas personalizadas
 
-Vamos ahora a integrar el uso de tools personalizadas con la interfaz de Chainlit. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una **tool real**, por ejemplo, **`get_weather()`** para consultar el tiempo de una ciudad. 
+Vamos ahora a integrar el **uso de tools personalizadas con la interfaz de Chainlit**. El objetivo de la actividad es construir un asistente en Chainlit capaz de responder preguntas generales y, cuando sea necesario, llamar a una **tool real**, por ejemplo, **`get_weather()`** para consultar el tiempo de una ciudad. 
 
 Veremos: 
 
@@ -2272,15 +2271,9 @@ Estas pruebas permiten comprobar que el sistema funciona correctamente:
 
 - En modo **Agente**: `What's the weather in Napoleon's hometown and in which country is it?`
 - En modo **Agente**: `Compare Napoleon's hometown and Michel-Angelo's hometown.`
-- En modo **Buscar**: `Latest news about Valencia CF`
-- En modo **Picture**: `A watercolor painting of Ajaccio at sunset`
+- En modo **Buscar**: `Última noticias sobre el Elche CF`
+- En modo **Imagen**: `Realiza un cuadro de un atardacer tipo Ajaccio`
 
-## Preguntas de reflexión
-
-- ¿Qué ventaja aporta `Command` frente a dejar todos los mensajes en un único flujo? 
-- ¿Qué diferencia hay entre una tool del agente y una función auxiliar como `search_internet()` usada por un command? 
-- ¿Por qué es útil separar `run_agent(...)` del código de `on_message(...)`? 
-- ¿Qué ocurriría si no leyésemos `message.command`? 
 
 ## Reto de ampliación
 

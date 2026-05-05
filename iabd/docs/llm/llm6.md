@@ -5,23 +5,26 @@ description: Apuntes, prácticas, ejercicio del curso de especialización en IA 
 
 # Smolagents y orquestación multiagente con Chainlit
 
+**Patrón CodeAct**
+![](./images/06/codeagent_pattern.png)
+**Ejemplo de uso del patrón CodeAgent**
 ![](./images/agente_running.gif)
 
 ### 1️⃣ Por qué usar smolagents
 
-`smolagents` es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen `LlamaIndex` y `LangGraph`. `smolagents` ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. 
+**`smolagents`** es uno de los muchos frameworks de agentes de código abierto disponibles para el desarrollo de aplicaciones. Las opciones alternativas incluyen **`LlamaIndex`** y **`LangGraph`**. **`smolagents`** ofrece varias características clave que podrían hacerlo una gran opción para casos de uso específicos, pero siempre debemos considerar todas las opciones al seleccionar un framework. 
 
 ### 2️⃣ Agentes de código
 
-Los `CodeAgents` (Agentes de Código) son el tipo principal de agente en `smolagents`. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. 
+Los **`CodeAgents` (Agentes de Código)** son el tipo principal de agente en **`smolagents`**. En lugar de generar JSON o texto, estos agentes producen código Python para realizar acciones. 
 
 ### 3️⃣ Agentes de llamada a herramientas (tools)
 
-Los `ToolCallingAgents` (Agentes de Llamada a Herramientas) son el segundo tipo de agente soportado por `smolagents`. A diferencia de los `CodeAgents`, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. 
+Los **`ToolCallingAgents` (Agentes de Llamada a Herramientas)** son el segundo tipo de agente soportado por **`smolagents`**. A diferencia de los **`CodeAgents`**, que generan código Python, estos agentes dependen de bloques JSON/texto que el sistema debe analizar e interpretar para ejecutar acciones. 
 
 ### 4️⃣ Herramientas (tools)
 
-Como vimos en sesiones anteriores, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase `Tool` o el decorador `@tool`. 
+Como vimos en sesiones anteriores, las herramientas son funciones que un LLM puede usar dentro de un sistema de agentes, y actúan como los bloques de construcción esenciales para el comportamiento del agente. Veremos cómo crear herramientas, su estructura y diferentes métodos de implementación usando la clase **`Tool`** o el decorador **`@tool`**. 
 
 ### 5️⃣ Agentes de Recuperación (RAG)
 
@@ -39,14 +42,14 @@ Los agentes de visión extienden las capacidades tradicionales de los agentes al
 
 ## ¿Qué es `smolagents`?
 
-`smolagents` es un framework simple pero potente para construir agentes de IA. Proporciona a los LLMs la _capacidad de acción_ para interactuar con el mundo real, como buscar o generar imágenes.
+**`smolagents`** es un **framework simple** pero potente para construir agentes de IA. Proporciona a los LLMs la _capacidad de acción_ para interactuar con el mundo real, como buscar o generar imágenes.
 
 Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para generar **pensamientos** basados en **observaciones** para realizar **acciones**. 
 
 ### Ventajas clave de `smolagents`
 - **Simplicidad:** Mínima complejidad de código y abstracciones, para hacer que el framework sea fácil de entender, adoptar y extender
 - **Soporte flexible para LLM:** Funciona con cualquier LLM a través de la integración con herramientas de Hugging Face y APIs externas
-- **Enfoque centrado en el código:** Soporte de primera clase para Agentes de Código que escriben sus acciones directamente en código, eliminando la necesidad de análisis y simplificando la llamada a herramientas
+- **Enfoque centrado en el código:** Soporte para **Agentes de Código** que escriben sus acciones directamente en código, eliminando la necesidad de análisis y simplificando la llamada a herramientas
 - **Integración con HF Hub:** Integración perfecta con Hugging Face Hub, permitiendo el uso de **Espacios Gradio** como herramientas
 
 ### ¿Cuándo usar smolagents?
@@ -65,7 +68,7 @@ El siguiente diagrama ilustra esta diferencia:
 
 ### Tipos de Agentes en `smolagents`
 
-Los agentes en `smolagents` operan como **agentes de múltiples pasos**.
+Los agentes en **`smolagents`** operan como **agentes de múltiples pasos**.
 
 Cada [`MultiStepAgent`](https://huggingface.co/docs/smolagents/main/en/reference/agents#smolagents.MultiStepAgent) realiza:
 - Un pensamiento
