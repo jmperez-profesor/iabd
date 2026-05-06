@@ -2418,7 +2418,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <li><strong>Creando una subclase de <code>Tool</code></strong> para funcionalidades más complejas    </li>
 </ol>
 <h3 id="el-decorador-tool">El decorador <code>@tool</code></h3>
-<p>El decorador <code>@tool</code> es <strong>la forma recomendada para definir herramientas simples</strong>. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla.</p>
+<p>El decorador <code>@tool</code> es <strong>la forma recomendada para definir herramientas simples</strong>. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, <strong>si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla</strong>.</p>
 <p>Usando este enfoque, definimos una función con:  </p>
 <ul>
 <li><strong>Un nombre de función claro y descriptivo</strong> que ayuda al LLM a entender su propósito.  </li>
@@ -2428,7 +2428,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <h4 id="generando-una-herramienta-que-recupera-el-servicio-de-catering-mejor-valorado">Generando una herramienta que recupera el servicio de catering mejor valorado</h4>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-catering.jpg" /></p>
 <p>Imaginemos que Alfred ya ha decidido el menú para la fiesta, pero ahora necesita ayuda para preparar comida para un número tan grande de invitados. Para hacerlo, le gustaría contratar un servicio de catering y necesita identificar las opciones mejor valoradas disponibles. Alfred puede aprovechar una herramienta para buscar los mejores servicios de catering en su área.</p>
-<p>A continuación se muestra un ejemplo de cómo Alfred puede usar el decorador <code>@tool</code> para lograrlo:</p>
+<p>A continuación se muestra un ejemplo de cómo Alfred puede usar el decorador <strong><code>@tool</code></strong> para lograrlo:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">tool</span>
 
 <span class="c1"># Imaginemos que tenemos una función que obtiene los servicios de catering mejor valorados.</span>
@@ -2470,7 +2470,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <li><strong><code>output_type</code></strong>: Especifica el tipo de salida esperado.  </li>
 <li><strong><code>forward</code></strong>: El método que contiene la lógica de inferencia a ejecutar.</li>
 </ul>
-<p>A continuación, podemos ver un ejemplo de una herramienta construida usando <code>Tool</code> y cómo integrarla dentro de un <strong><code>CodeAgent</code></strong>.</p>
+<p>A continuación, podemos ver un ejemplo de una herramienta construida usando <strong><code>Tool</code></strong> y cómo integrarla dentro de un <strong><code>CodeAgent</code></strong>.</p>
 <h4 id="generando-una-herramienta-para-generar-ideas-sobre-la-fiesta-tematica-de-superheroes">Generando una herramienta para generar ideas sobre la fiesta temática de superhéroes</h4>
 <p>La fiesta de Alfred en la mansión es un <strong>evento temático de superhéroes</strong>, pero necesita algunas ideas creativas para hacerla verdaderamente especial. Como anfitrión fantástico, quiere sorprender a los invitados con un tema único.</p>
 <p>Para hacer esto, puede usar un agente que genere ideas de fiestas temáticas de superhéroes basadas en una categoría dada. De esta manera, Alfred puede encontrar el tema de fiesta perfecto para impresionar a sus invitados.</p>
@@ -2525,16 +2525,16 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Alfred podría usar varias herramientas para asegurar una fiesta impecable en la Mansión Wayne:</p>
 <ul>
 <li>
-<p>Primero, podría usar la <code>DuckDuckGoSearchTool</code> para encontrar ideas creativas para fiestas temáticas de superhéroes.</p>
+<p>Primero, podría usar la <strong><code>DuckDuckGoSearchTool</code></strong> para encontrar ideas creativas para fiestas temáticas de superhéroes.</p>
 </li>
 <li>
-<p>Para el catering, confiaría en la <code>GoogleSearchTool</code> para encontrar los servicios mejor valorados en Gotham.</p>
+<p>Para el catering, confiaría en la <strong><code>GoogleSearchTool</code></strong> para encontrar los servicios mejor valorados en Gotham.</p>
 </li>
 <li>
-<p>Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la <code>PythonInterpreterTool</code>.</p>
+<p>Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la <strong><code>PythonInterpreterTool</code></strong>.</p>
 </li>
 <li>
-<p>Una vez recopilado todo, compilaría el plan usando la <code>FinalAnswerTool</code>.</p>
+<p>Una vez recopilado todo, compilaría el plan usando la <strong><code>FinalAnswerTool</code></strong>.</p>
 </li>
 </ul>
 <p>Con estas herramientas, Alfred garantiza que la fiesta sea excepcional e impecable. 🦇💡</p>
@@ -2543,12 +2543,12 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Con estas integraciones, Alfred puede aprovechar herramientas avanzadas de planificación de eventos, ya sea ajustar la iluminación para el ambiente perfecto, seleccionar la lista de reproducción ideal para la fiesta, o coordinar con los mejores servicios de catering de Gotham.</p>
 <p>Aquí hay ejemplos que muestran cómo estas funcionalidades pueden elevar la experiencia de la fiesta:</p>
 <h3 id="compartir-una-herramienta-en-el-hub">Compartir una Herramienta en el Hub</h3>
-<p>¡Compartir tu herramienta personalizada con la comunidad es fácil! Simplemente súbela a tu cuenta de Hugging Face usando el método <code>push_to_hub()</code>.</p>
-<p>Por ejemplo, Alfred puede compartir su <code>party_theme_tool</code> para ayudar a otros a encontrar los mejores servicios de catering en Gotham. Así es cómo hacerlo:</p>
+<p>¡Compartir tu herramienta personalizada con la comunidad es fácil! Simplemente súbela a tu cuenta de Hugging Face usando el método <strong><code>push_to_hub()</code></strong>.</p>
+<p>Por ejemplo, Alfred puede compartir su <strong><code>party_theme_tool</code></strong> para ayudar a otros a encontrar los mejores servicios de catering en Gotham. Así es cómo hacerlo:</p>
 <div class="highlight"><pre><span></span><code><span class="n">party_theme_tool</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{tu_nombre_de_usuario}</span><span class="s2">/party_theme_tool&quot;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="importar-una-herramienta-desde-el-hub">Importar una Herramienta desde el Hub</h3>
-<p>Puedes importar fácilmente herramientas creadas por otros usuarios usando la función <code>load_tool()</code>. Por ejemplo, Alfred podría querer generar una imagen promocional para la fiesta usando IA. En lugar de construir una herramienta desde cero, puede aprovechar una predefinida de la comunidad:</p>
+<p>Podemos importar fácilmente herramientas creadas por otros usuarios usando la función <strong><code>load_tool()</code></strong>. Por ejemplo, Alfred podría querer generar una imagen promocional para la fiesta usando IA. En lugar de construir una herramienta desde cero, puede aprovechar una predefinida de la comunidad:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_tool</span><span class="p">,</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
 
 <span class="n">image_generation_tool</span> <span class="o">=</span> <span class="n">load_tool</span><span class="p">(</span>
@@ -2565,7 +2565,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 </code></pre></div>
 <h3 id="importar-un-hugging-face-space-como-herramienta">Importar un Hugging Face Space como Herramienta</h3>
 <p>También puedes importar un HF Space como herramienta usando <strong><code>Tool.from_space()</code></strong>. Esto abre posibilidades para integrar miles de spaces de la comunidad para tareas desde generación de imágenes hasta análisis de datos.</p>
-<p>La herramienta se conectará con el backend Gradio del space usando <strong><code>gradio_client</code></strong>, así que asegúrate de instalarlo via <strong><code>pip</code></strong> si aún no lo tienes.</p>
+<p>La herramienta se conectará con el <strong>backend Gradio del space</strong> usando <strong><code>gradio_client</code></strong>, así que tendremos que instalarlo via <strong><code>pip</code></strong> si aún no lo hemos instalado.</p>
 <p>Para la fiesta, Alfred puede usar un <strong>HF Space</strong> existente para la generación de la imagen generada por IA que se usará en el anuncio (en lugar de la herramienta preintegrada que mencionamos antes). </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">Tool</span>
 
@@ -2588,7 +2588,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Discutiremos el framework <strong><code>LangChain</code></strong> en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!</p>
 <p>Podemos cargar fácilmente herramientas de LangChain usando el método <strong><code>Tool.from_langchain()</code></strong>. Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de <strong><code>LangChain</code></strong> para encontrar ideas de entretenimiento de primera categoría.</p>
 <p>Al usar <strong><code>Tool.from_langchain()</code></strong>, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.</p>
-<p>Primero instamos las herramientas de langchain y DuckDuckGoSearchRun:</p>
+<p>Primero instamos las herramientas de <strong><code>langchain</code></strong> y <strong><code>DuckDuckGoSearchRun</code></strong>:</p>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain<span class="w"> </span>langchain-community<span class="w"> </span>ddgs
 </code></pre></div>
 <p>Ejemplo:</p>

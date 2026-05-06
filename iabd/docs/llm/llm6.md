@@ -1474,11 +1474,21 @@ Vamos a construir un agente simple que pueda buscar en la web usando DuckDuckGo.
 
 Así es como el agente de Alfred puede lograr esto:
 
+**alfred_ddgs.py**
+
 ```python
 from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
 
 # Initialize the search tool
 search_tool = DuckDuckGoSearchTool()
+
+'''
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+'''
 
 # Initialize the model
 model = InferenceClientModel()
@@ -1511,6 +1521,8 @@ Una **base de datos vectorial** es simplemente una **colección de documentos co
 Este enfoque combina **conocimiento predefinido con búsqueda semántica** para proporcionar soluciones contextualizadas para la planificación de eventos. Con acceso a conocimiento especializado, Alfred puede perfeccionar cada detalle de la fiesta.
 
 En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una **base de conocimiento personalizada**. Usaremos un recuperador **BM25** para buscar en la base de conocimiento y devolver los mejores resultados, y **`RecursiveCharacterTextSplitter`** para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.
+
+**alfred_rag.py**
 
 ```python
 from langchain.docstore.document import Document
