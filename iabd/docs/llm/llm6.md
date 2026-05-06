@@ -654,25 +654,12 @@ El cambio a Mistral AI permite trabajar con un proveedor externo real, lo que in
 
 Las siguientes extensiones permiten reforzar el aprendizaje y comprobar si el alumnado ha entendido la arquitectura de tools y el uso de un proveedor externo.
 
-- Añadir una herramienta `power(a, b)` para calcular potencias.
-- Añadir una herramienta `mod(a, b)` para calcular restos.
+- Añadir una herramienta **`power(a, b)`** para calcular potencias y realizar varias pruebas de ejecución.
+- Añadir una herramienta **`mod(a, b)`** para calcular restos.
+- Añadir una herramienta **`mcd(lista de numeros)`** o **`mcm(lista de numeros)`** para calcular el **m.c.m** o el **m.c.d** de varios números.
 - Pedir consultas en castellano en lugar de inglés y comparar resultados.
-- Activar `verbosity_level=2` en el agente para observar mejor la secuencia de llamadas a tools, algo especialmente útil en demostraciones de aula.
-- Añadir un bloque previo que liste modelos disponibles con `mai_client.models.list()` para trabajar el concepto de descubrimiento de capacidades de una API.
-
-## Posibles errores y cómo interpretarlos
-
-Si la variable `MISTRAL_API_KEY` no está definida o está vacía, la autenticación contra Mistral AI fallará. Si una función no está decorada con `@tool` o no se incluye en `tools=[...]`, el agente no podrá utilizarla aunque exista en el script. Existe además un issue reportado en `smolagents` sobre problemas de roles al usar la API de Mistral en ciertos contextos, lo que hace recomendable trabajar con versiones recientes de `smolagents` y `litellm`. Si Chainlit no arranca, conviene comprobar la instalación del paquete y que se esté usando el comando `chainlit run app.py -w` desde la carpeta adecuada.
-
-## Cierre
-
-La práctica sirve como primera aproximación sólida al concepto de agente con herramientas, ya que combina funciones Python, razonamiento del modelo y una interfaz conversacional final de uso sencillo. Su principal valor didáctico está en mostrar que el agente no “sabe hacer cuentas” por arte de magia, sino que delega el cálculo en herramientas explícitas y controladas por el programador.
-
-
 
 ## El agente Alfred 
-
-
 
 Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un `CodeAgent` de múltiples pasos.
 
@@ -720,7 +707,7 @@ Un vez instalado, ejecutar un agente es bastante sencillo:
 ```python
 from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
 
-agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=InferenceClientModel())
+agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=InferenceClientModel(), verbosity_level=2)
 
 agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión de los Wayne.")
 ```
