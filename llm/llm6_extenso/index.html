@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm6/">
+        <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm6_extenso/">
       
       
-        <link rel="prev" href="../llm5/">
-      
-      
-        <link rel="next" href="../../hf/">
       
       
         
@@ -229,12 +225,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../llm2/" class="md-tabs__link">
           
   
@@ -358,10 +352,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -379,20 +371,19 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -410,7 +401,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -537,37 +528,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sesión 6 - Smolagents y orquestación multiagente
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../llm6/" class="md-nav__link">
         
   
   
@@ -583,103 +547,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-por-que-usar-smolagents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ Por qué usar smolagents
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-agentes-de-codigo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Agentes de código
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-agentes-de-llamada-a-herramientas-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3️⃣ Agentes de llamada a herramientas (tools)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-herramientas-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4️⃣ Herramientas (tools)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-agentes-de-recuperacion-rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5️⃣ Agentes de Recuperación (RAG)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-sistemas-multi-agente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6️⃣ Sistemas Multi-Agente
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-agentes-de-vision-y-navegador" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7️⃣ Agentes de Visión y Navegador
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2561,27 +2428,15 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="n">additional_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;user_prompt&#39;</span><span class="p">:</span> <span class="s1">&#39;Una gran fiesta temática de superhéroes en la Mansión Wayne, con Alfred supervisando una lujosa gala&#39;</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre></div>
-<h3 id="importar-una-herramienta-de-langchain-duckduckgosearchrun">Importar una herramienta de LangChain - DuckDuckGoSearchRun</h3>
+<h3 id="importar-una-herramienta-de-langchain">Importar una herramienta de LangChain</h3>
 <p>Discutiremos el framework <code>LangChain</code> en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!</p>
 <p>Podemos cargar fácilmente herramientas de LangChain usando el método <strong><code>Tool.from_langchain()</code></strong>. Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de <strong><code>LangChain</code></strong> para encontrar ideas de entretenimiento de primera categoría.</p>
 <p>Al usar <strong><code>Tool.from_langchain()</code></strong>, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.</p>
-<p>Primero instamos las herramientas de langchain y DuckDuckGoSearchRun:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain<span class="w"> </span>langchain-community<span class="w"> </span>ddgs
-</code></pre></div>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchRun</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">LiteLLMModel</span><span class="p">,</span> <span class="n">Tool</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">Tool</span>
 
-<span class="c1"># Herramienta DuckDuckGo</span>
-<span class="n">ddg_search</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchRun</span><span class="p">()</span>
-<span class="n">search_tool</span> <span class="o">=</span> <span class="n">Tool</span><span class="o">.</span><span class="n">from_langchain</span><span class="p">(</span><span class="n">ddg_search</span><span class="p">)</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
-    <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
-    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">search_tool</span> <span class="o">=</span> <span class="n">Tool</span><span class="o">.</span><span class="n">from_langchain</span><span class="p">(</span><span class="n">load_tools</span><span class="p">([</span><span class="s2">&quot;serpapi&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">search_tool</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
 
@@ -2589,12 +2444,11 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 </code></pre></div>
 <p>Con esta configuración, Alfred puede descubrir rápidamente opciones de entretenimiento lujosas, asegurando que los invitados de élite de Gotham tengan una experiencia inolvidable. ¡Esta herramienta le ayuda a organizar el evento temático de superhéroes perfecto para la Mansión Wayne! 🎉</p>
 <h1 id="construyendo-sistemas-rag-con-agentes">Construyendo sistemas RAG con Agentes</h1>
-<p><img alt="" src="../images/06/agents_with_RAG.gif" /></p>
-<p>Los sistemas de <strong>Generación Aumentada por Recuperación (RAG)</strong> combinan las capacidades de <strong>recuperación de datos</strong> y <strong>modelos de generación</strong> para proporcionar <strong>respuestas contextualizadas</strong>. Por ejemplo, <strong>la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada</strong>.</p>
+<p>Los sistemas de <strong>Generación Aumentada por Recuperación (RAG)</strong> combinan las capacidades de recuperación de datos y modelos de generación para proporcionar <strong>respuestas contextualizadas</strong>. Por ejemplo, la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada.</p>
 <p>El <strong>RAG con Agentes (Generación Aumentada por Recuperación)</strong> extiende los sistemas RAG tradicionales al <strong>combinar agentes autónomos con recuperación dinámica de conocimiento</strong>.</p>
 <p>Mientras que los sistemas <strong>RAG tradicionales</strong> utilizan un LLM para responder consultas basadas en datos recuperados, el <strong><em>RAG con agentes</em> permite un control inteligente tanto de los procesos de recuperación como de generación</strong>, mejorando la eficiencia y precisión.</p>
 <p>Los sistemas RAG tradicionales enfrentan limitaciones clave, como <strong>depender de un solo paso de recuperación</strong> y enfocarse en la <strong>similitud semántica directa</strong> con la consulta del usuario, lo que puede pasar por alto información relevante.</p>
-<p>El <strong>RAG con agentes</strong> aborda estos problemas permitiendo que el agente <strong>formule autónomamente consultas de búsqueda</strong>, <strong>critique los resultados recuperados</strong> y <strong>realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo</strong>.</p>
+<p>El <strong>RAG con agentes</strong> aborda estos problemas permitiendo que el agente formule autónomamente consultas de búsqueda, critique los resultados recuperados y <strong>realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo</strong>.</p>
 <h2 id="recuperacion-basica-con-duckduckgo">Recuperación básica con DuckDuckGo</h2>
 <p>Vamos a construir un agente simple que pueda buscar en la web usando DuckDuckGo. Este agente recuperará información y sintetizará respuestas para contestar consultas. Con RAG con agentes, el agente de Alfred puede:</p>
 <ul>
@@ -2633,7 +2487,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Para tareas especializadas, una <strong>base de conocimientos personalizada</strong> puede ser invaluable. Vamos a crear una herramienta que consulte una base de datos vectorial de documentación técnica o conocimiento especializado. Utilizando búsqueda semántica, el agente puede encontrar la información más relevante para las necesidades de Alfred.</p>
 <p>Una <strong>base de datos vectorial</strong> es simplemente una <strong>colección de documentos con representaciones enriquecidas por modelos de ML especializados</strong>, que permiten la <strong>búsqueda y recuperación rápida de los documentos</strong>.</p>
 <p>Este enfoque combina <strong>conocimiento predefinido con búsqueda semántica</strong> para proporcionar soluciones contextualizadas para la planificación de eventos. Con acceso a conocimiento especializado, Alfred puede perfeccionar cada detalle de la fiesta.</p>
-<p>En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una <strong>base de conocimiento personalizada</strong>. Usaremos un recuperador <strong>BM25</strong> para buscar en la base de conocimiento y devolver los mejores resultados, y <strong><code>RecursiveCharacterTextSplitter</code></strong> para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.</p>
+<p>En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una base de conocimiento personalizada. Usaremos un recuperador <strong>BM25</strong> para buscar en la base de conocimiento y devolver los mejores resultados, y <code>RecursiveCharacterTextSplitter</code> para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.docstore.document</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
@@ -2727,7 +2581,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 - Un <strong>Agente Gestor</strong> para la delegación de tareas
 - Un <strong>Agente Intérprete de Código</strong> para la ejecución de código
 - Un <strong>Agente de Búsqueda Web</strong> para la recuperación de información</p>
-<p>El diagrama a continuación ilustra una arquitectura multi-agente simple donde un <strong>Agente Gestor</strong> coordina una <strong>Herramienta Intérprete de Código</strong> y un <strong>Agente de Búsqueda Web</strong>, que a su vez utiliza herramientas como <strong><code>DuckDuckGoSearchTool</code></strong> y <strong><code>VisitWebpageTool</code></strong> para recopilar información relevante.</p>
+<p>El diagrama a continuación ilustra una arquitectura multi-agente simple donde un <strong>Agente Gestor</strong> coordina una <strong>Herramienta Intérprete de Código</strong> y un <strong>Agente de Búsqueda Web</strong>, que a su vez utiliza herramientas como <code>DuckDuckGoSearchTool</code> y <code>VisitWebpageTool</code> para recopilar información relevante.</p>
 <p><img alt="Sistema Multi-Agente" src="https://mermaid.ink/img/pako:eNp1kc1qhTAQRl9FUiQb8wIpdNO76eKubrmFks1oRg3VSYgjpYjv3lFL_2hnMWQOJwn5sqgmelRWleUSKLAtFs09jqhtoWuYUFfFAa6QA9QDTnpzamheuhxn8pt40-6l13UtS0ddhtQXj6dbR4XUGQg6zEYasTF393KjeSDGnDJKNxzj8I_7hLW5IOSmP9CH9hv_NL-d94d4DVNg84p1EnK4qlIj5hGClySWbadT-6OdsrL02MI8sFOOVkciw8zx8kaNspxnrJQE0fXKtjBMMs3JA-MpgOQwftIE9Bzj14w-cMznI_39E9Z3p0uFoA?type=png" /></p>
 <h2 id="sistemas-multi-agente-en-accion">Sistemas Multi-Agente en Acción</h2>
 <p>Un sistema multi-agente consiste en múltiples <strong>agentes especializados</strong> trabajando juntos bajo la coordinación de un <strong>Agente Orquestador</strong>. Este enfoque permite flujos de trabajo complejos distribuyendo tareas entre agentes con roles distintos.</p>
@@ -3093,44 +2947,6 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Pie" >
-        
-          
-          <a href="../llm5/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              <div class="md-ellipsis">
-                Sesión 5 - Agentes con Chainlit + API de Mistral 2 (herramientas integradas y funciones personalizadas)
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../hf/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              <div class="md-ellipsis">
-                Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
