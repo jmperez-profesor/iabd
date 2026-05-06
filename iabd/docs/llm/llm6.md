@@ -1209,6 +1209,7 @@ A continuación, puedes ver una animación que ilustra cómo se gestiona una lla
 ## Métodos de creación de herramientas
 
 En `smolagents`, las herramientas pueden definirse de dos maneras:  
+
 1. **Usando el decorador `@tool`** para herramientas simples basadas en funciones
 2. **Creando una subclase de `Tool`** para funcionalidades más complejas    
 
