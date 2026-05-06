@@ -2412,9 +2412,11 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>A continuación, puedes ver una animación que ilustra cómo se gestiona una llamada a una herramienta:</p>
 <p><img alt="Pipeline de agente de https://huggingface.co/docs/smolagents/conceptual_guides/react" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/Agent_ManimCE.gif" /></p>
 <h2 id="metodos-de-creacion-de-herramientas">Métodos de creación de herramientas</h2>
-<p>En <code>smolagents</code>, las herramientas pueden definirse de dos maneras:<br />
-1. <strong>Usando el decorador <code>@tool</code></strong> para herramientas simples basadas en funciones
-2. <strong>Creando una subclase de <code>Tool</code></strong> para funcionalidades más complejas    </p>
+<p>En <code>smolagents</code>, las herramientas pueden definirse de dos maneras:  </p>
+<ol>
+<li><strong>Usando el decorador <code>@tool</code></strong> para herramientas simples basadas en funciones</li>
+<li><strong>Creando una subclase de <code>Tool</code></strong> para funcionalidades más complejas    </li>
+</ol>
 <h3 id="el-decorador-tool">El decorador <code>@tool</code></h3>
 <p>El decorador <code>@tool</code> es <strong>la forma recomendada para definir herramientas simples</strong>. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla.</p>
 <p>Usando este enfoque, definimos una función con:  </p>
