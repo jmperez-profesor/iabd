@@ -430,8 +430,6 @@ result = agent.run("What is 15 multiplied by 3, then subtract 5 and finally divi
 print(result)
 ```
 
-
-
 ### ¿Por qué usamos `tools` si el LLM puede crear código Python para ejecutar la petición "What is 15 multiplied by 3, then subtract 5 and finally divide by 2?"
 
 El ejemplo de la calculadora parece trivial precisamente porque Python ya puede ejecutar esa operación directamente, pero ese es el punto pedagógico: **las tools no son para hacer cosas que el LLM ya puede hacer, sino para establecer una arquitectura escalable a problemas reales**.
@@ -583,7 +581,7 @@ Chainlit permite construir una interfaz conversacional en Python mediante decora
 ```python
 import os
 import chainlit as cl
-from mistralai import Mistral
+from mistralai.client import Mistral
 from smolagents import tool, ToolCallingAgent, LiteLLMModel
 
 mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
@@ -658,7 +656,8 @@ model = LiteLLMModel(
 
 agent = ToolCallingAgent(
     model=model,
-    tools=[add, subtract, multiply, divide]
+    tools=[add, subtract, multiply, divide],
+    verbosity_level=2
 )
 
 @cl.on_chat_start
@@ -667,14 +666,77 @@ async def start():
         content="Hola. Soy un agente con herramientas matemáticas y uso un modelo de Mistral AI. Escribe una operación en lenguaje natural."
     ).send()
 
+def run_agent_sync(user_input: str):
+    return agent.run(user_input)
+
 @cl.on_message
 async def main(message: cl.Message):
+    thinking = cl.Message(content="Pensando...")
+    await thinking.send()
+
     try:
-        result = agent.run(message.content)
-        await cl.Message(content=str(result)).send()
+        result = await cl.make_async(run_agent_sync)(message.content)
+        thinking.content = str(result)
+        await thinking.update()
     except Exception as e:
-        await cl.Message(content=f"Error: {e}").send()
+        thinking.content = f"Error: {type(e).__name__}: {e}"
+        await thinking.update()
 ```
+### Explicación
+
+#### Función síncrona separada
+```python
+def run_agent_sync(user_input: str):
+    return agent.run(user_input)
+```
+Esta función encapsula la llamada síncrona al agente. Se separa así porque luego Chainlit puede envolverla con **`cl.make_async(...)`** para ejecutarla sin bloquear la UI del chat.
+
+**Aunque parece una función trivial, tiene valor estructural: desacopla el trabajo pesado del manejador asíncrono de mensajes**
+
+#### Mensaje “Pensando...”
+```python
+thinking = cl.Message(content="Pensando...")
+await thinking.send()
+```
+Aquí se crea un mensaje provisional para indicar al usuario que el sistema está procesando su petición. Esto mejora la experiencia de uso porque evita la sensación de que la app se ha quedado colgada mientras el agente llama al modelo o a las tools.
+
+#### Ejecución no bloqueante
+```python
+result = await cl.make_async(run_agent_sync)(message.content)
+```
+**Esta es una de las líneas más importantes**. **`agent.run(...)`** es **síncrono**, así que si lo llamamos directamente dentro de **`async def main(...)`**, puedes bloquear el bucle de eventos de Chainlit y la interfaz puede no actualizarse correctamente.
+
+**`cl.make_async(run_agent_sync)`** convierte esa función síncrona en una llamada compatible con el flujo asíncrono de Chainlit. Después se invoca con (message.content), es decir, con el texto que el usuario ha enviado.
+
+#### Actualización del mensaje con el resultado
+```python
+thinking.content = str(result)
+await thinking.update()
+```
+En lugar de crear un mensaje nuevo, aquí se reutiliza el mensaje "Pensando..." y se sustituye su contenido por la respuesta final del agente. La documentación de Chainlit muestra precisamente ese patrón: **`send()`** primero y **`update()`** después para modificar un mensaje ya renderizado.
+
+Esto da una experiencia más limpia porque la misma burbuja cambia de “estado de espera” a “respuesta final”.
+
+#### Manejo de errores
+```python
+except Exception as e:
+    thinking.content = f"Error: {type(e).__name__}: {e}"
+    await thinking.update()
+```
+Si algo falla durante la ejecución del agente, el error no se pierde silenciosamente. En su lugar, el contenido del mensaje provisional se reemplaza por una descripción del fallo, incluyendo el tipo de excepción y su texto.
+
+Esto es muy útil en desarrollo y en clase, porque permite ver directamente en la interfaz si el problema viene de la **API, del modelo, de una tool o de la configuración**.
+
+#### Flujo completo
+El recorrido completo sería este:
+
+1. Chainlit arranca el chat y ejecuta **`on_chat_start`**, mostrando el mensaje inicial.
+2. El usuario escribe una operación en lenguaje natural.
+3. **`on_message`** recibe ese texto y muestra "Pensando...".
+4. **`Chainlit`** ejecuta el agente de forma **no bloqueante** con **`make_async`**.
+5. **`ToolCallingAgent`** usa el modelo para decidir qué herramientas llamar y en qué orden.
+6. El resultado final reemplaza el mensaje provisional con **`update()`**.
+7. Si algo falla, también se actualiza ese mismo mensaje, pero mostrando el error.
 
 ### Ejecución
 
@@ -683,12 +745,11 @@ Guardar el código anterior en un archivo llamado `app.py` y ejecutar en la term
 ```bash
 chainlit run app.py -w
 ```
+**Log**
+![](./images/06/calculator_chainlit_log.png)
 
-La documentación oficial indica precisamente ese comando para arrancar una aplicación Chainlit en modo desarrollo. Si todo está correctamente instalado y la variable `MISTRAL_API_KEY` existe, se abrirá la interfaz web de chat en el navegador o se mostrará la URL local para acceder a ella.
-
-## Qué aporta el uso de Mistral AI en esta práctica
-
-El cambio a Mistral AI permite trabajar con un proveedor externo real, lo que introduce al alumnado en conceptos como autenticación, variables de entorno y consumo de modelos por API. Además, LiteLLM documenta soporte para function calling con Mistral, lo que encaja bien con el patrón de herramientas usado por `ToolCallingAgent`.
+**Chat de chainlit**
+![](./images/06/calculator_chainlit_web.png)
 
 ## Propuesta de actividades de ampliación
 

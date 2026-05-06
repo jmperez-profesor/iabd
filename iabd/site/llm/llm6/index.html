@@ -1924,25 +1924,65 @@ Son niveles de log/registro:
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds two numbers together.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds two numbers together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a: The first number.</span>
+<span class="sd">        b: The second number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The sum of the two numbers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">subtract</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Subtracts the second number from the first.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subtracts the second number from the first.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a: The first number.</span>
+<span class="sd">        b: The second number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The result of subtracting b from a.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiplies two numbers together.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multiplies two numbers together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a: The first number.</span>
+<span class="sd">        b: The second number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The product of the two numbers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Divides the first number by the second.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Divides the first number by the second.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a: The numerator.</span>
+<span class="sd">        b: The denominator.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The quotient, or an error message if b is zero.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Error: Division by zero is not allowed.&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
