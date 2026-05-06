@@ -1588,6 +1588,13 @@ docs_processed = text_splitter.split_documents(source_docs)
 # Crear una herramienta de recuperación (retriever tool)
 party_planning_retriever = PartyPlanningRetrieverTool(docs_processed)
 
+'''Modelo mistral
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+'''
 # Inicializar el agente
 agent = CodeAgent(tools=[party_planning_retriever], model=InferenceClientModel())
 
@@ -1665,6 +1672,8 @@ pip install 'smolagents[litellm]' matplotlib geopandas shapely kaleido -q
 
 ### Primero creamos una herramienta para obtener el tiempo de transferencia del avión de carga.
 
+**alfred_rag_complejo.py**
+
 ```python
 import math
 from typing import Optional, Tuple
@@ -1740,7 +1749,7 @@ Si no tienes ningún proveedor de Serp API configurado, puedes usar `DuckDuckGoS
 ```python
 import os
 from PIL import Image
-from smolagents import CodeAgent, GoogleSearchTool, InferenceClientModel, VisitWebpageTool
+from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel, VisitWebpageTool
 
 model = InferenceClientModel(
     model_id="Qwen/Qwen2.5-Coder-32B-Instruct", 
@@ -1757,7 +1766,7 @@ También dame algunas fábricas de superdeportivos con el mismo tiempo de transf
 ```python
 agent = CodeAgent(
     model=model,
-    tools=[GoogleSearchTool("serper"), VisitWebpageTool(), calculate_cargo_travel_time],
+    tools=[DuckDuckGoSearchTool(), VisitWebpageTool(), calculate_cargo_travel_time],
     additional_authorized_imports=["pandas"],
     max_steps=20,
 )
@@ -1771,7 +1780,92 @@ result = agent.run(task)
 result
 ```
 
-En nuestro caso, genera este output:
+**Código completo**
+```python
+import math
+import os
+
+from typing import Optional, Tuple
+from PIL import Image
+from smolagents import CodeAgent, DuckDuckGoSearchTool, LiteLLMModel, VisitWebpageTool, tool
+
+@tool
+def calculate_cargo_travel_time(
+    origin_coords: Tuple[float, float],
+    destination_coords: Tuple[float, float],
+    cruising_speed_kmh: Optional[float] = 750.0,  # Velocidad media de los aviones de carga
+) -> float:
+    """
+    Calcula el tiempo de viaje de un avión de carga entre dos puntos de la Tierra utilizando la distancia ortodrómica.
+
+    Args:
+        origin_coords: Tupla de (latitud, longitud) del punto de partida
+        destination_coords: Tupla de (latitud, longitud) del destino
+        cruising_speed_kmh: Velocidad de crucero opcional en km/h (el valor predeterminado es 750 km/h para aviones de carga típicos)
+
+    Returns:
+        float: El tiempo de viaje estimado en horas
+
+    Ejemplos:
+        >>> # Chicago (41.8781° N, 87.6298° W) to Sydney (33.8688° S, 151.2093° E)
+        >>> result = calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093))
+    """
+
+    def to_radians(degrees: float) -> float:
+        return degrees * (math.pi / 180)
+
+    # Extraer coordenadas y convertir a radianes
+    lat1, lon1 = map(to_radians, origin_coords)
+    lat2, lon2 = map(to_radians, destination_coords)
+
+    # Radio de la Tierra en kilómetros
+    EARTH_RADIUS_KM = 6371.0
+
+    # Calcular la distancia ortodrómica utilizando la fórmula haversina
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+     
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    )
+    # Calcular la distancia en kilómetros
+    c = 2 * math.asin(math.sqrt(a))
+    distance = EARTH_RADIUS_KM * c
+
+    #  Añadir un 10 % para tener en cuenta las rutas no directas y los controles de tráfico aéreo
+    actual_distance = distance * 1.1
+
+    # Calcular el tiempo de vuelo
+    # Añadir 1 hora para los procedimientos de despegue y aterrizaje    
+    flight_time = (actual_distance / cruising_speed_kmh) + 1.0
+
+    # Formatear el resultado a dos decimales
+    return round(flight_time, 2)
+
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+
+task = """Encuentra todas las localizaciones de filmación de Batman en el mundo, calcula el tiempo de transferencia en avión de carga hasta aquí 
+(estamos en Gotham, 40.7128° N, 74.0060° W), y devuélvelas a mí como un dataframe de pandas.
+También dame algunas fábricas de superdeportivos con el mismo tiempo de transferencia en avión."""
+
+agent = CodeAgent(
+    model=model,
+    tools=[DuckDuckGoSearchTool(), VisitWebpageTool(), calculate_cargo_travel_time],
+    additional_authorized_imports=["pandas"],
+    max_steps=20,
+    verbosity_level=2
+)
+result = agent.run(task)
+
+result
+```
+
+Para este ejemplo en concreto, genera este output:
 
 ```python
 |  | Location                                             | Travel Time to Gotham (hours) |
@@ -1846,10 +1940,17 @@ model = InferenceClientModel(
     "Qwen/Qwen2.5-Coder-32B-Instruct", provider="together", max_tokens=8096
 )
 
+'''
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)'''
+
 web_agent = CodeAgent(
     model=model,
     tools=[
-        GoogleSearchTool(provider="serper"),
+        DuckDuckGoSearchTool(),
         VisitWebpageTool(),
         calculate_cargo_travel_time,
     ],
@@ -1862,7 +1963,7 @@ web_agent = CodeAgent(
 
 El agente gestor necesitará hacer algo de trabajo mental pesado.
 
-Así que le damos el modelo más fuerte [DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1), y agregamos un `planning_interval` a la mezcla.
+Así que le damos el modelo más fuerte [DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1), y agregamos un **`planning_interval`** a la mezcla.
 
 ```python
 from smolagents.utils import encode_image_base64, make_image_url
@@ -1901,6 +2002,14 @@ def check_reasoning_and_plot(final_answer, agent_memory):
     if "FAIL" in output:
         raise Exception(output)
     return True
+
+'''
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)'''
+
 
 manager_agent = CodeAgent(
     model=InferenceClientModel("deepseek-ai/DeepSeek-R1", provider="together", max_tokens=8096),
@@ -2001,7 +2110,7 @@ Nunca intentes procesar cadenas usando código: cuando tengas una cadena para le
 """)
 ```
 
-No sé cómo salió en tu ejecución, pero en la mía, el agente gestor dividió hábilmente las tareas dadas al agente web en `1. Buscar locaciones de filmación de Batman`, luego `2. Encontrar fábricas de superdeportivos`, antes de agregar las listas y trazar el mapa.
+A priori no podemos saber qué salida ofrece en cada ejecución, pero para esta ejecución, el agente gestor dividió hábilmente las tareas dadas al agente web en `1. Buscar locaciones de filmación de Batman`, luego `2. Encontrar fábricas de superdeportivos`, antes de agregar las listas y trazar el mapa.
 
 Vamos a ver qué se ve el mapa inspeccionándolo directamente desde el estado del agente:
 
