@@ -590,25 +590,65 @@ mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
 
 @tool
 def add(a: float, b: float) -> float:
-    """Adds two numbers together."""
+    """
+    Adds two numbers together.
+
+    Args:
+        a: The first number.
+        b: The second number.
+
+    Returns:
+        The sum of the two numbers.
+    """
     return a + b
+
 
 @tool
 def subtract(a: float, b: float) -> float:
-    """Subtracts the second number from the first."""
+    """
+    Subtracts the second number from the first.
+
+    Args:
+        a: The first number.
+        b: The second number.
+
+    Returns:
+        The result of subtracting b from a.
+    """
     return a - b
+
 
 @tool
 def multiply(a: float, b: float) -> float:
-    """Multiplies two numbers together."""
+    """
+    Multiplies two numbers together.
+
+    Args:
+        a: The first number.
+        b: The second number.
+
+    Returns:
+        The product of the two numbers.
+    """
     return a * b
+
 
 @tool
 def divide(a: float, b: float) -> float | str:
-    """Divides the first number by the second."""
+    """
+    Divides the first number by the second.
+
+    Args:
+        a: The numerator.
+        b: The denominator.
+
+    Returns:
+        The quotient, or an error message if b is zero.
+    """
     if b == 0:
         return "Error: Division by zero is not allowed."
     return a / b
+
 
 model = LiteLLMModel(
     model_id="mistral/mistral-large-latest",
