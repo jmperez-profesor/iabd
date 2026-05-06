@@ -1215,7 +1215,7 @@ En `smolagents`, las herramientas pueden definirse de dos maneras:
 
 ### El decorador `@tool`  
 
-El decorador `@tool` es **la forma recomendada para definir herramientas simples**. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla.
+El decorador `@tool` es **la forma recomendada para definir herramientas simples**. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, **si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla**.
 
 Usando este enfoque, definimos una función con:  
 
@@ -1229,7 +1229,7 @@ Usando este enfoque, definimos una función con:
 
 Imaginemos que Alfred ya ha decidido el menú para la fiesta, pero ahora necesita ayuda para preparar comida para un número tan grande de invitados. Para hacerlo, le gustaría contratar un servicio de catering y necesita identificar las opciones mejor valoradas disponibles. Alfred puede aprovechar una herramienta para buscar los mejores servicios de catering en su área.
 
-A continuación se muestra un ejemplo de cómo Alfred puede usar el decorador `@tool` para lograrlo:
+A continuación se muestra un ejemplo de cómo Alfred puede usar el decorador **`@tool`** para lograrlo:
 
 ```python
 from smolagents import CodeAgent, InferenceClientModel, tool
@@ -1275,7 +1275,7 @@ Este enfoque implica crear una subclase de **[`Tool`](https://huggingface.co/doc
 - **`output_type`**: Especifica el tipo de salida esperado.  
 - **`forward`**: El método que contiene la lógica de inferencia a ejecutar.
 
-A continuación, podemos ver un ejemplo de una herramienta construida usando `Tool` y cómo integrarla dentro de un **`CodeAgent`**.
+A continuación, podemos ver un ejemplo de una herramienta construida usando **`Tool`** y cómo integrarla dentro de un **`CodeAgent`**.
 
 #### Generando una herramienta para generar ideas sobre la fiesta temática de superhéroes
 
@@ -1337,13 +1337,13 @@ Con esta herramienta, ¡Alfred será el mejor anfitrión, impresionando a sus in
 
 Alfred podría usar varias herramientas para asegurar una fiesta impecable en la Mansión Wayne:
 
-- Primero, podría usar la `DuckDuckGoSearchTool` para encontrar ideas creativas para fiestas temáticas de superhéroes.
+- Primero, podría usar la **`DuckDuckGoSearchTool`** para encontrar ideas creativas para fiestas temáticas de superhéroes.
 
-- Para el catering, confiaría en la `GoogleSearchTool` para encontrar los servicios mejor valorados en Gotham.
+- Para el catering, confiaría en la **`GoogleSearchTool`** para encontrar los servicios mejor valorados en Gotham.
 
-- Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la `PythonInterpreterTool`.
+- Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la **`PythonInterpreterTool`**.
 
-- Una vez recopilado todo, compilaría el plan usando la `FinalAnswerTool`.
+- Una vez recopilado todo, compilaría el plan usando la **`FinalAnswerTool`**.
 
 Con estas herramientas, Alfred garantiza que la fiesta sea excepcional e impecable. 🦇💡
 
@@ -1357,9 +1357,9 @@ Aquí hay ejemplos que muestran cómo estas funcionalidades pueden elevar la exp
 
 ### Compartir una Herramienta en el Hub
 
-¡Compartir tu herramienta personalizada con la comunidad es fácil! Simplemente súbela a tu cuenta de Hugging Face usando el método `push_to_hub()`.
+¡Compartir tu herramienta personalizada con la comunidad es fácil! Simplemente súbela a tu cuenta de Hugging Face usando el método **`push_to_hub()`**.
 
-Por ejemplo, Alfred puede compartir su `party_theme_tool` para ayudar a otros a encontrar los mejores servicios de catering en Gotham. Así es cómo hacerlo:
+Por ejemplo, Alfred puede compartir su **`party_theme_tool`** para ayudar a otros a encontrar los mejores servicios de catering en Gotham. Así es cómo hacerlo:
 
 ```python
 party_theme_tool.push_to_hub("{tu_nombre_de_usuario}/party_theme_tool", token="")
@@ -1367,7 +1367,7 @@ party_theme_tool.push_to_hub("{tu_nombre_de_usuario}/party_theme_tool", token=""
 
 ### Importar una Herramienta desde el Hub
 
-Puedes importar fácilmente herramientas creadas por otros usuarios usando la función `load_tool()`. Por ejemplo, Alfred podría querer generar una imagen promocional para la fiesta usando IA. En lugar de construir una herramienta desde cero, puede aprovechar una predefinida de la comunidad:
+Podemos importar fácilmente herramientas creadas por otros usuarios usando la función **`load_tool()`**. Por ejemplo, Alfred podría querer generar una imagen promocional para la fiesta usando IA. En lugar de construir una herramienta desde cero, puede aprovechar una predefinida de la comunidad:
 
 ```python
 from smolagents import load_tool, CodeAgent, InferenceClientModel
@@ -1389,7 +1389,7 @@ agent.run("Genera una imagen de una lujosa fiesta temática de superhéroes en l
 
 También puedes importar un HF Space como herramienta usando **`Tool.from_space()`**. Esto abre posibilidades para integrar miles de spaces de la comunidad para tareas desde generación de imágenes hasta análisis de datos.
 
-La herramienta se conectará con el backend Gradio del space usando **`gradio_client`**, así que asegúrate de instalarlo via **`pip`** si aún no lo tienes.
+La herramienta se conectará con el **backend Gradio del space** usando **`gradio_client`**, así que tendremos que instalarlo via **`pip`** si aún no lo hemos instalado.
 
 Para la fiesta, Alfred puede usar un **HF Space** existente para la generación de la imagen generada por IA que se usará en el anuncio (en lugar de la herramienta preintegrada que mencionamos antes). 
 
@@ -1420,7 +1420,7 @@ Podemos cargar fácilmente herramientas de LangChain usando el método **`Tool.f
 
 Al usar **`Tool.from_langchain()`**, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.
 
-Primero instamos las herramientas de langchain y DuckDuckGoSearchRun:
+Primero instamos las herramientas de **`langchain`** y **`DuckDuckGoSearchRun`**:
 
 ```bash
 pip install langchain langchain-community ddgs
