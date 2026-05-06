@@ -1979,16 +1979,11 @@ Son niveles de log/registro:
 <h2 id="propuesta-de-actividades-de-ampliacion">Propuesta de actividades de ampliación</h2>
 <p>Las siguientes extensiones permiten reforzar el aprendizaje y comprobar si el alumnado ha entendido la arquitectura de tools y el uso de un proveedor externo.</p>
 <ul>
-<li>Añadir una herramienta <code>power(a, b)</code> para calcular potencias.</li>
-<li>Añadir una herramienta <code>mod(a, b)</code> para calcular restos.</li>
+<li>Añadir una herramienta <strong><code>power(a, b)</code></strong> para calcular potencias y realizar varias pruebas de ejecución.</li>
+<li>Añadir una herramienta <strong><code>mod(a, b)</code></strong> para calcular restos.</li>
+<li>Añadir una herramienta <strong><code>mcd(lista de numeros)</code></strong> o <strong><code>mcm(lista de numeros)</code></strong> para calcular el <strong>m.c.m</strong> o el <strong>m.c.d</strong> de varios números.</li>
 <li>Pedir consultas en castellano en lugar de inglés y comparar resultados.</li>
-<li>Activar <code>verbosity_level=2</code> en el agente para observar mejor la secuencia de llamadas a tools, algo especialmente útil en demostraciones de aula.</li>
-<li>Añadir un bloque previo que liste modelos disponibles con <code>mai_client.models.list()</code> para trabajar el concepto de descubrimiento de capacidades de una API.</li>
 </ul>
-<h2 id="posibles-errores-y-como-interpretarlos">Posibles errores y cómo interpretarlos</h2>
-<p>Si la variable <code>MISTRAL_API_KEY</code> no está definida o está vacía, la autenticación contra Mistral AI fallará. Si una función no está decorada con <code>@tool</code> o no se incluye en <code>tools=[...]</code>, el agente no podrá utilizarla aunque exista en el script. Existe además un issue reportado en <code>smolagents</code> sobre problemas de roles al usar la API de Mistral en ciertos contextos, lo que hace recomendable trabajar con versiones recientes de <code>smolagents</code> y <code>litellm</code>. Si Chainlit no arranca, conviene comprobar la instalación del paquete y que se esté usando el comando <code>chainlit run app.py -w</code> desde la carpeta adecuada.</p>
-<h2 id="cierre">Cierre</h2>
-<p>La práctica sirve como primera aproximación sólida al concepto de agente con herramientas, ya que combina funciones Python, razonamiento del modelo y una interfaz conversacional final de uso sencillo. Su principal valor didáctico está en mostrar que el agente no “sabe hacer cuentas” por arte de magia, sino que delega el cálculo en herramientas explícitas y controladas por el programador.</p>
 <h2 id="el-agente-alfred">El agente Alfred</h2>
 <p>Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un <code>CodeAgent</code> de múltiples pasos.</p>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-party.jpg" /></p>
@@ -2018,7 +2013,7 @@ También debemos iniciar sesión en el <strong><em>Hugging Face Hub</em></strong
 Un vez instalado, ejecutar un agente es bastante sencillo:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
 
-<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">DuckDuckGoSearchTool</span><span class="p">()],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">())</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">DuckDuckGoSearchTool</span><span class="p">()],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">(),</span> <span class="n">verbosity_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Busca las mejores recomendaciones de música para una fiesta en la mansión de los Wayne.&quot;</span><span class="p">)</span>
 </code></pre></div>
