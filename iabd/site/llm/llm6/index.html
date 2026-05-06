@@ -1917,7 +1917,7 @@ Son niveles de log/registro:
 <h3 id="archivo-apppy">Archivo <code>app.py</code></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
 
 <span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -1992,7 +1992,8 @@ Son niveles de log/registro:
 
 <span class="n">agent</span> <span class="o">=</span> <span class="n">ToolCallingAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">add</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">multiply</span><span class="p">,</span> <span class="n">divide</span><span class="p">]</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">add</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">multiply</span><span class="p">,</span> <span class="n">divide</span><span class="p">],</span>
+    <span class="n">verbosity_level</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_chat_start</span>
@@ -2001,21 +2002,71 @@ Son niveles de log/registro:
         <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Hola. Soy un agente con herramientas matemáticas y uso un modelo de Mistral AI. Escribe una operación en lenguaje natural.&quot;</span>
     <span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
 
+<span class="k">def</span><span class="w"> </span><span class="nf">run_agent_sync</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
 <span class="nd">@cl</span><span class="o">.</span><span class="n">on_message</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">):</span>
+    <span class="n">thinking</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Pensando...&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">make_async</span><span class="p">(</span><span class="n">run_agent_sync</span><span class="p">)(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">thinking</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+        <span class="n">thinking</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 </code></pre></div>
+<h3 id="explicacion_1">Explicación</h3>
+<h4 id="funcion-sincrona-separada">Función síncrona separada</h4>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_agent_sync</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</code></pre></div>
+Esta función encapsula la llamada síncrona al agente. Se separa así porque luego Chainlit puede envolverla con <strong><code>cl.make_async(...)</code></strong> para ejecutarla sin bloquear la UI del chat.</p>
+<p><strong>Aunque parece una función trivial, tiene valor estructural: desacopla el trabajo pesado del manejador asíncrono de mensajes</strong></p>
+<h4 id="mensaje-pensando">Mensaje “Pensando...”</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">thinking</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Pensando...&quot;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+</code></pre></div>
+Aquí se crea un mensaje provisional para indicar al usuario que el sistema está procesando su petición. Esto mejora la experiencia de uso porque evita la sensación de que la app se ha quedado colgada mientras el agente llama al modelo o a las tools.</p>
+<h4 id="ejecucion-no-bloqueante">Ejecución no bloqueante</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cl</span><span class="o">.</span><span class="n">make_async</span><span class="p">(</span><span class="n">run_agent_sync</span><span class="p">)(</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<strong>Esta es una de las líneas más importantes</strong>. <strong><code>agent.run(...)</code></strong> es <strong>síncrono</strong>, así que si lo llamamos directamente dentro de <strong><code>async def main(...)</code></strong>, puedes bloquear el bucle de eventos de Chainlit y la interfaz puede no actualizarse correctamente.</p>
+<p><strong><code>cl.make_async(run_agent_sync)</code></strong> convierte esa función síncrona en una llamada compatible con el flujo asíncrono de Chainlit. Después se invoca con (message.content), es decir, con el texto que el usuario ha enviado.</p>
+<h4 id="actualizacion-del-mensaje-con-el-resultado">Actualización del mensaje con el resultado</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">thinking</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+En lugar de crear un mensaje nuevo, aquí se reutiliza el mensaje "Pensando..." y se sustituye su contenido por la respuesta final del agente. La documentación de Chainlit muestra precisamente ese patrón: <strong><code>send()</code></strong> primero y <strong><code>update()</code></strong> después para modificar un mensaje ya renderizado.</p>
+<p>Esto da una experiencia más limpia porque la misma burbuja cambia de “estado de espera” a “respuesta final”.</p>
+<h4 id="manejo-de-errores">Manejo de errores</h4>
+<p><div class="highlight"><pre><span></span><code><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">thinking</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">await</span> <span class="n">thinking</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+Si algo falla durante la ejecución del agente, el error no se pierde silenciosamente. En su lugar, el contenido del mensaje provisional se reemplaza por una descripción del fallo, incluyendo el tipo de excepción y su texto.</p>
+<p>Esto es muy útil en desarrollo y en clase, porque permite ver directamente en la interfaz si el problema viene de la <strong>API, del modelo, de una tool o de la configuración</strong>.</p>
+<h4 id="flujo-completo">Flujo completo</h4>
+<p>El recorrido completo sería este:</p>
+<ol>
+<li>Chainlit arranca el chat y ejecuta <strong><code>on_chat_start</code></strong>, mostrando el mensaje inicial.</li>
+<li>El usuario escribe una operación en lenguaje natural.</li>
+<li><strong><code>on_message</code></strong> recibe ese texto y muestra "Pensando...".</li>
+<li><strong><code>Chainlit</code></strong> ejecuta el agente de forma <strong>no bloqueante</strong> con <strong><code>make_async</code></strong>.</li>
+<li><strong><code>ToolCallingAgent</code></strong> usa el modelo para decidir qué herramientas llamar y en qué orden.</li>
+<li>El resultado final reemplaza el mensaje provisional con <strong><code>update()</code></strong>.</li>
+<li>Si algo falla, también se actualiza ese mismo mensaje, pero mostrando el error.</li>
+</ol>
 <h3 id="ejecucion">Ejecución</h3>
 <p>Guardar el código anterior en un archivo llamado <code>app.py</code> y ejecutar en la terminal:</p>
-<div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w"> </span>-w
+<p><div class="highlight"><pre><span></span><code>chainlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w"> </span>-w
 </code></pre></div>
-<p>La documentación oficial indica precisamente ese comando para arrancar una aplicación Chainlit en modo desarrollo. Si todo está correctamente instalado y la variable <code>MISTRAL_API_KEY</code> existe, se abrirá la interfaz web de chat en el navegador o se mostrará la URL local para acceder a ella.</p>
-<h2 id="que-aporta-el-uso-de-mistral-ai-en-esta-practica">Qué aporta el uso de Mistral AI en esta práctica</h2>
-<p>El cambio a Mistral AI permite trabajar con un proveedor externo real, lo que introduce al alumnado en conceptos como autenticación, variables de entorno y consumo de modelos por API. Además, LiteLLM documenta soporte para function calling con Mistral, lo que encaja bien con el patrón de herramientas usado por <code>ToolCallingAgent</code>.</p>
+<strong>Log</strong>
+<img alt="" src="../images/06/calculator_chainlit_log.png" /></p>
+<p><strong>Chat de chainlit</strong>
+<img alt="" src="../images/06/calculator_chainlit_web.png" /></p>
 <h2 id="propuesta-de-actividades-de-ampliacion">Propuesta de actividades de ampliación</h2>
 <p>Las siguientes extensiones permiten reforzar el aprendizaje y comprobar si el alumnado ha entendido la arquitectura de tools y el uso de un proveedor externo.</p>
 <ul>

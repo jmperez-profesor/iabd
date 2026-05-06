@@ -1,9 +1,9 @@
 ---
-title: Sesión 6 - Smolagents y orquestación multiagente con Chainlit
+title: Sesión 6 - Smolagents y orquestación multiagente 
 description: Apuntes, prácticas, ejercicio del curso de especialización en IA y Big Data. 
 ---
 
-# Smolagents y orquestación multiagente con Chainlit
+# Smolagents y orquestación multiagente
 
 **Patrón CodeAct**
 ![](./images/06/codeagent_pattern.png)
@@ -826,7 +826,7 @@ Cuando ejecutamos este ejemplo, la salida **mostrará un seguimiento de los paso
 **Ejecución del paso 2 del *Agente Alfred***
 ![Agente Alfred Paso 2](./images/06/agente_alfred_paso2.png)
 
-¡Después de algunos pasos, veremos la lista de reproducción generada que Alfred puede usar para la fiesta! 🎵
+Después de algunos pasos, veremos la lista de reproducción generada que Alfred puede usar para la fiesta🎵
 
 ### Usando una herramienta personalizada para preparar el menú
 
@@ -875,13 +875,13 @@ Tenemos la lista de reproducción y el menú listos, pero necesitamos verificar 
 
 Alfred necesita calcular cuándo todo estaría listo si comenzara a preparar ahora, en caso de que necesiten asistencia de otros superhéroes.
 
-`smolagents` se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en sandbox para seguridad.
-**La ejecución de código tiene medidas de seguridad estrictas** - las importaciones fuera de una lista predefinida segura están bloqueadas por defecto. Sin embargo, puedes autorizar importaciones adicionales pasándolas como cadenas en `additional_authorized_imports`.
+**`smolagents`** se especializa en agentes que escriben y ejecutan fragmentos de código Python, ofreciendo ejecución en sandbox para seguridad.
+**La ejecución de código tiene medidas de seguridad estrictas** - las importaciones fuera de una lista predefinida segura están bloqueadas por defecto. Sin embargo, podemos autorizar importaciones (**imports**) adicionales pasándolas como cadenas en **`additional_authorized_imports`**.
 Para más detalles sobre la ejecución segura de código, consulta la [guía](https://huggingface.co/docs/smolagents/tutorials/secure_code_execution) oficial.
 
-Al crear el agente, usaremos `additional_authorized_imports` para permitir la importación del módulo `datetime`.
+Al crear el agente, usaremos **`additional_authorized_imports`** para permitir la importación del módulo **`datetime`**.
 
-Como en el ejemplo vamos numpy, la instalamos usando pip:
+Como en el ejemplo vamos a usar **`numpy`**, la instalamos usando pip:
 
 ```bash
 pip install numpy
@@ -1026,7 +1026,7 @@ Como podemos ver, hemos creado un `CodeAgent` con varias herramientas que mejora
 
 A medida que Alfred perfecciona el Agente Preparador de Fiestas, se está cansando de depurar sus ejecuciones. Los agentes, por naturaleza, son impredecibles y difíciles de inspeccionar. Pero como su objetivo es construir el mejor Agente Preparador de Fiestas y desplegarlo en producción, necesita una trazabilidad robusta para monitoreo y análisis futuros.
 
-¡Una vez más, `smolagents` viene al rescate! Adopta el estándar [OpenTelemetry](https://opentelemetry.io/) para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de [Langfuse](https://langfuse.com/) y el `SmolagentsInstrumentor`, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.
+¡Una vez más, **`smolagents`** viene al rescate! Adopta el estándar [OpenTelemetry](https://opentelemetry.io/) para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de [Langfuse](https://langfuse.com/) y el **`SmolagentsInstrumentor`**, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.
 
 Primero, necesitamos instalar las dependencias necesarias:
 
@@ -1034,7 +1034,7 @@ Primero, necesitamos instalar las dependencias necesarias:
 pip install opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrumentation-smolagents
 ```
 
-A continuación, Alfred ya ha creado una cuenta en Langfuse y tiene sus claves API listas. Si aún no lo has hecho, puedes registrarte en Langfuse Cloud [aquí](https://cloud.langfuse.com/) o explorar [alternativas](https://huggingface.co/docs/smolagents/tutorials/inspect_runs).
+A continuación, Alfred ya ha creado una cuenta en Langfuse y tiene sus claves API listas. Podemos registrarnos Langfuse Cloud [aquí](https://cloud.langfuse.com/) o explorar [alternativas](https://huggingface.co/docs/smolagents/tutorials/inspect_runs).
 
 Una vez que tengamos nuestras claves API, deben configurarse correctamente de la siguiente manera:
 
@@ -1051,7 +1051,7 @@ os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = "https://cloud.langfuse.com/api/publ
 os.environ["OTEL_EXPORTER_OTLP_HEADERS"] = f"Authorization=Basic {LANGFUSE_AUTH}"
 ```
 
-Finalmente, Alfred está listo para inicializar el `SmolagentsInstrumentor` y comenzar a rastrear el rendimiento de su agente.
+Finalmente, Alfred está listo para inicializar el **`SmolagentsInstrumentor`** y comenzar a rastrear el rendimiento de su agente.
 
 ```python
 from opentelemetry.sdk.trace import TracerProvider
@@ -1066,7 +1066,7 @@ trace_provider.add_span_processor(SimpleSpanProcessor(OTLPSpanExporter()))
 SmolagentsInstrumentor().instrument(tracer_provider=trace_provider)
 ```
 
-¡Alfred ahora está conectado 🔌! Las ejecuciones de `smolagents` se están registrando en Langfuse, dándole visibilidad completa del comportamiento del agente. Con esta configuración, está listo para revisar ejecuciones anteriores y refinar aún más su Agente Preparador de Fiestas.
+¡Alfred ahora está conectado 🔌! Las ejecuciones de **`smolagents`** se están registrando en **Langfuse**, dándole visibilidad completa del comportamiento del agente. Con esta configuración, está listo para revisar ejecuciones anteriores y refinar aún más su Agente Preparador de Fiestas.
 
 ```python
 from smolagents import CodeAgent, InferenceClientModel
@@ -1087,7 +1087,7 @@ Mientras tanto, la [lista de reproducción sugerida](https://open.spotify.com/pl
 
 Los Agentes que invocan a herramientas son el segundo tipo de agente disponible en **`smolagents`**. A diferencia de los **Agentes de Código** que utilizan fragmentos de Python, estos agentes **utilizan las capacidades integradas de invocación a herramientas de los proveedores de LLM** para generar llamadas a herramientas como **estructuras JSON**. Este es el enfoque estándar utilizado por **OpenAI, Anthropic y muchos otros proveedores**.
 
-Veamos un ejemplo. Cuando Alfred quiere buscar servicios de catering e ideas para fiestas, un `CodeAgent` generaría y ejecutaría código Python como este:
+Veamos un ejemplo. Cuando Alfred quiere buscar servicios de catering e ideas para fiestas, un **`CodeAgent`** generaría y ejecutaría código Python como este:
 
 ```python
 for query in [
@@ -1097,7 +1097,7 @@ for query in [
     print(web_search(f"Buscar: {query}"))
 ```
 
-Un `ToolCallingAgent` en cambio crearía una estructura JSON:
+Un **`ToolCallingAgent`** en cambio crearía una estructura JSON:
 
 ```python
 [
@@ -1108,25 +1108,24 @@ Un `ToolCallingAgent` en cambio crearía una estructura JSON:
 
 Esta estructura JSON se utiliza luego para ejecutar las llamadas a herramientas.
 
-Aunque `smolagents` se centra principalmente en `CodeAgents` ya que [tienen un mejor rendimiento general](https://huggingface.co/papers/2402.01030), los `ToolCallingAgents` pueden ser efectivos para sistemas simples que no requieren manejo de variables o llamadas a herramientas complejas.
+Aunque **`smolagents`** se centra principalmente en **`CodeAgents`** ya que [tienen un mejor rendimiento general](https://huggingface.co/papers/2402.01030), los **`ToolCallingAgents`** pueden ser efectivos para sistemas simples que no requieren manejo de variables o llamadas a herramientas complejas.
 
 ![Acciones de Código vs JSON](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png)  
 
 ## ¿Cómo funcionan los Agentes de llamada a herramientas?  
 
-Los Agentes de llamada a herramientas siguen el mismo flujo de trabajo de múltiples pasos que los Agentes de Código. 
+Los **Agentes de llamada (ToolCallingAgents) a herramientas** siguen el mismo flujo de trabajo de múltiples pasos que los **Agentes de Código (CodeAgent)**. 
 
 La diferencia clave está en **cómo estructuran sus acciones**: en lugar de código ejecutable, **generan objetos JSON que especifican nombres de herramientas y argumentos**. El sistema luego **analiza estas instrucciones** para ejecutar las herramientas apropiadas.
 
 ## Ejemplo: Ejecutando un agente de llamada a herramientas  
 
-Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un `ToolCallingAgent` para destacar la diferencia. Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:
+Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un **`ToolCallingAgent`** para destacar la diferencia. Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:
 
 ```python
 '''
-#CÓDIGO CodeAgente
+#CÓDIGO CodeAgent para comparar
 from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel
-
 agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=InferenceClientModel())
 '''
 #Código ToolCallingAgent
