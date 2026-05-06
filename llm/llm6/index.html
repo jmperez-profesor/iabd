@@ -2730,6 +2730,13 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="c1"># Crear una herramienta de recuperación (retriever tool)</span>
 <span class="n">party_planning_retriever</span> <span class="o">=</span> <span class="n">PartyPlanningRetrieverTool</span><span class="p">(</span><span class="n">docs_processed</span><span class="p">)</span>
 
+<span class="sd">&#39;&#39;&#39;Modelo mistral</span>
+<span class="sd">model = LiteLLMModel(</span>
+<span class="sd">    model_id=&quot;mistral/mistral-large-latest&quot;,</span>
+<span class="sd">    api_key=os.getenv(&quot;MISTRAL_API_KEY&quot;, &quot;&quot;).strip(),</span>
+<span class="sd">    temperature=0.2,</span>
+<span class="sd">)</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="c1"># Inicializar el agente</span>
 <span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">party_planning_retriever</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">())</span>
 
@@ -2783,6 +2790,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;smolagents[litellm]&#39;</span><span class="w"> </span>matplotlib<span class="w"> </span>geopandas<span class="w"> </span>shapely<span class="w"> </span>kaleido<span class="w"> </span>-q
 </code></pre></div>
 <h3 id="primero-creamos-una-herramienta-para-obtener-el-tiempo-de-transferencia-del-avion-de-carga">Primero creamos una herramienta para obtener el tiempo de transferencia del avión de carga.</h3>
+<p><strong>alfred_rag_complejo.py</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
@@ -2851,7 +2859,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Si no tienes ningún proveedor de Serp API configurado, puedes usar <code>DuckDuckGoSearchTool</code> pero ten en cuenta que tiene un límite de tasa.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">GoogleSearchTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">VisitWebpageTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">VisitWebpageTool</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">,</span> 
@@ -2863,7 +2871,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">GoogleSearchTool</span><span class="p">(</span><span class="s2">&quot;serper&quot;</span><span class="p">),</span> <span class="n">VisitWebpageTool</span><span class="p">(),</span> <span class="n">calculate_cargo_travel_time</span><span class="p">],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">DuckDuckGoSearchTool</span><span class="p">(),</span> <span class="n">VisitWebpageTool</span><span class="p">(),</span> <span class="n">calculate_cargo_travel_time</span><span class="p">],</span>
     <span class="n">additional_authorized_imports</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pandas&quot;</span><span class="p">],</span>
     <span class="n">max_steps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
 <span class="p">)</span>
@@ -2872,7 +2880,90 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">result</span>
 </code></pre></div>
-<p>En nuestro caso, genera este output:</p>
+<p><strong>Código completo</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">LiteLLMModel</span><span class="p">,</span> <span class="n">VisitWebpageTool</span><span class="p">,</span> <span class="n">tool</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_cargo_travel_time</span><span class="p">(</span>
+    <span class="n">origin_coords</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">destination_coords</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">cruising_speed_kmh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">750.0</span><span class="p">,</span>  <span class="c1"># Velocidad media de los aviones de carga</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula el tiempo de viaje de un avión de carga entre dos puntos de la Tierra utilizando la distancia ortodrómica.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        origin_coords: Tupla de (latitud, longitud) del punto de partida</span>
+<span class="sd">        destination_coords: Tupla de (latitud, longitud) del destino</span>
+<span class="sd">        cruising_speed_kmh: Velocidad de crucero opcional en km/h (el valor predeterminado es 750 km/h para aviones de carga típicos)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: El tiempo de viaje estimado en horas</span>
+
+<span class="sd">    Ejemplos:</span>
+<span class="sd">        &gt;&gt;&gt; # Chicago (41.8781° N, 87.6298° W) to Sydney (33.8688° S, 151.2093° E)</span>
+<span class="sd">        &gt;&gt;&gt; result = calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_radians</span><span class="p">(</span><span class="n">degrees</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">degrees</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
+
+    <span class="c1"># Extraer coordenadas y convertir a radianes</span>
+    <span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">to_radians</span><span class="p">,</span> <span class="n">origin_coords</span><span class="p">)</span>
+    <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">to_radians</span><span class="p">,</span> <span class="n">destination_coords</span><span class="p">)</span>
+
+    <span class="c1"># Radio de la Tierra en kilómetros</span>
+    <span class="n">EARTH_RADIUS_KM</span> <span class="o">=</span> <span class="mf">6371.0</span>
+
+    <span class="c1"># Calcular la distancia ortodrómica utilizando la fórmula haversina</span>
+    <span class="n">dlon</span> <span class="o">=</span> <span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span>
+    <span class="n">dlat</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlat</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlon</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="c1"># Calcular la distancia en kilómetros</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">EARTH_RADIUS_KM</span> <span class="o">*</span> <span class="n">c</span>
+
+    <span class="c1">#  Añadir un 10 % para tener en cuenta las rutas no directas y los controles de tráfico aéreo</span>
+    <span class="n">actual_distance</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">*</span> <span class="mf">1.1</span>
+
+    <span class="c1"># Calcular el tiempo de vuelo</span>
+    <span class="c1"># Añadir 1 hora para los procedimientos de despegue y aterrizaje    </span>
+    <span class="n">flight_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual_distance</span> <span class="o">/</span> <span class="n">cruising_speed_kmh</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span>
+
+    <span class="c1"># Formatear el resultado a dos decimales</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">flight_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Encuentra todas las localizaciones de filmación de Batman en el mundo, calcula el tiempo de transferencia en avión de carga hasta aquí </span>
+<span class="s2">(estamos en Gotham, 40.7128° N, 74.0060° W), y devuélvelas a mí como un dataframe de pandas.</span>
+<span class="s2">También dame algunas fábricas de superdeportivos con el mismo tiempo de transferencia en avión.&quot;&quot;&quot;</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">DuckDuckGoSearchTool</span><span class="p">(),</span> <span class="n">VisitWebpageTool</span><span class="p">(),</span> <span class="n">calculate_cargo_travel_time</span><span class="p">],</span>
+    <span class="n">additional_authorized_imports</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pandas&quot;</span><span class="p">],</span>
+    <span class="n">max_steps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">verbosity_level</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+<span class="n">result</span>
+</code></pre></div></p>
+<p>Para este ejemplo en concreto, genera este output:</p>
 <div class="highlight"><pre><span></span><code><span class="o">|</span>  <span class="o">|</span> <span class="n">Location</span>                                             <span class="o">|</span> <span class="n">Travel</span> <span class="n">Time</span> <span class="n">to</span> <span class="n">Gotham</span> <span class="p">(</span><span class="n">hours</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">|--|------------------------------------------------------|------------------------------|</span>
 <span class="o">|</span> <span class="mi">0</span>  <span class="o">|</span> <span class="n">Necropolis</span> <span class="n">Cemetery</span><span class="p">,</span> <span class="n">Glasgow</span><span class="p">,</span> <span class="n">Scotland</span><span class="p">,</span> <span class="n">UK</span>         <span class="o">|</span> <span class="mf">8.60</span>                         <span class="o">|</span>
@@ -2927,10 +3018,17 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">,</span> <span class="n">provider</span><span class="o">=</span><span class="s2">&quot;together&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8096</span>
 <span class="p">)</span>
 
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">model = LiteLLMModel(</span>
+<span class="sd">    model_id=&quot;mistral/mistral-large-latest&quot;,</span>
+<span class="sd">    api_key=os.getenv(&quot;MISTRAL_API_KEY&quot;, &quot;&quot;).strip(),</span>
+<span class="sd">    temperature=0.2,</span>
+<span class="sd">)&#39;&#39;&#39;</span>
+
 <span class="n">web_agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">GoogleSearchTool</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="s2">&quot;serper&quot;</span><span class="p">),</span>
+        <span class="n">DuckDuckGoSearchTool</span><span class="p">(),</span>
         <span class="n">VisitWebpageTool</span><span class="p">(),</span>
         <span class="n">calculate_cargo_travel_time</span><span class="p">,</span>
     <span class="p">],</span>
@@ -2941,7 +3039,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="p">)</span>
 </code></pre></div>
 <p>El agente gestor necesitará hacer algo de trabajo mental pesado.</p>
-<p>Así que le damos el modelo más fuerte <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1">DeepSeek-R1</a>, y agregamos un <code>planning_interval</code> a la mezcla.</p>
+<p>Así que le damos el modelo más fuerte <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1">DeepSeek-R1</a>, y agregamos un <strong><code>planning_interval</code></strong> a la mezcla.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">encode_image_base64</span><span class="p">,</span> <span class="n">make_image_url</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIServerModel</span>
 
@@ -2978,6 +3076,14 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="k">if</span> <span class="s2">&quot;FAIL&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">model = LiteLLMModel(</span>
+<span class="sd">    model_id=&quot;mistral/mistral-large-latest&quot;,</span>
+<span class="sd">    api_key=os.getenv(&quot;MISTRAL_API_KEY&quot;, &quot;&quot;).strip(),</span>
+<span class="sd">    temperature=0.2,</span>
+<span class="sd">)&#39;&#39;&#39;</span>
+
 
 <span class="n">manager_agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">InferenceClientModel</span><span class="p">(</span><span class="s2">&quot;deepseek-ai/DeepSeek-R1&quot;</span><span class="p">,</span> <span class="n">provider</span><span class="o">=</span><span class="s2">&quot;together&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8096</span><span class="p">),</span>
@@ -3069,7 +3175,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="s2">Nunca intentes procesar cadenas usando código: cuando tengas una cadena para leer, simplemente imprímela y la verás.</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>No sé cómo salió en tu ejecución, pero en la mía, el agente gestor dividió hábilmente las tareas dadas al agente web en <code>1. Buscar locaciones de filmación de Batman</code>, luego <code>2. Encontrar fábricas de superdeportivos</code>, antes de agregar las listas y trazar el mapa.</p>
+<p>A priori no podemos saber qué salida ofrece en cada ejecución, pero para esta ejecución, el agente gestor dividió hábilmente las tareas dadas al agente web en <code>1. Buscar locaciones de filmación de Batman</code>, luego <code>2. Encontrar fábricas de superdeportivos</code>, antes de agregar las listas y trazar el mapa.</p>
 <p>Vamos a ver qué se ve el mapa inspeccionándolo directamente desde el estado del agente:</p>
 <div class="highlight"><pre><span></span><code><span class="n">manager_agent</span><span class="o">.</span><span class="n">python_executor</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;fig&quot;</span><span class="p">]</span>
 </code></pre></div>
