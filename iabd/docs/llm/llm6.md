@@ -1149,10 +1149,30 @@ agent = ToolCallingAgent(
 )
 
 agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión Wayne.")
-
 ```
 
-Cuando veamos el rastro del agente, en lugar de ver **`Executing parsed code:`**, veremos algo como:
+**Alternativa usando Mistral y LiteLLModel
+```python
+#Código ToolCallingAgent
+from smolagents import ToolCallingAgent, DuckDuckGoSearchTool, LiteLLMModel
+import os
+
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+
+agent = ToolCallingAgent(
+        tools=[DuckDuckGoSearchTool()], 
+        model=model,
+        verbosity_level=2
+)
+
+agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión Wayne.")
+```
+
+Cuando veamos el log del agente, en lugar de ver **`Executing parsed code:`**, veremos algo como:
 
 ![](./images/06/alfred_json_1.png)
 ![](./images/06/alfred_json_2.png)
@@ -1305,7 +1325,7 @@ Con esta herramienta, ¡Alfred será el mejor anfitrión, impresionando a sus in
 
 ## Caja de Herramientas Predeterminada  
 
-`smolagents` viene con un conjunto de herramientas preintegradas que pueden inyectarse directamente en tu agente. La [caja de herramientas predeterminada](https://huggingface.co/docs/smolagents/guided_tour?build-a-tool=Decorate+a+function+with+%40tool#default-toolbox) incluye:  
+**`smolagents`** viene con un conjunto de herramientas preintegradas que pueden inyectarse directamente en tu agente. La [caja de herramientas predeterminada](https://huggingface.co/docs/smolagents/guided_tour?build-a-tool=Decorate+a+function+with+%40tool#default-toolbox) incluye:  
 
 - **`PythonInterpreterTool`**  
 - **`FinalAnswerTool`**  
@@ -1366,11 +1386,11 @@ agent.run("Genera una imagen de una lujosa fiesta temática de superhéroes en l
 
 ### Importar un Hugging Face Space como Herramienta
 
-También puedes importar un HF Space como herramienta usando `Tool.from_space()`. Esto abre posibilidades para integrar miles de spaces de la comunidad para tareas desde generación de imágenes hasta análisis de datos.
+También puedes importar un HF Space como herramienta usando **`Tool.from_space()`**. Esto abre posibilidades para integrar miles de spaces de la comunidad para tareas desde generación de imágenes hasta análisis de datos.
 
-La herramienta se conectará con el backend Gradio del space usando `gradio_client`, así que asegúrate de instalarlo via `pip` si aún no lo tienes.
+La herramienta se conectará con el backend Gradio del space usando **`gradio_client`**, así que asegúrate de instalarlo via **`pip`** si aún no lo tienes.
 
-Para la fiesta, Alfred puede usar un HF Space existente para la generación de la imagen generada por IA que se usará en el anuncio (en lugar de la herramienta preintegrada que mencionamos antes). ¡Vamos a construirla!
+Para la fiesta, Alfred puede usar un **HF Space** existente para la generación de la imagen generada por IA que se usará en el anuncio (en lugar de la herramienta preintegrada que mencionamos antes). 
 
 ```python
 from smolagents import CodeAgent, InferenceClientModel, Tool
@@ -1393,7 +1413,7 @@ agent.run(
 
 ### Importar una herramienta de LangChain - DuckDuckGoSearchRun
 
-Discutiremos el framework `LangChain` en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!
+Discutiremos el framework **`LangChain`** en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!
 
 Podemos cargar fácilmente herramientas de LangChain usando el método **`Tool.from_langchain()`**. Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de **`LangChain`** para encontrar ideas de entretenimiento de primera categoría.
 
