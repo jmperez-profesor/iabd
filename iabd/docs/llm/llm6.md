@@ -1026,7 +1026,11 @@ Como podemos ver, hemos creado un `CodeAgent` con varias herramientas que mejora
 
 A medida que Alfred perfecciona el Agente Preparador de Fiestas, se está cansando de depurar sus ejecuciones. Los agentes, por naturaleza, son impredecibles y difíciles de inspeccionar. Pero como su objetivo es construir el mejor Agente Preparador de Fiestas y desplegarlo en producción, necesita una trazabilidad robusta para monitoreo y análisis futuros.
 
-¡Una vez más, **`smolagents`** viene al rescate! Adopta el estándar [OpenTelemetry](https://opentelemetry.io/) para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de [Langfuse](https://langfuse.com/) y el **`SmolagentsInstrumentor`**, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.
+**`smolagents`** adopta el estándar [OpenTelemetry](https://opentelemetry.io/) para **instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas**. Con la ayuda de [Langfuse](https://langfuse.com/) y el **`SmolagentsInstrumentor`**, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.
+
+![](./images/06/langfuse.png)
+
+[Try Langfuse Demo](https://cloud.langfuse.com/project/clkpwwm0m000gmm094odg11gi/traces)
 
 Primero, necesitamos instalar las dependencias necesarias:
 
