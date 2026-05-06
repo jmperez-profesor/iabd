@@ -141,6 +141,539 @@ Al final de cada paso, si el agente incluye alguna llamada a función (en **`age
 
 ## Veamos algunos ejemplos
 
+# Actividad guiada: primer agente con herramientas usando smolagents, Ollama y Chainlit
+
+![](./images/06/calculator_mistral.png)
+
+Esta actividad guiada introduce la creación de un agente con herramientas en **`smolagents`**, conectado a un modelo Mistral AI y con una interfaz conversacional sencilla en Chainlit. El objetivo es entender cómo un **modelo de lenguaje LLM** decide qué función **Python** ejecutar para resolver una tarea **expresada en lenguaje natural**.
+
+## Objetivos didácticos
+
+- Identificar qué papel cumplen **`@tool`**, **`ToolCallingAgent`** y **`LiteLLMModel`** en una arquitectura básica de agentes.
+- Crear herramientas propias en Python para que un agente pueda utilizarlas.
+- Conectar **`smolagents`** con un modelo local ejecutado en Ollama mediante LiteLLM.
+- Crear una interfaz conversacional básica con **`Chainlit`** para interactuar con el agente desde el navegador.
+
+## Instalación
+
+Instalar las librerías necesarias con `pip`:
+
+```bash
+pip install smolagents[litellm] chainlit mistralai dotenv
+```
+
+Configurar la clave de API de Mistral AI en un fichero **`.env`**:
+
+```text
+MISTRAL_API_KEY="tu_clave_api"
+```
+
+## Verificación opcional de la clave API
+
+Antes de usar `smolagents`, puede resultar útil comprobar que la clave funciona correctamente con el cliente oficial de Mistral AI. El patrón de uso recomendado por la librería es similar a este:
+
+```python
+from mistralai import Mistral
+import os
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+models = mai_client.models.list()
+print(models)
+```
+
+La documentación de **`smolagents`** recoge el uso de **LiteLLM** para conectar con **distintos proveedores y motores de inferencia**, y Gradio ofrece una forma rápida de construir interfaces web para probar funciones o modelos.
+
+
+## Código base del ejercicio
+
+```python
+import os
+from mistralai import Mistral
+from smolagents import tool
+from smolagents import ToolCallingAgent
+from smolagents import LiteLLMModel
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+# declaramos las herramientas que va a usar el agente
+@tool
+def add(a: float, b: float) -> float:
+    """
+    Adds two numbers together.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
+    return a + b
+
+
+@tool
+def subtract(a: float, b: float) -> float:
+    """
+    Subtracts the second number from the first.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
+    return a - b
+
+
+@tool
+def multiply(a: float, b: float) -> float:
+    """
+    Multiplies two numbers together.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
+    return a * b
+
+
+@tool
+def divide(a: float, b: float) -> float | str:
+    """
+    Divides the first number by the second. Returns an error message if division by zero is attempted.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+
+# instanciamos el LLM que vamos a utilizar
+
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest", #formato proveedor/modelo
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+
+# instanciamos el agente con las herramientas declaradas
+agent = ToolCallingAgent(
+    model=model,
+    tools=[add, subtract, multiply, divide]
+)
+
+# ejemplo de uso
+agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
+```
+LiteLLM documenta el uso de modelos Mistral con identificadores del tipo `mistral/mistral-large-latest` y autenticación mediante `MISTRAL_API_KEY`. `smolagents` también documenta `LiteLLMModel` como la vía estándar para usar proveedores externos como OpenAI, Anthropic o similares, y ese patrón encaja con Mistral AI.
+
+## Desarrollo paso a paso
+
+### Paso 1. Importar las librerías necesarias
+
+```python
+import os
+from mistralai import Mistral
+from smolagents import tool
+from smolagents import ToolCallingAgent
+from smolagents import LiteLLMModel
+```
+
+Aquí se importan tres grupos de elementos: utilidades del sistema para leer variables de entorno, el cliente oficial de Mistral AI y los componentes de `smolagents`. Esto permite explicar al alumnado la diferencia entre una librería de proveedor, que sirve para autenticar o probar la API, y una librería de agentes, que organiza tools, prompts y llamadas al modelo.
+
+### Paso 2. Crear el cliente de Mistral AI
+
+```python
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+```
+
+Esta línea crea un cliente oficial de Mistral AI utilizando la clave guardada en la variable de entorno `MISTRAL_API_KEY`.[cite:135] Aunque el agente funcionará a través de `LiteLLMModel`, mantener esta línea en la actividad es útil para que el alumnado vea claramente cómo se gestiona la autenticación con un proveedor real.
+
+### Paso 3. Crear herramientas matemáticas con `@tool`
+
+```python
+@tool
+def add(a: float, b: float) -> float:
+    """Adds two numbers together."""
+    return a + b
+
+@tool
+def subtract(a: float, b: float) -> float:
+    """Subtracts the second number from the first."""
+    return a - b
+
+@tool
+def multiply(a: float, b: float) -> float:
+    """Multiplies two numbers together."""
+    return a * b
+
+@tool
+def divide(a: float, b: float) -> float | str:
+    """Divides the first number by the second."""
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+```
+
+El decorador `@tool` transforma una función Python en una herramienta interpretable por el agente, apoyándose en el nombre, los tipos y el docstring para describir su uso. Esto permite que el modelo no tenga que “imaginar” cómo sumar, restar o dividir, sino que pueda invocar funciones reales ya implementadas en Python.
+
+Las cuatro herramientas del ejercicio son:
+
+- `add(a, b)`: suma dos números.
+- `subtract(a, b)`: resta el segundo número al primero.
+- `multiply(a, b)`: multiplica dos números.
+- `divide(a, b)`: divide y además controla el caso de división entre cero devolviendo un mensaje de error.
+
+### Paso 4. Configurar el modelo de Mistral AI en `LiteLLMModel`
+
+```python
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+```
+
+LiteLLM documenta la integración con Mistral AI usando modelos como `mistral/mistral-large-latest` y autenticación con `MISTRAL_API_KEY`. El parámetro `temperature=0.2` ayuda a reducir la aleatoriedad, algo conveniente cuando interesa que el agente elija herramientas matemáticas de forma consistente.
+
+### Paso 5. Crear el agente con las herramientas disponibles
+
+```python
+agent = ToolCallingAgent(
+    model=model,
+    tools=[add, subtract, multiply, divide]
+)
+```
+
+`ToolCallingAgent` es un agente que decide cuándo llamar a una tool y con qué argumentos a partir del prompt recibido. La lista `tools=[...]` delimita las capacidades del agente: si una función no está en esa lista, el agente no podrá usarla.
+
+### Paso 6. Ejecutar una consulta en lenguaje natural
+
+```python
+result = agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
+print(result)
+```
+
+En esta llamada el usuario no expresa la operación en sintaxis matemática tradicional, sino en lenguaje natural. El agente interpreta la secuencia de pasos, llama previsiblemente a `multiply`, luego a `subtract` y finalmente a `divide`, encadenando resultados parciales hasta construir la respuesta final.
+
+## Explicación:
+
+Este ejercicio muestra que **un agente no es solo un chatbot, sino un sistema que combina comprensión del lenguaje con ejecución de herramientas concretas**. La idea clave es que el modelo elige la acción, pero el cálculo real lo hace Python mediante funciones bien definidas y controladas.
+
+Una forma útil de explicarlo en clase es con esta secuencia:
+
+1. El usuario escribe una petición en lenguaje natural.
+2. El modelo analiza la intención y decide qué tool necesita.
+3. El agente ejecuta la función Python correspondiente con argumentos concretos.
+4. El resultado de una herramienta puede servir como entrada para la siguiente.
+5. Finalmente, el agente devuelve una respuesta final al usuario.
+
+## Script completo comentado
+
+```python
+import os
+from mistralai import Mistral
+from smolagents import tool
+from smolagents import ToolCallingAgent
+from smolagents import LiteLLMModel
+
+# Paso 1: Creamos un cliente del proveedor para comprobar autenticación o listar modelos.
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+# Paso 2: Definimos las herramientas matemáticas que el agente podrá usar.
+@tool
+def add(a: float, b: float) -> float:
+    """
+    Adds two numbers together.
+    """
+    return a + b
+
+
+@tool
+def subtract(a: float, b: float) -> float:
+    """
+    Subtracts the second number from the first.
+    """
+    return a - b
+
+
+@tool
+def multiply(a: float, b: float) -> float:
+    """
+    Multiplies two numbers together.
+    """
+    return a * b
+
+
+@tool
+def divide(a: float, b: float) -> float | str:
+    """
+    Divides the first number by the second.
+    Returns an error message if division by zero is attempted.
+    """
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+
+# Paso 3: Conectamos con el modelo remoto de Mistral AI.
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+
+# Paso 4: Creamos el agente y le damos acceso a las herramientas anteriores.
+agent = ToolCallingAgent(
+    model=model,
+    tools=[add, subtract, multiply, divide]
+)
+
+# Paso 5: Lanzamos una consulta de prueba.
+result = agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
+print(result)
+```
+
+
+
+### ¿Por qué usamos `tools` si el LLM puede crear código Python para ejecutar la petición "What is 15 multiplied by 3, then subtract 5 and finally divide by 2?"
+
+El ejemplo de la calculadora parece trivial precisamente porque Python ya puede ejecutar esa operación directamente, pero ese es el punto pedagógico: **las tools no son para hacer cosas que el LLM ya puede hacer, sino para establecer una arquitectura escalable a problemas reales**.
+
+Veamos qué pasa usando **`CodeAgent`** en vez de **`ToolCallingAgent`**:
+
+```python
+from smolagents import CodeAgent, tool
+from smolagents import LiteLLMModel
+import os
+
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "").strip()
+# instanciamos el LLM que vamos a utilizar
+# en nuestro caso uso de Ollama
+model = LiteLLMModel(
+    model_id="mistral/mistral-small-latest",
+    api_key=MISTRAL_API_KEY,
+    temperature=0.2,
+)
+# instanciamos el agente con las herramientas declaradas
+# verbosity_level=2 para que nos muestre el proceso de pensamiento del agente
+agent = CodeAgent(tools=[], model=model, verbosity_level=2)
+
+# ejemplo de uso
+agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
+```
+**Ejemplo de ejecución:**
+![](./images/06/calculator_codeagent.png)
+
+> **NOTA**: Prueba varias ejecuciones porque suelen cambiar los pasos en cada ejecución
+
+**Nivel de Log**
+```
+verbosity-level = 2
+```
+Son niveles de log/registro:
+* 0: Sin logs (silencioso).
+* 1: Predeterminado. Muestra los pasos generales.
+* 2: Detallado. Muestra logs detallados, incluyendo los resultados del modelo y los pasos internos.
+
+## Por qué usar tools en este caso específico
+
+### 1. Didáctica: aprender con un caso simple antes de escalar
+
+El ejercicio de la calculadora es **intencionalmente sencillo** para entiender el mecanismo de **`tools`** sin distraernos con lógica de negocio compleja. Los LLMs pueden generar código Python para calcular `(15 * 3 - 5) / 2`, pero si empezáramos la explicación con herramientas como **"buscar en una base de datos SQL", "llamar a una API externa" o "procesar un CSV con pandas"**, tendríamos que abordar/aprender simultáneamente 3 cosas: 
+* cómo funciona el agente
+* cómo funciona la tool compleja
+* y cómo se integran.
+
+### 2. Control y validación
+
+Con **`tools`**, el programador **controla explícitamente qué puede hacer el agente**. Si el modelo genera código Python arbitrario, podría:
+
+- Hacer cálculos incorrectos por alucinación,
+- Ejecutar código inseguro (borrar archivos, hacer peticiones de red no autorizadas),
+- Fallar silenciosamente sin que el sistema pueda capturar el error de forma estructurada.
+
+Con `@tool`, cada operación está **definida, testeada y acotada**.
+
+### 3. Separación de responsabilidades
+
+El modelo decide **qué** hacer (multiplicar primero, luego restar, finalmente dividir), pero el cálculo real lo hace Python mediante funciones probadas. Esta arquitectura escala mejor: mañana puedes cambiar `add(a, b)` para que registre cada suma en una base de datos, sin tocar el agente ni el modelo.
+
+### 4. Diferencia entre "generar código" y "ejecutar herramientas"
+
+Un LLM puede **generar** código Python para sumar, pero:
+
+- ese código puede tener errores sintácticos o lógicos,
+- no está validado ni testeado,
+- cada vez que el modelo genera código, hay un riesgo de variabilidad (a veces usa `+`, otras veces `sum()`, otras construye un bucle innecesario).
+
+Con tools, el código de `add(a, b)` es **el mismo siempre**, probado una vez y reutilizado miles.
+
+## Cuándo SÍ tiene sentido usar `CodeAgent` en lugar de `ToolCallingAgent`
+
+**`smolagents`** ofrece `CodeAgent`, que precisamente genera y ejecuta código Python dinámicamente para resolver tareas. Ese enfoque es útil cuando:
+
+- la tarea es exploratoria y no sabemos de antemano qué tools necesitaremos,
+- necesitamos flexibilidad total (manipular DataFrames, crear gráficos, procesar archivos),
+- confiamos en el modelo y tenemos un entorno de ejecución controlado (sandbox).
+
+Pero para **producción**, herramientas explícitas (`ToolCallingAgent` + `@tool`) son **más seguras, predecibles y mantenibles**.
+
+## Ejemplo real
+
+Imagina que en lugar de calcular `(15 * 3 - 5) / 2`, el agente debe:
+
+1. Consultar el precio de un producto en una base de datos SQL.
+2. Aplicar un descuento del 15% si el usuario es premium (consultando otra tabla).
+3. Añadir IVA según el país del usuario (reglas fiscales complejas).
+4. Formatear el precio final con la moneda correcta.
+
+**Con `CodeAgent` generando código dinámico:**
+
+- El modelo podría alucinar una consulta SQL incorrecta.
+- Podría aplicar el IVA antes del descuento (error lógico).
+- Podría formatear mal la moneda.
+
+**Con `ToolCallingAgent` + tools específicas:**
+
+```python
+@tool
+def get_product_price(product_id: int) -> float:
+    """Consulta el precio base en la BD."""
+    return db.query("SELECT price FROM products WHERE id = ?", product_id)
+
+@tool
+def apply_discount(price: float, is_premium: bool) -> float:
+    """Aplica descuento si el usuario es premium."""
+    return price * 0.85 if is_premium else price
+
+@tool
+def add_tax(price: float, country: str) -> float:
+    """Añade IVA según país."""
+    tax_rates = {"ES": 1.21, "FR": 1.20, "DE": 1.19}
+    return price * tax_rates.get(country, 1.0)
+
+@tool
+def format_currency(amount: float, country: str) -> str:
+    """Formatea con la moneda correcta."""
+    currencies = {"ES": "€", "FR": "€", "DE": "€"}
+    return f"{amount:.2f} {currencies.get(country, '$')}"
+```
+
+Cada función está **probada, documentada y es reutilizable**. El modelo solo decide el orden de llamada, pero la lógica de negocio está controlada por el programador.
+
+## Resumen
+
+| Aspecto | LLM genera código | ToolCallingAgent + @tool |
+| :-- | :-- | :-- |
+| **Simplicidad inicial** | Más rápido para prototipos | Requiere definir tools |
+| **Control** | Bajo (código impredecible) | Alto (funciones fijas) |
+| **Seguridad** | Riesgo de código arbitrario | Solo ejecuta lo permitido |
+| **Testabilidad** | Difícil (código varía) | Fácil (tools testeables) |
+| **Mantenibilidad** | Baja (cambios en prompts) | Alta (cambios en código) |
+| **Escalabilidad** | Limitada | Excelente |
+
+La calculadora es un **ejercicio pedagógico**: usa un caso trivial para enseñar una arquitectura que luego escala a casos reales (APIs, bases de datos, procesamiento de archivos, llamadas a servicios externos).
+
+> Analogía: **usar un LLM para generar código Python para sumar es como pedirle a ChatGPT que escriba una función `suma(a, b)` cada vez que necesitas sumar, en lugar de tener la función ya definida y simplemente llamarla**.
+
+
+## Ejecución con Chainlit
+
+Chainlit permite construir una interfaz conversacional en Python mediante decoradores como `@cl.on_message`, que se ejecuta cada vez que el usuario envía un mensaje. La propia documentación muestra que una aplicación Chainlit básica se ejecuta con `chainlit run app.py -w`, donde `-w` activa el modo watch para recargar cambios automáticamente.
+
+### Archivo `app.py`
+
+```python
+import os
+import chainlit as cl
+from mistralai import Mistral
+from smolagents import tool, ToolCallingAgent, LiteLLMModel
+
+mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
+
+@tool
+def add(a: float, b: float) -> float:
+    """Adds two numbers together."""
+    return a + b
+
+@tool
+def subtract(a: float, b: float) -> float:
+    """Subtracts the second number from the first."""
+    return a - b
+
+@tool
+def multiply(a: float, b: float) -> float:
+    """Multiplies two numbers together."""
+    return a * b
+
+@tool
+def divide(a: float, b: float) -> float | str:
+    """Divides the first number by the second."""
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+
+model = LiteLLMModel(
+    model_id="mistral/mistral-large-latest",
+    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
+    temperature=0.2,
+)
+
+agent = ToolCallingAgent(
+    model=model,
+    tools=[add, subtract, multiply, divide]
+)
+
+@cl.on_chat_start
+async def start():
+    await cl.Message(
+        content="Hola. Soy un agente con herramientas matemáticas y uso un modelo de Mistral AI. Escribe una operación en lenguaje natural."
+    ).send()
+
+@cl.on_message
+async def main(message: cl.Message):
+    try:
+        result = agent.run(message.content)
+        await cl.Message(content=str(result)).send()
+    except Exception as e:
+        await cl.Message(content=f"Error: {e}").send()
+```
+
+### Ejecución
+
+Guardar el código anterior en un archivo llamado `app.py` y ejecutar en la terminal:
+
+```bash
+chainlit run app.py -w
+```
+
+La documentación oficial indica precisamente ese comando para arrancar una aplicación Chainlit en modo desarrollo. Si todo está correctamente instalado y la variable `MISTRAL_API_KEY` existe, se abrirá la interfaz web de chat en el navegador o se mostrará la URL local para acceder a ella.
+
+## Qué aporta el uso de Mistral AI en esta práctica
+
+El cambio a Mistral AI permite trabajar con un proveedor externo real, lo que introduce al alumnado en conceptos como autenticación, variables de entorno y consumo de modelos por API. Además, LiteLLM documenta soporte para function calling con Mistral, lo que encaja bien con el patrón de herramientas usado por `ToolCallingAgent`.
+
+## Propuesta de actividades de ampliación
+
+Las siguientes extensiones permiten reforzar el aprendizaje y comprobar si el alumnado ha entendido la arquitectura de tools y el uso de un proveedor externo.
+
+- Añadir una herramienta `power(a, b)` para calcular potencias.
+- Añadir una herramienta `mod(a, b)` para calcular restos.
+- Pedir consultas en castellano en lugar de inglés y comparar resultados.
+- Activar `verbosity_level=2` en el agente para observar mejor la secuencia de llamadas a tools, algo especialmente útil en demostraciones de aula.
+- Añadir un bloque previo que liste modelos disponibles con `mai_client.models.list()` para trabajar el concepto de descubrimiento de capacidades de una API.
+
+## Posibles errores y cómo interpretarlos
+
+Si la variable `MISTRAL_API_KEY` no está definida o está vacía, la autenticación contra Mistral AI fallará. Si una función no está decorada con `@tool` o no se incluye en `tools=[...]`, el agente no podrá utilizarla aunque exista en el script. Existe además un issue reportado en `smolagents` sobre problemas de roles al usar la API de Mistral en ciertos contextos, lo que hace recomendable trabajar con versiones recientes de `smolagents` y `litellm`. Si Chainlit no arranca, conviene comprobar la instalación del paquete y que se esté usando el comando `chainlit run app.py -w` desde la carpeta adecuada.
+
+## Cierre
+
+La práctica sirve como primera aproximación sólida al concepto de agente con herramientas, ya que combina funciones Python, razonamiento del modelo y una interfaz conversacional final de uso sencillo. Su principal valor didáctico está en mostrar que el agente no “sabe hacer cuentas” por arte de magia, sino que delega el cálculo en herramientas explícitas y controladas por el programador.
+
+
+
+## El agente Alfred 
+
+
+
 Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un `CodeAgent` de múltiples pasos.
 
 ![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-party.jpg)

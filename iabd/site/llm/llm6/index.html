@@ -1503,29 +1503,31 @@ Gráfico del artículo <a href="https://huggingface.co/papers/2402.01030">Execut
 </ul>
 <h2 id="como-funciona-un-agente-de-codigo">¿Cómo funciona un agente de código?</h2>
 <p><img alt="De https://huggingface.co/docs/smolagents/conceptual_guides/react" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/smolagents/codeagent_docs.png" /></p>
-<p>El diagrama anterior ilustra cómo funciona <code>CodeAgent.run()</code>, siguiendo el marco <strong>ReAct</strong> mencionado anteriormente. La abstracción principal para agentes en <code>smolagents</code> es un <code>MultiStepAgent</code>, que sirve como el bloque de construcción central. <code>CodeAgent</code> es un tipo especial de <code>MultiStepAgent</code>, como veremos en un ejemplo a continuación.</p>
-<p>Un <code>CodeAgent</code> realiza acciones a través de un ciclo de pasos, con variables y conocimientos existentes incorporados en el contexto del agente, que se mantiene en un registro de ejecución:</p>
+<p>El diagrama anterior ilustra cómo funciona <strong><code>CodeAgent.run()</code></strong>, siguiendo el marco <strong>ReAct</strong> mencionado anteriormente. La abstracción principal para agentes en <strong><code>smolagents</code></strong> es un <strong><code>MultiStepAgent</code></strong>, que sirve como el bloque de construcción central. <strong><code>CodeAgent</code></strong> es un tipo especial de <strong><code>MultiStepAgent</code></strong>, como veremos en un ejemplo a continuación.</p>
+<p>Un <strong><code>CodeAgent</code></strong> realiza acciones a través de un <strong>ciclo de pasos, con variables y conocimientos existentes</strong> incorporados en el contexto del agente, que se mantiene en un registro de ejecución:</p>
 <ol>
 <li>
-<p>El prompt del sistema se almacena en un <code>SystemPromptStep</code>, y la consulta del usuario se registra en un <code>TaskStep</code>.</p>
+<p>El prompt del sistema se almacena en un <strong><code>SystemPromptStep</code></strong>, y la consulta del usuario se registra en un <strong><code>TaskStep</code></strong>.</p>
 </li>
 <li>
 <p>Luego, se ejecuta el siguiente bucle while:</p>
-<p>2.1 El método <code>agent.write_memory_to_messages()</code> escribe los registros del agente en una lista de <a href="https://huggingface.co/docs/transformers/en/chat_templating">mensajes de chat</a> legibles por el LLM.</p>
-<p>2.2 Estos mensajes se envían a un <code>Model</code>, que genera una finalización.</p>
-<p>2.3 La finalización se analiza para extraer la acción, que, en nuestro caso, debería ser un fragmento de código ya que estamos trabajando con un <code>CodeAgent</code>.</p>
+<p>2.1 El método <strong><code>agent.write_memory_to_messages()</code></strong> escribe los registros del agente en una lista de <a href="https://huggingface.co/docs/transformers/en/chat_templating">mensajes de chat</a> legibles por el LLM.</p>
+<p>2.2 Estos mensajes se envían a un <strong><code>Model</code></strong>, que genera una finalización.</p>
+<p>2.3 La finalización se analiza para extraer la acción, que, en nuestro caso, debería ser un fragmento de código ya que estamos trabajando con un <strong><code>CodeAgent</code></strong>.</p>
 <p>2.4 La acción se ejecuta.</p>
-<p>2.5 Los resultados se registran en la memoria en un <code>ActionStep</code>.</p>
+<p>2.5 Los resultados se registran en la memoria en un <strong><code>ActionStep</code></strong>.</p>
 </li>
 </ol>
-<p>Al final de cada paso, si el agente incluye alguna llamada a función (en <code>agent.step_callback</code>), estas se ejecutan.</p>
+<p>Al final de cada paso, si el agente incluye alguna llamada a función (en <strong><code>agent.step_callback</code></strong>), estas se ejecutan.</p>
+<p><strong>Ejemplo de uso del patrón CodeAgent</strong>
+<img alt="" src="../images/agente_running.gif" /></p>
 <h2 id="veamos-algunos-ejemplos">Veamos algunos ejemplos</h2>
 <p>Alfred está planeando una fiesta en la mansión de la familia Wayne y necesita tu ayuda para asegurarse de que todo salga bien. Para ayudarlo, aplicaremos lo que hemos aprendido sobre cómo opera un <code>CodeAgent</code> de múltiples pasos.</p>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-party.jpg" /></p>
 <p>Instalamos <code>smolagents</code> dede el siguiente comando:</p>
 <p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>smolagents<span class="w"> </span>-U
 </code></pre></div>
-También debemos iniciar sesión en el <strong><em>Hugging Face Hub</em></strong> para tener acceso a la API de Inferencia <em><code>Serverless</code></em>.</p>
+También debemos iniciar sesión en el <strong><em>Hugging Face Hub</em></strong> para tener acceso a la API de Inferencia <strong><code>Serverless</code></strong>.</p>
 <p><strong>login_hf.py</strong>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
 
@@ -1539,7 +1541,7 @@ También debemos iniciar sesión en el <strong><em>Hugging Face Hub</em></strong
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="seleccionando-una-lista-de-reproduccion-para-la-fiesta-usando-smolagents">Seleccionando una lista de reproducción para la fiesta usando <code>smolagents</code></h3>
-<p>¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡<code>smolagents</code> nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.</p>
+<p>¡La música es una parte esencial de una fiesta exitosa! Alfred necesita ayuda para seleccionar la lista de reproducción. Por suerte, ¡<strong><code>smolagents</code></strong> nos tiene cubiertos! Podemos construir un agente capaz de buscar en la web usando DuckDuckGo. Para dar al agente acceso a esta herramienta, la incluimos en la lista de herramientas al crear el agente.</p>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-playlist.jpg" /></p>
 <p>Para el modelo, confiaremos en <strong><code>InferenceClientModel</code></strong>, que proporciona acceso a la <a href="https://huggingface.co/docs/api-inference/index">API de Inferencia Serverless</a> de Hugging Face. El modelo predeterminado es <code>"Qwen/Qwen2.5-Coder-32B-Instruct"</code>, que es eficiente y está disponible para inferencia rápida, pero puedes seleccionar cualquier modelo compatible del Hub.</p>
 <p>Para poder utilizar la herrameinta (tool) <strong><code>DuckDuckGoSearchTool</code></strong> (herramienta que utiliza <strong>DuckDuckGo</strong> para realizar búsquedas. Permite a los agentes aprovechar su motor de búsqueda para recuperar información y además no requiere una clave API) necesitamos instalar la librería ddgs (DuckDuckGoSearch):</p>
@@ -1565,8 +1567,8 @@ Un vez instalado, ejecutar un agente es bastante sencillo:</p>
 <p>¡Después de algunos pasos, veremos la lista de reproducción generada que Alfred puede usar para la fiesta! 🎵</p>
 <h3 id="usando-una-herramienta-personalizada-para-preparar-el-menu">Usando una herramienta personalizada para preparar el menú</h3>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-menu.jpg" /></p>
-<p>Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar <code>smolagents</code> para hacerlo. Aquí, usamos el decorador <code>@tool</code> para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.</p>
-<p>Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador <code>@tool</code> y la incluiremos en la lista de <code>tools</code>.</p>
+<p>Ahora que hemos seleccionado una lista de reproducción, necesitamos organizar el menú para los invitados. De nuevo, Alfred puede aprovechar <strong><code>smolagents</code></strong> para hacerlo. Aquí, usamos el decorador <strong><code>@tool</code></strong> para definir una función personalizada que actúa como herramienta. Cubriremos la creación de herramientas con más detalle más adelante, así que por ahora, simplemente podemos ejecutar el código.</p>
+<p>Como podemos ver en el siguiente ejemplo, crearemos una herramienta usando el decorador <strong><code>@tool</code></strong> y la incluiremos en la lista de <strong><code>tools</code></strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">tool</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
 
 <span class="c1"># Herramienta para sugerir un menú basado en la ocasión</span>
