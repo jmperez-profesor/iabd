@@ -1387,7 +1387,7 @@ agent.run(
 )
 ```
 
-### Importar una herramienta de LangChain - DuckDuckGoSearchRun
+### Importar una herramienta de LangChain
 
 Discutiremos el framework `LangChain` en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!
 
@@ -1395,28 +1395,13 @@ Podemos cargar fácilmente herramientas de LangChain usando el método **`Tool.f
 
 Al usar **`Tool.from_langchain()`**, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.
 
-Primero instamos las herramientas de langchain y DuckDuckGoSearchRun:
-
-```bash
-pip install langchain langchain-community ddgs
-```
-
 Ejemplo:
 
 ```python
-import os
-from langchain_community.tools import DuckDuckGoSearchRun
-from smolagents import CodeAgent, InferenceClientModel, LiteLLMModel, Tool
+from langchain.agents import load_tools
+from smolagents import CodeAgent, InferenceClientModel, Tool
 
-# Herramienta DuckDuckGo
-ddg_search = DuckDuckGoSearchRun()
-search_tool = Tool.from_langchain(ddg_search)
-
-model = LiteLLMModel(
-    model_id="mistral/mistral-large-latest",
-    api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
-    temperature=0.2,
-)
+search_tool = Tool.from_langchain(load_tools(["serpapi"])[0])
 
 agent = CodeAgent(tools=[search_tool], model=model)
 
@@ -1427,9 +1412,7 @@ Con esta configuración, Alfred puede descubrir rápidamente opciones de entrete
 
 # Construyendo sistemas RAG con Agentes
 
-![](./images/06/agents_with_RAG.gif)
-
-Los sistemas de **Generación Aumentada por Recuperación (RAG)** combinan las capacidades de **recuperación de datos** y **modelos de generación** para proporcionar **respuestas contextualizadas**. Por ejemplo, **la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada**.
+Los sistemas de **Generación Aumentada por Recuperación (RAG)** combinan las capacidades de recuperación de datos y modelos de generación para proporcionar **respuestas contextualizadas**. Por ejemplo, la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada.
 
 El **RAG con Agentes (Generación Aumentada por Recuperación)** extiende los sistemas RAG tradicionales al **combinar agentes autónomos con recuperación dinámica de conocimiento**.
 
@@ -1437,7 +1420,7 @@ Mientras que los sistemas **RAG tradicionales** utilizan un LLM para responder c
 
 Los sistemas RAG tradicionales enfrentan limitaciones clave, como **depender de un solo paso de recuperación** y enfocarse en la **similitud semántica directa** con la consulta del usuario, lo que puede pasar por alto información relevante.
 
-El **RAG con agentes** aborda estos problemas permitiendo que el agente **formule autónomamente consultas de búsqueda**, **critique los resultados recuperados** y **realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo**.
+El **RAG con agentes** aborda estos problemas permitiendo que el agente formule autónomamente consultas de búsqueda, critique los resultados recuperados y **realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo**.
 
 ## Recuperación básica con DuckDuckGo
 
@@ -1485,7 +1468,7 @@ Una **base de datos vectorial** es simplemente una **colección de documentos co
 
 Este enfoque combina **conocimiento predefinido con búsqueda semántica** para proporcionar soluciones contextualizadas para la planificación de eventos. Con acceso a conocimiento especializado, Alfred puede perfeccionar cada detalle de la fiesta.
 
-En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una **base de conocimiento personalizada**. Usaremos un recuperador **BM25** para buscar en la base de conocimiento y devolver los mejores resultados, y **`RecursiveCharacterTextSplitter`** para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.
+En este ejemplo, crearemos una herramienta que recupera ideas de planificación de fiestas desde una base de conocimiento personalizada. Usaremos un recuperador **BM25** para buscar en la base de conocimiento y devolver los mejores resultados, y `RecursiveCharacterTextSplitter` para dividir los documentos en fragmentos más pequeños para una búsqueda más eficiente.
 
 ```python
 from langchain.docstore.document import Document
@@ -1589,7 +1572,7 @@ Una configuración típica podría incluir:
 - Un **Agente Intérprete de Código** para la ejecución de código
 - Un **Agente de Búsqueda Web** para la recuperación de información
 
-El diagrama a continuación ilustra una arquitectura multi-agente simple donde un **Agente Gestor** coordina una **Herramienta Intérprete de Código** y un **Agente de Búsqueda Web**, que a su vez utiliza herramientas como **`DuckDuckGoSearchTool`** y **`VisitWebpageTool`** para recopilar información relevante.
+El diagrama a continuación ilustra una arquitectura multi-agente simple donde un **Agente Gestor** coordina una **Herramienta Intérprete de Código** y un **Agente de Búsqueda Web**, que a su vez utiliza herramientas como `DuckDuckGoSearchTool` y `VisitWebpageTool` para recopilar información relevante.
 
 ![Sistema Multi-Agente](https://mermaid.ink/img/pako:eNp1kc1qhTAQRl9FUiQb8wIpdNO76eKubrmFks1oRg3VSYgjpYjv3lFL_2hnMWQOJwn5sqgmelRWleUSKLAtFs09jqhtoWuYUFfFAa6QA9QDTnpzamheuhxn8pt40-6l13UtS0ddhtQXj6dbR4XUGQg6zEYasTF393KjeSDGnDJKNxzj8I_7hLW5IOSmP9CH9hv_NL-d94d4DVNg84p1EnK4qlIj5hGClySWbadT-6OdsrL02MI8sFOOVkciw8zx8kaNspxnrJQE0fXKtjBMMs3JA-MpgOQwftIE9Bzj14w-cMznI_39E9Z3p0uFoA?type=png)
 
