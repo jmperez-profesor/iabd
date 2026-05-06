@@ -2280,7 +2280,9 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p><img alt="" src="../images/06/agente_fiesta_villanos.png" /></p>
 <h3 id="inspeccionando-nuestro-agente-preparador-de-fiestas-con-opentelemetry-y-langfuse">Inspeccionando nuestro agente preparador de fiestas con OpenTelemetry y Langfuse 📡</h3>
 <p>A medida que Alfred perfecciona el Agente Preparador de Fiestas, se está cansando de depurar sus ejecuciones. Los agentes, por naturaleza, son impredecibles y difíciles de inspeccionar. Pero como su objetivo es construir el mejor Agente Preparador de Fiestas y desplegarlo en producción, necesita una trazabilidad robusta para monitoreo y análisis futuros.</p>
-<p>¡Una vez más, <strong><code>smolagents</code></strong> viene al rescate! Adopta el estándar <a href="https://opentelemetry.io/">OpenTelemetry</a> para instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas. Con la ayuda de <a href="https://langfuse.com/">Langfuse</a> y el <strong><code>SmolagentsInstrumentor</code></strong>, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.</p>
+<p><strong><code>smolagents</code></strong> adopta el estándar <a href="https://opentelemetry.io/">OpenTelemetry</a> para <strong>instrumentar ejecuciones de agentes, permitiendo una inspección y registro sin problemas</strong>. Con la ayuda de <a href="https://langfuse.com/">Langfuse</a> y el <strong><code>SmolagentsInstrumentor</code></strong>, Alfred puede rastrear y analizar fácilmente el comportamiento de su agente.</p>
+<p><img alt="" src="../images/06/langfuse.png" /></p>
+<p><a href="https://cloud.langfuse.com/project/clkpwwm0m000gmm094odg11gi/traces">Try Langfuse Demo</a></p>
 <p>Primero, necesitamos instalar las dependencias necesarias:</p>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>opentelemetry-sdk<span class="w"> </span>opentelemetry-exporter-otlp<span class="w"> </span>openinference-instrumentation-smolagents
 </code></pre></div>
