@@ -1193,10 +1193,6 @@ Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita v
 
 Al utilizar estas herramientas, Alfred puede tomar decisiones informadas y recopilar toda la información necesaria para planificar la fiesta perfecta.
 
-A continuación, puedes ver una animación que ilustra cómo se gestiona una llamada a una herramienta:
-
-![Pipeline de agente de https://huggingface.co/docs/smolagents/conceptual_guides/react](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/Agent_ManimCE.gif)
-
 ## Métodos de creación de herramientas
 
 En `smolagents`, las herramientas pueden definirse de dos maneras:  
@@ -1327,8 +1323,6 @@ result = agent.run(
 print(result)  # Salida: "Baile de los Pícaros de Gotham: Una mascarada misteriosa donde los invitados se visten como villanos clásicos de Batman."
 ```
 
-Con esta herramienta, ¡Alfred será el mejor anfitrión, impresionando a sus invitados con una fiesta temática de superhéroes que no olvidarán! 🦸‍♂️🦸‍♀️
-
 ## Caja de Herramientas Predeterminada  
 
 **`smolagents`** viene con un conjunto de herramientas preintegradas que pueden inyectarse directamente en tu agente. La [caja de herramientas predeterminada](https://huggingface.co/docs/smolagents/guided_tour?build-a-tool=Decorate+a+function+with+%40tool#default-toolbox) incluye:  
@@ -1349,8 +1343,6 @@ Alfred podría usar varias herramientas para asegurar una fiesta impecable en la
 - Para gestionar la distribución de asientos, Alfred podría realizar cálculos con la **`PythonInterpreterTool`**.
 
 - Una vez recopilado todo, compilaría el plan usando la **`FinalAnswerTool`**.
-
-Con estas herramientas, Alfred garantiza que la fiesta sea excepcional e impecable. 🦇💡
 
 ## Compartir e importar herramientas
 
@@ -1419,13 +1411,13 @@ agent.run(
 
 ### Importar una herramienta de LangChain - DuckDuckGoSearchRun
 
-Discutiremos el framework **`LangChain`** en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en tu flujo de trabajo de smolagents!
+Discutiremos el framework **`LangChain`** en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en nuestro flujo de trabajo de smolagents!
 
-Podemos cargar fácilmente herramientas de LangChain usando el método **`Tool.from_langchain()`**. Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de **`LangChain`** para encontrar ideas de entretenimiento de primera categoría.
+Podemos cargar fácilmente herramientas de LangChain usando el método **`Tool.from_langchain()`**. 
 
-Al usar **`Tool.from_langchain()`**, Alfred añade sin esfuerzo funcionalidades de búsqueda avanzadas a su smolagent, permitiéndole descubrir ideas y servicios exclusivos para fiestas con solo unos pocos comandos.
+Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de **`LangChain`** para encontrar ideas de entretenimiento de primera categoría.
 
-Primero instamos las herramientas de **`langchain`** y **`DuckDuckGoSearchRun`**:
+Primero instalamos las herramientas de **`langchain`** y **`DuckDuckGoSearchRun`**:
 
 ```bash
 pip install langchain langchain-community ddgs
