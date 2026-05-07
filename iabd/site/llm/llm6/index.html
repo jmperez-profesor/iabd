@@ -2113,7 +2113,7 @@ Un vez instalado, ejecutar un agente es bastante sencillo:</p>
 <p><div class="highlight"><pre><span></span><code> <span class="err">─</span> <span class="n">Ejecutando</span> <span class="n">código</span> <span class="n">analizado</span><span class="p">:</span> <span class="err">────────────────────────────────────────────────────────────────────────────────────</span> 
   <span class="n">results</span> <span class="o">=</span> <span class="n">web_search</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">&quot;mejor música para una fiesta de Batman&quot;</span><span class="p">)</span>                                                      
   <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>                                                                                                   
- <span class="err">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span> 
+ <span class="err">──────────────────────────────────────────────────────────────────────────────────────────────────────</span> 
 </code></pre></div>
 <strong>Ejecución del paso 1 del <em>Agente Alfred</em></strong>
 <img alt="Agente Alfred Paso 1" src="../images/06/agente_alfred_paso1.png" />
@@ -2237,6 +2237,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 
     <span class="k">return</span> <span class="n">best_service</span>
 
+<span class="c1">#Definición de una Tool como clase</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SuperheroPartyThemeTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;superhero_party_theme_generator&quot;</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -2344,7 +2345,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <p>Los <strong>Agentes de llamada (ToolCallingAgents) a herramientas</strong> siguen el mismo flujo de trabajo de múltiples pasos que los <strong>Agentes de Código (CodeAgent)</strong>. </p>
 <p>La diferencia clave está en <strong>cómo estructuran sus acciones</strong>: en lugar de código ejecutable, <strong>generan objetos JSON que especifican nombres de herramientas y argumentos</strong>. El sistema luego <strong>analiza estas instrucciones</strong> para ejecutar las herramientas apropiadas.</p>
 <h2 id="ejemplo-ejecutando-un-agente-de-llamada-a-herramientas">Ejemplo: Ejecutando un agente de llamada a herramientas</h2>
-<p>Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un <strong><code>ToolCallingAgent</code></strong> para destacar la diferencia. Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:</p>
+<p>Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un <strong><code>ToolCallingAgent</code></strong> para destacar la diferencia. <strong>Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código</strong>. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">#CÓDIGO CodeAgent para comparar</span>
 <span class="sd">from smolagents import CodeAgent, DuckDuckGoSearchTool, InferenceClientModel</span>
@@ -2368,7 +2369,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 
 <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Busca las mejores recomendaciones de música para una fiesta en la mansión Wayne.&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>**Alternativa usando Mistral y LiteLLModel
+<p><strong>Alternativa usando Mistral y LiteLLModel</strong>
 <div class="highlight"><pre><span></span><code><span class="c1">#Código ToolCallingAgent</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -2393,8 +2394,8 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <img alt="" src="../images/06/alfred_json_3.png" /></p>
 <p>El agente genera una llamada a la herramienta de forma estructurada que el sistema procesa para producir la salida, en lugar de ejecutar directamente código como un <code>CodeAgent</code>.</p>
 <p>Ahora que entendemos ambos tipos de agentes, podemos elegir el adecuado para nuestras necesidades. </p>
-<h1 id="herramientas">Herramientas</h1>
-<p>Como exploramos anteriormente, los agentes utilizan herramientas para realizar diversas acciones. En <code>smolagents</code>, las herramientas son tratadas como <strong>funciones que un LLM pueden llamar dentro de un sistema de agentes</strong>.</p>
+<h1 id="tools-herramientas">Tools (herramientas)</h1>
+<p>Como exploramos anteriormente, los agentes utilizan herramientas para realizar diversas acciones. En <strong><code>smolagents</code></strong>, las tools (herramientas) son tratadas como <strong>funciones que un LLM pueden llamar dentro de un sistema de agentes</strong>.</p>
 <p>Para interactuar con una herramienta, el LLM necesita una <strong>descripción de la interfaz</strong> con estos componentes clave:  </p>
 <ul>
 <li><strong>Nombre</strong>: Cómo se llama la herramienta</li>
@@ -2402,7 +2403,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <li><strong>Tipos de entrada y descripciones</strong>: Qué argumentos acepta la herramienta</li>
 <li><strong>Tipo de salida</strong>: Qué devuelve la herramienta</li>
 </ul>
-<p>Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita varias herramientas para recopilar información - desde buscar servicios de catering hasta encontrar ideas para temas de fiesta. Así es como podría verse la interfaz de una herramienta de búsqueda simple:</p>
+<p>Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita varias herramientas para recopilar información - <strong>desde buscar servicios de catering hasta encontrar ideas para temas de fiesta</strong>. Así es como podría verse la interfaz de una herramienta de búsqueda simple:</p>
 <ul>
 <li><strong>Nombre:</strong> <code>web_search</code></li>
 <li><strong>Descripción de la herramienta:</strong> Busca en la web consultas específicas</li>
@@ -2419,13 +2420,26 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <li><strong>Creando una subclase de <code>Tool</code></strong> para funcionalidades más complejas    </li>
 </ol>
 <h3 id="el-decorador-tool">El decorador <code>@tool</code></h3>
-<p>El decorador <code>@tool</code> es <strong>la forma recomendada para definir herramientas simples</strong>. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, <strong>si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla</strong>.</p>
+<p>El decorador <code>@tool</code> es <strong>la forma recomendada para definir herramientas simples</strong>. Internamente, <strong>smolagents analizará la información básica sobre la función desde Python</strong>. Por lo tanto, <strong>si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla</strong>.</p>
 <p>Usando este enfoque, definimos una función con:  </p>
 <ul>
 <li><strong>Un nombre de función claro y descriptivo</strong> que ayuda al LLM a entender su propósito.  </li>
 <li><strong>Anotaciones de tipo tanto para entradas como para salidas</strong> para garantizar un uso adecuado.  </li>
 <li><strong>Una descripción detallada</strong>, que incluye una sección <code>Args:</code> donde cada argumento se describe explícitamente. Estas descripciones proporcionan un contexto valioso para el LLM, por lo que es importante escribirlas cuidadosamente.  </li>
 </ul>
+<p>Ejemplo:
+<div class="highlight"><pre><span></span><code><span class="c1"># declaramos las herramientas que va a usar el agente</span>
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds two numbers together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (float): The first number.</span>
+<span class="sd">        b (float): The second number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></p>
 <h4 id="generando-una-herramienta-que-recupera-el-servicio-de-catering-mejor-valorado">Generando una herramienta que recupera el servicio de catering mejor valorado</h4>
 <p><img alt="" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-catering.jpg" /></p>
 <p>Imaginemos que Alfred ya ha decidido el menú para la fiesta, pero ahora necesita ayuda para preparar comida para un número tan grande de invitados. Para hacerlo, le gustaría contratar un servicio de catering y necesita identificar las opciones mejor valoradas disponibles. Alfred puede aprovechar una herramienta para buscar los mejores servicios de catering en su área.</p>

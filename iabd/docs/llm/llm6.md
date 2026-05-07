@@ -460,6 +460,7 @@ agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?"
 verbosity-level = 2
 ```
 Son niveles de log/registro:
+
 * 0: Sin logs (silencioso).
 * 1: Predeterminado. Muestra los pasos generales.
 * 2: Detallado. Muestra logs detallados, incluyendo los resultados del modelo y los pasos internos.
