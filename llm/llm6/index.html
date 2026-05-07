@@ -1537,24 +1537,12 @@ Gráfico del artículo <a href="https://huggingface.co/papers/2402.01030">Execut
 <p>Configurar la clave de API de Mistral AI en un fichero <strong><code>.env</code></strong>:</p>
 <div class="highlight"><pre><span></span><code>MISTRAL_API_KEY=&quot;tu_clave_api&quot;
 </code></pre></div>
-<h2 id="verificacion-opcional-de-la-clave-api">Verificación opcional de la clave API</h2>
-<p>Antes de usar <code>smolagents</code>, puede resultar útil comprobar que la clave funciona correctamente con el cliente oficial de Mistral AI. El patrón de uso recomendado por la librería es similar a este:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-<span class="n">models</span> <span class="o">=</span> <span class="n">mai_client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
-</code></pre></div>
 <p>La documentación de <strong><code>smolagents</code></strong> recoge el uso de <strong>LiteLLM</strong> para conectar con <strong>distintos proveedores y motores de inferencia</strong>, y Gradio ofrece una forma rápida de construir interfaces web para probar funciones o modelos.</p>
 <h2 id="codigo-base-del-ejercicio">Código base del ejercicio</h2>
 <p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">LiteLLMModel</span>
-
-<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
 <span class="c1"># declaramos las herramientas que va a usar el agente</span>
 <span class="nd">@tool</span>
@@ -1607,7 +1595,6 @@ Gráfico del artículo <a href="https://huggingface.co/papers/2402.01030">Execut
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
 <span class="c1"># instanciamos el LLM que vamos a utilizar</span>
-
 <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span> <span class="c1">#formato proveedor/modelo</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
@@ -1627,35 +1614,58 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
 <h2 id="desarrollo-paso-a-paso">Desarrollo paso a paso</h2>
 <h3 id="paso-1-importar-las-librerias-necesarias">Paso 1. Importar las librerías necesarias</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">LiteLLMModel</span>
 </code></pre></div>
 <p>Aquí se importan tres grupos de elementos: utilidades del sistema para leer variables de entorno, el cliente oficial de Mistral AI y los componentes de <code>smolagents</code>. Esto permite explicar al alumnado la diferencia entre una librería de proveedor, que sirve para autenticar o probar la API, y una librería de agentes, que organiza tools, prompts y llamadas al modelo.</p>
-<h3 id="paso-2-crear-el-cliente-de-mistral-ai">Paso 2. Crear el cliente de Mistral AI</h3>
-<div class="highlight"><pre><span></span><code><span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</code></pre></div>
-<p>Esta línea crea un cliente oficial de Mistral AI utilizando la clave guardada en la variable de entorno <code>MISTRAL_API_KEY</code>.[cite:135] Aunque el agente funcionará a través de <code>LiteLLMModel</code>, mantener esta línea en la actividad es útil para que el alumnado vea claramente cómo se gestiona la autenticación con un proveedor real.</p>
-<h3 id="paso-3-crear-herramientas-matematicas-con-tool">Paso 3. Crear herramientas matemáticas con <code>@tool</code></h3>
-<div class="highlight"><pre><span></span><code><span class="nd">@tool</span>
+<h3 id="paso-2-crear-herramientas-matematicas-con-tool">Paso 2. Crear herramientas matemáticas con <code>@tool</code></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># declaramos las herramientas que va a usar el agente</span>
+<span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds two numbers together.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds two numbers together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (float): The first number.</span>
+<span class="sd">        b (float): The second number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">subtract</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Subtracts the second number from the first.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subtracts the second number from the first.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (float): The first number.</span>
+<span class="sd">        b (float): The second number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiplies two numbers together.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multiplies two numbers together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (float): The first number.</span>
+<span class="sd">        b (float): The second number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Divides the first number by the second.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Divides the first number by the second. Returns an error message if division by zero is attempted.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (float): The first number.</span>
+<span class="sd">        b (float): The second number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Error: Division by zero is not allowed.&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
@@ -1668,7 +1678,7 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
 <li><code>multiply(a, b)</code>: multiplica dos números.</li>
 <li><code>divide(a, b)</code>: divide y además controla el caso de división entre cero devolviendo un mensaje de error.</li>
 </ul>
-<h3 id="paso-4-configurar-el-modelo-de-mistral-ai-en-litellmmodel">Paso 4. Configurar el modelo de Mistral AI en <code>LiteLLMModel</code></h3>
+<h3 id="paso-3-configurar-el-modelo-de-mistral-ai-en-litellmmodel">Paso 3. Configurar el modelo de Mistral AI en <code>LiteLLMModel</code></h3>
 <div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
@@ -1676,14 +1686,14 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
 <span class="p">)</span>
 </code></pre></div>
 <p>LiteLLM documenta la integración con Mistral AI usando modelos como <code>mistral/mistral-large-latest</code> y autenticación con <code>MISTRAL_API_KEY</code>. El parámetro <code>temperature=0.2</code> ayuda a reducir la aleatoriedad, algo conveniente cuando interesa que el agente elija herramientas matemáticas de forma consistente.</p>
-<h3 id="paso-5-crear-el-agente-con-las-herramientas-disponibles">Paso 5. Crear el agente con las herramientas disponibles</h3>
+<h3 id="paso-4-crear-el-agente-con-las-herramientas-disponibles">Paso 4. Crear el agente con las herramientas disponibles</h3>
 <div class="highlight"><pre><span></span><code><span class="n">agent</span> <span class="o">=</span> <span class="n">ToolCallingAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">add</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">multiply</span><span class="p">,</span> <span class="n">divide</span><span class="p">]</span>
 <span class="p">)</span>
 </code></pre></div>
 <p><code>ToolCallingAgent</code> es un agente que decide cuándo llamar a una tool y con qué argumentos a partir del prompt recibido. La lista <code>tools=[...]</code> delimita las capacidades del agente: si una función no está en esa lista, el agente no podrá usarla.</p>
-<h3 id="paso-6-ejecutar-una-consulta-en-lenguaje-natural">Paso 6. Ejecutar una consulta en lenguaje natural</h3>
+<h3 id="paso-5-ejecutar-una-consulta-en-lenguaje-natural">Paso 5. Ejecutar una consulta en lenguaje natural</h3>
 <div class="highlight"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;What is 15 multiplied by 3, then subtract 5 and finally divide by 2?&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
@@ -1700,15 +1710,11 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
 </ol>
 <h2 id="script-completo-comentado">Script completo comentado</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">LiteLLMModel</span>
 
-<span class="c1"># Paso 1: Creamos un cliente del proveedor para comprobar autenticación o listar modelos.</span>
-<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-<span class="c1"># Paso 2: Definimos las herramientas matemáticas que el agente podrá usar.</span>
+<span class="c1"># Paso 1: Definimos las herramientas matemáticas que el agente podrá usar.</span>
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1743,20 +1749,20 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
         <span class="k">return</span> <span class="s2">&quot;Error: Division by zero is not allowed.&quot;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
-<span class="c1"># Paso 3: Conectamos con el modelo remoto de Mistral AI.</span>
+<span class="c1"># Paso 2: Conectamos con el modelo remoto de Mistral AI.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;mistral/mistral-large-latest&quot;</span><span class="p">,</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
     <span class="n">temperature</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Paso 4: Creamos el agente y le damos acceso a las herramientas anteriores.</span>
+<span class="c1"># Paso 3: Creamos el agente y le damos acceso a las herramientas anteriores.</span>
 <span class="n">agent</span> <span class="o">=</span> <span class="n">ToolCallingAgent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">add</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">multiply</span><span class="p">,</span> <span class="n">divide</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c1"># Paso 5: Lanzamos una consulta de prueba.</span>
+<span class="c1"># Paso 4: Lanzamos una consulta de prueba.</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;What is 15 multiplied by 3, then subtract 5 and finally divide by 2?&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
@@ -1915,10 +1921,7 @@ Son niveles de log/registro:
 <h3 id="archivo-apppy">Archivo <code>app.py</code></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">chainlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cl</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mistralai.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
-
-<span class="n">mai_client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
