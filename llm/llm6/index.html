@@ -1796,10 +1796,12 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo <code>m
 <p><strong>Nivel de Log</strong>
 <div class="highlight"><pre><span></span><code>verbosity-level = 2
 </code></pre></div>
-Son niveles de log/registro:
-* 0: Sin logs (silencioso).
-* 1: Predeterminado. Muestra los pasos generales.
-* 2: Detallado. Muestra logs detallados, incluyendo los resultados del modelo y los pasos internos.</p>
+Son niveles de log/registro:</p>
+<ul>
+<li>0: Sin logs (silencioso).</li>
+<li>1: Predeterminado. Muestra los pasos generales.</li>
+<li>2: Detallado. Muestra logs detallados, incluyendo los resultados del modelo y los pasos internos.</li>
+</ul>
 <h2 id="por-que-usar-tools-en-este-caso-especifico">Por qué usar tools en este caso específico</h2>
 <h3 id="1-didactica-aprender-con-un-caso-simple-antes-de-escalar">1. Didáctica: aprender con un caso simple antes de escalar</h3>
 <p>El ejercicio de la calculadora es <strong>intencionalmente sencillo</strong> para entiender el mecanismo de <strong><code>tools</code></strong> sin distraernos con lógica de negocio compleja. Los LLMs pueden generar código Python para calcular <code>(15 * 3 - 5) / 2</code>, pero si empezáramos la explicación con herramientas como <strong>"buscar en una base de datos SQL", "llamar a una API externa" o "procesar un CSV con pandas"</strong>, tendríamos que abordar/aprender simultáneamente 3 cosas: 
