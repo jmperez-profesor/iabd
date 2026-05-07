@@ -2878,9 +2878,7 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="nb">print</span><span class="p">(</span><span class="n">calculate_cargo_travel_time</span><span class="p">((</span><span class="mf">41.8781</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.6298</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">33.8688</span><span class="p">,</span> <span class="mf">151.2093</span><span class="p">)))</span>
 </code></pre></div>
 <h3 id="configurando-el-agente">Configurando el agente</h3>
-<p>Para el proveedor de modelos, usamos Together AI, ¡uno de los nuevos <a href="https://huggingface.co/blog/inference-providers">proveedores de inferencia en el Hub</a>!</p>
-<p>La herramienta GoogleSearchTool usa la <a href="https://serper.dev">API de Serper</a> para buscar en la web, por lo que requiere haber configurado la variable de entorno <code>SERPAPI_API_KEY</code> y pasar <code>provider="serpapi"</code> o tener <code>SERPER_API_KEY</code> y pasar <code>provider=serper</code>.</p>
-<p>Si no tienes ningún proveedor de Serp API configurado, puedes usar <code>DuckDuckGoSearchTool</code> pero ten en cuenta que tiene un límite de tasa.</p>
+<p>Vamos a utilizar nuevamente puedes usar <strong><code>DuckDuckGoSearchTool</code></strong> para buscar en la web pero debemos recordar que tiene un límite de tasa.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">VisitWebpageTool</span>
@@ -3030,14 +3028,16 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <span class="o">|</span> <span class="mi">1</span>  <span class="o">|</span> <span class="n">Wishart</span> <span class="n">Street</span><span class="p">,</span> <span class="n">Glasgow</span><span class="p">,</span> <span class="n">Scotland</span><span class="p">,</span> <span class="n">UK</span>         <span class="o">|</span> <span class="mf">8.6</span>                 <span class="o">|</span>
 </code></pre></div>
 <p>Gracias a estos cambios rápidos, obtuvimos un informe mucho más conciso proporcionando simplemente una instrucción detallada a nuestro agente y dándole capacidades de planificación.</p>
-<p>El contexto de la ventana del modelo se está llenando rápidamente. Así que <strong>si le pedimos a nuestro agente que combine los resultados de una búsqueda detallada con otra, será más lento y rápidamente aumentará los tokens y los costos</strong>.</p>
+<p>El context window o ventana de contexto del modelo se está llenando rápidamente. Así que <strong>si le pedimos a nuestro agente que combine los resultados de una búsqueda detallada con otra, será más lento y rápidamente aumentará los tokens y los costos</strong>.</p>
 <p>➡️ Necesitamos mejorar la estructura de nuestro sistema.</p>
 <h3 id="dividiendo-la-tarea-entre-dos-agentes">✌️ Dividiendo la tarea entre dos agentes</h3>
-<p>Las estructuras multi-agente permiten separar memorias entre diferentes sub-tareas, con dos grandes beneficios:
-- Cada agente está más enfocado en su tarea principal, por lo que es más performante
-- Separar memorias reduce la cantidad de tokens de entrada en cada paso, reduciendo la latencia y el costo.</p>
+<p>Las estructuras multi-agente permiten separar memorias entre diferentes sub-tareas, con dos grandes beneficios:</p>
+<ul>
+<li>Cada agente está más enfocado en su tarea principal, por lo que es más performante</li>
+<li>Separar memorias reduce la cantidad de tokens de entrada en cada paso, reduciendo la latencia y el costo.</li>
+</ul>
 <p>Vamos a crear un equipo con un agente de búsqueda web dedicado, gestionado por otro agente.</p>
-<p>El agente gestor debe tener capacidades de trazado para escribir su informe final: así que vamos a darle acceso a importaciones adicionales, incluyendo <code>matplotlib</code>, y <code>geopandas</code> + <code>shapely</code> para trazado espacial.</p>
+<p>El <strong>agente gestor</strong> debe tener capacidades de trazado para escribir su informe final: así que vamos a darle acceso a importaciones adicionales, incluyendo <code>matplotlib</code>, y <code>geopandas</code> + <code>shapely</code> para trazado espacial.</p>
 <div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">(</span>
     <span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">,</span> <span class="n">provider</span><span class="o">=</span><span class="s2">&quot;together&quot;</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">8096</span>
 <span class="p">)</span>
