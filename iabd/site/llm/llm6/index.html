@@ -1804,10 +1804,12 @@ Son niveles de log/registro:</p>
 </ul>
 <h2 id="por-que-usar-tools-en-este-caso-especifico">Por qué usar tools en este caso específico</h2>
 <h3 id="1-didactica-aprender-con-un-caso-simple-antes-de-escalar">1. Didáctica: aprender con un caso simple antes de escalar</h3>
-<p>El ejercicio de la calculadora es <strong>intencionalmente sencillo</strong> para entiender el mecanismo de <strong><code>tools</code></strong> sin distraernos con lógica de negocio compleja. Los LLMs pueden generar código Python para calcular <code>(15 * 3 - 5) / 2</code>, pero si empezáramos la explicación con herramientas como <strong>"buscar en una base de datos SQL", "llamar a una API externa" o "procesar un CSV con pandas"</strong>, tendríamos que abordar/aprender simultáneamente 3 cosas: 
-* cómo funciona el agente
-* cómo funciona la tool compleja
-* y cómo se integran.</p>
+<p>El ejercicio de la calculadora es <strong>intencionalmente sencillo</strong> para entiender el mecanismo de <strong><code>tools</code></strong> sin distraernos con lógica de negocio compleja. Los LLMs pueden generar código Python para calcular <code>(15 * 3 - 5) / 2</code>, pero si empezáramos la explicación con herramientas como <strong>"buscar en una base de datos SQL", "llamar a una API externa" o "procesar un CSV con pandas"</strong>, tendríamos que abordar/aprender simultáneamente 3 cosas: </p>
+<ul>
+<li>cómo funciona el agente</li>
+<li>cómo funciona la tool compleja</li>
+<li>y cómo se integran.</li>
+</ul>
 <h3 id="2-control-y-validacion">2. Control y validación</h3>
 <p>Con <strong><code>tools</code></strong>, el programador <strong>controla explícitamente qué puede hacer el agente</strong>. Si el modelo genera código Python arbitrario, podría:</p>
 <ul>
