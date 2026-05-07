@@ -63,10 +63,6 @@ Como vimos anteriormente, los agentes de IA son programas que utilizan LLMs para
 ### Acciones de Código vs. JSON
 A diferencia de otros frameworks donde los agentes escriben acciones en JSON, `smolagents` **se centra en llamadas a herramientas en código**, simplificando el proceso de ejecución. Esto se debe a que no hay necesidad de analizar el JSON para construir código que llame a las herramientas: la salida puede ejecutarse directamente.
 
-El siguiente diagrama ilustra esta diferencia:
-
-![Acciones de Código vs. JSON](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/code_vs_json_actions.png)
-
 ### Tipos de Agentes en `smolagents`
 
 Los agentes en **`smolagents`** operan como **agentes de múltiples pasos**.
