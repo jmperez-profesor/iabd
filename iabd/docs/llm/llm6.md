@@ -164,19 +164,6 @@ Configurar la clave de API de Mistral AI en un fichero **`.env`**:
 MISTRAL_API_KEY="tu_clave_api"
 ```
 
-## Verificación opcional de la clave API
-
-Antes de usar `smolagents`, puede resultar útil comprobar que la clave funciona correctamente con el cliente oficial de Mistral AI. El patrón de uso recomendado por la librería es similar a este:
-
-```python
-from mistralai import Mistral
-import os
-
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
-models = mai_client.models.list()
-print(models)
-```
-
 La documentación de **`smolagents`** recoge el uso de **LiteLLM** para conectar con **distintos proveedores y motores de inferencia**, y Gradio ofrece una forma rápida de construir interfaces web para probar funciones o modelos.
 
 
@@ -184,12 +171,9 @@ La documentación de **`smolagents`** recoge el uso de **LiteLLM** para conectar
 
 ```python
 import os
-from mistralai import Mistral
 from smolagents import tool
 from smolagents import ToolCallingAgent
 from smolagents import LiteLLMModel
-
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
 
 # declaramos las herramientas que va a usar el agente
 @tool
@@ -242,7 +226,6 @@ def divide(a: float, b: float) -> float | str:
     return a / b
 
 # instanciamos el LLM que vamos a utilizar
-
 model = LiteLLMModel(
     model_id="mistral/mistral-large-latest", #formato proveedor/modelo
     api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
@@ -266,7 +249,6 @@ LiteLLM documenta el uso de modelos Mistral con identificadores del tipo `mistra
 
 ```python
 import os
-from mistralai import Mistral
 from smolagents import tool
 from smolagents import ToolCallingAgent
 from smolagents import LiteLLMModel
@@ -274,35 +256,55 @@ from smolagents import LiteLLMModel
 
 Aquí se importan tres grupos de elementos: utilidades del sistema para leer variables de entorno, el cliente oficial de Mistral AI y los componentes de `smolagents`. Esto permite explicar al alumnado la diferencia entre una librería de proveedor, que sirve para autenticar o probar la API, y una librería de agentes, que organiza tools, prompts y llamadas al modelo.
 
-### Paso 2. Crear el cliente de Mistral AI
+### Paso 2. Crear herramientas matemáticas con `@tool`
 
 ```python
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
-```
-
-Esta línea crea un cliente oficial de Mistral AI utilizando la clave guardada en la variable de entorno `MISTRAL_API_KEY`.[cite:135] Aunque el agente funcionará a través de `LiteLLMModel`, mantener esta línea en la actividad es útil para que el alumnado vea claramente cómo se gestiona la autenticación con un proveedor real.
-
-### Paso 3. Crear herramientas matemáticas con `@tool`
-
-```python
+# declaramos las herramientas que va a usar el agente
 @tool
 def add(a: float, b: float) -> float:
-    """Adds two numbers together."""
+    """
+    Adds two numbers together.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
     return a + b
+
 
 @tool
 def subtract(a: float, b: float) -> float:
-    """Subtracts the second number from the first."""
+    """
+    Subtracts the second number from the first.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
     return a - b
+
 
 @tool
 def multiply(a: float, b: float) -> float:
-    """Multiplies two numbers together."""
+    """
+    Multiplies two numbers together.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
     return a * b
+
 
 @tool
 def divide(a: float, b: float) -> float | str:
-    """Divides the first number by the second."""
+    """
+    Divides the first number by the second. Returns an error message if division by zero is attempted.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
     if b == 0:
         return "Error: Division by zero is not allowed."
     return a / b
@@ -317,7 +319,7 @@ Las cuatro herramientas del ejercicio son:
 - `multiply(a, b)`: multiplica dos números.
 - `divide(a, b)`: divide y además controla el caso de división entre cero devolviendo un mensaje de error.
 
-### Paso 4. Configurar el modelo de Mistral AI en `LiteLLMModel`
+### Paso 3. Configurar el modelo de Mistral AI en `LiteLLMModel`
 
 ```python
 model = LiteLLMModel(
@@ -329,7 +331,7 @@ model = LiteLLMModel(
 
 LiteLLM documenta la integración con Mistral AI usando modelos como `mistral/mistral-large-latest` y autenticación con `MISTRAL_API_KEY`. El parámetro `temperature=0.2` ayuda a reducir la aleatoriedad, algo conveniente cuando interesa que el agente elija herramientas matemáticas de forma consistente.
 
-### Paso 5. Crear el agente con las herramientas disponibles
+### Paso 4. Crear el agente con las herramientas disponibles
 
 ```python
 agent = ToolCallingAgent(
@@ -340,7 +342,7 @@ agent = ToolCallingAgent(
 
 `ToolCallingAgent` es un agente que decide cuándo llamar a una tool y con qué argumentos a partir del prompt recibido. La lista `tools=[...]` delimita las capacidades del agente: si una función no está en esa lista, el agente no podrá usarla.
 
-### Paso 6. Ejecutar una consulta en lenguaje natural
+### Paso 5. Ejecutar una consulta en lenguaje natural
 
 ```python
 result = agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
@@ -365,15 +367,11 @@ Una forma útil de explicarlo en clase es con esta secuencia:
 
 ```python
 import os
-from mistralai import Mistral
 from smolagents import tool
 from smolagents import ToolCallingAgent
 from smolagents import LiteLLMModel
 
-# Paso 1: Creamos un cliente del proveedor para comprobar autenticación o listar modelos.
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
-
-# Paso 2: Definimos las herramientas matemáticas que el agente podrá usar.
+# Paso 1: Definimos las herramientas matemáticas que el agente podrá usar.
 @tool
 def add(a: float, b: float) -> float:
     """
@@ -408,20 +406,20 @@ def divide(a: float, b: float) -> float | str:
         return "Error: Division by zero is not allowed."
     return a / b
 
-# Paso 3: Conectamos con el modelo remoto de Mistral AI.
+# Paso 2: Conectamos con el modelo remoto de Mistral AI.
 model = LiteLLMModel(
     model_id="mistral/mistral-large-latest",
     api_key=os.getenv("MISTRAL_API_KEY", "").strip(),
     temperature=0.2,
 )
 
-# Paso 4: Creamos el agente y le damos acceso a las herramientas anteriores.
+# Paso 3: Creamos el agente y le damos acceso a las herramientas anteriores.
 agent = ToolCallingAgent(
     model=model,
     tools=[add, subtract, multiply, divide]
 )
 
-# Paso 5: Lanzamos una consulta de prueba.
+# Paso 4: Lanzamos una consulta de prueba.
 result = agent.run("What is 15 multiplied by 3, then subtract 5 and finally divide by 2?")
 print(result)
 ```
@@ -567,7 +565,6 @@ La calculadora es un **ejercicio pedagógico**: usa un caso trivial para enseña
 
 > Analogía: **usar un LLM para generar código Python para sumar es como pedirle a ChatGPT que escriba una función `suma(a, b)` cada vez que necesitas sumar, en lugar de tener la función ya definida y simplemente llamarla**.
 
-
 ## Ejecución con Chainlit
 
 Chainlit permite construir una interfaz conversacional en Python mediante decoradores como `@cl.on_message`, que se ejecuta cada vez que el usuario envía un mensaje. La propia documentación muestra que una aplicación Chainlit básica se ejecuta con `chainlit run app.py -w`, donde `-w` activa el modo watch para recargar cambios automáticamente.
@@ -577,10 +574,7 @@ Chainlit permite construir una interfaz conversacional en Python mediante decora
 ```python
 import os
 import chainlit as cl
-from mistralai.client import Mistral
 from smolagents import tool, ToolCallingAgent, LiteLLMModel
-
-mai_client = Mistral(api_key=os.getenv("MISTRAL_API_KEY", "").strip())
 
 @tool
 def add(a: float, b: float) -> float:
