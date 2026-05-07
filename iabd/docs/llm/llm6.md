@@ -1745,11 +1745,7 @@ print(calculate_cargo_travel_time((41.8781, -87.6298), (-33.8688, 151.2093)))
 
 ### Configurando el agente
 
-Para el proveedor de modelos, usamos Together AI, ¡uno de los nuevos [proveedores de inferencia en el Hub](https://huggingface.co/blog/inference-providers)!
-
-La herramienta GoogleSearchTool usa la [API de Serper](https://serper.dev) para buscar en la web, por lo que requiere haber configurado la variable de entorno `SERPAPI_API_KEY` y pasar `provider="serpapi"` o tener `SERPER_API_KEY` y pasar `provider=serper`.
-
-Si no tienes ningún proveedor de Serp API configurado, puedes usar `DuckDuckGoSearchTool` pero ten en cuenta que tiene un límite de tasa.
+Vamos a utilizar nuevamente puedes usar **`DuckDuckGoSearchTool`** para buscar en la web pero debemos recordar que tiene un límite de tasa.
 
 ```python
 import os
@@ -1926,19 +1922,20 @@ En nuestro caso, genera este output:
 
 Gracias a estos cambios rápidos, obtuvimos un informe mucho más conciso proporcionando simplemente una instrucción detallada a nuestro agente y dándole capacidades de planificación.
 
-El contexto de la ventana del modelo se está llenando rápidamente. Así que **si le pedimos a nuestro agente que combine los resultados de una búsqueda detallada con otra, será más lento y rápidamente aumentará los tokens y los costos**.
+El context window o ventana de contexto del modelo se está llenando rápidamente. Así que **si le pedimos a nuestro agente que combine los resultados de una búsqueda detallada con otra, será más lento y rápidamente aumentará los tokens y los costos**.
 
 ➡️ Necesitamos mejorar la estructura de nuestro sistema.
 
 ### ✌️ Dividiendo la tarea entre dos agentes
 
 Las estructuras multi-agente permiten separar memorias entre diferentes sub-tareas, con dos grandes beneficios:
+
 - Cada agente está más enfocado en su tarea principal, por lo que es más performante
 - Separar memorias reduce la cantidad de tokens de entrada en cada paso, reduciendo la latencia y el costo.
 
 Vamos a crear un equipo con un agente de búsqueda web dedicado, gestionado por otro agente.
 
-El agente gestor debe tener capacidades de trazado para escribir su informe final: así que vamos a darle acceso a importaciones adicionales, incluyendo `matplotlib`, y `geopandas` + `shapely` para trazado espacial.
+El **agente gestor** debe tener capacidades de trazado para escribir su informe final: así que vamos a darle acceso a importaciones adicionales, incluyendo `matplotlib`, y `geopandas` + `shapely` para trazado espacial.
 
 ```python
 model = InferenceClientModel(

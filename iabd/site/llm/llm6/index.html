@@ -2599,15 +2599,18 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
     <span class="n">additional_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;user_prompt&#39;</span><span class="p">:</span> <span class="s1">&#39;Una gran fiesta temática de superhéroes en la Mansión Wayne, con Alfred supervisando una lujosa gala&#39;</span><span class="p">}</span>
 <span class="p">)</span>
 </code></pre></div>
-<h3 id="importar-una-herramienta-de-langchain-duckduckgosearchrun">Importar una herramienta de LangChain - DuckDuckGoSearchRun</h3>
+<h3 id="importar-una-herramienta-de-langchain-duckduckgosearchrun-gradio">Importar una herramienta de LangChain - DuckDuckGoSearchRun + Gradio</h3>
 <p>Discutiremos el framework <strong><code>LangChain</code></strong> en las próximas sesiones. Por ahora, solo notamos que ¡podemos reutilizar herramientas de LangChain en nuestro flujo de trabajo de smolagents!</p>
+<p>Además, <strong>Gradio</strong> nos permite crear una interfaz web sencilla para probar el agente desde el navegador con muy poco código. Esto es muy útil porque nos permite visualizar perfectamente los eventos que realizar el agente, centrarnos en formular peticiones y ver respuestas sin tocar continuamente la terminal.</p>
 <p>Podemos cargar fácilmente herramientas de LangChain usando el método <strong><code>Tool.from_langchain()</code></strong>. </p>
 <p>Alfred, siempre perfeccionista, está preparando una espectacular noche de superhéroes en la Mansión Wayne mientras los Wayne están fuera. Para asegurarse de que cada detalle supere las expectativas, aprovecha las herramientas de <strong><code>LangChain</code></strong> para encontrar ideas de entretenimiento de primera categoría.</p>
 <p>Primero instalamos las herramientas de <strong><code>langchain</code></strong> y <strong><code>DuckDuckGoSearchRun</code></strong>:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain<span class="w"> </span>langchain-community<span class="w"> </span>ddgs
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain<span class="w"> </span>langchain-community<span class="w"> </span>ddgs<span class="w"> </span>gradio
 </code></pre></div>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<p><strong>alfred_gradio.py</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchRun</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span><span class="p">,</span> <span class="n">LiteLLMModel</span><span class="p">,</span> <span class="n">Tool</span>
 
@@ -2625,16 +2628,16 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 
 <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Busca ideas de entretenimiento de lujo para un evento temático de superhéroes, como actuaciones en vivo y experiencias interactivas.&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Con esta configuración, Alfred puede descubrir rápidamente opciones de entretenimiento lujosas, asegurando que los invitados de élite de Gotham tengan una experiencia inolvidable. ¡Esta herramienta le ayuda a organizar el evento temático de superhéroes perfecto para la Mansión Wayne! 🎉</p>
 <h1 id="construyendo-sistemas-rag-con-agentes">Construyendo sistemas RAG con Agentes</h1>
 <p><img alt="" src="../images/06/agents_with_RAG.gif" /></p>
 <p>Los sistemas de <strong>Generación Aumentada por Recuperación (RAG)</strong> combinan las capacidades de <strong>recuperación de datos</strong> y <strong>modelos de generación</strong> para proporcionar <strong>respuestas contextualizadas</strong>. Por ejemplo, <strong>la consulta de un usuario se pasa a un motor de búsqueda, y los resultados recuperados se entregan al modelo junto con la consulta. El modelo luego genera una respuesta basada en la consulta y la información recuperada</strong>.</p>
-<p>El <strong>RAG con Agentes (Generación Aumentada por Recuperación)</strong> extiende los sistemas RAG tradicionales al <strong>combinar agentes autónomos con recuperación dinámica de conocimiento</strong>.</p>
+<p>El <strong>RAG con Agentes</strong> extiende los sistemas RAG tradicionales al <strong>combinar agentes autónomos con recuperación dinámica de conocimiento</strong>.</p>
 <p>Mientras que los sistemas <strong>RAG tradicionales</strong> utilizan un LLM para responder consultas basadas en datos recuperados, el <strong><em>RAG con agentes</em> permite un control inteligente tanto de los procesos de recuperación como de generación</strong>, mejorando la eficiencia y precisión.</p>
 <p>Los sistemas RAG tradicionales enfrentan limitaciones clave, como <strong>depender de un solo paso de recuperación</strong> y enfocarse en la <strong>similitud semántica directa</strong> con la consulta del usuario, lo que puede pasar por alto información relevante.</p>
 <p>El <strong>RAG con agentes</strong> aborda estos problemas permitiendo que el agente <strong>formule autónomamente consultas de búsqueda</strong>, <strong>critique los resultados recuperados</strong> y <strong>realice múltiples pasos de recuperación para obtener un resultado más personalizado y completo</strong>.</p>
 <h2 id="recuperacion-basica-con-duckduckgo">Recuperación básica con DuckDuckGo</h2>
-<p>Vamos a construir un agente simple que pueda buscar en la web usando DuckDuckGo. Este agente recuperará información y sintetizará respuestas para contestar consultas. Con RAG con agentes, el agente de Alfred puede:</p>
+<p>Vamos a construir un agente simple que pueda buscar en la web usando DuckDuckGo. Este agente recuperará información y sintetizará respuestas para contestar consultas. </p>
+<p>Usando RAG con agentes, el agente de Alfred puede:</p>
 <ul>
 <li>Buscar las últimas tendencias en fiestas de superhéroes</li>
 <li>Refinar resultados para incluir elementos de lujo</li>
@@ -2762,10 +2765,12 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre></div>
-<p>Este agente mejorado puede:
-1. Primero verificar la documentación para obtener información relevante
-2. Combinar ideas de la base de conocimiento
-3. Mantener el contexto de la conversación en memoria</p>
+<p>Este agente mejorado puede:</p>
+<ol>
+<li>Primero verificar la documentación para obtener información relevante</li>
+<li>Combinar ideas de la base de conocimiento</li>
+<li>Mantener el contexto de la conversación en memoria</li>
+</ol>
 <h2 id="capacidades-de-recuperacion-mejoradas">Capacidades de Recuperación Mejoradas</h2>
 <p>Al construir sistemas RAG con agentes, el agente puede emplear estrategias sofisticadas como:</p>
 <ol>
@@ -2778,18 +2783,22 @@ Para más detalles sobre la ejecución segura de código, consulta la <a href="h
 <h1 id="sistemas-multi-agente">Sistemas Multi-Agente</h1>
 <p>Los sistemas multi-agente permiten que <strong>agentes especializados colaboren en tareas complejas</strong>, mejorando la <strong>modularidad, escalabilidad y robustez</strong>. En lugar de depender de un solo agente, las tareas se distribuyen entre agentes con capacidades distintas.</p>
 <p>En <strong>smolagents</strong>, diferentes agentes pueden combinarse para generar código Python, llamar a herramientas externas, realizar búsquedas web y más. Al orquestar estos agentes, podemos crear flujos de trabajo potentes.</p>
-<p>Una configuración típica podría incluir:
-- Un <strong>Agente Gestor</strong> para la delegación de tareas
-- Un <strong>Agente Intérprete de Código</strong> para la ejecución de código
-- Un <strong>Agente de Búsqueda Web</strong> para la recuperación de información</p>
+<p>Una configuración típica podría incluir:</p>
+<ul>
+<li>Un <strong>Agente Gestor</strong> para la delegación de tareas</li>
+<li>Un <strong>Agente Intérprete de Código</strong> para la ejecución de código</li>
+<li>Un <strong>Agente de Búsqueda Web</strong> para la recuperación de información</li>
+</ul>
 <p>El diagrama a continuación ilustra una arquitectura multi-agente simple donde un <strong>Agente Gestor</strong> coordina una <strong>Herramienta Intérprete de Código</strong> y un <strong>Agente de Búsqueda Web</strong>, que a su vez utiliza herramientas como <strong><code>DuckDuckGoSearchTool</code></strong> y <strong><code>VisitWebpageTool</code></strong> para recopilar información relevante.</p>
 <p><img alt="Sistema Multi-Agente" src="https://mermaid.ink/img/pako:eNp1kc1qhTAQRl9FUiQb8wIpdNO76eKubrmFks1oRg3VSYgjpYjv3lFL_2hnMWQOJwn5sqgmelRWleUSKLAtFs09jqhtoWuYUFfFAa6QA9QDTnpzamheuhxn8pt40-6l13UtS0ddhtQXj6dbR4XUGQg6zEYasTF393KjeSDGnDJKNxzj8I_7hLW5IOSmP9CH9hv_NL-d94d4DVNg84p1EnK4qlIj5hGClySWbadT-6OdsrL02MI8sFOOVkciw8zx8kaNspxnrJQE0fXKtjBMMs3JA-MpgOQwftIE9Bzj14w-cMznI_39E9Z3p0uFoA?type=png" /></p>
 <h2 id="sistemas-multi-agente-en-accion">Sistemas Multi-Agente en Acción</h2>
 <p>Un sistema multi-agente consiste en múltiples <strong>agentes especializados</strong> trabajando juntos bajo la coordinación de un <strong>Agente Orquestador</strong>. Este enfoque permite flujos de trabajo complejos distribuyendo tareas entre agentes con roles distintos.</p>
-<p>Por ejemplo, un <strong>sistema RAG Multi-Agente</strong> puede integrar:
-- Un <strong>Agente Web</strong> para navegar por internet.
-- Un <strong>Agente Recuperador</strong> para obtener información de bases de conocimiento.
-- Un <strong>Agente de Generación de Imágenes</strong> para producir elementos visuales.</p>
+<p>Por ejemplo, un <strong>sistema RAG Multi-Agente</strong> puede integrar:</p>
+<ul>
+<li>Un <strong>Agente Web</strong> para navegar por internet.</li>
+<li>Un <strong>Agente Recuperador</strong> para obtener información de bases de conocimiento.</li>
+<li>Un <strong>Agente de Generación de Imágenes</strong> para producir elementos visuales.</li>
+</ul>
 <p>Todos estos agentes operan bajo un orquestador que gestiona la delegación de tareas y la interacción.</p>
 <h2 id="resolviendo-una-tarea-compleja-con-una-jerarquia-multi-agente">Resolviendo una tarea compleja con una jerarquía multi-agente</h2>
 <p>¡La recepción se acerca! Con tu ayuda, Alfred ya casi ha terminado con los preparativos.</p>
