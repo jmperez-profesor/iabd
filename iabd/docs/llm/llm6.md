@@ -2124,7 +2124,7 @@ Esto generará el mapa:
 
 ![Multiagent system example output map](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/output_map.png)
 
-## Recursos
+## Fuente y recursos
 
 - [Blog de smolagents](https://huggingface.co/blog/smolagents) - Introducción a smolagents e interacciones de código
 - [smolagents: Construyendo Buenos Agentes](https://huggingface.co/docs/smolagents/tutorials/building_good_agents) - Mejores prácticas para agentes confiables
