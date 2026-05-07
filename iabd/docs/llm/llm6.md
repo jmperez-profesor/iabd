@@ -470,6 +470,7 @@ Son niveles de log/registro:
 ### 1. Didáctica: aprender con un caso simple antes de escalar
 
 El ejercicio de la calculadora es **intencionalmente sencillo** para entiender el mecanismo de **`tools`** sin distraernos con lógica de negocio compleja. Los LLMs pueden generar código Python para calcular `(15 * 3 - 5) / 2`, pero si empezáramos la explicación con herramientas como **"buscar en una base de datos SQL", "llamar a una API externa" o "procesar un CSV con pandas"**, tendríamos que abordar/aprender simultáneamente 3 cosas: 
+
 * cómo funciona el agente
 * cómo funciona la tool compleja
 * y cómo se integran.
