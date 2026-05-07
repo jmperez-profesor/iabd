@@ -809,7 +809,7 @@ Cuando ejecutamos este ejemplo, la salida **mostrará un seguimiento de los paso
  ─ Ejecutando código analizado: ──────────────────────────────────────────────────────────────────────────────────── 
   results = web_search(query="mejor música para una fiesta de Batman")                                                      
   print(results)                                                                                                   
- ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+ ────────────────────────────────────────────────────────────────────────────────────────────────────── 
 ```
 **Ejecución del paso 1 del *Agente Alfred***
 ![Agente Alfred Paso 1](./images/06/agente_alfred_paso1.png)
@@ -967,6 +967,7 @@ def catering_service_tool(query: str) -> str:
     
     return best_service
 
+#Definición de una Tool como clase
 class SuperheroPartyThemeTool(Tool):
     name = "superhero_party_theme_generator"
     description = """
@@ -1075,8 +1076,6 @@ Alfred ahora puede acceder a estos registros [aquí](https://cloud.langfuse.com/
 Mientras tanto, la [lista de reproducción sugerida](https://open.spotify.com/playlist/0gZMMHjuxMrrybQ7wTMTpw) establece el ambiente perfecto para los preparativos de la fiesta. ¿Genial, verdad? 🎶
 
 ---
-
-
 # Escribiendo acciones como fragmentos de código o estructuras JSON
 
 Los Agentes que invocan a herramientas son el segundo tipo de agente disponible en **`smolagents`**. A diferencia de los **Agentes de Código** que utilizan fragmentos de Python, estos agentes **utilizan las capacidades integradas de invocación a herramientas de los proveedores de LLM** para generar llamadas a herramientas como **estructuras JSON**. Este es el enfoque estándar utilizado por **OpenAI, Anthropic y muchos otros proveedores**.
@@ -1114,7 +1113,7 @@ La diferencia clave está en **cómo estructuran sus acciones**: en lugar de có
 
 ## Ejemplo: Ejecutando un agente de llamada a herramientas  
 
-Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un **`ToolCallingAgent`** para destacar la diferencia. Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:
+Revisemos el ejemplo anterior donde Alfred comenzó los preparativos de la fiesta, pero esta vez usaremos un **`ToolCallingAgent`** para destacar la diferencia. **Construiremos un agente que pueda buscar en la web usando DuckDuckGo, al igual que en nuestro ejemplo de Agente de Código**. La única diferencia es el tipo de agente - el framework se encarga de todo lo demás:
 
 ```python
 '''
@@ -1141,7 +1140,7 @@ agent = ToolCallingAgent(
 agent.run("Busca las mejores recomendaciones de música para una fiesta en la mansión Wayne.")
 ```
 
-**Alternativa usando Mistral y LiteLLModel
+**Alternativa usando Mistral y LiteLLModel**
 ```python
 #Código ToolCallingAgent
 from smolagents import ToolCallingAgent, DuckDuckGoSearchTool, LiteLLMModel
@@ -1172,9 +1171,9 @@ El agente genera una llamada a la herramienta de forma estructurada que el siste
 
 Ahora que entendemos ambos tipos de agentes, podemos elegir el adecuado para nuestras necesidades. 
 
-# Herramientas  
+# Tools (herramientas)  
 
-Como exploramos anteriormente, los agentes utilizan herramientas para realizar diversas acciones. En `smolagents`, las herramientas son tratadas como **funciones que un LLM pueden llamar dentro de un sistema de agentes**.
+Como exploramos anteriormente, los agentes utilizan herramientas para realizar diversas acciones. En **`smolagents`**, las tools (herramientas) son tratadas como **funciones que un LLM pueden llamar dentro de un sistema de agentes**.
 
 Para interactuar con una herramienta, el LLM necesita una **descripción de la interfaz** con estos componentes clave:  
 
@@ -1183,7 +1182,7 @@ Para interactuar con una herramienta, el LLM necesita una **descripción de la i
 - **Tipos de entrada y descripciones**: Qué argumentos acepta la herramienta
 - **Tipo de salida**: Qué devuelve la herramienta
 
-Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita varias herramientas para recopilar información - desde buscar servicios de catering hasta encontrar ideas para temas de fiesta. Así es como podría verse la interfaz de una herramienta de búsqueda simple:
+Por ejemplo, mientras prepara una fiesta en la Mansión Wayne, Alfred necesita varias herramientas para recopilar información - **desde buscar servicios de catering hasta encontrar ideas para temas de fiesta**. Así es como podría verse la interfaz de una herramienta de búsqueda simple:
 
 - **Nombre:** `web_search`
 - **Descripción de la herramienta:** Busca en la web consultas específicas
@@ -1205,7 +1204,7 @@ En `smolagents`, las herramientas pueden definirse de dos maneras:
 
 ### El decorador `@tool`  
 
-El decorador `@tool` es **la forma recomendada para definir herramientas simples**. Internamente, smolagents analizará la información básica sobre la función desde Python. Por lo tanto, **si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla**.
+El decorador `@tool` es **la forma recomendada para definir herramientas simples**. Internamente, **smolagents analizará la información básica sobre la función desde Python**. Por lo tanto, **si nombramos nuestra función claramente y escribimos un buen docstring, será más fácil para el LLM utilizarla**.
 
 Usando este enfoque, definimos una función con:  
 
@@ -1213,6 +1212,20 @@ Usando este enfoque, definimos una función con:
 - **Anotaciones de tipo tanto para entradas como para salidas** para garantizar un uso adecuado.  
 - **Una descripción detallada**, que incluye una sección `Args:` donde cada argumento se describe explícitamente. Estas descripciones proporcionan un contexto valioso para el LLM, por lo que es importante escribirlas cuidadosamente.  
 
+Ejemplo:
+```python
+# declaramos las herramientas que va a usar el agente
+@tool
+def add(a: float, b: float) -> float:
+    """
+    Adds two numbers together.
+    
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+    """
+    return a + b
+```
 #### Generando una herramienta que recupera el servicio de catering mejor valorado
 
 ![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/smolagents/alfred-catering.jpg)
