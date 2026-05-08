@@ -77,7 +77,7 @@ nav:
     - llm/llm4.md
     - llm/llm5.md
     - llm/llm6.md
-    #- llm/llm7.md
+    - llm/llm7.md
   #- Bedrock: 
   #  - bedrock/sesion1.md
   - Hugging Face:
