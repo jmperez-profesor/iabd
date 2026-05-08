@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://jmperez-profesor.github.io/iabd/llm/llm7/">
       
       
+        <link rel="prev" href="../llm6/">
+      
+      
+        <link rel="next" href="../../hf/">
       
       
         
@@ -225,10 +229,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../llm2/" class="md-tabs__link">
           
   
@@ -352,8 +358,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -367,23 +375,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -401,7 +412,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -547,6 +558,591 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 7 - Programación de Agentes con Langchain
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesión 7 - Programación de Agentes con Langchain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué es LangChain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparacion-del-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparación del entorno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparación del entorno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalar-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalar dependencias
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos previos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos previos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PromptTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memoria-conversacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memoria conversacional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentes-y-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes y herramientas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-1-explicacion-de-un-tema-con-prompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo 1: explicación de un tema con PromptTemplate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo 1: explicación de un tema con PromptTemplate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-reconstruido-y-comentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código reconstruido y comentado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-linea-a-linea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicación línea a línea
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-hemos-aprendido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué hemos aprendido?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-de-ampliacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicio de ampliación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-2-chatbot-con-memoria-e-historial-de-mensajes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo 2: chatbot con memoria e historial de mensajes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo 2: chatbot con memoria e historial de mensajes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivos_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código completo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicación técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-logico-del-programa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo lógico del programa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-demuestra-el-ejemplo-del-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué demuestra el ejemplo del vídeo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posibles-mejoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posibles mejoras
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-3-agente-con-herramienta-matematica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo 3: agente con herramienta matemática
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo 3: agente con herramienta matemática">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivos-del-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos del ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicacion-tecnica_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicación técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-ocurre-internamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué ocurre internamente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valor-didactico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valor didáctico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advertencia-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advertencia importante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacion-entre-los-tres-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relación entre los tres ejemplos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferencia-entre-prompt-chain-y-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencia entre prompt, chain y agente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diferencia entre prompt, chain y agente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#propuesta-metodologica-para-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propuesta metodológica para clase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Propuesta metodológica para clase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secuencia-sugerida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secuencia sugerida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividades-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividades prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-habituales-y-consejos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas habituales y consejos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problemas habituales y consejos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-por-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error por API key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entorno-virtual-no-activado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entorno virtual no activado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cambios-de-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cambios de versión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-moderno-orientativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código moderno orientativo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1634,6 +2230,44 @@ Este ejemplo oficial resulta útil para mostrar que LangChain no se limita a cha
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../llm6/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Sesión 6 - Smolagents y orquestación multiagente">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Sesión 6 - Smolagents y orquestación multiagente
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../hf/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Apuntes y ejercicios prácticas del curso de especialización en Inteligencia Artificial y Big Data
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
