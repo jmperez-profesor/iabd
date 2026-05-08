@@ -23,7 +23,7 @@
     
     
       
-        <title>Sesión 7 - Introducción al Caso de Uso para RAG Agéntico - Inteligencia Artificial y Big Data</title>
+        <title>Sesión 7 - Programación de Agentes con Langchain - Inteligencia Artificial y Big Data</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduccion-al-caso-de-uso-para-rag-agentico" class="md-skip">
+        <a href="#programacion-de-agentes-con-langchain" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sesión 7 - Introducción al Caso de Uso para RAG Agéntico
+              Sesión 7 - Programación de Agentes con Langchain
             
           </span>
         </div>
@@ -1293,669 +1293,312 @@
 
 
 
-<h1 id="introduccion-al-caso-de-uso-para-rag-agentico">Introducción al Caso de Uso para RAG Agéntico</h1>
-<p>En esta sesión, ayudaremos a Alfred, nuestro amigable agente que está organizando la gala, utilizando RAG Agéntico para crear una herramienta que pueda usarse para responder preguntas sobre los invitados en la gala. </p>
-<h2 id="una-gala-para-recordar">Una gala para recordar</h2>
-<p><strong>Hemos decidido organizar la fiesta más extravagante y opulenta del siglo.</strong> Esto significa banquetes lujosos, bailarines encantadores, DJs de renombre, bebidas exquisitas, un impresionante espectáculo de fuegos artificiales y mucho más.</p>
-<p>Alfred, nuestro amigable agente de vecindario, se está preparando para atender todas tus necesidades para esta fiesta, y <strong>Alfred va a gestionar todo por sí mismo</strong>. Para hacerlo, necesita tener acceso a toda la información sobre la fiesta, incluyendo el menú, los invitados, el horario, pronósticos del clima, ¡y mucho más!</p>
-<p>No solo eso, sino que también necesitas asegurarse de que la fiesta sea un éxito, por lo que <strong>necesitas poder responder cualquier pregunta sobre la fiesta durante la fiesta</strong>, mientras maneja situaciones inesperadas que puedan surgir.</p>
-<p>No puede hacer esto solo, así que debemos asegurarnos de que Alfred tenga acceso a toda la información y herramientas que necesite.</p>
-<p>Primero, vamos a darle una lista de requisitos estrictos para la gala.</p>
-<h2 id="los-requisitos-de-la-gala">Los requisitos de la gala</h2>
-<p>Una persona debidamente educada en la época del <strong>Renacimiento</strong> necesitas tener tres rasgos principales.
-Él o ella necesitaba ser profundo en el <strong>conocimiento de deportes, cultura y ciencia</strong>. Por lo tanto, debemos asegurarnos de que podamos impresionar a nuestros invitados con nuestro conocimiento y proporcionarles una gala verdaderamente inolvidable.
-Sin embargo, para evitar conflictos, hay algunos <strong>temas, como la política y la religión, que deben evitarse en una gala.</strong> Debe ser una fiesta divertida sin conflictos relacionados con creencias e ideales.</p>
-<p>Según la etiqueta, <strong>un buen anfitrión debe conocer los antecedentes de los invitados</strong>, incluyendo sus intereses y esfuerzos. Un buen anfitrión también chismea y comparte historias sobre los invitados entre sí.</p>
-<p>Por último, debemos asegurarnos de tener <strong>algún conocimiento general sobre el clima</strong> para poder encontrar continuamente una actualización en tiempo real que asegure el momento perfecto para lanzar los fuegos artificiales y terminar la gala con broche de oro. 🎆</p>
-<p>Como puedes ver, Alfred necesita mucha información para organizar la gala.
-Afortunadamente, podemos ayudar y preparar a Alfred dándole algo de <strong>entrenamiento en Generación Aumentada por Recuperación (RAG)</strong>.</p>
-<h1 id="generacion-aumentada-por-recuperacion-con-agentes-rag-agentico">Generación Aumentada por Recuperación con Agentes (RAG Agéntico)</h1>
-<p>Los <strong>LLMs están entrenados en enormes volúmenes de datos para aprender conocimiento general</strong>.
-Sin embargo, el modelo de conocimiento del mundo de los LLMs no siempre puede contener información relevante y actualizada.
-<strong>RAG resuelve este problema encontrando y recuperando información relevante de tus datos y enviándola al LLM.</strong></p>
-<p><img alt="RAG" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/llama-index/rag.png" /></p>
-<p>Ahora, debemos pensar en cómo funciona <strong>Alfred</strong>:</p>
-<ol>
-<li>Le hemos pedido a Alfred que ayude a planificar una gala</li>
-<li>Alfred necesita encontrar las últimas noticias e información meteorológica</li>
-<li>Alfred necesita estructurar y buscar la información de los invitados</li>
-</ol>
-<p>Así como Alfred necesita buscar en la información de tu hogar para ser útil, cualquier agente necesita una manera de encontrar y comprender datos relevantes.
-<strong>RAG Agéntico es una forma poderosa de usar agentes para responder preguntas sobre tus datos.</strong> Podemos proporcionar varias herramientas a Alfred para ayudarlo a responder preguntas.
-Sin embargo, en lugar de responder automáticamente a la pregunta basada en documentos, Alfred puede decidir usar cualquier otra herramienta o flujo para responder la pregunta.</p>
-<p><img alt="RAG Agéntico" src="https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit2/llama-index/agentic-rag.png" /></p>
-<h3 id="construir-nuestro-flujo-de-trabajo-de-rag-agentico">Construir nuestro flujo de trabajo de RAG agéntico</h3>
-<p>Primero, crearemos una <strong>herramienta RAG para recuperar detalles actualizados sobre los invitados</strong>. Luego, <strong>desarrollaremos herramientas para búsqueda web, actualizaciones meteorológicas y estadísticas de descargas de modelos de Hugging Face Hub</strong>. Finalmente, <strong>integraremos todo para dar vida a nuestro agente RAG agéntico</strong>  </p>
-<h1 id="creando-una-herramienta-rag-para-historias-de-invitados">Creando una Herramienta RAG para Historias de Invitados</h1>
-<p>Alfred, nuestro agente de confianza, está preparando la gala más extravagante del siglo. Para asegurar que el evento transcurra sin problemas, Alfred necesita acceso rápido a información actualizada sobre cada invitado. Ayudemos a Alfred creando una herramienta personalizada de Generación Aumentada por Recuperación (RAG), impulsada por nuestro conjunto de datos personalizado.</p>
-<h2 id="por-que-rag-para-una-gala">¿Por qué RAG para una Gala?</h2>
-<p>Imagina a Alfred mezclándose entre los invitados, necesitando recordar detalles específicos sobre cada persona en un instante. Un LLM tradicional podría tener dificultades con esta tarea porque:</p>
-<ol>
-<li>La lista de invitados es específica para tu evento y no está en los datos de entrenamiento del modelo</li>
-<li>La información de los invitados puede cambiar o actualizarse frecuentemente</li>
-<li>Alfred necesita recuperar detalles precisos como direcciones de correo electrónico</li>
-</ol>
-<p>Aquí es donde brilla la <strong>Generación Aumentada por Recuperación (RAG)!</strong> Al combinar un sistema de recuperación con un LLM, Alfred puede acceder a información precisa y actualizada sobre tus invitados bajo demanda.</p>
-<h2 id="configurando-nuestra-aplicacion">Configurando nuestra aplicación</h2>
-<p>Desarrollaremos nuestro agente dentro de un Espacio de HF(HF Space), como un proyecto Python estructurado. Este enfoque nos ayuda a mantener un código limpio y modular, organizando diferentes funcionalidades en archivos separados. Además, esto crea un caso de uso más realista donde desplegaríamos la aplicación para uso público.</p>
-<h3 id="estructura-del-proyecto">Estructura del Proyecto</h3>
+<h1 id="programacion-de-agentes-con-langchain">Programación de Agentes con Langchain</h1>
+<h2 id="que-es-langchain">Qué es LangChain</h2>
+<p>LangChain es una librería orientada a construir aplicaciones profesionales sobre modelos de lenguaje, superando limitaciones habituales de un uso aislado del LLM, como la falta de memoria conversacional o la incapacidad de consultar herramientas externas.</p>
+<p>LangChain permite orquestar <strong>cadenas de interacción</strong> con modelos de lenguaje, integrar fuentes de datos, mantener contexto y construir chatbots, sistemas de resumen y aplicaciones más personalizadas.</p>
+<h2 id="objetivos">Objetivos</h2>
 <ul>
-<li><strong><code>tools.py</code></strong> – Proporciona herramientas auxiliares para el agente.  </li>
-<li><strong><code>retriever.py</code></strong> – Implementa funciones de recuperación para apoyar el acceso al conocimiento.  </li>
-<li><strong><code>app.py</code></strong> – Integra todos los componentes en un agente completamente funcional.</li>
+<li>Comprender qué aporta LangChain</li>
+<li>Usar plantillas de prompt con un modelo de OpenAI</li>
+<li>Crear un chatbot con memoria</li>
+<li>Construir un agente con herramientas.</li>
 </ul>
-<h2 id="descripcion-general-del-conjunto-de-datos">Descripción general del conjunto de datos</h2>
-<p>Nuestro conjunto de datos <a href="https://huggingface.co/datasets/agents-course/unit3-invitees/"><code>agents-course/unit3-invitees</code></a> contiene los siguientes campos para cada invitado:</p>
-<ul>
-<li><strong>Nombre</strong>: Nombre completo del invitado</li>
-<li><strong>Relación</strong>: Cómo se relaciona el invitado con el anfitrión</li>
-<li><strong>Descripción</strong>: Una breve biografía o hechos interesantes sobre el invitado</li>
-<li><strong>Dirección de Correo Electrónico</strong>: Información de contacto para enviar invitaciones o seguimientos</li>
-</ul>
-<p>A continuación se muestra una vista previa del conjunto de datos:</p>
-<p><img alt="" src="../images/07/agentes_rag_datos_invitados.png" /></p>
-<blockquote>
-<p>[!TIP]
-En un escenario del mundo real, este conjunto de datos podría ampliarse para incluir preferencias dietéticas, intereses de regalos, temas de conversación a evitar y otros detalles útiles para un anfitrión.</p>
-</blockquote>
-<h2 id="construyendo-la-herramienta-de-lista-de-invitados">Construyendo la herramienta de lista de invitados</h2>
-<p>Crearemos una herramienta personalizada que Alfred pueda usar para recuperar rápidamente información de los invitados durante la gala. Dividamos esto en tres pasos manejables:</p>
-<ol>
-<li>Cargar y preparar el conjunto de datos</li>
-<li>Crear la Herramienta de Recuperación</li>
-<li>Integrar la Herramienta con Alfred</li>
-</ol>
-<h3 id="paso-1-cargar-y-preparar-el-conjunto-de-datos">Paso 1: Cargar y Preparar el Conjunto de Datos</h3>
-<p>Primero, necesitamos transformar nuestros datos brutos de invitados en un formato optimizado para la recuperación.</p>
-<p>Usaremos la librería <code>datasets</code> de Hugging Face para cargar el conjunto de datos y convertirlo en una lista de objetos <code>Document</code> del módulo <code>langchain.docstore.document</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datasets</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
-
-<span class="c1"># Cargar el conjunto de datos</span>
-<span class="n">guest_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;agents-course/unit3-invitees&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
-
-<span class="c1"># Convertir entradas del conjunto de datos en objetos Document</span>
-<span class="n">docs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Document</span><span class="p">(</span>
-        <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
-            <span class="sa">f</span><span class="s2">&quot;Name: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;Relation: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;relation&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;Description: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;Email: </span><span class="si">{</span><span class="n">guest</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">]),</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">guest</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]}</span>
-    <span class="p">)</span>
-    <span class="k">for</span> <span class="n">guest</span> <span class="ow">in</span> <span class="n">guest_dataset</span>
-<span class="p">]</span>
+<h2 id="preparacion-del-entorno">Preparación del entorno</h2>
+<p>Para estos ejemplos, se recomienda crear una carpeta de proyecto llamda, por ejemplo, y abrirla en Visual Studio Code, generar un entorno virtual y e instalar <code>langchain-openai</code> y <code>langchain-core</code> para los primeros ejemplos.</p>
+<p>Más adelante añadiremos <code>langchain-community</code> y <code>langchain</code> para trabajar con herramientas y agentes.</p>
+<h3 id="instalar-dependencias">Instalar dependencias</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain<span class="w"> </span>langchain-openai<span class="w"> </span>langchain-core<span class="w"> </span>langchain-community
 </code></pre></div>
-<p>En el código anterior:
-- Cargamos el conjunto de datos
-- Convertimos cada entrada de invitado en un objeto <code>Document</code> con contenido formateado
-- Almacenamos los objetos <code>Document</code> en una lista</p>
-<p>Esto significa que tenemos todos nuestros datos disponibles de manera ordenada para poder comenzar a configurar nuestra recuperación.</p>
-<h3 id="paso-2-crear-la-herramienta-de-recuperacion">Paso 2: Crear la Herramienta de Recuperación</h3>
-<p>Ahora, creemos una herramienta personalizada que Alfred pueda usar para buscar en nuestra información de invitados.</p>
-<p>Usaremos el <code>BM25Retriever</code> del módulo <code>langchain_community.retrievers</code> para crear una herramienta de recuperación.</p>
-<blockquote>
-<p>[!TIP]
-El BM25Retriever es un gran punto de partida para la recuperación, pero para búsquedas semánticas más avanzadas, podrías considerar usar recuperadores basados en embeddings como los de sentence-transformers.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BM25Retriever</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">GuestInfoRetrieverTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;guest_info_retriever&quot;</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Recupera información detallada sobre los invitados de la gala basada en su nombre o relación.&quot;</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;El nombre o relación del invitado sobre el que deseas información.&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_initialized</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">BM25Retriever</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">results</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[:</span><span class="mi">3</span><span class="p">]])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;No se encontró información que coincida con la búsqueda.&quot;</span>
-
-<span class="c1"># Inicializar la herramienta</span>
-<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">GuestInfoRetrieverTool</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+<p>En este ejemplo vamos solicitar una clave la <a href="https://platform.openai.com/home">plataforma de OpenAI</a> y asignarla como variable de entorno para poder invocar el modelo.</p>
+<p><strong>OpenAI Platform</strong>
+<img alt="" src="../images/07/plataforma_openai.png" /></p>
+<p><strong>OpenAI Platform</strong>
+<img alt="" src="../images/07/platformaopenai_keys.png" /></p>
+<p><strong>Solicitar una key</strong>
+<img alt="" src="../images/07/creacion_apikey.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TU_CLAVE&quot;</span>
 </code></pre></div>
-<p>Entendamos esta herramienta paso a paso: 
-- El <code>name</code> y la <code>description</code> ayudan al agente a entender cuándo y cómo usar esta herramienta
-- Los <code>inputs</code> definen qué parámetros espera la herramienta (en este caso, una consulta de búsqueda)
-- Estamos usando un <code>BM25Retriever</code>, que es un algoritmo poderoso de recuperación de texto que no requiere embeddings
-- El método <code>forward</code> procesa la consulta y devuelve la información más relevante del invitado</p>
-<h3 id="paso-3-integrar-la-herramienta-con-alfred">Paso 3: Integrar la Herramienta con Alfred</h3>
-<p>Finalmente, juntemos todo creando nuestro agente y equipándolo con nuestra herramienta personalizada:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
-
-<span class="c1"># Inicializar el modelo de Hugging Face</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
-
-<span class="c1"># Crear Alfred, nuestro agente de gala, con la herramienta de información de invitados</span>
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
-
-<span class="c1"># Ejemplo de consulta que Alfred podría recibir durante la gala</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre nuestra invitada llamada &#39;Lady Ada Lovelace&#39;.&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<h2 id="conceptos-previos">Conceptos previos</h2>
+<h3 id="prompttemplate">PromptTemplate</h3>
+<p>Langchain ofrece la librería <code>PromptTemplate</code> para definir una plantilla reutilizable donde una parte del texto permanece fija y otra se sustituye dinámicamente con variables predefinidas como <code>tema</code>, <code>nivel</code>, etc.</p>
+<p>Esto es importante porque separa la <strong>lógica del prompt</strong> de los datos concretos que se pasan en cada ejecución.</p>
+<h3 id="chain">Chain</h3>
+<p>Una cadena o chain, se explica como un <strong>flujo donde la salida de un componente alimenta el siguiente paso del procesamiento</strong>, por ejemplo prompt y modelo enlazados entre sí.</p>
+<div class="highlight"><pre><span></span><code><span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">model</span>
 </code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Basado en la información que recuperé, Lady Ada Lovelace es una estimada matemática y amiga. Es reconocida por su trabajo pionero en matemáticas e informática, a menudo celebrada como la primera programadora de computadoras debido a su trabajo en la Máquina Analítica de Charles Babbage. Su dirección de correo electrónico es ada.lovelace@example.com.
-</code></pre></div>
-<p>Lo que está sucediendo en este paso final:
-- Inicializamos un modelo de Hugging Face usando la clase <code>InferenceClientModel</code>
-- Creamos nuestro agente (Alfred) como un <code>CodeAgent</code>, que puede ejecutar código Python para resolver problemas
-- Le pedimos a Alfred que recupere información sobre una invitada llamada "Lady Ada Lovelace"</p>
-<h2 id="ejemplo-de-interaccion">Ejemplo de Interacción</h2>
-<p>Durante la gala, una conversación podría fluir así:</p>
-<p><strong>Tú:</strong> "Alfred, ¿quién es ese caballero hablando con el embajador?"</p>
-<p><strong>Alfred:</strong> <em>rápidamente busca en la base de datos de invitados</em> "Ese es el Dr. Nikola Tesla, señor. Es un viejo amigo de sus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo con usted. Solo recuerde que es apasionado por las palomas, así que eso podría ser un buen tema de conversación."</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dr. Nikola Tesla&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viejo amigo de días universitarios&quot;</span><span class="p">,</span><span class="w">  </span>
-<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;El Dr. Nikola Tesla es un viejo amigo de sus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo con usted. Solo recuerde que es apasionado por las palomas, así que eso podría ser un buen tema de conversación.&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nikola.tesla@gmail.com&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="llevandolo-mas-alla">Llevándolo Más Allá</h2>
-<p>Ahora que Alfred puede recuperar información de invitados, considera cómo podrías mejorar este sistema:</p>
-<ol>
-<li><strong>Mejorar el recuperador</strong> para usar un algoritmo más sofisticado como <a href="https://www.sbert.net/">sentence-transformers</a></li>
-<li><strong>Implementar una memoria de conversación</strong> para que Alfred recuerde interacciones previas</li>
-<li><strong>Combinar con búsqueda web</strong> para obtener la información más reciente sobre invitados desconocidos</li>
-<li><strong>Integrar múltiples índices</strong> para obtener información más completa de fuentes verificadas</li>
-</ol>
-<h1 id="construyendo-e-integrando-herramientas-para-nuestro-agente">Construyendo e integrando herramientas para nuestro Agente</h1>
-<p>En esta sección, le daremos a Alfred acceso a la web, permitiéndole encontrar las últimas noticias y actualizaciones globales. 
-Además, tendrá acceso a datos meteorológicos y estadísticas de descargas de modelos de Hugging Face Hub, para que pueda mantener conversaciones relevantes sobre temas actuales.</p>
-<h2 id="dandole-a-nuestro-agente-acceso-a-la-web">Dándole a nuestro Agente acceso a la web</h2>
-<p>Ojo, queremos que Alfred establezca su presencia como un verdadero anfitrión renacentista, con un profundo conocimiento del mundo.</p>
-<p>Para lograrlo, necesitamos asegurarnos de que Alfred tenga acceso a las últimas noticias e información sobre el mundo.</p>
-<p>¡Comencemos creando una herramienta de búsqueda web para Alfred!</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span>
+<p>En versiones actuales de LangChain, ese estilo también aparece en la composición mediante runnables, que enlazan componentes de forma declarativa.</p>
+<h3 id="memoria-conversacional">Memoria conversacional</h3>
+<p>El ejemplo de chatbot mantiene un historial con mensajes humanos y mensajes de IA, lo que permite que el modelo responda teniendo en cuenta turnos anteriores.</p>
+<p>Pedagógicamente, este ejemplo es muy útil para explicar la diferencia entre una llamada aislada a un modelo y una conversación con <strong>estado</strong>.</p>
+<h3 id="agentes-y-herramientas">Agentes y herramientas</h3>
+<p>Más adelante, realizaremos un agente como un componente capaz de decidir qué acción tomar y qué herramienta usar según la tarea planteada por el usuario.</p>
+<p>Ese enfoque convierte al LLM en un coordinador que no solo genera texto, sino que escoge acciones, por ejemplo hacer un cálculo con una herramienta matemática.</p>
+<h2 id="ejemplo-1-explicacion-de-un-tema-con-prompttemplate">Ejemplo 1: explicación de un tema con PromptTemplate</h2>
+<p>El objetivo es construir una función que reciba un tema, monte un prompt a partir de una plantilla y consulte un modelo de OpenAI para obtener una explicación sencilla.</p>
+<h3 id="objetivos_1">Objetivos</h3>
+<p>Este ejemplo enseña tres ideas básicas: inicializar un modelo, reutilizar un prompt parametrizado y encapsular la llamada al LLM dentro de una función Python.</p>
+<h3 id="codigo-reconstruido-y-comentado">Código reconstruido y comentado</h3>
+<p><strong>app.py</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
 
-<span class="c1"># Inicializar la herramienta de búsqueda DuckDuckGo</span>
-<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
+<span class="c1"># Cargar variables del archivo .env</span>
+<span class="n">load_dotenv</span><span class="p">()</span>  <span class="c1"># busca un .env en la raíz del proyecto[web:43]</span>
 
-<span class="c1"># Ejemplo de uso</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">search_tool</span><span class="p">(</span><span class="s2">&quot;¿Quién es el actual Presidente de Francia?&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>The current President of France in Emmanuel Macron.
-</code></pre></div>
-<h2 id="creando-una-herramienta-personalizada-para-informacion-meteorologica-para-programar-los-fuegos-artificiales">Creando una herramienta personalizada para información meteorológica para programar los fuegos artificiales</h2>
-<p>La gala perfecta tendría fuegos artificiales bajo un cielo despejado, necesitamos asegurarnos de que los fuegos artificiales no sean cancelados debido al mal tiempo.</p>
-<p>Vamos a crear una herramienta personalizada que pueda usarse para llamar a una API meteorológica externa y obtener la información del clima para una ubicación determinada.</p>
-<blockquote>
-<p>[!TIP]
-Por simplicidad, estamos usando una API meteorológica ficticia para este ejemplo. Si quieres usar una API meteorológica real, podrías implementar una herramienta meteorológica que use la API de OpenWeatherMap, como anteriormente.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="c1"># Leer la clave desde la variable de entorno</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Falta la variable de entorno OPENAI_API_KEY&quot;</span><span class="p">)</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">WeatherInfoTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;weather_info&quot;</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Obtiene información meteorológica ficticia para una ubicación dada.&quot;</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;La ubicación para la que obtener información meteorológica.&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
+<span class="c1"># Configurar el cliente de OpenAI (LangChain ya mira esta env var)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">api_key</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="c1"># Datos meteorológicos ficticios</span>
-        <span class="n">weather_conditions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Lluvioso&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>
-            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Despejado&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
-            <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;Ventoso&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
-        <span class="p">]</span>
-        <span class="c1"># Seleccionar aleatoriamente una condición meteorológica</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">weather_conditions</span><span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Clima en </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_c&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">°C&quot;</span>
-
-<span class="c1"># Inicializar la herramienta</span>
-<span class="n">weather_info_tool</span> <span class="o">=</span> <span class="n">WeatherInfoTool</span><span class="p">()</span>
-</code></pre></div>
-<h2 id="creando-una-herramienta-de-estadisticas-de-hub-para-influyentes-creadores-de-ia">Creando una herramienta de estadísticas de hub para influyentes creadores de IA</h2>
-<p>Entre los asistentes a la gala están los más destacados creadores de IA. Alfred quiere impresionarlos discutiendo sus modelos, conjuntos de datos y espacios más populares. Crearemos una herramienta para obtener estadísticas de modelos desde Hugging Face Hub basadas en un nombre de usuario.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_models</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">HubStatsTool</span><span class="p">(</span><span class="n">Tool</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;hub_stats&quot;</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Obtiene el modelo más descargado de un autor específico en Hugging Face Hub.&quot;</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;El nombre de usuario del autor/organización del modelo para encontrar modelos.&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># Listar modelos del autor especificado, ordenados por descargas</span>
-            <span class="n">models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">list_models</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s2">&quot;downloads&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-
-            <span class="k">if</span> <span class="n">models</span><span class="p">:</span>
-                <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;El modelo más descargado de </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2"> es </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> con </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">downloads</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> descargas.&quot;</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;No se encontraron modelos para el autor </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">.&quot;</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error al obtener modelos para </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-
-<span class="c1"># Inicializar la herramienta</span>
-<span class="n">hub_stats_tool</span> <span class="o">=</span> <span class="n">HubStatsTool</span><span class="p">()</span>
-
-<span class="c1"># Ejemplo de uso</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hub_stats_tool</span><span class="p">(</span><span class="s2">&quot;facebook&quot;</span><span class="p">))</span> <span class="c1"># Ejemplo: Obtener el modelo más descargado de Facebook</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>The most downloaded model by facebook is facebook/esmfold_v1 with 12,544,550 downloads.
-</code></pre></div>
-<p>Con la <strong>Herramienta de estadísticas de Hub</strong>, Alfred ahora puede impresionar a influyentes creadores de IA discutiendo sus modelos más populares.</p>
-<h2 id="integrando-herramientas-con-alfred">Integrando herramientas con Alfred</h2>
-<p>Ahora que tenemos todas las herramientas, vamos a integrarlas en el agente de Alfred:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
-
-<span class="c1"># Inicializar el modelo de Hugging Face</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
-
-<span class="c1"># Crear Alfred con todas las herramientas</span>
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span> 
-    <span class="n">model</span><span class="o">=</span><span class="n">model</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
 <span class="p">)</span>
 
-<span class="c1"># Ejemplo de consulta que Alfred podría recibir durante la gala</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿Qué es Facebook y cuál es su modelo más popular?&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada: </p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Facebook es un sitio web de redes sociales donde los usuarios pueden conectarse, compartir información e interactuar con otros. El modelo más descargado de Facebook en Hugging Face Hub es ESMFold_v1.
-</code></pre></div>
-<h1 id="creando-nuestro-agente-para-la-gala">Creando nuestro Agente para la gala</h1>
-<p>Ahora que hemos construido todos los componentes necesarios para Alfred, es momento de unirlos en un agente completo que pueda ayudar a organizar nuestra extravagante gala.</p>
-<p>Vamos a combinar la recuperación de información de invitados, búsqueda web, información meteorológica y herramientas de estadísticas de Hub en un solo agente.</p>
-<h2 id="ensamblando-a-alfred-el-agente-completo">Ensamblando a Alfred: el Agente completo</h2>
-<p>En lugar de reimplementar todas las herramientas que creamos en secciones anteriores, las importaremos desde sus respectivos módulos que guardamos en los archivos <code>tools.py</code> y <code>retriever.py</code>.</p>
-<p>Importemos las bibliotecas y herramientas necesarias de las secciones anteriores:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Importar librerías necesarias</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeAgent</span><span class="p">,</span> <span class="n">InferenceClientModel</span>
-
-<span class="c1"># Importar nuestras herramientas personalizadas desde sus módulos</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">WeatherInfoTool</span><span class="p">,</span> <span class="n">HubStatsTool</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_guest_dataset</span>
-</code></pre></div>
-<p>Ahora, combinemos todas estas herramientas en un solo agente:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar el modelo de Hugging Face</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">InferenceClientModel</span><span class="p">()</span>
-
-<span class="c1"># Inicializar la herramienta de búsqueda web</span>
-<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
-
-<span class="c1"># Inicializar la herramienta del clima</span>
-<span class="n">weather_info_tool</span> <span class="o">=</span> <span class="n">WeatherInfoTool</span><span class="p">()</span>
-
-<span class="c1"># Inicializar la herramienta de estadísticas de Hub</span>
-<span class="n">hub_stats_tool</span> <span class="o">=</span> <span class="n">HubStatsTool</span><span class="p">()</span>
-
-<span class="c1"># Cargar el conjunto de datos de invitados e inicializar la herramienta de información de invitados</span>
-<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">load_guest_dataset</span><span class="p">()</span>
-
-<span class="c1"># Crear a Alfred con todas las herramientas</span>
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">],</span> 
-    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">add_base_tools</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Agregar cualquier herramienta base adicional</span>
-    <span class="n">planning_interval</span><span class="o">=</span><span class="mi">3</span>   <span class="c1"># Habilitar planificación cada 3 pasos</span>
-<span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># Importar librerías necesarias</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.agent.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentWorkflow</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.huggingface_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceInferenceAPI</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">guest_info_tool</span>
-</code></pre></div>
-<p>Ahora, combinemos todas estas herramientas en un solo agente:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar el modelo de Hugging Face</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">HuggingFaceInferenceAPI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">)</span>
-
-<span class="c1"># Crear Alfred con todas las herramientas</span>
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">AgentWorkflow</span><span class="o">.</span><span class="n">from_tools_or_functions</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span>
-    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Annotated</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_messages</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnyMessage</span><span class="p">,</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">AIMessage</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">START</span><span class="p">,</span> <span class="n">StateGraph</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools_condition</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEndpoint</span><span class="p">,</span> <span class="n">ChatHuggingFace</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_guest_dataset</span>
-</code></pre></div>
-<p>Ahora, combina todas estas herramientas en un solo agente:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Inicializar la herramienta de búsqueda web</span>
-<span class="n">search_tool</span> <span class="o">=</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
-
-<span class="c1"># Cargar el conjunto de datos de invitados e inicializar la herramienta de información de invitados</span>
-<span class="n">guest_info_tool</span> <span class="o">=</span> <span class="n">load_guest_dataset</span><span class="p">()</span>
-
-<span class="c1"># Generar la interfaz de chat, incluyendo las herramientas</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">HuggingFaceEndpoint</span><span class="p">(</span>
-    <span class="n">repo_id</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen2.5-Coder-32B-Instruct&quot;</span><span class="p">,</span>
-    <span class="n">huggingfacehub_api_token</span><span class="o">=</span><span class="n">HUGGINGFACEHUB_API_TOKEN</span><span class="p">,</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tema&quot;</span><span class="p">],</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Explica el tema &#39;</span><span class="si">{tema}</span><span class="s2">&#39; usando un ejemplo.&quot;</span>
 <span class="p">)</span>
 
-<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatHuggingFace</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">]</span>
-<span class="n">chat_with_tools</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">explicar_tema</span><span class="p">(</span><span class="n">tema</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tema</span><span class="o">=</span><span class="n">tema</span><span class="p">)</span>
+    <span class="n">respuesta</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">respuesta</span><span class="o">.</span><span class="n">content</span>
 
-<span class="c1"># Generar el AgentState y el grafo del Agente</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">AnyMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">assistant</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">chat_with_tools</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])],</span>
-    <span class="p">}</span>
-
-<span class="c1">## El grafo</span>
-<span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">AgentState</span><span class="p">)</span>
-
-<span class="c1"># Definir nodos: estos hacen el trabajo</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="n">assistant</span><span class="p">)</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">tools</span><span class="p">))</span>
-
-<span class="c1"># Definir bordes: estos determinan cómo se mueve el flujo de control</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;assistant&quot;</span><span class="p">)</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span>
-    <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
-    <span class="c1"># Si el último mensaje requiere una herramienta, enrutar a herramientas</span>
-    <span class="c1"># De lo contrario, proporcionar una respuesta directa</span>
-    <span class="n">tools_condition</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;assistant&quot;</span><span class="p">)</span>
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
-</code></pre></div>
-<p>¡Tu agente ahora está listo para usarse!</p>
-<h2 id="usando-a-alfred-ejemplos-de-principio-a-fin">Usando a Alfred: Ejemplos de Principio a Fin</h2>
-<p>Ahora que Alfred está completamente equipado con todas las herramientas necesarias, veamos cómo puede ayudar con varias tareas durante la gala.</p>
-<h3 id="ejemplo-1-encontrando-informacion-de-invitados">Ejemplo 1: Encontrando Información de Invitados</h3>
-<p>Veamos cómo Alfred puede ayudarnos con nuestra información de invitados.</p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Según la información que recuperé, Lady Ada Lovelace es una estimada matemática y amiga. Es reconocida por su trabajo pionero en matemáticas y computación, frecuentemente celebrada como la primera programadora de computadoras debido a su trabajo en el Motor Analítico de Charles Babbage. Su dirección de correo electrónico es ada.lovelace@example.com.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace. ¿Cuál es su historia?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Lady Ada Lovelace fue una matemática y escritora inglesa, mejor conocida por su trabajo en el Motor Analítico de Charles Babbage. Fue la primera en reconocer que la máquina tenía aplicaciones más allá del cálculo puro.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;&quot;</span><span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Ada Lovelace, también conocida como Augusta Ada King, Condesa de Lovelace, fue una matemática y escritora inglesa. Nacida el 10 de diciembre de 1815 y fallecida el 27 de noviembre de 1852, es reconocida por su trabajo en el Motor Analítico de Charles Babbage, una computadora mecánica de propósito general. Ada Lovelace es celebrada como una de las primeras programadoras de computadoras porque creó un programa para el Motor Analítico en 1843. Reconoció que la máquina podía usarse para más que simples cálculos, visualizando su potencial de una manera que pocos hicieron en ese momento. Sus contribuciones al campo de la ciencia de la computación sentaron las bases para desarrollos futuros. Un día en octubre, designado como el Día de Ada Lovelace, honra las contribuciones de las mujeres a la ciencia y la tecnología, inspirado en el trabajo pionero de Lovelace.
-</code></pre></div>
-<h3 id="ejemplo-2-verificando-el-clima-para-los-fuegos-artificiales">Ejemplo 2: Verificando el Clima para los Fuegos Artificiales</h3>
-<p>Veamos cómo Alfred puede ayudarnos con el clima.</p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada (variará debido a la aleatoriedad):
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-He revisado el clima en París para ti. Actualmente, está despejado con una temperatura de 25°C. Estas condiciones son perfectas para el espectáculo de fuegos artificiales de esta noche. Los cielos despejados proporcionarán una excelente visibilidad para el espectáculo espectacular, y la temperatura agradable asegurará que los invitados puedan disfrutar del evento al aire libre sin incomodidad.
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">explicar_tema</span><span class="p">(</span><span class="s2">&quot;principios de la física cuántica&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
 </code></pre></div></p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<h3 id="explicacion-linea-a-linea">Explicación línea a línea</h3>
+<ul>
+<li><strong><code>ChatOpenAI</code></strong> crea el objeto que representa el modelo de chat que se va a invocar desde LangChain.</li>
+<li><strong><code>PromptTemplate</code></strong> define una plantilla con una variable de entrada llamada <code>tema</code>.</li>
+<li><strong><code>template.format(tema=tema)</code></strong> sustituye la variable por el valor real que pasa la función.</li>
+<li><strong><code>llm.invoke(prompt)</code></strong> envía el texto final al modelo y devuelve una respuesta estructurada.</li>
+<li><strong><code>respuesta.content</code></strong> extrae el contenido textual generado por el modelo.</li>
+</ul>
+<h3 id="que-hemos-aprendido">¿Qué hemos aprendido?</h3>
+<p>Con este ejemplo, vemos que LangChain no es solo “preguntar a un modelo”, sino una <strong>forma de construir piezas reutilizables y más limpias que concatenar strings manualmente</strong>.</p>
+<p>También se puede remarcar que este patrón es útil cuando una aplicación repite muchas veces el mismo tipo de prompt con datos distintos.</p>
+<h3 id="ejercicio-de-ampliacion">Ejercicio de ampliación</h3>
+<p>Una variante muy útil consiste en cambiar la plantilla para adaptar el nivel de dificultad de la respuesta.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tema&quot;</span><span class="p">,</span> <span class="s2">&quot;nivel&quot;</span><span class="p">],</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Explica el tema &#39;</span><span class="si">{tema}</span><span class="s2">&#39; para un estudiante de nivel </span><span class="si">{nivel}</span><span class="s2"> usando un ejemplo.&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+Así podemos experimentar con diseño de prompts y observar cómo cambia la respuesta sin tocar la lógica general del programa.</p>
+<h2 id="ejemplo-2-chatbot-con-memoria-e-historial-de-mensajes">Ejemplo 2: chatbot con memoria e historial de mensajes</h2>
+<p>El segundo ejemplo que vamos a realizar es crear un chatbot básico que recuerda la conversación y responde teniendo en cuenta el historial previo.</p>
+<p>Este ejemplo es especialmente valioso porque muestra una necesidad real en aplicaciones conversacionales: <strong>que el sistema no trate cada mensaje como si fuera independiente</strong>.</p>
+<h3 id="objetivos_2">Objetivos</h3>
+<p>En este ejemplo vamos a trabajar con <strong><code>ChatPromptTemplate</code></strong>, un <strong><code>MessagesPlaceholder</code></strong>, mensajes de usuario, mensajes de IA y una cadena <strong><code>prompt | llm</code></strong>.</p>
+<p>La idea central es <strong>inyectar el historial en el prompt para que el modelo vea la conversación acumulada antes de generar la siguiente respuesta</strong>.</p>
+<h3 id="codigo-completo">Código completo</h3>
+<p><strong>chatbot.py</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">AIMessage</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El clima en París esta noche es lluvioso con una temperatura de 15°C. Debido a la lluvia, puede que no sea adecuado para un espectáculo de fuegos artificiales.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;¿Cómo está el clima en París esta noche? ¿Será adecuado para nuestro espectáculo de fuegos artificiales?&quot;</span><span class="p">})</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TU_CLAVE&quot;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El clima en París esta noche es lluvioso con una temperatura de 15°C, lo que puede no ser adecuado para tu espectáculo de fuegos artificiales.
-</code></pre></div>
-<h3 id="ejemplo-3-impresionando-a-investigadores-de-ia">Ejemplo 3: Impresionando a Investigadores de IA</h3>
-<p>Veamos cómo Alfred puede ayudarnos a impresionar a los investigadores de IA.</p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más popular de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Google. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más popular de Google en Hugging Face Hub es google/electra-base-discriminator, con 28,546,752 descargas.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span><span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más descargado de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
-</code></pre></div>
-<h3 id="ejemplo-4-combinando-multiples-herramientas">Ejemplo 4: Combinando Múltiples Herramientas</h3>
-<p>Veamos cómo Alfred puede ayudarnos a prepararnos para una conversación con el Dr. Nikola Tesla.</p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Necesito hablar con el Dr. Nikola Tesla sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-He reunido información para ayudarte a prepararte para tu conversación con el Dr. Nikola Tesla.
-
-Información del Invitado:
-Nombre: Dr. Nikola Tesla
-Relación: viejo amigo de los días universitarios
-Descripción: El Dr. Nikola Tesla es un viejo amigo de tus días universitarios. Recientemente ha patentado un nuevo sistema de transmisión de energía inalámbrica y estaría encantado de discutirlo contigo. Solo recuerda que le apasionan las palomas, así que eso podría ser un buen tema para iniciar la conversación.
-Email: nikola.tesla@gmail.com
-
-Avances Recientes en Energía Inalámbrica:
-Basándome en mi búsqueda web, aquí hay algunos desarrollos recientes en transmisión de energía inalámbrica:
-1. Los investigadores han avanzado en la transmisión de energía inalámbrica de largo alcance utilizando ondas electromagnéticas enfocadas
-2. Varias empresas están desarrollando tecnologías de acoplamiento inductivo resonante para electrónica de consumo
-3. Hay nuevas aplicaciones en la carga de vehículos eléctricos sin conexiones físicas
-
-Iniciadores de Conversación:
-1. &quot;Me encantaría conocer tu nueva patente sobre transmisión de energía inalámbrica. ¿Cómo se compara con tus conceptos originales de nuestros días universitarios?&quot;
-2. &quot;¿Has visto los desarrollos recientes en acoplamiento inductivo resonante para electrónica de consumo? ¿Qué opinas de su enfoque?&quot;
-3. &quot;¿Cómo están tus palomas? Recuerdo tu fascinación por ellas.&quot;
-
-Esto debería darte mucho para discutir con el Dr. Tesla mientras demuestras tu conocimiento de sus intereses y desarrollos recientes en su campo.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Necesito hablar con el Dr. Nikola Tesla sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-Aquí hay algunos avances recientes en energía inalámbrica que podrían serte útiles para tu conversación con el Dr. Nikola Tesla:
-
-1. **Avances y Desafíos en la Transferencia de Energía Inalámbrica**: Este artículo analiza la evolución de la transferencia de energía inalámbrica (WPT) desde los métodos convencionales con cables hasta las aplicaciones modernas, incluidas las estaciones de energía espacial solar. Destaca el enfoque inicial en la tecnología de microondas y la demanda actual de WPT debido al aumento de dispositivos eléctricos.
-
-2. **Avances Recientes en Tecnologías de Transferencia de Energía Inalámbrica para Electrónica Corporal**: Este artículo explora la transferencia de energía inalámbrica (WET) como solución para alimentar dispositivos electrónicos corporales sin necesidad de baterías o cables conductores. Analiza las ventajas y posibles aplicaciones de WET en este contexto.
-
-3. **Transferencia de Energía Inalámbrica y Captación de Energía: Estado Actual y Tendencias Futuras**: Este artículo proporciona una visión general de los avances recientes en métodos de suministro de energía inalámbrica, incluida la captación de energía y la transferencia de energía inalámbrica. Presenta varias aplicaciones prometedoras y analiza las tendencias futuras en el campo.
-
-4. **Transferencia de Energía Inalámbrica: Aplicaciones, Desafíos, Barreras y
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span><span class="s2">&quot;Necesito hablar con el &#39;Dr. Nikola Tesla&#39; sobre avances recientes en energía inalámbrica. ¿Puedes ayudarme a prepararme para esta conversación?&quot;</span><span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>Basándome en la información proporcionada, aquí hay puntos clave para prepararte para la conversación con el &#39;Dr. Nikola Tesla&#39; sobre avances recientes en energía inalámbrica:
-1. **Transmisión de Energía Inalámbrica (WPT):** Comenta cómo WPT revoluciona la transferencia de energía al eliminar la necesidad de cables y aprovechar mecanismos como el acoplamiento inductivo y resonante.
-2. **Avances en Carga Inalámbrica:** Destaca las mejoras en eficiencia, velocidades de carga más rápidas y el auge de soluciones de carga inalámbrica certificadas Qi/Qi2.
-3. **Innovaciones 5G-Advanced y Protocolo Inalámbrico NearLink:** Menciona estos como desarrollos que mejoran la velocidad, seguridad y eficiencia en redes inalámbricas, que pueden soportar tecnologías avanzadas de energía inalámbrica.
-4. **IA y ML en el Edge:** Habla sobre cómo la inteligencia artificial y el aprendizaje automático dependerán de redes inalámbricas para llevar inteligencia al borde, mejorando la automatización e inteligencia en hogares y edificios inteligentes.
-5. **Avances en Matter, Thread y Seguridad:** Comenta estas innovaciones clave que impulsan la conectividad, eficiencia y seguridad en dispositivos y sistemas IoT.
-6. **Avances en Tecnología de Carga Inalámbrica:** Incluye avances recientes o estudios, como el de la Universidad Nacional de Incheon, para respaldar los avances en carga inalámbrica.
-</code></pre></div>
-<h3 id="ejemplo-3-impresionando-a-investigadores-de-ia_1">Ejemplo 3: Impresionando a Investigadores de IA</h3>
-<p>Veamos cómo Alfred puede ayudarnos a impresionar a los investigadores de IA.</p>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más popular de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Uno de nuestros invitados es de Google. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más popular de Google en Hugging Face Hub es google/electra-base-discriminator, con 28,546,752 descargas.
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="s2">&quot;Uno de nuestros invitados es de Qwen. ¿Qué puedes decirme sobre su modelo más popular?&quot;</span><span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<p>Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>🎩 Respuesta de Alfred:
-El modelo más descargado de Qwen es Qwen/Qwen2.5-VL-7B-Instruct con 3,313,345 descargas.
-</code></pre></div>
-<h2 id="caracteristicas-avanzadas-memoria-de-conversacion">Características Avanzadas: Memoria de Conversación</h2>
-<p>Para hacer que Alfred sea aún más útil durante la gala, podemos habilitar la memoria de conversación para que recuerde interacciones previas:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Crear Alfred con memoria de conversación</span>
-<span class="n">alfred_with_memory</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">],</span> 
-    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">add_base_tools</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">planning_interval</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">memory</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Habilitar memoria de conversación</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
 <span class="p">)</span>
 
-<span class="c1"># Primera interacción</span>
-<span class="n">response1</span> <span class="o">=</span> <span class="n">alfred_with_memory</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Primera Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;chat_history&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="p">])</span>
 
-<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
-<span class="n">response2</span> <span class="o">=</span> <span class="n">alfred_with_memory</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Segunda Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Context</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span>
 
-<span class="n">alfred</span> <span class="o">=</span> <span class="n">AgentWorkflow</span><span class="o">.</span><span class="n">from_tools_or_functions</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">guest_info_tool</span><span class="p">,</span> <span class="n">search_tool</span><span class="p">,</span> <span class="n">weather_info_tool</span><span class="p">,</span> <span class="n">hub_stats_tool</span><span class="p">],</span>
-    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span>
-<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ejecutar_chatbot</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bienvenido a mi chatbot de LangChain. Escribe &#39;salir&#39; para terminar.&quot;</span><span class="p">)</span>
+    <span class="n">chat_history</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="c1"># Recordando el estado</span>
-<span class="n">ctx</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">alfred</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Tú: &quot;</span><span class="p">)</span>
 
-<span class="c1"># Primera interacción</span>
-<span class="n">response1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Cuéntame sobre Lady Ada Lovelace.&quot;</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Primera Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;salir&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chatbot: Hasta luego&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
 
-<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
-<span class="n">response2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">alfred</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">ctx</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Segunda Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># Primera interacción</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Cuéntame sobre &#39;Lady Ada Lovelace&#39;. ¿Cuál es su historia y cómo está relacionada conmigo?&quot;</span><span class="p">)]})</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+            <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">user_input</span><span class="p">,</span>
+            <span class="s2">&quot;chat_history&quot;</span><span class="p">:</span> <span class="n">chat_history</span>
+        <span class="p">})</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
+        <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_input</span><span class="p">))</span>
+        <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 
-<span class="c1"># Segunda interacción (haciendo referencia a la primera)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">alfred</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;¿En qué proyectos está trabajando actualmente?&quot;</span><span class="p">)]})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chatbot:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎩 Respuesta de Alfred:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="conclusion">Conclusión</h2>
-<p>¡Felicitaciones! Has construido exitosamente a Alfred, un agente sofisticado equipado con múltiples herramientas para ayudar a organizar la gala más extravagante del siglo. Alfred ahora puede:</p>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">ejecutar_chatbot</span><span class="p">()</span>
+</code></pre></div></p>
+<h3 id="explicacion-tecnica">Explicación técnica</h3>
+<ul>
+<li><strong><code>ChatPromptTemplate.from_messages(...)</code></strong> construye un prompt de chat a partir de varios mensajes o huecos de mensajes.</li>
+<li><strong><code>MessagesPlaceholder(variable_name="chat_history")</code></strong> reserva una posición donde se insertará la lista completa de mensajes anteriores.</li>
+<li><strong><code>("human", "{input}")</code></strong> representa el nuevo turno del usuario que se añadirá al final del historial.</li>
+<li><strong><code>chain = prompt | llm</code></strong> crea una cadena donde primero se formatea el prompt y luego se invoca el modelo.</li>
+<li><strong><code>chat_history.append(...)</code></strong> actualiza el estado de la conversación tras cada intercambio.</li>
+</ul>
+<h3 id="flujo-logico-del-programa">Flujo lógico del programa</h3>
 <ol>
-<li>Recuperar información detallada sobre los invitados</li>
-<li>Verificar las condiciones climáticas para planificar actividades al aire libre</li>
-<li>Proporcionar información sobre influyentes creadores de IA y sus modelos</li>
-<li>Buscar en la web la información más reciente</li>
-<li>Mantener el contexto de la conversación con memoria</li>
+<li>El usuario escribe un mensaje.</li>
+<li>El programa envía al modelo el historial acumulado más el nuevo <strong><code>input</code></strong>.</li>
+<li>El modelo genera una respuesta contextualizada.</li>
+<li>Esa respuesta también se guarda en el historial para el siguiente turno.</li>
 </ol>
-<p>Con estas capacidades, Alfred está listo para asegurar que tu gala sea un éxito rotundo, impresionando a los invitados con atención personalizada e información actualizada.</p>
+<h3 id="que-demuestra-el-ejemplo-del-video">Qué demuestra el ejemplo del vídeo</h3>
+<p>En la demo, el usuario proporciona datos personales y después pregunta qué recuerda el chatbot; el sistema es capaz de recuperar información previa porque esos mensajes siguen presentes en <strong><code>chat_history</code></strong>.</p>
+<p>Ese comportamiento no implica memoria persistente en disco, sino memoria mantenida en ejecución mediante la lista de mensajes del programa.</p>
+<h3 id="posibles-mejoras">Posibles mejoras</h3>
+<ul>
+<li>Añadir un mensaje de sistema inicial para definir el rol del asistente.</li>
+<li>Limitar el tamaño del historial para controlar coste y longitud del contexto.</li>
+<li>Guardar el historial en un fichero JSON para recuperar la conversación al reiniciar.</li>
+</ul>
+<p>Una mejora didáctica muy clara sería introducir un mensaje de sistema como <strong>“Eres un tutor de programación para Ciclos Formativos"</strong> y comparar cómo cambia el comportamiento del chatbot.</p>
+<h2 id="ejemplo-3-agente-con-herramienta-matematica">Ejemplo 3: agente con herramienta matemática</h2>
+<p>El tercer ejemplo introduce un agente que decide utilizar una herramienta de cálculo matemático para resolver una operación aritmética.</p>
+<p>Ojo, esta aproximación es más potente que una cadena simple porque el agente puede escoger qué herramienta necesita para resolver la tarea.</p>
+<h3 id="objetivos-del-ejemplo">Objetivos del ejemplo</h3>
+<p>Este ejemplo busca enseñar la diferencia entre pedir directamente una respuesta al modelo y delegar en un agente que razona sobre la acción a ejecutar.</p>
+<p>En la demostración se carga una herramienta matemática (<code>llm-math</code>) y el agente la usa para resolver la expresión “50 / 2 - 7 * 30”.</p>
+<h3 id="codigo">Código</h3>
+<p><strong>agente.py</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">initialize_agent</span><span class="p">,</span> <span class="n">AgentType</span><span class="p">,</span> <span class="n">load_tools</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TU_CLAVE&quot;</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="p">)</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="n">load_tools</span><span class="p">([</span><span class="s2">&quot;llm-math&quot;</span><span class="p">],</span> <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">)</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">initialize_agent</span><span class="p">(</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+    <span class="n">agent</span><span class="o">=</span><span class="n">AgentType</span><span class="o">.</span><span class="n">ZERO_SHOT_REACT_DESCRIPTION</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">respuesta</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;¿Cuánto es 50 dividido entre 2 menos 7 por 30?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="explicacion-tecnica_1">Explicación técnica</h3>
+<ul>
+<li><strong><code>load_tools(["llm-math"], llm=llm)</code></strong> carga una herramienta preparada para operaciones matemáticas.</li>
+<li><strong><code>initialize_agent(...)</code></strong> construye el agente con el modelo, las herramientas y el tipo de razonamiento elegido.</li>
+<li><strong><code>verbose=True</code></strong> muestra los pasos intermedios, lo que resulta muy útil para fines docentes.</li>
+<li><strong><code>agent.run(...)</code></strong> recibe la petición en lenguaje natural y el agente decide qué herramienta usar para resolverla.</li>
+</ul>
+<h3 id="que-ocurre-internamente">Qué ocurre internamente</h3>
+<p>El agente interpreta la consulta, detecta que la tarea es matemática y selecciona la herramienta apropiada en lugar de confiar solo en generación textual del modelo.</p>
+<p>En la demo, el resultado final es <code>-185</code>, que corresponde a calcular primero <code>50 / 2 = 25</code> y después <code>7 * 30 = 210</code>, para terminar con <code>25 - 210 = -185</code>.</p>
+<h3 id="valor-didactico">Valor didáctico</h3>
+<p>Este ejemplo permite explicar el salto desde “usar un LLM” hasta “crear sistemas que toman decisiones sobre herramientas”.</p>
+<p>También sirve para hablar nuevamente del patrón <strong>ReAct</strong> y el papel de los logs intermedios en la depuración de agentes.</p>
+<p><img alt="" src="../images/react_pattern.gif" /></p>
+<h3 id="advertencia-importante">Advertencia importante</h3>
+<p>La API de agentes y herramientas ha evolucionado bastante en LangChain y algunas funciones históricas pueden cambiar entre versiones, por lo que conviene revisar la documentación oficial antes de usar exactamente el mismo código en producción.</p>
+<h2 id="relacion-entre-los-tres-ejemplos">Relación entre los tres ejemplos</h2>
+<table>
+<thead>
+<tr>
+<th>Ejemplo</th>
+<th>Idea central</th>
+<th>Componentes principales</th>
+<th>Aprendizaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Explicar un tema</td>
+<td>Uso básico de modelo + prompt</td>
+<td><code>ChatOpenAI</code>, <code>PromptTemplate</code></td>
+<td>Parametrizar prompts y encapsular llamadas al LLM.</td>
+</tr>
+<tr>
+<td>Chatbot con memoria</td>
+<td>Conversación con contexto</td>
+<td><code>ChatPromptTemplate</code>, <code>MessagesPlaceholder</code>, mensajes, chain</td>
+<td>Mantener historial y responder con contexto.</td>
+</tr>
+<tr>
+<td>Agente matemático</td>
+<td>Elección de herramientas</td>
+<td><code>load_tools</code>, <code>initialize_agent</code></td>
+<td>Delegar tareas en herramientas externas.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diferencia-entre-prompt-chain-y-agente">Diferencia entre prompt, chain y agente</h2>
+<h3 id="prompt">Prompt</h3>
+<p>Un prompt define <strong>qué se le pide</strong> al modelo y con qué estructura. En el primer ejemplo, la plantilla fija el formato de la petición y solo cambia el tema.</p>
+<div class="highlight"><pre><span></span><code><span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tema&quot;</span><span class="p">,</span> <span class="s2">&quot;nivel&quot;</span><span class="p">],</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Explica el tema &#39;</span><span class="si">{tema}</span><span class="s2">&#39; para un estudiante de nivel </span><span class="si">{nivel}</span><span class="s2"> usando un ejemplo.&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="chain_1">Chain</h3>
+<p>Una chain define <strong>cómo se conectan varios pasos</strong>. En el segundo ejemplo, el prompt y el modelo quedan enlazados en un flujo donde además se añade historial.</p>
+<p><strong><code>chain = prompt | llm</code></strong> </p>
+<h3 id="agente">Agente</h3>
+<p>Un agente añade capacidad de decisión sobre <strong>qué hacer a continuación</strong>. En el tercer ejemplo, no solo responde, sino que elige una herramienta matemática para obtener el resultado.</p>
+<h2 id="propuesta-metodologica-para-clase">Propuesta metodológica para clase</h2>
+<h3 id="secuencia-sugerida">Secuencia sugerida</h3>
+<ol>
+<li>Ejecutar el ejemplo 1 y pedir al alumnado que cambie la variable <code>tema</code>.</li>
+<li>Modificar la plantilla para explicar conceptos de redes, sistemas o IA adaptados a distintos niveles.</li>
+<li>Ejecutar el chatbot del ejemplo 2 y comprobar si recuerda datos dados varios turnos antes.</li>
+<li>Probar el agente del ejemplo 3 con expresiones nuevas y observar los pasos con <code>verbose=True</code>.</li>
+</ol>
+<h3 id="actividades-practicas">Actividades prácticas</h3>
+<ul>
+<li>Convertir el ejemplo 1 en una función que genere definiciones, ejemplos y analogías.</li>
+<li>Ampliar el ejemplo 2 para que el chatbot tenga un rol docente especializado en Python.</li>
+<li>Añadir al ejemplo 3 más herramientas y plantear preguntas donde el agente deba decidir cuál utilizar.</li>
+</ul>
+<h2 id="problemas-habituales-y-consejos">Problemas habituales y consejos</h2>
+<h3 id="error-por-api-key">Error por API key</h3>
+<p>Si no está definida <code>OPENAI_API_KEY</code>, el modelo no podrá autenticarse y la invocación fallará.</p>
+<h3 id="entorno-virtual-no-activado">Entorno virtual no activado</h3>
+<p>El vídeo muestra un error típico: crear el entorno virtual pero olvidar activarlo antes de instalar dependencias, lo que provoca que los paquetes se instalen fuera del entorno esperado.</p>
+<h3 id="cambios-de-version">Cambios de versión</h3>
+<p>La documentación oficial de LangChain mantiene integraciones y componentes actualizados, por lo que conviene comprobar versiones cuando un ejemplo antiguo no funciona exactamente igual.</p>
+<h2 id="codigo-moderno-orientativo">Código moderno orientativo</h2>
+<p>Aunque los apuntes siguen fielmente la lógica del vídeo, la documentación actual de LangChain muestra un estilo centrado en integraciones modulares y en el uso de <strong><code>invoke</code></strong> sobre componentes bien definidos.</p>
+<p>Como ejemplo, la documentación de integración con YouTube usa <code>YoutubeLoader.from_youtube_url(...)</code> para cargar transcripciones como documentos, lo que muestra la misma filosofía de composición modular que hemos visto en los ejemplos, aunque aplicada a otra tarea.</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders.youtube</span><span class="w"> </span><span class="kn">import</span> <span class="n">YoutubeLoader</span><span class="p">,</span> <span class="n">TranscriptFormat</span>
+
+<span class="n">loader</span> <span class="o">=</span> <span class="n">YoutubeLoader</span><span class="o">.</span><span class="n">from_youtube_url</span><span class="p">(</span>
+    <span class="s2">&quot;https://www.youtube.com/watch?v=TKCMw0utiak&quot;</span><span class="p">,</span>
+    <span class="n">add_video_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">transcript_format</span><span class="o">=</span><span class="n">TranscriptFormat</span><span class="o">.</span><span class="n">CHUNKS</span><span class="p">,</span>
+    <span class="n">chunk_size_seconds</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</code></pre></div>
+Este ejemplo oficial resulta útil para mostrar que LangChain no se limita a chatbots: también organiza documentos, transcripciones e integraciones con fuentes externas.</p>
+<p>Fuentes:
+* <a href="https://academy.langchain.com/">Langchain Academy</a></p>
 
 
 
